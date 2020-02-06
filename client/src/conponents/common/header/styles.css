@@ -1,0 +1,6 @@
+.header{
+    display: flex;
+}
+.header h2:not(:last-child) {
+    margin-right: 20px;
+}
