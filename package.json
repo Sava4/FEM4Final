@@ -10,11 +10,15 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "front:lint:fix": "npm run lint:fix --prefix client && npm run lint:css --prefix client",
-    "front-build": "npm run build --prefix client"
+    "front-build": "npm run build --prefix client",
+    "precommit": "lint-staged --debug"
   },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/dan-it/js-course-development/fe-final-backend.git"
+  },
+  "engines": {
+    "node": ">=10.19.0"
   },
   "author": "Saribeg",
   "license": "ISC",
@@ -49,7 +53,7 @@
     }
   },
   "lint-staged": {
-    "/client/src/**/*.js": "npm run front:lint:fix --",
+    "./client/src/**/*.js": "npm run front:lint:fix --",
     "*.+(js|jsx|json|yml|yaml|css|md|vue)": "prettier --write"
   }
 }
