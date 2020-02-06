@@ -1,0 +1,22 @@
+dist: bionic
+language: node_js
+node_js:
+  - "12.13.1"
+
+cache:
+  directories:
+    - ./client/node_modules
+    - ./node_modules
+
+before_script:
+  - npm install --prefix client
+  - npm run lint --prefix client
+  - npm install
+
+script:
+  - npm run test --prefix client
+
+branches:
+  only:
+    - master
+    - develop
