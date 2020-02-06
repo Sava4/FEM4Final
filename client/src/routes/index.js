@@ -13,7 +13,7 @@ export const Routes = () => {
       
       <Switch>
           
-            <Route path="/" component = {Homepage}></Route>
+            <Route path="/home" component = {Homepage}></Route>
             <Route exect path="/categories" component={Categories}></Route>
             <Route exect path="/products" component={Products}></Route>
             <Redirect to="/"></Redirect>      
