@@ -1,9 +1,12 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import styled from "styled-components";
-import Necklaces from "../../../img/homePage/categories/necklaces.png"
+import Necklaces from "../../../img/homePage/categories/necklaces.png";
+import Bracelets from "../../../img/homePage/categories/bracelets.png";
+import Rings from "../../../img/homePage/categories/rings.png";
+import Earrings from "../../../img/homePage/categories/earring.png"
 
-import "./style.css"
+// import "./style.css"
 
 
 
@@ -24,7 +27,7 @@ export const HomepageCategiries = () => {
         display: grid;
         grid-colembs-template:repeat(auto-fi11, minmax(150px, 1fr));;
         grid-template-areas:
-        "neclases braselets braselets"
+        "neclases bracelets bracelets"
         "neclases rings earrings";
         & .earrings{
             grid-area:earrings;
@@ -32,8 +35,8 @@ export const HomepageCategiries = () => {
         & .neclases{
             grid-area:neclases;
         }
-        & .braselets{
-            grid-area:braselets;
+        & .bracelets{
+            grid-area:bracelets;
         }
         & .rings{
             grid-area:rings;
@@ -51,9 +54,34 @@ export const HomepageCategiries = () => {
             }
             
         }
-        // & .neclases{
-        //     background-image:url("${Necklaces}");
-        // }
+        & .neclases{
+            background-image:url("${Necklaces}");
+            width: 587px;
+            height: 712px;
+            background
+
+        }
+        & .bracelets{
+            background-image:url("${Bracelets}");
+            width: 850px;
+            height: 312px;
+        }
+       & .rings{
+            background-image:url("${Rings}");
+            width: 423px;
+            height: 397px;           
+        } 
+        & .earrings{
+            background-image:url("${Earrings}");
+            width: 423px;
+            height: 397px;
+        }
+        & .rings, .earrings, .bracelets, .neclases {
+             background-repeat: no-repeat;
+        }
+
+ }
+
     `; 
     return (
        
@@ -65,7 +93,7 @@ export const HomepageCategiries = () => {
                         <p>NECKLACES</p>
                     </NavLink>
                     {/* <div> */}
-                        <NavLink to="categories" className="braselets">
+                        <NavLink to="categories" className="bracelets">
                             <p>BRACELETS</p>
                         </NavLink>
                         {/* <div> */}
