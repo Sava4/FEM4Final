@@ -1,6 +1,10 @@
 .header{
     display: flex;
+    background-image: url( "../../../img/homePage/categories/necklaces.png")
 }
 .header h2:not(:last-child) {
     margin-right: 20px;
+}
+.class n{
+
 }

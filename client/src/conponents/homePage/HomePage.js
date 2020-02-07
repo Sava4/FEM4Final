@@ -1,11 +1,11 @@
 import React from "react"
-import {Layout} from "../common/layout"
-
 // import styled from "styled-components"
 
-export const Categories = () => {
+import {Layout} from "../common/layout";
+import {HomepageCategiries} from "../homePage/categories";
 
-//      const SectionCategiries = styled.div`
+export const Homepage = () => {
+//     const SectionCategiries = styled.div`
 //     {
 //         height:712px;
 //         width: 100vw;
@@ -19,14 +19,14 @@ export const Categories = () => {
 //         & div{
 //             margin-left: 20px
 //         }
-//     `;  
+//     `; 
     return (
         <Layout>
-            <h2> Filtred by categories</h2>
-          
+            <div className="categories">
+                 <HomepageCategiries></HomepageCategiries>       
+            </div>
+            
         </Layout>
         
-    )  
-   
-    
+    )   
 }

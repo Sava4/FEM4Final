@@ -1,0 +1,8 @@
+.navy{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+.navy :nth-child() {
+    margin-right: 20px;
+}

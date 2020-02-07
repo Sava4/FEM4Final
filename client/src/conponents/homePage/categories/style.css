@@ -1,0 +1,23 @@
+.neclases{
+    width: 587px;
+    height: 712px;
+    background-image:url("../../../img/homePage/categories/necklaces.png");
+}
+.braselets{
+    width: 850px;
+    height: 312px;
+    background-image:url("../../../img/homePage/categories/bracelets.png");
+}
+.rings{
+    width: 423px;
+    height: 397px;
+    background-image:url("../../../img/homePage/categories/rings.png");
+}
+.earrings{
+    width: 423px;
+    height: 397px;
+    background-image:url("../../../img/homePage/categories/earring.png");
+}
+.class{
+    height: fit-content !important;
+}
