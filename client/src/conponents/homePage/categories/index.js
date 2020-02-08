@@ -14,7 +14,7 @@ export const HomepageCategiries = () => {
 
     const SectionCategiries = styled.div`{
         height:712px;
-        width: 100vw;
+        width: 1550px;
         & {            
             text-align: center;
             font-size: 24px;
@@ -25,7 +25,9 @@ export const HomepageCategiries = () => {
         font-family: Montserrat;
         font-size: 40px;
         display: grid;
-        grid-colembs-template:repeat(auto-fi11, minmax(150px, 1fr));;
+        grid-template-columns:repeat(auto-fit, minmax(150px, 2fr));
+        grid-gap: 5px;
+        // grid-template-columns: repeat(, minmax(150px, 1fr));
         grid-template-areas:
         "neclases bracelets bracelets"
         "neclases rings earrings";
@@ -55,11 +57,10 @@ export const HomepageCategiries = () => {
             
         }
         & .neclases{
-            background-image:url("${Necklaces}");
-            width: 587px;
-            height: 712px;
-            background
-
+            background:url("${Necklaces}");
+            background-size: contain;
+                // width: 587px;
+                height: 712px;
         }
         & .bracelets{
             background-image:url("${Bracelets}");
@@ -78,6 +79,8 @@ export const HomepageCategiries = () => {
         }
         & .rings, .earrings, .bracelets, .neclases {
              background-repeat: no-repeat;
+             background-size: cover;
+
         }
 
  }
