@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+//notification test comp
+import Notification from "./Notification";
+//notific test end
+import { positions, Provider as AlertProvider } from "react-alert";
+import GlobalStyle from "./GlobalStyle";
+import { NotificationTemplate, alertOptions } from "./Notification";
+
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Provider store={store}>
+        <GlobalStyle />
+        <AlertProvider template={NotificationTemplate} {...alertOptions}>
+          <Notification />
+          <h1>Hello from React</h1>
+          <div>Regular text to read</div>
+        </AlertProvider>
+      </Provider>
+    </>
   );
 }
 
