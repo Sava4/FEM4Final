@@ -11,6 +11,7 @@ const {
   updateProduct,
   getProducts,
   getProductById,
+  deleteProductById,
   getProductsFilterParams,
   searchProducts
 } = require("../controllers/products");
@@ -98,5 +99,7 @@ router.post("/search", searchProducts);
 // @desc    GET existing product by id
 // @access  Public
 router.get("/:itemNo", getProductById);
+
+router.delete("/:itemNo",deleteProductById);
 
 module.exports = router;

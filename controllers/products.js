@@ -136,6 +136,28 @@ exports.getProductById = (req, res, next) => {
     );
 };
 
+exports.deleteProductById = (req, res, next) => {
+  Product.findOneAndRemove({
+    itemNo: req.params.itemNo
+  })
+    .then(product => {
+      if (!product) {
+        res.status(400).json({
+          message: `Product with itemNo ${req.params.itemNo} is not found`
+        });
+      } else {
+       console.log( res.json(product))
+        
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
+
 exports.getProductsFilterParams = async (req, res, next) => {
   const mongooseQuery = filterParser(req.query);
   const perPage = Number(req.query.perPage);
