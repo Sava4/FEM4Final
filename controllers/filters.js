@@ -28,11 +28,9 @@ exports.updateFilter = (req, res, next) => {
   Filter.findOne({ _id: req.params.id })
     .then(filter => {
       if (!filter) {
-        return res
-          .status(400)
-          .json({
-            message: `Filter with _id "${req.params.id}" is not found.`
-          });
+        return res.status(400).json({
+          message: `Filter with _id "${req.params.id}" is not found.`
+        });
       } else {
         const initialQuery = _.cloneDeep(req.body);
         const updatedFilter = queryCreator(initialQuery);
