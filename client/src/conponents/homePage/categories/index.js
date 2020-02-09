@@ -26,7 +26,7 @@ export const HomepageCategiries = () => {
         font-size: 40px;
         display: grid;
         grid-template-columns:repeat(auto-fit, minmax(150px, 2fr));
-        grid-gap: 5px;
+        grid-gap: 2px;
         // grid-template-columns: repeat(, minmax(150px, 1fr));
         grid-template-areas:
         "neclases bracelets bracelets"

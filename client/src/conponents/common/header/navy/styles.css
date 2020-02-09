@@ -5,4 +5,5 @@
 }
 .navy :nth-child() {
     margin-right: 20px;
+    justify-content: space-between;
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import  "./styles.css"
 
-import {Navigation}  from "../navy"
+import {Navigation}  from "./navy"
 
 export const Header  = () => {
     return (
