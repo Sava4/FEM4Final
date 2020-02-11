@@ -6,4 +6,6 @@
 .navy :nth-child() {
     margin-right: 20px;
     justify-content: space-between;
+    text-transform: uppercase;
+    cursor: pointer;
 }

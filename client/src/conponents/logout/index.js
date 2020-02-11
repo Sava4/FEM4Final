@@ -3,11 +3,12 @@ import {Layout} from "../common/layout"
 
 // import styled from "styled-components"
 
-export const Error = () => {
+export const Logout = () => {
 
+ 
     return (
         <Layout>
-            <h2> ERROR</h2>
+            <h2> Products in tour bin</h2>
           
         </Layout>
         
@@ -29,4 +30,4 @@ export const Error = () => {
 //         & div{
 //             margin-left: 20px
 //         }
-//     `;  
+//     `; 

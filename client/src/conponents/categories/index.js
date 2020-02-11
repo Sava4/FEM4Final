@@ -5,6 +5,18 @@ import {Layout} from "../common/layout"
 
 export const Categories = () => {
 
+
+    return (
+        <Layout>
+            <h2> Filtred by categories</h2>
+          
+        </Layout>
+        
+    )  
+   
+    
+}
+
 //      const SectionCategiries = styled.div`
 //     {
 //         height:712px;
@@ -20,13 +32,3 @@ export const Categories = () => {
 //             margin-left: 20px
 //         }
 //     `;  
-    return (
-        <Layout>
-            <h2> Filtred by categories</h2>
-          
-        </Layout>
-        
-    )  
-   
-    
-}

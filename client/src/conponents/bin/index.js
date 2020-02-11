@@ -5,6 +5,17 @@ import {Layout} from "../common/layout"
 
 export const Bin = () => {
 
+ 
+    return (
+        <Layout>
+            <h2> Products in tour bin</h2>
+          
+        </Layout>
+        
+    )  
+   
+    
+}
 //      const SectionCategiries = styled.div`
 //     {
 //         height:712px;
@@ -19,14 +30,4 @@ export const Bin = () => {
 //         & div{
 //             margin-left: 20px
 //         }
-//     `;  
-    return (
-        <Layout>
-            <h2> Products in tour bin</h2>
-          
-        </Layout>
-        
-    )  
-   
-    
-}
+//     `; 

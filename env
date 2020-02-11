@@ -1,3 +1,0 @@
-MONGO_URI_DEV='mongodb+srv://fem4final:8Z05TVJhXYGXGFDZ@fem4final-pk2uc.mongodb.net/FEM4_DEV?retryWrites=true&w=majority'
-MONGO_URI='mongodb+srv://fem4final:8Z05TVJhXYGXGFDZ@fem4final-pk2uc.mongodb.net/FEM4_PROD?retryWrites=true&w=majority'
-SECRET_OR_KEY=secret........

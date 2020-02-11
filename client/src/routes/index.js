@@ -6,6 +6,7 @@ import {Homepage} from "../conponents/homePage/HomePage";
 import {Products} from "../conponents/products";
 import {Categories} from "../conponents/categories";
 import {ProductDitails} from "../conponents/productDitails";
+import {Account} from "../conponents/account"
 import {Bin} from "../conponents/bin";
 import {Error} from "../conponents/404error"
 
@@ -16,20 +17,19 @@ export const Routes = () => {
       
       <Switch>
           
-            <Route exact path="/" component = {Homepage}></Route>
-            
-            <Route  path="/categories" component={Categories}></Route>
-                <Route path="/categories/rings" component={Products}></Route>
-                <Route path="/categories/earrings" component={Products}></Route>
-                <Route path="/categories/bracelets" component={Products}></Route>
-                <Route path="/categories/neclaces" component={Products}></Route>
-            <Route path="/products" component={Products}> </Route>
-            <Route path="/productsditails" component={ProductDitails}> </Route>
-            <Route path="/account" component={Products}></Route>
-            <Route path="/logout" component={Products}></Route>
-            <Route path="/bin" component={Bin}></Route>
-            <Route path="/404error" component={Error}></Route>
-            <Redirect to="/"></Redirect>      
+            <Route exact path="/" component = {Homepage}></Route>            
+            <Route  path="/categories" component={Categories}/>
+                <Route path="/categories/rings" component={Products}/>
+                <Route path="/categories/earrings" component={Products}/>
+                <Route path="/categories/bracelets" component={Products}/>
+                <Route path="/categories/neclaces" component={Products}/>
+            <Route  path="/products" component={Products}/>
+            <Route  path="/productsditails" component={ProductDitails}/>
+            <Route path="/account" component={Account}/>
+            <Route path="/logout" component={Products}/>
+            <Route path="/bin" component={Bin}/>
+            <Route path="/404error" component={Error}/>
+            <Redirect to="/"/>      
          
       </Switch>
   ) :(
@@ -38,12 +38,13 @@ export const Routes = () => {
                 <Route exact path="/" component = {Homepage}></Route>
             
             <Route  path="/categories" component={Categories}></Route>
-                <Route path="/categories/rings" component={Products}></Route>
+                {/* <Route path="/categories/rings" component={Products}></Route>
                 <Route path="/categories/earrings" component={Products}></Route>
                 <Route path="/categories/bracelets" component={Products}></Route>
-                <Route path="/categories/neclaces" component={Products}></Route>
+                <Route path="/categories/neclaces" component={Products}></Route> */}
             <Route path="/products" component={Products}> </Route>
             <Route  path="/productsditails" component={ProductDitails}> </Route>
+            
             <Route path="/login" component={Products}></Route>
             <Route path="/404error" component={Error}></Route>
             <Redirect to="/"></Redirect>      

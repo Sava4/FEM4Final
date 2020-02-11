@@ -3,11 +3,12 @@ import {Layout} from "../common/layout"
 
 // import styled from "styled-components"
 
-export const Error = () => {
+export const Account = () => {
+
 
     return (
         <Layout>
-            <h2> ERROR</h2>
+            <h2> Account ditails</h2>
           
         </Layout>
         
