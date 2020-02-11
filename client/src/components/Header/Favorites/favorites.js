@@ -1,14 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import favorites from "./favorites.png";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
-export const Favorites = props => {
+export const Favorites = () => {
+  const count = useSelector(state => {
+    return state.favorites.length;
+  });
+
   return (
     <ServicesIcon>
       <FavoritesIcon />
-      <span>({props.count})</span>
+      <span>({count})</span>
     </ServicesIcon>
   );
 };

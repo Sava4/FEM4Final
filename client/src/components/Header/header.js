@@ -26,7 +26,7 @@ export const Header = () => {
               color: "inherit"
             }}
           >
-            <Favorites count={0} />
+            <Favorites />
           </NavLink>
           <NavLink
             to="/shopping-bag"
@@ -35,7 +35,7 @@ export const Header = () => {
               color: "inherit"
             }}
           >
-            <ShoppingBag count={0} />
+            <ShoppingBag />
           </NavLink>
         </HeaderIconWrapper>
       </HeaderWrapper>

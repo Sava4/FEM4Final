@@ -1,15 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import bug from "./shopping-bag.png";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
-export const ShoppingBag = props => {
-  console.log(props);
+export const ShoppingBag = () => {
+  const count = useSelector(state => {
+    return state.shoppingCard.length;
+  });
+
   return (
     <ServicesIcon>
       <ShoppingBagIcon />
-      <ShoppingBagCounter>({props.count})</ShoppingBagCounter>
+      <ShoppingBagCounter>({count})</ShoppingBagCounter>
     </ServicesIcon>
   );
 };
