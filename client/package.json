@@ -10,7 +10,11 @@
     "cors": "^2.8.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.1"
+    "react-reveal": "^1.2.2",
+    "react-scripts": "3.3.1",
+    "react-slick": "^0.25.2",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

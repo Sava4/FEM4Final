@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export function addSlide() {
     const newSlide = {
-        customId: "promotion-2",
-        imageUrl: "img/slider/2.jpg",
-        title: "Buy 2 rings and get a third for free!",
-        description: "Do not miss our hot offer. Promotion ends 20/06/2020",
+        customId: "promotion-1",
+        imageUrl: "./../../img/slider/img1.jpg",
+        title: "ghyuyiopu[o]uyioryufgiohp",
+        description: "Do not miss our hot offer. Promotion ends 25/06/2020",
         category: "5d99f68e419d040eec0f722c"
     };
 
@@ -36,7 +36,7 @@ export function addSlide() {
 export function updateSlide() {
     const updatedSlide = {
     
-        imageUrl: "img/slider/1.jpg",
+        imageUrl: "./../../img/slider/img2.jpg",
        
     };
 

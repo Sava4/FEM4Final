@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 
-// addSlide();
+// // addSlide();
 // updateSlide();
 
 // addProduct();
