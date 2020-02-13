@@ -2,7 +2,7 @@ import React from "react";
 //notification test comp
 import Notification from "./Notification";
 //notific test end
-import { positions, Provider as AlertProvider } from "react-alert";
+import { Provider as AlertProvider } from "react-alert";
 import GlobalStyle from "./GlobalStyle";
 import { NotificationTemplate, alertOptions } from "./Notification";
 

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useAlert } from "react-alert";
+import { useAlert, positions } from "react-alert";
 import InfoIcon from "./icons/InfoIcon";
 import SuccessIcon from "./icons/SuccessIcon";
 import ErrorIcon from "./icons/ErrorIcon";
