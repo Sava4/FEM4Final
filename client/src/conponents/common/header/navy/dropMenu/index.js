@@ -2,60 +2,63 @@ import React, {useState,useLayoutEffect, useEffect}from "react";
 import axios from "axios";
 
 import styled from "styled-components";
+import {Dropmenu} from "../dropMenu/dropmenu"
 
-const components =()=> axios
-    .get("http://localhost:5000/catalog")
-    .then(result  => {
-        console.log("Secsess ");
-        console.log(result.data) 
-        return (result.data)
+
+// import categories from "./getCategoriesArray"
+
+// const components =()=> axios
+//     .get("http://localhost:5000/catalog")
+//     .then(result  => {
+//         console.log("Secsess ");
+//         console.log(result.data) 
+//         return (result.data)
      
-    })
-    .catch(err => {
-      /*Do something with error, e.g. show error to user*/
-    }); 
-    const menuArrey = components();
-    console.log(menuArrey)
-export const HeaderMenuElem = (props) => {
-    // const {components} =props;
-    
-    const [isOpen, setIsOpen] = useState(false);
-    console.log(props) 
-    const ShowDropMenu = (e)=>{
-        console.log(e.target)
-        setIsOpen(!isOpen)
-            }
+//     })
+//     .catch(err => {
+//       /*Do something with error, e.g. show error to user*/
+//     }); 
+//     const menuArrey = components();
+//     console.log(menuArrey)
 
-    let categArrey =props.filter(item => item.parentId === "null");
-    const NavyEll = categArrey.map(item=>{
-         console.log(item)
-        const menuName = item.name;
-        let menuArrey =props.filter(item => item.parentId === `${menuName}`);
-        let menuEll = menuArrey.map(item=>{
-            return(
-                <li key={item._id}>
-                    {item.name}
+export const HeaderMenuElem = (props) => {
+
+    
+    const {categories}=props;
+    // console.log(categories) 
+    const [isOpen, setIsOpen] = useState(false);
+    
+    // const ShowDropMenu = (e)=>{
+        
+    //     setIsOpen(!isOpen)
+    //         }
+
+    let categArrey =categories.filter(item => item.parentId === "null");
+    
+     
+           const categList = categArrey.map(item=>{
+            const menuName = item.name;
+            console.log(item.name)  
+            let dropMenuArrey =categories.filter(item => item.parentId === `${menuName}`); 
+            // console.log(dropMenuArrey)  
+                return(
+                <li key={item._id}  className="headerLink" >
+                    {/* <Dropmenu categories={categories}/>  */}
+                    <Dropmenu dropMenuArrey={dropMenuArrey}/>
                 </li>
-            )
-    
-        })
-       return(
-       <p key={item._id} className="headerLink" onClick={ShowDropMenu}>{item.name}
-            {(isOpen) && (
-               <ul>
-                 {menuEll}
-            </ul> 
-            )}
-       </p>
-       
+                     
+                    
+                    )  
+            })
+       return( 
+       <Categories>{categList}</Categories>
        )
-   })
-    
-   
-    
+      
 };
-const Categories = styled.li`
+
+const Categories = styled.ul`
         {
-       list-style-tipe: none
+            display:flex;
+       list-style-type: none;
         }
     `;

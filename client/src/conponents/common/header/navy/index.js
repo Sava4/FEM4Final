@@ -3,45 +3,48 @@ import {Link} from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios"
 
-import {HeaderMenuElem} from "../navy/dropMenu";
+import {HeaderMenuElem} from "./dropMenu";
+import categories from "./dropMenu/getCategoriesArray"
+
 
 // import  "./styles.css";
 
 
 
 export const Navigation  = () => {
-  
-//     const [categoriesAllData, setCategoriesAllData] = useState([]);
-//  useLayoutEffect(()=>{
-       
-      
-//         axios
-//             .get("http://localhost:5000/catalog")
-//             .then(result  => {
-//                 console.log("Secsess ");
-                  
-//                 setCategoriesAllData(result.data)
-             
-//             })
-//             .catch(err => {
-//               /*Do something with error, e.g. show error to user*/
-//             });            
+    const [categoriesAllData, setCategoriesAllData] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [dropmenuData, setDropmenuData] = useState([]);
 
-//     },[])
-
- 
     const newCategory = {
-        id: "Jewelry",
-        name: "Jewelry",
-        parentId: "null",
+        id: "Brooches",
+        name: "Brooches",
+        parentId: "Engagement",
         imgUrl: " ",
         description: "A category, of earrings",
         level: 0
       };
 
+      useLayoutEffect(()=>{
+       
+      
+        axios
+            .get("http://localhost:5000/catalog")
+            .then(result  => {
+                console.log("Secsess ");
+                console.log(result.data);  
+                setCategoriesAllData(result.data)
+                
+            })
+            .catch(err => {
+              /*Do something with error, e.g. show error to user*/
+            });            
 
-    // useEffect
-    
+    },[])
+
+    const categories = (categoriesAllData) && categoriesAllData;  
+
+    console.log(categories);
     // const arreyCategiries =(data)=> {
     //     console.log(data)
     //     let Arrey =data.filter(item => item.parentId === "null");
@@ -71,16 +74,18 @@ export const Navigation  = () => {
             .then(response => {
             /*Do something with newProduct*/
             let token = response.data.token;
-
+            console.log(token);
             axios
                 .post("http://localhost:5000/catalog", newCategory, { headers: { "Authorization": `${token}` } })
-                .then(newProduct => {
+                .then(newCategory => {
                 /*Do something with newProduct*/
-                console.log(newProduct);
+                console.log(newCategory);
                 })
                 .catch(err => {
-                /*Do something with error, e.g. show error to user*/
+                    console.log("Не добавлена категория");
                 });
+            
+              
             // axios
             // .delete("http://localhost:5000/catalog/Rin",{ headers: { "Authorization": `${token}` } } )
             // .then(result  => {
@@ -95,20 +100,49 @@ export const Navigation  = () => {
             /*Do something with error, e.g. show error to user*/
             });
             }
- 
+    const ShowDropMenu = (e)=>{
+        console.log(e.target)
+        setIsOpen(!isOpen)
+            }
+
+    let categArrey =categoriesAllData.filter(item => item.parentId === "null");
+    const NavyEll = categArrey.map(item=>{
+      
+        const menuName = item.name;
+        let menuArrey =categoriesAllData.filter(item => item.parentId === `${menuName}`);
+        let menuEll = menuArrey.map(item=>{
+            return(
+                <li key={item._id} >
+                    {item.name}
+                </li>
+            )
+    
+        })
+       return(
+       <p key={item._id} className="headerLink" onClick={DataToServer}>{item.name}
+            {(isOpen) && (
+               <ul>
+                 {menuEll}
+            </ul> 
+            )}
+       </p>
+       
+       )
+   })
 
 
     return (
         // <div>
-        <HeaderMenu className="navy">            
-             {HeaderMenuElem}
-        </HeaderMenu>
+        <HeaderDropMenu className="navy">            
+             {/* {NavyEll} */}
+             <HeaderMenuElem categories={categories}/>
+        </HeaderDropMenu>
         
         // </div>
     )   
 };
 
-const HeaderMenu = styled.div`{
+const HeaderDropMenu = styled.div`{
     font-family: Montserrat;
     display: flex;
     width: 100%;
@@ -126,6 +160,7 @@ const HeaderMenu = styled.div`{
             position: absolute;
             background-color: white;
             height: 150px;
+            width: 100vw;
             z-index: 1;
             & li{
                 list-style-type:none;
