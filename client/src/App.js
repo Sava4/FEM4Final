@@ -1,16 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { store } from "./store";
 
-import 
-import './App.css';
+import "./App.css";
+
+import { Header, Spinner } from "./components";
 
 function App() {
   return (
-    <div className="App">
-      <main className="content">
-      
-      </main>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Route component={Header} />
+          {/*<Spinner/>*/}
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
