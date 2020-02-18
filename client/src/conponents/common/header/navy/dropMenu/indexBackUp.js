@@ -1,4 +1,4 @@
-mport React, {useState,useLayoutEffect, useEffect}from "react";
+mport React, {useState,useLayoutEffect, useEffect} from "react";
 import axios from "axios";
 
 import styled from "styled-components";

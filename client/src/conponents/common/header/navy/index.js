@@ -4,7 +4,10 @@ import styled from "styled-components";
 import axios from "axios"
 
 import {HeaderMenuElem} from "./dropMenu";
-import categories from "./dropMenu/getCategoriesArray"
+import categories from "./dropMenu/getCategoriesArray";
+
+import { addCategory} from "./dropMenu/newCategory"
+
 
 
 // import  "./styles.css";
@@ -16,14 +19,14 @@ export const Navigation  = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [dropmenuData, setDropmenuData] = useState([]);
 
-    const newCategory = {
-        id: "Brooches",
-        name: "Brooches",
-        parentId: "Engagement",
-        imgUrl: " ",
-        description: "A category, of earrings",
-        level: 0
-      };
+    // const newCategory = {
+    //     id: "Brooches",
+    //     name: "Brooches",
+    //     parentId: "Engagement",
+    //     imgUrl: " ",
+    //     description: "A category, of earrings",
+    //     level: 0
+    //   };
 
       useLayoutEffect(()=>{
        
@@ -68,37 +71,45 @@ export const Navigation  = () => {
     //     )
 
     // })
+    
+
     const DataToServer = ()=>{
-        axios
-            .post("http://localhost:5000/customers/login", { "loginOrEmail": "customer@gmail.com", "password": "1111111" })
-            .then(response => {
+        // addCategory();
+        // axios
+        //     .post("http://localhost:5000/customers/login", { "loginOrEmail": "customer@gmail.com", "password": "1111111" })
+        //     .then(response => {
             /*Do something with newProduct*/
-            let token = response.data.token;
-            console.log(token);
-            axios
-                .post("http://localhost:5000/catalog", newCategory, { headers: { "Authorization": `${token}` } })
-                .then(newCategory => {
-                /*Do something with newProduct*/
-                console.log(newCategory);
-                })
-                .catch(err => {
-                    console.log("Не добавлена категория");
-                });
-            
+            // let token = response.data.token;
+            // console.log(token);
+        //     axios
+        //         .post("http://localhost:5000/catalog", newCategory, { headers: { "Authorization": `${token}` } })
+        //         .then(newCategory => {
+        //         /*Do something with newProduct*/
+        //         console.log(newCategory);
+        //         })
+        //         .catch(err => {
+        //             console.log("Не добавлена категория");
+        //         });
+
+         
+        
+        
+            //     })
+            // }
               
             // axios
-            // .delete("http://localhost:5000/catalog/Rin",{ headers: { "Authorization": `${token}` } } )
+            // .delete("http://localhost:5000/catalog/Braoches",{ headers: { "Authorization": `${token}` } } )
             // .then(result  => {
-            //     console.log(result );
+                // console.log(result );
             // })
             // .catch(err => {
-            //   /*Do something with error, e.g. show error to user*/
+              /*Do something with error, e.g. show error to user*/
             // });
-
-            })
-            .catch(err => {
+// 
+            // })
+            // .catch(err => {
             /*Do something with error, e.g. show error to user*/
-            });
+            // });
             }
     const ShowDropMenu = (e)=>{
         console.log(e.target)

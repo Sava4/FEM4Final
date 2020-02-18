@@ -17,9 +17,9 @@ export const Dropmenu = props => {
     const dropMenu = (categArrey.length) && categArrey.map(item=> <li key={item._id}>{item.name}</li>
          )
     return (
-        <div>
-            <p onClick={ShowDropMenu} >{header}</p>
-            { isOpen && <ul onH>
+        <div >
+            <p onMouseOver={ShowDropMenu}>{header}</p>
+            { isOpen && <ul onMouseLeave={ShowDropMenu}>
                             {dropMenu}
                     </ul>}
         </div>
