@@ -6,6 +6,7 @@ import {addSlide, updateSlide, addCategory} from './newSlide';
 import {addProduct, updateProduct} from './newProduct';
 import {deleteOneProduct, deleteAllProducts} from './deleteProducts';
 import {addLinks} from './newLinks';
+import {addPage} from './newPage';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -24,6 +25,9 @@ import * as serviceWorker from './serviceWorker';
 
 
 // addCategory()
+
+// addLinks()
+// addPage()
 
  ReactDOM.render(<App />,  document.getElementById('root'));
 

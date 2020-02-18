@@ -100,7 +100,7 @@ export const Footer = () => {
           <div>
             <h4>Information</h4>
             <ul>
-              <li><a href="#">Brand History</a></li>
+              <li><a href="/pages/brand-history">Brand History</a></li>
               <li><a href="#">News</a></li>
               <li><a href="#">Supply Chain Acts</a></li>
               <li><a href="#">Website Policies</a></li>
