@@ -33,10 +33,25 @@ export function addSlide() {
         });
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export function updateSlide() {
     const updatedSlide = {
     
-        imageUrl: "./../../img/slider/img2.jpg",
+        imageUrl: "img3.jpg",
        
     };
 
@@ -45,7 +60,7 @@ export function updateSlide() {
         .then(response => {
             /*Do something with newProduct*/
             let token = response.data.token;
-            let customId = "promotion-2";//вставить нужный customId продукта
+            let customId = "promotion-3";//вставить нужный customId продукта
             axios
                 .put(`http://localhost:5000/slides/${customId}`,  updatedSlide, { headers: { "Authorization": `${token}` } })
                 .then(updatedSlide => {
@@ -60,3 +75,33 @@ export function updateSlide() {
             /*Do something with error, e.g. show error to user*/
         });
 }
+
+
+export function addCategory() {
+    const newCategory = {
+        id: "Watches",
+       name: "Watches",
+       parentId: "Souvenirs",
+       imgUrl: " ",
+       description: "A category, of earrings",
+       level: 0
+    };
+
+    axios
+        .post("http://localhost:5000/customers/login", { "loginOrEmail": "customer@gmail.com", "password": "1111111" })
+        .then(response => {
+            let token = response.data.token;
+            console.log(token);
+            axios
+                .post("http://localhost:5000/catalog", newCategory, { headers: { "Authorization": `${token}` } })
+                .then(newCategory => {
+                    /*Do something with newProduct*/
+                    console.log(newCategory);
+                })
+                .catch(err => {
+                    console.log("Не добавлена категория");
+                });
+
+
+        })
+    }

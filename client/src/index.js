@@ -2,22 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addSlide, updateSlide} from './newSlide'
-import {addProduct, updateProduct} from './newProduct'
-import {deleteOneProduct, deleteAllProducts} from './deleteProducts'
+import {addSlide, updateSlide, addCategory} from './newSlide';
+import {addProduct, updateProduct} from './newProduct';
+import {deleteOneProduct, deleteAllProducts} from './deleteProducts';
+import {addLinks} from './newLinks';
 
 import * as serviceWorker from './serviceWorker';
 
 
 
-// // addSlide();
+// addSlide();
 // updateSlide();
+
 
 // addProduct();
 // updateProduct();
 
+
 // deleteOneProduct();
 // deleteAllProducts();
+
+
+// addCategory()
 
  ReactDOM.render(<App />,  document.getElementById('root'));
 
