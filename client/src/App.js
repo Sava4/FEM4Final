@@ -1,35 +1,44 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import { store } from "./store";
 
+import { Header, Spinner, Footer, Slider } from "./Components";
 
+import "./App.css";
 
-import { Header, Spinner } from "./components";
+import { StaticPage } from "./Views/staticPage";
+import { Homepage } from "./Views/homepage";
 
+// export const Url2 = (props) => {
+//   console.log(props)
+//   const url3 = props
+//   return(
+// <p>{console.log(url3)}</p>
 
-import './App.css';
-import { Slider } from './Components/Slider';
-import { Footer } from './Components/Footer';
-
-
-
+//   )
+// }
+// {`${url3}`}
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div>
-          <Route component={Header} />
+        <Switch>
+          {/* <Route component={Header} /> */}
           {/*<Spinner/>*/}
-        </div>
+          {/* <Route component={Slider} />           */}
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/news" component={StaticPage} />
+          <Redirect to="/" />
+          {/* <Route component={Footer} /> */}
+        </Switch>
       </Router>
     </Provider>
-
-
-    <Slider />
-    <Footer />
-
   );
 }
-
 export default App;
