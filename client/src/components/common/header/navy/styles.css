@@ -1,0 +1,16 @@
+.navy {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+}
+.navy :nth-child() {
+  margin-right: 20px;
+  justify-content: space-between;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.navy :not(:first-child) {
+  display: inline;
+  justify-content: space-between;
+  position: absolute;
+}

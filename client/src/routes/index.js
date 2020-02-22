@@ -1,55 +1,54 @@
 import React from "react";
-import {Route, Redirect, Switch} from "react-router-dom" 
+import { Route, Redirect, Switch } from "react-router-dom";
 
-
-import {Homepage} from "../conponents/homePage/HomePage";
-import {Products} from "../conponents/products";
-import {Categories} from "../conponents/categories";
-import {ProductDitails} from "../conponents/productDitails";
-import {Account} from "../conponents/account"
-import {Bin} from "../conponents/bin";
-import {Error} from "../conponents/404error"
+import { Homepage } from "../components/homePage/HomePage";
+import { Products } from "../components/ProductsList";
+import { Categories } from "../components/Categories";
+import { ProductDitails } from "../components/ProductDitails";
+import { Account } from "../components/Account";
+import { ShoppingBag } from "../components/Shopping-bag";
+import { Error } from "../components/404error";
 
 export const Routes = () => {
-    // const [isAutificated, setIsAutificated]= useState(false)
-    const isAutificated = true;
-  return  (isAutificated) ? (
-      
-      <Switch>
-          
-            <Route exact path="/" component = {Homepage}></Route>            
-            <Route  path="/categories" component={Categories}/>
-                <Route path="/categories/rings" component={Products}/>
-                <Route path="/categories/earrings" component={Products}/>
-                <Route path="/categories/bracelets" component={Products}/>
-                <Route path="/categories/neclaces" component={Products}/>
-            <Route  path="/products" component={Products}/>
-            <Route  path="/productsditails" component={ProductDitails}/>
-            <Route path="/account" component={Account}/>
-            <Route path="/logout" component={Products}/>
-            <Route path="/bin" component={Bin}/>
-            <Route path="/404error" component={Error}/>
-            <Redirect to="/"/>      
-         
-      </Switch>
-  ) :(
+  // const [isAutificated, setIsAutificated]= useState(false)
+  const isAutificated = true;
+  return isAutificated ? (
     <Switch>
-                
-                <Route exact path="/" component = {Homepage}></Route>
-            
-            <Route  path="/categories" component={Categories}></Route>
-                {/* <Route path="/categories/rings" component={Products}></Route>
-                <Route path="/categories/earrings" component={Products}></Route>
-                <Route path="/categories/bracelets" component={Products}></Route>
-                <Route path="/categories/neclaces" component={Products}></Route> */}
-            <Route path="/products" component={Products}> </Route>
-            <Route  path="/productsditails" component={ProductDitails}> </Route>
-            
-            <Route path="/login" component={Products}></Route>
-            <Route path="/404error" component={Error}></Route>
-            <Redirect to="/"></Redirect>      
-
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/categories" component={Categories} />
+      <Route path="/categories/rings/:id" component={Products} />
+      <Route path="/categories/earrings" component={Products} />
+      <Route path="/categories/bracelets" component={Products} />
+      <Route path="/categories/neclaces" component={Products} />
+      <Route path="/products" component={Products} />
+      <Route path="/productsditails" component={ProductDitails} />
+      <Route exact path="/account" component={Account} />
+      +
+      <Route path="/account/favorites" component={Products} />
+      <Route path="/account/shopping-bag" component={ShoppingBag} />
+      <Route path="/logout" component={Products} />
+      <Route path="/404error" component={Error} />
+      <Redirect to="/" />
     </Switch>
-    )
-    
-} 
+  ) : (
+    <Switch>
+      <Route exact path="/" component={Homepage} />
+
+      <Route exact path="/categories" component={Categories} />
+
+      <Route path="/categories/rings" component={Products} />
+      <Route path="/categories/earrings" component={Products} />
+      <Route path="/categories/bracelets" component={Products} />
+      <Route path="/categories/neclaces" component={Products} />
+
+      <Route path="/products" component={Products} />
+
+      <Route path="/productsditails" component={ProductDitails} />
+
+      <Route path="/login" component={Products} />
+
+      <Route path="/404error" component={Error} />
+      <Redirect to="/" />
+    </Switch>
+  );
+};
