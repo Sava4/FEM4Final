@@ -15,16 +15,6 @@ import "./App.css";
 import { StaticPage } from "./Views/staticPage";
 import { Homepage } from "./Views/homepage";
 
-// export const Url2 = (props) => {
-//   console.log(props)
-//   const url3 = props
-//   return(
-// <p>{console.log(url3)}</p>
-
-//   )
-// }
-// {`${url3}`}
-
 function App() {
   return (
     <Provider store={store}>

@@ -79,43 +79,43 @@ export function updateLinks() {
     links: [
       {
         description: "Find Your Store",
-        url: "/find-your-store"
+        url: "find-your-store"
       },
       {
         description: "Brand History",
-        url: "/brand-history"
+        url: "brand-history"
       },
       {
         description: "News",
-        url: "/news"
+        url: "news"
       },
       {
         description: "Supply Chain Acts",
-        url: "/supply-chain-acts"
+        url: "supply-chain-acts"
       },
       {
         description: "NWebsite Policies",
-        url: "/website-policies"
+        url: "website-policies"
       },
       {
         description: "Payments & Shipping",
-        url: "/payments-shipping"
+        url: "payments-shipping"
       },
       {
         description: "Returns & Replacements",
-        url: "/returns-replacements"
+        url: "returns-replacements"
       },
       {
         description: "Loyalty Program",
-        url: "/loyalty-program"
+        url: "loyalty-program"
       },
       {
         description: "Product Care",
-        url: "/product-care"
+        url: "product-care"
       },
       {
         description: "Gift Cards",
-        url: "/gift-cards"
+        url: "gift-cards"
       }
     ]
   };
