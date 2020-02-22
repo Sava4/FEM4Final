@@ -3,8 +3,14 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {
+  CarouselImage,
+  SliderPromo,
+  SliderPromoText,
+  SliderPromoButton
+} from "./slider.styles";
 
-export const Carousel = () => {
+export const SliderHomepage = () => {
   const settings = {
     accessibility: true,
     dots: true,
@@ -97,44 +103,3 @@ function SamplePrevArrow(props) {
     />
   );
 }
-
-const SliderPromo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 452px;
-  height: 100%;
-  margin-left: 130px;
-  background: linear-gradient(0deg, #ffffff, #ffffff);
-  opacity: 0.9;
-`;
-
-const SliderPromoText = styled.div`
-  width: 70%;
-  background-color: #ffffff;
-  opacity: 0.8;
-  font-size: 12px;
-  font-family: Montserrat, sans-serif;
-  color: black;
-`;
-
-const SliderPromoButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 275px;
-  width: 280px;
-  height: 46px;
-  background: #ffffff;
-  border: 1px solid #262c37;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: black;
-  font-size: 14px;
-`;
-const CarouselImage = styled.div`
-  background: url(${props => props.imageUrl}) no-repeat;
-  height: 425px;
-  opacity: 1;
-`;
