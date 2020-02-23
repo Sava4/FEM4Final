@@ -17,6 +17,7 @@ export function categoriesReduser(store = initialState, { type, payload }) {
   }
 }
 
+// TODO Check how to show categories with Redux store vs Local State.
 export const getCategoriesList = () => async dispatch => {
   const result = await fetch("http://localhost:5000/catalog");
   const json = await result.json();

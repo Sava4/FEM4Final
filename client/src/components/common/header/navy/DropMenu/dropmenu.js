@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 export const Dropmenu = props => {
   const { dropMenuArrey } = props;
-  console.log(dropMenuArrey);
+  // console.log(dropMenuArrey);
 
   const [isOpen, setIsOpen] = useState(false);
 
