@@ -17,7 +17,7 @@ export const SliderHomepage = () => {
     arrows: true,
     infinite: true,
     draggable: true,
-    // autoplay: true,
+    autoplay: true,
     // centerMode: true,
     speed: 500,
     nextArrow: <SampleNextArrow />,
@@ -50,7 +50,7 @@ export const SliderHomepage = () => {
                 <SliderPromo>
                   <SliderPromoText>
                     {item.description}
-                    {console.log(item.description)}
+                    {/* {console.log(item.description)} */}
                   </SliderPromoText>
                   <SliderPromoButton>
                     <div> SHOP NOW</div>
