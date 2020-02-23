@@ -16,7 +16,7 @@ export const HeaderMenuElem = props => {
     let dropMenuArrey = categoriesAllData.filter(
       item => item.parentId === `${menuName}`
     );
-    console.log(dropMenuArrey);
+
     return (
       <CategoriesLi key={item._id}>
         <Dropmenu dropMenuArrey={dropMenuArrey} />
@@ -27,13 +27,16 @@ export const HeaderMenuElem = props => {
 };
 
 const Categories = styled.ul`
+  padding: 0;
+  margin: 0;
   font-size: 14px;
-  width: 100vw;
+  width: 70vw;
   text-transform: uppercase;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   list-style-type: none;
   position: relative;
+  cursor: pointer;
 
   ${mediaMobile(`
     display: none;
@@ -41,6 +44,5 @@ const Categories = styled.ul`
 `;
 
 const CategoriesLi = styled.li`
-  width: 82px;
-  margin-bottom: 30px;
+  list-style-type: none;
 `;

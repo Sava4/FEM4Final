@@ -90,7 +90,6 @@ const HeaderIconWrapper = styled.div`
 
 const Categories = styled.div`
   width: 100%;
-  padding-bottom: 30px;
   display: flex;
   justify-content: space-evenly;
   border-bottom: 1px solid black;

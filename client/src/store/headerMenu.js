@@ -5,17 +5,13 @@ const setCategories = payload => ({
   payload
 });
 
-const initialState = {
-  categories: []
-};
+const initialState = [];
 
 export function categoriesReduser(store = initialState, { type, payload }) {
   switch (type) {
     case GET_CATEGORIES:
-      return {
-        ...store,
-        categories: payload
-      };
+      return [...store, ...payload];
+
     default:
       return store;
   }

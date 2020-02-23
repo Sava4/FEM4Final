@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
 export const Dropmenu = props => {
   const { dropMenuArrey } = props;
+  console.log(dropMenuArrey);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,17 +18,23 @@ export const Dropmenu = props => {
 
   const dropMenu =
     categArrey.length &&
-    categArrey.map(item => <li key={item._id}>{item.name}</li>);
+    categArrey.map(item => (
+      <li key={item._id}>
+        <NavLink to="">{item.name}</NavLink>
+      </li>
+    ));
+
+  // const activeStyle = {{styles}}
 
   return (
-    <div>
-      <p onClick={ShowDropMenu}>{header}</p>
+    <p onClick={ShowDropMenu}>
+      {header}
       {isOpen && (
         <DropHeaderMenuList onMouseLeave={ShowDropMenu}>
           {dropMenu}
         </DropHeaderMenuList>
       )}
-    </div>
+    </p>
   );
 };
 
@@ -36,6 +44,7 @@ const DropHeaderMenuList = styled.ul`
   position: absolute;
   background-color: white;
   width: 100vw;
+
   & li {
     list-style-type: none;
     text-transform: none;
