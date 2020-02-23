@@ -6,7 +6,7 @@ import {
   mediaDesktop,
   mediaMobile,
   mediaTablet
-} from "../../../styled-components/media-breakpoints-mixin";
+} from "../../../../../styled-components/media-breakpoints-mixin";
 
 export const Logo = () => {
   return <MainLogo />;

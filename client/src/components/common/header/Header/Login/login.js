@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import login from "./login.png";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../../../styled-components/media-breakpoints-mixin";
 
 export const Login = () => {
   return (

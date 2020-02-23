@@ -6,6 +6,7 @@ export function favoritesReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_FAVORITE:
       return state.concat(action.payload);
+    default:
+      return state;
   }
-  return state;
 }
