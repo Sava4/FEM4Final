@@ -12,7 +12,7 @@ import { Header, Spinner, Footer, Slider } from "./Components";
 
 import "./App.css";
 
-import { StaticPageView } from "./Views/staticPage.js";
+import { StaticPageView } from "./Views/staticPageView.js";
 import { Homepage } from "./Views/homepage";
 
 function App() {
