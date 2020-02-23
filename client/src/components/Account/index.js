@@ -6,7 +6,7 @@ import { Layout } from "../common/Layout";
 export const Account = () => {
   return (
     <Layout>
-      <h2> Account ditails</h2>
+      <h2> Account details</h2>
     </Layout>
   );
 };

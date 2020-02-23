@@ -6,7 +6,7 @@ import { Layout } from "../common/Layout";
 export const Categories = () => {
   return (
     <Layout>
-      <h2> Filtred by categories</h2>
+      <h2> Filtered by categories</h2>
     </Layout>
   );
 };

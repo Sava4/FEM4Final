@@ -10,9 +10,9 @@ import { ShoppingBag } from "../components/Shopping-bag";
 import { Error } from "../components/404error";
 
 export const Routes = () => {
-  // const [isAutificated, setIsAutificated]= useState(false)
-  const isAutificated = true;
-  return isAutificated ? (
+  // const [isAuthenticated, setIsAuthenticated]= useState(false)
+  const isAuthenticated = true;
+  return isAuthenticated ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/categories" component={Categories} />
