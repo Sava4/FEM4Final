@@ -24,7 +24,9 @@ function App() {
           {/*<Spinner/>*/}
           {/* <Route component={Slider} />           */}
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/news" component={StaticPage} />
+          <Route exact path="/:url">
+            <StaticPage />
+          </Route>
           <Redirect to="/" />
           {/* <Route component={Footer} /> */}
         </Switch>

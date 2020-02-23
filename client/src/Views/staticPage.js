@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 // import { Layout } from "./layout";
 import { Header, Footer } from "../Components";
@@ -8,16 +9,11 @@ import {
   mediaTablet
 } from "../styled-components/media-breakpoints-mixin";
 
-import { Url2 } from "../../src/App";
-
 export const StaticPage = props => {
-  console.log(props);
-  const url = props.location.pathname;
-  console.log(url);
+  let { url } = useParams();
 
   const [page, setPage] = useState({});
   useEffect(() => {
-    // debugger;
     fetch(`http://localhost:5000/pages/${url}`)
       .then(res => {
         return res.json();
@@ -31,10 +27,7 @@ export const StaticPage = props => {
     <div>
       <Header />
       <Page>
-        {/* <StaticPage /> */}
-        {/* {console.log(url)} */}
         <p>{page.htmlContent}</p>
-        {/* <Url2 url={`${url}`}/> */}
       </Page>
       <Footer />
     </div>
