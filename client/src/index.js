@@ -20,7 +20,7 @@ import * as serviceWorker from "./serviceWorker";
 // addSlide();
 // updateSlide();
 // addProduct();
-// updateProduct();
+updateProduct();
 // deleteOneProduct();
 // deleteAllProducts();
 // addCategory()

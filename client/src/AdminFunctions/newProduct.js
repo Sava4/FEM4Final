@@ -54,7 +54,7 @@ export function addProduct() {
 
 export function updateProduct() {
   const updatedProduct = {
-    name: "your nameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", //required field
+    name: "Diamond white gold Necklace", //required field
     categories: "necklaces"
   };
 
@@ -66,7 +66,7 @@ export function updateProduct() {
     .then(response => {
       /*Do something with newProduct*/
       let token = response.data.token;
-      let _id = "some product _id"; // вставить _id продукта
+      let _id = "5e3f10f0229fc818a0a3a35b"; // вставить _id продукта
 
       axios
         .put(`http://localhost:5000/products/${_id}`, updatedProduct, {
