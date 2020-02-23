@@ -12,7 +12,7 @@ import { Header, Spinner, Footer, Slider } from "./Components";
 
 import "./App.css";
 
-import { StaticPage } from "./Views/staticPage";
+import { StaticPageView } from "./Views/staticPage.js";
 import { Homepage } from "./Views/homepage";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           {/* <Route component={Slider} />           */}
           <Route exact path="/" component={Homepage} />
           <Route exact path="/:url">
-            <StaticPage />
+            <StaticPageView />
           </Route>
           <Redirect to="/" />
           {/* <Route component={Footer} /> */}

@@ -1,49 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import styled from "styled-components";
+import React from "react";
 // import { Layout } from "./layout";
 import { Header, Footer } from "../Components";
-import {
-  mediaDesktop,
-  mediaMobile,
-  mediaTablet
-} from "../styled-components/media-breakpoints-mixin";
+import { StaticPage } from "../Components";
 
-export const StaticPage = props => {
-  let { url } = useParams();
-
-  const [page, setPage] = useState({});
-  useEffect(() => {
-    fetch(`http://localhost:5000/pages/${url}`)
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        setPage(json);
-      });
-  }, [url]);
-
+export const StaticPageView = () => {
   return (
     <div>
       <Header />
-      <Page>
-        <p>{page.htmlContent}</p>
-      </Page>
+      <StaticPage />
       <Footer />
     </div>
   );
 };
-
-const Page = styled.div` 
-  margin: 0 auto;
-    
-    ${mediaDesktop(`
-      width: 80%;     
-    `)}
-    ${mediaTablet(`
-    width: 80%;     
-    `)}
-    ${mediaMobile(`
-    width: 80%;    
-    `)}
-`;
