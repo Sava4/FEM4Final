@@ -4,8 +4,6 @@ import { Routes } from "./routes";
 import { BrowserRouter } from "react-router-dom";
 import store from "./store";
 
-import "./App.css";
-
 // import { Header, Spinner } from "./components";
 
 function App() {

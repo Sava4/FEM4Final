@@ -6,12 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
-    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
+    "format": "prettier --write \"client/src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "front:lint:fix": "npm run lint:fix --prefix client && npm run lint:css --prefix client",
-    "front-build": "npm run build --prefix client",
-    "precommit": "lint-staged --debug"
+    "front:lint": "npm run lint --prefix client && npm run lint:css --prefix client && npm run prettier --prefix client",
+    "front-build": "npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -43,18 +42,7 @@
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-plugin-node": "^11.0.0",
-    "husky": "^4.2.1",
-    "lint-staged": "^10.0.7",
     "nodemon": "^1.19.1",
     "prettier": "^1.19.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./client/src/**/*.js": "npm run front:lint:fix --",
-    "*.+(js|jsx|json|yml|yaml|css|md|vue)": "prettier --write"
   }
 }
