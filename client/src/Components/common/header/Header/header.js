@@ -2,12 +2,19 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 import headerDesign from "../Header/header-design.png";
 
-import { ShoppingBag, Favorites, Login, Search, Logo } from "../Header";
+import {
+  ShoppingBag,
+  Favorites,
+  Login,
+  Search,
+  Logo,
+  Navigation
+} from "../Header";
 
-export const Header = () => {
+export const HeaderContent = () => {
   return (
     <Container>
       <Line />
@@ -20,7 +27,7 @@ export const Header = () => {
         <HeaderIconWrapper>
           <Login />
           <NavLink
-            to="/favorites"
+            to="/account/favorites"
             style={{
               textDecoration: "none",
               color: "inherit"
@@ -29,7 +36,7 @@ export const Header = () => {
             <Favorites />
           </NavLink>
           <NavLink
-            to="/shopping-bag"
+            to="/account/shopping-bag"
             style={{
               textDecoration: "none",
               color: "inherit"
@@ -41,12 +48,7 @@ export const Header = () => {
       </HeaderWrapper>
 
       <Categories>
-        <CategoriesItem href="#"> Jewelry</CategoriesItem>
-        <CategoriesItem href="#">Collections</CategoriesItem>
-        <CategoriesItem href="#">Engagement</CategoriesItem>
-        <CategoriesItem href="#">Souvenirs</CategoriesItem>
-        <CategoriesItem href="#">Gift Cards</CategoriesItem>
-        <CategoriesItem href="#">Sale</CategoriesItem>
+        <Navigation></Navigation>
       </Categories>
     </Container>
   );
@@ -58,6 +60,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+  width: 100vw;
+  border-bottom: 1px solid black;
 `;
 
 const Line = styled.div`
@@ -86,7 +90,6 @@ const HeaderIconWrapper = styled.div`
 
 const Categories = styled.div`
   width: 100%;
-  padding-bottom: 30px;
   display: flex;
   justify-content: space-evenly;
   border-bottom: 1px solid black;
@@ -94,9 +97,4 @@ const Categories = styled.div`
   ${mediaMobile(`
     display: none;
   `)}
-`;
-
-const CategoriesItem = styled.a`
-  text-decoration: none;
-  color: #000;
 `;
