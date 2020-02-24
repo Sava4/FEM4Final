@@ -6,7 +6,7 @@ import { Products } from "../components/ProductsList";
 import { Categories } from "../components/Categories";
 import { ProductDitails } from "../components/ProductDitails";
 import { Account } from "../components/Account";
-import { ShoppingBag } from "../components/Shopping-bag";
+import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 
 export const Routes = () => {

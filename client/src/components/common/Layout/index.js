@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Header } from "../header";
+import { HeaderContent } from "../Header/header";
 import { Footer } from "../Footer";
 
 export const Layout = props => {
   return (
     <MainLayout>
-      <Header></Header>
+      <HeaderContent />
       <main className="content">{props.children}</main>
       <Footer></Footer>
     </MainLayout>
