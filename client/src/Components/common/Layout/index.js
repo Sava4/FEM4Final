@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
 import { Header } from "../header";
 import { Footer } from "../Footer";
 
 export const Layout = props => {
+  console.log(props);
   return (
     <MainLayout>
       <Header></Header>
