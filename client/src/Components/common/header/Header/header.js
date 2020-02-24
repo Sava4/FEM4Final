@@ -6,7 +6,7 @@ import { mediaMobile } from "../../../../styled-components/media-breakpoints-mix
 import headerDesign from "../Header/header-design.png";
 
 import {
-  ShoppingBag,
+  // ShoppingBag,
   Favorites,
   Login,
   Search,
@@ -42,7 +42,7 @@ export const HeaderContent = () => {
               color: "inherit"
             }}
           >
-            <ShoppingBag />
+            {/* <ShoppingBag /> */}
           </NavLink>
         </HeaderIconWrapper>
       </HeaderWrapper>

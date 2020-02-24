@@ -18,9 +18,10 @@ export const FooterMain = styled.div`
     )
     100;
   box-sizing: border-box;
-  position: absolute;
+  position: relative;
   margin-top: 40px;
 `;
+
 export const FooterInfo = styled.div`
   width: 100%;
   display: flex;

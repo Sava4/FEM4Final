@@ -89,7 +89,7 @@ const Earrings = styled(NavLink)`
 `;
 
 const SectionCategiries = styled.div`
-  height: 712px;
+  box-sizing: border-box;
   & p {
     text-align: center;
     font-size: 24px;
