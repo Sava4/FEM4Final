@@ -6,7 +6,14 @@ import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin"
 import headerDesign from "./header-design.png";
 import { LoginForm } from "../../Forms/login-form";
 
-import { ShoppingBag, Favorites, Login, Search, Logo, Navigation } from "./";
+import {
+  ShoppingBag,
+  Favorites,
+  Login,
+  Search,
+  Logo,
+  Navigation
+} from "../Header";
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
