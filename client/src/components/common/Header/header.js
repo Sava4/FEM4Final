@@ -1,60 +1,64 @@
-import React, {useState} from "react";
-import {NavLink} from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import headerDesign from "./header-design.png";
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
-import {LoginForm} from "../../Forms/LoginForm/login-form";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { LoginForm } from "../../Forms/LoginForm/login-form";
 
 import {
-    ShoppingBag,
-    Favorites,
-    Login,
-    Search,
-    Logo,
-    Navigation
+  ShoppingBag,
+  Favorites,
+  Login,
+  Search,
+  Logo,
+  Navigation
 } from "../Header";
 
 export const HeaderContent = () => {
+  const [isModalOpen, toggleModal] = useState(false);
 
-    const [isModalOpen, toggleModal] = useState(false);
+  return (
+    <Container>
+      <Line />
+      <HeaderWrapper>
+        <Search />
+        <NavLink exact to="/">
+          <Logo />
+        </NavLink>
 
-    return (
-        <Container>
-            <Line/>
-            <HeaderWrapper>
-                <Search/>
-                <NavLink exact to="/">
-                    <Logo/>
-                </NavLink>
+        <HeaderIconWrapper>
+          <Login onClick={() => toggleModal(!isModalOpen)} />
+          <LoginForm
+            isModalOpen={isModalOpen}
+            onClose={() => toggleModal(false)}
+          />
+          <NavLink
+            to="/account/favorites"
+            style={{
+              textDecoration: "none",
+              color: "inherit"
+            }}
+          >
+            <Favorites />
+          </NavLink>
+          <NavLink
+            to="/account/shopping-bag"
+            style={{
+              textDecoration: "none",
+              color: "inherit"
+            }}
+          >
+            <ShoppingBag />
+          </NavLink>
+        </HeaderIconWrapper>
+      </HeaderWrapper>
 
-                <HeaderIconWrapper>
-                    <Login onClick={() => toggleModal(!isModalOpen)}/>
-                    <LoginForm isModalOpen={isModalOpen} onClose={() => toggleModal(false)}/>
-                    <NavLink
-                        to="/account/favorites"
-                        style={{
-                            textDecoration: "none",
-                            color: "inherit"
-                        }}>
-                        <Favorites/>
-                    </NavLink>
-                    <NavLink
-                        to="/account/shopping-bag"
-                        style={{
-                            textDecoration: "none",
-                            color: "inherit"
-                        }}>
-                        <ShoppingBag/>
-                    </NavLink>
-                </HeaderIconWrapper>
-            </HeaderWrapper>
-
-            <Categories>
-                <Navigation></Navigation>
-            </Categories>
-        </Container>
-    );
+      <Categories>
+        <Navigation></Navigation>
+      </Categories>
+    </Container>
+  );
 };
 
 const Container = styled.div`

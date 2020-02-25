@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 export const FormButton = props => {
-    return (
-        <InputWrapper>
-            <Input
-                type="submit"
-                value={props.value}
-                onClick={props.onClick}
-                disabled={props.disabled}
-            />
-        </InputWrapper>
-    );
+  return (
+    <InputWrapper>
+      <Input
+        type="submit"
+        value={props.value}
+        onClick={props.onClick}
+        disabled={props.disabled}
+      />
+    </InputWrapper>
+  );
 };
 
 const InputWrapper = styled.div`
