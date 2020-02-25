@@ -4,10 +4,12 @@ import store from "../../../store";
 
 import { HeaderContent } from "./Header/header";
 
-export const Header = () => {
+const Header = () => {
   return (
     <Provider store={store}>
       <HeaderContent></HeaderContent>
     </Provider>
   );
 };
+
+export default Header;
