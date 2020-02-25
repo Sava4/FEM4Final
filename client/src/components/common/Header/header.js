@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
-import headerDesign from "../Header/header-design.png";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import headerDesign from "./header-design.png";
+import { LoginForm } from "../../Forms/login-form";
 
 import {
   ShoppingBag,
@@ -15,6 +16,8 @@ import {
 } from "../Header";
 
 export const HeaderContent = () => {
+  const [isModalOpen, toggleModal] = useState(false);
+
   return (
     <Container>
       <Line />
@@ -25,7 +28,11 @@ export const HeaderContent = () => {
         </NavLink>
 
         <HeaderIconWrapper>
-          <Login />
+          <Login onClick={() => toggleModal(!isModalOpen)} />
+          <LoginForm
+            isModalOpen={isModalOpen}
+            onClose={() => toggleModal(false)}
+          />
           <NavLink
             to="/account/favorites"
             style={{
@@ -60,8 +67,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  width: 100vw;
-  border-bottom: 1px solid black;
 `;
 
 const Line = styled.div`

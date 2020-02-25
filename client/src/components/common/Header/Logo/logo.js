@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import logo from "./main-logo.png";
+import logo from "./mainLogo.png";
 import {
   mediaDesktop,
   mediaMobile,
   mediaTablet
-} from "../../../../../styled-components/media-breakpoints-mixin";
+} from "../../../../styled-components/media-breakpoints-mixin";
 
 export const Logo = () => {
   return <MainLogo />;
