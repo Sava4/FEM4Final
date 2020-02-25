@@ -25,7 +25,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
-    "lint:css": "stylelint src/**/*.js"
+    "lint:css": "stylelint src/**/*.js",
+    "prettier": "prettier --check \"src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
   },
   "eslintConfig": {
     "extends": "react-app"
