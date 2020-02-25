@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import headerDesign from "./header-design.png";
-import { LoginForm } from "../../Forms/login-form";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { LoginForm } from "../../Forms/LoginForm/login-form";
 
 import {
   ShoppingBag,

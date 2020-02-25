@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import formClose from "../Forms/form-close-btn.png";
+import modalClose from "./modal-close-btn.png";
 
 export const Modal = props => {
   const { isModalOpen, onClose, children } = props;
@@ -41,7 +41,7 @@ const ModalClose = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
-  background: url(${formClose});
+  background: url(${modalClose});
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;

@@ -15,12 +15,14 @@ export const FormButton = props => {
 };
 
 const InputWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
+  background: #002d50;
+  cursor: pointer;
 `;
 
 const Input = styled.input`
-  width: 100%;
   padding: 18px 0;
   font-size: 14px;
   letter-spacing: 1px;

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import checkBox from "./check-box.png";
-import checkBoxChecked from "./check-box-checked.png";
-
-import { FormButton } from "./FormButton/form-button";
-import { Modal } from "../Modal/modal";
+import { FormButton } from "../FormButton/form-button";
+import { Modal } from "../../Modal/modal";
+import { Checkbox } from "../FormCheckbox/form-checkbox";
+import { InputEmail } from "../InputEmail/input-email";
+import { InputPassword } from "../InputPassword/input-password";
 
 export const LoginForm = props => {
   const { isModalOpen, onClose } = props;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [emailValidation, setEmailValidation] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState(true);
 
@@ -22,27 +20,11 @@ export const LoginForm = props => {
           <FormSubtitle>
             Please enter your details to log in to your Zarina Account.
           </FormSubtitle>
-          <Input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            invalid={!emailValidation}
-            onBlur={onEmailBlur}
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            invalid={!passwordValidation}
-            onChange={event => setPassword(event.target.value)}
-            onBlur={onPasswordBlur}
-          />
-          <CheckboxLabel>
-            <InputCheckbox type="checkbox" />
-            <CheckBoxIcon />
-            Remember me
-          </CheckboxLabel>
+          <InputEmail />
+          <InputPassword />
+          <Checkbox>
+            <CheckboxText>Remember me</CheckboxText>
+          </Checkbox>
           <FormButton
             onClick={onSubmit}
             disabled={!emailValidation || !passwordValidation}
@@ -65,31 +47,6 @@ export const LoginForm = props => {
 
   function onSubmit(event) {
     event.preventDefault();
-
-    console.log(email, password);
-  }
-
-  function isEmailValid(email) {
-    const emailPattern = /\S+@\S+\.\S+/;
-    return emailPattern.test(email);
-  }
-
-  function isPasswordValid(password) {
-    if (password.length < 6) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  function onEmailBlur() {
-    const status = isEmailValid(email);
-    setEmailValidation(status);
-  }
-
-  function onPasswordBlur() {
-    const status = isPasswordValid(password);
-    setPasswordValidation(status);
   }
 };
 
@@ -140,48 +97,8 @@ const FormRegisterSubtitle = styled(FormSubtitle)`
   line-height: 30px;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #80858d;
-  border-bottom-color: ${props => (props.invalid ? "red" : "#80858D")};
-  letter-spacing: 0.5px;
-
-  ::placeholder {
-    color: #80858d;
-  }
-
-  :focus {
-    outline: none;
-  }
-`;
-
-const CheckboxLabel = styled.label`
-  display: flex;
-  align-items: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin-bottom: 25px;
+const CheckboxText = styled.span`
   font-size: 12px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-`;
-
-const CheckBoxIcon = styled.span`
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-  background-image: url(${checkBox});
-  background-size: contain;
-
-  input:checked + & {
-    background-image: url(${checkBoxChecked});
-  }
-`;
-
-const InputCheckbox = styled.input`
-  display: none;
 `;
 
 const ForgotPassword = styled.a`
