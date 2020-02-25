@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import login from "./login.png";
-import { mediaMobile } from "../../../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 
-export const Login = () => {
+export const Login = props => {
   return (
-    <ServicesIcon>
+    <ServicesIcon onClick={props.onClick}>
       <LoginIcon />
       <LoginText>My account</LoginText>
     </ServicesIcon>
@@ -28,4 +28,5 @@ const LoginText = styled.span`
 
 const ServicesIcon = styled.div`
   display: flex;
+  cursor: pointer;
 `;
