@@ -43,7 +43,7 @@ export const Routes = () => {
 
       <Route path="/products" component={Products} />
 
-      <Route path="/productsditails" component={ProductDitails} />
+      <Route path="/productsdetails" component={ProductDetails} />
 
       <Route path="/login" component={Products} />
 
