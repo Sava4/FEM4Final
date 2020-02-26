@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios/index';
-import { ProductItem } from "./ProductItem";
+import { ProductItem } from "./productItem";
 
 import styled from "styled-components";
 

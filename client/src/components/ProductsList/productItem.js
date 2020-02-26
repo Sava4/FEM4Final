@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Name, Price} from "../ProductDetails/ProductDetails";
+import {Image, Name, Price} from "../ProductDetails/productDetails";
 
 import styled from "styled-components";
 
