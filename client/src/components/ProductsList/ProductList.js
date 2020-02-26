@@ -30,11 +30,11 @@ const ProductList = () => {
     );
     return (
         <Wrapper>
-            {ListProducts}
+            {ListProducts.splice(0,9)}
         </Wrapper>
     );
 };
-
+//Using splice for products array instead the pagination.
 const getImagesName = (img) => {
     const re = /\bimg\/products\/earrings|img\/products\/bracelets|img\/products\/necklaces\b/gi;
     const img2 = img.replace(re, '');
