@@ -14,21 +14,20 @@ import {
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
   const isMountedRef = useRef(null);
-  useEffect(() => {   
+  useEffect(() => {
     isMountedRef.current = true;
     axios
       .get("http://localhost:5000/links")
-      .then(result => {     
+      .then(result => {
         // console.log(result.data);
-        if(isMountedRef.current){
+        if (isMountedRef.current) {
           setStaticLinks(result.data);
         }
-     
       })
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
-      return () => isMountedRef.current = false;
+    return () => (isMountedRef.current = false);
   }, [staticLinks]);
   // useEffect(() => {
   //   // const abortController = new AbortController();

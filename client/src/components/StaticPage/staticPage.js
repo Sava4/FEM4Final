@@ -6,13 +6,10 @@ import { Page } from "./staticPage.styles";
 export const StaticPage = props => {
   let { url } = useParams();
   const [page, setPage] = useState({});
-  
+
   useEffect(() => {
-  
     axios
-      .get(`http://localhost:5000/pages/${url}`,{
-    
-      })
+      .get(`http://localhost:5000/pages/${url}`, {})
       .then(result => {
         // console.log(result.data);
         setPage(result.data);
@@ -20,7 +17,6 @@ export const StaticPage = props => {
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
-   
   }, [url]);
 
   return (
