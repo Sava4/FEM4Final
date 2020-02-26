@@ -4,7 +4,7 @@ import { ProductItem } from "./ProductItem";
 
 import styled from "styled-components";
 
-const ProductList = () => {
+const ListProducts = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -18,9 +18,9 @@ const ProductList = () => {
         fetchPosts();
     }, []);
 
-    const ListProducts = products.map((product) => {
-
+    const ListProduct = products.map((product) => {
             return <ProductItem
+                key={product._id}
                 img={`https://zarina.ua/media/catalog/product/cache/1/image/412x517/9df78eab33525d08d6e5fb8d27136e95/1/-${getImagesName(product.imageUrls[0])}`}
                 name={product.name}
                 currentPrice={product.currentPrice}
@@ -30,7 +30,7 @@ const ProductList = () => {
     );
     return (
         <Wrapper>
-            {ListProducts.splice(0,9)}
+            {ListProduct.splice(0,9)}
         </Wrapper>
     );
 };
@@ -41,9 +41,9 @@ const getImagesName = (img) => {
     return img2
 }; //Using this temporary function for images from site before pictures will be added.
 
-export const ListProduct = () => {
+export const ProductsList = () => {
     return (
-        <ProductList/>
+        <ListProducts/>
     )
 };
 

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 export const ProductItem = (props) => {
     return (
-        <Card key={props.id}>
+        <Card key={ props.key }>
             <Image alt="" src={ props.img } size={"small"}/>
             <Name size={"small"}>{`${ props.name } "${ props.collection }"`}</Name>
             <Price size={"small"}>{ props.currentPrice }</Price>
