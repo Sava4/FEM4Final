@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {Image, Name, Price} from "../ProductDetails/productDetails";
 
 import styled from "styled-components";
