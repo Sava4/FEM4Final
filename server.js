@@ -38,13 +38,13 @@ const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-   .set("useNewUrlParser", true)
-   .set("useFindAndModify", false)
-   .set("useCreateIndex", true)
-   .set("useUnifiedTopology", true)
-   .connect(db)
-   .then(() => console.log("MongoDB Connected"))
-   .catch(err => console.log(err));
+  .set("useNewUrlParser", true)
+  .set("useFindAndModify", false)
+  .set("useCreateIndex", true)
+  .set("useUnifiedTopology", true)
+  .connect(db)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
