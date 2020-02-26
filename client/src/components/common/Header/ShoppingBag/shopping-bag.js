@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import bug from "./shopping-bag.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
-
+console.log(bug)
 export const ShoppingBag = () => {
   const count = useSelector(state => {
     return state.shoppingCard.length;

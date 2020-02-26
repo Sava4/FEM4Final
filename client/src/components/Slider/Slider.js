@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,14 +26,17 @@ export const SliderHomepage = () => {
 
   const [text, setText] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/slides")
-      .then(res => {
-        return res.json();
+    axios
+    .get("http://localhost:5000/slides")
+      .then(result => {
+      
+        setText(result.data);
       })
-      .then(json => {
-        setText(json);
+      .catch(err => {
+        /*Do something with error, e.g. show error to user*/
       });
   }, []);
+
 
   return (
     <div

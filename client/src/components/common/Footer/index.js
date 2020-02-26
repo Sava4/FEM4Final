@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { SocialMenu } from "./Social";
 import {
   LinkToStatic,
   FooterMain,
@@ -13,36 +14,24 @@ import {
 
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
-  const isMountedRef = useRef(null);
+  // const isMountedRef = useRef(null);
   useEffect(() => {
-    isMountedRef.current = true;
+    // isMountedRef.current = true;
     axios
       .get("http://localhost:5000/links")
       .then(result => {
-        // console.log(result.data);
-        if (isMountedRef.current) {
+        console.log(result.data);
+        // if (isMountedRef.current) {
           setStaticLinks(result.data);
-        }
+        // }
       })
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
-    return () => (isMountedRef.current = false);
-  }, [staticLinks]);
-  // useEffect(() => {
-  //   // const abortController = new AbortController();
-  //   fetch("http://localhost:5000/links")
-  //     .then(res => {
-  //       return res.json();
-  //     })
-  //     .then(json => {
-  //       setStaticLinks(json);
-  //     });
-  //     return () => {
-  //       // abortController.abort();
-  //     };
-  // }, [staticLinks]);
-
+    // return () => (isMountedRef.current = false);
+  }, []);
+  
+ 
   //проверям массив не пустой
   const itemLink =
     staticLinks.length &&
@@ -61,7 +50,7 @@ export const Footer = () => {
       );
     });
   const itemLinkArr = Array.from(itemLink); // если let то три раза вызывает map из 21 строки
-  // console.log(itemLinkArr);
+  console.log(itemLinkArr);
 
   return (
     <FooterMain>
@@ -93,6 +82,11 @@ export const Footer = () => {
               <li>Stay up to date with all the new designs,</li>
               <li>collection launches, events and much more.</li>
             </ul>
+            {/* <div>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">FooterBottom</a>
+
+            </div> */}
+            <SocialMenu />
           </div>
         </FooterInfoSocial>
       </FooterInfo>

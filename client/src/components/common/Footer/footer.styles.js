@@ -90,3 +90,15 @@ export const FooterText = styled.div`
   font-family: Montserrat, sans-serif;
   color: #ffffff;
 `;
+
+export const Z = styled.div`
+display: flex;
+width: 50px;
+justify-content: space-between;
+height: 25px;
+background: url(${props => props.icon})
+& a {
+  display: "block",
+  background: url(${props => props.icon.data}) 
+}
+`
