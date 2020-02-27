@@ -1,27 +1,37 @@
 import React from "react";
+import {BrowserRouter as Router, NavLink} from "react-router-dom";
 import {Image, Name, Price} from "../ProductDetails/productDetails";
 
 import styled from "styled-components";
 
 export const ProductItem = (props) => {
     return (
-        <Card key={ props.key }>
+        <Router>
+        <Card to="/productsdetails/" key={ props.key }>
             <Image alt="" src={ props.img } size={"small"}/>
             <Name size={"small"}>{`${ props.name } "${ props.collection }"`}</Name>
             <Price size={"small"}>{ props.currentPrice }</Price>
         </Card>
+        </Router>
     )
 };
 
 //*** STYLED-COMPONENTS ***//
 
-const Card = styled.div`
+const Card = styled(NavLink)`
     display: flex;
+    padding-bottom: 5px;
     flex-direction: column;
     align-items: center;
     margin: 5px;
     width: 32%;
     height: 350px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #e9ebf5;
+    &: hover {
+    border: 1px solid #002d50;
+    }
     @media(max-width: 1050px) {
      
     }
@@ -39,5 +49,8 @@ const Card = styled.div`
         width: 43%;
         
     }
+`;
+const StyledLink = styled(NavLink)`
+text-decoration: none;
 `;
 

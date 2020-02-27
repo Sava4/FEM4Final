@@ -20,7 +20,7 @@ const ListProducts = () => {
 
     const ListProduct = products.map((product) => {
             return <ProductItem
-                key={product._id}
+                key ={product._id}
                 img={`https://zarina.ua/media/catalog/product/cache/1/image/412x517/9df78eab33525d08d6e5fb8d27136e95/1/-${getImagesName(product.imageUrls[0])}`}
                 name={product.name}
                 currentPrice={product.currentPrice}
