@@ -5,7 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { shoppingCardReducer } from "./shopping-card";
 import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
-import { loginReducer} from "./login";
+import { loginReducer } from "./login";
 
 const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
