@@ -5,11 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { shoppingCardReducer } from "./shopping-card";
 import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
+import { loginReducer} from "./login";
 
 const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
   favorites: favoritesReducer,
-  categories: categoriesReduser
+  categories: categoriesReduser,
+  login: loginReducer
 });
 
 const store = createStore(

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
 
 import { FormButton } from "../FormButton/form-button";
@@ -6,48 +7,71 @@ import { Modal } from "../../Modal/modal";
 import { Checkbox } from "../FormCheckbox/form-checkbox";
 import { InputEmail } from "../InputEmail/input-email";
 import { InputPassword } from "../InputPassword/input-password";
+import { loginAction } from '../../../store/login'
 
 export const LoginForm = props => {
-  const { isModalOpen, onClose } = props;
-  const [emailValidation, setEmailValidation] = useState(true);
-  const [passwordValidation, setPasswordValidation] = useState(true);
+  const {isModalOpen, onClose} = props;
+  const [emailValidation] = useState(true);
+  const [passwordValidation] = useState(true);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   return (
-    <Modal isModalOpen={isModalOpen} onClose={onClose}>
-      <FormWrapper>
-        <FormLogIn>
-          <FormTitle>Log in</FormTitle>
-          <FormSubtitle>
-            Please enter your details to log in to your Zarina Account.
-          </FormSubtitle>
-          <InputEmail />
-          <InputPassword />
-          <Checkbox>
-            <CheckboxText>Remember me</CheckboxText>
-          </Checkbox>
-          <FormButton
-            onClick={onSubmit}
-            disabled={!emailValidation || !passwordValidation}
-          />
-          <ForgotPassword>Forgot your password?</ForgotPassword>
-        </FormLogIn>
-        <Line />
-        <FormRegister>
-          <FormTitle>Create your account</FormTitle>
-          <FormRegisterSubtitle>
-            By creating Zarina Account, you will be able to place your order
-            faster, store multiple shipping addresses, view and track orders,
-            and perform many other operations.
-          </FormRegisterSubtitle>
-          <FormButton value="Register" />
-        </FormRegister>
-      </FormWrapper>
-    </Modal>
+      <Modal isModalOpen={isModalOpen} onClose={onClose}>
+        <FormWrapper>
+          <FormLogIn>
+            <FormTitle>Log in</FormTitle>
+            <FormSubtitle>
+              Please enter your details to log in to your Zarina Account.
+            </FormSubtitle>
+            <InputEmail
+                value={email}
+                placeholder={'Email'}
+                onEmailChange={onEmailChange}/>
+            <InputPassword
+                value={password}
+                placeholder={'Password'}
+                onPasswordChange={onPasswordChange}/>
+            <Checkbox>
+              <CheckboxText>Remember me</CheckboxText>
+            </Checkbox>
+            <FormButton
+                value={'Log in'}
+                onClick={onSubmit}
+                disabled={!emailValidation || !passwordValidation}/>
+            <ForgotPassword>Forgot your password?</ForgotPassword>
+          </FormLogIn>
+          <Line/>
+          <FormRegister>
+            <FormTitle>Create your account</FormTitle>
+            <FormRegisterSubtitle>
+              By creating Zarina Account, you will be able to place your order
+              faster, store multiple shipping addresses, view and track orders,
+              and perform many other operations.
+            </FormRegisterSubtitle>
+            <FormButton value="Register"/>
+          </FormRegister>
+        </FormWrapper>
+      </Modal>
   );
 
   function onSubmit(event) {
     event.preventDefault();
+    dispatch(loginAction(email, password));
+    onClose();
   }
+
+  function onEmailChange(email) {
+    setEmail(email);
+  }
+
+  function onPasswordChange(password) {
+    setPassword(password);
+  }
+
 };
 
 const FormWrapper = styled.form`

@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export const InputEmail = () => {
-  const [email, setEmail] = useState("");
+export const InputEmail = props => {
+  const [email, setEmail] = useState(props.value);
   const [emailValidation, setEmailValidation] = useState(true);
 
   return (
     <Input
       type="email"
-      placeholder="Email"
+      placeholder={props.placeholder}
       value={email}
-      onChange={event => setEmail(event.target.value)}
+      onChange={onChange}
       invalid={!emailValidation}
       onBlur={onEmailBlur}
     />
   );
+
+  function onChange(event) {
+    setEmail(event.target.value);
+    props.onEmailChange(event.target.value);
+  }
 
   function isEmailValid(email) {
     const emailPattern = /\S+@\S+\.\S+/;
