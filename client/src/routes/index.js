@@ -4,7 +4,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import { Homepage } from "../components/homePage/HomePage";
 import { Products } from "../components/ProductsList";
 import { Categories } from "../components/Categories";
-import { ProductDitails } from "../components/ProductDitails";
+import { ProductDetails } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
@@ -21,7 +21,7 @@ export const Routes = () => {
       <Route path="/categories/bracelets" component={Products} />
       <Route path="/categories/neclaces" component={Products} />
       <Route path="/products" component={Products} />
-      <Route path="/productsditails" component={ProductDitails} />
+      <Route path="/productsdetails" component={ProductDetails} />
       <Route exact path="/account" component={Account} />
       +
       <Route path="/account/favorites" component={Products} />
@@ -43,7 +43,7 @@ export const Routes = () => {
 
       <Route path="/products" component={Products} />
 
-      <Route path="/productsditails" component={ProductDitails} />
+      <Route path="/productsdetails" component={ProductDetails} />
 
       <Route path="/login" component={Products} />
 
