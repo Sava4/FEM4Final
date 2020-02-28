@@ -6,6 +6,7 @@ export const LinkToStatic = styled.div`
 `;
 
 export const FooterMain = styled.div`
+font-family: Montserrat, sans-serif;
   display: flex;
   width: 100%;
   height: 377px;
@@ -36,6 +37,7 @@ export const FooterInfoName = styled.div`
   justify-content: space-between;
   justify-items: flex-start;
   font-size: 12px;
+  font-family: Montserrat, sans-serif;
   & h4 {
     display: block;
     font-size: 14px;
@@ -61,6 +63,7 @@ export const FooterInfoName = styled.div`
 export const FooterInfoSocial = styled.div`
   width: 330px;
   font-size: 12px;
+  font-family: Montserrat, sans-serif;
   & h4 {
     display: block;
     font-size: 14px;
@@ -86,19 +89,23 @@ export const FooterBottom = styled.div`
   height: 43px;
 `;
 export const FooterText = styled.div`
+
   font-size: 12px;
   font-family: Montserrat, sans-serif;
   color: #ffffff;
 `;
 
-export const Z = styled.div`
+export const SocialContainer = styled.div`
 display: flex;
-width: 50px;
+width: 55px;
 justify-content: space-between;
-height: 25px;
-background: url(${props => props.icon})
-& a {
+height: 26px;
+margin-top: 30px;
+`
+export const SocialLink = styled.a`
   display: "block",
-  background: url(${props => props.icon.data}) 
-}
+  width: 25px;
+  font-size: 25px;
+  color: transparent;
+  background: url(${props => props.icon}) no-repeat;
 `

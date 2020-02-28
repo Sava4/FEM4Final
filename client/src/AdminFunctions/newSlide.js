@@ -46,7 +46,6 @@ export function updateSlide() {
       password: "1111111"
     })
     .then(response => {
-      /*Do something with newProduct*/
       let token = response.data.token;
       let customId = "promotion-3"; //вставить нужный customId продукта
       axios

@@ -33,6 +33,7 @@ export const SliderPromoButton = styled.a`
   box-sizing: border-box;
   text-decoration: none;
   color: black;
+  font-family: Montserrat, sans-serif;
   font-size: 14px;
 `;
 export const CarouselImage = styled.div`

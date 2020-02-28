@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { SocialMenu } from "./Social";
+import { Email } from "./Email";
 import {
   LinkToStatic,
   FooterMain,
@@ -9,26 +10,27 @@ import {
   FooterText,
   FooterInfoName,
   FooterInfoSocial,
-  FooterBottom
+  FooterBottom,
+  SocialContainer
 } from "./footer.styles.js";
 
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
-  // const isMountedRef = useRef(null);
+ 
   useEffect(() => {
-    // isMountedRef.current = true;
+  
     axios
       .get("http://localhost:5000/links")
       .then(result => {
         console.log(result.data);
-        // if (isMountedRef.current) {
+     
           setStaticLinks(result.data);
-        // }
+      
       })
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
-    // return () => (isMountedRef.current = false);
+  
   }, []);
   
  
@@ -86,7 +88,9 @@ export const Footer = () => {
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">FooterBottom</a>
 
             </div> */}
-            <SocialMenu />
+            <Email />
+            <SocialContainer> <SocialMenu /></SocialContainer>
+           
           </div>
         </FooterInfoSocial>
       </FooterInfo>

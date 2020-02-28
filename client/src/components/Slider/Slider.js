@@ -28,8 +28,7 @@ export const SliderHomepage = () => {
   useEffect(() => {
     axios
     .get("http://localhost:5000/slides")
-      .then(result => {
-      
+      .then(result => {      
         setText(result.data);
       })
       .catch(err => {
