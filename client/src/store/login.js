@@ -38,7 +38,7 @@ export const doLogin = (loginOrEmail, password) => {
       .then(response => {
         const token = response.data.token;
         dispatch(loginSuccessAction(token));
-        localStorage.setItem('jwtToken', token);
+        localStorage.setItem("jwtToken", token);
         setAuthorizationToken(token);
       })
       .catch(error => {
@@ -48,9 +48,9 @@ export const doLogin = (loginOrEmail, password) => {
 };
 
 export default function setAuthorizationToken(token) {
-  if(token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common["Authorization"];
   }
 }

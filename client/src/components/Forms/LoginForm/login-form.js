@@ -21,45 +21,45 @@ export const LoginForm = props => {
 
   return (
     isModalOpen && (
-    <Modal isModalOpen={isModalOpen} onClose={onClose}>
-      <FormWrapper>
-        <FormLogIn>
-          <FormTitle>Log in</FormTitle>
-          <FormSubtitle>
-            Please enter your details to log in to your Zarina Account.
-          </FormSubtitle>
-          <InputEmail
-            value={email}
-            placeholder={"Email"}
-            onEmailChange={onEmailChange}
-          />
-          <InputPassword
-            value={password}
-            placeholder={"Password"}
-            onPasswordChange={onPasswordChange}
-          />
-          <Checkbox>
-            <CheckboxText>Remember me</CheckboxText>
-          </Checkbox>
-          <FormButton
-            value={"Log in"}
-            onClick={onSubmit}
-            disabled={!emailValidation || !passwordValidation}
-          />
-          <ForgotPassword>Forgot your password?</ForgotPassword>
-        </FormLogIn>
-        <Line />
-        <FormRegister>
-          <FormTitle>Create your account</FormTitle>
-          <FormRegisterSubtitle>
-            By creating Zarina Account, you will be able to place your order
-            faster, store multiple shipping addresses, view and track orders,
-            and perform many other operations.
-          </FormRegisterSubtitle>
-          <FormButton value="Register" />
-        </FormRegister>
-      </FormWrapper>
-    </Modal>
+      <Modal isModalOpen={isModalOpen} onClose={onClose}>
+        <FormWrapper>
+          <FormLogIn>
+            <FormTitle>Log in</FormTitle>
+            <FormSubtitle>
+              Please enter your details to log in to your Zarina Account.
+            </FormSubtitle>
+            <InputEmail
+              value={email}
+              placeholder={"Email"}
+              onEmailChange={onEmailChange}
+            />
+            <InputPassword
+              value={password}
+              placeholder={"Password"}
+              onPasswordChange={onPasswordChange}
+            />
+            <Checkbox>
+              <CheckboxText>Remember me</CheckboxText>
+            </Checkbox>
+            <FormButton
+              value={"Log in"}
+              onClick={onSubmit}
+              disabled={!emailValidation || !passwordValidation}
+            />
+            <ForgotPassword>Forgot your password?</ForgotPassword>
+          </FormLogIn>
+          <Line />
+          <FormRegister>
+            <FormTitle>Create your account</FormTitle>
+            <FormRegisterSubtitle>
+              By creating Zarina Account, you will be able to place your order
+              faster, store multiple shipping addresses, view and track orders,
+              and perform many other operations.
+            </FormRegisterSubtitle>
+            <FormButton value="Register" />
+          </FormRegister>
+        </FormWrapper>
+      </Modal>
     )
   );
 
