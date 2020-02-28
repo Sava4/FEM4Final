@@ -20,6 +20,7 @@ export const LoginForm = props => {
   const dispatch = useDispatch();
 
   return (
+    isModalOpen && (
     <Modal isModalOpen={isModalOpen} onClose={onClose}>
       <FormWrapper>
         <FormLogIn>
@@ -59,6 +60,7 @@ export const LoginForm = props => {
         </FormRegister>
       </FormWrapper>
     </Modal>
+    )
   );
 
   function onSubmit(event) {

@@ -36,10 +36,21 @@ export const doLogin = (loginOrEmail, password) => {
         password: password
       })
       .then(response => {
-        dispatch(loginSuccessAction(response.data.token));
+        const token = response.data.token;
+        dispatch(loginSuccessAction(token));
+        localStorage.setItem('jwtToken', token);
+        setAuthorizationToken(token);
       })
       .catch(error => {
         console.log("There is no user with the given username and password");
       });
   };
 };
+
+export default function setAuthorizationToken(token) {
+  if(token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+  }
+}
