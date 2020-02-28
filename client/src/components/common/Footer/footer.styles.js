@@ -6,7 +6,7 @@ export const LinkToStatic = styled.div`
 `;
 
 export const FooterMain = styled.div`
-font-family: Montserrat, sans-serif;
+  font-family: Montserrat, sans-serif;
   display: flex;
   width: 100%;
   height: 377px;
@@ -89,23 +89,22 @@ export const FooterBottom = styled.div`
   height: 43px;
 `;
 export const FooterText = styled.div`
-
   font-size: 12px;
   font-family: Montserrat, sans-serif;
   color: #ffffff;
 `;
 
 export const SocialContainer = styled.div`
-display: flex;
-width: 55px;
-justify-content: space-between;
-height: 26px;
-margin-top: 30px;
-`
+  display: flex;
+  width: 55px;
+  justify-content: space-between;
+  height: 26px;
+  margin-top: 30px;
+`;
 export const SocialLink = styled.a`
-  display: "block",
+  display: block,
   width: 25px;
   font-size: 25px;
   color: transparent;
   background: url(${props => props.icon}) no-repeat;
-`
+`;

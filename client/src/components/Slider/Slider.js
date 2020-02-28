@@ -27,15 +27,14 @@ export const SliderHomepage = () => {
   const [text, setText] = useState([]);
   useEffect(() => {
     axios
-    .get("http://localhost:5000/slides")
-      .then(result => {      
+      .get("http://localhost:5000/slides")
+      .then(result => {
         setText(result.data);
       })
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
   }, []);
-
 
   return (
     <div

@@ -16,24 +16,19 @@ import {
 
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
- 
+
   useEffect(() => {
-  
     axios
       .get("http://localhost:5000/links")
       .then(result => {
-        console.log(result.data);
-     
-          setStaticLinks(result.data);
-      
+        // console.log(result.data);
+        setStaticLinks(result.data);
       })
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
-  
   }, []);
-  
- 
+
   //проверям массив не пустой
   const itemLink =
     staticLinks.length &&
@@ -52,8 +47,7 @@ export const Footer = () => {
       );
     });
   const itemLinkArr = Array.from(itemLink); // если let то три раза вызывает map из 21 строки
-  console.log(itemLinkArr);
-
+  // console.log(itemLinkArr);
   return (
     <FooterMain>
       <FooterInfo>
@@ -89,8 +83,10 @@ export const Footer = () => {
 
             </div> */}
             <Email />
-            <SocialContainer> <SocialMenu /></SocialContainer>
-           
+            <SocialContainer>
+              {" "}
+              <SocialMenu />
+            </SocialContainer>
           </div>
         </FooterInfoSocial>
       </FooterInfo>
