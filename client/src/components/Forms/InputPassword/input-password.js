@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export const InputPassword = () => {
+export const InputPassword = props => {
   const [password, setPassword] = useState("");
   const [passwordValidation, setPasswordValidation] = useState(true);
 
   return (
     <Input
       type="password"
-      placeholder="Password"
+      placeholder={props.placeholder}
       value={password}
       invalid={!passwordValidation}
-      onChange={event => setPassword(event.target.value)}
+      onChange={onChange}
       onBlur={onPasswordBlur}
     />
   );
+
+  function onChange(event) {
+    setPassword(event.target.value);
+    props.onPasswordChange(event.target.value);
+  }
 
   function isPasswordValid(password) {
     if (password.length < 6) {
