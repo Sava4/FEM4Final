@@ -2,10 +2,10 @@ import React from "react";
 
 import { Layout } from "../common/Layout";
 
-export const ProductDitails = () => {
+export const ProductDetails = () => {
   return (
     <Layout>
-      <div>Product ditails</div>
+      <div>Product details</div>
     </Layout>
   );
 };
