@@ -6,7 +6,6 @@ export const LinkToStatic = styled.div`
 `;
 
 export const FooterMain = styled.div`
-  font-family: Montserrat, sans-serif;
   display: flex;
   width: 100%;
   height: 377px;
@@ -37,7 +36,6 @@ export const FooterInfoName = styled.div`
   justify-content: space-between;
   justify-items: flex-start;
   font-size: 12px;
-  font-family: Montserrat, sans-serif;
   & h4 {
     display: block;
     font-size: 14px;
@@ -63,7 +61,6 @@ export const FooterInfoName = styled.div`
 export const FooterInfoSocial = styled.div`
   width: 330px;
   font-size: 12px;
-  font-family: Montserrat, sans-serif;
   & h4 {
     display: block;
     font-size: 14px;
@@ -90,7 +87,6 @@ export const FooterBottom = styled.div`
 `;
 export const FooterText = styled.div`
   font-size: 12px;
-  font-family: Montserrat, sans-serif;
   color: #ffffff;
 `;
 

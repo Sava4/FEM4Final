@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { AddSubscriber } from "./newSubscriber";
 // import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
@@ -26,7 +26,6 @@ const EmailInput = styled.input`
   height: 14px;
   border: none;
   border-bottom: 1px solid black;
-  font-family: Montserrat, sans-serif;
   font-size: 14px;
   ::placeholder {
     color: black;
@@ -47,7 +46,6 @@ const EmailButton = styled.a`
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  font-family: Montserrat, sans-serif;
   font-size: 14px;
   color: white;
 `;

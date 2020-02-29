@@ -98,6 +98,7 @@ const Categories = styled.div`
   display: flex;
   justify-content: space-evenly;
   border-bottom: 1px solid black;
+  padding-bottom: 30px;
 
   ${mediaMobile(`
     display: none;

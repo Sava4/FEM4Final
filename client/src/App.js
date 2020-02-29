@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { Routes } from "./routes";
 import { BrowserRouter } from "react-router-dom";
+import GlobalStyle from "./styled-components/GlobalStyle";
 import store from "./store";
 
 //import {Header, Spinner} from "./components";
@@ -9,6 +10,7 @@ import store from "./store";
 function App() {
   return (
     <Provider store={store}>
+      <GlobalStyle />
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
