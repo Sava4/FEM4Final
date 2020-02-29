@@ -44,6 +44,7 @@ const DropHeaderMenuList = styled.ul`
   position: absolute;
   background-color: white;
   width: 100vw;
+  z-index: 10;
 
   & li {
     list-style-type: none;

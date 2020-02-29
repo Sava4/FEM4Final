@@ -13,7 +13,7 @@ import {
   Search,
   Logo,
   Navigation
-} from "../Header";
+} from "../Header/index";
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
