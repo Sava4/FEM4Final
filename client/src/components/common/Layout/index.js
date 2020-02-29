@@ -5,7 +5,7 @@ import { HeaderContent } from "../Header/header";
 import { Footer } from "../Footer";
 
 export const Layout = props => {
-  // console.log(props);
+  console.log(props);
   return (
     <MainLayout>
       <HeaderContent />

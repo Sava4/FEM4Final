@@ -15,7 +15,7 @@ export const Routes = () => {
   return isAuthenticated ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
-      {/* <Route exact path="/:url" component={StaticPageView} /> */}
+      
       <Route exact path="/categories" component={Categories} />
       <Route path="/categories/rings/:id" component={Products} />
       <Route path="/categories/earrings" component={Products} />
@@ -29,6 +29,7 @@ export const Routes = () => {
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/logout" component={Products} />
       <Route exact path="/404error" component={Error} />
+      <Route exact path="/:url" component={StaticPageView} />
       <Redirect to="/" />
     </Switch>
   ) : (

@@ -23,12 +23,12 @@ export function AddSubscriber(props) {
             headers: { Authorization: `${token}` }
           })
           .then(newSubscriber => {
-            // console.log("success");
-            // console.log(newSubscriber);
+            console.log("success");
+            console.log(newSubscriber);
           })
           .catch(err => {
-            // console.log("error add");
-            // console.log(err);
+            console.log("error add");
+            console.log(err.response.data);
           });
       })
       .catch(err => {
