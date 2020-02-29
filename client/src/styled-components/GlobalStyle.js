@@ -118,7 +118,6 @@ const GlobalStyle = createGlobalStyle`
   font-weight: bold;
   font-display: fallback;
 }
-
   body {
     font-family: "Montserrat", system-ui, sans-serif;
     font-size: 14px;
