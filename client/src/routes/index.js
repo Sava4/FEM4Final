@@ -1,55 +1,72 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import { StaticPageView } from "../components/StaticPageView/staticPageView";
+import { Provider } from "react-redux";
+
+import store from "../store";
+
 import { Homepage } from "../components/homePage/HomePage";
-import { Products } from "../components/ProductsList";
+import { ProductFilters } from "../components/ProductsFilterList";
 import { Categories } from "../components/Categories";
 import { ProductDetails } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
+import {ListProducts} from "../components/ProductsList/productList"
 
 export const Routes = () => {
   // const [isAuthenticated, setIsAuthenticated]= useState(false)
   const isAuthenticated = true;
   return isAuthenticated ? (
-    <Switch>
-      <Route exact path="/" component={Homepage} />
-      <Route exact path="/categories" component={Categories} />
-      <Route path="/categories/rings/:id" component={Products} />
-      <Route path="/categories/earrings" component={Products} />
-      <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
-      <Route path="/products" component={Products} />
-      <Route path="/productsdetails" component={ProductDetails} />
-      <Route exact path="/account" component={Account} />
-      +
-      <Route exact path="/account/favorites" component={Products} />
-      <Route exact path="/account/shopping-bag" component={ShoppingBag} />
-      <Route exact path="/logout" component={Products} />
-      <Route exact path="/404error" component={Error} />
-      <Route exact path="/:url" component={StaticPageView} />
-      <Redirect to="/" />
-    </Switch>
+    <Provider store={store}>
+        <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route exact path="/categories" component={ProductFilters} />
+                  <Route path="/categories/rings/:id" component={ProductFilters} />
+                  <Route path="/categories/earrings" component={ProductFilters} />
+                  <Route path="/categories/bracelets" component={ProductFilters} />
+                  <Route path="/categories/neclaces" component={ProductFilters} />
+              <Route path="/products" component={ListProducts} />
+              <Route path="/productsdetails" component={ProductDetails} />
+              <Route exact path="/account" component={Account} />
+              +
+              <Route path="/account/favorites" component={ListProducts} />
+              <Route path="/account/shopping-bag" component={ShoppingBag} />
+              <Route path="/logout" component={ListProducts} />
+              <Route path="/404error" component={Error} />
+              <Redirect to="/" />
+        </Switch>
+      </Provider>
   ) : (
-    <Switch>
-      <Route exact path="/" component={Homepage} />
+    <Provider store={store}>
+          <Switch>
+              <Route exact path="/" component={Homepage} />
 
-      <Route exact path="/categories" component={Categories} />
+              <Route exact path="/categories" component={Categories} />
 
-      <Route path="/categories/rings" component={Products} />
-      <Route path="/categories/earrings" component={Products} />
-      <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
+                  <Route path="/categories/rings" component={ProductFilters} />
+                  <Route path="/categories/earrings" component={ProductFilters} />
+                  <Route path="/categories/bracelets" component={ProductFilters} />
+                  <Route path="/categories/neclaces" component={ProductFilters} />
 
-      <Route path="/products" component={Products} />
+              <Route path="/products" component={ProductFilters} />
 
-      <Route path="/productsdetails" component={ProductDetails} />
+            <Route path="/productsdetails" component={ProductDetails} />
 
-      <Route path="/login" component={Products} />
+              <Route path="/login" component={ProductFilters} />
+              <Route path="/categories/rings" component={ProductFilters} />
+              <Route path="/categories/earrings" component={ProductFilters} />
+              <Route path="/categories/bracelets" component={ProductFilters} />
+              <Route path="/categories/neclaces" component={ProductFilters} />
 
-      <Route path="/404error" component={Error} />
-      <Redirect to="/" />
-    </Switch>
+              <Route path="/products" component={ProductFilters} />
+
+              <Route path="/productsditails" component={ProductDetails} />
+
+              <Route path="/login" component={ProductFilters} />
+
+              <Route path="/404error" component={Error} />
+              <Redirect to="/" />
+          </Switch>
+    </Provider>
   );
 };

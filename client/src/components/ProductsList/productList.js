@@ -4,7 +4,7 @@ import { ProductItem } from "./productItem";
 
 import styled from "styled-components";
 
-const ListProducts = () => {
+export const ListProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 

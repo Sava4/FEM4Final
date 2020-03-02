@@ -27,14 +27,14 @@ export const Dropmenu = props => {
   // const activeStyle = {{styles}}
 
   return (
-    <p onClick={ShowDropMenu}>
-      {header}
-      {isOpen && (
+    // <p onClick={ShowDropMenu}>
+    //   {header}
+      // {isOpen && (
         <DropHeaderMenuList onMouseLeave={ShowDropMenu}>
           {dropMenu}
         </DropHeaderMenuList>
-      )}
-    </p>
+      // )}
+    // {/* </p> */}
   );
 };
 
