@@ -5,6 +5,7 @@ import styled from "styled-components";
 import headerDesign from "./header-design.png";
 import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
 import {LoginForm} from "../../Forms/LoginForm/login-form";
+import {RegisterForm} from "../../Forms/RegisterForm/register-form";
 
 import {
   ShoppingBag,
@@ -13,8 +14,7 @@ import {
   Search,
   Logo,
   Navigation
-} from "../Header";
-import {RegisterForm} from "../../Forms/RegisterForm/register-form";
+} from "../Header/index";
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
@@ -108,6 +108,7 @@ const Categories = styled.div`
   display: flex;
   justify-content: space-evenly;
   border-bottom: 1px solid black;
+  padding-bottom: 30px;
 
   ${mediaMobile(`
     display: none;

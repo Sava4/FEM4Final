@@ -39,11 +39,11 @@ export const Dropmenu = props => {
 };
 
 const DropHeaderMenuList = styled.ul`
-  font-family: Montserrat, sans-serif;
   font-size: 14px;
   position: absolute;
   background-color: white;
   width: 100vw;
+  z-index: 10;
 
   & li {
     list-style-type: none;

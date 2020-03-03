@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "front:lint": "npm run lint --prefix client && npm run lint:css --prefix client && npm run prettier",
+    "front:test": "npm run test --prefix client -- --watchAll",
     "front-build": "npm run build --prefix client"
   },
   "repository": {
