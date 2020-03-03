@@ -1,11 +1,11 @@
-import React, {useState} from "react";
-import {NavLink} from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import headerDesign from "./header-design.png";
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
-import {LoginForm} from "../../Forms/LoginForm/login-form";
-import {RegisterForm} from "../../Forms/RegisterForm/register-form";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { LoginForm } from "../../Forms/LoginForm/login-form";
+import { RegisterForm } from "../../Forms/RegisterForm/register-form";
 
 import {
   ShoppingBag,
@@ -22,39 +22,41 @@ export const HeaderContent = () => {
 
   return (
     <Container>
-      <Line/>
+      <Line />
       <HeaderWrapper>
-        <Search/>
+        <Search />
         <NavLink exact to="/">
-          <Logo/>
+          <Logo />
         </NavLink>
 
         <HeaderIconWrapper>
-          <Login onClick={() => toggleModal(!isModalOpen)}/>
-          {isModalOpen &&
-          <LoginForm
-            onRegister={onRegister}
-            onClose={() => toggleModal(false)}/>
-          }
-          {isRegisterOpen &&
-          <RegisterForm
-            onClose={() => toggleRegistration(false)}/>
-          }
+          <Login onClick={() => toggleModal(!isModalOpen)} />
+          {isModalOpen && (
+            <LoginForm
+              onRegister={onRegister}
+              onClose={() => toggleModal(false)}
+            />
+          )}
+          {isRegisterOpen && (
+            <RegisterForm onClose={() => toggleRegistration(false)} />
+          )}
           <NavLink
             to="/account/favorites"
             style={{
               textDecoration: "none",
               color: "inherit"
-            }}>
-            <Favorites/>
+            }}
+          >
+            <Favorites />
           </NavLink>
           <NavLink
             to="/account/shopping-bag"
             style={{
               textDecoration: "none",
               color: "inherit"
-            }}>
-            <ShoppingBag/>
+            }}
+          >
+            <ShoppingBag />
           </NavLink>
         </HeaderIconWrapper>
       </HeaderWrapper>

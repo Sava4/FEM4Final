@@ -1,16 +1,16 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import {FormButton} from "../FormButton/form-button";
-import {Modal} from "../../Modal/modal";
-import {Checkbox} from "../FormCheckbox/form-checkbox";
-import {InputEmail} from "../InputEmail/input-email";
-import {InputPassword} from "../InputPassword/input-password";
-import {loginAction} from "../../../store/login";
+import { FormButton } from "../FormButton/form-button";
+import { Modal } from "../../Modal/modal";
+import { Checkbox } from "../FormCheckbox/form-checkbox";
+import { InputEmail } from "../InputEmail/input-email";
+import { InputPassword } from "../InputPassword/input-password";
+import { loginAction } from "../../../store/login";
 
 export const LoginForm = props => {
-  const {onClose, onRegister} = props;
+  const { onClose, onRegister } = props;
 
   const [emailValidation] = useState(true);
   const [passwordValidation] = useState(true);
@@ -31,20 +31,23 @@ export const LoginForm = props => {
           <InputEmail
             value={email}
             placeholder={"Email"}
-            onEmailChange={onEmailChange}/>
+            onEmailChange={onEmailChange}
+          />
           <InputPassword
             value={password}
             placeholder={"Password"}
-            onPasswordChange={onPasswordChange}/>
+            onPasswordChange={onPasswordChange}
+          />
           <Checkbox>
             <CheckboxText>Remember me</CheckboxText>
           </Checkbox>
           <FormButton
             value={"Log in"}
             onClick={onSubmit}
-            disabled={!emailValidation || !passwordValidation}/>
+            disabled={!emailValidation || !passwordValidation}
+          />
         </FormLogIn>
-        <Line/>
+        <Line />
         <FormRegister>
           <FormTitle>Create your account</FormTitle>
           <FormRegisterSubtitle>
@@ -52,14 +55,11 @@ export const LoginForm = props => {
             faster, store multiple shipping addresses, view and track orders,
             and perform many other operations.
           </FormRegisterSubtitle>
-          <FormButton
-            value={'Register'}
-            onClick={onRegister}/>
+          <FormButton value={"Register"} onClick={onRegister} />
         </FormRegister>
       </FormWrapper>
     </Modal>
   );
-
 
   function onSubmit(event) {
     event.preventDefault();

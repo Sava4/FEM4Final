@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-import {FormButton} from "../FormButton/form-button";
-import {Modal} from "../../Modal/modal";
+import { FormButton } from "../FormButton/form-button";
+import { Modal } from "../../Modal/modal";
 
 export const RegisterForm = props => {
-  const {onClose} = props;
+  const { onClose } = props;
 
   const [error, setError] = useState([]);
   const [login, setLogin] = useState("");
@@ -20,42 +20,48 @@ export const RegisterForm = props => {
     <Modal onClose={onClose}>
       <FormWrapper>
         <FormTitle>Create your account</FormTitle>
-        {error &&
-        <ErrorMessage>{error.map((error, index) => {
-          return <div key={index}>{error}</div>
-        })}
-        </ErrorMessage>
-        }
+        {error && (
+          <ErrorMessage>
+            {error.map((error, index) => {
+              return <div key={index}>{error}</div>;
+            })}
+          </ErrorMessage>
+        )}
         <FormRegister>
           <LeftContent>
             <Input
               value={login}
               type="text"
               placeholder="Login *"
-              onChange={event => setLogin(event.target.value)}/>
+              onChange={event => setLogin(event.target.value)}
+            />
             <Input
               value={firstName}
               type="text"
               placeholder="First Name *"
-              onChange={event => setFirstName(event.target.value)}/>
+              onChange={event => setFirstName(event.target.value)}
+            />
             <Input
               value={lastName}
               type="text"
               placeholder="Last Name *"
-              onChange={event => setLastName(event.target.value)}/>
+              onChange={event => setLastName(event.target.value)}
+            />
           </LeftContent>
           <RightContent>
             <Input
               value={email}
               type="email"
               placeholder="Email *"
-              onChange={event => setEmail(event.target.value)}/>
+              onChange={event => setEmail(event.target.value)}
+            />
             <InputPasswordWrapper>
               <InputPassword
                 value={password}
                 type="password"
                 placeholder="Password *"
-                onChange={event => setPassword(event.target.value)}/>
+                onChange={event => setPassword(event.target.value)}
+              />
               <InputBottomText>
                 At least 8 characters long, containing uppercase and lowercase
                 letters and numbers.
@@ -65,13 +71,12 @@ export const RegisterForm = props => {
               value={confirmPassword}
               type="password"
               placeholder="Confirm Password *"
-              onChange={event => setConfirmPassword(event.target.value)}/>
+              onChange={event => setConfirmPassword(event.target.value)}
+            />
           </RightContent>
         </FormRegister>
         <FormButtonWrapper>
-          <FormButton
-            value="Register"
-            onClick={onChange}/>
+          <FormButton value="Register" onClick={onChange} />
         </FormButtonWrapper>
       </FormWrapper>
     </Modal>
@@ -93,8 +98,8 @@ export const RegisterForm = props => {
         console.log(response);
         onClose();
       })
-      .catch((error) => {
-        const errors = Object.keys(error.response.data).map((key) => {
+      .catch(error => {
+        const errors = Object.keys(error.response.data).map(key => {
           return error.response.data[key];
         });
         setError(errors);
