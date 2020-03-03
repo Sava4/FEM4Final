@@ -26,7 +26,9 @@ export const RegisterForm = props => {
   const [passwordValidation, setPasswordValidation] = useState(true);
 
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(true);
+  const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(
+    true
+  );
 
   return (
     <Modal onClose={onClose}>
@@ -112,7 +114,6 @@ export const RegisterForm = props => {
 
   function isLoginValid(login) {
     return login.length < 3 ? false : true;
-
   }
 
   function onLoginBlur() {
@@ -216,7 +217,10 @@ export const RegisterForm = props => {
       setEmailValidation(statusEmail);
       const statusPassword = isPasswordValid(password);
       setPasswordValidation(statusPassword);
-      const statusConfirmPassword = isConfirmPasswordValid(password, confirmPassword);
+      const statusConfirmPassword = isConfirmPasswordValid(
+        password,
+        confirmPassword
+      );
       setConfirmPasswordValidation(statusConfirmPassword);
       return;
     }

@@ -40,7 +40,7 @@ export const doLogin = (loginOrEmail, password) => {
         dispatch(loginSuccessAction(token));
         axios
           .get("http://localhost:5000/customers/customer", {
-            headers: {"Authorization": token}
+            headers: { Authorization: token }
           })
           .then(response => {
             localStorage.setItem("token", token);
