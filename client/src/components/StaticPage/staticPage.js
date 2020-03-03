@@ -9,7 +9,7 @@ export const StaticPage = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/pages/${url}`, {})
+      .get(`http://localhost:5000/pages/${url}`)
       .then(result => {
         // console.log(result.data);
         setPage(result.data);

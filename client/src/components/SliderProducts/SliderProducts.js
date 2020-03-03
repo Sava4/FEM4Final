@@ -3,23 +3,21 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {
-  CarouselImage,
-  SliderPromo,
-  SliderPromoText,
-  SliderPromoButton
-} from "./slider.styles";
+import { CarouselImage } from "./sliderProducts.styles";
+import { ProductItem } from "./productItemSlider";
+import styled from "styled-components";
 
-export const SliderHomepage = () => {
+export const SliderProducts = () => {
   const settings = {
-    accessibility: true,
-    dots: true,
+    accessibility: true,    
     arrows: true,
     infinite: true,
     draggable: true,
-    autoplay: true,
-    // centerMode: true,
+    swipeToSlide: true,
+    autoplay: false,  
     speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
@@ -27,35 +25,38 @@ export const SliderHomepage = () => {
   const [text, setText] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/slides")
+      .get("http://localhost:5000/products")
       .then(result => {
         setText(result.data);
       })
       .catch(err => {
-        /*Do something with error, e.g. show error to user*/
+        console.log(err);
       });
   }, []);
-
   return (
     <div
       className="carousel_wrapper"
       style={{
-        height: `height: 425px`
+        height: `height: 592px`,
+        marginTop: `40px`
       }}
     >
       <Slider {...settings}>
         {text.map(item => {
           return (
             <div key={item._id}>
-              <CarouselImage {...item}>
-                <SliderPromo>
-                  <SliderPromoText>
-                    {item.description}                 
-                  </SliderPromoText>
-                  <SliderPromoButton>
-                    <div> SHOP NOW</div>
-                  </SliderPromoButton>
-                </SliderPromo>
+              <CarouselImage>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center"
+                  }}
+                >
+                  <ProductItem {...item}>                    
+                    {/* {console.log(item)} */}
+                   
+                  </ProductItem>
+                </div>
               </CarouselImage>
             </div>
           );
@@ -68,21 +69,20 @@ export const SliderHomepage = () => {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div>
+    
       <div
         className={className}
         style={{
-          ...style,
+          ...style,          
           display: "block",
-          background: "transparent",
-          right: "25.4%",
-          zIndex: "1",
-          top: "96.7%",
-          after: { content: "›" }
+          background: "grey",
+          right: "0.5%",
+          zIndex: "1",        
+          content: "›"
         }}
         onClick={onClick}
       />
-    </div>
+    
   );
 }
 
@@ -94,10 +94,9 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        background: "transparent",
-        left: "70%",
-        zIndex: "1",
-        top: "96.7%"
+        background: "grey",
+        left: "0.5%",
+        zIndex: "1"       
       }}
       onClick={onClick}
     />

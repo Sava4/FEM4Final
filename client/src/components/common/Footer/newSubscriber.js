@@ -28,7 +28,7 @@ export function AddSubscriber(props) {
           })
           .catch(err => {
             console.log("error add");
-            console.log(err.response.data);
+            console.log(err.response);
           });
       })
       .catch(err => {

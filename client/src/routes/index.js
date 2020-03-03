@@ -8,6 +8,7 @@ import { ProductDetails } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
+import { ProductSlider} from "../components/SliderProducts/productSlider"
 
 export const Routes = () => {
   // const [isAuthenticated, setIsAuthenticated]= useState(false)
@@ -21,6 +22,7 @@ export const Routes = () => {
       <Route path="/categories/bracelets" component={Products} />
       <Route path="/categories/neclaces" component={Products} />
       <Route path="/products" component={Products} />
+      <Route path="/product/:itemNo" component={ProductSlider} />
       <Route path="/productsdetails" component={ProductDetails} />
       <Route exact path="/account" component={Account} />
       +
@@ -28,7 +30,7 @@ export const Routes = () => {
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/logout" component={Products} />
       <Route exact path="/404error" component={Error} />
-      <Route exact path="/:url" component={StaticPageView} />
+      <Route exact path="/pages/:url" component={StaticPageView} />
       <Redirect to="/" />
     </Switch>
   ) : (

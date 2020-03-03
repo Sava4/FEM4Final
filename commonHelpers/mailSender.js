@@ -4,7 +4,7 @@ const getConfigs = require("../config/getConfigs");
 
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
   const configs = await getConfigs();
-
+console.log("hello")
   //authorization for sending email
   let transporter = nodemailer.createTransport({
     service:
@@ -35,5 +35,6 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
 
   const result = await transporter.sendMail(mailOptions);
 
-  return result;
+  return result
+  console.log(result);
 };
