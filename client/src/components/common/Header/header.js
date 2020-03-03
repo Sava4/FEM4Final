@@ -72,7 +72,6 @@ export const HeaderContent = () => {
 };
 
 const Container = styled.div`
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,7 +90,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
-  margin: 30px 0;
+  margin: 30px 0 40px 0;
 
   ${mediaMobile(`
     border-bottom: 1px solid black;

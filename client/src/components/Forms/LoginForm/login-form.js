@@ -89,13 +89,13 @@ const FormLogIn = styled.div`
   flex-direction: column;
   margin-left: 70px;
   margin-right: 70px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 `;
 
 const Line = styled.div`
   display: flex;
   align-self: center;
-  height: 360px;
+  height: 320px;
   border-right: 1px solid #a7aabb;
 `;
 
@@ -110,13 +110,13 @@ const FormRegister = styled.div`
 const FormTitle = styled.span`
   margin-top: 90px;
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 23px;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
 
 const FormSubtitle = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0.5px;
   margin-bottom: 30px;
 `;
@@ -125,5 +125,5 @@ const FormRegisterSubtitle = styled(FormSubtitle)`
 `;
 
 const CheckboxText = styled.span`
-  font-size: 12px;
+  font-size: 11px;
 `;

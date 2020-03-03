@@ -4,7 +4,6 @@ import axios from "axios";
 
 import {FormButton} from "../FormButton/form-button";
 import {Modal} from "../../Modal/modal";
-import {Checkbox} from "../FormCheckbox/form-checkbox";
 
 export const RegisterForm = props => {
   const {onClose} = props;
@@ -27,20 +26,6 @@ export const RegisterForm = props => {
         })}
         </ErrorMessage>
         }
-        <CheckboxContentWrapper>
-          <CheckboxTitle>Salutation</CheckboxTitle>
-          <CheckboxWrapper>
-            <Checkbox>
-              <CheckboxTextLeft>Mr.</CheckboxTextLeft>
-            </Checkbox>
-            <Checkbox>
-              <CheckboxTextLeft>Ms.</CheckboxTextLeft>
-            </Checkbox>
-            <Checkbox>
-              <CheckboxTextLeft>Mrs.</CheckboxTextLeft>
-            </Checkbox>
-          </CheckboxWrapper>
-        </CheckboxContentWrapper>
         <FormRegister>
           <LeftContent>
             <Input
@@ -132,8 +117,8 @@ const FormRegister = styled.div`
 `;
 
 const FormTitle = styled.span`
-  margin-top: 60px;
-  margin-bottom: 30px;
+  margin-top: 70px;
+  margin-bottom: 50px;
   font-size: 24px;
   text-align: center;
   text-transform: uppercase;
@@ -149,30 +134,10 @@ const LeftContent = styled.div`
   width: 50%;
   margin-right: 50px;
 `;
-const CheckboxContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  margin-left: 97px;
-`;
 
-const CheckboxWrapper = styled.div`
-  display: flex;
-  margin-bottom: 15px;
-`;
-const CheckboxTitle = styled.div`
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-`;
-
-const CheckboxTextLeft = styled.span`
-  font-size: 14px;
-  margin-right: 60px;
-`;
 const Input = styled.input`
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   padding-bottom: 5px;
   border: none;
   border-bottom: 1px solid #80858d;
@@ -196,25 +161,25 @@ const Input = styled.input`
 `;
 
 const InputPassword = styled(Input)`
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 `;
 
 const InputPasswordWrapper = styled.div`
-  margin-bottom: 23px;
+  margin-bottom: 32px;
 `;
 
 const InputBottomText = styled.div`
-  font-size: 9px;
+  font-size: 8px;
   color: #80858d;
 `;
 
 const RightContent = styled.div`
   width: 50%;
   margin-left: 50px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 const FormButtonWrapper = styled.div`
   width: 40%;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 `;

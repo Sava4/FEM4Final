@@ -15,6 +15,8 @@ export const Login = props => {
 
 const LoginIcon = styled.div`
   width: 20px;
+  height: 20px;
+  margin-right: 5px;
   background-image: url(${login});
   background-repeat: no-repeat;
   background-size: contain;
@@ -28,5 +30,6 @@ const LoginText = styled.span`
 
 const ServicesIcon = styled.div`
   display: flex;
+  align-items: center;
   cursor: pointer;
 `;
