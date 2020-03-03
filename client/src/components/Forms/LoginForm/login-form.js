@@ -31,21 +31,18 @@ export const LoginForm = props => {
           <InputEmail
             value={email}
             placeholder={"Email"}
-            onEmailChange={onEmailChange}
-          />
+            onEmailChange={onEmailChange}/>
           <InputPassword
             value={password}
             placeholder={"Password"}
-            onPasswordChange={onPasswordChange}
-          />
+            onPasswordChange={onPasswordChange}/>
           <Checkbox>
             <CheckboxText>Remember me</CheckboxText>
           </Checkbox>
           <FormButton
             value={"Log in"}
             onClick={onSubmit}
-            disabled={!emailValidation || !passwordValidation}
-          />
+            disabled={!emailValidation || !passwordValidation}/>
         </FormLogIn>
         <Line />
         <FormRegister>

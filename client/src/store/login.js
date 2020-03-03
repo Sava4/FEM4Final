@@ -38,8 +38,14 @@ export const doLogin = (loginOrEmail, password) => {
       .then(response => {
         const token = response.data.token;
         dispatch(loginSuccessAction(token));
-        localStorage.setItem("jwtToken", token);
-        setAuthorizationToken(token);
+        axios
+          .get("http://localhost:5000/customers/customer", {
+            headers: {"Authorization": token}
+          })
+          .then(response => {
+            localStorage.setItem("token", token);
+            setAuthorizationToken(token);
+          });
       })
       .catch(error => {
         console.log("There is no user with the given username and password");
@@ -49,7 +55,7 @@ export const doLogin = (loginOrEmail, password) => {
 
 export default function setAuthorizationToken(token) {
   if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = token;
   } else {
     delete axios.defaults.headers.common["Authorization"];
   }
