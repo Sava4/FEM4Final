@@ -6,12 +6,14 @@ import { shoppingCardReducer } from "./shopping-card";
 import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
+import { userReducer } from "./user";
 
 const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
   favorites: favoritesReducer,
   categories: categoriesReduser,
-  login: loginReducer
+  login: loginReducer,
+  user: userReducer
 });
 
 const store = createStore(
