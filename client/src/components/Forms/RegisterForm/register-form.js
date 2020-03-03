@@ -1,17 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
+import axios from "axios";
 
-import { FormButton } from "../FormButton/form-button";
-import { Modal } from "../../Modal/modal";
-import { Checkbox } from "../FormCheckbox/form-checkbox";
+import {FormButton} from "../FormButton/form-button";
+import {Modal} from "../../Modal/modal";
+import {Checkbox} from "../FormCheckbox/form-checkbox";
 
 export const RegisterForm = props => {
-  const { isModalOpen, onClose } = props;
+  const {onClose} = props;
+
+  const [error, setError] = useState([]);
+  const [login, setLogin] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
-    <Modal isModalOpen={isModalOpen} onClose={onClose}>
+    <Modal onClose={onClose}>
       <FormWrapper>
         <FormTitle>Create your account</FormTitle>
+        {error &&
+        <ErrorMessage>{error.map((error, index) => {
+          return <div key={index}>{error}</div>
+        })}
+        </ErrorMessage>
+        }
         <CheckboxContentWrapper>
           <CheckboxTitle>Salutation</CheckboxTitle>
           <CheckboxWrapper>
@@ -28,42 +43,78 @@ export const RegisterForm = props => {
         </CheckboxContentWrapper>
         <FormRegister>
           <LeftContent>
-            <Input type="text" placeholder="First Name *" />
-            <Input type="text" placeholder="Last Name *" />
-            <Input type="email" placeholder="Email *" />
+            <Input
+              value={login}
+              type="text"
+              placeholder="Login *"
+              onChange={event => setLogin(event.target.value)}/>
+            <Input
+              value={firstName}
+              type="text"
+              placeholder="First Name *"
+              onChange={event => setFirstName(event.target.value)}/>
+            <Input
+              value={lastName}
+              type="text"
+              placeholder="Last Name *"
+              onChange={event => setLastName(event.target.value)}/>
           </LeftContent>
           <RightContent>
+            <Input
+              value={email}
+              type="email"
+              placeholder="Email *"
+              onChange={event => setEmail(event.target.value)}/>
             <InputPasswordWrapper>
-              <InputPassword type="password" placeholder="Password *" />
+              <InputPassword
+                value={password}
+                type="password"
+                placeholder="Password *"
+                onChange={event => setPassword(event.target.value)}/>
               <InputBottomText>
                 At least 8 characters long, containing uppercase and lowercase
                 letters and numbers.
               </InputBottomText>
             </InputPasswordWrapper>
-            <Input type="password" placeholder="Confirm Password *" />
-            <CheckboxAgree>
-              <Checkbox>
-                <CheckboxTextRight>
-                  I accept Privacy & Cookies Policy *.
-                </CheckboxTextRight>
-              </Checkbox>
-              <Checkbox>
-                <CheckboxTextRightWrapper>
-                  <CheckboxTextRight>
-                    I want to receive about new creations, events and
-                  </CheckboxTextRight>
-                  <CheckboxTextRight>personalized services.</CheckboxTextRight>
-                </CheckboxTextRightWrapper>
-              </Checkbox>
-            </CheckboxAgree>
+            <Input
+              value={confirmPassword}
+              type="password"
+              placeholder="Confirm Password *"
+              onChange={event => setConfirmPassword(event.target.value)}/>
           </RightContent>
         </FormRegister>
         <FormButtonWrapper>
-          <FormButton value="Register" />
+          <FormButton
+            value="Register"
+            onClick={onChange}/>
         </FormButtonWrapper>
       </FormWrapper>
     </Modal>
   );
+
+  function onChange(event) {
+    event.preventDefault();
+    axios
+      .post("http://localhost:5000/customers", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        login: email,
+        isAdmin: false,
+        enabled: true
+      })
+      .then(response => {
+        console.log(response);
+        onClose();
+      })
+      .catch((error) => {
+        const errors = Object.keys(error.response.data).map((key) => {
+          return error.response.data[key];
+        });
+        setError(errors);
+      });
+  }
 };
 
 const FormWrapper = styled.form`
@@ -87,6 +138,11 @@ const FormTitle = styled.span`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 14px;
+  color: red;
 `;
 
 const LeftContent = styled.div`
@@ -156,18 +212,6 @@ const RightContent = styled.div`
   width: 50%;
   margin-left: 50px;
   margin-bottom: 15px;
-`;
-const CheckboxAgree = styled.div`
-  margin-top: 12px;
-`;
-
-const CheckboxTextRightWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const CheckboxTextRight = styled.div`
-  font-size: 12px;
 `;
 
 const FormButtonWrapper = styled.div`

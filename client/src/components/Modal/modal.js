@@ -4,12 +4,12 @@ import styled from "styled-components";
 import modalClose from "./modal-close-btn.png";
 
 export const Modal = props => {
-  const { isModalOpen, onClose, children } = props;
+  const {isModalOpen, onClose, children} = props;
 
   return (
     <CreateModal isOpen={isModalOpen}>
       <ModalCloseWrapper>
-        <ModalClose onClick={onClose} />
+        <ModalClose onClick={onClose}/>
         {children}
       </ModalCloseWrapper>
     </CreateModal>

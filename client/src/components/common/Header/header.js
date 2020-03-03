@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {useState} from "react";
+import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 
 import headerDesign from "./header-design.png";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
-import { LoginForm } from "../../Forms/LoginForm/login-form";
+import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import {LoginForm} from "../../Forms/LoginForm/login-form";
 
 import {
   ShoppingBag,
@@ -14,42 +14,47 @@ import {
   Logo,
   Navigation
 } from "../Header";
+import {RegisterForm} from "../../Forms/RegisterForm/register-form";
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
+  const [isRegisterOpen, toggleRegistration] = useState(false);
 
   return (
     <Container>
-      <Line />
+      <Line/>
       <HeaderWrapper>
-        <Search />
+        <Search/>
         <NavLink exact to="/">
-          <Logo />
+          <Logo/>
         </NavLink>
 
         <HeaderIconWrapper>
-          <Login onClick={() => toggleModal(!isModalOpen)} />
+          <Login onClick={() => toggleModal(!isModalOpen)}/>
+          {isModalOpen &&
           <LoginForm
-            isModalOpen={isModalOpen}
-            onClose={() => toggleModal(false)}
-          />
+            onRegister={onRegister}
+            onClose={() => toggleModal(false)}/>
+          }
+          {isRegisterOpen &&
+          <RegisterForm
+            onClose={() => toggleRegistration(false)}/>
+          }
           <NavLink
             to="/account/favorites"
             style={{
               textDecoration: "none",
               color: "inherit"
-            }}
-          >
-            <Favorites />
+            }}>
+            <Favorites/>
           </NavLink>
           <NavLink
             to="/account/shopping-bag"
             style={{
               textDecoration: "none",
               color: "inherit"
-            }}
-          >
-            <ShoppingBag />
+            }}>
+            <ShoppingBag/>
           </NavLink>
         </HeaderIconWrapper>
       </HeaderWrapper>
@@ -59,6 +64,11 @@ export const HeaderContent = () => {
       </Categories>
     </Container>
   );
+
+  function onRegister() {
+    toggleModal(false);
+    toggleRegistration(true);
+  }
 };
 
 const Container = styled.div`
