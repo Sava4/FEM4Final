@@ -20,6 +20,7 @@ export const ShoppingBag = () => {
 const ShoppingBagIcon = styled.div`
   width: 20px;
   height: 20px;
+  margin-right: 5px;
   background-image: url(${bug});
   background-repeat: no-repeat;
   background-size: contain;
@@ -33,5 +34,6 @@ const ShoppingBagCounter = styled.span`
 
 const ServicesIcon = styled.div`
   display: flex;
+  align-items: center;
   margin-left: 30px;
 `;

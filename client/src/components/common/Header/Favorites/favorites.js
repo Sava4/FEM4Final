@@ -19,7 +19,9 @@ export const Favorites = () => {
 };
 
 const FavoritesIcon = styled.div`
-  width: 20px;
+  width: 19px;
+  height: 20px;
+  margin-right: 5px;
   background-image: url(${favorites});
   background-repeat: no-repeat;
   background-size: contain;
@@ -27,6 +29,7 @@ const FavoritesIcon = styled.div`
 
 const ServicesIcon = styled.div`
   display: flex;
+  align-items: center;
   margin-left: 30px;
 
   ${mediaMobile(`

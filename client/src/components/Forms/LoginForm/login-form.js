@@ -10,7 +10,8 @@ import { InputPassword } from "../InputPassword/input-password";
 import { loginAction } from "../../../store/login";
 
 export const LoginForm = props => {
-  const { isModalOpen, onClose } = props;
+  const { onClose, onRegister } = props;
+
   const [emailValidation] = useState(true);
   const [passwordValidation] = useState(true);
 
@@ -20,47 +21,44 @@ export const LoginForm = props => {
   const dispatch = useDispatch();
 
   return (
-    isModalOpen && (
-      <Modal isModalOpen={isModalOpen} onClose={onClose}>
-        <FormWrapper>
-          <FormLogIn>
-            <FormTitle>Log in</FormTitle>
-            <FormSubtitle>
-              Please enter your details to log in to your Zarina Account.
-            </FormSubtitle>
-            <InputEmail
-              value={email}
-              placeholder={"Email"}
-              onEmailChange={onEmailChange}
-            />
-            <InputPassword
-              value={password}
-              placeholder={"Password"}
-              onPasswordChange={onPasswordChange}
-            />
-            <Checkbox>
-              <CheckboxText>Remember me</CheckboxText>
-            </Checkbox>
-            <FormButton
-              value={"Log in"}
-              onClick={onSubmit}
-              disabled={!emailValidation || !passwordValidation}
-            />
-            <ForgotPassword>Forgot your password?</ForgotPassword>
-          </FormLogIn>
-          <Line />
-          <FormRegister>
-            <FormTitle>Create your account</FormTitle>
-            <FormRegisterSubtitle>
-              By creating Zarina Account, you will be able to place your order
-              faster, store multiple shipping addresses, view and track orders,
-              and perform many other operations.
-            </FormRegisterSubtitle>
-            <FormButton value="Register" />
-          </FormRegister>
-        </FormWrapper>
-      </Modal>
-    )
+    <Modal onClose={onClose}>
+      <FormWrapper>
+        <FormLogIn>
+          <FormTitle>Log in</FormTitle>
+          <FormSubtitle>
+            Please enter your details to log in to your Zarina Account.
+          </FormSubtitle>
+          <InputEmail
+            value={email}
+            placeholder={"Email"}
+            onEmailChange={onEmailChange}
+          />
+          <InputPassword
+            value={password}
+            placeholder={"Password"}
+            onPasswordChange={onPasswordChange}
+          />
+          <Checkbox>
+            <CheckboxText>Remember me</CheckboxText>
+          </Checkbox>
+          <FormButton
+            value={"Log in"}
+            onClick={onSubmit}
+            disabled={!emailValidation || !passwordValidation}
+          />
+        </FormLogIn>
+        <Line />
+        <FormRegister>
+          <FormTitle>Create your account</FormTitle>
+          <FormRegisterSubtitle>
+            By creating Zarina Account, you will be able to place your order
+            faster, store multiple shipping addresses, view and track orders,
+            and perform many other operations.
+          </FormRegisterSubtitle>
+          <FormButton value={"Register"} onClick={onRegister} />
+        </FormRegister>
+      </FormWrapper>
+    </Modal>
   );
 
   function onSubmit(event) {
@@ -91,12 +89,13 @@ const FormLogIn = styled.div`
   flex-direction: column;
   margin-left: 70px;
   margin-right: 70px;
+  margin-bottom: 70px;
 `;
 
 const Line = styled.div`
   display: flex;
   align-self: center;
-  height: 360px;
+  height: 320px;
   border-right: 1px solid #a7aabb;
 `;
 
@@ -111,13 +110,13 @@ const FormRegister = styled.div`
 const FormTitle = styled.span`
   margin-top: 90px;
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 23px;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
 
 const FormSubtitle = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0.5px;
   margin-bottom: 30px;
 `;
@@ -126,14 +125,5 @@ const FormRegisterSubtitle = styled(FormSubtitle)`
 `;
 
 const CheckboxText = styled.span`
-  font-size: 12px;
-`;
-
-const ForgotPassword = styled.a`
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  margin-bottom: 55px;
-  margin-top: 30px;
-  text-decoration: underline;
-  cursor: pointer;
+  font-size: 11px;
 `;
