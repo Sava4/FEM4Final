@@ -10,8 +10,7 @@ export const Homepage = () => {
   return (
     <Layout>
       <SliderHomepage />
-      <SliderProducts />
-      <ProductDetails />
+      <SliderProducts />      
       <HomepageCategiries></HomepageCategiries>
     </Layout>
   );

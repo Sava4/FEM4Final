@@ -6,15 +6,16 @@ import "slick-carousel/slick/slick-theme.css";
 import { CarouselImage } from "./sliderProducts.styles";
 import { ProductItem } from "./productItemSlider";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const SliderProducts = () => {
   const settings = {
-    accessibility: true,    
+    accessibility: true,
     arrows: true,
     infinite: true,
     draggable: true,
     swipeToSlide: true,
-    autoplay: false,  
+    autoplay: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -44,21 +45,18 @@ export const SliderProducts = () => {
       <Slider {...settings}>
         {text.map(item => {
           return (
-            <div key={item._id}>
-              <CarouselImage>
-                <div
+            <CarouselImage key={item._id} itemNo={`${item.itemNo}`}>
+              <NavLink to={`/product/${item.itemNo}`}>
+                <ProductItem
+                  {...item}
+                  itemNo={`${item.itemNo}`}
                   style={{
                     display: "flex",
                     justifyContent: "center"
                   }}
-                >
-                  <ProductItem {...item}>                    
-                    {/* {console.log(item)} */}
-                   
-                  </ProductItem>
-                </div>
-              </CarouselImage>
-            </div>
+                ></ProductItem>
+              </NavLink>
+            </CarouselImage>
           );
         })}
       </Slider>
@@ -69,20 +67,18 @@ export const SliderProducts = () => {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    
-      <div
-        className={className}
-        style={{
-          ...style,          
-          display: "block",
-          background: "grey",
-          right: "0.5%",
-          zIndex: "1",        
-          content: "›"
-        }}
-        onClick={onClick}
-      />
-    
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        background: "grey",
+        right: "0.5%",
+        zIndex: "1",
+        content: "›"
+      }}
+      onClick={onClick}
+    />
   );
 }
 
@@ -96,7 +92,7 @@ function SamplePrevArrow(props) {
         display: "block",
         background: "grey",
         left: "0.5%",
-        zIndex: "1"       
+        zIndex: "1"
       }}
       onClick={onClick}
     />

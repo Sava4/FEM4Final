@@ -4,16 +4,15 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const ProductItem = props => {
- 
   return (
-    <NavLink to={`/product/${props.itemNo}`}>
-    <Card key={props.key}>  
-    {/* //поменял путь для локальных картинок */}
-      <Image alt="" src={props.imageUrls[0]} size={"small"} />
-      <Name size={"small"} style={{height:"80px"}}>{`${props.name} "${props.collection}"`}</Name>
+    <Card key={props.key} itemNo={props.itemNo}>
+      <Image alt="" src={props.imageUrls[0]} size={"small"} />    
+      <Name
+        size={"small"}
+        style={{ height: "80px" }}
+      >{`${props.name} "${props.collection}"`}</Name>
       <Price size={"small"}>{props.currentPrice}</Price>
     </Card>
-    </NavLink>
   );
 };
 

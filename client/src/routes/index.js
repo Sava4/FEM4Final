@@ -8,7 +8,8 @@ import { ProductDetails } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
-import { ProductSlider} from "../components/SliderProducts/productSlider"
+import { ProductSliderView} from "../components/SliderProducts/productSliderView"
+import { ProductDetailsSlider } from "../components/SliderProducts/productDetailsSlider";
 
 export const Routes = () => {
   // const [isAuthenticated, setIsAuthenticated]= useState(false)
@@ -22,7 +23,9 @@ export const Routes = () => {
       <Route path="/categories/bracelets" component={Products} />
       <Route path="/categories/neclaces" component={Products} />
       <Route path="/products" component={Products} />
-      <Route path="/product/:itemNo" component={ProductSlider} />
+      {/* <Route path="/product/:itemNo" component={ProductDetailsSlider} render={(props)=><ProductDetailsSlider itemNo={props.itemNo}/>}/> */}
+      {/* <Route path="/product/:itemNo" component={ProductSliderView} render={(props)=><ProductDetailsSlider itemNo={props.itemNo}/>}/> */}
+      <Route path="/product/:itemNo" component={ProductSliderView}/>}/>
       <Route path="/productsdetails" component={ProductDetails} />
       <Route exact path="/account" component={Account} />
       +

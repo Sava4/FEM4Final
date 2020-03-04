@@ -1,31 +1,40 @@
-import React, { useState, useEffect, useParams } from "react";
+import React, { useState, useLayoutEffect} from "react"
+import { useParams } from "react-router";
 import axios from "axios";
 
 import styled, { css } from "styled-components";
 
-export const ProductDetails = (props) => {
-  // let { itemNo } = useParams();
-  consi
+export const ProductDetailsSlider = props => {
+  let {itemNo} = useParams();
 
-  const [productsAllData, setProductsAllData] = useState([]);
+  const [productsAllData, setProductsAllData] = useState({});
 
 
-//может не вызывать а передавать данные с продукта уже вызваного в слайдер?
-  useEffect(() => {
+//может не вызывать а передавать данные с продукта уже вызваного в слайдер? через пропсы или редакс
+useLayoutEffect(() => {
     axios
       .get(`http://localhost:5000/products/${itemNo}`)
-      .then(product => {
-        setProductsAllData(product.data);
+      .then(res => {
+        setProductsAllData(res.data);
+        console.log(res.data)  
       })
       .catch(err => {
-        /*Do something with error, e.g. show error to user*/
+       console.log(err)
       });
-  }, []);
-  const product = productsAllData && productsAllData;
+  }, [itemNo]);
+
+
+const product = productsAllData !== undefined && productsAllData
+console.log(product)
+const images = product.imageUrls !== undefined && product.imageUrls;
+const images2 = Array.from(images)
+const url = images2[0]
+
 
   return (
     <Container>
-      <Image alt="" />
+      <Image alt="" src={`http://localhost:3000/${url}`}  style={{height:"300px"}}  />
+      {console.log(url)}   
       <Wrapper>
         <Name line={"true"}>{product.name}</Name>
         <Vendor>{`Article no.: ${
@@ -53,6 +62,7 @@ export const ProductDetails = (props) => {
       </Wrapper>
     </Container>
   );
+        
 };
 
 //*** STYLED-COMPONENTS ***//
@@ -95,6 +105,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
+display:block;
   width: 570px;
   height: 558px;
   @media (max-width: 992px) {
