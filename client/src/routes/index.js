@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-
+import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { Products } from "../components/ProductsList";
 import { Categories } from "../components/Categories";
@@ -24,10 +24,11 @@ export const Routes = () => {
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={Account} />
       +
-      <Route path="/account/favorites" component={Products} />
-      <Route path="/account/shopping-bag" component={ShoppingBag} />
-      <Route path="/logout" component={Products} />
-      <Route path="/404error" component={Error} />
+      <Route exact path="/account/favorites" component={Products} />
+      <Route exact path="/account/shopping-bag" component={ShoppingBag} />
+      <Route exact path="/logout" component={Products} />
+      <Route exact path="/404error" component={Error} />
+      <Route exact path="/:url" component={StaticPageView} />
       <Redirect to="/" />
     </Switch>
   ) : (

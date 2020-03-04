@@ -13,7 +13,7 @@ import {
   Search,
   Logo,
   Navigation
-} from "../Header";
+} from "../Header/index";
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
@@ -98,6 +98,7 @@ const Categories = styled.div`
   display: flex;
   justify-content: space-evenly;
   border-bottom: 1px solid black;
+  padding-bottom: 30px;
 
   ${mediaMobile(`
     display: none;

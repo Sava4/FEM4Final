@@ -11,11 +11,14 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
+    "react-slick": "^0.25.2",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.0.1"
   },
   "scripts": {
@@ -25,8 +28,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
-    "lint:css": "stylelint src/**/*.js",
-    "prettier": "prettier --check \"src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
+    "lint:css": "stylelint src/**/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"

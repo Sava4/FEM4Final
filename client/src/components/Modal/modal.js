@@ -17,7 +17,7 @@ export const Modal = props => {
 };
 
 const CreateModal = styled.div`
-  display: ${props => (props.isOpen ? "flex" : "none")};
+  display: flex;
   position: fixed;
   z-index: 1;
   left: 0;

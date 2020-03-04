@@ -97,7 +97,6 @@ const SectionCategiries = styled.div`
 `;
 
 const Categories = styled.div`
-  font-family: Montserrat, sans-serif;
   font-size: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));

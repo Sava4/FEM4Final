@@ -7,9 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
     "format": "prettier --write \"client/src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
+    "prettier": "prettier --check \"client/src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "front:lint": "npm run lint --prefix client && npm run lint:css --prefix client && npm run prettier --prefix client",
+    "front:lint": "npm run lint --prefix client && npm run lint:css --prefix client && npm run prettier",
+    "front:test": "npm run test --prefix client -- --watchAll",
     "front-build": "npm run build --prefix client"
   },
   "repository": {
