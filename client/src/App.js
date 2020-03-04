@@ -8,14 +8,14 @@ import store from "./store";
 //import {Header, Spinner} from "./components";
 
 function App() {
-    return (
-        <Provider store={store}>
-            <GlobalStyle />
-            <BrowserRouter>
-                <Routes />
-            </BrowserRouter>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </Provider>
+  );
 }
 
 export default App;

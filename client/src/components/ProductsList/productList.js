@@ -18,22 +18,21 @@ const ListProducts = () => {
     fetchPosts();
   }, []);
 
- const ListProduct = products.map(product => {
+  const ListProduct = products.map(product => {
     return (
       <ProductItem
-        id={ product.itemNo }
-        key={ product._id }
-        img={ product.imageUrls[0] }
-        name={ product.name }
-        previousPrice={ product.previousPrice }
-        collection={ product.collection }
+        id={product.itemNo}
+        key={product._id}
+        img={product.imageUrls[0]}
+        name={product.name}
+        previousPrice={product.previousPrice}
+        collection={product.collection}
       />
     );
   });
   return <Wrapper>{ListProduct.splice(0, 9)}</Wrapper>;
 };
 //Using splice for products array instead the pagination.
-
 
 export const ProductsList = () => {
   return <ListProducts />;

@@ -1,76 +1,76 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { mediaMobile, mediaTablet } from "../../styled-components/media-breakpoints-mixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
 export const ProductDetails = () => {
-    const { id } = useParams();
-    const [products, setProducts] = useState({});
-    const [images, setImages] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+  const [products, setProducts] = useState({});
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get(`http://localhost:5000/products/${id}`);
+      setImages(res.data.imageUrls);
+      setProducts(res.data);
+      setLoading(false);
+    };
+    fetchPosts();
+  }, []);
 
-        const fetchPosts = async () => {
-            setLoading(true);
-            const res = await axios.get(`http://localhost:5000/products/${id}`);
-            setImages(res.data.imageUrls);
-            setProducts(res.data);
-            setLoading(false);
-        };
-        fetchPosts()
-    }, []);
+  console.log("image", images[0]);
+  console.log("продукт", products);
 
-    console.log("image", images[0]);
-    console.log("продукт", products);
-
-
-    return ( loading?
-      <div>Loading...</div>
-       :
-        <Details1
-            name={products.name}
-            itemNo={products.itemNo}
-            previousPrice={products.previousPrice}
-            gemstone={products.gemstone}
-            collection={products.collection}
-            metal={products.metal}
-            metal_color={products.metal_color}
-            weight={products.weight}
-            sample={products.sample}
-            img={images[0]}
-        />
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
+    <Details1
+      name={products.name}
+      itemNo={products.itemNo}
+      previousPrice={products.previousPrice}
+      gemstone={products.gemstone}
+      collection={products.collection}
+      metal={products.metal}
+      metal_color={products.metal_color}
+      weight={products.weight}
+      sample={products.sample}
+      img={images[0]}
+    />
   );
 };
 const Details1 = props => {
-    return (
-        <Container>
-            <Image alt="" src={`/${props.img}`}
-            />
-            <Wrapper>
-                <Name line={"true"}>{`${props.name}`}</Name>
-                <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
-                <PriceWrapper>
-                    <Price>{`${props.previousPrice}`}</Price>
-                    <WishWrapper>
-                        <WishButton>Add to wish list</WishButton>
-                        <Heart>&#9825;</Heart>
-                    </WishWrapper>
-                </PriceWrapper>
-                <Add>Add to bag</Add>
-                <Details>Details</Details>
-                <UL>
-                    <LI>{`Gemstone: ${props.gemstone}`} </LI>
-                    <LI>{`Collection: ${props.collection}`}</LI>
-                    <LI>{`Metal: ${props.metal}`}</LI>
-                    <LI>{`Metal Color: ${props.metal_color}`}</LI>
-                    <LI>{`Weight: ${props.weight}`}</LI>
-                    <LI>{`Sample: ${props.sample}`}</LI>
-                </UL>
-            </Wrapper>
-        </Container>
-    )
+  return (
+    <Container>
+      <Image alt="" src={`/${props.img}`} />
+      <Wrapper>
+        <Name line={"true"}>{`${props.name}`}</Name>
+        <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
+        <PriceWrapper>
+          <Price>{`${props.previousPrice}`}</Price>
+          <WishWrapper>
+            <WishButton>Add to wish list</WishButton>
+            <Heart>&#9825;</Heart>
+          </WishWrapper>
+        </PriceWrapper>
+        <Add>Add to bag</Add>
+        <Details>Details</Details>
+        <UL>
+          <LI>{`Gemstone: ${props.gemstone}`} </LI>
+          <LI>{`Collection: ${props.collection}`}</LI>
+          <LI>{`Metal: ${props.metal}`}</LI>
+          <LI>{`Metal Color: ${props.metal_color}`}</LI>
+          <LI>{`Weight: ${props.weight}`}</LI>
+          <LI>{`Sample: ${props.sample}`}</LI>
+        </UL>
+      </Wrapper>
+    </Container>
+  );
 };
 
 //*** STYLED-COMPONENTS ***//
@@ -80,7 +80,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px 15px;
-  ${mediaTablet (`
+  ${mediaTablet(`
     width: 100%;
     flex-direction: column;
     justify-content: center;
