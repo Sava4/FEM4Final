@@ -1,56 +1,75 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router";
-
+import { useParams } from "react-router";
 import styled, { css } from "styled-components";
-import {ProductItem} from "../ProductsList/productItem";
 
-export const ProductDetails = (props) => {
+export const ProductDetails = () => {
+    const { id } = useParams();
     const [products, setProducts] = useState({});
     const [images, setImages] = useState([]);
-
-    let location = useLocation();
-    let pathname = location.pathname.replace("/product-details/", "");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+
         const fetchPosts = async () => {
-            const res = await axios.get(`http://localhost:5000/products/${pathname}`);
-            setProducts(res.data);
+            setLoading(true);
+            const res = await axios.get(`http://localhost:5000/products/${id}`);
             setImages(res.data.imageUrls);
+            setProducts(res.data);
+            setLoading(false);
         };
-        fetchPosts();
-    }, [setImages]);
+        fetchPosts()
+    }, []);
 
-    console.log(images[0]);
-    console.log(products);
+    console.log("image", images[0]);
+    console.log("продукт", products);
 
-    return (
-       <Container>
-                  <Image2 imageUrl={images[0]}
-                  />
-                  <Wrapper>
-                      <Name line={"true"}>{`${products.name}`}</Name>
-                      <Vendor>{`Article no.: ${products.itemNo}`}</Vendor>
-                      <PriceWrapper>
-                          <Price>{`${products.currentPrice}`}</Price>
-                          <WishWrapper>
-                              <WishButton>Add to wish list</WishButton>
-                              <Heart>&#9825;</Heart>
-                          </WishWrapper>
-                      </PriceWrapper>
-                      <Add>Add to bag</Add>
-                      <Details>Details</Details>
-                      <UL>
-                          <LI>{`Gemstone: ${products.gemstone}`} </LI>
-                          <LI>{`Collection: ${products.collection}`}</LI>
-                          <LI>{`Metal: ${products.metal}`}</LI>
-                          <LI>{`Metal Color: ${products.metal_color}`}</LI>
-                          <LI>{`Weight: ${products.weight}`}</LI>
-                          <LI>{`Sample: ${products.sample}`}</LI>
-                      </UL>
-                  </Wrapper>
-              </Container>
+
+    return ( loading?
+      <div>Loading...</div>
+       :
+        <Details1
+            name={products.name}
+            itemNo={products.itemNo}
+            previousPrice={products.previousPrice}
+            gemstone={products.gemstone}
+            collection={products.collection}
+            metal={products.metal}
+            metal_color={products.metal_color}
+            weight={products.weight}
+            sample={products.sample}
+            img={images[0]}
+        />
   );
+};
+const Details1 = props => {
+    return (
+        <Container>
+            <Image alt="" src={`/${props.img}`}
+            />
+            <Wrapper>
+                <Name line={"true"}>{`${props.name} "${props.collection}"`}</Name>
+                <Vendor>{`Article no.: ${props.itemNo}`}</Vendor>
+                <PriceWrapper>
+                    <Price>{`${props.previousPrice}`}</Price>
+                    <WishWrapper>
+                        <WishButton>Add to wish list</WishButton>
+                        <Heart>&#9825;</Heart>
+                    </WishWrapper>
+                </PriceWrapper>
+                <Add>Add to bag</Add>
+                <Details>Details</Details>
+                <UL>
+                    <LI>{`Gemstone: ${props.gemstone}`} </LI>
+                    <LI>{`Collection: ${props.collection}`}</LI>
+                    <LI>{`Metal: ${props.metal}`}</LI>
+                    <LI>{`Metal Color: ${props.metal_color}`}</LI>
+                    <LI>{`Weight: ${props.weight}`}</LI>
+                    <LI>{`Sample: ${props.sample}`}</LI>
+                </UL>
+            </Wrapper>
+        </Container>
+    )
 };
 
 //*** STYLED-COMPONENTS ***//
@@ -58,7 +77,7 @@ export const ProductDetails = (props) => {
 export const Container = styled.div`
   display: flex;
   max-width: 1200px;
-  padding: 0 15px;
+  padding: 15px 15px;
   margin: 0 auto;
 
   @media (max-width: 1200px) {
@@ -91,23 +110,8 @@ export const Wrapper = styled.div`
     width: 95%;
   }
 `;
-const Image2 = styled.div`
-background: url(${props => props.imageUrl}) no-repeat;
-width: 570px;
-  height: 558px;
-  @media (max-width: 992px) {
-    width: 520px;
-    height: 508px;
-  }
-  @media (max-width: 767px) {
-    width: 360px;
-    height: 334px;
-  }
-`;
 
 export const Image = styled.img`
-  width: 570px;
-  height: 558px;
   @media (max-width: 992px) {
     width: 520px;
     height: 508px;
@@ -175,6 +179,7 @@ export const Name = styled.p`
     `}
 `;
 export const Vendor = styled.p`
+  margin-top: 25px;
   font-size: 14px;
   color: #a1a5ad;
 `;
@@ -185,7 +190,7 @@ export const PriceWrapper = styled.div`
   align-items: center;
 `;
 export const Price = styled.div`
-  margin-top: 5px;
+  margin-top: 25px;
   font-size: 16px;
   line-height: 21px;
   &:after {
@@ -237,6 +242,7 @@ export const Add = styled.button`
   padding-top: 15px;
   padding-bottom: 15px;
   text-transform: uppercase;
+  text-align: center;
   background-color: #002d50;
   border: 1px solid #002d50;
   width: 100%;
@@ -265,6 +271,7 @@ export const UL = styled.ul`
 `;
 export const LI = styled.li`
   text-transform: capitalize;
+  margin-top: 8px;
   &:before {
     margin-right: 7px;
     content: "•";
