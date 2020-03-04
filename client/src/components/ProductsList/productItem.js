@@ -2,7 +2,6 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import { Image, Name, Price } from "../ProductDetails/productDetails";
 
-
 import styled from "styled-components";
 
 
@@ -11,7 +10,7 @@ export const ProductItem = (props) => {
         <Card to={`/product-details/${props.id}`} key={props.key}>
             <Image alt="" src={props.img} size={"small"}/>
             <Name size={"small"}>{`${props.name} "${props.collection}"`}</Name>
-            <Price size={"small"}>{props.currentPrice}</Price>
+            <Price size={"small"}>{props.previousPrice}</Price>
         </Card>
     );
 
