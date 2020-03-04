@@ -1,9 +1,10 @@
 import axios from "axios";
+import { userAction } from "./user";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 export const loginAction = (loginOrEmail, password) => {
-  return doLogin(loginOrEmail, password);
+  return auth(loginOrEmail, password);
 };
 
 const loginSuccessAction = token => ({
@@ -28,7 +29,7 @@ export function loginReducer(store = InitialState, action) {
   }
 }
 
-export const doLogin = (loginOrEmail, password) => {
+export const auth = (loginOrEmail, password) => {
   return dispatch => {
     axios
       .post("http://localhost:5000/customers/login", {
@@ -43,6 +44,8 @@ export const doLogin = (loginOrEmail, password) => {
             headers: { Authorization: token }
           })
           .then(response => {
+            const user = response.data;
+            dispatch(userAction(user));
             localStorage.setItem("token", token);
             setAuthorizationToken(token);
           });

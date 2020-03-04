@@ -19,9 +19,9 @@ export const Routes = () => {
       <Route path="/categories/rings/:id" component={Products} />
       <Route path="/categories/earrings" component={Products} />
       <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
+      <Route path="/categories/necklaces" component={Products} />
       <Route path="/products" component={Products} />
-      <Route path="/productsdetails" component={ProductDetails} />
+      <Route path="/productsDetails" component={ProductDetails} />
       <Route exact path="/account" component={Account} />
       +
       <Route exact path="/account/favorites" component={Products} />
@@ -40,11 +40,11 @@ export const Routes = () => {
       <Route path="/categories/rings" component={Products} />
       <Route path="/categories/earrings" component={Products} />
       <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
+      <Route path="/categories/necklaces" component={Products} />
 
       <Route path="/products" component={Products} />
 
-      <Route path="/productsdetails" component={ProductDetails} />
+      <Route path="/productsDetails" component={ProductDetails} />
 
       <Route path="/login" component={Products} />
 

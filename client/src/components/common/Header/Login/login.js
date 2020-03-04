@@ -1,14 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import login from "./login.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 
 export const Login = props => {
+  const user = useSelector(state => {
+    return state.user;
+  });
+
   return (
     <ServicesIcon onClick={props.onClick}>
       <LoginIcon />
-      <LoginText>My account</LoginText>
+      {user ? user.firstName : <LoginText>My account</LoginText>}
     </ServicesIcon>
   );
 };
