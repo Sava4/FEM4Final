@@ -1,95 +1,45 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styled-components/media-breakpoints-mixin";
 
 import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
 import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
 import RingsPict from "../../../img/homePage/categories/rings.png";
 import EarringsPict from "../../../img/homePage/categories/earring.png";
 
-// import "./style.css"
-
-export const HomepageCategiries = () => {
+export const HomepageCategories = () => {
   return (
-    <SectionCategiries>
+    <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
       <Categories>
-        <Necklases to="categories">
+        <Necklaces to="categories">
           <p>NECKLACES</p>
-        </Necklases>
+        </Necklaces>
 
-        <Bracelets to="products" className="bracelets">
-          <p>BRACELETS</p>
-        </Bracelets>
-
-        <Rings to="productsditails" className="rings">
-          <p>RINGS</p>
-        </Rings>
-        <Earrings to="categories" className="earrings">
-          <p>EARRINGS</p>
-        </Earrings>
+        <RightCategoriesWrapper>
+          <Bracelets to="products">
+            <p>BRACELETS</p>
+          </Bracelets>
+          <RingsWrapper>
+            <Rings to="productsDetails">
+              <p>RINGS</p>
+            </Rings>
+            <Earrings to="categories">
+              <p>EARRINGS</p>
+            </Earrings>
+          </RingsWrapper>
+        </RightCategoriesWrapper>
       </Categories>
-    </SectionCategiries>
+    </SectionCategories>
   );
 };
-const Necklases = styled(NavLink)`
-    grid-area:neclases;
-    background:url("${NecklacesPict}") ;
-    background-size: auto auto;
-    background-repeat: no-repeat;
-    ${mediaMobile(`
-    font-size: 20px;
-    width: 375px;
-    height: 231px; 
-`)}
-        
-`;
-const Bracelets = styled(NavLink)`
-    grid-area:bracelets;
-    background-image:url("${BraceletsPict}");
-    width: 850px;
-    height: 312px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    ${mediaMobile(`
-    font-size: 20px;
-    width: 375px;
-    height: 231px; 
-`)}
-        
-`;
-const Rings = styled(NavLink)`
-    grid-area:rings;
-    background-image:url("${RingsPict}");
-    width: 423px;
-    height: 397px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    ${mediaMobile(`
-    font-size: 20px;
-    width: 375px;
-    height: 231px; 
-`)} 
-        
-`;
-const Earrings = styled(NavLink)`
-    grid-area:earrings;
-    background-image:url("${EarringsPict}") ;
-    width: 423px;
-    height: 397px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    ${mediaMobile(`
-    font-size: 20px;
-    width: 375px;
-    height: 231px; 
-`)}
-        
-`;
 
-const SectionCategiries = styled.div`
-  height: 712px;
+const SectionCategories = styled.div`
+  margin-top: 90px;
   & p {
     text-align: center;
     font-size: 24px;
@@ -97,16 +47,11 @@ const SectionCategiries = styled.div`
 `;
 
 const Categories = styled.div`
+  margin-top: 30px;
   font-size: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
-  grid-gap: 2px;
-  grid-template-areas:
-    "neclases bracelets bracelets"
-    "neclases rings earrings";
+  display: flex;
 
   & a {
-    margin-left: 2px;
     text-decoration: none;
     position: relative;
     & p {
@@ -118,12 +63,99 @@ const Categories = styled.div`
     }
   }
   ${mediaMobile(`
-    font-size: 20px;
-    grid-template-areas:
-    "neclases "
-    "bracelets"
-    "rings"
-    "earrings";
+  flex-direction: column;
+  `)}
+`;
 
+const Necklaces = styled(NavLink)`
+  width: 40%;
+  height: 712px;
+  margin-right: 2px;
+  background-image: url(${NecklacesPict});
+  background-size: cover;
+  background-repeat: no-repeat;
+  ${mediaTablet(`
+  width: 40%;
+  height: 712px;
+  `)}
+  ${mediaMobile(`
+  width: 100%;
+  height: 231px; 
+  margin-right: 0;
+  margin-bottom: 2px;
+  background-position: center;
+`)}
+`;
+
+const RightCategoriesWrapper = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+
+  ${mediaMobile(`
+  width: 100%;
+  `)}
+`;
+
+const Bracelets = styled(NavLink)`
+  width: 100%;
+  height: 312px;
+  background-image: url(${BraceletsPict});
+  background-repeat: no-repeat;
+  background-size: cover;
+  ${mediaTablet(`
+  width: 100%;
+  height: 312px;
+  `)}
+  ${mediaMobile(`
+  width: 100%;
+  height: 231px; 
+`)}
+`;
+
+const RingsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 2px;
+
+  ${mediaMobile(`
+  flex-direction: column;
+  `)}
+`;
+
+const Rings = styled(NavLink)`
+  width: 50%;
+  height: 397px;
+  margin-right: 2px;
+  background-image: url(${RingsPict});
+  background-repeat: no-repeat;
+  background-size: cover;
+  ${mediaTablet(`
+  width: 50%;
+  height: 397px;
+  `)}
+  ${mediaMobile(`
+  width: 100%;
+  height: 231px; 
+  margin-right: 0;
+  margin-bottom: 2px;
+  background-position: center;
+`)}
+`;
+const Earrings = styled(NavLink)`
+  width: 50%;
+  height: 397px;
+  background-image: url(${EarringsPict});
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  ${mediaTablet(`
+  width: 50%;
+  height: 397px;
+  `)}
+  ${mediaMobile(`
+  width: 100%;
+  height: 231px;
+  background-position: center; 
 `)}
 `;

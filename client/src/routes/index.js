@@ -19,7 +19,7 @@ export const Routes = () => {
       <Route path="/categories/rings/:id" component={Products} />
       <Route path="/categories/earrings" component={Products} />
       <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
+      <Route path="/categories/necklaces" component={Products} />
       <Route path="/products" component={Products} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={Account} />
@@ -40,7 +40,7 @@ export const Routes = () => {
       <Route path="/categories/rings" component={Products} />
       <Route path="/categories/earrings" component={Products} />
       <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
+      <Route path="/categories/necklaces" component={Products} />
 
       <Route path="/products" component={Products} />
 

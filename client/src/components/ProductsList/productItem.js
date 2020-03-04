@@ -2,12 +2,12 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import { Image, Name, Price } from "../ProductDetails/productDetails";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 
 export const ProductItem = (props) => {
     return (
-        <Card to={`/product-details/${props.id}`} key={props.key}>
+        <Card interpretation={props.interpretation} to={`/product-details/${props.id}`} key={props.key}>
             <Image alt="" src={props.img} size={"small"}/>
             <Name size={"small"}>{`${props.name}`}</Name>
             <Price size={"small"}>{props.previousPrice}</Price>
@@ -47,4 +47,11 @@ const Card = styled(NavLink)`
         width: 43%;
         
     }
+    
+    ${props =>
+    props.interpretation === "carousell" &&
+    css`
+      width: 300px;
+    `};
 `;
+
