@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { mediaMobile, mediaTablet } from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
 export const ProductDetails = () => {
@@ -48,8 +49,8 @@ const Details1 = props => {
             <Image alt="" src={`/${props.img}`}
             />
             <Wrapper>
-                <Name line={"true"}>{`${props.name} "${props.collection}"`}</Name>
-                <Vendor>{`Article no.: ${props.itemNo}`}</Vendor>
+                <Name line={"true"}>{`${props.name}`}</Name>
+                <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
                 <PriceWrapper>
                     <Price>{`${props.previousPrice}`}</Price>
                     <WishWrapper>
@@ -77,24 +78,21 @@ const Details1 = props => {
 export const Container = styled.div`
   display: flex;
   max-width: 1200px;
-  padding: 15px 15px;
   margin: 0 auto;
-
-  @media (max-width: 1200px) {
-    max-width: 1024px;
-  }
-  @media (max-width: 1050px) {
-    max-width: 991px;
-  }
-  @media (max-width: 992px) {
-    max-width: 768px;
-  }
-  @media (max-width: 767px) {
-    max-width: 540px;
+  padding: 15px 15px;
+  ${mediaTablet (`
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+`)}
+  ${mediaMobile(`
+    width: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`)}
+  
   ${props =>
     props.flex === "column" &&
     css`
@@ -106,20 +104,19 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  @media (max-width: 767px) {
-    width: 95%;
-  }
+  ${mediaMobile(`
+  width: 95%;
+`)}
 `;
 
 export const Image = styled.img`
-  @media (max-width: 992px) {
-    width: 520px;
-    height: 508px;
-  }
-  @media (max-width: 767px) {
-    width: 360px;
-    height: 334px;
-  }
+
+${mediaTablet(`
+    width: 70%;
+`)}
+   ${mediaMobile(`
+   width: 60%;
+`)}
 
   ${props =>
     props.size === "small" &&
@@ -272,9 +269,12 @@ export const UL = styled.ul`
 export const LI = styled.li`
   text-transform: capitalize;
   margin-top: 8px;
+  margin-left: 8px;
+  line-height: 21px;
   &:before {
-    margin-right: 7px;
     content: "•";
+    margin-right: 8px;
+    margin-left: -8px;
     color: #a7aabb;
   }
 `;
