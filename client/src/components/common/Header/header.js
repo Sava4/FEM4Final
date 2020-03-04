@@ -5,6 +5,7 @@ import styled from "styled-components";
 import headerDesign from "./header-design.png";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import { LoginForm } from "../../Forms/LoginForm/login-form";
+import { RegisterForm } from "../../Forms/RegisterForm/register-form";
 
 import {
   ShoppingBag,
@@ -17,6 +18,7 @@ import {
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
+  const [isRegisterOpen, toggleRegistration] = useState(false);
 
   return (
     <Container>
@@ -29,10 +31,15 @@ export const HeaderContent = () => {
 
         <HeaderIconWrapper>
           <Login onClick={() => toggleModal(!isModalOpen)} />
-          <LoginForm
-            isModalOpen={isModalOpen}
-            onClose={() => toggleModal(false)}
-          />
+          {isModalOpen && (
+            <LoginForm
+              onRegister={onRegister}
+              onClose={() => toggleModal(false)}
+            />
+          )}
+          {isRegisterOpen && (
+            <RegisterForm onClose={() => toggleRegistration(false)} />
+          )}
           <NavLink
             to="/account/favorites"
             style={{
@@ -59,10 +66,14 @@ export const HeaderContent = () => {
       </Categories>
     </Container>
   );
+
+  function onRegister() {
+    toggleModal(false);
+    toggleRegistration(true);
+  }
 };
 
 const Container = styled.div`
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +92,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
-  margin: 30px 0;
+  margin: 30px 0 40px 0;
 
   ${mediaMobile(`
     border-bottom: 1px solid black;
