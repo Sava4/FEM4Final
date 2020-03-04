@@ -21,25 +21,19 @@ const ListProducts = () => {
  const ListProduct = products.map(product => {
     return (
       <ProductItem
-        id={product.itemNo}
-        key={product._id}
-        img={`https://zarina.ua/media/catalog/product/cache/1/image/412x517/9df78eab33525d08d6e5fb8d27136e95/1/-${getImagesName(
-          product.imageUrls[0]
-        )}`}
-        name={product.name}
-        currentPrice={product.currentPrice}
-        collection={product.collection}
+        id={ product.itemNo }
+        key={ product._id }
+        img={ product.imageUrls[0] }
+        name={ product.name }
+        previousPrice={ product.previousPrice }
+        collection={ product.collection }
       />
     );
   });
   return <Wrapper>{ListProduct.splice(0, 9)}</Wrapper>;
 };
 //Using splice for products array instead the pagination.
-const getImagesName = img => {
-  const re = /\bimg\/products\/earrings|img\/products\/bracelets|img\/products\/necklaces\b/gi;
-  const img2 = img.replace(re, "");
-  return img2;
-}; //Using this temporary function for images from site before pictures will be added.
+
 
 export const ProductsList = () => {
   return <ListProducts />;
