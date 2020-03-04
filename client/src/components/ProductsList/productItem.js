@@ -48,4 +48,3 @@ const Card = styled(NavLink)`
         
     }
 `;
-
