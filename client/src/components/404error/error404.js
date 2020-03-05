@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import Bear from '../../img/error404/bear.png';
 import { HomepageCategories } from "../homePage/categories/index";
 
 export const Error404 = () => {
@@ -13,11 +12,6 @@ export const Error404 = () => {
         </Container>
     )
 };
-
-const Img404 = styled.img`
-    display: inline-block;
-    width: 300px;
-`;
 
 const Container = styled.div`
  
