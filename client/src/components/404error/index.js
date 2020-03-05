@@ -1,27 +1,15 @@
-import React from "react";
-import { Layout } from "../common/Layout";
+import React, {Fragment} from "react";
+import { Error404 } from "./error404";
+import { HeaderContent } from "../common/Header/header";
 
 // import styled from "styled-components"
 
 export const Error = () => {
   return (
-    <Layout>
-      <h2> ERROR</h2>
-    </Layout>
+      <Fragment>
+    <HeaderContent/>
+      <Error404/>
+      </Fragment>
   );
 };
-//      const SectionCategiries = styled.div`
-//     {
-//         height:712px;
-//         width: 100vw;
-//         & p{
-//             text-align: center;
-//         }
-//     }`
-//    const Categories = styled.div`
-//         {
-//         display: flex;
-//         & div{
-//             margin-left: 20px
-//         }
-//     `;
+
