@@ -49,13 +49,4 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 920px;
   width: 80%;
-  @media (max-width: 1050px) {
-    max-width: 800px;
-  }
-  @media (max-width: 992px) {
-    max-width: 600px;
-  }
-  @media (max-width: 767px) {
-    max-width: 500px;
-  }
 `;

@@ -1,13 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Image, Name, Price } from "../ProductDetails/productDetails";
-
+import {
+  mediaMobile,
+  mediaTablet,
+  mediaTabletPortrait
+} from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
 export const ProductItem = props => {
   return (
     <Card
-      interpretation={props.interpretation}
       to={`/product-details/${props.id}`}
       key={props.key}
     >
@@ -32,23 +35,20 @@ const Card = styled(NavLink)`
   &: hover {
     border: 1px solid #002d50;
   }
-  @media (max-width: 1050px) {
-  }
-  @media (max-width: 992px) {
+   ${mediaTablet(`
     width: 43%;
     align-items: space-between;
-  }
-  @media (max-width: 767px) {
+`)}
+  ${mediaTabletPortrait(`
     align-items: space-between;
     width: 43%;
-  }
-  @media (max-width: 439px) {
+    margin: 2px;
+    height: 300px;
+      `)}
+  ${mediaMobile(`
+    padding-bottom: 2px;
     width: 43%;
-  }
-
-  ${props =>
-    props.interpretation === "carousell" &&
-    css`
-      width: 300px;
-    `};
+    margin: 2px;
+    height: 250px;
+      `)}
 `;

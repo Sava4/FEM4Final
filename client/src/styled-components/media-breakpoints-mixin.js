@@ -10,12 +10,18 @@ export function mediaDesktop(content) {
 
 export function mediaTablet(content) {
   return css`
-    @media (min-width: 768px) and (max-width: 1199px) {
+    @media (min-width: 1025px) and (max-width: 1199px) {
       ${content}
     }
   `;
 }
-
+export function mediaTabletPortrait(content) {
+  return css`
+    @media (min-width: 768px) and (max-width: 1024px) {
+      ${content}
+    }
+  `;
+}
 export function mediaMobile(content) {
   return css`
     @media (max-width: 767px) {

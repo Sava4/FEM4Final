@@ -3,7 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router";
 import {
   mediaMobile,
-  mediaTablet
+  mediaTablet,
+  mediaTabletPortrait
 } from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
@@ -80,7 +81,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px 15px;
-  ${mediaTablet(`
+  ${mediaTabletPortrait(`
     width: 100%;
     flex-direction: column;
     justify-content: center;
@@ -91,6 +92,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15px 5px;
 `)}
   
   ${props =>
@@ -100,7 +102,7 @@ export const Container = styled.div`
     `}
 `;
 export const Wrapper = styled.div`
-  width: 48%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -111,11 +113,11 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
 
-${mediaTablet(`
-    width: 70%;
+  ${mediaTablet(`
+    width: 60%;
 `)}
-   ${mediaMobile(`
-   width: 60%;
+  ${mediaMobile(`
+   width: 55%;
 `)}
 
   ${props =>
@@ -123,18 +125,18 @@ ${mediaTablet(`
     css`
       width: 206px;
       height: 258px;
-      @media (max-width: 992px) {
-        width: 206px;
-        height: 258px;
-      }
-      @media (max-width: 767px) {
-        width: 156px;
-        height: 208px;
-      }
-      @media (max-width: 439px) {
-        width: 150px;
-        height: 202px;
-      }
+      ${mediaTabletPortrait(`
+      width: 156px;
+      height: 208px;
+      `)}
+      ${mediaMobile(`
+      width: 140px;
+      height: 132px;
+      `)}
+       @media (max-width: 439px) {
+      width: 120px;
+      height: 112px
+  }
     `}
 `;
 export const Name = styled.p`
@@ -142,10 +144,9 @@ export const Name = styled.p`
   font-size: 30px;
   line-height: 40px;
   width: 100%;
-  @media (max-width: 992px) {
-    font-size: 20px;
-  }
-
+  ${mediaTabletPortrait(`
+      font-size: 20px;
+      `)}
   ${props =>
     props.line === "true" &&
     css`
@@ -162,17 +163,19 @@ export const Name = styled.p`
   ${props =>
     props.size === "small" &&
     css`
+      height: 30%;
       font-size: 16px;
       line-height: 21px;
       text-align: center;
-
-      @media (max-width: 992px) {
-        font-size: 14px;
-      }
-      @media (max-width: 767px) {
+      ${mediaTabletPortrait(`
+        box-sizing: border-box;
         font-size: 12px;
+      `)}
+      ${mediaMobile(`
+        box-sizing: border-box;
+        font-size: 11px;
         margin-bottom: 5px;
-      }
+      `)}
     `}
 `;
 export const Vendor = styled.p`
@@ -199,11 +202,13 @@ export const Price = styled.div`
   ${props =>
     props.size === "small" &&
     css`
+      margin-top: 15px;
       justify-self: flex-end;
+      height: 10%;
     `};
-  @media (max-width: 767px) {
-    font-size: 14px;
-  }
+  ${mediaMobile(`
+        font-size: 14px;
+      `)}
   @media (max-width: 439px) {
     font-size: 12px;
   }
