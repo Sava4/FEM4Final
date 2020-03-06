@@ -1,68 +1,132 @@
-import React, { useState, useLayoutEffect} from "react"
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import Slider from "react-slick";
+
+
 
 import styled, { css } from "styled-components";
 
 export const ProductDetailsSlider = props => {
-  let {itemNo} = useParams();
+  let { itemNo } = useParams();
 
   const [productsAllData, setProductsAllData] = useState({});
-
-
-//может не вызывать а передавать данные с продукта уже вызваного в слайдер? через пропсы или редакс
-useLayoutEffect(() => {
+  //может не вызывать а передавать данные с продукта уже вызваного в слайдер? через пропсы или редакс
+  useEffect(() => {
     axios
       .get(`http://localhost:5000/products/${itemNo}`)
       .then(res => {
         setProductsAllData(res.data);
-        console.log(res.data)  
+        console.log(res.data);
       })
       .catch(err => {
-       console.log(err)
+        console.log(err);
       });
   }, [itemNo]);
 
+  //при первом проходе переменная undefined
+  const product = productsAllData !== undefined && productsAllData;
+  console.log(product);
+  const images = product.imageUrls !== undefined && product.imageUrls;
+  const imagesArr = Array.from(images);  
+  const avatars= imagesArr.length
+ 
+  let imagesSlider = imagesArr.map(image => {    
+    return (     
+      <div>
+        <Image 
+          key={image.index}
+          alt=""
+          src={`http://localhost:3000/${image}`}
+          style={{ width: "100%", height: "100%",  border: `1px solid grey`}}
+        />
+      </div>     
+    );
+  }); 
+ 
+  const slider1 = useRef();
+  const slider2 = useRef();
+  const [state, setState] = useState({ nav1: null, nav2: null });
 
-const product = productsAllData !== undefined && productsAllData
-console.log(product)
-const images = product.imageUrls !== undefined && product.imageUrls;
-const images2 = Array.from(images)
-const url = images2[0]
-
+  useEffect(() => {
+    setState({
+      nav1: slider1.current,
+      nav2: slider2.current,     
+    });
+  }, []);
+  const { nav1, nav2} = state; 
 
   return (
-    <Container>
-      <Image alt="" src={`http://localhost:3000/${url}`}  style={{height:"300px"}}  />
-      {console.log(url)}   
-      <Wrapper>
-        <Name line={"true"}>{product.name}</Name>
-        <Vendor>{`Article no.: ${
-         product.itemNo
-        }`}</Vendor>
-        <PriceWrapper>
-          <Price>{`${product.currentPrice}`}</Price>
-          <WishWrapper>
-            <WishButton>Add to wish list</WishButton>
-            <Heart>&#9825;</Heart>
-          </WishWrapper>
-        </PriceWrapper>
-        <Add>Add to bag</Add>
-        <Details>Details</Details>
-        <UL>
-          <LI>{`Gemstone: ${product.gemstone}`} </LI>
-          <LI>{`Collection: ${product.collection}`}</LI>
-          <LI>{`Metal: ${product.metal}`}</LI>
-          <LI>{`Metal Color: ${
-           product.metal_color
-          }`}</LI>
-          <LI>{`Weight: ${product.weight}`}</LI>
-          <LI>{`Sample: ${product.sample}`}</LI>
-        </UL>
-      </Wrapper>
-    </Container>
+    <div>
+      <Container>
+      <div
+          className="carousel_wrapper"
+          style={{
+            height: ``,
+            width: `80px`,
+            marginTop: `40px`,
+            marginRight: `20px`,          
+            boxSizing: `border-box`,
+            overflow: "hidden"
+
+          }}
+        >        
+          <Slider
+            asNavFor={nav1}
+            ref={slider => (slider2.current = slider)}
+            slidesToShow={avatars} 
+            slidesToScroll={1}           
+            focusOnSelect={true}
+            vertical={true}       
+          >                     
+            {imagesSlider}               
+          </Slider>
+        </div>
+        <div
+          className="carousel_wrapper"
+          style={{
+            height: `500px`,
+            width: `35%`,
+            marginTop: `40px`,
+            marginRight: `20px`,           
+
+          }}
+        >   
+          <Slider 
+            asNavFor={nav2}
+            ref={slider => (slider1.current = slider)}            
+            speed={0.5} 
+            arrows={false}  
+        // fade={true} 
+          >            
+            {imagesSlider}   
+          </Slider>
+        </div>       
+      
+        <Wrapper>
+          <Name line={"true"}>{product.name}</Name>
+          <Vendor>{`Article no.: ${product.itemNo}`}</Vendor>
+          <PriceWrapper>
+            <Price>{`${product.currentPrice}`}</Price>
+            <WishWrapper>
+              <WishButton>Add to wish list</WishButton>
+              <Heart>&#9825;</Heart>
+            </WishWrapper>
+          </PriceWrapper>
+          <Add>Add to bag</Add>
+          <Details>Details</Details>
+          <UL>
+            <LI>{`Gemstone: ${product.gemstone}`} </LI>
+            <LI>{`Collection: ${product.collection}`}</LI>
+            <LI>{`Metal: ${product.metal}`}</LI>
+            <LI>{`Metal Color: ${product.metal_color}`}</LI>
+            <LI>{`Weight: ${product.weight}`}</LI>
+            <LI>{`Sample: ${product.sample}`}</LI>
+          </UL>
+        </Wrapper>
+      </Container>
+    </div>
   );
-        
 };
 
 //*** STYLED-COMPONENTS ***//
@@ -70,9 +134,11 @@ const url = images2[0]
 export const Container = styled.div`
   display: flex;
   max-width: 1200px;
+  height: 570px;
   padding: 0 15px;
   margin: 0 auto;
-
+  margin-bottom: 20px;
+  
   @media (max-width: 1200px) {
     max-width: 1024px;
   }
@@ -104,10 +170,9 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Image = styled.img`
-display:block;
-  width: 570px;
-  height: 558px;
+export const Image = styled.img`  
+  display: block;
+  object-fit: cover;
   @media (max-width: 992px) {
     width: 520px;
     height: 508px;
@@ -271,3 +336,4 @@ export const LI = styled.li`
     color: #a7aabb;
   }
 `;
+

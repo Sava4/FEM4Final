@@ -9,7 +9,7 @@ import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 import { ProductSliderView} from "../components/SliderProducts/productSliderView"
-import { ProductDetailsSlider } from "../components/SliderProducts/productDetailsSlider";
+
 
 export const Routes = () => {
   // const [isAuthenticated, setIsAuthenticated]= useState(false)

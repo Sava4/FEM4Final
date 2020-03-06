@@ -3,12 +3,12 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CarouselImage } from "./sliderProducts.styles";
+import { CarouselImage,H4 } from "./sliderProducts.styles";
 import { ProductItem } from "./productItemSlider";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const SliderProducts = () => {
+export const SliderProducts = (props) => {
   const settings = {
     accessibility: true,
     arrows: true,
@@ -34,16 +34,23 @@ export const SliderProducts = () => {
         console.log(err);
       });
   }, []);
+
+let text1 = text
+if(props.reverse==="reverse"){
+    text1=text1.reverse()
+}
   return (
     <div
       className="carousel_wrapper"
       style={{
         height: `height: 592px`,
-        marginTop: `40px`
+        marginTop: `40px`,        
+        marginLeft: `30px`
       }}
     >
-      <Slider {...settings}>
-        {text.map(item => {
+      <H4>{props.h4}</H4>
+      <Slider {...settings}>        
+        {text1.map(item => {
           return (
             <CarouselImage key={item._id} itemNo={`${item.itemNo}`}>
               <NavLink to={`/product/${item.itemNo}`}>
@@ -52,7 +59,7 @@ export const SliderProducts = () => {
                   itemNo={`${item.itemNo}`}
                   style={{
                     display: "flex",
-                    justifyContent: "center"
+                    justifyContent: "center",                   
                   }}
                 ></ProductItem>
               </NavLink>
@@ -91,7 +98,7 @@ function SamplePrevArrow(props) {
         ...style,
         display: "block",
         background: "grey",
-        left: "0.5%",
+        right: "0%",
         zIndex: "1"
       }}
       onClick={onClick}

@@ -3,10 +3,11 @@ import { Image, Name, Price } from "../ProductDetails/productDetails";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+//на homepage работает без http://localhost:3000/
 export const ProductItem = props => {
   return (
-    <Card key={props.key} itemNo={props.itemNo}>
-      <Image alt="" src={props.imageUrls[0]} size={"small"} />    
+    <Card key={props.key} itemNo={props.itemNo}>      
+      <Image alt="" src={`http://localhost:3000/${props.imageUrls[0]}`} size={"small"} />    
       <Name
         size={"small"}
         style={{ height: "80px" }}
@@ -23,6 +24,7 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  border: 1px solid grey;
   margin: 5px;
   width: 280px;
   height: 392px;
