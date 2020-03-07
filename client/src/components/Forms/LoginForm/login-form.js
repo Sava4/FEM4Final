@@ -1,22 +1,31 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
 
-import { FormButton } from "../FormButton/form-button";
-import { Modal } from "../../Modal/modal";
-import { Checkbox } from "../FormCheckbox/form-checkbox";
-import { InputEmail } from "../InputEmail/input-email";
-import { InputPassword } from "../InputPassword/input-password";
-import { loginAction } from "../../../store/login";
+import {FormButton} from "../FormButton/form-button";
+import {Modal} from "../../Modal/modal";
+import {Checkbox} from "../FormCheckbox/form-checkbox";
+import {InputEmail} from "../InputEmail/input-email";
+import {InputPassword} from "../InputPassword/input-password";
+import {loginAction} from "../../../store/login";
 
 export const LoginForm = props => {
-  const { onClose, onRegister } = props;
+  const {onClose, onRegister} = props;
 
   const [emailValidation] = useState(true);
   const [passwordValidation] = useState(true);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const storedEmail = localStorage.getItem("email");
+  const [email, setEmail] = useState(
+    storedEmail ? storedEmail : ""
+  );
+
+  const storedPassword = localStorage.getItem("password");
+  const [password, setPassword] = useState(
+    storedPassword ? storedPassword : ""
+  );
+
+  const [remember, setRemember] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -31,14 +40,14 @@ export const LoginForm = props => {
           <InputEmail
             value={email}
             placeholder={"Email"}
-            onEmailChange={onEmailChange}
+            onChange={onEmailChange}
           />
           <InputPassword
             value={password}
             placeholder={"Password"}
-            onPasswordChange={onPasswordChange}
+            onChange={onPasswordChange}
           />
-          <Checkbox>
+          <Checkbox onClick={rememberMe}>
             <CheckboxText>Remember me</CheckboxText>
           </Checkbox>
           <FormButton
@@ -47,7 +56,7 @@ export const LoginForm = props => {
             disabled={!emailValidation || !passwordValidation}
           />
         </FormLogIn>
-        <Line />
+        <Line/>
         <FormRegister>
           <FormTitle>Create your account</FormTitle>
           <FormRegisterSubtitle>
@@ -55,7 +64,7 @@ export const LoginForm = props => {
             faster, store multiple shipping addresses, view and track orders,
             and perform many other operations.
           </FormRegisterSubtitle>
-          <FormButton value={"Register"} onClick={onRegister} />
+          <FormButton value={"Register"} onClick={onRegister}/>
         </FormRegister>
       </FormWrapper>
     </Modal>
@@ -63,8 +72,13 @@ export const LoginForm = props => {
 
   function onSubmit(event) {
     event.preventDefault();
-    dispatch(loginAction(email, password));
-    onClose();
+
+    if (email === "" || password === "") {
+      return;
+    }
+    dispatch(loginAction(email, password, remember, () => {
+      onClose();
+    }));
   }
 
   function onEmailChange(email) {
@@ -73,6 +87,10 @@ export const LoginForm = props => {
 
   function onPasswordChange(password) {
     setPassword(password);
+  }
+
+  function rememberMe(event) {
+    setRemember(event.target.checked);
   }
 };
 

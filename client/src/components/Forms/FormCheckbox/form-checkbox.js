@@ -7,7 +7,9 @@ import checkBoxChecked from "./check-box-checked.png";
 export const Checkbox = props => {
   return (
     <CheckboxLabel>
-      <InputCheckbox type="checkbox" />
+      <InputCheckbox
+        type="checkbox"
+        onClick={props.onClick}/>
       <CheckBoxIcon />
       {props.children}
     </CheckboxLabel>
