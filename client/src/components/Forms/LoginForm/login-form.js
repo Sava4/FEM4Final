@@ -8,6 +8,7 @@ import {Checkbox} from "../FormCheckbox/form-checkbox";
 import {InputEmail} from "../InputEmail/input-email";
 import {InputPassword} from "../InputPassword/input-password";
 import {loginAction} from "../../../store/login";
+import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
 
 export const LoginForm = props => {
   const {onClose, onRegister} = props;
@@ -95,10 +96,15 @@ export const LoginForm = props => {
 };
 
 const FormWrapper = styled.form`
-  width: 980px;
+  width: 100%;
   display: flex;
   border: 1px solid #002d50;
   background: #ffffff;
+  
+  ${mediaMobile(`
+  flex-direction: column;
+  align-items: center;
+  `)}
 `;
 
 const FormLogIn = styled.div`
@@ -108,6 +114,12 @@ const FormLogIn = styled.div`
   margin-left: 70px;
   margin-right: 70px;
   margin-bottom: 70px;
+  
+  ${mediaMobile(`
+  width: 80%;
+  margin: 0 0 50px 0;
+  align-items: center;
+  `)}
 `;
 
 const Line = styled.div`
@@ -115,6 +127,12 @@ const Line = styled.div`
   align-self: center;
   height: 320px;
   border-right: 1px solid #a7aabb;
+  
+  ${mediaMobile(`
+  width: 70%;
+  height: 1px;
+  border-bottom: 1px solid black;
+  `)}
 `;
 
 const FormRegister = styled.div`
@@ -123,6 +141,13 @@ const FormRegister = styled.div`
   flex-direction: column;
   margin-right: 70px;
   margin-left: 70px;
+  margin-bottom: 70px;
+  
+  ${mediaMobile(`
+  width: 80%;
+  margin: 0 0 50px 0;
+  align-items: center;
+  `)}
 `;
 
 const FormTitle = styled.span`
@@ -131,6 +156,10 @@ const FormTitle = styled.span`
   font-size: 23px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  
+  ${mediaMobile(`
+  margin: 50px 0 15px 0;
+  `)}
 `;
 
 const FormSubtitle = styled.span`

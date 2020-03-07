@@ -31,6 +31,7 @@ const CreateModal = styled.div`
 `;
 
 const ModalCloseWrapper = styled.div`
+  width: 70%;
   position: relative;
   margin: 0 auto;
 `;

@@ -23,6 +23,7 @@ const InputWrapper = styled.div`
 `;
 
 const Input = styled.input`
+  width: inherit;
   padding: 18px 0;
   font-size: 14px;
   letter-spacing: 1px;
