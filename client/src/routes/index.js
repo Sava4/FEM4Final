@@ -4,7 +4,7 @@ import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { Products } from "../components/ProductsList";
 import { Categories } from "../components/Categories";
-import { ProductDetails } from "../components/ProductDetails";
+import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
@@ -21,7 +21,7 @@ export const Routes = () => {
       <Route path="/categories/bracelets" component={Products} />
       <Route path="/categories/necklaces" component={Products} />
       <Route path="/products" component={Products} />
-      <Route path="/productsDetails" component={ProductDetails} />
+      <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={Account} />
       +
       <Route exact path="/account/favorites" component={Products} />
@@ -44,7 +44,7 @@ export const Routes = () => {
 
       <Route path="/products" component={Products} />
 
-      <Route path="/productsDetails" component={ProductDetails} />
+      <Route path="/product-details/:id" component={ProductDetailsLayout} />
 
       <Route path="/login" component={Products} />
 
