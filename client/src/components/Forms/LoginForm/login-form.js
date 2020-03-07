@@ -1,25 +1,23 @@
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import {FormButton} from "../FormButton/form-button";
-import {Modal} from "../../Modal/modal";
-import {Checkbox} from "../FormCheckbox/form-checkbox";
-import {InputEmail} from "../InputEmail/input-email";
-import {InputPassword} from "../InputPassword/input-password";
-import {loginAction} from "../../../store/login";
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import { FormButton } from "../FormButton/form-button";
+import { Modal } from "../../Modal/modal";
+import { Checkbox } from "../FormCheckbox/form-checkbox";
+import { InputEmail } from "../InputEmail/input-email";
+import { InputPassword } from "../InputPassword/input-password";
+import { loginAction } from "../../../store/login";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const LoginForm = props => {
-  const {onClose, onRegister} = props;
+  const { onClose, onRegister } = props;
 
   const [emailValidation] = useState(true);
   const [passwordValidation] = useState(true);
 
   const storedEmail = localStorage.getItem("email");
-  const [email, setEmail] = useState(
-    storedEmail ? storedEmail : ""
-  );
+  const [email, setEmail] = useState(storedEmail ? storedEmail : "");
 
   const storedPassword = localStorage.getItem("password");
   const [password, setPassword] = useState(
@@ -57,7 +55,7 @@ export const LoginForm = props => {
             disabled={!emailValidation || !passwordValidation}
           />
         </FormLogIn>
-        <Line/>
+        <Line />
         <FormRegister>
           <FormTitle>Create your account</FormTitle>
           <FormRegisterSubtitle>
@@ -65,7 +63,7 @@ export const LoginForm = props => {
             faster, store multiple shipping addresses, view and track orders,
             and perform many other operations.
           </FormRegisterSubtitle>
-          <FormButton value={"Register"} onClick={onRegister}/>
+          <FormButton value={"Register"} onClick={onRegister} />
         </FormRegister>
       </FormWrapper>
     </Modal>
@@ -77,9 +75,11 @@ export const LoginForm = props => {
     if (email === "" || password === "") {
       return;
     }
-    dispatch(loginAction(email, password, remember, () => {
-      onClose();
-    }));
+    dispatch(
+      loginAction(email, password, remember, () => {
+        onClose();
+      })
+    );
   }
 
   function onEmailChange(email) {
@@ -100,7 +100,7 @@ const FormWrapper = styled.form`
   display: flex;
   border: 1px solid #002d50;
   background: #ffffff;
-  
+
   ${mediaMobile(`
   flex-direction: column;
   align-items: center;
@@ -114,7 +114,7 @@ const FormLogIn = styled.div`
   margin-left: 70px;
   margin-right: 70px;
   margin-bottom: 70px;
-  
+
   ${mediaMobile(`
   width: 80%;
   margin: 0 0 50px 0;
@@ -127,7 +127,7 @@ const Line = styled.div`
   align-self: center;
   height: 320px;
   border-right: 1px solid #a7aabb;
-  
+
   ${mediaMobile(`
   width: 70%;
   height: 1px;
@@ -142,7 +142,7 @@ const FormRegister = styled.div`
   margin-right: 70px;
   margin-left: 70px;
   margin-bottom: 70px;
-  
+
   ${mediaMobile(`
   width: 80%;
   margin: 0 0 50px 0;
@@ -156,7 +156,7 @@ const FormTitle = styled.span`
   font-size: 23px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  
+
   ${mediaMobile(`
   margin: 50px 0 15px 0;
   `)}

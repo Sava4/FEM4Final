@@ -3,14 +3,12 @@ import styled from "styled-components";
 
 import checkBox from "./check-box.png";
 import checkBoxChecked from "./check-box-checked.png";
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const Checkbox = props => {
   return (
     <CheckboxLabel>
-      <InputCheckbox
-        type="checkbox"
-        onClick={props.onClick}/>
+      <InputCheckbox type="checkbox" onClick={props.onClick} />
       <CheckBoxIcon />
       {props.children}
     </CheckboxLabel>
@@ -26,8 +24,8 @@ const CheckboxLabel = styled.label`
   font-size: 12px;
   letter-spacing: 0.5px;
   cursor: pointer;
-  
-  ${mediaMobile( `
+
+  ${mediaMobile(`
   align-self: flex-start;
   `)}
 `;

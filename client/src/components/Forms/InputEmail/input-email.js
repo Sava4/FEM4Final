@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 export const InputEmail = props => {
@@ -17,11 +17,11 @@ export const InputEmail = props => {
         value={email}
         onChange={onChange}
         invalid={!emailValidation}
-        onBlur={onEmailBlur}/>
-      {error && error.loginOrEmail &&
-        <ErrorMessage>
-          The email is not correct. Please, try again
-        </ErrorMessage>}
+        onBlur={onEmailBlur}
+      />
+      {error && error.loginOrEmail && (
+        <ErrorMessage>The email is not correct. Please, try again</ErrorMessage>
+      )}
     </InputWrapper>
   );
 
@@ -41,10 +41,10 @@ export const InputEmail = props => {
   }
 };
 
-const InputWrapper = styled.div` 
+const InputWrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
-`
+`;
 
 const Input = styled.input`
   width: 100%;
@@ -73,5 +73,4 @@ const Input = styled.input`
 const ErrorMessage = styled.span`
   font-size: 10px;
   color: red;
-`
-
+`;

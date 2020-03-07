@@ -1,6 +1,6 @@
 import axios from "axios";
-import {userAction} from "./user";
-import {loginStatusAction} from "./login-status";
+import { userAction } from "./user";
+import { loginStatusAction } from "./login-status";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
@@ -47,7 +47,7 @@ export const auth = (loginOrEmail, password, remember, onLogin) => {
         dispatch(loginSuccessAction(token));
         axios
           .get("http://localhost:5000/customers/customer", {
-            headers: {Authorization: token}
+            headers: { Authorization: token }
           })
           .then(response => {
             const user = response.data;

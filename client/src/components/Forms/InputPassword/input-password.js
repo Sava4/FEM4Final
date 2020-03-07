@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 export const InputPassword = props => {
@@ -17,11 +17,13 @@ export const InputPassword = props => {
         value={password}
         invalid={!passwordValidation}
         onChange={onChange}
-        onBlur={onPasswordBlur}/>
-      {error && error.password &&
+        onBlur={onPasswordBlur}
+      />
+      {error && error.password && (
         <ErrorMessage>
           The password is not correct. Please, try again
-        </ErrorMessage>}
+        </ErrorMessage>
+      )}
     </InputWrapper>
   );
 
@@ -44,10 +46,10 @@ export const InputPassword = props => {
   }
 };
 
-const InputWrapper = styled.div` 
+const InputWrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
-`
+`;
 
 const Input = styled.input`
   width: 100%;
@@ -76,4 +78,4 @@ const Input = styled.input`
 const ErrorMessage = styled.span`
   font-size: 10px;
   color: red;
-`
+`;

@@ -16,4 +16,4 @@ export function loginStatusReducer(store = InitialState, action) {
     default:
       return store;
   }
-};
+}
