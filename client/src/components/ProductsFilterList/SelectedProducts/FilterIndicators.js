@@ -1,4 +1,5 @@
 import React from "react";
+import {v4} from "uuid";
 
 import { connect } from "react-redux";
 
@@ -7,32 +8,38 @@ import styled from "styled-components";
 
 import { SelectedFilters } from "./SelectedFilters";
 
-import createKey from "../index";
+
 
 const mapStateToProps = store => ({
   filters: store.filters
 });
 
 export const FilterIndicators = connect(mapStateToProps)(props => {
-  const filters = props.filters.filters
+  const filters = props.filters.selFilters
   
   let filtrefBy = [];
-
   for (let key in filters) {
     filtrefBy.push(key);
   }
+
+  
   const filtredByBlocks = filtrefBy.map(item => {
-    const selectedFilters = filters[item];
-     console.log(selectedFilters)
+    // const selectedFilters = filters[item];
+    
     let itemClass = item.replace(" ", "");
 
+    let selectedFilters =filters[item]
+    console.log(selectedFilters)
+//  console.log(headChosenFilt)
     return ( 
-      <FilterMarker key={createKey.toString()}>
+     selectedFilters.length ? (<FilterMarker key={v4()}>
         <p>{item}</p>
         <SelectedFiltersStyled className={itemClass}>
-          {/* <SelectedFilters selectedFilters={selectedFilters} /> */}
+          <SelectedFilters selectedFilters={selectedFilters}/>
+           
+            
         </SelectedFiltersStyled>
-      </FilterMarker>
+      </FilterMarker>) : null
     );
   });
 
@@ -42,13 +49,16 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     console.log(filt)
   }
 
-    const items =filters.map(item=> <div>{item}</div>)
-  return  <FilterTypeDiv>{filtredByBlocks}</FilterTypeDiv>;
+    // const items =filters.map(item=> <div>{item}</div>)
+  return  <FilterTypeDiv>
+                {filtredByBlocks}   
+          </FilterTypeDiv>;
 });
 
 const FilterTypeDiv = styled.div`
-  display: flex;
-
+display: flex;
+widrh: inherit;
+flex-wrap: wrap;
   & p {
     margin: 0;
     color: lightgrey;
@@ -59,5 +69,7 @@ const FilterMarker = styled.div`
   margin-left: 5px;
 `;
 const SelectedFiltersStyled = styled.div`
+  flex-wrap: wrap;
   display: flex;
+  
 `;

@@ -6,12 +6,14 @@
 .navy :nth-child {
   margin-right: 20px;
   justify-content: space-between;
-  text-transform: uppercase;
+  text-transform: capitalize;
   cursor: pointer;
+  flex-wrap: wrap;
 }
 .navy :not(:first-child) {
   display: inline;
   justify-content: space-between;
   position: absolute;
   text-align: center;
+  background-color: whitesmoke;
 }

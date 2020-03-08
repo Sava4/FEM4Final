@@ -68,3 +68,9 @@ const SelectedProducts = styled.div`
   flex-direction: column;
   margin-left: 20px;
 `;
+
+const WrapFilterIndicators = styled(FilterIndicators)`
+display: flex;
+widrh: inherit;
+flex-wrap: wrap;
+`

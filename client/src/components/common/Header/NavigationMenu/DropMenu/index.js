@@ -67,7 +67,10 @@ console.log(dropMenuState);
     );
   }
   );
-  return <Categories>{categList}</Categories>;
+  return <Categories>
+            {categList}
+            {/* <DropBlock></DropBlock> */}
+          </Categories>;
 };
 
 const Categories = styled.ul`
@@ -89,4 +92,19 @@ const Categories = styled.ul`
 
 const CategoriesLi = styled.li`
   list-style-type: none;
+ 
 `;
+
+const DropBlock = styled.div`
+position: absolute;
+height: 210px;
+width: 100%;
+top: 20px;
+height:208px;
+z-index:1;
+background-color: white;
+
+
+`
+
+

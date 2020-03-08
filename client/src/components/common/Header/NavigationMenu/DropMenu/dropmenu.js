@@ -9,9 +9,6 @@ export const Dropmenu = props => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const ShowDropMenu = e => {
-    setIsOpen(!isOpen);
-  };
   let categArrey = dropMenuArrey.filter(item => item.parentId !== "null");
 
   const header = categArrey.length ? categArrey[0].parentId : " ";
@@ -19,37 +16,27 @@ export const Dropmenu = props => {
   const dropMenu =
     categArrey.length &&
     categArrey.map(item => (
-      <li key={item._id}>
+      <DromenuList key={item._id}>
         <NavLink to="">{item.name}</NavLink>
-      </li>
+      </DromenuList>
     ));
 
   // const activeStyle = {{styles}}
 
-  return (
-    // <p onClick={ShowDropMenu}>
-    //   {header}
-      // {isOpen && (
-        <DropHeaderMenuList onMouseLeave={ShowDropMenu}>
-          {dropMenu}
-        </DropHeaderMenuList>
-      // )}
-    // {/* </p> */}
-  );
+  return (  
+          dropMenu
+        );
 };
 
-const DropHeaderMenuList = styled.ul`
+const DromenuList = styled.li`
+margin-top: 20px;
+width: 100%;
+   & a {
+  text-decoration: none;
   font-size: 14px;
-  position: absolute;
-  background-color: white;
-  width: 100vw;
-  z-index: 10;
+  text-transform: none;
+  z-index:3;
+ 
+   }
 
-  & li {
-    list-style-type: none;
-    text-transform: none;
-  }
-  & :not(:first-child) {
-    margin-top: 20px;
-  }
 `;

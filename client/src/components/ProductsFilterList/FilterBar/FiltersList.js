@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
+import {v4} from "uuid";
 
 import styled from "styled-components";
 
 import { setfilterList } from "./../../../store/filters";
-import {setIsShown} from "./../../../store/filters";
+import {setDeleteFilter} from "./../../../store/filters";
 
-// import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import createKey from "../index";
 import { PopupCheckboxes } from "./PopupCheckboxes";
@@ -16,7 +17,7 @@ const mapStateToProps = store => ({
   filters: store.filters
 });
 
-export const FiltersList = connect(mapStateToProps, {setfilterList, setIsShown})(
+export const FiltersList = connect(mapStateToProps, {setfilterList, setDeleteFilter})(
   props => {
     
     const filtredBy = [
@@ -34,7 +35,7 @@ export const FiltersList = connect(mapStateToProps, {setfilterList, setIsShown})
           names: [],
           isShown: false 
         }
-        // props.setfilterList(state)
+       
       
     })
 // props.setfilterList("collection","state")
@@ -106,15 +107,15 @@ export const FiltersList = connect(mapStateToProps, {setfilterList, setIsShown})
       // props.filters.filters.map(item => {if (item.filterType === filterName) { isShown = item.isShown}});
       // console.log(isShown)
       return (
-        <FilterBox key={createKey().toString()}>
+        <FilterBox key={v4()}>
           <FilterType id={item}>
             <p>{item} </p>
-            {/* {!isShown && (
+            {!isShown && (
               <ExpandMoreIcon fontSize="small" onClick={handleChange} />
             )}
             {isShown && (
               <ExpandLessIcon fontSize="small" onClick={handleChange} />
-            )} */}
+            )}
           </FilterType>
           <CheckboxBlock isOpen={isShown}>
                 <PopupCheckboxes filtername={item} />

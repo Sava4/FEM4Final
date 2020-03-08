@@ -26,7 +26,7 @@ export const HomepageCategiries = () => {
         <Rings to="productsditails" className="rings">
           <p>RINGS</p>
         </Rings>
-        <Earrings to="categories" className="earrings">
+        <Earrings to="categories/earrings" className="earrings">
           <p>EARRINGS</p>
         </Earrings>
       </Categories>

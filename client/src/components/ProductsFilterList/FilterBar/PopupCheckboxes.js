@@ -1,20 +1,22 @@
 import React, { useState, useLayoutEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import {v4} from "uuid";
 
 import styled from "styled-components";
 // Store functions
 import { setCheckFilter } from "../../../store/filters";
+import {dispatchSetCheckFilter} from '../../../store/filters'
 
 import createKey from "../index";
 
 const mapStateToProps = store => ({
-  filters: store.filters.filters
+  filters: store
 });
 
-export const PopupCheckboxes = connect(mapStateToProps, )(
+export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter})(
   props => {
-    // console.log(props)
+   
 
     const { filtername } = props;
 
@@ -31,6 +33,7 @@ export const PopupCheckboxes = connect(mapStateToProps, )(
 
       return collections;
     };
+
 
     useLayoutEffect(() => {
       axios
@@ -49,61 +52,33 @@ export const PopupCheckboxes = connect(mapStateToProps, )(
         
     }, []);
 
-    //   const handleChange = (event, nodes) => {
-    //     setExpanded(!expanded);
-    //     console.log(expanded)
-    //   };
-
-    const getCheckedCheckBoxes = e => {
+    const checkedFilters = e =>{
+      e.preventDefault();      
+      
       let activeFilters = {};
-      const checkboxes = document.querySelectorAll("input[type='checkbox'] ");
-      for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-          let key = checkboxes[i].className;
+      activeFilters[e.target.className] = e.target.value
+      props.dispatchSetCheckFilter(activeFilters);
+    }
 
-          if (key in activeFilters) {
-            activeFilters[key].push(checkboxes[i].name);
-          } else {
-            activeFilters[key] = [];
-            activeFilters[key].push(checkboxes[i].name);
-          }
-        }
-      }
-      console.log(props);
-    
-      // console.log(activeFilters[e.target.className]);
-      //проверка путой массив или нет
-      // function isEmpty(obj) {
-      //   for (let key in obj) {
-      //     if (key) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   }
-      // }
-
-      //   isEmpty(activeFilters) ?  (activeFilters = activeFilters) : (activeFilters = activeFilters)
-      // props.setfilterList(activeFilters);
-    };
-
+ 
     const collectionList = products && filter(products, filtername);
 
-    const inputs = collectionList.map(item => {
-      return (
-        <CheckboxDiv key={createKey().toString()}>
-          <input
-            type="checkbox"
-            name={item}
-            value={item}
-            className={filtername}
-          ></input>
-          <Labels fore={item}>{item} </Labels>
-        </CheckboxDiv>
-      );
-    });
+    const inputs =  collectionList.map(item => {
+                    return (
+                      <CheckboxDiv key={v4()}>
+                        <input
+                          type="checkbox"
+                          name={item}
+                          value={item}
+                          className={filtername}
+                        ></input>
+                        <Labels fore={item}>{item} </Labels>
+                      </CheckboxDiv>
+                    );
+                  });
 
-    return <form onChange={getCheckedCheckBoxes}>{inputs}</form>;
+ 
+    return <form onChange={checkedFilters}>{inputs}</form>;
   }
 );
 

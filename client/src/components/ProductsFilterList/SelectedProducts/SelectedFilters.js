@@ -1,48 +1,58 @@
 import React from "react";
 import { connect } from "react-redux";
+import {v4} from "uuid";
 import styled from "styled-components";
 
 import createKey from "../index";
 
-import { setfilterList } from "../../../store/filters";
+import { setDeleteFilter } from "../../../store/filters";
 
 const mapStateToProps = store => ({
   filters: store.filters
 });
 
-export const SelectedFilters = connect(mapStateToProps, { setfilterList })(
+export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
   props => {
     const { selectedFilters } = props;
-    // console.log(selectedFilters);
+    console.log(selectedFilters);
+    
 
     const HandleClick = e => {
       const remoteFilter = e.target.parentNode;
-      // for (let i = 0; remoteFilter.classList.length)
-      const nameRemoteFilter =
-        remoteFilter.classList[remoteFilter.classList.length - 1];
-      //   console.log(nameRemoteFilter);
+      
+      const nameRemoteFilter = selectedFilters[remoteFilter.getAttribute("data")]
+                  
       let parentFilterName =
         remoteFilter.parentNode.classList[
           remoteFilter.parentNode.classList.length - 1
         ];
 
-      const arrayToFilter = props.filters[parentFilterName];
-      const newFilterArray = arrayToFilter.filter(
-        item => item.replace(/ /g, "") !== nameRemoteFilter
-      );
-      console.log(newFilterArray);
-      const renewedFIlterObj = {};
-      renewedFIlterObj[parentFilterName] = newFilterArray;
+        let removedEll = {};
+        removedEll[parentFilterName] = nameRemoteFilter;
 
-      props.setfilterList(renewedFIlterObj);
-      // )
+        props.setDeleteFilter(removedEll)
+        
+        console.log( removedEll);
+      
+
+      // const arrayToFilter = props.filters[parentFilterName];
+      // const newFilterArray = arrayToFilter.filter(
+      //   item => item.replace(/ /g, "") !== nameRemoteFilter
+      // );
+      // console.log(newFilterArray);
+      // const renewedFIlterObj = {};
+      // renewedFIlterObj[parentFilterName] = newFilterArray;
+
+      // props.setfilterList(renewedFIlterObj);
+   
     };
 
-    const selectedFiltersBlocks = selectedFilters.map(item => {
+
+    const selectedFiltersBlocks = selectedFilters.map((item, index) => {
       let itemClass = item.replace(/ /g, "");
 
       return (
-        <ExectFilter className={itemClass} key={createKey()}>
+        <ExectFilter className={itemClass} data = {index} key={v4()}>
           <p>{item}</p>
           <span onClick={HandleClick}>Х</span>
         </ExectFilter>
@@ -52,6 +62,7 @@ export const SelectedFilters = connect(mapStateToProps, { setfilterList })(
     return selectedFiltersBlocks;
   }
 );
+
 
 const ExectFilter = styled.div`
   display: flex;
