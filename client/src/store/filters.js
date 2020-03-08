@@ -1,11 +1,12 @@
 import { keys } from "@material-ui/core/styles/createBreakpoints";
 
-const SET_FILTERS = "SET_FILTERS";
+const SET_IS_SHOWN = "SET_IS_SHOWN";
 
-const setFilters = payload => ({
-  type: SET_FILTERS,
+const togleShown = payload => ({
+  type: SET_IS_SHOWN,
   payload
 });
+
 
 
 const DEL_FILTER = "DEL_FILTER";
@@ -15,6 +16,7 @@ const deleteFilter = payload => ({
   payload
 });
 
+
 const SET_CHECKED_FILTERS = "SET_CHECKED_FILTERS";
 
 const setCheckFilter = payload => ({
@@ -22,14 +24,22 @@ const setCheckFilter = payload => ({
   payload
 });
 
+
 const initialState = { 
   selFilters:{
     collection: [],
     metal:[], 
     metal_color:[],
     gemstone:[],
-    gemstone_color:[],  
+    gemstone_color:[], 
     
+  },
+  menuState:{
+    collection: false,
+    metal:false, 
+    metal_color:false,
+    gemstone:false,
+    gemstone_color:false,
   },
   lowPriсe:null,
   hightPrice:null
@@ -44,7 +54,6 @@ export function filtersReduser(store = initialState, { type, payload }) {
         filtKey = key;
        
       }
-      console.log(payload[filtKey])
       return   {
         ...store,
         selFilters:{...store.selFilters, 
@@ -53,19 +62,18 @@ export function filtersReduser(store = initialState, { type, payload }) {
      };
     
      }
-     //   case SET_IS_SHOWN:
-    //   return  Object.assign({}, store, {
-    //           filters:store.filters.map(item=>{
-    //              if (item.filterType === payload) {
-    //               return  Object.assign({}, item,
-    //                 {isShown: !item.isShow })
-    //               }
-    //               return item
-    //             } 
-    //             )
-
-    //         }
-    //         )
+      case SET_IS_SHOWN:{
+        console.log(payload)
+        return {
+          ...store,
+          menuState:{ ...store.menuState,
+          [payload]: !store.menuState[payload]
+          }         
+          
+        }
+      }
+     
+           
       case SET_CHECKED_FILTERS:{
         let filtKey = null;
 
@@ -83,17 +91,14 @@ export function filtersReduser(store = initialState, { type, payload }) {
                      }
      
             }
-      // [payload.key]: {...store.filters.selFilters[payload.key], ...[payload.val] }  
-
-
-           
+              
     default:
       return store;
   }
 }
 
-export const setfilterList = filter => dispatch => {
-  dispatch(setFilters(filter));
+export const setTogleShown = filter => dispatch => {
+  dispatch(togleShown(filter));
 };
 
 export const setDeleteFilter = (filterName)  => dispatch => {

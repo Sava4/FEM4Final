@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import {v4} from "uuid";
@@ -11,7 +11,7 @@ import {dispatchSetCheckFilter} from '../../../store/filters'
 import createKey from "../index";
 
 const mapStateToProps = store => ({
-  filters: store
+  filters: store.filters
 });
 
 export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter})(
@@ -19,7 +19,9 @@ export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter}
    
 
     const { filtername } = props;
-
+    
+    const checkedFromStor = props.filters.selFilters[filtername]
+ 
     const [products, setProducts] = useState([]);
 
     const filter = (innerArrey, filterType) => {
@@ -35,7 +37,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter}
     };
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
       axios
         .get("http://localhost:5000/products")
         .then(result => {
@@ -44,7 +46,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter}
         })
         // .then(products => {
         //   setProducts (collectionList(products))
-        //   console.log( products)
+      
         // })
         .catch(err => {
           /*Do something with error, e.g. show error to user*/
@@ -71,7 +73,9 @@ export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter}
                           name={item}
                           value={item}
                           className={filtername}
-                        ></input>
+                         checked={ checkedFromStor.includes(item) && ("checked")} 
+                        >
+                        </input>
                         <Labels fore={item}>{item} </Labels>
                       </CheckboxDiv>
                     );

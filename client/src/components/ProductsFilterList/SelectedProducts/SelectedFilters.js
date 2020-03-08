@@ -14,7 +14,7 @@ const mapStateToProps = store => ({
 export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
   props => {
     const { selectedFilters } = props;
-    console.log(selectedFilters);
+
     
 
     const HandleClick = e => {
@@ -34,25 +34,14 @@ export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
         
         console.log( removedEll);
       
-
-      // const arrayToFilter = props.filters[parentFilterName];
-      // const newFilterArray = arrayToFilter.filter(
-      //   item => item.replace(/ /g, "") !== nameRemoteFilter
-      // );
-      // console.log(newFilterArray);
-      // const renewedFIlterObj = {};
-      // renewedFIlterObj[parentFilterName] = newFilterArray;
-
-      // props.setfilterList(renewedFIlterObj);
-   
     };
 
 
     const selectedFiltersBlocks = selectedFilters.map((item, index) => {
-      let itemClass = item.replace(/ /g, "");
+    
 
       return (
-        <ExectFilter className={itemClass} data = {index} key={v4()}>
+        <ExectFilter  data = {index} key={v4()}>
           <p>{item}</p>
           <span onClick={HandleClick}>Х</span>
         </ExectFilter>

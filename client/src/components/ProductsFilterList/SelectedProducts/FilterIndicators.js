@@ -49,7 +49,7 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     console.log(filt)
   }
 
-    // const items =filters.map(item=> <div>{item}</div>)
+  
   return  <FilterTypeDiv>
                 {filtredByBlocks}   
           </FilterTypeDiv>;
@@ -57,8 +57,9 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
 
 const FilterTypeDiv = styled.div`
 display: flex;
-widrh: inherit;
+width: 100%;
 flex-wrap: wrap;
+height: content;
   & p {
     margin: 0;
     color: lightgrey;

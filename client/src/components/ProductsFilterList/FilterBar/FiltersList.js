@@ -4,7 +4,7 @@ import {v4} from "uuid";
 
 import styled from "styled-components";
 
-import { setfilterList } from "./../../../store/filters";
+import { setTogleShown } from "./../../../store/filters";
 import {setDeleteFilter} from "./../../../store/filters";
 
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
@@ -17,7 +17,7 @@ const mapStateToProps = store => ({
   filters: store.filters
 });
 
-export const FiltersList = connect(mapStateToProps, {setfilterList, setDeleteFilter})(
+export const FiltersList = connect(mapStateToProps, {setTogleShown, setDeleteFilter})(
   props => {
     
     const filtredBy = [
@@ -28,84 +28,19 @@ export const FiltersList = connect(mapStateToProps, {setfilterList, setDeleteFil
       "gemstone_color"
     ];
 
-    useEffect(()=>{
-      filtredBy.forEach(item =>{
-        const state ={
-          filterType:item,
-          names: [],
-          isShown: false 
-        }
-       
-      
-    })
-// props.setfilterList("collection","state")
-    },[])
-    // для работы с локальным стейтом
-    const inState = [
-      {
-          name: "collection",
-          active: true
-        },
-        {
-          name: "metal",
-          active: true
-        },
-        {
-          name: "metal_color",
-          active: true
-        },
-        {
-          name: "gemstone",
-          active: true
-        },
-        {
-          name: "gemstone_color",
-          active: true
-        }
-      ]
-
-    const [presState, setState] = useState(inState)
+  
     const handleChange = (e, nodes) => {
       e.preventDefault();
-      console.log(e.target.parentNode.id);
-           
-      // для локального стейта
-      const newState =[];
-        presState.forEach(item =>{
-              const stateObj ={}
-              stateObj.name =item.name;
-              stateObj.active = (item.name === e.target.parentNode.id) ? (item.active = !item.active) : (item.active=item.active);
-              newState.push(stateObj)
-            }
-             );
-             setState(newState)
-      // для стора
-      // const newState = [];
-      // props.filters.filters.forEach((item, index) => {
-       
-        // const stateObj = {};
-        // if (item.filterType=== e.target.parentNode.id) {
-          
-        //   stateObj.filterType = item.filterType;
-        //   stateObj.names = item.names;
-        //   stateObj.fisShown = !item.isShown 
-        
-        }
-        // console.log(stateObj)
-        
-        //  });
-        // props.setIsShown(e.target.parentNode.id) 
-        // props.filters.filters.forEach(item => console.log(item.filterType));
-
-    let filters = filtredBy.map((item, index) => {
+      props.setTogleShown(e.target.parentNode.id);
+     
+    }    
+             
       
-      // для локального стейта
-      const isShown = presState[index].active;
-      //для стора
-      // const filterName = item;
-      // let isShown = null;
-      // props.filters.filters.map(item => {if (item.filterType === filterName) { isShown = item.isShown}});
-      // console.log(isShown)
+
+    let filters = filtredBy.map(item => {
+      
+      
+      let isShown = props.filters.menuState[item];
       return (
         <FilterBox key={v4()}>
           <FilterType id={item}>
