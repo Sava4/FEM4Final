@@ -38,10 +38,12 @@ export const InputPassword = props => {
 const Input = styled.input`
   width: 100%;
   margin-bottom: 30px;
+  padding-bottom: 5px;
   border: none;
   border-bottom: 1px solid #80858d;
   border-bottom-color: ${props => (props.invalid ? "red" : "#80858D")};
   letter-spacing: 0.5px;
+  font-size: 12px;
 
   :-webkit-autofill {
     -webkit-box-shadow: inset 0 0 0 50px #fff !important;

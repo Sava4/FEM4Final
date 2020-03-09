@@ -1,69 +1,250 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import { FormButton } from "../FormButton/form-button";
 import { Modal } from "../../Modal/modal";
-import { Checkbox } from "../FormCheckbox/form-checkbox";
 
 export const RegisterForm = props => {
-  const { isModalOpen, onClose } = props;
+  const { onClose } = props;
+
+  const [error, setError] = useState([]);
+
+  const [login, setLogin] = useState("");
+  const [loginValidation, setLoginValidation] = useState(true);
+
+  const [firstName, setFirstName] = useState("");
+  const [firstNameValidation, setFirstNameValidation] = useState(true);
+
+  const [lastName, setLastName] = useState("");
+  const [lastNameValidation, setLastNameValidation] = useState(true);
+
+  const [email, setEmail] = useState("");
+  const [emailValidation, setEmailValidation] = useState(true);
+
+  const [password, setPassword] = useState("");
+  const [passwordValidation, setPasswordValidation] = useState(true);
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(
+    true
+  );
 
   return (
-    <Modal isModalOpen={isModalOpen} onClose={onClose}>
+    <Modal onClose={onClose}>
       <FormWrapper>
         <FormTitle>Create your account</FormTitle>
-        <CheckboxContentWrapper>
-          <CheckboxTitle>Salutation</CheckboxTitle>
-          <CheckboxWrapper>
-            <Checkbox>
-              <CheckboxTextLeft>Mr.</CheckboxTextLeft>
-            </Checkbox>
-            <Checkbox>
-              <CheckboxTextLeft>Ms.</CheckboxTextLeft>
-            </Checkbox>
-            <Checkbox>
-              <CheckboxTextLeft>Mrs.</CheckboxTextLeft>
-            </Checkbox>
-          </CheckboxWrapper>
-        </CheckboxContentWrapper>
+        {error && (
+          <ErrorMessage>
+            {error.map((error, index) => {
+              return <div key={index}>{error}</div>;
+            })}
+          </ErrorMessage>
+        )}
         <FormRegister>
           <LeftContent>
-            <Input type="text" placeholder="First Name *" />
-            <Input type="text" placeholder="Last Name *" />
-            <Input type="email" placeholder="Email *" />
+            <Input
+              value={login}
+              type="text"
+              placeholder="Login *"
+              onChange={onLoginChange}
+              invalid={!loginValidation}
+              onBlur={onLoginBlur}
+            />
+            <Input
+              value={firstName}
+              type="text"
+              placeholder="First Name *"
+              onChange={onFirstNameChange}
+              invalid={!firstNameValidation}
+              onBlur={onFirstNameBlur}
+            />
+            <Input
+              value={lastName}
+              type="text"
+              placeholder="Last Name *"
+              onChange={onLastNameChange}
+              invalid={!lastNameValidation}
+              onBlur={onLastNameBlur}
+            />
           </LeftContent>
           <RightContent>
+            <Input
+              value={email}
+              type="email"
+              placeholder="Email *"
+              onChange={onEmailChange}
+              invalid={!emailValidation}
+              onBlur={onEmailBlur}
+            />
             <InputPasswordWrapper>
-              <InputPassword type="password" placeholder="Password *" />
+              <InputPassword
+                value={password}
+                type="password"
+                placeholder="Password *"
+                onChange={onPasswordChange}
+                invalid={!passwordValidation}
+                onBlur={onPasswordBlur}
+              />
               <InputBottomText>
-                At least 8 characters long, containing uppercase and lowercase
+                At least 7 characters long, containing uppercase and lowercase
                 letters and numbers.
               </InputBottomText>
             </InputPasswordWrapper>
-            <Input type="password" placeholder="Confirm Password *" />
-            <CheckboxAgree>
-              <Checkbox>
-                <CheckboxTextRight>
-                  I accept Privacy & Cookies Policy *.
-                </CheckboxTextRight>
-              </Checkbox>
-              <Checkbox>
-                <CheckboxTextRightWrapper>
-                  <CheckboxTextRight>
-                    I want to receive about new creations, events and
-                  </CheckboxTextRight>
-                  <CheckboxTextRight>personalized services.</CheckboxTextRight>
-                </CheckboxTextRightWrapper>
-              </Checkbox>
-            </CheckboxAgree>
+            <Input
+              value={confirmPassword}
+              type="password"
+              placeholder="Confirm Password *"
+              onChange={onConfirmPasswordChange}
+              invalid={!confirmPasswordValidation}
+              onBlur={onConfirmPasswordBlur}
+            />
           </RightContent>
         </FormRegister>
         <FormButtonWrapper>
-          <FormButton value="Register" />
+          <FormButton value="Register" onClick={onChange} />
         </FormButtonWrapper>
       </FormWrapper>
     </Modal>
   );
+
+  function onLoginChange(event) {
+    setLogin(event.target.value);
+  }
+
+  function isLoginValid(login) {
+    return login.length < 3 ? false : true;
+  }
+
+  function onLoginBlur() {
+    const status = isLoginValid(login);
+    setLoginValidation(status);
+  }
+
+  //firstName
+  function onFirstNameChange(event) {
+    setFirstName(event.target.value);
+  }
+
+  function isFirstNameValid(firstName) {
+    return firstName === "" ? false : true;
+  }
+
+  function onFirstNameBlur() {
+    const status = isFirstNameValid(firstName);
+    setFirstNameValidation(status);
+  }
+
+  //lastName
+  function onLastNameChange(event) {
+    setLastName(event.target.value);
+  }
+
+  function isLastNameValid(lastName) {
+    return lastName === "" ? false : true;
+  }
+
+  function onLastNameBlur() {
+    const status = isLastNameValid(lastName);
+    setLastNameValidation(status);
+  }
+
+  //email
+  function onEmailChange(event) {
+    setEmail(event.target.value);
+  }
+
+  function isEmailValid(email) {
+    const emailPattern = /\S+@\S+\.\S+/;
+    return emailPattern.test(email);
+  }
+
+  function onEmailBlur() {
+    const status = isEmailValid(email);
+    setEmailValidation(status);
+  }
+
+  //password
+  function onPasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
+  function isPasswordValid(password) {
+    return password.length < 7 ? false : true;
+  }
+
+  function onPasswordBlur() {
+    const status = isPasswordValid(password);
+    setPasswordValidation(status);
+  }
+
+  //confirm password
+  function onConfirmPasswordChange(event) {
+    setConfirmPassword(event.target.value);
+  }
+
+  function isConfirmPasswordValid(password, confirmPassword) {
+    return password === confirmPassword ? true : false;
+  }
+
+  function onConfirmPasswordBlur() {
+    const status = isConfirmPasswordValid(password, confirmPassword);
+    setConfirmPasswordValidation(status);
+  }
+
+  function isFormValid() {
+    return (
+      isLoginValid(login) &&
+      isFirstNameValid(firstName) &&
+      isLastNameValid(lastName) &&
+      isEmailValid(email) &&
+      isPasswordValid(password) &&
+      isConfirmPasswordValid(password, confirmPassword)
+    );
+  }
+
+  function onChange(event) {
+    event.preventDefault();
+
+    if (!isFormValid()) {
+      const statusLogin = isLoginValid(login);
+      setLoginValidation(statusLogin);
+      const statusFirstName = isFirstNameValid(firstName);
+      setFirstNameValidation(statusFirstName);
+      const statusLastName = isLastNameValid(lastName);
+      setLastNameValidation(statusLastName);
+      const statusEmail = isEmailValid(email);
+      setEmailValidation(statusEmail);
+      const statusPassword = isPasswordValid(password);
+      setPasswordValidation(statusPassword);
+      const statusConfirmPassword = isConfirmPasswordValid(
+        password,
+        confirmPassword
+      );
+      setConfirmPasswordValidation(statusConfirmPassword);
+      return;
+    }
+
+    axios
+      .post("http://localhost:5000/customers", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        login: login,
+        isAdmin: false,
+        enabled: true
+      })
+      .then(response => {
+        onClose();
+      })
+      .catch(error => {
+        const errors = Object.keys(error.response.data).map(key => {
+          return error.response.data[key];
+        });
+        setError(errors);
+      });
+  }
 };
 
 const FormWrapper = styled.form`
@@ -81,42 +262,27 @@ const FormRegister = styled.div`
 `;
 
 const FormTitle = styled.span`
-  margin-top: 60px;
-  margin-bottom: 30px;
+  margin-top: 70px;
+  margin-bottom: 50px;
   font-size: 24px;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
 
+const ErrorMessage = styled.span`
+  font-size: 14px;
+  color: red;
+`;
+
 const LeftContent = styled.div`
   width: 50%;
   margin-right: 50px;
 `;
-const CheckboxContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  margin-left: 97px;
-`;
 
-const CheckboxWrapper = styled.div`
-  display: flex;
-  margin-bottom: 15px;
-`;
-const CheckboxTitle = styled.div`
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-`;
-
-const CheckboxTextLeft = styled.span`
-  font-size: 14px;
-  margin-right: 60px;
-`;
 const Input = styled.input`
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   padding-bottom: 5px;
   border: none;
   border-bottom: 1px solid #80858d;
@@ -140,37 +306,25 @@ const Input = styled.input`
 `;
 
 const InputPassword = styled(Input)`
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 `;
 
 const InputPasswordWrapper = styled.div`
-  margin-bottom: 23px;
+  margin-bottom: 32px;
 `;
 
 const InputBottomText = styled.div`
-  font-size: 9px;
+  font-size: 8px;
   color: #80858d;
 `;
 
 const RightContent = styled.div`
   width: 50%;
   margin-left: 50px;
-  margin-bottom: 15px;
-`;
-const CheckboxAgree = styled.div`
-  margin-top: 12px;
-`;
-
-const CheckboxTextRightWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const CheckboxTextRight = styled.div`
-  font-size: 12px;
+  margin-bottom: 20px;
 `;
 
 const FormButtonWrapper = styled.div`
   width: 40%;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 `;

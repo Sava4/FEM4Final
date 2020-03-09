@@ -1,33 +1,58 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useParams } from "react-router";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
 export const ProductDetails = () => {
-  const [productsAllData, setProductsAllData] = useState([]);
+  const { id } = useParams();
+  const [products, setProducts] = useState({});
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/products")
-      .then(product => {
-        setProductsAllData(product.data);
-      })
-      .catch(err => {
-        /*Do something with error, e.g. show error to user*/
-      });
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get(`http://localhost:5000/products/${id}`);
+      setImages(res.data.imageUrls);
+      setProducts(res.data);
+      setLoading(false);
+    };
+    fetchPosts();
   }, []);
-  const products = productsAllData && productsAllData;
 
+  console.log("image", images[0]);
+  console.log("продукт", products);
+
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
+    <Details1
+      name={products.name}
+      itemNo={products.itemNo}
+      previousPrice={products.previousPrice}
+      gemstone={products.gemstone}
+      collection={products.collection}
+      metal={products.metal}
+      metal_color={products.metal_color}
+      weight={products.weight}
+      sample={products.sample}
+      img={images[0]}
+    />
+  );
+};
+const Details1 = props => {
   return (
     <Container>
-      <Image alt="" />
+      <Image alt="" src={`/${props.img}`} />
       <Wrapper>
-        <Name line={"true"}>{{ ...[...products][5] }.name}</Name>
-        <Vendor>{`Article no.: ${
-          { ...[...productsAllData][5] }.itemNo
-        }`}</Vendor>
+        <Name line={"true"}>{`${props.name}`}</Name>
+        <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
-          <Price>{`${{ ...[...productsAllData][5] }.currentPrice}`}</Price>
+          <Price>{`${props.previousPrice}`}</Price>
           <WishWrapper>
             <WishButton>Add to wish list</WishButton>
             <Heart>&#9825;</Heart>
@@ -36,14 +61,12 @@ export const ProductDetails = () => {
         <Add>Add to bag</Add>
         <Details>Details</Details>
         <UL>
-          <LI>{`Gemstone: ${{ ...[...productsAllData][3] }.gemstone}`} </LI>
-          <LI>{`Collection: ${{ ...[...productsAllData][3] }.collection}`}</LI>
-          <LI>{`Metal: ${{ ...[...productsAllData][3] }.metal}`}</LI>
-          <LI>{`Metal Color: ${
-            { ...[...productsAllData][3] }.metal_color
-          }`}</LI>
-          <LI>{`Weight: ${{ ...[...productsAllData][3] }.weight}`}</LI>
-          <LI>{`Sample: ${{ ...[...productsAllData][3] }.sample}`}</LI>
+          <LI>{`Gemstone: ${props.gemstone}`} </LI>
+          <LI>{`Collection: ${props.collection}`}</LI>
+          <LI>{`Metal: ${props.metal}`}</LI>
+          <LI>{`Metal Color: ${props.metal_color}`}</LI>
+          <LI>{`Weight: ${props.weight}`}</LI>
+          <LI>{`Sample: ${props.sample}`}</LI>
         </UL>
       </Wrapper>
     </Container>
@@ -55,24 +78,21 @@ export const ProductDetails = () => {
 export const Container = styled.div`
   display: flex;
   max-width: 1200px;
-  padding: 0 15px;
   margin: 0 auto;
-
-  @media (max-width: 1200px) {
-    max-width: 1024px;
-  }
-  @media (max-width: 1050px) {
-    max-width: 991px;
-  }
-  @media (max-width: 992px) {
-    max-width: 768px;
-  }
-  @media (max-width: 767px) {
-    max-width: 540px;
+  padding: 15px 15px;
+  ${mediaTablet(`
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+`)}
+  ${mediaMobile(`
+    width: 95%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`)}
+  
   ${props =>
     props.flex === "column" &&
     css`
@@ -84,22 +104,19 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  @media (max-width: 767px) {
-    width: 95%;
-  }
+  ${mediaMobile(`
+  width: 95%;
+`)}
 `;
 
 export const Image = styled.img`
-  width: 570px;
-  height: 558px;
-  @media (max-width: 992px) {
-    width: 520px;
-    height: 508px;
-  }
-  @media (max-width: 767px) {
-    width: 360px;
-    height: 334px;
-  }
+
+${mediaTablet(`
+    width: 70%;
+`)}
+   ${mediaMobile(`
+   width: 60%;
+`)}
 
   ${props =>
     props.size === "small" &&
@@ -159,6 +176,7 @@ export const Name = styled.p`
     `}
 `;
 export const Vendor = styled.p`
+  margin-top: 25px;
   font-size: 14px;
   color: #a1a5ad;
 `;
@@ -169,7 +187,7 @@ export const PriceWrapper = styled.div`
   align-items: center;
 `;
 export const Price = styled.div`
-  margin-top: 5px;
+  margin-top: 25px;
   font-size: 16px;
   line-height: 21px;
   &:after {
@@ -221,6 +239,7 @@ export const Add = styled.button`
   padding-top: 15px;
   padding-bottom: 15px;
   text-transform: uppercase;
+  text-align: center;
   background-color: #002d50;
   border: 1px solid #002d50;
   width: 100%;
@@ -249,9 +268,13 @@ export const UL = styled.ul`
 `;
 export const LI = styled.li`
   text-transform: capitalize;
+  margin-top: 8px;
+  margin-left: 8px;
+  line-height: 21px;
   &:before {
-    margin-right: 7px;
     content: "•";
+    margin-right: 8px;
+    margin-left: -8px;
     color: #a7aabb;
   }
 `;

@@ -7,14 +7,15 @@ import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
 import {filtersReduser} from "./filters"
-
+import { userReducer } from "./user";
 
 const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
   favorites: favoritesReducer,
   categories: categoriesReduser,
-  login: loginReducer,
   filters: filtersReduser
+  login: loginReducer,
+  user: userReducer
 });
 
 const store = createStore(
