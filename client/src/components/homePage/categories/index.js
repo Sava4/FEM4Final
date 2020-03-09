@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile, mediaTablet } from "../../../styled-components/media-breakpoints-mixin";
 
 import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
 import BraceletsPict from "../../../img/homePage/categories/bracelets.png";

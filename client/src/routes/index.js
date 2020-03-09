@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-
 import store from "../store";
-
+import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { ProductFilters } from "../components/ProductsFilterList";
 import { Categories } from "../components/Categories";
