@@ -21,17 +21,17 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/categories" component={Categories} />
-      <Route path="/categories/rings/:id" component={Products} />
-      <Route path="/categories/earrings" component={Products} />
-      <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/necklaces" component={Products} />
-      <Route path="/products" component={Products} />
+      <Route path="/categories/rings/:id" component={ProductFilters} />
+      <Route path="/categories/earrings" component={ProductFilters} />
+      <Route path="/categories/bracelets" component={ProductFilters} />
+      <Route path="/categories/necklaces" component={ProductFilters} />
+      <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={Account} />
       +
-      <Route exact path="/account/favorites" component={Products} />
+      <Route exact path="/account/favorites" component={ProductFilters} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
-      <Route exact path="/logout" component={Products} />
+      <Route exact path="/logout" component={ProductFilters} />
       <Route exact path="/404error" component={Error} />
       <Route exact path="/:url" component={StaticPageView} />
       <Redirect to="/" />
@@ -54,7 +54,7 @@ export const Routes = () => {
 
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
 
-      <Route path="/login" component={Products} />
+      <Route path="/login" component={ProductFilters} />
 
               <Route path="/404error" component={Error} />
               <Redirect to="/" />
