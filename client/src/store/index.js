@@ -13,9 +13,9 @@ const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
   favorites: favoritesReducer,
   categories: categoriesReduser,
-  filters: filtersReduser
+  filters: filtersReduser,
   login: loginReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 const store = createStore(
