@@ -36,8 +36,9 @@ export const SliderPromoButton = styled.a`
   font-family: Montserrat, sans-serif;
   font-size: 14px;
 `;
+//без Localhost при возврате на страницу не грузит картинки
 export const CarouselImage = styled.div`
-  background: url(${props => props.imageUrl}) no-repeat;
+  background: url(http://localhost:3000/${props => props.imageUrl}) no-repeat;
   height: 425px;
   opacity: 1;
 `;

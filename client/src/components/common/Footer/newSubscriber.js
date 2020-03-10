@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 export function AddSubscriber(props) {
+
   let email = props.email;
   const newSubscriber = {
     email: `${email}`,
@@ -37,4 +38,39 @@ export function AddSubscriber(props) {
       });
   }
   return <div></div>;
+}
+
+export function UpdateSubscriber() {
+
+const updateSubscriber = {
+  email: "111@i.ua",
+  enabled: true,
+  letterSubject: "Welcome back",
+  letterHtml: "<p>We are glad to see you!</p>"
+};
+axios
+.post("http://localhost:5000/customers/login", {
+  loginOrEmail: "customer@gmail.com",
+  password: "1111111"
+})
+.then(response => {
+  let token = response.data.token;
+axios
+  .put("http://localhost:5000/subscribers/email/mywear1@gmail.com", updateSubscriber, {
+    headers: { Authorization: `${token}` }
+  })
+  .then(updateSubscriber => {
+    console.log("success");
+    console.log(updateSubscriber);
+  })
+  .catch(err => {
+    console.log("error add");
+    console.log(err.response);
+  });
+})
+.catch(err => {
+console.log("error auth");
+console.log(err);
+});
+
 }

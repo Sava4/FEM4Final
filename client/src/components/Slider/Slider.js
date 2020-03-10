@@ -9,6 +9,7 @@ import {
   SliderPromoText,
   SliderPromoButton
 } from "./slider.styles";
+import { urlencoded } from "body-parser";
 
 export const SliderHomepage = () => {
   const settings = {
@@ -32,7 +33,7 @@ export const SliderHomepage = () => {
         setText(result.data);
       })
       .catch(err => {
-        /*Do something with error, e.g. show error to user*/
+       console.log(err);
       });
   }, []);
 
@@ -49,9 +50,7 @@ export const SliderHomepage = () => {
             <div key={item._id}>
               <CarouselImage {...item}>
                 <SliderPromo>
-                  <SliderPromoText>
-                    {item.description}                 
-                  </SliderPromoText>
+                  <SliderPromoText>{item.description}</SliderPromoText>
                   <SliderPromoButton>
                     <div> SHOP NOW</div>
                   </SliderPromoButton>
@@ -68,21 +67,34 @@ export const SliderHomepage = () => {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div>
+    
       <div
         className={className}
         style={{
           ...style,
-          display: "block",
-          background: "transparent",
-          right: "25.4%",
+          display: "block",        
+          width: "25px",
+          height: "30px",
+          backgroundColor: "white",
+          // border: "1px solid grey",
+          right: "26%",
           zIndex: "1",
-          top: "96.7%",
-          after: { content: "›" }
+          top: "96.7%"         
         }}
         onClick={onClick}
-      />
+      >
+      <div style={{ 
+        border: "solid grey",
+        borderWidth: "0 1px 1px 0",
+        display: "inline-block",
+        padding: "7px",       
+        position: "relative",
+        bottom: "12px",        
+        transform: "rotate(-45deg)"}}>
+
+        </div>
     </div>
+  
   );
 }
 
@@ -94,12 +106,26 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        background: "transparent",
+        backgroundColor: "white",
+        // border: "1px solid grey",
+        width: "25px",
+        height: "30px",
         left: "70%",
         zIndex: "1",
         top: "96.7%"
       }}
       onClick={onClick}
-    />
+    >
+      <div style={{ 
+        border: "solid grey",
+        borderWidth: "0 1px 1px 0",
+        display: "inline-block",
+        padding: "7px",       
+        position: "relative",
+        bottom: "12px",  
+        left:"8px",      
+        transform: "rotate(135deg)"}}>
+        </div>
+    </div>
   );
 }

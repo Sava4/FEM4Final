@@ -29,16 +29,15 @@ export const ProductDetailsSlider = props => {
   console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);  
-  const avatars= imagesArr.length
+  const avatars = imagesArr.length
  
   let imagesSlider = imagesArr.map(image => {    
     return (     
-      <div>
-        <Image 
-          key={image.index}
+      <div  key={image}>
+        <Image          
           alt=""
           src={`http://localhost:3000/${image}`}
-          style={{ width: "100%", height: "100%",  border: `1px solid grey`}}
+          style={{ width: "99%", height: "99%",  border: `1px solid #E9EBF5`,boxSizing: 'border-box'}}
         />
       </div>     
     );
@@ -65,10 +64,7 @@ export const ProductDetailsSlider = props => {
             height: ``,
             width: `80px`,
             marginTop: `40px`,
-            marginRight: `20px`,          
-            boxSizing: `border-box`,
-            overflow: "hidden"
-
+            marginRight: `20px`,     
           }}
         >        
           <Slider
@@ -77,7 +73,8 @@ export const ProductDetailsSlider = props => {
             slidesToShow={avatars} 
             slidesToScroll={1}           
             focusOnSelect={true}
-            vertical={true}       
+            vertical={true} 
+            style={{boxSizing:'border-box',}}      
           >                     
             {imagesSlider}               
           </Slider>
@@ -85,18 +82,20 @@ export const ProductDetailsSlider = props => {
         <div
           className="carousel_wrapper"
           style={{
-            height: `500px`,
-            width: `35%`,
+            height: ``,
+            width: `45%`,
             marginTop: `40px`,
-            marginRight: `20px`,           
+            marginRight: `20px`, 
+            boxSizing: `border-box`,     
 
           }}
         >   
           <Slider 
             asNavFor={nav2}
             ref={slider => (slider1.current = slider)}            
-            speed={0.5} 
-            arrows={false}  
+            speed={0.1} 
+            arrows={false} 
+            draggable={false} 
         // fade={true} 
           >            
             {imagesSlider}   
@@ -134,11 +133,11 @@ export const ProductDetailsSlider = props => {
 export const Container = styled.div`
   display: flex;
   max-width: 1200px;
-  height: 570px;
+  height: 680px;
   padding: 0 15px;
   margin: 0 auto;
   margin-bottom: 20px;
-  
+
   @media (max-width: 1200px) {
     max-width: 1024px;
   }

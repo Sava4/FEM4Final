@@ -12,4 +12,5 @@ font-family: Montserrat, sans-serif;
 font-weight: normal;
 font-size: 14px;
 margin-top: 20px;
+margin-right: 30px;
 `

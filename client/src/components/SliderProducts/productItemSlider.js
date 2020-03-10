@@ -24,7 +24,7 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid grey;
+  border: 1px solid rgb(233, 235, 245);
   margin: 5px;
   width: 280px;
   height: 392px;

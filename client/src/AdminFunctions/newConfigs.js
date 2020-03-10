@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function editConfigs() {
     const updateConfigs = {
-        customId: "some-global-configs",
+        customId: "global-configs",
         development: {
           database: {
             uri: "mongodb+srv://fem4final:8Z05TVJhXYGXGFDZ@fem4final-pk2uc.mongodb.net/FEM4_PROD?retryWrites=true&w=majority"
@@ -66,7 +66,7 @@ export function editConfigs() {
 
 export function addConfigs() {
     const newConfigs = {
-        customId: "some-global-configs",
+        customId: "global-configs",
         development: {
           database: {
             uri: "mongodb+srv://fem4final:8Z05TVJhXYGXGFDZ@fem4final-pk2uc.mongodb.net/FEM4_PROD?retryWrites=true&w=majority"

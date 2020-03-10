@@ -10,7 +10,7 @@ export const Homepage = () => {
   return (
     <Layout>
       <SliderHomepage />
-      <SliderProducts />      
+      <SliderProducts h4={"FEATURED"} reverse={"reverse"}/>      
       <HomepageCategiries></HomepageCategiries>
     </Layout>
   );
