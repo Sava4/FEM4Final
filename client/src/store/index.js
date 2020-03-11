@@ -7,12 +7,14 @@ import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
 import { userReducer } from "./user";
+import { loginStatusReducer } from "./login-status";
 
 const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
   favorites: favoritesReducer,
   categories: categoriesReduser,
   login: loginReducer,
+  loginStatus: loginStatusReducer,
   user: userReducer
 });
 

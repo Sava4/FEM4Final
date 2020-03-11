@@ -1,24 +1,33 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 export const InputEmail = props => {
+  const error = useSelector(state => {
+    return state.loginStatus;
+  });
   const [email, setEmail] = useState(props.value);
   const [emailValidation, setEmailValidation] = useState(true);
 
   return (
-    <Input
-      type="email"
-      placeholder={props.placeholder}
-      value={email}
-      onChange={onChange}
-      invalid={!emailValidation}
-      onBlur={onEmailBlur}
-    />
+    <InputWrapper>
+      <Input
+        type="email"
+        placeholder={props.placeholder}
+        value={email}
+        onChange={onChange}
+        invalid={!emailValidation}
+        onBlur={onEmailBlur}
+      />
+      {error && error.loginOrEmail && (
+        <ErrorMessage>The email is not correct. Please, try again</ErrorMessage>
+      )}
+    </InputWrapper>
   );
 
   function onChange(event) {
     setEmail(event.target.value);
-    props.onEmailChange(event.target.value);
+    props.onChange(event.target.value);
   }
 
   function isEmailValid(email) {
@@ -32,9 +41,13 @@ export const InputEmail = props => {
   }
 };
 
-const Input = styled.input`
+const InputWrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
+`;
+
+const Input = styled.input`
+  width: 100%;
   padding-bottom: 5px;
   border: none;
   border-bottom: 1px solid #80858d;
@@ -55,4 +68,9 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 10px;
+  color: red;
 `;
