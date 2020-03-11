@@ -62,7 +62,7 @@ export const ProductDetailsSlider = props => {
           className="carousel_wrapper"
           style={{
             height: ``,
-            width: `80px`,
+            width: `6%`,
             marginTop: `40px`,
             marginRight: `20px`,     
           }}
@@ -83,7 +83,7 @@ export const ProductDetailsSlider = props => {
           className="carousel_wrapper"
           style={{
             height: ``,
-            width: `45%`,
+            width: `43%`,
             marginTop: `40px`,
             marginRight: `20px`, 
             boxSizing: `border-box`,     
@@ -160,7 +160,7 @@ export const Container = styled.div`
     `}
 `;
 export const Wrapper = styled.div`
-  width: 48%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

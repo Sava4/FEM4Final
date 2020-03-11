@@ -22,9 +22,7 @@ export const Routes = () => {
       <Route path="/categories/earrings" component={Products} />
       <Route path="/categories/bracelets" component={Products} />
       <Route path="/categories/neclaces" component={Products} />
-      <Route path="/products" component={Products} />
-      {/* <Route path="/product/:itemNo" component={ProductDetailsSlider} render={(props)=><ProductDetailsSlider itemNo={props.itemNo}/>}/> */}
-      {/* <Route path="/product/:itemNo" component={ProductSliderView} render={(props)=><ProductDetailsSlider itemNo={props.itemNo}/>}/> */}
+      <Route path="/products" component={Products} />   
       <Route path="/product/:itemNo" component={ProductSliderView}/>}/>
       <Route path="/productsdetails" component={ProductDetails} />
       <Route exact path="/account" component={Account} />

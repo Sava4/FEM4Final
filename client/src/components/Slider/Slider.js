@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import {
   CarouselImage,
   SliderPromo,
   SliderPromoText,
   SliderPromoButton
 } from "./slider.styles";
-import { urlencoded } from "body-parser";
+
 
 export const SliderHomepage = () => {
   const settings = {
@@ -18,9 +16,8 @@ export const SliderHomepage = () => {
     arrows: true,
     infinite: true,
     draggable: true,
-    autoplay: true,
-    // centerMode: true,
-    speed: 500,
+    // autoplay: true,   
+    speed: 500,     
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
@@ -47,16 +44,16 @@ export const SliderHomepage = () => {
       <Slider {...settings}>
         {text.map(item => {
           return (
-            <div key={item._id}>
-              <CarouselImage {...item}>
+           
+              <CarouselImage  key={item._id} {...item}>
                 <SliderPromo>
                   <SliderPromoText>{item.description}</SliderPromoText>
                   <SliderPromoButton>
                     <div> SHOP NOW</div>
                   </SliderPromoButton>
                 </SliderPromo>
-              </CarouselImage>
-            </div>
+              </CarouselImage>          
+          
           );
         })}
       </Slider>
@@ -106,8 +103,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        backgroundColor: "white",
-        // border: "1px solid grey",
+        backgroundColor: "white",       
         width: "25px",
         height: "30px",
         left: "70%",
