@@ -1,24 +1,35 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 export const InputPassword = props => {
-  const [password, setPassword] = useState("");
+  const error = useSelector(state => {
+    return state.loginStatus;
+  });
+  const [password, setPassword] = useState(props.value);
   const [passwordValidation, setPasswordValidation] = useState(true);
 
   return (
-    <Input
-      type="password"
-      placeholder={props.placeholder}
-      value={password}
-      invalid={!passwordValidation}
-      onChange={onChange}
-      onBlur={onPasswordBlur}
-    />
+    <InputWrapper>
+      <Input
+        type="password"
+        placeholder={props.placeholder}
+        value={password}
+        invalid={!passwordValidation}
+        onChange={onChange}
+        onBlur={onPasswordBlur}
+      />
+      {error && error.password && (
+        <ErrorMessage>
+          The password is not correct. Please, try again
+        </ErrorMessage>
+      )}
+    </InputWrapper>
   );
 
   function onChange(event) {
     setPassword(event.target.value);
-    props.onPasswordChange(event.target.value);
+    props.onChange(event.target.value);
   }
 
   function isPasswordValid(password) {
@@ -35,9 +46,13 @@ export const InputPassword = props => {
   }
 };
 
-const Input = styled.input`
+const InputWrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
+`;
+
+const Input = styled.input`
+  width: 100%;
   padding-bottom: 5px;
   border: none;
   border-bottom: 1px solid #80858d;
@@ -58,4 +73,9 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 10px;
+  color: red;
 `;

@@ -8,6 +8,7 @@ import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
 import {filtersReduser} from "./filters"
 import { userReducer } from "./user";
+import { loginStatusReducer } from "./login-status";
 
 const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   categories: categoriesReduser,
   filters: filtersReduser,
   login: loginReducer,
-  user: userReducer,
+  loginStatus: loginStatusReducer,
+  user: userReducer
 });
 
 const store = createStore(

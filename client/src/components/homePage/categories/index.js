@@ -53,6 +53,7 @@ const Categories = styled.div`
     position: relative;
     & p {
       margin: 0;
+      text-shadow: 1px 1px 0 white;
       color: black;
       position: absolute;
       bottom: 35px;
