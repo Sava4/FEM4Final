@@ -17,6 +17,7 @@ export const HeaderMenuElem = props => {
                     isOpen : false
                     } 
       initialState.push(stateObj)
+      return initialState;
       })
       
   const [dropMenuState, setDropMenuState] = useState([])
