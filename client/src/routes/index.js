@@ -20,7 +20,7 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/categories" component={Categories} />
-      <Route path="/categories/rings/:id" component={ProductFilters} />
+      <Route path="/categories/rings/" component={ProductFilters} />
       <Route path="/categories/earrings" component={ProductFilters} />
       <Route path="/categories/bracelets" component={ProductFilters} />
       <Route path="/categories/necklaces" component={ProductFilters} />

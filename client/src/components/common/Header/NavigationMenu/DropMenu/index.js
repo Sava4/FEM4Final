@@ -62,7 +62,7 @@ console.log(dropMenuState);
                     id ={item.id}
                     onClick={openDropmenu}>
                     {item.id}
-       {isShown && <Dropmenu dropMenuArrey={dropMenuArrey} />} 
+       {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} /> : null} 
       </CategoriesLi>
     );
   }
