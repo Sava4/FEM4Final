@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
 export const Dropmenu = props => {
   const { dropMenuArrey } = props;
-  // console.log(dropMenuArrey);
-
-  const [isOpen, setIsOpen] = useState(false);
+  
 
   let categArrey = dropMenuArrey.filter(item => item.parentId !== "null");
 
-  const header = categArrey.length ? categArrey[0].parentId : " ";
+ 
 
   const dropMenu =
     categArrey.length &&

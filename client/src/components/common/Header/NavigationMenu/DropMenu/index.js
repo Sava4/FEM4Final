@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 import { mediaMobile } from "../../../../../styled-components/media-breakpoints-mixin";
 
@@ -32,7 +32,7 @@ const openDropmenu = (e)=>{
   initialState.forEach(item =>{
               const stateObj ={}
               stateObj.menuName =item.menuName;
-              stateObj.isOpen = (item.menuName === e.target.id) ? (item.isOpen = !item.isOpen) : (item.isOpen=item.isOpen);
+              stateObj.isOpen = (item.menuName === e.target.id) && (item.isOpen = !item.isOpen);
               newState.push(stateObj)
             }
              );
@@ -69,7 +69,7 @@ console.log(dropMenuState);
   );
   return <Categories>
             {categList}
-            {/* <DropBlock></DropBlock> */}
+          
           </Categories>;
 };
 
@@ -95,16 +95,5 @@ const CategoriesLi = styled.li`
  
 `;
 
-const DropBlock = styled.div`
-position: absolute;
-height: 210px;
-width: 100%;
-top: 20px;
-height:208px;
-z-index:1;
-background-color: white;
-
-
-`
 
 

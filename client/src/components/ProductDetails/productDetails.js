@@ -22,7 +22,7 @@ export const ProductDetails = () => {
       setLoading(false);
     };
     fetchPosts();
-  }, []);
+  }, [id]);
 
   console.log("image", images[0]);
   console.log("продукт", products);
@@ -260,7 +260,7 @@ export const Details = styled.div`
       height: 1px;
       background: #3c3b3b;
       }
-    }
+    
    `;
 export const UL = styled.ul`
   align-self: flex-start;

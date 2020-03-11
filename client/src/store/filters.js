@@ -1,4 +1,3 @@
-import { keys } from "@material-ui/core/styles/createBreakpoints";
 
 const SET_IS_SHOWN = "SET_IS_SHOWN";
 

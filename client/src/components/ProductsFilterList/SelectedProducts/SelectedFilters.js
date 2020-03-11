@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import {v4} from "uuid";
 import styled from "styled-components";
 
-import createKey from "../index";
-
 import { setDeleteFilter } from "../../../store/filters";
 
 const mapStateToProps = store => ({

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React  from "react";
 import { connect } from "react-redux";
 import {v4} from "uuid";
 
@@ -10,7 +10,6 @@ import {setDeleteFilter} from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import createKey from "../index";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 
 const mapStateToProps = store => ({

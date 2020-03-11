@@ -43,12 +43,6 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     );
   });
 
-  function handleClick(event) {
-    event.preventDefault();
-    const filt = props.filters;
-    console.log(filt)
-  }
-
   
   return  <FilterTypeDiv>
                 {filtredByBlocks}   

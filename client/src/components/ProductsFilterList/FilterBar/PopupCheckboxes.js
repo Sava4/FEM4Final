@@ -5,10 +5,10 @@ import {v4} from "uuid";
 
 import styled from "styled-components";
 // Store functions
-import { setCheckFilter } from "../../../store/filters";
+
 import {dispatchSetCheckFilter} from '../../../store/filters'
 
-import createKey from "../index";
+
 
 const mapStateToProps = store => ({
   filters: store.filters
