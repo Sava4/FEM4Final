@@ -16,7 +16,7 @@ import {
   Navigation
 } from "../Header/index";
 
-export const HeaderContent = () => {
+export const HeaderContent = props => {
   const [isModalOpen, toggleModal] = useState(false);
   const [isRegisterOpen, toggleRegistration] = useState(false);
 
