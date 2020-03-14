@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import {v4} from "uuid";
 
 import styled from "styled-components";
-// Store functions
+
 
 import {dispatchSetCheckFilter} from '../../../store/filters'
 
 
 
 const mapStateToProps = store => ({
-  // filters: store.filters
+
   filters: store.filters.selFilters
 });
 
@@ -74,7 +74,8 @@ export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter}
                           name={item}
                           value={item}
                           className={filtername}
-                         checked={ checkedFromStor.includes(item) && ("checked")} 
+                          defaultChecked={ checkedFromStor.includes(item) && ("checked")} 
+                        
                         >
                         </input>
                         <Labels fore={item}>{item} </Labels>
