@@ -13,12 +13,13 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 
 const mapStateToProps = store => ({
-  filters: store.filters
+  filters: store.filters.menuState
 });
 
 export const FiltersList = connect(mapStateToProps, {setTogleShown, setDeleteFilter})(
   props => {
     
+    console.log(props);
     const filtredBy = [
       "collection",
       "metal",
@@ -39,7 +40,7 @@ export const FiltersList = connect(mapStateToProps, {setTogleShown, setDeleteFil
     let filters = filtredBy.map(item => {
       
       
-      let isShown = props.filters.menuState[item];
+      let isShown = props.filters[item];
       return (
         <FilterBox key={v4()}>
           <FilterType id={item}>

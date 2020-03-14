@@ -11,7 +11,8 @@ import {dispatchSetCheckFilter} from '../../../store/filters'
 
 
 const mapStateToProps = store => ({
-  filters: store.filters
+  // filters: store.filters
+  filters: store.filters.selFilters
 });
 
 export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter})(
@@ -20,7 +21,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {dispatchSetCheckFilter}
 
     const { filtername } = props;
     
-    const checkedFromStor = props.filters.selFilters[filtername]
+    const checkedFromStor = props.filters[filtername]
  
     const [products, setProducts] = useState([]);
 

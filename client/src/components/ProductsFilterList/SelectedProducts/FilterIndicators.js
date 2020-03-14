@@ -11,11 +11,11 @@ import { SelectedFilters } from "./SelectedFilters";
 
 
 const mapStateToProps = store => ({
-  filters: store.filters
+  filters: store.filters.selFilters
 });
 
 export const FilterIndicators = connect(mapStateToProps)(props => {
-  const filters = props.filters.selFilters
+  const filters = props.filters
   
   let filtrefBy = [];
   for (let key in filters) {

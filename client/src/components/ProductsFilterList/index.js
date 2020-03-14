@@ -7,9 +7,9 @@ import { FiltersList } from "./FilterBar/FiltersList";
 // import { Checkboxes } from "./FilterBar/PopupCheckboxes";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 
-export default function createKey() {
-  return Math.floor(Math.random() * 1000);
-}
+// export default function createKey() {
+//   return Math.floor(Math.random() * 1000);
+// }
 
 export const ProductFilters = () => {
   return (
