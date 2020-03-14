@@ -20,10 +20,10 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/categories" component={Categories} />
-      <Route path="/categories/rings/" component={ProductFilters} />
-      <Route path="/categories/earrings" component={ProductFilters} />
+      <Route path="/categories/:category" component={ProductFilters} />
+      {/* <Route path="/categories/earrings" component={ProductFilters} />
       <Route path="/categories/bracelets" component={ProductFilters} />
-      <Route path="/categories/necklaces" component={ProductFilters} />
+      <Route path="/categories/necklaces" component={ProductFilters} /> */}
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/account" component={Account} />

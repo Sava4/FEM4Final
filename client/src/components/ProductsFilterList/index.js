@@ -1,21 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { useParams } from "react-router";
 
 import { Layout } from "../common/Layout";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
 // import { Checkboxes } from "./FilterBar/PopupCheckboxes";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
+import {FilteredListProducts} from "./FilteredProducts"
 
-// export default function createKey() {
-//   return Math.floor(Math.random() * 1000);
-// }
 
 export const ProductFilters = () => {
+  const {category}=useParams()
+  
   return (
     <Layout>
       <CategoriesHeader>
-        <p>Earrings</p>
+        <p>{category}</p>
       </CategoriesHeader>
 
       <IconBreadcrumbs></IconBreadcrumbs>
@@ -29,7 +30,8 @@ export const ProductFilters = () => {
         <SelectedProducts>
           <h3>Selected products</h3>
           <FilterIndicators />
-        </SelectedProducts>
+          <FilteredListProducts category={category}></FilteredListProducts>
+        </SelectedProducts >
       </CategotiesCommon>
     </Layout>
   );
@@ -52,7 +54,7 @@ const CategoriesHeader = styled.div`
 `;
 const CategotiesCommon = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 `;
 const CategoriesFilters = styled.div`
   margin-left: 130px;
