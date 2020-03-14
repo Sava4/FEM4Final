@@ -1,17 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import search from "./search.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 
-export const Search = () => {
+export const Search = props => {
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (search === "") {
+      return;
+    }
+    axios
+      .post("http://localhost:5000/products/search", {
+        query: search
+      })
+      .then(products => {
+        setSearchResults(products.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [search]);
+
   return (
-    <SearchIconWrapper>
-      <SearchIcon />
-      <SearchInput type="text" placeholder="Search" />
-    </SearchIconWrapper>
+    <Filter>
+      <SearchIconWrapper>
+        <SearchHolder>
+          <SearchIcon />
+          <SearchInput
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={onSearchChange}
+          />
+        </SearchHolder>
+      </SearchIconWrapper>
+      {searchResults.length > 0 && (
+        <PreviewWrapper>
+          {searchResults.map((product, index) => {
+            return (
+              <TextHolder key={index}>
+                <Image icon={product.imageUrls[0]} />
+                <ImageDescription>{product.name}</ImageDescription>
+              </TextHolder>
+            );
+          })}
+        </PreviewWrapper>
+      )}
+    </Filter>
   );
+
+  function onSearchChange(event) {
+    setSearch(event.target.value);
+  }
 };
+
+const Filter = styled.div`
+  position: relative;
+`;
 
 const SearchInput = styled.input`
   width: 280px;
@@ -44,4 +93,41 @@ const SearchIcon = styled.div`
 
 const SearchIconWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+const SearchHolder = styled.div`
+  display: flex;
+`;
+const PreviewWrapper = styled.div`
+  max-height: 500px;
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 25px;
+  z-index: 2;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: scroll;
+  cursor: pointer;
+`;
+
+const TextHolder = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 15px;
+`;
+
+const Image = styled.div`
+  width: 50px;
+  height: 50px;
+  background-image: ${props => `url(${props.icon})`};
+  background-size: cover;
+`;
+
+const ImageDescription = styled.span`
+  font-size: 14px;
+  margin-left: 10px;
 `;

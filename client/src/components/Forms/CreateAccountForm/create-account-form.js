@@ -4,10 +4,10 @@ import styled from "styled-components";
 import { Modal } from "../../Modal/modal";
 
 export const CreateAccountForm = props => {
-  const { isModalOpen, onClose } = props;
+  const { onClose } = props;
 
   return (
-    <Modal isModalOpen={isModalOpen} onClose={onClose}>
+    <Modal onClose={onClose}>
       <FormWrapper>
         <CreateAccountTitle>
           <Content>Thank you for creating an account with Zarina!</Content>
