@@ -9,7 +9,25 @@ export const AboutCompany = () => {
       <SectionAboutTitle>ZARINA - VALUE IS YOU</SectionAboutTitle>
       <SectionAboutWrapper>
         <SectionAboutDesc>
-
+          <Title>ZARINA Jewelry House gives you unforgettable emotions in the form of jewelry.</Title>
+          <Subtitle>
+            <SubtitleImg>Z</SubtitleImg>
+            <SubtitleImgText>
+              ZARINA Jewelry House is not just a jewelry brand.
+              It is a powerful platform for uniting active women,
+              ZARINA jewelry is a source of strength and a tool to
+              unlock the value of every woman.
+            </SubtitleImgText>
+          </Subtitle>
+          <Text>
+            A spectacular design that does not violate classic
+            elegance and sophistication, the aristocratic nobility
+            of diamonds, avant-garde combinations and solo colored
+            stones in a rich palette of colors and shades - this
+            is how a fashionable thing is born at all times, which
+            emphasizes and enhances the sense of style inherent in a
+            confident woman.
+          </Text>
         </SectionAboutDesc>
         <SectionAboutImage/>
       </SectionAboutWrapper>
@@ -36,10 +54,41 @@ const SectionAboutWrapper = styled.div`
 const SectionAboutDesc = styled.div`
   width: 784px;
   height: 418px;
-  background: #002D50;
-  opacity: 0.9;
   position: absolute;
   left: 0;
+  background: #002D50;
+  opacity: 0.9;
+`
+
+const Title = styled.h1`
+  margin: 40px 125px 25px 130px;
+  font-size: 21px;
+  line-height: 30px;
+  color: white;
+`
+
+const Subtitle = styled.div`
+  display: flex;
+  margin: 0 76px 20px 130px;
+`
+
+const SubtitleImg = styled.span`
+  margin-right: 25px;
+  font-size: 99px;
+  color: white;
+`
+
+const SubtitleImgText = styled.span`
+  font-size: 14px;
+  line-height: 32px;
+  color: white;
+`
+
+const Text = styled.div`
+  margin: 0 74px 25px 130px;
+  font-size: 14px;
+  line-height: 30px;
+  color: white;
 `
 
 const SectionAboutImage = styled.div`
