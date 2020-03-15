@@ -5,11 +5,8 @@ import styled from "styled-components";
 
 export const Dropmenu = props => {
   const { dropMenuArrey } = props;
-  
 
   let categArrey = dropMenuArrey.filter(item => item.parentId !== "null");
-
- 
 
   const dropMenu =
     categArrey.length &&
@@ -21,20 +18,16 @@ export const Dropmenu = props => {
 
   // const activeStyle = {{styles}}
 
-  return (  
-          dropMenu
-        );
+  return dropMenu;
 };
 
 const DromenuList = styled.li`
-margin-top: 20px;
-width: 100%;
-   & a {
-  text-decoration: none;
-  font-size: 14px;
-  text-transform: none;
-  z-index:3;
- 
-   }
-
+  margin-top: 20px;
+  width: 100%;
+  & a {
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: none;
+    z-index: 3;
+  }
 `;

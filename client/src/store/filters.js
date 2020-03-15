@@ -1,12 +1,9 @@
-
 const SET_IS_SHOWN = "SET_IS_SHOWN";
 
 const togleShown = payload => ({
   type: SET_IS_SHOWN,
   payload
 });
-
-
 
 const DEL_FILTER = "DEL_FILTER";
 
@@ -15,7 +12,6 @@ const deleteFilter = payload => ({
   payload
 });
 
-
 const SET_CHECKED_FILTERS = "SET_CHECKED_FILTERS";
 
 const setCheckFilter = payload => ({
@@ -23,26 +19,24 @@ const setCheckFilter = payload => ({
   payload
 });
 
-
-const initialState = { 
-  selFilters:{
+const initialState = {
+  selFilters: {
     collection: [],
-    metal:[], 
-    metal_color:[],
-    gemstone:[],
-    gemstone_color:[], 
-    
+    metal: [],
+    metal_color: [],
+    gemstone: [],
+    gemstone_color: []
   },
-  menuState:{
+  menuState: {
     collection: false,
-    metal:false, 
-    metal_color:false,
-    gemstone:false,
-    gemstone_color:false,
+    metal: false,
+    metal_color: false,
+    gemstone: false,
+    gemstone_color: false
   },
-  lowPriсe:null,
-  hightPrice:null
- };
+  lowPriсe: null,
+  hightPrice: null
+};
 
 export function filtersReduser(store = initialState, { type, payload }) {
   switch (type) {
@@ -51,46 +45,48 @@ export function filtersReduser(store = initialState, { type, payload }) {
 
       for (let key in payload) {
         filtKey = key;
-       
       }
-      return   {
+      return {
         ...store,
-        selFilters:{...store.selFilters, 
-            [filtKey]:[...store.selFilters[filtKey].filter(item=> item !==payload[filtKey])]
+        selFilters: {
+          ...store.selFilters,
+          [filtKey]: [
+            ...store.selFilters[filtKey].filter(
+              item => item !== payload[filtKey]
+            )
+          ]
         }
-     };
-    
-     }
-      case SET_IS_SHOWN:{
-        console.log(payload)
-        return {
-          ...store,
-          menuState:{ ...store.menuState,
-          [payload]: !store.menuState[payload]
-          }         
-          
-        }
-      }
-     
-           
-      case SET_CHECKED_FILTERS:{
-        let filtKey = null;
+      };
+    }
+    case SET_IS_SHOWN: {
+      console.log(payload);
+      return {
+        ...store,
+        menuState: { ...store.menuState, [payload]: !store.menuState[payload] }
+      };
+    }
 
-        for (let key in payload) {
-          filtKey = key;
-         
+    case SET_CHECKED_FILTERS: {
+      let filtKey = null;
+
+      for (let key in payload) {
+        filtKey = key;
+      }
+
+      return {
+        ...store,
+        selFilters: {
+          ...store.selFilters,
+          [filtKey]: [
+            ...store.selFilters[filtKey].filter(
+              item => item !== payload[filtKey]
+            ),
+            payload[filtKey]
+          ]
         }
-         
-        return { 
-          ...store,
-              selFilters : {...store.selFilters,
-                [filtKey] : [...store.selFilters[filtKey].filter(item=>item !== payload[filtKey]), payload[filtKey]]
-                 
-                }
-                     }
-     
-            }
-              
+      };
+    }
+
     default:
       return store;
   }
@@ -100,13 +96,10 @@ export const setTogleShown = filter => dispatch => {
   dispatch(togleShown(filter));
 };
 
-export const setDeleteFilter = (filterName)  => dispatch => {
-
+export const setDeleteFilter = filterName => dispatch => {
   dispatch(deleteFilter(filterName));
 };
 
-export const dispatchSetCheckFilter = (FilterType)  => dispatch => {
-
+export const dispatchSetCheckFilter = FilterType => dispatch => {
   dispatch(setCheckFilter(FilterType));
 };
-
