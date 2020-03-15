@@ -41,15 +41,30 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalProductsCount = (productsQuantity) => ({type: SET_TOTAL_PRODUCTS_COUNT, productsQuantity: productsQuantity})
 
 
-export const requestProducts = (page, pageSize) => {
-    return async (dispatch) => {  
-        dispatch(setCurrentPage(page));
-        let data = await productsAPI.getProducts(page, pageSize); 
-        console.log(data) 
-        // let data = await ProductsAPI(page, pageSize)  
-        dispatch(setProducts(data.products));
-        dispatch(setTotalProductsCount(data.productsQuantity));       
+// export const requestProducts = (page, pageSize) => {
+//     return async (dispatch) => {  
+//         dispatch(setCurrentPage(page));
+// debugger
+//         // let data = await productsAPI.getProducts(page, pageSize); 
+//         let data = await productsAPI.getProducts(page, pageSize);
+
+//         debugger    
+//         console.log(data) 
+//         // let data = await ProductsAPI(page, pageSize)  
+//         dispatch(setProducts(data.products));
+//         dispatch(setTotalProductsCount(data.productsQuantity));       
         
+//     }
+// }
+
+export const requestProducts = (page, pageSize) => {
+    return async (dispatch) => {
+        // dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(page));
+
+        let data = await productsAPI.getProducts(page, pageSize);
+        // dispatch(toggleIsFetching(false));
+        dispatch(setProducts(data.products));
+        dispatch(setTotalProductsCount(data.productsQuantity)); 
     }
 }
-
