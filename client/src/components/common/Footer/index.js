@@ -77,7 +77,7 @@ export const Footer = () => {
             <ul>
               <li>Stay up to date with all the new designs,</li>
               <li>collection launches, events and much more.</li>
-            </ul>          
+            </ul>
             <Email />
             <SocialContainer>
               {" "}

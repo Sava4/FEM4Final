@@ -18,7 +18,8 @@ export const productsAPI = {
 
     // console.log(currentPage);
     // axios
-   return instance.get(`/products/filter?startPage=${currentPage}&perPage=${pageSize}`)
+    return instance
+      .get(`/products/filter?startPage=${currentPage}&perPage=${pageSize}`)
       .then(response => {
         console.log(response.data);
         return response.data;

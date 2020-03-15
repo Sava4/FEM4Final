@@ -11,20 +11,19 @@ let Paginator = ({
   onPageChanged,
   portionSize = 10
 }) => {
-//   let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`
-//   string = useParams();
-//   console.log(string)
-let location = useLocation()
-let path = `filter${location.search}`
-console.log(location)
-console.log(path)
+  //   let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`
+  //   string = useParams();
+  //   console.log(string)
+  let location = useLocation();
+  let path = `filter${location.search}`;
+  console.log(location);
+  console.log(path);
   // useParams(props);
   //  pageSize = useParams();
 
-//   let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`;
-//   console.log(string)
-//   string = useParams();
-
+  //   let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`;
+  //   console.log(string)
+  //   string = useParams();
 
   let pagesCount = Math.ceil(productsQuantity / pageSize);
 
@@ -67,11 +66,8 @@ console.log(path)
               }}
             >
               {" "}
-              <NavLink
-                to={`/pagin/filter?startPage=${p}&perPage=${pageSize}`}
-              >
+              <NavLink to={`/pagin/filter?startPage=${p}&perPage=${pageSize}`}>
                 {p}
-
               </NavLink>
             </span>
           );

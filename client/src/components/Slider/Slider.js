@@ -8,7 +8,6 @@ import {
   SliderPromoButton
 } from "./slider.styles";
 
-
 export const SliderHomepage = () => {
   const settings = {
     accessibility: true,
@@ -16,8 +15,8 @@ export const SliderHomepage = () => {
     arrows: true,
     infinite: true,
     draggable: true,
-    // autoplay: true,   
-    speed: 500,     
+    // autoplay: true,
+    speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
@@ -30,7 +29,7 @@ export const SliderHomepage = () => {
         setText(result.data);
       })
       .catch(err => {
-       console.log(err);
+        console.log(err);
       });
   }, []);
 
@@ -44,16 +43,14 @@ export const SliderHomepage = () => {
       <Slider {...settings}>
         {text.map(item => {
           return (
-           
-              <CarouselImage  key={item._id} {...item}>
-                <SliderPromo>
-                  <SliderPromoText>{item.description}</SliderPromoText>
-                  <SliderPromoButton>
-                    <div> SHOP NOW</div>
-                  </SliderPromoButton>
-                </SliderPromo>
-              </CarouselImage>          
-          
+            <CarouselImage key={item._id} {...item}>
+              <SliderPromo>
+                <SliderPromoText>{item.description}</SliderPromoText>
+                <SliderPromoButton>
+                  <div> SHOP NOW</div>
+                </SliderPromoButton>
+              </SliderPromo>
+            </CarouselImage>
           );
         })}
       </Slider>
@@ -64,34 +61,33 @@ export const SliderHomepage = () => {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        width: "25px",
+        height: "30px",
+        backgroundColor: "white",
+        // border: "1px solid grey",
+        right: "26%",
+        zIndex: "1",
+        top: "96.7%"
+      }}
+      onClick={onClick}
+    >
       <div
-        className={className}
         style={{
-          ...style,
-          display: "block",        
-          width: "25px",
-          height: "30px",
-          backgroundColor: "white",
-          // border: "1px solid grey",
-          right: "26%",
-          zIndex: "1",
-          top: "96.7%"         
+          border: "solid grey",
+          borderWidth: "0 1px 1px 0",
+          display: "inline-block",
+          padding: "7px",
+          position: "relative",
+          bottom: "12px",
+          transform: "rotate(-45deg)"
         }}
-        onClick={onClick}
-      >
-      <div style={{ 
-        border: "solid grey",
-        borderWidth: "0 1px 1px 0",
-        display: "inline-block",
-        padding: "7px",       
-        position: "relative",
-        bottom: "12px",        
-        transform: "rotate(-45deg)"}}>
-
-        </div>
+      ></div>
     </div>
-  
   );
 }
 
@@ -103,7 +99,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        backgroundColor: "white",       
+        backgroundColor: "white",
         width: "25px",
         height: "30px",
         left: "70%",
@@ -112,16 +108,18 @@ function SamplePrevArrow(props) {
       }}
       onClick={onClick}
     >
-      <div style={{ 
-        border: "solid grey",
-        borderWidth: "0 1px 1px 0",
-        display: "inline-block",
-        padding: "7px",       
-        position: "relative",
-        bottom: "12px",  
-        left:"8px",      
-        transform: "rotate(135deg)"}}>
-        </div>
+      <div
+        style={{
+          border: "solid grey",
+          borderWidth: "0 1px 1px 0",
+          display: "inline-block",
+          padding: "7px",
+          position: "relative",
+          bottom: "12px",
+          left: "8px",
+          transform: "rotate(135deg)"
+        }}
+      ></div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export const ProductsPagination = ({
   // let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`;
   // console.log(string)
   // string = useParams();
-  // useParams(string); 
+  // useParams(string);
   // currentPage = useParams()
   // console.log(currentPage)
 
@@ -24,11 +24,11 @@ export const ProductsPagination = ({
 
   // в math params только filter остальные параметры в Location
 
-//   string = useParams();
-//   console.log(string)
-// let location = useLocation()
-// let path = location.search
-// console.log(location)
+  //   string = useParams();
+  //   console.log(string)
+  // let location = useLocation()
+  // let path = location.search
+  // console.log(location)
   return (
     <div>
       <Paginator
@@ -49,12 +49,13 @@ export const ProductsPagination = ({
       >
         {products.map(p => (
           <div key={p.id}>
-            <NavLink  key={p.id}
+            <NavLink
+              key={p.id}
               to={`/product/${p.itemNo}`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ProductItem
-              key={p.id}
+                key={p.id}
                 product={p}
                 {...p}
                 itemNo={`${p.itemNo}`}

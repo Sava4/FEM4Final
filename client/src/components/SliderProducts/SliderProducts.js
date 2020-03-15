@@ -83,24 +83,25 @@ function SampleNextArrow(props) {
         ...style,
         display: "block",
         right: "0.5%",
-        zIndex: "1",    
+        zIndex: "1",
         border: "1px solid #A7AABB",
         width: "25px",
-        height: "30px",
+        height: "30px"
         // content: "›"
       }}
       onClick={onClick}
     >
-      <div style={{ 
-        border: "solid grey",
-        borderWidth: "0 1px 1px 0",
-        display: "inline-block",
-        padding: "7px",       
-        position: "relative",
-        bottom: "12px",        
-        transform: "rotate(-45deg)"}}>
-
-        </div>
+      <div
+        style={{
+          border: "solid grey",
+          borderWidth: "0 1px 1px 0",
+          display: "inline-block",
+          padding: "7px",
+          position: "relative",
+          bottom: "12px",
+          transform: "rotate(-45deg)"
+        }}
+      ></div>
     </div>
   );
 }
@@ -113,7 +114,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        border: "1px solid #A7AABB",      
+        border: "1px solid #A7AABB",
         width: "25px",
         height: "30px",
         right: "0%",
@@ -121,16 +122,18 @@ function SamplePrevArrow(props) {
       }}
       onClick={onClick}
     >
-  <div style={{ 
-        border: "solid grey",
-        borderWidth: "0 1px 1px 0",
-        display: "inline-block",
-        padding: "7px",       
-        position: "relative",
-        bottom: "12px",  
-        left:"8px",      
-        transform: "rotate(135deg)"}}>
-        </div>
+      <div
+        style={{
+          border: "solid grey",
+          borderWidth: "0 1px 1px 0",
+          display: "inline-block",
+          padding: "7px",
+          position: "relative",
+          bottom: "12px",
+          left: "8px",
+          transform: "rotate(135deg)"
+        }}
+      ></div>
     </div>
   );
 }

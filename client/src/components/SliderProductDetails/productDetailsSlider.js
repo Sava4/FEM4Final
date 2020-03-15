@@ -3,8 +3,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 import Slider from "react-slick";
 
-
-
 import styled, { css } from "styled-components";
 
 export const ProductDetailsSlider = props => {
@@ -28,21 +26,26 @@ export const ProductDetailsSlider = props => {
   const product = productsAllData !== undefined && productsAllData;
   console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
-  const imagesArr = Array.from(images);  
-  const avatars = imagesArr.length
- 
-  let imagesSlider = imagesArr.map(image => {    
-    return (     
-      <div  key={image}>
-        <Image          
+  const imagesArr = Array.from(images);
+  const avatars = imagesArr.length;
+
+  let imagesSlider = imagesArr.map(image => {
+    return (
+      <div key={image}>
+        <Image
           alt=""
           src={`http://localhost:3000/${image}`}
-          style={{ width: "99%", height: "99%",  border: `1px solid #E9EBF5`,boxSizing: 'border-box'}}
+          style={{
+            width: "99%",
+            height: "99%",
+            border: `1px solid #E9EBF5`,
+            boxSizing: "border-box"
+          }}
         />
-      </div>     
+      </div>
     );
-  }); 
- 
+  });
+
   const slider1 = useRef();
   const slider2 = useRef();
   const [state, setState] = useState({ nav1: null, nav2: null });
@@ -50,33 +53,33 @@ export const ProductDetailsSlider = props => {
   useEffect(() => {
     setState({
       nav1: slider1.current,
-      nav2: slider2.current,     
+      nav2: slider2.current
     });
   }, []);
-  const { nav1, nav2} = state; 
+  const { nav1, nav2 } = state;
 
   return (
     <div>
       <Container>
-      <div
+        <div
           className="carousel_wrapper"
           style={{
             height: ``,
             width: `6%`,
             marginTop: `40px`,
-            marginRight: `20px`,     
+            marginRight: `20px`
           }}
-        >        
+        >
           <Slider
             asNavFor={nav1}
             ref={slider => (slider2.current = slider)}
-            slidesToShow={avatars} 
-            slidesToScroll={1}           
+            slidesToShow={avatars}
+            slidesToScroll={1}
             focusOnSelect={true}
-            vertical={true} 
-            style={{boxSizing:'border-box',}}      
-          >                     
-            {imagesSlider}               
+            vertical={true}
+            style={{ boxSizing: "border-box" }}
+          >
+            {imagesSlider}
           </Slider>
         </div>
         <div
@@ -85,23 +88,22 @@ export const ProductDetailsSlider = props => {
             height: ``,
             width: `43%`,
             marginTop: `40px`,
-            marginRight: `20px`, 
-            boxSizing: `border-box`,     
-
+            marginRight: `20px`,
+            boxSizing: `border-box`
           }}
-        >   
-          <Slider 
+        >
+          <Slider
             asNavFor={nav2}
-            ref={slider => (slider1.current = slider)}            
-            speed={0.1} 
-            arrows={false} 
-            draggable={false} 
-        // fade={true} 
-          >            
-            {imagesSlider}   
+            ref={slider => (slider1.current = slider)}
+            speed={0.1}
+            arrows={false}
+            draggable={false}
+            // fade={true}
+          >
+            {imagesSlider}
           </Slider>
-        </div>       
-      
+        </div>
+
         <Wrapper>
           <Name line={"true"}>{product.name}</Name>
           <Vendor>{`Article no.: ${product.itemNo}`}</Vendor>
@@ -169,7 +171,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Image = styled.img`  
+export const Image = styled.img`
   display: block;
   object-fit: cover;
   @media (max-width: 992px) {
@@ -335,4 +337,3 @@ export const LI = styled.li`
     color: #a7aabb;
   }
 `;
-

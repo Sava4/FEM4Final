@@ -5,14 +5,18 @@ import styled from "styled-components";
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
   return (
-    <Card key={props.key} itemNo={props.itemNo}>      
-      <Image alt="" src={`http://localhost:3000/${props.imageUrls[0]}`} size={"small"} />    
+    <Card key={props.key} itemNo={props.itemNo}>
+      <Image
+        alt=""
+        src={`http://localhost:3000/${props.imageUrls[0]}`}
+        size={"small"}
+      />
       <Name
         size={"small"}
         style={{ height: "80px" }}
       >{`${props.name} "${props.collection}"`}</Name>
       <Price size={"small"}>{props.currentPrice}</Price>
-    </Card>  
+    </Card>
   );
 };
 

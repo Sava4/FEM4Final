@@ -23,9 +23,8 @@ import { loginReducer } from "./login";
 
 // export default store;
 
-
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import {productsReducer} from "./productsReducer"
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { productsReducer } from "./productsReducer";
 import thunkMiddleware from "redux-thunk";
 // import { reducer as formReducer } from 'redux-form'
 // import appReducer from "./app-reducer";
@@ -33,13 +32,16 @@ import thunkMiddleware from "redux-thunk";
 let reducers = combineReducers({
   productsPage: productsReducer,
   shoppingCard: shoppingCardReducer,
-    favorites: favoritesReducer,
-    categories: categoriesReduser,
-    login: loginReducer,
+  favorites: favoritesReducer,
+  categories: categoriesReduser,
+  login: loginReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers,  composeEnhancers(applyMiddleware(thunkMiddleware)));
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);
 window.__store__ = store;
 
 export default store;
