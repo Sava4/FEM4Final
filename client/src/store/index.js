@@ -6,6 +6,7 @@ import { shoppingCardReducer } from "./shopping-card";
 import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
+import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
 import { loginStatusReducer } from "./login-status";
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   shoppingCard: shoppingCardReducer,
   favorites: favoritesReducer,
   categories: categoriesReduser,
+  filters: filtersReduser,
   login: loginReducer,
   loginStatus: loginStatusReducer,
   user: userReducer
