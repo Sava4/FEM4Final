@@ -8,6 +8,7 @@ import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
+import { Checkout } from "../components/Checkout";
 
 export const Routes = () => {
   // const [isAuthenticated, setIsAuthenticated]= useState(false)
@@ -26,6 +27,7 @@ export const Routes = () => {
       +
       <Route exact path="/account/favorites" component={Products} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
+      <Route exact path="/account/checkout" component={Checkout} />
       <Route exact path="/logout" component={Products} />
       <Route exact path="/404error" component={Error} />
       <Route exact path="/:url" component={StaticPageView} />

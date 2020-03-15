@@ -2,23 +2,44 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import { shoppingCardReducer } from "./shopping-card";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+import logger from "redux-logger";
+
+import { shoppingCartReducer } from "./shopping-cart";
 import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
 import { userReducer } from "./user";
 
+const persistConfig = {
+  key: "cart",
+  storage,
+  stateReconciler: autoMergeLevel2
+  // only Cart will be persisted
+};
+
+const logPersistConfig = {
+  key: "token",
+  storage,
+  stateReconciler: autoMergeLevel2
+  // only Token will be persisted
+};
+
+const persistedCart = persistReducer(persistConfig, shoppingCartReducer);
+const persistedToken = persistReducer(logPersistConfig, loginReducer);
+
 const rootReducer = combineReducers({
-  shoppingCard: shoppingCardReducer,
+  shoppingCart: persistedCart,
   favorites: favoritesReducer,
   categories: categoriesReduser,
-  login: loginReducer,
+  login: persistedToken,
   user: userReducer
 });
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk, logger))
 );
-
-export default store;
+export const persistor = persistStore(store);

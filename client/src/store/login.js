@@ -46,7 +46,6 @@ export const auth = (loginOrEmail, password) => {
           .then(response => {
             const user = response.data;
             dispatch(userAction(user));
-            localStorage.setItem("token", token);
             setAuthorizationToken(token);
           });
       })

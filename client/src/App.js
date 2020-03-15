@@ -3,17 +3,22 @@ import { Provider } from "react-redux";
 import { Routes } from "./routes";
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./styled-components/GlobalStyle";
-import store from "./store";
+
+import { PersistGate } from "redux-persist/integration/react";
+
+import { persistor, store } from "./store";
 
 //import {Header, Spinner} from "./components";
 
 function App() {
   return (
     <Provider store={store}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }

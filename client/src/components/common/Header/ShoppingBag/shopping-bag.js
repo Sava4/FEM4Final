@@ -5,9 +5,14 @@ import styled from "styled-components";
 import bug from "./shopping-bag.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 export const ShoppingBag = () => {
-  const count = useSelector(state => {
-    return state.shoppingCard.length;
-  });
+  // Use state quantitybyid if not logged in,
+  // after login use state.shoppingCart.serverProducts
+  const count = useSelector(state =>
+    Object.values(state.shoppingCart.quantityById).reduce(
+      (acc, curr) => acc + curr,
+      0
+    )
+  );
 
   return (
     <ServicesIcon>
