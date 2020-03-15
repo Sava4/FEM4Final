@@ -1,32 +1,65 @@
-import * as axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
 
 const instance = axios.create({
-    withCredentials: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    headers:     {
-        "API-KEY": "b1775b2f-c3a5-4509-8dc9-90b5629de7c3"
-    }
+  baseURL: "http://localhost:5000/"
 });
 
-
 export const productsAPI = {
-    getProducts(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                return response.data;
-            });
-    },
-    // follow(userId) {
-    //     return instance.post(`follow/${userId}`)
-    // },
-    // unfollow(userId) {
-    //     return instance.delete(`follow/${userId}`)
-    // },
-    // getProfile(userId) {
-    //     console.warn('Obsolete method. Please profileAPI object.')
-    //     return profileAPI.getProfile(userId);
-    // }
-}
+  getProducts(currentPage, pageSize) {
+    // const [products, setProducts] = useState({});
+    console.log(currentPage);
+    // useEffect(() => {
+    // хук только из функционального компонента
+
+    // let string = `filter?startPage=${currentPage}&perPage=${pageSize}`
+    // string = useParams();
+
+    // console.log(currentPage);
+    // axios
+    instance
+      .get(`/products/filter?startPage=${currentPage}&perPage=${pageSize}`)
+      .then(response => {
+        console.log(response.data);
+        return response.data;
+      });
+    // }, []);
+  }
+};
+
+// export const ProductsAPI = (currentPage, pageSize) => {
+//     // let { itemNo } = useParams();
+// //    let string = `filter?startPage=${currentPage}&perPage=${pageSize}`
+// //     string = useParams();
+//     const [products, setProducts] = useState({});
+//     //может не вызывать а передавать данные с продукта уже вызваного в слайдер? через пропсы или редакс
+//     useEffect(() => {
+//       axios
+//         .get(`http://localhost:5000/products//filter?startPage=${currentPage}&perPage=${pageSize}`)
+//         .then(response => {
+//           setProducts(response.data);
+//           console.log(response.data);
+//           return response.data;
+//         })
+//         .catch(err => {
+//           console.log(err);
+//         });
+//     }, []);
+
+// }
+
+// follow(userId) {
+//     return instance.post(`follow/${userId}`)
+// },
+// unfollow(userId) {
+//     return instance.delete(`follow/${userId}`)
+// },
+// getProfile(userId) {
+//     console.warn('Obsolete method. Please profileAPI object.')
+//     return profileAPI.getProfile(userId);
+// }
+//}
 
 // export const profileAPI = {
 //     getProfile(userId) {
@@ -70,5 +103,3 @@ export const productsAPI = {
 //         return instance.get(`security/get-captcha-url`);
 //     }
 // }
-
-

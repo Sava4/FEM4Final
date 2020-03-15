@@ -1,9 +1,8 @@
 import React from "react";
 import { Image, Name, Price } from "../ProductDetails/productDetails";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-//на homepage работает без http://localhost:3000/
+//на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
   return (
     <Card key={props.key} itemNo={props.itemNo}>      
@@ -13,7 +12,7 @@ export const ProductItem = props => {
         style={{ height: "80px" }}
       >{`${props.name} "${props.collection}"`}</Name>
       <Price size={"small"}>{props.currentPrice}</Price>
-    </Card>
+    </Card>  
   );
 };
 

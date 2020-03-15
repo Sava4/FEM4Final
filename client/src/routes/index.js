@@ -9,6 +9,10 @@ import { Account } from "../components/Account";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 import { ProductSliderView} from "../components/SliderProducts/productSliderView"
+import ProductsContainer  from '../components/SliderProducts/ProductsContainer'
+import {compose} from "redux";
+import {ProductsPagination} from "../components/SliderProducts/Pagination";
+import Paginator from "../components/SliderProducts/Paginator";
 
 
 export const Routes = () => {
@@ -18,13 +22,19 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/categories" component={Categories} />
-      <Route path="/categories/rings/:id" component={Products} />
-      <Route path="/categories/earrings" component={Products} />
-      <Route path="/categories/bracelets" component={Products} />
-      <Route path="/categories/neclaces" component={Products} />
-      <Route path="/products" component={Products} />   
-      <Route path="/product/:itemNo" component={ProductSliderView}/>}/>
-      <Route path="/productsdetails" component={ProductDetails} />
+      <Route exact path="/categories/rings/:id" component={Products} />
+      <Route exact path="/categories/earrings" component={Products} />
+      <Route exact path="/categories/bracelets" component={Products} />
+      <Route exact path="/categories/neclaces" component={Products} />
+      <Route exact path="/products" component={Products} />   
+      <Route exact path="/product/:itemNo" component={ProductSliderView}/>}/>
+      <Route exact path="/productsdetails" component={ProductDetails} />
+      {/* <Route path="/pagin/:string"  render={() => <ProductsContainer/>}/> */}
+      <Route  path={`/pagin/:path`}  component={ProductsContainer}/>
+      {/* если руками прописать filter работает а дальше  ?startPage=3&perPage=8 не работает*/}
+      
+    {/* <Route path="/pagin/:path"  component={ProductsPagination}/>   */}
+    {/* <Route path="/pagin/:path"  component={Paginator}/> */}
       <Route exact path="/account" component={Account} />
       +
       <Route exact path="/account/favorites" component={Products} />
@@ -37,20 +47,14 @@ export const Routes = () => {
   ) : (
     <Switch>
       <Route exact path="/" component={Homepage} />
-
       <Route exact path="/categories" component={Categories} />
-
       <Route path="/categories/rings" component={Products} />
       <Route path="/categories/earrings" component={Products} />
       <Route path="/categories/bracelets" component={Products} />
       <Route path="/categories/neclaces" component={Products} />
-
       <Route path="/products" component={Products} />
-
       <Route path="/productsdetails" component={ProductDetails} />
-
       <Route path="/login" component={Products} />
-
       <Route path="/404error" component={Error} />
       <Redirect to="/" />
     </Switch>
