@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 export const Dropmenu = props => {
   const { dropMenuArrey } = props;
+  
 
   let categArrey = dropMenuArrey.filter(item => item.parentId !== "null");
  console.log(dropMenuArrey)
@@ -16,7 +17,7 @@ export const Dropmenu = props => {
       const chosenMenu = item.name.toLowerCase();
       return (
       <DromenuList key={item._id} >
-        <NavLink to={`/${parentmMenu}/${chosenMenu}`}>{item.name}</NavLink>       
+        <NavLink to={`/${parentmMenu}/${chosenMenu}`}>{item.name}</NavLink>
       </DromenuList>
     )}
     );

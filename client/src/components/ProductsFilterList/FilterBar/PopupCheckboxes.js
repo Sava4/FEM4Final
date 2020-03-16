@@ -73,8 +73,10 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     );
   });
 
-  return <form onChange={checkedFilters}>{inputs}</form>;
-});
+ 
+    return <form onChange={checkedFilters}>{inputs}</form>;
+  }
+);
 
 const CheckboxDiv = styled.div`
   margin-bottom: 20px;
