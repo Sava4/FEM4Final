@@ -10,29 +10,28 @@ import arrow from "./arrow.png";
 import close from "./modal-close-btn.png";
 import diamond from "./diamond.png";
 import { FormButton } from "../Forms/FormButton/form-button";
+import setAuthorizationToken from "../../store/login";
+import { logoutAction } from "../../store/login";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);
+  setAuthorizationToken(token);
   const dispatch = useDispatch();
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/cart", {
-        headers: {
-          Authorization: token
-        }
-      })
+      .get("http://localhost:5000/cart")
       .then(resp => {
-        console.log("Then response:", resp);
-        if (resp.data === null) {
-          dispatch(setServerCart([]));
-        } else dispatch(setServerCart(resp.data.products));
+        resp.data === null
+          ? dispatch(setServerCart([]))
+          : dispatch(setServerCart(resp.data.products));
       })
       .catch(err => {
         console.error("Request Error", err);
         if (err.response.status === 401) {
+          dispatch(logoutAction());
           //redirect to login?
         }
         dispatch(setServerCart([]));
@@ -41,7 +40,7 @@ export const ShoppingBag = () => {
   }, [token, dispatch]);
 
   const cartProps = useSelector(state => {
-    return state.shoppingCart.serverProducts.map(prod => {
+    return state.shoppingCart.srvCart.map(prod => {
       let {
         cartQuantity: qty,
         product: {
@@ -73,15 +72,7 @@ export const ShoppingBag = () => {
       return { product: el.id, cartQuantity: el.qty };
     });
     axios
-      .put(
-        "http://localhost:5000/cart",
-        { products: updateCart },
-        {
-          headers: {
-            Authorization: token
-          }
-        }
-      )
+      .put("http://localhost:5000/cart", { products: updateCart })
       .then(resp => {
         dispatch(setServerCart(resp.data.products));
       })
@@ -91,23 +82,15 @@ export const ShoppingBag = () => {
   const handleDel = id => {
     if (cartProps.length > 1) {
       axios
-        .delete(`http://localhost:5000/cart/${id}`, {
-          headers: {
-            Authorization: token
-          }
-        })
+        .delete(`http://localhost:5000/cart/${id}`)
         .then(resp => {
           dispatch(setServerCart(resp.data.products));
         })
         .catch(err => console.error("Request Error", err));
     } else {
       axios
-        .delete("http://localhost:5000/cart/", {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then(resp => {
+        .delete("http://localhost:5000/cart/")
+        .then(() => {
           dispatch(setServerCart([]));
         })
         .catch(err => console.error("Request Error", err));

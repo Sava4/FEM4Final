@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/shopping-cart";
+import { useDispatch, useSelector } from "react-redux";
+import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
 
 import { useParams } from "react-router";
@@ -35,6 +35,7 @@ export const ProductDetails = () => {
     <Details1
       name={products.name}
       itemNo={products.itemNo}
+      id={products._id}
       previousPrice={products.previousPrice}
       gemstone={products.gemstone}
       collection={products.collection}
@@ -49,8 +50,12 @@ export const ProductDetails = () => {
 const Details1 = props => {
   const [isModalOpen, toggleModal] = useState(false);
   const dispatch = useDispatch();
+  const token = useSelector(state => state.login.token);
+
   const add = () => {
-    dispatch(addToCart(props.itemNo));
+    token
+      ? dispatch(addToSrvCart(props.id, token))
+      : dispatch(addToLocalCart(props.id));
     toggleModal(!isModalOpen);
   };
 

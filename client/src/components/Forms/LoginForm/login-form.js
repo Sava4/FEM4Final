@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { FormButton } from "../FormButton/form-button";
@@ -17,7 +17,7 @@ export const LoginForm = props => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const loc = useSelector(state => state.shoppingCart.locCart);
   const dispatch = useDispatch();
 
   return (
@@ -63,7 +63,7 @@ export const LoginForm = props => {
 
   function onSubmit(event) {
     event.preventDefault();
-    dispatch(loginAction(email, password));
+    dispatch(loginAction(email, password, loc));
     onClose();
   }
 

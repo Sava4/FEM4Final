@@ -1,11 +1,19 @@
 import axios from "axios";
 import { userAction } from "./user";
+import { mergeCarts } from "./shopping-cart";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const LOGOUT = "LOGOUT";
 
-export const loginAction = (loginOrEmail, password) => {
+let locCart;
+export const loginAction = (loginOrEmail, password, loc) => {
+  locCart = loc;
   return auth(loginOrEmail, password);
 };
+
+export const logoutAction = () => ({
+  type: LOGOUT
+});
 
 const loginSuccessAction = token => ({
   type: LOGIN_SUCCESS,
@@ -24,6 +32,10 @@ export function loginReducer(store = InitialState, action) {
       return {
         token: action.payload.token
       };
+    case LOGOUT:
+      return {
+        token: null
+      };
     default:
       return store;
   }
@@ -39,6 +51,7 @@ export const auth = (loginOrEmail, password) => {
       .then(response => {
         const token = response.data.token;
         dispatch(loginSuccessAction(token));
+        dispatch(mergeCarts(token, locCart));
         axios
           .get("http://localhost:5000/customers/customer", {
             headers: { Authorization: token }

@@ -7,12 +7,18 @@ import { mediaMobile } from "../../../../styled-components/media-breakpoints-mix
 export const ShoppingBag = () => {
   // Use state quantitybyid if not logged in,
   // after login use state.shoppingCart.serverProducts
-  const count = useSelector(state =>
-    Object.values(state.shoppingCart.quantityById).reduce(
+  const count = useSelector(state => {
+    const localCartCount = Object.values(state.shoppingCart.locCart).reduce(
       (acc, curr) => acc + curr,
       0
-    )
-  );
+    );
+    return state.login.token
+      ? state.shoppingCart.srvCart.reduce(
+          (acc, curr) => acc + curr.cartQuantity,
+          0
+        ) + localCartCount
+      : localCartCount;
+  });
 
   return (
     <ServicesIcon>
