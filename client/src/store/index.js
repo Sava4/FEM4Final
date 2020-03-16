@@ -5,7 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 
 import { shoppingCartReducer } from "./shopping-cart";
 import { favoritesReducer } from "./favorites";
@@ -44,6 +44,6 @@ const rootReducer = combineReducers({
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk, logger))
+  composeWithDevTools(applyMiddleware(thunk))
 );
 export const persistor = persistStore(store);

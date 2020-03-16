@@ -41,7 +41,7 @@ export const mergeCarts = (token, locCart) => {
         let srvCart;
         resp.data === null ? (srvCart = []) : (srvCart = resp.data.products);
 
-        locCart === {}
+        Object.entries(locCart).length === 0
           ? dispatch(setServerCart(srvCart))
           : putCart(locCart, srvCart);
 
