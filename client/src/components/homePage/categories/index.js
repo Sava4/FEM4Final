@@ -16,19 +16,19 @@ export const HomepageCategories = () => {
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
       <Categories>
-        <Necklaces to="categories">
+        <Necklaces to="/categories/necklaces">
           <p>NECKLACES</p>
         </Necklaces>
 
         <RightCategoriesWrapper>
-          <Bracelets to="products">
+          <Bracelets to="/categories/bracelets">
             <p>BRACELETS</p>
           </Bracelets>
           <RingsWrapper>
             <Rings to="productsDetails">
               <p>RINGS</p>
             </Rings>
-            <Earrings to="categories">
+            <Earrings to="/categories/earrings">
               <p>EARRINGS</p>
             </Earrings>
           </RingsWrapper>
@@ -56,6 +56,7 @@ const Categories = styled.div`
     position: relative;
     & p {
       margin: 0;
+      text-shadow: 1px 1px 0 white;
       color: black;
       position: absolute;
       bottom: 35px;

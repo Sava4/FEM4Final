@@ -98,7 +98,7 @@ export const SocialContainer = styled.div`
   margin-top: 30px;
 `;
 export const SocialLink = styled.a`
-  display: block,
+  display: block;
   width: 25px;
   font-size: 25px;
   color: transparent;

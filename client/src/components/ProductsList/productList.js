@@ -4,16 +4,13 @@ import { ProductItem } from "./productItem";
 
 import styled from "styled-components";
 
-const ListProducts = () => {
+export const ListProducts = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true);
       const res = await axios.get("http://localhost:5000/products");
       setProducts(res.data);
-      setLoading(false);
     };
     fetchPosts();
   }, []);

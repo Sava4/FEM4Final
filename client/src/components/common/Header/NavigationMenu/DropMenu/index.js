@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { mediaMobile } from "../../../../../styled-components/media-breakpoints-mixin";
 
@@ -9,17 +9,59 @@ export const HeaderMenuElem = props => {
   const { categoriesAllData } = props;
 
   let categArrey = categoriesAllData.filter(item => item.parentId === "null");
+  const initialState = [];
 
+  categArrey.map(item => {
+    const stateObj = {
+      menuName: item.id,
+      isOpen: false
+    };
+    initialState.push(stateObj);
+    return initialState;
+  });
+
+  const [dropMenuState, setDropMenuState] = useState([]);
+
+  // useEffect(()=>{
+  //   initialState && setDropMenuState(initialState)
+  // }, [])
+
+  const openDropmenu = e => {
+    console.log(e.target.id);
+    const newState = [];
+    initialState.forEach(item => {
+      const stateObj = {};
+      stateObj.menuName = item.menuName;
+      stateObj.isOpen =
+        item.menuName === e.target.id && (item.isOpen = !item.isOpen);
+      newState.push(stateObj);
+    });
+
+    setDropMenuState(newState);
+    // initialState =  newState
+  };
+
+  // }
+  console.log(dropMenuState);
   const categList = categArrey.map(item => {
     const menuName = item.name;
+    // console.log(menuName)
 
     let dropMenuArrey = categoriesAllData.filter(
       item => item.parentId === `${menuName}`
     );
-    // console.log(dropMenuArrey);
+
+    const stateObj = dropMenuState
+      ? dropMenuState.filter(item => item.menuName === menuName)
+      : initialState.filter(item => item.menuName === menuName);
+
+    const isShown = stateObj.length && stateObj[0].isOpen;
+
+    console.log(isShown);
     return (
-      <CategoriesLi key={item._id}>
-        <Dropmenu dropMenuArrey={dropMenuArrey} />
+      <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
+        {item.id}
+        {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} /> : null}
       </CategoriesLi>
     );
   });

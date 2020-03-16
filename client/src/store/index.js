@@ -11,7 +11,9 @@ import { shoppingCartReducer } from "./shopping-cart";
 import { favoritesReducer } from "./favorites";
 import { categoriesReduser } from "./headerMenu";
 import { loginReducer } from "./login";
+import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
+import { loginStatusReducer } from "./login-status";
 
 const persistConfig = {
   key: "cart",
@@ -35,6 +37,8 @@ const rootReducer = combineReducers({
   favorites: favoritesReducer,
   categories: categoriesReduser,
   login: persistedToken,
+  loginStatus: loginStatusReducer,
+  filters: filtersReduser,
   user: userReducer
 });
 

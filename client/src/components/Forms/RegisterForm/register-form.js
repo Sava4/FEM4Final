@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { FormButton } from "../FormButton/form-button";
 import { Modal } from "../../Modal/modal";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const RegisterForm = props => {
   const { onClose } = props;
@@ -248,17 +249,28 @@ export const RegisterForm = props => {
 };
 
 const FormWrapper = styled.form`
-  width: 980px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #002d50;
   background: #ffffff;
+
+  ${mediaMobile(`
+  flex-direction: column;
+  align-items: center;
+  `)}
 `;
 const FormRegister = styled.div`
   display: flex;
   margin-right: 70px;
   margin-left: 70px;
+
+  ${mediaMobile(`
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  `)}
 `;
 
 const FormTitle = styled.span`
@@ -268,6 +280,11 @@ const FormTitle = styled.span`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  ${mediaMobile(`
+  margin-top: 50px;
+  margin-bottom: 40px;
+  `)}
 `;
 
 const ErrorMessage = styled.span`
@@ -278,6 +295,11 @@ const ErrorMessage = styled.span`
 const LeftContent = styled.div`
   width: 50%;
   margin-right: 50px;
+
+  ${mediaMobile(`
+  width: 80%;
+  margin: 0;
+  `)}
 `;
 
 const Input = styled.input`
@@ -322,9 +344,18 @@ const RightContent = styled.div`
   width: 50%;
   margin-left: 50px;
   margin-bottom: 20px;
+
+  ${mediaMobile(`
+  width: 80%;
+  margin: 0;
+  `)}
 `;
 
 const FormButtonWrapper = styled.div`
   width: 40%;
   margin-bottom: 70px;
+
+  ${mediaMobile(`
+  margin-bottom: 50px;
+  `)}
 `;

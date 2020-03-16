@@ -27,7 +27,7 @@ export const ProductDetails = () => {
       setLoading(false);
     };
     fetchPosts();
-  }, []);
+  }, [id]);
 
   return loading ? (
     <div>Loading...</div>
@@ -269,21 +269,20 @@ export const Add = styled.button`
   cursor: pointer;
 `;
 export const Details = styled.div`
-    text-transform: uppercase;
-    font-size: 14px;
-    padding-top: 21px;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding-top: 21px;
+  width: 100%;
+  &:before {
+    content: " ";
+    display: flex;
+    align-self: center;
+    margin-bottom: 21px;
     width: 100%;
-    &:before {
-      content: " ";
-      display: flex;
-      align-self: center;
-      margin-bottom: 21px;
-      width: 100%;
-      height: 1px;
-      background: #3c3b3b;
-      }
-    }
-   `;
+    height: 1px;
+    background: #3c3b3b;
+  }
+`;
 export const UL = styled.ul`
   align-self: flex-start;
   list-style: none;
