@@ -27,7 +27,6 @@ const DiamondImg = styled.img`
 
 const Text = styled.p`
   text-transform: uppercase;
-  font-size: 14px;
   line-height: 19px;
   margin-bottom: 44px;
   width: max-content;

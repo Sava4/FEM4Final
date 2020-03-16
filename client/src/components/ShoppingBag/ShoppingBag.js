@@ -184,15 +184,12 @@ const BagHeader = styled.h2`
   margin-top: 29px;
   width: max-content;
   font-size: 24px;
-  font-family: "Montserrat", system-ui, sans-serif;
   text-transform: uppercase;
 `;
 
 const Continue = styled.div`
   align-self: flex-start;
   margin-top: 33px;
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: 14px;
   cursor: pointer;
 `;
 
