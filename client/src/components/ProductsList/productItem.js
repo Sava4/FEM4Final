@@ -7,11 +7,10 @@ import styled, { css } from "styled-components";
 export const ProductItem = props => {
   // console.log(props)
   return (
-    
     <Card
       interpretation={props.interpretation}
       to={`/product-details/${props.id}`}
-      key={props.key}
+  
     >
       <Image alt="" src={props.img} size={"small"} />
       <Name size={"small"}>{`${props.name}`}</Name>

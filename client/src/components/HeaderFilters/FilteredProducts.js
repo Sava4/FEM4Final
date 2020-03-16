@@ -33,15 +33,13 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
     const queryString = [];
     for (let key in props.filters) {
       
-      const url = `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}&`;
+      // const url = `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`;
       // console.log(url)
       props.filters[key].length
         ? queryString.push(`${key}=${props.filters[key].join()}`)
-        : 
-        axios
+        : axios
             .get(
-              url
-            //  `http://localhost:5000/products/filter?categories=${category}&${query}`
+             `http://localhost:5000/products/filter?categories=${category}&${query}`
               // `http://localhost:5000/products/filter?categories=${category}&gemstone_color=violet`
             )
             .then(result => {
@@ -52,12 +50,11 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
       //     /*Do something with error, e.g. show error to user*/
       //   });
     }
- 
-    console.log(`${category}&${queryString.join("&")}`);
-    console.log(
-      `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`
-    );
-    console.log(`http://localhost:5000/products/filter?categories=${category}&${query}`);
+    // console.log(queryString.join("&"));
+    // console.log(`${category}&${queryString.join("&")}`);
+    // console.log(
+    //   `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`
+    // );
   }, [category, props.filters]);
 
   const filterdProd = products.products;

@@ -1,16 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { mediaMobile, mediaTablet } from "../../../styled-components/media-breakpoints-mixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styled-components/media-breakpoints-mixin";
 
 import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
 import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
 import RingsPict from "../../../img/homePage/categories/rings.png";
 import EarringsPict from "../../../img/homePage/categories/earring.png";
 
-export const HomepageCategories = (props) => {
-  console.log(props)
-  let categories = [ "necklaces" , "bracelets", "rings", "earrings" ]
+export const HomepageCategories = ()=> {
+
+  let categories = ["necklaces", "bracelets", "rings", "earrings"];
   return (
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
@@ -74,6 +77,7 @@ const Necklaces = styled(NavLink)`
   background-image: url(${NecklacesPict});
   background-size: cover;
   background-repeat: no-repeat;
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 40%;
   height: 712px;
@@ -103,6 +107,7 @@ const Bracelets = styled(NavLink)`
   background-image: url(${BraceletsPict});
   background-repeat: no-repeat;
   background-size: cover;
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 100%;
   height: 312px;
@@ -130,6 +135,7 @@ const Rings = styled(NavLink)`
   background-image: url(${RingsPict});
   background-repeat: no-repeat;
   background-size: cover;
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 50%;
   height: 397px;
@@ -148,7 +154,7 @@ const Earrings = styled(NavLink)`
   background-image: url(${EarringsPict});
   background-repeat: no-repeat;
   background-size: cover;
-
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 50%;
   height: 397px;
