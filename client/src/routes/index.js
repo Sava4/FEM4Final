@@ -24,15 +24,8 @@ export const Routes = () => {
       <Route path="/categories/bracelets" component={ProductFilters} />
       <Route path="/categories/necklaces" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
-      <Route path="/product-details/:id" component={ProductDetailsLayout} />
-      <Route exact path="/categories/rings/:id" component={Products} />
-      <Route exact path="/categories/earrings" component={Products} />
-      <Route exact path="/categories/bracelets" component={Products} />
-      <Route exact path="/categories/neclaces" component={Products} />np
-      <Route exact path="/products" component={Products} />
-      <Route exact path="/product/:itemNo" component={ProductSliderView} />
-      }/>
-      <Route exact path="/productsdetails" component={ProductDetails} />
+      <Route path="/product-details/:id" component={ProductDetailsLayout} />      
+      <Route exact path="/product/:itemNo" component={ProductSliderView} />    
       <Route path={`/pagin/:path`} component={ProductsContainer} />
       <Route exact path="/account" component={Account} />
       +
@@ -47,20 +40,14 @@ export const Routes = () => {
   ) : (
     <Switch>
       <Route exact path="/" component={Homepage} />
-
       <Route exact path="/categories" component={Categories} />
-
       <Route path="/categories/rings" component={ProductFilters} />
       <Route path="/categories/earrings" component={ProductFilters} />
       <Route path="/categories/bracelets" component={ProductFilters} />
       <Route path="/categories/necklaces" component={ProductFilters} />
-
       <Route path="/products" component={ProductFilters} />
-
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
-
       <Route path="/login" component={ProductFilters} />
-
       <Route path="/404error" component={Error} />
       <Redirect to="/" />
     </Switch>
