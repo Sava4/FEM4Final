@@ -7,23 +7,23 @@ export const StaticPage = props => {
   // console.log(props)
   let { url } = useParams();
   const [page, setPage] = useState({});
-  console.log(url)
+  console.log(url);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/${url}`)
+      .get(`http://localhost:5000/pages/${url}`)
       .then(result => {
         console.log(result);
         setPage(result.data);
       })
       .catch(err => {
-    console.log(err)
+        console.log(err);
       });
   }, [url]);
 
   return (
     <div>
-      <Page>{page.htmlContent}</Page>     
+      <Page>{page.htmlContent}</Page>
     </div>
   );
 };
