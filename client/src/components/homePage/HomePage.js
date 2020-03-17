@@ -7,14 +7,13 @@ import { ProductsList } from "../ProductsList/productList";
 import { HomepageCategories } from "./categories";
 import { ProductDetails } from "./../ProductDetails/productDetails";
 
-
 export const Homepage = () => {
   return (
     <Layout>
       <SliderHomepage />
-      <SliderProducts h4={"FEATURED"} reverse={"reverse"} />  
+      <SliderProducts h4={"FEATURED"} reverse={"reverse"} />
       <ProductsList />
-      <HomepageCategories></HomepageCategories>    
+      <HomepageCategories></HomepageCategories>
     </Layout>
   );
 };

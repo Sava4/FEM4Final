@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose} from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
@@ -31,7 +31,6 @@ const logPersistConfig = {
 const persistedCart = persistReducer(persistConfig, shoppingCartReducer);
 const persistedToken = persistReducer(logPersistConfig, loginReducer);
 
-
 // import { reducer as formReducer } from 'redux-form'
 // import appReducer from "./app-reducer";
 const rootReducer = combineReducers({
@@ -44,7 +43,6 @@ const rootReducer = combineReducers({
   filters: filtersReduser,
   user: userReducer
 });
-
 
 export const store = createStore(
   rootReducer,

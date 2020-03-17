@@ -11,17 +11,18 @@ export const StaticPage = props => {
     axios
       .get(`http://localhost:5000/pages/${url}`)
       .then(result => {
-        // console.log(result.data);
+        console.log(result);
         setPage(result.data);
       })
       .catch(err => {
-        /*Do something with error, e.g. show error to user*/
+    console.log(err)
       });
   }, [url]);
 
   return (
     <div>
       <Page>{page.htmlContent}</Page>
+      {console.log(page)}
     </div>
   );
 };

@@ -7,6 +7,7 @@ export const StaticPageView = () => {
   return (
     <Layout>
       <StaticPage />
+      {console.log("static")}
     </Layout>
   );
 };
