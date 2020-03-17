@@ -21,7 +21,7 @@ export const Routes = () => {
       <Route exact path="/categories/rings/:id" component={Products} />
       <Route exact path="/categories/earrings" component={Products} />
       <Route exact path="/categories/bracelets" component={Products} />
-      <Route exact path="/categories/neclaces" component={Products} />
+      <Route exact path="/categories/neclaces" component={Products} />np
       <Route exact path="/products" component={Products} />
       <Route exact path="/product/:itemNo" component={ProductSliderView} />
       }/>
