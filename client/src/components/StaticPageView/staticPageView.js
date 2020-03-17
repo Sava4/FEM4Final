@@ -6,8 +6,7 @@ import { StaticPage } from "../StaticPage/staticPage";
 export const StaticPageView = () => {
   return (
     <Layout>
-      <StaticPage />
-      {console.log("static")}
+      <StaticPage />     
     </Layout>
   );
 };
