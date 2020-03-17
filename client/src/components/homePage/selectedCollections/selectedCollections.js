@@ -4,24 +4,25 @@ import styled from "styled-components";
 import prive from "./Prive.png";
 import melanka from "./Melanca.png";
 import aultra from "./Aultra.png";
+import {mediaMobile, mediaTablet} from "../../../styled-components/media-breakpoints-mixin";
 
 export const SelectedCollections = () => {
   return (
     <Collections>
       <CollectionsTitle>SELECTED COLLECTIONS</CollectionsTitle>
       <CollectionsItemWrapper>
-        <CollectionsItem>
+        <CollectionsItemPrive>
           <PriveImage/>
           <ImageDesc>PRIVE</ImageDesc>
-        </CollectionsItem>
-        <CollectionsItem>
+        </CollectionsItemPrive>
+        <CollectionsItemMelenka>
           <MelankaImage/>
           <ImageDesc>MELENKA</ImageDesc>
-        </CollectionsItem>
-        <CollectionsItem>
+        </CollectionsItemMelenka>
+        <CollectionsItemAultra>
           <AultraImage/>
           <ImageDesc>AULTRA CLASSIC</ImageDesc>
-        </CollectionsItem>
+        </CollectionsItemAultra>
       </CollectionsItemWrapper>
     </Collections>
   )
@@ -36,15 +37,31 @@ const Collections = styled.div`
 const CollectionsTitle = styled.div`
   font-size: 24px;
   margin-bottom: 30px;
-  margin-top: 130px;
+  margin-top: 100px;
 `
 
 const CollectionsItemWrapper = styled.div`
   display: flex;
 `
 
-const CollectionsItem = styled.div`
+const CollectionsItemPrive = styled.div`
+  cursor: pointer;
+  ${mediaMobile(`
+  display: none;
+  `)}
+`
+const CollectionsItemMelenka = styled.div`
+  cursor: pointer;
+`
+const CollectionsItemAultra = styled.div`
+  cursor: pointer;
+  ${mediaTablet(`
+  display: none;
+  `)}
   
+  ${mediaMobile(`
+  display: none;
+  `)}
 `
 
 const PriveImage = styled.div`
@@ -60,6 +77,13 @@ const MelankaImage = styled.div`
   margin-right: 25px;
   background-image: url(${melanka});
   background-size: cover;
+  
+  ${mediaTablet(`
+  margin-right: 0;
+  `)}
+  ${mediaMobile(`
+  margin: 0;
+  `)}
 `
 const AultraImage = styled.div`
   width: 360px;
