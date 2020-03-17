@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import { Modal } from "../../Modal/modal";
 
 export const ShoppingBagForm = props => {
+  const history = useHistory();
   const { isModalOpen, onClose } = props;
 
   return (
@@ -12,8 +14,16 @@ export const ShoppingBagForm = props => {
         <FormTitle>Shopping Bag</FormTitle>
         <FormSubtitle>You have a new item in your shopping bag.</FormSubtitle>
         <ButtonWrapper>
-          <ButtonCheckout type="submit" value="CHECKOUT" />
-          <ButtonBackToShopping type="submit" value="GO BACK TO SHOPPING" />
+          <ButtonCheckout
+            onClick={() => history.push("/account/shopping-bag")}
+            type="button"
+            value="CHECKOUT"
+          />
+          <ButtonBackToShopping
+            type="button"
+            onClick={onClose}
+            value="GO BACK TO SHOPPING"
+          />
         </ButtonWrapper>
       </FormWrapper>
     </Modal>

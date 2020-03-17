@@ -42,7 +42,7 @@ export const HeaderMenuElem = props => {
   };
 
   // }
-  console.log(dropMenuState);
+  // console.log(dropMenuState);
   const categList = categArrey.map(item => {
     const menuName = item.name;
     // console.log(menuName)
@@ -57,7 +57,7 @@ export const HeaderMenuElem = props => {
 
     const isShown = stateObj.length && stateObj[0].isOpen;
 
-    console.log(isShown);
+    // console.log(isShown);
     return (
       <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
         {item.id}
