@@ -10,9 +10,6 @@ import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 import { ProductSliderView } from "../components/SliderProducts/productSliderView";
 import ProductsContainer from "../components/SliderProducts/ProductsContainer";
-import { compose } from "redux";
-import { ProductsPagination } from "../components/SliderProducts/Pagination";
-import Paginator from "../components/SliderProducts/Paginator";
 
 export const Routes = () => {
   // const [isAuthenticated, setIsAuthenticated]= useState(false)
@@ -29,11 +26,7 @@ export const Routes = () => {
       <Route exact path="/product/:itemNo" component={ProductSliderView} />
       }/>
       <Route exact path="/productsdetails" component={ProductDetails} />
-      {/* <Route path="/pagin/:string"  render={() => <ProductsContainer/>}/> */}
       <Route path={`/pagin/:path`} component={ProductsContainer} />
-      {/* если руками прописать filter работает а дальше  ?startPage=3&perPage=8 не работает*/}
-      {/* <Route path="/pagin/:path"  component={ProductsPagination}/>   */}
-      {/* <Route path="/pagin/:path"  component={Paginator}/> */}
       <Route exact path="/account" component={Account} />
       +
       <Route exact path="/account/favorites" component={Products} />
