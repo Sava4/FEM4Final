@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {mediaMobile} from "../../styled-components/media-breakpoints-mixin";
 
 export const SliderPromo = styled.div`
   display: flex;
@@ -9,14 +10,22 @@ export const SliderPromo = styled.div`
   margin-left: 130px;
   background: linear-gradient(0deg, #ffffff, #ffffff);
   opacity: 0.9;
+  
+  ${mediaMobile(`
+  display: none;
+  `)}
 `;
 
 export const SliderPromoText = styled.div`
-  width: 70%;
+  width: 60%;
   background-color: #ffffff;
   opacity: 0.8;
-  font-size: 12px;
+  font-size: 17px;
   color: black;
+  line-height: 30px;
+  letter-spacing: 1px;
+  margin-bottom: 100px;
+  text-align: center;
 `;
 
 export const SliderPromoButton = styled.a`
@@ -33,9 +42,17 @@ export const SliderPromoButton = styled.a`
   text-decoration: none;
   color: black;
   font-size: 14px;
+  cursor: pointer;
 `;
 export const CarouselImage = styled.div`
-  background: url(${props => props.imageUrl}) no-repeat;
+  background-image: url(${props => props.imageUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   height: 425px;
   opacity: 1;
+  
+  ${mediaMobile(`
+  background-position: right;
+  `)}
 `;

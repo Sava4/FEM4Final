@@ -97,6 +97,7 @@ const HeaderWrapper = styled.div`
   ${mediaMobile(`
     border-bottom: 1px solid black;
     padding-bottom: 30px;
+    margin-bottom: 0;
   `)}
 `;
 
