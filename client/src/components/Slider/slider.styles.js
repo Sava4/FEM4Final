@@ -16,7 +16,6 @@ export const SliderPromoText = styled.div`
   background-color: #ffffff;
   opacity: 0.8;
   font-size: 12px;
-  font-family: Montserrat, sans-serif;
   color: black;
 `;
 
@@ -33,7 +32,6 @@ export const SliderPromoButton = styled.a`
   box-sizing: border-box;
   text-decoration: none;
   color: black;
-  font-family: Montserrat, sans-serif;
   font-size: 14px;
 `;
 //без Localhost при возврате на страницу не грузит картинки

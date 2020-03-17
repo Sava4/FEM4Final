@@ -19,7 +19,7 @@ export const Modal = props => {
 const CreateModal = styled.div`
   display: flex;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
@@ -31,6 +31,7 @@ const CreateModal = styled.div`
 `;
 
 const ModalCloseWrapper = styled.div`
+  width: 70%;
   position: relative;
   margin: 0 auto;
 `;

@@ -52,7 +52,6 @@ export const Navigation = connect(mapStateToProps, { getCategoriesList })(
 
 const HeaderDropMenu = styled.div`
   padding: 0;
-  font-family: Montserrat, sans-serif;
   width: 100vw;
   display: flex;
   justify-content: center;
