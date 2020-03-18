@@ -37,26 +37,32 @@ let Paginator = ({
       )}
 
       {pages
-        .filter(pageNumber => pageNumber >= leftPortionPageNumber && pageNumber <= rightPortionPageNumber)
+        .filter(
+          pageNumber =>
+            pageNumber >= leftPortionPageNumber &&
+            pageNumber <= rightPortionPageNumber
+        )
         .map(pageNumber => {
           // console.log(pageNumber)
           return (
-            <NavLink to={`/pagin/filter?startPage=${pageNumber}&perPage=${pageSize}`} key={pageNumber}>
-            <span
-              className={cn(
-                {
-                  [styles.selected_Page]: currentPage == pageNumber
-                },
-                styles.page_Number
-              )}              
-              onClick={e => {
-                onPageChanged(pageNumber);//передаем в контейнер и загружаем нужную страницу
-              }}
-            >              
+            <NavLink
+              to={`/pagin/filter?startPage=${pageNumber}&perPage=${pageSize}`}
+              key={pageNumber}
+            >
+              <span
+                className={cn(
+                  {
+                    [styles.selected_Page]: currentPage == pageNumber
+                  },
+                  styles.page_Number
+                )}
+                onClick={e => {
+                  onPageChanged(pageNumber); //передаем в контейнер и загружаем нужную страницу
+                }}
+              >
                 {pageNumber}
-                </span>
-              </NavLink>
-         
+              </span>
+            </NavLink>
           );
         })}
       {portionCount > portionNumber && (

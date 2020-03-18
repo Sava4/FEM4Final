@@ -1,6 +1,5 @@
 import { productsAPI } from "../components/SliderProducts/api";
 
-
 const SET_PRODUCTS = "SET_PRODUCTS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
@@ -39,11 +38,10 @@ export const setTotalProductsCount = productsQuantity => ({
   productsQuantity: productsQuantity
 });
 
-
 //вызов хука внутри хука не работает??
 export const useRequestProducts = (page, pageSize) => {
   return async dispatch => {
-    console.log(page, pageSize);   
+    console.log(page, pageSize);
     dispatch(setCurrentPage(page));
     console.log(page);
     let data = await productsAPI.getProducts(page, pageSize);

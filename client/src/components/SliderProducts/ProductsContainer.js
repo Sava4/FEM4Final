@@ -30,7 +30,8 @@ const ProductsContainer = props => {
   useEffect(() => {
     props.getProducts(truePage, pageSize);
   }, [truePage]);
-  const onPageChanged = pageNumber => {// из пагинатора
+  const onPageChanged = pageNumber => {
+    // из пагинатора
     const { pageSize } = props;
     props.getProducts(pageNumber, pageSize);
   };
@@ -60,6 +61,5 @@ let mapStateToProps = state => {
 
 let UrlProductsContainer = withRouter(ProductsContainer);
 export default compose(
-  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts })//mapDispatchToProps
+  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts }) //mapDispatchToProps
 )(UrlProductsContainer);
-
