@@ -40,7 +40,7 @@ export const Footer = () => {
         <div key={item._id}>
           <li>
             <LinkToStatic url={`${item.url}`}>
-              <NavLink to={`${item.url}`}>{item.description}</NavLink>
+              <NavLink to={`/pages/${item.url}`}>{item.description}</NavLink>
             </LinkToStatic>
           </li>
         </div>
@@ -78,10 +78,6 @@ export const Footer = () => {
               <li>Stay up to date with all the new designs,</li>
               <li>collection launches, events and much more.</li>
             </ul>
-            {/* <div>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">FooterBottom</a>
-
-            </div> */}
             <Email />
             <SocialContainer>
               {" "}
