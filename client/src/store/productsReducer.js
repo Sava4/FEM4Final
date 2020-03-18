@@ -7,11 +7,9 @@ const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
 
 let initialState = {
   products: [],
-  pageSize: 8,
+  pageSize: 1,
   productsQuantity: 0,
   currentPage: 1
-
-  // fake: 10
 };
 
 export const productsReducer = (state = initialState, action) => {
@@ -41,27 +39,16 @@ export const setTotalProductsCount = productsQuantity => ({
   productsQuantity: productsQuantity
 });
 
-// export const requestProducts = (page, pageSize) => {
-//     return async (dispatch) => {
-//         dispatch(setCurrentPage(page));
-// debugger
-//         // let data = await productsAPI.getProducts(page, pageSize);
-//         let data = await productsAPI.getProducts(page, pageSize);
-
-//         debugger
-//         console.log(data)
-//         // let data = await ProductsAPI(page, pageSize)
-//         dispatch(setProducts(data.products));
-//         dispatch(setTotalProductsCount(data.productsQuantity));
-
-//     }
-// }
-
-export const requestProducts = (page, pageSize) => {
+//когда компонент дид маунт (юзэффект) сделать повторный вызов уже из считав параметры из строки
+// или первым грузится пагинатор из не задиспатчить обновление каррентпейдж из строки
+//вызов хука внутри хука не работает??
+export const useRequestProducts = (page, pageSize) => {
   return async dispatch => {
+    console.log(page, pageSize);
+    //page??
     // dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(page));
-
+    console.log(page);
     let data = await productsAPI.getProducts(page, pageSize);
     // dispatch(toggleIsFetching(false));
     dispatch(setProducts(data.products));

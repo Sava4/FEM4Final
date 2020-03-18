@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams, useLocation } from "react-router";
+import React, { useEffect } from "react";
+import { useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
-import { setCurrentPage, requestProducts } from "../../store/productsReducer";
+import {
+  setCurrentPage,
+  useRequestProducts
+} from "../../store/productsReducer";
 import { ProductsPagination } from "./Pagination";
 // import Preloader from "../common/Preloader/Preloader";
 import { compose } from "redux";
@@ -12,9 +15,8 @@ import {
   getProducts
 } from "./users-selectors";
 
-// переписать на хуки и добавить useparams
-
 const ProductsContainer = props => {
+  console.log(props);
   const { currentPage, pageSize } = props;
   //   let string = `filter?startPage=${currentPage}&perPage=${pageSize}`
   //     string = useParams();
@@ -22,12 +24,15 @@ const ProductsContainer = props => {
 
   let location = useLocation();
   let path = `filter${location.search}`;
-  console.log(location);
+
+  const queryString = require("query-string");
+  const parsed = queryString.parse(location.search);
+  const truePage = parsed.startPage;
+  console.log(truePage);
 
   useEffect(() => {
-    console.log(props);
-    props.getProducts(currentPage, pageSize);
-  }, []);
+    props.getProducts(truePage, pageSize);
+  }, [truePage]);
   const onPageChanged = pageNumber => {
     const { pageSize } = props;
     props.getProducts(pageNumber, pageSize);
@@ -46,6 +51,20 @@ const ProductsContainer = props => {
     </>
   );
 };
+
+let mapStateToProps = state => {
+  return {
+    products: getProducts(state),
+    pageSize: getPageSize(state),
+    productsQuantity: getTotalProductsCount(state),
+    currentPage: getCurrentPage(state)
+  };
+};
+
+let UrlProductsContainer = withRouter(ProductsContainer);
+export default compose(
+  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts })
+)(UrlProductsContainer);
 
 // class ProductsContainer extends React.Component {
 //     componentDidMount() {
@@ -73,16 +92,3 @@ const ProductsContainer = props => {
 //         </>
 //     }
 // }
-
-let mapStateToProps = state => {
-  return {
-    products: getProducts(state),
-    pageSize: getPageSize(state),
-    productsQuantity: getTotalProductsCount(state),
-    currentPage: getCurrentPage(state)
-  };
-};
-
-export default compose(
-  connect(mapStateToProps, { setCurrentPage, getProducts: requestProducts })
-)(ProductsContainer);

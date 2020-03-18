@@ -26,7 +26,7 @@ export const Routes = () => {
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/product/:itemNo" component={ProductSliderView} />
-      <Route path={`/pagin/:path`} component={ProductsContainer} />
+      <Route path="/pagin/:path?" component={ProductsContainer} />
       <Route exact path="/account" component={Account} />
       +
       <Route exact path="/account/favorites" component={ProductFilters} />
@@ -35,7 +35,7 @@ export const Routes = () => {
       <Route exact path="/logout" component={ProductFilters} />
       <Route exact path="/404error" component={Error} />
       <Route exact path="/pages/:url" component={StaticPageView} />
-      <Redirect to="/" />
+      {/* <Redirect to="/" /> */}
     </Switch>
   ) : (
     <Switch>

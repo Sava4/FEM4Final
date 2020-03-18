@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Paginator from "./Paginator";
 import { ProductItem } from "./productItemSlider";
-import { useParams, useLocation } from "react-router";
 
 export const ProductsPagination = ({
   currentPage,
@@ -12,23 +11,6 @@ export const ProductsPagination = ({
   products,
   ...props
 }) => {
-  // console.log(products);
-  // let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`;
-  // console.log(string)
-  // string = useParams();
-  // useParams(string);
-  // currentPage = useParams()
-  // console.log(currentPage)
-
-  // let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`
-
-  // в math params только filter остальные параметры в Location
-
-  //   string = useParams();
-  //   console.log(string)
-  // let location = useLocation()
-  // let path = location.search
-  // console.log(location)
   return (
     <div>
       <Paginator
@@ -48,14 +30,12 @@ export const ProductsPagination = ({
         }}
       >
         {products.map(p => (
-          <div key={p.id}>
+          <div key={p.itemNo}>
             <NavLink
-              key={p.id}
               to={`/product/${p.itemNo}`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ProductItem
-                key={p.id}
                 product={p}
                 {...p}
                 itemNo={`${p.itemNo}`}

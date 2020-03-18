@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Paginator.module.css";
 import cn from "classnames";
-import { useParams, useLocation } from "react-router";
 import { NavLink } from "react-router-dom";
 
 let Paginator = ({
@@ -9,15 +8,13 @@ let Paginator = ({
   pageSize,
   currentPage,
   onPageChanged,
-  portionSize = 10
+  portionSize = 5
 }) => {
-  //   let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`
-  //   string = useParams();
-  //   console.log(string)
-  let location = useLocation();
-  let path = `filter${location.search}`;
-  console.log(location);
-  console.log(path);
+  console.log(currentPage);
+  // let location = useLocation();
+  // let path = `filter${location.search}`;
+  // console.log(location);
+  // console.log(path);
   // useParams(props);
   //  pageSize = useParams();
 
@@ -52,6 +49,7 @@ let Paginator = ({
       {pages
         .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
         .map(p => {
+          // console.log(p)
           return (
             <span
               className={cn(
