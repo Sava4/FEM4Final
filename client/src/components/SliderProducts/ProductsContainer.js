@@ -18,9 +18,6 @@ import {
 const ProductsContainer = props => {
   console.log(props);
   const { currentPage, pageSize } = props;
-  //   let string = `filter?startPage=${currentPage}&perPage=${pageSize}`
-  //     string = useParams();
-  // useParams(props);
 
   let location = useLocation();
   let path = `filter${location.search}`;
@@ -33,7 +30,7 @@ const ProductsContainer = props => {
   useEffect(() => {
     props.getProducts(truePage, pageSize);
   }, [truePage]);
-  const onPageChanged = pageNumber => {
+  const onPageChanged = pageNumber => {// из пагинатора
     const { pageSize } = props;
     props.getProducts(pageNumber, pageSize);
   };
@@ -63,32 +60,6 @@ let mapStateToProps = state => {
 
 let UrlProductsContainer = withRouter(ProductsContainer);
 export default compose(
-  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts })
+  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts })//mapDispatchToProps
 )(UrlProductsContainer);
 
-// class ProductsContainer extends React.Component {
-//     componentDidMount() {
-//         const {currentPage, pageSize} = this.props;
-//         console.log(this.props)
-
-//         this.props.getProducts(currentPage, pageSize);
-
-//     }
-//     onPageChanged = (pageNumber) => {
-//         const {pageSize} = this.props;
-//         this.props.getProducts(pageNumber, pageSize);
-//     }
-
-//     render() {
-
-//         return <>
-//             {/* {this.props.isFetching ? <Preloader/> : null} */}
-//             <ProductsPagination  productsQuantity={this.props.productsQuantity}
-//                    pageSize={this.props.pageSize}
-//                    currentPage={this.props.currentPage}
-//                    onPageChanged={this.onPageChanged}
-//                    products={this.props.products}
-//             />
-//         </>
-//     }
-// }

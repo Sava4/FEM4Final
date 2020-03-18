@@ -1,5 +1,5 @@
 import { productsAPI } from "../components/SliderProducts/api";
-// import {updateObjectInArray} from "../components/SliderProducts/object-helpers";
+
 
 const SET_PRODUCTS = "SET_PRODUCTS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
@@ -7,7 +7,7 @@ const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
 
 let initialState = {
   products: [],
-  pageSize: 1,
+  pageSize: 3,
   productsQuantity: 0,
   currentPage: 1
 };
@@ -39,14 +39,11 @@ export const setTotalProductsCount = productsQuantity => ({
   productsQuantity: productsQuantity
 });
 
-//когда компонент дид маунт (юзэффект) сделать повторный вызов уже из считав параметры из строки
-// или первым грузится пагинатор из не задиспатчить обновление каррентпейдж из строки
+
 //вызов хука внутри хука не работает??
 export const useRequestProducts = (page, pageSize) => {
   return async dispatch => {
-    console.log(page, pageSize);
-    //page??
-    // dispatch(toggleIsFetching(true));
+    console.log(page, pageSize);   
     dispatch(setCurrentPage(page));
     console.log(page);
     let data = await productsAPI.getProducts(page, pageSize);

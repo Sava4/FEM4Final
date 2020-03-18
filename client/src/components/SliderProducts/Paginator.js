@@ -11,16 +11,6 @@ let Paginator = ({
   portionSize = 5
 }) => {
   console.log(currentPage);
-  // let location = useLocation();
-  // let path = `filter${location.search}`;
-  // console.log(location);
-  // console.log(path);
-  // useParams(props);
-  //  pageSize = useParams();
-
-  //   let {string} = `filter?startPage=${currentPage}&perPage=${pageSize}`;
-  //   console.log(string)
-  //   string = useParams();
 
   let pagesCount = Math.ceil(productsQuantity / pageSize);
 
@@ -47,27 +37,26 @@ let Paginator = ({
       )}
 
       {pages
-        .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-        .map(p => {
-          // console.log(p)
+        .filter(pageNumber => pageNumber >= leftPortionPageNumber && pageNumber <= rightPortionPageNumber)
+        .map(pageNumber => {
+          // console.log(pageNumber)
           return (
+            <NavLink to={`/pagin/filter?startPage=${pageNumber}&perPage=${pageSize}`} key={pageNumber}>
             <span
               className={cn(
                 {
-                  [styles.selectedPage]: currentPage === p
+                  [styles.selected_Page]: currentPage == pageNumber
                 },
-                styles.pageNumber
-              )}
-              key={p}
+                styles.page_Number
+              )}              
               onClick={e => {
-                onPageChanged(p);
+                onPageChanged(pageNumber);//передаем в контейнер и загружаем нужную страницу
               }}
-            >
-              {" "}
-              <NavLink to={`/pagin/filter?startPage=${p}&perPage=${pageSize}`}>
-                {p}
+            >              
+                {pageNumber}
+                </span>
               </NavLink>
-            </span>
+         
           );
         })}
       {portionCount > portionNumber && (
