@@ -44,7 +44,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
   );
 };
 
-const ItemContainer = styled.div`
+export const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -68,20 +68,20 @@ const ItemContainer = styled.div`
   }
 `;
 
-const ProdImg = styled.img`
+export const ProdImg = styled.img`
   height: 100%;
   width: 100%;
   object-fit: contain;
 `;
 
-const ImgWrap = styled.div`
+export const ImgWrap = styled.div`
   flex: 1;
   height: 188px;
   margin-right: 20px;
   border: 1px solid #e9ebf5;
 `;
 
-const ProductDescription = styled.div`
+export const ProductDescription = styled.div`
   flex: 50%;
   height: 135px;
   display: flex;
@@ -90,7 +90,7 @@ const ProductDescription = styled.div`
   align-items: flex-start;
 `;
 
-const Description = styled.p`
+export const Description = styled.p`
   text-transform: uppercase;
   line-height: 24px;
   width: 75%;
@@ -98,26 +98,26 @@ const Description = styled.p`
   flex: 1;
 `;
 
-const ArticleNo = styled.p`
+export const ArticleNo = styled.p`
   line-height: 10px;
   color: #a1a5ad;
   flex: 1;
 `;
-const RemoveBtn = styled.div`
+export const RemoveBtn = styled.div`
   line-height: 10px;
   text-decoration-line: underline;
   flex: 1;
   cursor: pointer;
 `;
 
-const CloseImg = styled.img`
+export const CloseImg = styled.img`
   height: 14px;
   width: 14px;
   margin-right: 12px;
   vertical-align: middle;
 `;
 
-const StyledSelect = styled.div`
+export const StyledSelect = styled.div`
   border-bottom: 1px solid black;
   width: 31px;
   height: 24px;

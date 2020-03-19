@@ -18,7 +18,7 @@ export const ProductItem = props => {
   );
 };
 
-const Card = styled(NavLink)`
+export const Card = styled(NavLink)`
   display: flex;
   padding-bottom: 10px;
   flex-direction: column;
@@ -45,10 +45,4 @@ const Card = styled(NavLink)`
   @media (max-width: 439px) {
     width: 43%;
   }
-
-  ${props =>
-    props.interpretation === "carousell" &&
-    css`
-      width: 300px;
-    `};
 `;

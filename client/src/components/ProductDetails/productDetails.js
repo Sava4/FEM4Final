@@ -156,6 +156,24 @@ ${mediaTablet(`
         height: 202px;
       }
     `}
+    ${props =>
+    props.size === "xSmall" &&
+    css`
+      width: 103px;
+      height: 129px;
+      @media (max-width: 992px) {
+        width: 206px;
+        height: 258px;
+      }
+      @media (max-width: 767px) {
+        width: 156px;
+        height: 208px;
+      }
+      @media (max-width: 439px) {
+        width: 150px;
+        height: 202px;
+      }
+    `}
 `;
 export const Name = styled.p`
   text-transform: uppercase;
