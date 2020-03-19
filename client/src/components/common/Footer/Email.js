@@ -12,7 +12,7 @@ export const Email = () => {
 
   return (
     <div>
-      <EmailInput ref={emailRef} type="text" placeholder="E-mail" />
+      <EmailInput ref={emailRef} type="email" placeholder="Email" />
       <EmailButton type="button" onClick={submitButton}>
         Sign up
       </EmailButton>
@@ -23,12 +23,13 @@ export const Email = () => {
 
 const EmailInput = styled.input`
   width: 299px;
-  height: 14px;
+  margin-top: 2px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #262c37;
   font-size: 14px;
   ::placeholder {
-    color: black;
+    color: #80858d;
+    letter-spacing: 1px;
   }
   :focus {
     outline: none;
