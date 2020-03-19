@@ -5,9 +5,10 @@ export const CarouselWrapper = styled.div`
  ${mediaMobile(`
  .slick-dots {
   position: inherit;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #002D50;
  }
  `)}
- 
 `;
 
 export const SliderPromo = styled.div`

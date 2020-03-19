@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import headerDesign from "../Header/header-design.png"
 import footerArrow from "./footer-arrow.png"
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import {mediaMobile, mediaTablet} from "../../../styled-components/media-breakpoints-mixin";
 
 //компонент родитель создал, чтобы пробросить пропсами переменную url в запрос
 export const LinkToStatic = styled.div`
@@ -27,6 +27,12 @@ export const FooterInfoName = styled.div`
   justify-content: space-between;
   justify-items: flex-start;
   font-size: 12px;
+  
+  ${mediaTablet(`
+    margin-left: 30px;
+    justify-content: space-evenly;
+  `)}
+    
   & h4 {
     margin-top: 50px;
     margin-bottom: 30px;
@@ -34,7 +40,6 @@ export const FooterInfoName = styled.div`
     font-weight: bold;
     
     ${mediaMobile(`
-    width: 50%;
     margin-top: 25px;
     margin-bottom: 0;
     `)}
@@ -81,9 +86,10 @@ export const InfoAboutWrapper = styled.div`
 `
 export const InfoServiceWrapper = styled.div`
   ${mediaMobile(`
-  width: 63%;
+  width: 100%;
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
   `)}
 `
 
@@ -94,6 +100,13 @@ export const Arrow = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url(${footerArrow});
+  `)}
+`
+
+export const ArrowWrapper = styled.div`
+  ${mediaMobile(`
+  display: flex;
+  align-items: baseline;
   `)}
 `
 
@@ -116,6 +129,10 @@ export const FooterInfoSocial = styled.div`
   & li {
     margin-bottom: 16px;
   }
+  
+  ${mediaTablet(`
+  margin-right: 30px;
+  `)}
   
   ${mediaMobile(`
   display: none;
@@ -142,9 +159,18 @@ export const SocialContainer = styled.div`
  
   ${mediaMobile(`
   display: flex;
-  width: 40%;
+  width: 100%;
   `)}
 `;
+
+export const SocialContainerMobile = styled.div`
+  ${mediaMobile(`
+  display: flex;
+  height: 25px;
+  margin-right: 25px;
+  `)}
+`
+
 export const SocialLink = styled.a`
   width: 25px;
   background: url(${props => props.icon}) no-repeat;

@@ -9,13 +9,15 @@ import {
   FooterInfo,
   FooterText,
   Arrow,
+  ArrowWrapper,
   FooterInfoName,
   InfoContactWrapper,
   InfoAboutWrapper,
   InfoServiceWrapper,
   FooterInfoSocial,
   FooterBottom,
-  SocialContainer
+  SocialContainer,
+  SocialContainerMobile
 } from "./footer.styles.js";
 
 export const Footer = () => {
@@ -78,8 +80,14 @@ export const Footer = () => {
           </div>
           <div>
             <InfoServiceWrapper>
-              <h4>Costumer Service</h4>
-              <Arrow/>
+              <ArrowWrapper>
+                <h4>Costumer Service</h4>
+                <Arrow/>
+              </ArrowWrapper>
+              <SocialContainerMobile>
+                {" "}
+                <SocialMenu/>
+              </SocialContainerMobile>
             </InfoServiceWrapper>
             <ul>{itemLinkArr.slice(5, 12)}</ul>
           </div>
