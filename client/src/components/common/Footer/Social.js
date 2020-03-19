@@ -16,9 +16,7 @@ export const SocialMenu = () => {
         key={item.link}
         href={item.link}
         target="_blank"
-        rel="noopener noreferrer"
-      >
-        url
+        rel="noopener noreferrer">
       </SocialLink>
     );
   });

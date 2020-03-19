@@ -1,5 +1,14 @@
 import styled from "styled-components";
-import {mediaMobile} from "../../styled-components/media-breakpoints-mixin";
+import {mediaMobile, mediaTablet} from "../../styled-components/media-breakpoints-mixin";
+
+export const CarouselWrapper = styled.div`
+ ${mediaMobile(`
+ .slick-dots {
+  position: inherit;
+ }
+ `)}
+ 
+`;
 
 export const SliderPromo = styled.div`
   display: flex;
@@ -16,6 +25,21 @@ export const SliderPromo = styled.div`
   `)}
 `;
 
+export const SliderPromoMobile = styled.div`
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(0deg, #ffffff, #ffffff);
+  opacity: 0.9;
+  
+  ${mediaMobile(`
+  height: 120px;
+  display: flex;
+  align-items: baseline;
+  `)}
+`;
+
 export const SliderPromoText = styled.div`
   width: 60%;
   background-color: #ffffff;
@@ -26,6 +50,12 @@ export const SliderPromoText = styled.div`
   letter-spacing: 1px;
   margin-bottom: 100px;
   text-align: center;
+  
+  ${mediaMobile(`
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 10px;
+  `)}
 `;
 
 export const SliderPromoButton = styled.a`
@@ -43,16 +73,24 @@ export const SliderPromoButton = styled.a`
   color: black;
   font-size: 14px;
   cursor: pointer;
+  
+  ${mediaMobile(`
+  top: auto;
+  margin-top: 70px;
+  `)}
 `;
 export const CarouselImage = styled.div`
   background-image: url(${props => props.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
   height: 425px;
   opacity: 1;
   
+  ${mediaTablet(`
+  background-position: center;
+  `)}
+  
   ${mediaMobile(`
-  background-position: right;
+  background-position: center;
   `)}
 `;

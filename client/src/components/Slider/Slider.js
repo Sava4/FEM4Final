@@ -4,8 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
+  CarouselWrapper,
   CarouselImage,
   SliderPromo,
+  SliderPromoMobile,
   SliderPromoText,
   SliderPromoButton
 } from "./slider.styles";
@@ -27,11 +29,11 @@ export const SliderHomepage = () => {
 
   const settings = {
     accessibility: true,
-    dots: matches ? false : true,
+    dots: true,
     arrows: matches ? false : true,
     infinite: true,
     draggable: true,
-    autoplay: true,
+    autoplay: false,
     // centerMode: true,
     speed: 500,
     nextArrow: <SampleNextArrow/>,
@@ -51,11 +53,9 @@ export const SliderHomepage = () => {
   }, []);
 
   return (
-    <div
+    <CarouselWrapper
       className="carousel_wrapper"
-      style={{
-        height: `height: 425px`
-      }}>
+      >
       <Slider {...settings}>
         {text.map(item => {
           return (
@@ -70,13 +70,22 @@ export const SliderHomepage = () => {
                   </SliderPromoButton>
                 </SliderPromo>
               </CarouselImage>
+              <SliderPromoMobile>
+                <SliderPromoText>
+                  {item.description}
+                </SliderPromoText>
+                <SliderPromoButton>
+                  <div>SHOP NOW</div>
+                </SliderPromoButton>
+              </SliderPromoMobile>
             </div>
           );
         })}
       </Slider>
-    </div>
+    </CarouselWrapper>
   );
 };
+
 
 function SampleNextArrow(props) {
   const {className, style, onClick} = props;

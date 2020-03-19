@@ -80,7 +80,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Line = styled.div`
+export const Line = styled.div`
   background-image: url(${headerDesign});
   background-size: contain;
   height: 11px;

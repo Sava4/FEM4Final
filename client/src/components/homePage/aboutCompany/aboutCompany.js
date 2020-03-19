@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import aboutCompany from "./aboutCompany.png"
+import {mediaMobile, mediaTablet} from "../../../styled-components/media-breakpoints-mixin";
 
 export const AboutCompany = () => {
   return (
@@ -36,12 +37,17 @@ export const AboutCompany = () => {
 };
 
 const SectionAbout = styled.div`
+  margin-bottom: 60px;
   
+  ${mediaMobile(`
+  margin-bottom: 0;
+  `)}
 `
 const SectionAboutTitle = styled.div`
   font-size: 24px;
   text-align: center;
   margin-bottom: 30px;
+ 
 `
 
 const SectionAboutWrapper = styled.div`
@@ -58,6 +64,13 @@ const SectionAboutDesc = styled.div`
   left: 0;
   background: #002D50;
   opacity: 0.9;
+  
+  ${mediaMobile(`
+  width: 100%;
+  position: relative;
+  height: 790px;
+  opacity: 1;
+  `)}
 `
 
 const Title = styled.h1`
@@ -65,11 +78,20 @@ const Title = styled.h1`
   font-size: 21px;
   line-height: 30px;
   color: white;
+  
+  ${mediaMobile(`
+  margin: 20px 20px 0 20px;
+  font-size: 18px;
+  `)}
 `
 
 const Subtitle = styled.div`
   display: flex;
   margin: 0 76px 20px 130px;
+  
+  ${mediaMobile(`
+  margin: 20px 20px 0 25px;
+  `)}
 `
 
 const SubtitleImg = styled.span`
@@ -82,6 +104,11 @@ const SubtitleImgText = styled.span`
   font-size: 14px;
   line-height: 32px;
   color: white;
+  
+  ${mediaMobile(`
+  font-size: 12px;
+  line-height: 25px;
+  `)}
 `
 
 const Text = styled.div`
@@ -89,6 +116,12 @@ const Text = styled.div`
   font-size: 14px;
   line-height: 30px;
   color: white;
+  
+  ${mediaMobile(`
+  margin: 20px 20px 20px 20px;
+  font-size: 12px;
+  line-height: 25px;
+  `)}
 `
 
 const SectionAboutImage = styled.div`
@@ -96,4 +129,13 @@ const SectionAboutImage = styled.div`
   height: 586px;
   background-image: url(${aboutCompany});
   background-size: cover;
+  
+  ${mediaMobile(`
+  width: 100%;
+  height: 350px;
+  position: absolute;
+  bottom: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  `)}
 `
