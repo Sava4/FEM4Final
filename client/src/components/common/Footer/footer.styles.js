@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import headerDesign from "../Header/header-design.png"
-import footerArrow from "./footer-arrow.png"
-import {mediaMobile, mediaTablet} from "../../../styled-components/media-breakpoints-mixin";
+import headerDesign from "../Header/header-design.png";
+import footerArrow from "./footer-arrow.png";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styled-components/media-breakpoints-mixin";
 
 //компонент родитель создал, чтобы пробросить пропсами переменную url в запрос
 export const LinkToStatic = styled.div`
@@ -27,18 +30,18 @@ export const FooterInfoName = styled.div`
   justify-content: space-between;
   justify-items: flex-start;
   font-size: 12px;
-  
+
   ${mediaTablet(`
     margin-left: 30px;
     justify-content: space-evenly;
   `)}
-    
+
   & h4 {
     margin-top: 50px;
     margin-bottom: 30px;
     font-size: 14px;
     font-weight: bold;
-    
+
     ${mediaMobile(`
     margin-top: 25px;
     margin-bottom: 0;
@@ -49,7 +52,7 @@ export const FooterInfoName = styled.div`
     text-align: left;
     margin: 0;
     padding: 0;
-    
+
     ${mediaMobile(`
     display: none;
     `)}
@@ -62,7 +65,7 @@ export const FooterInfoName = styled.div`
     color: black;
     cursor: pointer;
   }
-  
+
   ${mediaMobile(`
     margin-left: 20px;
     flex-direction: column;
@@ -75,7 +78,7 @@ export const InfoContactWrapper = styled.div`
   display: flex;
   align-items: baseline;
   `)}
-`
+`;
 
 export const InfoAboutWrapper = styled.div`
   ${mediaMobile(`
@@ -83,7 +86,7 @@ export const InfoAboutWrapper = styled.div`
   display: flex;
   align-items: baseline;
   `)}
-`
+`;
 export const InfoServiceWrapper = styled.div`
   ${mediaMobile(`
   width: 100%;
@@ -91,7 +94,7 @@ export const InfoServiceWrapper = styled.div`
   align-items: baseline;
   justify-content: space-between;
   `)}
-`
+`;
 
 export const Arrow = styled.div`
   ${mediaMobile(`
@@ -101,14 +104,14 @@ export const Arrow = styled.div`
   background-repeat: no-repeat;
   background-image: url(${footerArrow});
   `)}
-`
+`;
 
 export const ArrowWrapper = styled.div`
   ${mediaMobile(`
   display: flex;
   align-items: baseline;
   `)}
-`
+`;
 
 export const FooterInfoSocial = styled.div`
   margin-right: 130px;
@@ -129,11 +132,11 @@ export const FooterInfoSocial = styled.div`
   & li {
     margin-bottom: 16px;
   }
-  
+
   ${mediaTablet(`
   margin-right: 30px;
   `)}
-  
+
   ${mediaMobile(`
   display: none;
   `)}
@@ -156,7 +159,7 @@ export const SocialContainer = styled.div`
   display: flex;
   height: 26px;
   margin-top: 30px;
- 
+
   ${mediaMobile(`
   display: flex;
   width: 100%;
@@ -169,7 +172,7 @@ export const SocialContainerMobile = styled.div`
   height: 25px;
   margin-right: 25px;
   `)}
-`
+`;
 
 export const SocialLink = styled.a`
   width: 25px;

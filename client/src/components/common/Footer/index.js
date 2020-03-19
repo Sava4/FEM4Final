@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {NavLink} from "react-router-dom";
-import {SocialMenu} from "./Social";
-import {Email} from "./Email";
+import { NavLink } from "react-router-dom";
+import { SocialMenu } from "./Social";
+import { Email } from "./Email";
 import {
   LinkToStatic,
   FooterMain,
@@ -46,7 +46,7 @@ export const Footer = () => {
         <div key={item._id}>
           <li>
             <LinkToStatic url={`${item.url}`}>
-              <NavLink to={`${item.url}`}>{item.description}</NavLink>
+              <NavLink to={`/pages/${item.url}`}>{item.description}</NavLink>
             </LinkToStatic>
           </li>
         </div>
@@ -61,7 +61,7 @@ export const Footer = () => {
           <div>
             <InfoContactWrapper>
               <h4>Contact Us</h4>
-              <Arrow/>
+              <Arrow />
             </InfoContactWrapper>
             <ul>
               <li>+38 (044) 274-90-11</li>
@@ -74,7 +74,7 @@ export const Footer = () => {
           <div>
             <InfoAboutWrapper>
               <h4>Information</h4>
-              <Arrow/>
+              <Arrow />
             </InfoAboutWrapper>
             <ul>{itemLinkArr.slice(1, 5)}</ul>
           </div>
@@ -82,11 +82,11 @@ export const Footer = () => {
             <InfoServiceWrapper>
               <ArrowWrapper>
                 <h4>Costumer Service</h4>
-                <Arrow/>
+                <Arrow />
               </ArrowWrapper>
               <SocialContainerMobile>
                 {" "}
-                <SocialMenu/>
+                <SocialMenu />
               </SocialContainerMobile>
             </InfoServiceWrapper>
             <ul>{itemLinkArr.slice(5, 12)}</ul>
@@ -99,14 +99,10 @@ export const Footer = () => {
               <li>Stay up to date with all the new designs,</li>
               <li>collection launches, events and much more.</li>
             </ul>
-            {/* <div>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">FooterBottom</a>
-
-            </div> */}
-            <Email/>
+            <Email />
             <SocialContainer>
               {" "}
-              <SocialMenu/>
+              <SocialMenu />
             </SocialContainer>
           </div>
         </FooterInfoSocial>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -33,11 +33,10 @@ export const SliderHomepage = () => {
     arrows: matches ? false : true,
     infinite: true,
     draggable: true,
-    autoplay: false,
-    // centerMode: true,
+    autoplay: true,
     speed: 500,
-    nextArrow: <SampleNextArrow/>,
-    prevArrow: <SamplePrevArrow/>
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
   };
 
   const [text, setText] = useState([]);
@@ -53,27 +52,21 @@ export const SliderHomepage = () => {
   }, []);
 
   return (
-    <CarouselWrapper
-      className="carousel_wrapper"
-      >
+    <CarouselWrapper className="carousel_wrapper">
       <Slider {...settings}>
         {text.map(item => {
           return (
             <div key={item._id}>
               <CarouselImage {...item}>
                 <SliderPromo>
-                  <SliderPromoText>
-                    {item.description}
-                  </SliderPromoText>
+                  <SliderPromoText>{item.description}</SliderPromoText>
                   <SliderPromoButton>
                     <div>SHOP NOW</div>
                   </SliderPromoButton>
                 </SliderPromo>
               </CarouselImage>
               <SliderPromoMobile>
-                <SliderPromoText>
-                  {item.description}
-                </SliderPromoText>
+                <SliderPromoText>{item.description}</SliderPromoText>
                 <SliderPromoButton>
                   <div>SHOP NOW</div>
                 </SliderPromoButton>
@@ -86,9 +79,8 @@ export const SliderHomepage = () => {
   );
 };
 
-
 function SampleNextArrow(props) {
-  const {className, style, onClick} = props;
+  const { className, style, onClick } = props;
   return (
     <div>
       <div
@@ -99,7 +91,7 @@ function SampleNextArrow(props) {
           background: "transparent",
           right: "25.4%",
           zIndex: "1",
-          top: "96.7%",
+          top: "96.7%"
         }}
         onClick={onClick}
       />
@@ -108,7 +100,7 @@ function SampleNextArrow(props) {
 }
 
 function SamplePrevArrow(props) {
-  const {className, style, onClick} = props;
+  const { className, style, onClick } = props;
   return (
     <div
       className={className}
@@ -118,7 +110,7 @@ function SamplePrevArrow(props) {
         background: "transparent",
         left: "70%",
         zIndex: "1",
-        top: "96.7%",
+        top: "96.7%"
       }}
       onClick={onClick}
     />

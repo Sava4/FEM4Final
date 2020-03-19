@@ -25,10 +25,10 @@ const EmailInput = styled.input`
   width: 299px;
   margin-top: 2px;
   border: none;
-  border-bottom: 1px solid #262C37;
+  border-bottom: 1px solid #262c37;
   font-size: 14px;
   ::placeholder {
-    color: #80858D;
+    color: #80858d;
     letter-spacing: 1px;
   }
   :focus {

@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import {mediaMobile, mediaTablet} from "../../styled-components/media-breakpoints-mixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styled-components/media-breakpoints-mixin";
 
 export const CarouselWrapper = styled.div`
- ${mediaMobile(`
+  ${mediaMobile(`
  .slick-dots {
   position: inherit;
   padding-bottom: 10px;
@@ -20,7 +23,7 @@ export const SliderPromo = styled.div`
   margin-left: 130px;
   background: linear-gradient(0deg, #ffffff, #ffffff);
   opacity: 0.9;
-  
+
   ${mediaMobile(`
   display: none;
   `)}
@@ -33,7 +36,7 @@ export const SliderPromoMobile = styled.div`
   width: 100%;
   background: linear-gradient(0deg, #ffffff, #ffffff);
   opacity: 0.9;
-  
+
   ${mediaMobile(`
   height: 120px;
   display: flex;
@@ -51,7 +54,7 @@ export const SliderPromoText = styled.div`
   letter-spacing: 1px;
   margin-bottom: 100px;
   text-align: center;
-  
+
   ${mediaMobile(`
   width: 100%;
   margin-bottom: 0;
@@ -74,7 +77,7 @@ export const SliderPromoButton = styled.a`
   color: black;
   font-size: 14px;
   cursor: pointer;
-  
+
   ${mediaMobile(`
   top: auto;
   margin-top: 70px;
@@ -86,11 +89,11 @@ export const CarouselImage = styled.div`
   background-size: cover;
   height: 425px;
   opacity: 1;
-  
+
   ${mediaTablet(`
   background-position: center;
   `)}
-  
+
   ${mediaMobile(`
   background-position: center;
   `)}

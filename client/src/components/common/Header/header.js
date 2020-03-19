@@ -16,7 +16,7 @@ import {
   Navigation
 } from "../Header/index";
 
-export const HeaderContent = () => {
+export const HeaderContent = props => {
   const [isModalOpen, toggleModal] = useState(false);
   const [isRegisterOpen, toggleRegistration] = useState(false);
 
@@ -111,6 +111,7 @@ const Categories = styled.div`
   justify-content: space-evenly;
   border-bottom: 1px solid black;
   padding-bottom: 30px;
+  position: relative;
 
   ${mediaMobile(`
     display: none;
