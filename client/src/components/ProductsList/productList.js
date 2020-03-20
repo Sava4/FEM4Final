@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { ProductItem } from "./productItem";
 
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import {
+  Heart,
+  HeartRose,
+  WishButton,
+  WishWrapper
+} from "../ProductDetails/productDetails";
 
-export const ListProducts = () => {
+export const ListProducts = props => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -18,8 +25,8 @@ export const ListProducts = () => {
   const ListProduct = products.map(product => {
     return (
       <ProductItem
-        id={product.itemNo}
-        key={product._id}
+        itemNo={product.itemNo}
+        id={product._id}
         img={product.imageUrls[0]}
         name={product.name}
         previousPrice={product.previousPrice}
