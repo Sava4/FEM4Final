@@ -28,15 +28,26 @@ const logPersistConfig = {
   // only Token will be persisted
 };
 
+const favoritesPersistConfig = {
+  key: "favorites",
+  storage,
+  stateReconciler: autoMergeLevel2
+  // only Favorites will be persisted
+};
+
 const persistedCart = persistReducer(persistConfig, shoppingCartReducer);
 const persistedToken = persistReducer(logPersistConfig, loginReducer);
+const persistedFavorites = persistReducer(
+  favoritesPersistConfig,
+  favoritesReducer
+);
 
 // import { reducer as formReducer } from 'redux-form'
 // import appReducer from "./app-reducer";
 const rootReducer = combineReducers({
   productsPage: productsReducer,
   shoppingCart: persistedCart,
-  favorites: favoritesReducer,
+  favorites: persistedFavorites,
   categories: categoriesReduser,
   login: persistedToken,
   loginStatus: loginStatusReducer,
