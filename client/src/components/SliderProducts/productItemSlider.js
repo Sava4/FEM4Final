@@ -5,24 +5,20 @@ import {useSelector} from "react-redux";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
-        const favoritesId = useSelector(state => state.favorites.favArr);
-        console.log(props.id);
 
-        const FavoriteId = favoritesId.filter(id => {
-            console.log(id);
-            return props.id === id;
-        });
-        const FavoriteButton = () => {
-            return FavoriteId.length > 0 ? (
-                <WishWrapper item={true}>
-                    <HeartRose>&#9825;</HeartRose>
-                </WishWrapper>
-            ) : (
-                <WishWrapper item={true}>
-                    <Heart>&#9825;</Heart>
-                </WishWrapper>
-            );
-        };
+    const isFavorites = useSelector(state => state.favorites.favArr.some((id) => id === props.id));
+
+    const FavoriteButton = () => {
+        return isFavorites ? (
+            <WishWrapper item={true}>
+                <HeartRose>&#9825;</HeartRose>
+            </WishWrapper>
+        ) : (
+            <WishWrapper item={true}>
+                <Heart>&#9825;</Heart>
+            </WishWrapper>
+        );
+    };
   return (
     <Card key={props.key} itemNo={props.itemNo}>
         <FavoriteButton/>

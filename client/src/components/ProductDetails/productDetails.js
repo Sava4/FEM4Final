@@ -58,12 +58,11 @@ const Details1 = props => {
       : dispatch(addToLocalCart(props.id));
     toggleModal(!isModalOpen);
   };
-  const FavoriteId = favoritesId.filter(id => {
-    return props.id === id;
-  });
+
+  const isFavorites = useSelector(state => state.favorites.favArr.some((id) => id === props.id));
 
   const FavoriteButton = () => {
-    return FavoriteId.length > 0 ? (
+    return isFavorites ? (
       <WishWrapper>
         <WishButton>Remove from wishlist</WishButton>
         <HeartRose>&#9825;</HeartRose>
