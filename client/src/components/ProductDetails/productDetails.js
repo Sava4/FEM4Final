@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
-
 import { useParams } from "react-router";
 import {
   mediaMobile,
   mediaTablet
 } from "../../styled-components/media-breakpoints-mixin";
+
 import styled, { css } from "styled-components";
 
 export const ProductDetails = () => {
@@ -48,6 +47,7 @@ export const ProductDetails = () => {
   );
 };
 const Details1 = props => {
+  const favoritesId = useSelector(state => state.favorites.favArr);
   const [isModalOpen, toggleModal] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector(state => state.login.token);
@@ -57,6 +57,23 @@ const Details1 = props => {
       ? dispatch(addToSrvCart(props.id, token))
       : dispatch(addToLocalCart(props.id));
     toggleModal(!isModalOpen);
+  };
+  const FavoriteId = favoritesId.filter(id => {
+    return props.id === id;
+  });
+
+  const FavoriteButton = () => {
+    return FavoriteId.length > 0 ? (
+      <WishWrapper>
+        <WishButton>Remove from wishlist</WishButton>
+        <HeartRose>&#9825;</HeartRose>
+      </WishWrapper>
+    ) : (
+      <WishWrapper>
+        <WishButton>Add to wishlist</WishButton>
+        <Heart>&#9825;</Heart>
+      </WishWrapper>
+    );
   };
 
   return (
@@ -73,10 +90,7 @@ const Details1 = props => {
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
           <Price>{`${props.previousPrice}`}</Price>
-          <WishWrapper>
-            <WishButton>Add to wish list</WishButton>
-            <Heart>&#9825;</Heart>
-          </WishWrapper>
+          <FavoriteButton />
         </PriceWrapper>
         <Add onClick={add}>Add to bag</Add>
         <Details>Details</Details>
@@ -141,39 +155,35 @@ ${mediaTablet(`
   ${props =>
     props.size === "small" &&
     css`
-      width: 206px;
-      height: 258px;
-      @media (max-width: 992px) {
-        width: 206px;
-        height: 258px;
-      }
-      @media (max-width: 767px) {
-        width: 156px;
-        height: 208px;
-      }
-      @media (max-width: 439px) {
-        width: 150px;
-        height: 202px;
-      }
+      width: 154px;
+      height: 193px;
+      ${mediaTablet(`
+        width: 117px;
+        height: 156px;
+`)}
+      ${mediaMobile(`
+         width: 112px;
+         height: 151px;
+`)}
     `}
     ${props =>
-    props.size === "xSmall" &&
-    css`
-      width: 103px;
-      height: 129px;
-      @media (max-width: 992px) {
-        width: 206px;
-        height: 258px;
-      }
-      @media (max-width: 767px) {
-        width: 156px;
-        height: 208px;
-      }
-      @media (max-width: 439px) {
-        width: 150px;
-        height: 202px;
-      }
-    `}
+      props.size === "xSmall" &&
+      css`
+        width: 103px;
+        height: 129px;
+        @media (max-width: 992px) {
+          width: 206px;
+          height: 258px;
+        }
+        @media (max-width: 767px) {
+          width: 156px;
+          height: 208px;
+        }
+        @media (max-width: 439px) {
+          width: 150px;
+          height: 202px;
+        }
+      `}
 `;
 export const Name = styled.p`
   text-transform: uppercase;
@@ -250,15 +260,24 @@ export const WishWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 135px;
   height: 30px;
+  ${props =>
+    props.item === true &&
+    css`
+     z-index: 2;
+  padding-right: 3px;
+  width: 100%;
+  height: auto;
+  justify-content: flex-end;
+      }
+    `}
 `;
 export const WishButton = styled.span`
   font-size: 14px;
   padding-bottom: 4px;
+  padding-right: 3px;
 `;
 export const Heart = styled.button`
-  position: relative;
   bottom: -2px;
   background: transparent;
   border: none;
@@ -269,8 +288,16 @@ export const Heart = styled.button`
   &:focus {
     outline: none;
   }
-  &:hover {
-    font-size: 27px;
+`;
+export const HeartRose = styled.button`
+  bottom: -2px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #ff8fbc;
+  cursor: pointer;
+  &:focus {
+    outline: none;
   }
 `;
 export const Add = styled.button`
