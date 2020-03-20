@@ -13,15 +13,10 @@ import {
 import styled, { css } from "styled-components";
 
 export const ProductItem = props => {
-  const favoritesId = useSelector(state => state.favorites.favArr);
-  console.log(props.id);
+  const isFavorites = useSelector(state => state.favorites.favArr.some((id) => id === props.id));
 
-  const FavoriteId = favoritesId.filter(id => {
-    console.log(id);
-    return props.id === id;
-  });
   const FavoriteButton = () => {
-    return FavoriteId.length > 0 ? (
+    return isFavorites ? (
       <WishWrapper item={true}>
         <HeartRose>&#9825;</HeartRose>
       </WishWrapper>
