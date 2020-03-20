@@ -12,24 +12,25 @@ import RingsPict from "../../../img/homePage/categories/rings.png";
 import EarringsPict from "../../../img/homePage/categories/earring.png";
 
 export const HomepageCategories = () => {
+  let categories = ["necklaces", "bracelets", "rings", "earrings"];
   return (
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
       <Categories>
-        <Necklaces to="/categories/necklaces">
-          <p>NECKLACES</p>
+        <Necklaces to={`/categories/${categories[0]}`}>
+          <p>{categories[0]}</p>
         </Necklaces>
 
         <RightCategoriesWrapper>
-          <Bracelets to="/categories/bracelets">
-            <p>BRACELETS</p>
+          <Bracelets to={`/categories/${categories[1]}`}>
+            <p>{categories[1]}</p>
           </Bracelets>
           <RingsWrapper>
-            <Rings to="productsDetails">
-              <p>RINGS</p>
+            <Rings to={`/categories/${categories[2]}`}>
+              <p>{categories[2]}</p>
             </Rings>
-            <Earrings to="/categories/earrings">
-              <p>EARRINGS</p>
+            <Earrings to={`/categories/${categories[3]}`}>
+              <p>{categories[3]}</p>
             </Earrings>
           </RingsWrapper>
         </RightCategoriesWrapper>
@@ -75,6 +76,7 @@ const Necklaces = styled(NavLink)`
   background-image: url(${NecklacesPict});
   background-size: cover;
   background-repeat: no-repeat;
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 40%;
   height: 712px;
@@ -104,6 +106,7 @@ const Bracelets = styled(NavLink)`
   background-image: url(${BraceletsPict});
   background-repeat: no-repeat;
   background-size: cover;
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 100%;
   height: 312px;
@@ -131,6 +134,7 @@ const Rings = styled(NavLink)`
   background-image: url(${RingsPict});
   background-repeat: no-repeat;
   background-size: cover;
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 50%;
   height: 397px;
@@ -149,7 +153,7 @@ const Earrings = styled(NavLink)`
   background-image: url(${EarringsPict});
   background-repeat: no-repeat;
   background-size: cover;
-
+  text-transform: uppercase;
   ${mediaTablet(`
   width: 50%;
   height: 397px;

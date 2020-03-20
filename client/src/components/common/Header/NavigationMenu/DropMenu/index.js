@@ -27,7 +27,7 @@ export const HeaderMenuElem = props => {
   // }, [])
 
   const openDropmenu = e => {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     const newState = [];
     initialState.forEach(item => {
       const stateObj = {};
@@ -56,8 +56,7 @@ export const HeaderMenuElem = props => {
       : initialState.filter(item => item.menuName === menuName);
 
     const isShown = stateObj.length && stateObj[0].isOpen;
-
-    // console.log(isShown);
+    // console.log(item)
     return (
       <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
         {item.id}
@@ -85,6 +84,6 @@ const Categories = styled.ul`
   `)}
 `;
 
-const CategoriesLi = styled.li`
+const CategoriesLi = styled.ul`
   list-style-type: none;
 `;

@@ -9,13 +9,15 @@ import { FiltersList } from "./FilterBar/FiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 
-export const ProductFilters = () => {
-  const { category } = useParams();
+export const HeaderProductFilters = () => {
+  const { parentmMenu, chosenMenu } = useParams();
 
   return (
     <Layout>
       <CategoriesHeader>
-        <p>{category}</p>
+        <p>
+          {parentmMenu}/{chosenMenu}
+        </p>
       </CategoriesHeader>
 
       <IconBreadcrumbs></IconBreadcrumbs>
@@ -29,7 +31,9 @@ export const ProductFilters = () => {
         <SelectedProducts>
           <h3>Selected products</h3>
           <FilterIndicators />
-          <FilteredListProducts category={category}></FilteredListProducts>
+          <FilteredListProducts
+            filtPapams={(parentmMenu, chosenMenu)}
+          ></FilteredListProducts>
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>
