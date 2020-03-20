@@ -22,3 +22,16 @@ export function favoritesReducer(state = initialState, action) {
       return state;
   }
 }
+
+export const addFavorites = (id) => (
+    {
+      id: id,
+      type: ADD_FAVORITE,
+    }
+);
+export const removeFavorites = (id) => (
+    {
+      id: id,
+      type: REMOVE_FAVORITE,
+    }
+);
