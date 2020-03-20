@@ -8,34 +8,33 @@ let Paginator = ({
   pageSize,
   currentPage,
   onPageChanged,
-  portionSize = 5
+  portionSize = 5 //количество страниц в порции
 }) => {
   console.log(currentPage);
 
-  let pagesCount = Math.ceil(productsQuantity / pageSize);
+  let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего
 
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
 
-  let portionCount = Math.ceil(pagesCount / portionSize);
-  let [portionNumber, setPortionNumber] = useState(1);
+  let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
+  let [portionNumber, setPortionNumber] = useState(1); // номер порции начальный локальный стейт
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
 
   return (
     <div className={styles.paginator}>
-      {portionNumber > 1 && (
-        <button
-          onClick={() => {
-            setPortionNumber(portionNumber - 1);
-          }}
-        >
-          PREV
-        </button>
+     
+      <NavLink
+        to={`/pagin/filter?startPage=${+currentPage - 1}&perPage=${pageSize}`}
+      >
+         {portionNumber > 1 && currentPage < 6 && (      
+            setPortionNumber(portionNumber - 1)       
       )}
-
+        <span>prev</span>
+      </NavLink>
       {pages
         .filter(
           pageNumber =>
@@ -65,15 +64,14 @@ let Paginator = ({
             </NavLink>
           );
         })}
-      {portionCount > portionNumber && (
-        <button
-          onClick={() => {
-            setPortionNumber(portionNumber + 1);
-          }}
-        >
-          NEXT
-        </button>
-      )}
+      <NavLink
+        to={`/pagin/filter?startPage=${+currentPage + 1}&perPage=${pageSize}`}
+      >
+        {portionCount > portionNumber &&
+          currentPage > 5 &&
+          setPortionNumber(portionNumber + 1)}
+        <span>next</span>
+      </NavLink>
     </div>
   );
 };
