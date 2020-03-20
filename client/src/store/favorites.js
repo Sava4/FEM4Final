@@ -1,4 +1,5 @@
 export const ADD_FAVORITE = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
 const initialState = {
   favArr: [
@@ -12,6 +13,11 @@ export function favoritesReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_FAVORITE:
       return state.favArr.concat(action.payload);
+    case REMOVE_FAVORITE:
+      return [
+          ...state.favArr.slice(0, action.index),
+          ...state.favArr.slice(action.index + 1)
+      ];
     default:
       return state;
   }
