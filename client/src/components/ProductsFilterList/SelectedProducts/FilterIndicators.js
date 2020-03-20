@@ -34,8 +34,8 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
         <SelectedFiltersStyled className={itemClass}>
           <SelectedFilters selectedFilters={selectedFilters} />
         </SelectedFiltersStyled>
-      </FilterMarker>) : null
-    
+      </FilterMarker>
+    ) : null;
   });
 
   return <FilterTypeDiv>{filtredByBlocks}</FilterTypeDiv>;

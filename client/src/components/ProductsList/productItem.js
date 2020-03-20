@@ -10,7 +10,6 @@ export const ProductItem = props => {
     <Card
       interpretation={props.interpretation}
       to={`/product-details/${props.id}`}
-  
     >
       <Image alt="" src={props.img} size={"small"} />
       <Name size={"small"}>{`${props.name}`}</Name>

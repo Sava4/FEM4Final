@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
+import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
+
 import { useParams } from "react-router";
 import {
   mediaMobile,
@@ -24,15 +29,13 @@ export const ProductDetails = () => {
     fetchPosts();
   }, [id]);
 
-  console.log("image", images[0]);
-  console.log("продукт", products);
-
   return loading ? (
     <div>Loading...</div>
   ) : (
     <Details1
       name={products.name}
       itemNo={products.itemNo}
+      id={products._id}
       previousPrice={products.previousPrice}
       gemstone={products.gemstone}
       collection={products.collection}
@@ -45,8 +48,25 @@ export const ProductDetails = () => {
   );
 };
 const Details1 = props => {
+  const [isModalOpen, toggleModal] = useState(false);
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.login.token);
+
+  const add = () => {
+    token
+      ? dispatch(addToSrvCart(props.id, token))
+      : dispatch(addToLocalCart(props.id));
+    toggleModal(!isModalOpen);
+  };
+
   return (
     <Container>
+      {isModalOpen && (
+        <ShoppingBagForm
+          isModalOpen={isModalOpen}
+          onClose={() => toggleModal(false)}
+        />
+      )}
       <Image alt="" src={`/${props.img}`} />
       <Wrapper>
         <Name line={"true"}>{`${props.name}`}</Name>
@@ -58,7 +78,7 @@ const Details1 = props => {
             <Heart>&#9825;</Heart>
           </WishWrapper>
         </PriceWrapper>
-        <Add>Add to bag</Add>
+        <Add onClick={add}>Add to bag</Add>
         <Details>Details</Details>
         <UL>
           <LI>{`Gemstone: ${props.gemstone}`} </LI>
@@ -226,6 +246,7 @@ export const Heart = styled.button`
   border: none;
   font-size: 24px;
   color: #262c37;
+  cursor: pointer;
 
   &:focus {
     outline: none;
@@ -245,6 +266,7 @@ export const Add = styled.button`
   width: 100%;
   font-size: 12px;
   color: #fff;
+  cursor: pointer;
 `;
 export const Details = styled.div`
   text-transform: uppercase;

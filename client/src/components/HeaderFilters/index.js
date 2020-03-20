@@ -10,12 +10,14 @@ import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 
 export const HeaderProductFilters = () => {
-  const {parentmMenu , chosenMenu } = useParams();
+  const { parentmMenu, chosenMenu } = useParams();
 
   return (
     <Layout>
       <CategoriesHeader>
-  <p>{parentmMenu}/{chosenMenu}</p>
+        <p>
+          {parentmMenu}/{chosenMenu}
+        </p>
       </CategoriesHeader>
 
       <IconBreadcrumbs></IconBreadcrumbs>
@@ -29,7 +31,9 @@ export const HeaderProductFilters = () => {
         <SelectedProducts>
           <h3>Selected products</h3>
           <FilterIndicators />
-          <FilteredListProducts filtPapams={parentmMenu, chosenMenu}></FilteredListProducts>
+          <FilteredListProducts
+            filtPapams={(parentmMenu, chosenMenu)}
+          ></FilteredListProducts>
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>

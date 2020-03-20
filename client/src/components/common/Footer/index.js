@@ -8,10 +8,16 @@ import {
   FooterMain,
   FooterInfo,
   FooterText,
+  Arrow,
+  ArrowWrapper,
   FooterInfoName,
+  InfoContactWrapper,
+  InfoAboutWrapper,
+  InfoServiceWrapper,
   FooterInfoSocial,
   FooterBottom,
-  SocialContainer
+  SocialContainer,
+  SocialContainerMobile
 } from "./footer.styles.js";
 
 export const Footer = () => {
@@ -40,7 +46,7 @@ export const Footer = () => {
         <div key={item._id}>
           <li>
             <LinkToStatic url={`${item.url}`}>
-              <NavLink to={`${item.url}`}>{item.description}</NavLink>
+              <NavLink to={`/pages/${item.url}`}>{item.description}</NavLink>
             </LinkToStatic>
           </li>
         </div>
@@ -53,7 +59,10 @@ export const Footer = () => {
       <FooterInfo>
         <FooterInfoName>
           <div>
-            <h4>Contact Us</h4>
+            <InfoContactWrapper>
+              <h4>Contact Us</h4>
+              <Arrow />
+            </InfoContactWrapper>
             <ul>
               <li>+38 (044) 274-90-11</li>
               <li>+38 (073) 119-00-11</li>
@@ -63,11 +72,23 @@ export const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4>Information</h4>
+            <InfoAboutWrapper>
+              <h4>Information</h4>
+              <Arrow />
+            </InfoAboutWrapper>
             <ul>{itemLinkArr.slice(1, 5)}</ul>
           </div>
           <div>
-            <h4>Costumer Service</h4>
+            <InfoServiceWrapper>
+              <ArrowWrapper>
+                <h4>Costumer Service</h4>
+                <Arrow />
+              </ArrowWrapper>
+              <SocialContainerMobile>
+                {" "}
+                <SocialMenu />
+              </SocialContainerMobile>
+            </InfoServiceWrapper>
             <ul>{itemLinkArr.slice(5, 12)}</ul>
           </div>
         </FooterInfoName>
@@ -78,10 +99,6 @@ export const Footer = () => {
               <li>Stay up to date with all the new designs,</li>
               <li>collection launches, events and much more.</li>
             </ul>
-            {/* <div>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">FooterBottom</a>
-
-            </div> */}
             <Email />
             <SocialContainer>
               {" "}

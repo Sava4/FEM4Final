@@ -4,21 +4,36 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
+  CarouselWrapper,
   CarouselImage,
   SliderPromo,
+  SliderPromoMobile,
   SliderPromoText,
   SliderPromoButton
 } from "./slider.styles";
 
 export const SliderHomepage = () => {
+  const mediaMatch = window.matchMedia("(max-width: 767px)");
+  const [matches, setMatches] = useState(mediaMatch.matches);
+
+  useEffect(() => {
+    const onMediaChange = mediaMatchEvent => {
+      setMatches(mediaMatchEvent.matches);
+    };
+
+    mediaMatch.addListener(onMediaChange);
+    return () => {
+      mediaMatch.removeListener(onMediaChange);
+    };
+  });
+
   const settings = {
     accessibility: true,
     dots: true,
-    arrows: true,
+    arrows: matches ? false : true,
     infinite: true,
     draggable: true,
     autoplay: true,
-    // centerMode: true,
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
@@ -37,32 +52,30 @@ export const SliderHomepage = () => {
   }, []);
 
   return (
-    <div
-      className="carousel_wrapper"
-      style={{
-        height: `height: 425px`
-      }}
-    >
+    <CarouselWrapper className="carousel_wrapper">
       <Slider {...settings}>
         {text.map(item => {
           return (
             <div key={item._id}>
               <CarouselImage {...item}>
                 <SliderPromo>
-                  <SliderPromoText>
-                    {item.description}
-                    {/* {console.log(item.description)} */}
-                  </SliderPromoText>
+                  <SliderPromoText>{item.description}</SliderPromoText>
                   <SliderPromoButton>
-                    <div> SHOP NOW</div>
+                    <div>SHOP NOW</div>
                   </SliderPromoButton>
                 </SliderPromo>
               </CarouselImage>
+              <SliderPromoMobile>
+                <SliderPromoText>{item.description}</SliderPromoText>
+                <SliderPromoButton>
+                  <div>SHOP NOW</div>
+                </SliderPromoButton>
+              </SliderPromoMobile>
             </div>
           );
         })}
       </Slider>
-    </div>
+    </CarouselWrapper>
   );
 };
 
@@ -78,8 +91,7 @@ function SampleNextArrow(props) {
           background: "transparent",
           right: "25.4%",
           zIndex: "1",
-          top: "96.7%",
-          after: { content: "›" }
+          top: "96.7%"
         }}
         onClick={onClick}
       />

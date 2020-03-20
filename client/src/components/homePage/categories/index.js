@@ -11,8 +11,7 @@ import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
 import RingsPict from "../../../img/homePage/categories/rings.png";
 import EarringsPict from "../../../img/homePage/categories/earring.png";
 
-export const HomepageCategories = ()=> {
-
+export const HomepageCategories = () => {
   let categories = ["necklaces", "bracelets", "rings", "earrings"];
   return (
     <SectionCategories>

@@ -16,7 +16,6 @@ export const ListProducts = () => {
   }, []);
 
   const ListProduct = products.map(product => {
-    
     return (
       <ProductItem
         id={product.itemNo}

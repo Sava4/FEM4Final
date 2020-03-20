@@ -4,18 +4,20 @@ import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 
 export const StaticPage = props => {
+  // console.log(props)
   let { url } = useParams();
   const [page, setPage] = useState({});
+  console.log(url);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/pages/${url}`, {})
+      .get(`http://localhost:5000/pages/${url}`)
       .then(result => {
-        // console.log(result.data);
+        console.log(result);
         setPage(result.data);
       })
       .catch(err => {
-        /*Do something with error, e.g. show error to user*/
+        console.log(err);
       });
   }, [url]);
 

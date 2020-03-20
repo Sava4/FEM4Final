@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { FormButton } from "../FormButton/form-button";
@@ -16,10 +16,11 @@ export const LoginForm = props => {
   const [emailValidation] = useState(true);
   const [passwordValidation] = useState(true);
 
-  const storedEmail = localStorage.getItem("email");
+  const storedEmail = useSelector(state => state.login.loginOrEmail);
   const [email, setEmail] = useState(storedEmail ? storedEmail : "");
+  const localCart = useSelector(state => state.shoppingCart.locCart);
 
-  const storedPassword = localStorage.getItem("password");
+  const storedPassword = useSelector(state => state.login.password);
   const [password, setPassword] = useState(
     storedPassword ? storedPassword : ""
   );
@@ -76,7 +77,7 @@ export const LoginForm = props => {
       return;
     }
     dispatch(
-      loginAction(email, password, remember, () => {
+      loginAction(email, password, remember, localCart, () => {
         onClose();
       })
     );

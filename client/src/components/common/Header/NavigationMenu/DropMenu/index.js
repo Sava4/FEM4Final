@@ -56,7 +56,7 @@ export const HeaderMenuElem = props => {
       : initialState.filter(item => item.menuName === menuName);
 
     const isShown = stateObj.length && stateObj[0].isOpen;
-// console.log(item)
+    // console.log(item)
     return (
       <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
         {item.id}

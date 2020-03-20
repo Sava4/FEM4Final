@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { v4 } from "uuid";
-import querystring from 'querystring';
+import querystring from "querystring";
 import { ProductItem } from "../ProductsList/productItem";
 
 import styled from "styled-components";
@@ -18,28 +18,24 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   const queryString = [];
   for (let key in props.filters) {
     //   const [key] =
-   
 
     props.filters[key].length &&
-      queryString.push(`${key}=${props.filters[key].join(',')}`);
+      queryString.push(`${key}=${props.filters[key].join(",")}`);
   }
   //   console.log(queryString)
-  const query =querystring.stringify(props.filters)
+  const query = querystring.stringify(props.filters);
   // console.log(query)
- 
-
 
   useEffect(() => {
     const queryString = [];
     for (let key in props.filters) {
-      
       // const url = `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`;
       // console.log(url)
       props.filters[key].length
         ? queryString.push(`${key}=${props.filters[key].join()}`)
         : axios
             .get(
-             `http://localhost:5000/products/filter?categories=${category}&${query}`
+              `http://localhost:5000/products/filter?categories=${category}&${query}`
               // `http://localhost:5000/products/filter?categories=${category}&gemstone_color=violet`
             )
             .then(result => {
@@ -62,8 +58,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   const ListProduct =
     filterdProd &&
     filterdProd.map(product => {
-      
-    return (
+      return (
         <ProductItem
           id={product.itemNo}
           key={v4()}
