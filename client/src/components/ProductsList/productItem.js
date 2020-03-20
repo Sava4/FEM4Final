@@ -13,7 +13,9 @@ import {
 import styled, { css } from "styled-components";
 
 export const ProductItem = props => {
-  const isFavorites = useSelector(state => state.favorites.favArr.some((id) => id === props.id));
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
+  );
 
   const FavoriteButton = () => {
     return isFavorites ? (
@@ -32,7 +34,7 @@ export const ProductItem = props => {
       interpretation={props.interpretation}
       to={`/product-details/${props.itemNo}`}
       key={props.id}
-      >
+    >
       <FavoriteButton />
       <Image alt="" src={`/${props.img}`} size={"small"} />
       <Name size={"small"}>{`${props.name}`}</Name>

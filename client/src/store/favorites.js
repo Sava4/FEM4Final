@@ -15,8 +15,8 @@ export function favoritesReducer(state = initialState, action) {
       return state.favArr.concat(action.payload);
     case REMOVE_FAVORITE:
       return [
-          ...state.favArr.slice(0, action.index),
-          ...state.favArr.slice(action.index + 1)
+        ...state.favArr.slice(0, action.index),
+        ...state.favArr.slice(action.index + 1)
       ];
     default:
       return state;

@@ -59,7 +59,9 @@ const Details1 = props => {
     toggleModal(!isModalOpen);
   };
 
-  const isFavorites = useSelector(state => state.favorites.favArr.some((id) => id === props.id));
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
+  );
 
   const FavoriteButton = () => {
     return isFavorites ? (

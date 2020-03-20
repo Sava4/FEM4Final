@@ -3,7 +3,7 @@ import axios from "axios";
 import { ProductItem } from "./productItem";
 
 import styled from "styled-components";
-import {v4} from "uuid";
+import { v4 } from "uuid";
 
 export const ListProducts = props => {
   const [products, setProducts] = useState([]);
