@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { ProductFilters } from "../components/ProductsFilterList";
+// import { HeaderProductFilters } from "../components/HeaderFilters";
 import { Categories } from "../components/Categories";
 import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
@@ -19,11 +20,11 @@ export const Routes = () => {
   return isAuthenticated ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
-      <Route exact path="/categories" component={Categories} />
-      <Route path="/categories/rings/" component={ProductFilters} />
-      <Route path="/categories/earrings" component={ProductFilters} />
+      {/* <Route exact path="/:parentmMenu/:chosenMenu" component={HeaderProductFilters} /> */}
+      <Route path="/categories/:category" component={ProductFilters} />
+      {/* <Route path="/categories/earrings" component={ProductFilters} />
       <Route path="/categories/bracelets" component={ProductFilters} />
-      <Route path="/categories/necklaces" component={ProductFilters} />
+      <Route path="/categories/necklaces" component={ProductFilters} /> */}
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route exact path="/product/:itemNo" component={ProductSliderView} />

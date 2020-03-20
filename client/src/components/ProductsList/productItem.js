@@ -37,9 +37,9 @@ export const ProductItem = props => {
       interpretation={props.interpretation}
       to={`/product-details/${props.itemNo}`}
       key={props.id}
-    >
+      >
       <FavoriteButton />
-      <Image alt="" src={props.img} size={"small"} />
+      <Image alt="" src={`/${props.img}`} size={"small"} />
       <Name size={"small"}>{`${props.name}`}</Name>
       <Price size={"small"}>{props.previousPrice}</Price>
     </Card>
