@@ -26,14 +26,14 @@ let Paginator = ({
 
   return (
     <div className={styles.paginator}>
-     
+    
       <NavLink
-        to={`/pagin/filter?startPage=${+currentPage - 1}&perPage=${pageSize}`}
+        to={`/pagin/filter?startPage=${+currentPage-1}&perPage=${pageSize}`}
       >
-         {portionNumber > 1 && currentPage < 6 && (      
+         {portionNumber > 1 && currentPage < leftPortionPageNumber && (      
             setPortionNumber(portionNumber - 1)       
       )}
-        <span>prev</span>
+       {+currentPage>1 && <span>prev</span>}
       </NavLink>
       {pages
         .filter(
@@ -68,10 +68,11 @@ let Paginator = ({
         to={`/pagin/filter?startPage=${+currentPage + 1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&
-          currentPage > 5 &&
+          currentPage > rightPortionPageNumber &&
           setPortionNumber(portionNumber + 1)}
-        <span>next</span>
+           {+currentPage<+pagesCount && <span>next</span>}        
       </NavLink>
+      <span></span>
     </div>
   );
 };
