@@ -68,7 +68,8 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
     filterdProd.map(product => {
       return (
         <ProductItem
-          id={product.itemNo}
+          id={product._id}
+          itemNo={product.itemNo}
           key={v4()}
           img={product.imageUrls[0]}
           name={product.name}

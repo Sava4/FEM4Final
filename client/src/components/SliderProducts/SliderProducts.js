@@ -59,6 +59,7 @@ export const SliderProducts = props => {
               >
                 <ProductItem
                   {...item}
+                  id={item._id}
                   itemNo={`${item.itemNo}`}
                   style={{
                     display: "flex",

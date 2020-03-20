@@ -3,8 +3,9 @@ import axios from "axios";
 import { ProductItem } from "./productItem";
 
 import styled from "styled-components";
+import { v4 } from "uuid";
 
-export const ListProducts = () => {
+export const ListProducts = props => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -18,8 +19,9 @@ export const ListProducts = () => {
   const ListProduct = products.map(product => {
     return (
       <ProductItem
-        id={product.itemNo}
-        key={product._id}
+        key={v4()}
+        itemNo={product.itemNo}
+        id={product._id}
         img={product.imageUrls[0]}
         name={product.name}
         previousPrice={product.previousPrice}

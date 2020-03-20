@@ -7,6 +7,7 @@ import { ProductFilters } from "../components/ProductsFilterList";
 import { Categories } from "../components/Categories";
 import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
+import { Wishlist } from "../components/Wishlist/wishlist";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 import { ProductSliderView } from "../components/SliderProducts/productSliderView";
@@ -30,7 +31,7 @@ export const Routes = () => {
       <Route path="/pagin/:path?" component={ProductsContainer} />
       <Route exact path="/account" component={Account} />
       +
-      <Route exact path="/account/favorites" component={ProductFilters} />
+      <Route exact path="/account/favorites" component={Wishlist} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/account/checkout" component={Checkout} />
       <Route exact path="/logout" component={ProductFilters} />

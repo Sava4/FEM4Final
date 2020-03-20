@@ -1,11 +1,35 @@
 import React from "react";
-import { Image, Name, Price } from "../ProductDetails/productDetails";
+import {
+  Heart,
+  HeartRose,
+  Image,
+  Name,
+  Price,
+  WishWrapper
+} from "../ProductDetails/productDetails";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
+  );
+
+  const FavoriteButton = () => {
+    return isFavorites ? (
+      <WishWrapper item={true}>
+        <HeartRose>&#9825;</HeartRose>
+      </WishWrapper>
+    ) : (
+      <WishWrapper item={true}>
+        <Heart>&#9825;</Heart>
+      </WishWrapper>
+    );
+  };
   return (
     <Card key={props.key} itemNo={props.itemNo}>
+      <FavoriteButton />
       <Image
         alt=""
         src={`http://localhost:3000/${props.imageUrls[0]}`}
