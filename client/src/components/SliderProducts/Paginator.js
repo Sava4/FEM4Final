@@ -8,6 +8,7 @@ let Paginator = ({
   pageSize,
   currentPage,
   onPageChanged,
+  onLoadMore,
   portionSize = 5 //количество страниц в порции
 }) => {
   console.log(currentPage);
@@ -25,15 +26,14 @@ let Paginator = ({
   let rightPortionPageNumber = portionNumber * portionSize;
 
   return (
-    <div className={styles.paginator}>
-    
+    <div className={styles.paginator}>    
       <NavLink
         to={`/pagin/filter?startPage=${+currentPage-1}&perPage=${pageSize}`}
       >
          {portionNumber > 1 && currentPage < leftPortionPageNumber && (      
             setPortionNumber(portionNumber - 1)       
       )}
-       {+currentPage>1 && <span>prev</span>}
+       {+currentPage > 1 && <span>prev</span>}
       </NavLink>
       {pages
         .filter(
@@ -70,9 +70,13 @@ let Paginator = ({
         {portionCount > portionNumber &&
           currentPage > rightPortionPageNumber &&
           setPortionNumber(portionNumber + 1)}
-           {+currentPage<+pagesCount && <span>next</span>}        
+           {+currentPage < +pagesCount && <span>next</span>}        
       </NavLink>
-      <span></span>
+      <span style={{margin:"20px"}}>Всего товаров {productsQuantity}</span>
+      <span onClick={e => {
+                  onLoadMore(6); //передаем в контейнер и загружаем нужную страницу
+                }}>loadmore</span>
+
     </div>
   );
 };

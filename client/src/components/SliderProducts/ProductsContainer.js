@@ -3,7 +3,8 @@ import { useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
 import {
   setCurrentPage,
-  useRequestProducts
+  useRequestProducts,
+  useMoreProducts
 } from "../../store/productsReducer";
 import { ProductsPagination } from "./Pagination";
 // import Preloader from "../common/Preloader/Preloader";
@@ -12,7 +13,8 @@ import {
   getCurrentPage,
   getPageSize,
   getTotalProductsCount,
-  getProducts
+  getProducts,
+  moreProducts
 } from "./users-selectors";
 
 const ProductsContainer = props => {
@@ -30,11 +32,20 @@ const ProductsContainer = props => {
   useEffect(() => {
     props.getProducts(truePage, pageSize);
   }, [truePage]);
-  const onPageChanged = pageNumber => {
-    // из пагинатора
-    const { pageSize } = props;
+  // useEffect(() => {
+  //   props.moreProducts(truePage, pageSize);
+  // }, [truePage]);
+
+  const onPageChanged = pageNumber => {    // из пагинатора
+    const { pageSize } = props;  
     props.getProducts(pageNumber, pageSize);
   };
+  const onLoadMore = pageNumber => {   // из пагинатора
+    const { pageSize } = props;  
+    props.moreProducts(pageNumber, pageSize);
+  };
+
+
 
   return (
     <>
@@ -44,6 +55,7 @@ const ProductsContainer = props => {
         pageSize={props.pageSize}
         currentPage={props.currentPage}
         onPageChanged={onPageChanged}
+        onLoadMore={onLoadMore}
         products={props.products}
       />
     </>
@@ -52,7 +64,9 @@ const ProductsContainer = props => {
 
 let mapStateToProps = state => {
   return {
+    
     products: getProducts(state),
+    products: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state)
@@ -61,5 +75,5 @@ let mapStateToProps = state => {
 
 let UrlProductsContainer = withRouter(ProductsContainer);
 export default compose(
-  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts }) //mapDispatchToProps
+  connect(mapStateToProps, { setCurrentPage, getProducts: useRequestProducts, moreProducts: useMoreProducts }) //mapDispatchToProps
 )(UrlProductsContainer);

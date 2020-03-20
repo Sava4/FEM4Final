@@ -1,6 +1,7 @@
 import { productsAPI } from "../components/SliderProducts/api";
 
 const SET_PRODUCTS = "SET_PRODUCTS";
+const SET_MORE_PRODUCTS = "SET_MORE_PRODUCTS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
 
@@ -16,6 +17,9 @@ export const productsReducer = (state = initialState, action) => {
     case SET_PRODUCTS: {
       return { ...state, products: action.products };
     }
+    case SET_MORE_PRODUCTS: {
+      return { ...state, products: [...state.products, ...action.products] };
+    }
     case SET_CURRENT_PAGE: {
       return { ...state, currentPage: action.currentPage };
     }
@@ -27,7 +31,11 @@ export const productsReducer = (state = initialState, action) => {
       return state;
   }
 };
-
+//AC
+export const setMoreProducts = products => ({
+  type: SET_MORE_PRODUCTS,
+  products
+});
 export const setProducts = products => ({ type: SET_PRODUCTS, products });
 export const setCurrentPage = currentPage => ({
   type: SET_CURRENT_PAGE,
@@ -48,5 +56,13 @@ export const useRequestProducts = (page, pageSize) => {
     // dispatch(toggleIsFetching(false));
     dispatch(setProducts(data.products));
     dispatch(setTotalProductsCount(data.productsQuantity));
+  };
+};
+
+export const useMoreProducts = (page, pageSize) => {
+  return async dispatch => {
+    dispatch(setCurrentPage(page));
+    let moreData = await productsAPI.getProducts(page, pageSize);
+    dispatch(setMoreProducts(moreData.products));
   };
 };
