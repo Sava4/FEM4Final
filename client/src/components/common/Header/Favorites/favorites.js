@@ -6,9 +6,7 @@ import favorites from "./favorites.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 
 export const Favorites = () => {
-  const count = useSelector(state => {
-    return state.favorites.length;
-  });
+  const count = useSelector(state => state.favorites.favArr.length) || 0;
 
   return (
     <ServicesIcon>
