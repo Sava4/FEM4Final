@@ -2,37 +2,28 @@
 // import { useSelector } from "react-redux";
 // import styled, { css } from "styled-components";
 //
-// export const FavoritesButton = (...props) => {
+// export const FavoritesButton = (props) => {
 //     const favoritesId = useSelector(state => state.favorites.favArr);
-//     console.log(favoritesId);
 //     console.log(props.id);
-//     const FavoriteId = favoritesId.map(id => {
-//         return (
-//             id === props.id
-//                 ?
-//                 <Fragment>
-//                 <WishWrapper>
-//                     <WishButton>Add to wish list</WishButton>
-//                     <HeartRose>&#9825;</HeartRose>
-//                 </WishWrapper>
-//                 </Fragment>
-//                 :
-//                 <Fragment>
-//                 <WishWrapper>
-//                     <WishButton>Add to wish list</WishButton>
-//                     <Heart>&#9825;</Heart>
-//                 </WishWrapper>
-//                 </Fragment>
-//                     )
-//     });
 //
-//     return (
-//         <Fragment>
-//             <WishWrapper>
-//                 <WishButton>Add to wish list</WishButton>
+//     const FavoriteId = favoritesId.filter(id => {
+//         console.log(id);
+//         return props.id === id;
+//     });
+//     const FavoriteButton = () => {
+//         return FavoriteId.length > 0 ? (
+//             <WishWrapper item={true}>
 //                 <HeartRose>&#9825;</HeartRose>
 //             </WishWrapper>
-//         </Fragment>
+//         ) : (
+//             <WishWrapper item={true}>
+//                 <Heart>&#9825;</Heart>
+//             </WishWrapper>
+//         );
+//     };
+//
+//     return (
+//         <FavoriteButton/>
 //     );
 // };
 //
