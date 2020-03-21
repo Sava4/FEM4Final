@@ -14,21 +14,17 @@ export function favoritesReducer(state = initialState, action) {
     case ADD_FAVORITE:
       return { favArr: state.favArr.concat(action.id) };
     case REMOVE_FAVORITE:
-      return { favArr: state.favArr.filter(id => id !== action.id) };
+      return { favArr: state.favArr.filter(el => el !== action.id) };
     default:
       return state;
   }
 }
 
-export const addFavorites = (id) => (
-    {
-      id: id,
-      type: ADD_FAVORITE,
-    }
-);
-export const removeFavorites = (id) => (
-    {
-      id: id,
-      type: REMOVE_FAVORITE,
-    }
-);
+export const addFavorites = id => ({
+  id: id,
+  type: ADD_FAVORITE
+});
+export const removeFavorites = id => ({
+  id: id,
+  type: REMOVE_FAVORITE
+});

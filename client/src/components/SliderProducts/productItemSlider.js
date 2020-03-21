@@ -9,7 +9,7 @@ import {
 } from "../ProductDetails/productDetails";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import {addFavorites, removeFavorites} from "../../store/favorites";
+import { addFavorites, removeFavorites } from "../../store/favorites";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
@@ -18,11 +18,11 @@ export const ProductItem = props => {
     state.favorites.favArr.some(id => id === props.id)
   );
   const clickFavorites = (e, props) => {
-        e.preventDefault();
-        isFavorites
-            ? dispatch(removeFavorites(props.id))
-            : dispatch(addFavorites(props.id));
-    };
+    e.preventDefault();
+    isFavorites
+      ? dispatch(removeFavorites(props.id))
+      : dispatch(addFavorites(props.id));
+  };
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper item={true}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {addFavorites, removeFavorites} from "../../store/favorites";
+import { addFavorites, removeFavorites } from "../../store/favorites";
 import {
   Heart,
   HeartRose,
@@ -16,27 +16,25 @@ import {
 } from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
-
 export const ProductItem = props => {
   const dispatch = useDispatch();
   const isFavorites = useSelector(state =>
     state.favorites.favArr.some(id => id === props.id)
   );
-  const clickFavorites = (e, props) => {
-    e.preventDefault();
-    isFavorites
-        ? dispatch(removeFavorites(props.id))
-        : dispatch(addFavorites(props.id));
+  const removeFav = props => {
+    dispatch(removeFavorites(props.id));
   };
-
+  const addFav = props => {
+    dispatch(addFavorites(props.id));
+  };
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper item={true}>
-        <HeartRose onclick={clickFavorites}>&#9825;</HeartRose>
+        <HeartRose onClick={removeFav}>&#9825;</HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper item={true}>
-        <Heart onclick={clickFavorites}>&#9825;</Heart>
+        <Heart onClick={addFav}>&#9825;</Heart>
       </WishWrapper>
     );
   };
@@ -45,14 +43,16 @@ export const ProductItem = props => {
     <Wrapper>
       <FavoriteButton />
       <Card
-  interpretation={props.interpretation}
-  to={`/product-details/${props.itemNo}`}
-  key={props.id}
+        interpretation={props.interpretation}
+        to={`/product-details/${props.itemNo}`}
+        key={props.id}
       >
-      <Image alt="" src={`/${props.img}`} size={"small"} />
-      <Name size={"small"}>{`${props.name}`}</Name>
-      <Price size={"small"}>{props.previousPrice}</Price>
-    </Card>
+        <Image alt="" src={`/${props.img}`} size={"small"} />
+        <Name size={"small"}>{`${props.name}`}</Name>
+        <Price size={"small"}>
+          {props.previousPrice.toLocaleString("de-CH")}
+        </Price>
+      </Card>
     </Wrapper>
   );
 };
@@ -67,7 +67,6 @@ export const Card = styled(NavLink)`
   text-decoration: none;
   box-sizing: border-box;
   color: #000;
- 
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -84,7 +83,7 @@ const Wrapper = styled.div`
   &: hover {
     border: 1px solid #002d50;
   }
-   ${mediaTablet(`
+  ${mediaTablet(`
 
   align-items: space-between;
   width: 43%;

@@ -12,12 +12,11 @@ import {
 
 import styled, { css } from "styled-components";
 
-
 export const ProductDetails = () => {
   const { id } = useParams();
   const [products, setProducts] = useState({});
   const [images, setImages] = useState([]);
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -55,8 +54,8 @@ const Details1 = props => {
 
   const add = () => {
     token
-        ? dispatch(addToSrvCart(props.id, token))
-        : dispatch(addToLocalCart(props.id));
+      ? dispatch(addToSrvCart(props.id, token))
+      : dispatch(addToLocalCart(props.id));
     toggleModal(!isModalOpen);
   };
 
@@ -64,23 +63,22 @@ const Details1 = props => {
     state.favorites.favArr.some(id => id === props.id)
   );
 
-  const clickFavorites = (e, props) => {
-    e.preventDefault();
+  const clickFavorites = props => {
     isFavorites
-        ? dispatch(removeFavorites(props.id))
-        : dispatch(addFavorites(props.id));
+      ? dispatch(removeFavorites(props.id))
+      : dispatch(addFavorites(props.id));
   };
 
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper>
         <WishButton>Remove from wishlist</WishButton>
-        <HeartRose onclick={clickFavorites}>&#9825;</HeartRose>
+        <HeartRose onClick={clickFavorites}>&#9825;</HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper>
         <WishButton>Add to wishlist</WishButton>
-        <Heart onclick={clickFavorites}>&#9825;</Heart>
+        <Heart onClick={clickFavorites}>&#9825;</Heart>
       </WishWrapper>
     );
   };
@@ -99,7 +97,7 @@ const Details1 = props => {
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
           <Price>{props.previousPrice}</Price>
-          <FavoriteButton/>
+          <FavoriteButton />
         </PriceWrapper>
         <Add onClick={add}>Add to bag</Add>
         <Details>Details</Details>
@@ -133,7 +131,6 @@ export const Container = styled.div`
     props.flex === "column" &&
     css`
       flex-direction: column;
-   
     `}
 `;
 export const Wrapper = styled.div`
@@ -267,12 +264,11 @@ export const WishWrapper = styled.div`
   ${props =>
     props.item === true &&
     css`
-     z-index: 2;
-  padding-right: 3px;
-  width: 100%;
-  height: auto;
-  justify-content: flex-end;
-      }
+      z-index: 2;
+      padding-right: 3px;
+      width: 100%;
+      height: auto;
+      justify-content: flex-end;
     `}
 `;
 export const WishButton = styled.span`
@@ -314,6 +310,11 @@ export const Add = styled.button`
   font-size: 12px;
   color: #fff;
   cursor: pointer;
+  ${props =>
+    props.size === "small" &&
+    css`
+      width: 50px;
+    `}
 `;
 export const Details = styled.div`
   text-transform: uppercase;
