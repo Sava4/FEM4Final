@@ -32,7 +32,7 @@ const ProductsContainer = props => {
   (!truePage)&&(truePage2=+currentPage)||(truePage>0)&&(truePage2=+truePage) //чтобы c первой загрузки /pagin активна 1я страница     
  
   useEffect(() => {
-    props.getProducts(truePage2, pageSize);
+    props.getProducts(truePage2, pageSize);        
   }, [truePage2]);
  
 
@@ -40,9 +40,12 @@ const ProductsContainer = props => {
     const { pageSize } = props;  
     props.getProducts(pageNumber, pageSize);
   };
-  const onLoadMore = pageNumber => {   // из пагинатора
+  let truePage3= +currentPage+1
+  console.log(truePage3)
+  
+  const onLoadMore = truePage3 => {   // можно pageNumber из пагинатора
     const { pageSize } = props;  
-    props.moreProducts(pageNumber, pageSize);
+    props.moreProducts(truePage3, pageSize);    
   };
 
 
