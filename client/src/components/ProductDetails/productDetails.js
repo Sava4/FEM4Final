@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
+import { addFavorites, removeFavorites } from "../../store/favorites";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
 import { useParams } from "react-router";
 import {
@@ -10,6 +11,7 @@ import {
 } from "../../styled-components/media-breakpoints-mixin";
 
 import styled, { css } from "styled-components";
+
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -47,15 +49,14 @@ export const ProductDetails = () => {
   );
 };
 const Details1 = props => {
-  const favoritesId = useSelector(state => state.favorites.favArr);
   const [isModalOpen, toggleModal] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector(state => state.login.token);
 
   const add = () => {
     token
-      ? dispatch(addToSrvCart(props.id, token))
-      : dispatch(addToLocalCart(props.id));
+        ? dispatch(addToSrvCart(props.id, token))
+        : dispatch(addToLocalCart(props.id));
     toggleModal(!isModalOpen);
   };
 
@@ -63,16 +64,23 @@ const Details1 = props => {
     state.favorites.favArr.some(id => id === props.id)
   );
 
+  const clickFavorites = (e, props) => {
+    e.preventDefault();
+    isFavorites
+        ? dispatch(removeFavorites(props.id))
+        : dispatch(addFavorites(props.id));
+  };
+
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper>
         <WishButton>Remove from wishlist</WishButton>
-        <HeartRose>&#9825;</HeartRose>
+        <HeartRose onclick={clickFavorites}>&#9825;</HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper>
         <WishButton>Add to wishlist</WishButton>
-        <Heart>&#9825;</Heart>
+        <Heart onclick={clickFavorites}>&#9825;</Heart>
       </WishWrapper>
     );
   };
@@ -91,7 +99,7 @@ const Details1 = props => {
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
           <Price>{`${props.previousPrice}`}</Price>
-          <FavoriteButton />
+          <FavoriteButton/>
         </PriceWrapper>
         <Add onClick={add}>Add to bag</Add>
         <Details>Details</Details>
@@ -285,7 +293,6 @@ export const Heart = styled.button`
   font-size: 24px;
   color: #262c37;
   cursor: pointer;
-
   &:focus {
     outline: none;
   }

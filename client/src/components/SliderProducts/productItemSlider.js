@@ -8,22 +8,29 @@ import {
   WishWrapper
 } from "../ProductDetails/productDetails";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {addFavorites, removeFavorites} from "../../store/favorites";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
+  const dispatch = useDispatch();
   const isFavorites = useSelector(state =>
     state.favorites.favArr.some(id => id === props.id)
   );
-
+  const clickFavorites = (e, props) => {
+        e.preventDefault();
+        isFavorites
+            ? dispatch(removeFavorites(props.id))
+            : dispatch(addFavorites(props.id));
+    };
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper item={true}>
-        <HeartRose>&#9825;</HeartRose>
+        <HeartRose onclick={clickFavorites}>&#9825;</HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper item={true}>
-        <Heart>&#9825;</Heart>
+        <Heart onclick={clickFavorites}>&#9825;</Heart>
       </WishWrapper>
     );
   };

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {addFavorites, removeFavorites} from "../../store/favorites";
 import {
   Heart,
   HeartRose,
@@ -9,43 +10,67 @@ import {
   Price,
   WishWrapper
 } from "../ProductDetails/productDetails";
-
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styled-components/media-breakpoints-mixin";
 import styled, { css } from "styled-components";
 
+
 export const ProductItem = props => {
+  const dispatch = useDispatch();
   const isFavorites = useSelector(state =>
     state.favorites.favArr.some(id => id === props.id)
   );
+  const clickFavorites = (e, props) => {
+    e.preventDefault();
+    isFavorites
+        ? dispatch(removeFavorites(props.id))
+        : dispatch(addFavorites(props.id));
+  };
 
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper item={true}>
-        <HeartRose>&#9825;</HeartRose>
+        <HeartRose onclick={clickFavorites}>&#9825;</HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper item={true}>
-        <Heart>&#9825;</Heart>
+        <Heart onclick={clickFavorites}>&#9825;</Heart>
       </WishWrapper>
     );
   };
 
   return (
-    <Card
-      interpretation={props.interpretation}
-      to={`/product-details/${props.itemNo}`}
-      key={props.id}
-    >
+    <Wrapper>
       <FavoriteButton />
+      <Card
+  interpretation={props.interpretation}
+  to={`/product-details/${props.itemNo}`}
+  key={props.id}
+      >
       <Image alt="" src={`/${props.img}`} size={"small"} />
       <Name size={"small"}>{`${props.name}`}</Name>
       <Price size={"small"}>{props.previousPrice}</Price>
     </Card>
+    </Wrapper>
   );
 };
 
 export const Card = styled(NavLink)`
   display: flex;
   padding-bottom: 3px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 350px;
+  text-decoration: none;
+  box-sizing: border-box;
+  color: #000;
+ 
+`;
+const Wrapper = styled.div`
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -59,17 +84,12 @@ export const Card = styled(NavLink)`
   &: hover {
     border: 1px solid #002d50;
   }
-  @media (max-width: 1050px) {
-  }
-  @media (max-width: 992px) {
-    width: 43%;
-    align-items: space-between;
-  }
-  @media (max-width: 767px) {
-    align-items: space-between;
-    width: 43%;
-  }
-  @media (max-width: 439px) {
-    width: 43%;
-  }
+   ${mediaTablet(`
+
+  align-items: space-between;
+  width: 43%;
+`)}
+  ${mediaMobile(`
+  width: 43%;
+  `)}
 `;
