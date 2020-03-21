@@ -17,6 +17,7 @@ export const ProductDetails = () => {
   const { id } = useParams();
   const [products, setProducts] = useState({});
   const [images, setImages] = useState([]);
+  const [price, setPrice] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -25,19 +26,18 @@ export const ProductDetails = () => {
       const res = await axios.get(`http://localhost:5000/products/${id}`);
       setImages(res.data.imageUrls);
       setProducts(res.data);
+      setPrice(res.data.previousPrice.toLocaleString("de-CH"));
       setLoading(false);
     };
     fetchPosts();
   }, [id]);
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <Details1
       name={products.name}
       itemNo={products.itemNo}
       id={products._id}
-      previousPrice={products.previousPrice}
+      previousPrice={price}
       gemstone={products.gemstone}
       collection={products.collection}
       metal={products.metal}
@@ -98,7 +98,7 @@ const Details1 = props => {
         <Name line={"true"}>{`${props.name}`}</Name>
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
-          <Price>{`${props.previousPrice}`}</Price>
+          <Price>{props.previousPrice}</Price>
           <FavoriteButton/>
         </PriceWrapper>
         <Add onClick={add}>Add to bag</Add>
@@ -123,23 +123,17 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px 15px;
-  ${mediaTablet(`
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`)}
   ${mediaMobile(`
     width: 95%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `)}
-  
   ${props =>
     props.flex === "column" &&
     css`
       flex-direction: column;
+   
     `}
 `;
 export const Wrapper = styled.div`
