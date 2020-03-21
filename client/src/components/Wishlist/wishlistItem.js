@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink}  from "react-router-dom";
 import close from "../ShoppingBag/modal-close-btn.png";
 import {
   ArticleNo,
@@ -10,24 +11,31 @@ import {
   ProductDescription,
   RemoveBtn
 } from "../ShoppingBag/CartItem";
+import styled from 'styled-components'
 
-export const WishlistItem = ({ props, handleDel }) => {
+export const WishlistItem = props => {
   return (
     <ItemContainer>
       <div className="product">
+        <WrapperLink to={`/product-details/${props.itemNo}`}>
         <ImgWrap>
-          <ProdImg src="" />
+          <ProdImg alt="" src={`/${props.img}`}/>
         </ImgWrap>
+        </WrapperLink>
         <ProductDescription>
-          <Description>ИМЯ ТОВАРА</Description>
-          <ArticleNo>Article no.: </ArticleNo>
+          <Description>{`${props.name}`}</Description>
+          <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
           <RemoveBtn>
             <CloseImg src={close} />
             Remove
           </RemoveBtn>
         </ProductDescription>
       </div>
-      <div>2333333 UAH</div>
+      <div>{props.previousPrice} UAH</div>
     </ItemContainer>
   );
 };
+
+const WrapperLink = styled(NavLink)`
+
+`;
