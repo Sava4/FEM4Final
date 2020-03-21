@@ -21,20 +21,17 @@ export const ProductItem = props => {
   const isFavorites = useSelector(state =>
     state.favorites.favArr.some(id => id === props.id)
   );
-  const removeFav = props => {
-    dispatch(removeFavorites(props.id));
-  };
-  const addFav = props => {
-    dispatch(addFavorites(props.id));
-  };
+
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper item={true}>
-        <HeartRose onClick={removeFav}>&#9825;</HeartRose>
+        <HeartRose onClick={() => dispatch(removeFavorites(props.id))}>
+          &#9825;
+        </HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper item={true}>
-        <Heart onClick={addFav}>&#9825;</Heart>
+        <Heart onClick={() => dispatch(addFavorites(props.id))}>&#9825;</Heart>
       </WishWrapper>
     );
   };

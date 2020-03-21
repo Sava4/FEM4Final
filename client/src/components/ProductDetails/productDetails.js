@@ -63,22 +63,18 @@ const Details1 = props => {
     state.favorites.favArr.some(id => id === props.id)
   );
 
-  const clickFavorites = props => {
-    isFavorites
-      ? dispatch(removeFavorites(props.id))
-      : dispatch(addFavorites(props.id));
-  };
-
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper>
         <WishButton>Remove from wishlist</WishButton>
-        <HeartRose onClick={clickFavorites}>&#9825;</HeartRose>
+        <HeartRose onClick={() => dispatch(removeFavorites(props.id))}>
+          &#9825;
+        </HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper>
         <WishButton>Add to wishlist</WishButton>
-        <Heart onClick={clickFavorites}>&#9825;</Heart>
+        <Heart onClick={() => dispatch(addFavorites(props.id))}>&#9825;</Heart>
       </WishWrapper>
     );
   };

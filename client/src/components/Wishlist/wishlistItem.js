@@ -16,6 +16,7 @@ import bug from "../common/Header/ShoppingBag/shopping-bag.png";
 
 import styled from "styled-components";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
+import { removeFavorites } from "../../store/favorites";
 
 export const WishlistItem = props => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export const WishlistItem = props => {
           <ProductDescription>
             <Description>{`${props.name}`}</Description>
             <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
-            <RemoveBtn>
+            <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
               <CloseImg src={close} />
               Remove
             </RemoveBtn>
