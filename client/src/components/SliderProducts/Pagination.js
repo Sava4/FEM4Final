@@ -8,6 +8,7 @@ export const ProductsPagination = ({
   productsQuantity,
   pageSize,
   onPageChanged,
+  onLoadMore,
   products,
   ...props
 }) => {
@@ -16,6 +17,7 @@ export const ProductsPagination = ({
       <Paginator
         currentPage={currentPage}
         onPageChanged={onPageChanged}
+        onLoadMore={onLoadMore}
         productsQuantity={productsQuantity}
         pageSize={pageSize}
       />
@@ -25,7 +27,7 @@ export const ProductsPagination = ({
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          width: "1200px",
+          width: "1000px",
           margin: "0 auto"
         }}
       >

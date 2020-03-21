@@ -74,7 +74,7 @@ let Paginator = ({
       </NavLink>
       <span style={{margin:"20px"}}>Всего товаров {productsQuantity}</span>
       <span onClick={e => {
-                  onLoadMore(6); //передаем в контейнер и загружаем нужную страницу
+                  onLoadMore(+currentPage + 1); //передаем в контейнер и загружаем нужную страницу
                 }}>loadmore</span>
 
     </div>

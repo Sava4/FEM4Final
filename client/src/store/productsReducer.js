@@ -49,9 +49,9 @@ export const setTotalProductsCount = productsQuantity => ({
 //вызов хука внутри хука не работает??
 export const useRequestProducts = (page, pageSize) => {
   return async dispatch => {
-    console.log(page, pageSize);
+    // console.log(page, pageSize);
     dispatch(setCurrentPage(page));
-    console.log(page);
+    // console.log(page);
     let data = await productsAPI.getProducts(page, pageSize);
     // dispatch(toggleIsFetching(false));
     dispatch(setProducts(data.products));

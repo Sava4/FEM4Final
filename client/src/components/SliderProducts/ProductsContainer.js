@@ -18,7 +18,7 @@ import {
 } from "./users-selectors";
 
 const ProductsContainer = props => {
-  console.log(props);
+  // console.log(props);
   const { currentPage, pageSize } = props;
 
   let location = useLocation();
@@ -27,14 +27,14 @@ const ProductsContainer = props => {
   const queryString = require("query-string");
   const parsed = queryString.parse(location.search);
   const truePage = parsed.startPage;
-  console.log(truePage);
 
+  let truePage2
+  (!truePage)&&(truePage2=+currentPage)||(truePage>0)&&(truePage2=+truePage) //чтобы c первой загрузки /pagin активна 1я страница     
+ 
   useEffect(() => {
-    props.getProducts(truePage, pageSize);
-  }, [truePage]);
-  // useEffect(() => {
-  //   props.moreProducts(truePage, pageSize);
-  // }, [truePage]);
+    props.getProducts(truePage2, pageSize);
+  }, [truePage2]);
+ 
 
   const onPageChanged = pageNumber => {    // из пагинатора
     const { pageSize } = props;  
