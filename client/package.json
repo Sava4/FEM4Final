@@ -28,6 +28,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "slick-carousel": "^1.8.1",
+    "state": "^0.2.0",
     "style-it": "^2.1.4",
     "styled-components": "^5.0.1"
   },

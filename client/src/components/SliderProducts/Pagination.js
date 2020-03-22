@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {Paginator} from "./Paginator";
+import {LoadMore} from "./LoadMore";
 import { ProductItem } from "./productItemSlider";
 
 export const ProductsPagination = ({
@@ -29,7 +30,7 @@ export const ProductsPagination = ({
           flexWrap: "wrap",
           justifyContent: "center",
           width: "1000px",
-          margin: "0 auto"
+          margin: "0 auto",            
         }}
       >
         {products.map((p,index) => (
@@ -52,13 +53,13 @@ export const ProductsPagination = ({
           </div>
         ))}
       </div>
-      <OnLoadMore
+      <LoadMore
       currentPage={currentPage}
       onPageChanged={onPageChanged}
       onLoadMore={onLoadMore}
       productsQuantity={productsQuantity}
       pageSize={pageSize}
-      products={products}
+      products={products}     
       />
       {/* <div style={{textAlign:"center", padding:"10px", border:"1px solid grey", width: "100px", margin:"0 auto", marginTop:"20px"}}
           onClick={e => {
@@ -77,33 +78,3 @@ export const ProductsPagination = ({
 };
 
 
-const OnLoadMore =({
-  currentPage,
-  productsQuantity,
-  pageSize,
-  onPageChanged,
-  onLoadMore,
-  products,
-  ...props
-})=> {
-  // useEffect(() => {
-  //   const el = document.getElementById(`${products.length}`);              
-  //   (+currentPage<4)&&(el.scrollIntoView({behavior:"smooth"}))       
-  // }, [products.length]);
-  return(
-    <div style={{textAlign:"center", padding:"10px", border:"1px solid grey", width: "100px", margin:"0 auto", marginTop:"20px"}}
-    onClick={ e => {
-   setTimeout(async function()) (+currentPage<4)&&(async onLoadMore(+currentPage + 1) 
-  },500) 
-   //передаем в контейнер и загружаем нужную страницу
-    setTimeout(await function(){
-        const el =  document.getElementById(`${products.length}`);              
-        (+currentPage<4)&&(el.scrollIntoView({behavior:"smooth"}))
-    
-   //отдельный компонент и в нем useEffect вместо setTimeout
-    }}
-  >          
-    loadmore
-  </div>
-  
-}

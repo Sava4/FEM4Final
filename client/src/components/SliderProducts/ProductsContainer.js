@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
+import {ScrollToTopControlller} from "./LoadMore"
 import {
   setCurrentPage,
   useRequestProducts,
@@ -27,6 +28,10 @@ const ProductsContainer = props => {
   const queryString = require("query-string");
   const parsed = queryString.parse(location.search);
   const truePage = parsed.startPage;
+
+ 
+
+
 
   let truePage2
   (!truePage)&&(truePage2=+currentPage)||(truePage>0)&&(truePage2=+truePage) //чтобы c первой загрузки /pagin активна 1я страница     
@@ -60,14 +65,15 @@ const ProductsContainer = props => {
         onPageChanged={onPageChanged}
         onLoadMore={onLoadMore}
         products={props.products}
+        parsed={parsed}
       />
+      <ScrollToTopControlller parsed={parsed}/>
     </>
   );
 };
 
 let mapStateToProps = state => {
-  return {
-    
+  return {    
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
