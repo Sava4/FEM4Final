@@ -37,13 +37,9 @@ export const ProductItem = props => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper interpretation={props.interpretation}>
       <FavoriteButton />
-      <Card
-        interpretation={props.interpretation}
-        to={`/product-details/${props.itemNo}`}
-        key={props.id}
-      >
+      <Card to={`/product-details/${props.itemNo}`} key={props.id}>
         <Image alt="" src={`/${props.img}`} size={"small"} />
         <Name size={"small"}>{`${props.name}`}</Name>
         <Price size={"small"}>
@@ -88,4 +84,25 @@ const Wrapper = styled.div`
   ${mediaMobile(`
   width: 43%;
   `)}
+   ${props =>
+     props.interpretation === "carousel" &&
+     css`
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: space-between;
+       border: 1px solid rgb(233, 235, 245);
+       margin: 5px;
+       width: 280px;
+       height: 392px;
+       ${mediaTablet(`
+  width: 250px;
+`)}
+       ${mediaMobile(`
+  width: 250px;
+  `)}
+   @media (max-width: 500px) {
+         width: 250px;
+       }
+     `}
 `;

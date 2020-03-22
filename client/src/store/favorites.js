@@ -2,9 +2,7 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
 const initialState = {
-  favArr: [
-
-  ]
+  favArr: []
 };
 
 export function favoritesReducer(state = initialState, action) {
