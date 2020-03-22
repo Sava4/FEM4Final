@@ -1,9 +1,13 @@
 .paginator {
   margin: 20px;
   height: 30px;
+  position: fixed;
+
 }
 .page_Number {
   padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border: 1px solid lightgrey;
 }
 
@@ -11,3 +15,14 @@
   font-weight: bold;
   border-color: black;
 }
+
+
+.prev{
+  /* visibility: hidden; */
+  color: lightgrey;;
+  /* display: none; */
+}
+.active{
+  visibility: visible;
+  color: black;
+  }

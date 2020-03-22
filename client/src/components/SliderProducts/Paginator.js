@@ -3,7 +3,7 @@ import styles from "./Paginator.module.css";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
 
-let Paginator = ({
+export const  Paginator = ({
   productsQuantity,
   pageSize,
   currentPage,
@@ -24,16 +24,27 @@ let Paginator = ({
   let [portionNumber, setPortionNumber] = useState(1); // номер порции начальный локальный стейт
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
-
+ 
+ const handleClickNext = (e) => {
+    currentPage==pagesCount && e.preventDefault()     
+}
+ const handleClickPrev = (e) => {
+   currentPage == 1 && e.preventDefault() 
+ }
   return (
     <div className={styles.paginator}>
-      <NavLink
+      <NavLink onClick={handleClickPrev}
         to={`/pagin/filter?startPage=${+currentPage - 1}&perPage=${pageSize}`}
       >
         {portionNumber > 1 &&
           currentPage < leftPortionPageNumber &&
           setPortionNumber(portionNumber - 1)}
-        {+currentPage > 1 && <span>prev</span>}
+        {/* {+currentPage > 1 && <span className={styles.prev}>prev</span>} */}
+        <span className={cn({
+          [styles.active]: currentPage >1
+        },          
+          styles.prev
+          )}>prev</span>
       </NavLink>
       {pages
         .filter(
@@ -64,15 +75,19 @@ let Paginator = ({
             </NavLink>
           );
         })}
-      <NavLink
-        to={`/pagin/filter?startPage=${+currentPage + 1}&perPage=${pageSize}`}
+        
+      <NavLink onClick={handleClickNext} 
+        to={`/pagin/filter?startPage=${+currentPage+1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&
           currentPage > rightPortionPageNumber &&
           setPortionNumber(portionNumber + 1)}
-        {+currentPage < +pagesCount && 
-        <span>next
-          </span>}
+        {/* {+currentPage < +pagesCount && <span>next</span>} */}
+          <span className={cn({
+          [styles.active]: +currentPage < +pagesCount
+        },          
+          styles.prev
+          )}>next</span>
       </NavLink>
       <span style={{ margin: "20px" }}>Всего товаров {productsQuantity}
       </span>
@@ -89,4 +104,4 @@ let Paginator = ({
   );
 };
 
-export default Paginator;
+// export default Paginator;

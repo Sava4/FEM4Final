@@ -7,7 +7,7 @@ const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
 
 let initialState = {
   products: [],
-  pageSize: 3,
+  pageSize: 6,
   productsQuantity: 0,
   currentPage: 1
 };
