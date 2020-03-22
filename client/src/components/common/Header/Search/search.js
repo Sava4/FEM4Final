@@ -4,7 +4,7 @@ import axios from "axios";
 
 import search from "./search.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Search = props => {
   const [search, setSearch] = useState("");
@@ -43,7 +43,7 @@ export const Search = props => {
         <PreviewWrapper>
           {searchResults.map((product, index) => {
             return (
-              <TextHolder to={`/product-details/${props.itemNo}`} key={index}>
+              <TextHolder to={`/product-details/${product.itemNo}`} key={index}>
                 <Image icon={product.imageUrls[0]} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
