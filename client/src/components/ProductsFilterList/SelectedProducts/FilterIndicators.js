@@ -42,8 +42,9 @@ const FilterTypeDiv = styled.div`
   flex-wrap: wrap;
   height: content;
   & p {
+    font-size: 14px;
     margin: 0;
-    color: lightgrey;
+    color: #A1A5AD;
     text-transform: capitalize;
   }
 `;

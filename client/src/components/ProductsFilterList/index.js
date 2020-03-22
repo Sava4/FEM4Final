@@ -15,21 +15,21 @@ export const ProductFilters = () => {
   return (
     <Layout>
       <CategoriesHeader>
-        <p>{category}</p>
+          <p>{category}</p>
       </CategoriesHeader>
 
-      <IconBreadcrumbs></IconBreadcrumbs>
+      <IconBreadcrumbs categoryName={{category}}/>
 
       <CategotiesCommon>
         <CategoriesFilters>
-          <h3>FILTER BY</h3>
-          <FiltersList />
+            <p>FILTER BY </p>
+            <FiltersList />
         </CategoriesFilters>
 
         <SelectedProducts>
-          <h3>Selected products</h3>
-          <FilterIndicators />
-          <FilteredListProducts category={category}></FilteredListProducts>
+            <p>Selected products</p>
+            <FilterIndicators />
+            <FilteredListProducts category={category}/>
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>
@@ -56,16 +56,26 @@ const CategotiesCommon = styled.div`
   flex-wrap: nowrap;
 `;
 const CategoriesFilters = styled.div`
+ margin-top: 29px;
   margin-left: 130px;
   min-width: 280px;
-
   width: 30%;
-  & p {
+  & >p {
     font-size: 17px;
+    margin-bottom:54px;
   }
 `;
 const SelectedProducts = styled.div`
+  & >p{
+    font-size: 17px;
+    margin-top: 28px;
+    text-transform: uppercase;
+    margin-bottom: 23px;
+  }
   display: flex;
   flex-direction: column;
   margin-left: 20px;
 `;
+
+
+

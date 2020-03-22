@@ -36,7 +36,7 @@ export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
       return (
         <ExectFilter data={index} key={v4()}>
           <p>{item}</p>
-          <span onClick={HandleClick}>Х</span>
+          <span onClick={HandleClick}>&#10005;</span>
         </ExectFilter>
       );
     });
@@ -54,6 +54,9 @@ const ExectFilter = styled.div`
     margin: 0;
     margin-right: 10px !important;
     color: black !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+
   }
   & span {
     cursor: pointer;
