@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
+import { addFavorites, removeFavorites } from "../../store/favorites";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
 import { useParams } from "react-router";
 import {
@@ -15,6 +16,7 @@ export const ProductDetails = () => {
   const { id } = useParams();
   const [products, setProducts] = useState({});
   const [images, setImages] = useState([]);
+  const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -23,19 +25,18 @@ export const ProductDetails = () => {
       const res = await axios.get(`http://localhost:5000/products/${id}`);
       setImages(res.data.imageUrls);
       setProducts(res.data);
+      setPrice(res.data.previousPrice.toLocaleString("de-CH"));
       setLoading(false);
     };
     fetchPosts();
   }, [id]);
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <Details1
       name={products.name}
       itemNo={products.itemNo}
       id={products._id}
-      previousPrice={products.previousPrice}
+      previousPrice={price}
       gemstone={products.gemstone}
       collection={products.collection}
       metal={products.metal}
@@ -47,7 +48,6 @@ export const ProductDetails = () => {
   );
 };
 const Details1 = props => {
-  const favoritesId = useSelector(state => state.favorites.favArr);
   const [isModalOpen, toggleModal] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector(state => state.login.token);
@@ -67,12 +67,14 @@ const Details1 = props => {
     return isFavorites ? (
       <WishWrapper>
         <WishButton>Remove from wishlist</WishButton>
-        <HeartRose>&#9825;</HeartRose>
+        <HeartRose onClick={() => dispatch(removeFavorites(props.id))}>
+          &#9825;
+        </HeartRose>
       </WishWrapper>
     ) : (
       <WishWrapper>
         <WishButton>Add to wishlist</WishButton>
-        <Heart>&#9825;</Heart>
+        <Heart onClick={() => dispatch(addFavorites(props.id))}>&#9825;</Heart>
       </WishWrapper>
     );
   };
@@ -90,7 +92,7 @@ const Details1 = props => {
         <Name line={"true"}>{`${props.name}`}</Name>
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
-          <Price>{`${props.previousPrice}`}</Price>
+          <Price>{props.previousPrice}</Price>
           <FavoriteButton />
         </PriceWrapper>
         <Add onClick={add}>Add to bag</Add>
@@ -115,19 +117,12 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px 15px;
-  ${mediaTablet(`
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`)}
   ${mediaMobile(`
     width: 95%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `)}
-  
   ${props =>
     props.flex === "column" &&
     css`
@@ -265,12 +260,11 @@ export const WishWrapper = styled.div`
   ${props =>
     props.item === true &&
     css`
-     z-index: 2;
-  padding-right: 3px;
-  width: 100%;
-  height: auto;
-  justify-content: flex-end;
-      }
+      z-index: 2;
+      padding-right: 3px;
+      width: 100%;
+      height: auto;
+      justify-content: flex-end;
     `}
 `;
 export const WishButton = styled.span`
@@ -285,7 +279,6 @@ export const Heart = styled.button`
   font-size: 24px;
   color: #262c37;
   cursor: pointer;
-
   &:focus {
     outline: none;
   }
@@ -313,6 +306,11 @@ export const Add = styled.button`
   font-size: 12px;
   color: #fff;
   cursor: pointer;
+  ${props =>
+    props.size === "small" &&
+    css`
+      width: 50px;
+    `}
 `;
 export const Details = styled.div`
   text-transform: uppercase;

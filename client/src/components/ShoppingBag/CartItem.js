@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import close from "./modal-close-btn.png";
+import { NavLink } from "react-router-dom";
 
 export const CartItem = ({ props, handleDel, handleQty }) => {
   return (
     <ItemContainer>
       <div className="product">
-        <ImgWrap>
-          <ProdImg src={`../${props.img}`} />
-        </ImgWrap>
+        <WrapperLink to={`/product-details/${props.itemNo}`}>
+          <ImgWrap>
+            <ProdImg src={`../${props.img}`} />
+          </ImgWrap>
+        </WrapperLink>
         <ProductDescription>
           <Description>{props.description}</Description>
           <ArticleNo>Article no.: {props.itemNo}</ArticleNo>
@@ -73,12 +76,19 @@ export const ProdImg = styled.img`
   width: 100%;
   object-fit: contain;
 `;
-
+const WrapperLink = styled(NavLink)`
+  flex: 1;
+  height: 188px;
+  margin-right: 20px;
+`;
 export const ImgWrap = styled.div`
   flex: 1;
   height: 188px;
   margin-right: 20px;
   border: 1px solid #e9ebf5;
+  &: hover {
+    border: 1px solid #002d50;
+  }
 `;
 
 export const ProductDescription = styled.div`
