@@ -65,7 +65,7 @@ export const SliderProducts = props => {
                     display: "flex",
                     justifyContent: "center"
                   }}
-                ></ProductItem>
+                />
               </NavLink>
             </CarouselImage>
           );
@@ -102,7 +102,7 @@ function SampleNextArrow(props) {
           bottom: "12px",
           transform: "rotate(-45deg)"
         }}
-      ></div>
+      />
     </div>
   );
 }
@@ -134,7 +134,7 @@ function SamplePrevArrow(props) {
           left: "8px",
           transform: "rotate(135deg)"
         }}
-      ></div>
+      />
     </div>
   );
 }
