@@ -5,14 +5,15 @@ import { v4 } from "uuid";
 
 import styled from "styled-components";
 
-import { dispatchSetCheckFilter } from "../../../store/filters";
+import { dispatchSetCheckFilter, setDeleteFilter } from "../../../store/filters";
+
 
 const mapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
 export const PopupCheckboxes = connect(mapStateToProps, {
-  dispatchSetCheckFilter
+  dispatchSetCheckFilter, setDeleteFilter
 })(props => {
   const { filtername } = props;
 
@@ -36,8 +37,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     axios
       .get("http://localhost:5000/products")
       .then(result => {
-        //   console.log("Secsess ");
-        setProducts(result.data);
+          setProducts(result.data);
       })
       // .then(products => {
       //   setProducts (collectionList(products))
@@ -50,11 +50,38 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const checkedFilters = e => {
     e.preventDefault();
+    if (e.target.checked)
+     {
+     const remoteFilterCategory = e.target.className;
+     const remoteFilterName = e.target.value;
+       let delEll = {};
+      delEll[remoteFilterCategory] = remoteFilterName;
+    props.setDeleteFilter(delEll);
+    e.target.checked = false;
+    }
+    else {
+       const activeFilters = {};
+      activeFilters[e.target.className] = e.target.value;
+      props.dispatchSetCheckFilter(activeFilters);
+    }                            
 
-    let activeFilters = {};
-    activeFilters[e.target.className] = e.target.value;
-    props.dispatchSetCheckFilter(activeFilters);
   };
+
+  const setCheckBox = (e) =>{
+        e.preventDefault();
+//       const remoteFilterCategory = e.target.className;
+//       const remoteFilterName = e.target.value;
+
+// // console.log(remoteFilterCategory)
+
+
+//          let delEll = {};
+//          delEll[remoteFilterCategory] = remoteFilterName;
+// console.log(delEll)
+//       props.setDeleteFilter(delEll);
+//       e.target.checked = false;
+
+  }
 
   const collectionList = products && filter(products, filtername);
 
@@ -62,6 +89,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     return (
       <CheckboxDiv key={v4()}>
         <input
+          onChange={setCheckBox}
           type="checkbox"
           name={item}
           value={item}

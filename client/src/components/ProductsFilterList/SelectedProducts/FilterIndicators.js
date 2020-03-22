@@ -1,10 +1,7 @@
 import React from "react";
 import { v4 } from "uuid";
-
 import { connect } from "react-redux";
-
 import styled from "styled-components";
-// Store functions
 
 import { SelectedFilters } from "./SelectedFilters";
 
@@ -12,7 +9,7 @@ const mapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
-export const FilterIndicators = connect(mapStateToProps)(props => {
+export const FilterIndicators = connect(mapStateToProps )(props => {
   const filters = props.filters;
 
   let filtrefBy = [];
@@ -26,8 +23,6 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     let itemClass = item.replace(" ", "");
 
     let selectedFilters = filters[item];
-    console.log(selectedFilters);
-    //  console.log(headChosenFilt)
     return selectedFilters.length ? (
       <FilterMarker key={v4()}>
         <p>{item}</p>
