@@ -165,7 +165,7 @@ export const ShoppingBag = () => {
         ) : loading ? (
           <div>...Loading</div>
         ) : (
-          <EmptyCart />
+          <EmptyCart text={"Your Shopping Bag is currently empty."} />
         )}
       </Container>
     </Layout>

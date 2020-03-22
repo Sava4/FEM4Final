@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 import diamond from "./diamond.png";
 import { FormButton } from "../Forms/FormButton/form-button";
 
-export const EmptyCart = () => {
+export const EmptyCart = props => {
   const history = useHistory();
 
   return (
     <>
       <DiamondImg src={diamond} />
-      <Text>Your Shopping Bag is currently empty.</Text>
+      <Text>{props.text}</Text>
       <FormButtonWrap onClick={() => history.push("/products")}>
         <FormButton value={"Go Back To Shopping"} />
       </FormButtonWrap>
