@@ -131,4 +131,5 @@ const Image = styled.div`
 const ImageDescription = styled.span`
   font-size: 14px;
   margin-left: 10px;
+  text-transform: capitalize;
 `;
