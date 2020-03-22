@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-export const CarouselImage = styled.div`
-  opacity: 1;
-`;
 export const H4 = styled.h4`
   display: block;
   text-align: center;
@@ -10,5 +7,6 @@ export const H4 = styled.h4`
   font-weight: normal;
   font-size: 14px;
   margin-top: 20px;
+  margin-bottom: 20px;
   margin-right: 30px;
 `;

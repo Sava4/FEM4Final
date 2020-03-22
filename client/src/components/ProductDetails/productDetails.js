@@ -158,8 +158,8 @@ ${mediaTablet(`
         height: 156px;
 `)}
       ${mediaMobile(`
-         width: 112px;
-         height: 151px;
+         width: 117px;
+        height: 156px;
 `)}
     `}
     ${props =>
