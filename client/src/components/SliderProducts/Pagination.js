@@ -10,6 +10,7 @@ export const ProductsPagination = ({
   pageSize,
   onPageChanged,
   onLoadMore,
+  onToTop,
   products,
   ...props
 }) => {
@@ -57,6 +58,7 @@ export const ProductsPagination = ({
       currentPage={currentPage}
       onPageChanged={onPageChanged}
       onLoadMore={onLoadMore}
+      onToTop={onToTop}
       productsQuantity={productsQuantity}
       pageSize={pageSize}
       products={products}     

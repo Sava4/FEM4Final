@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
-import {ScrollToTopControlller} from "./LoadMore"
 import {
   setCurrentPage,
   useRequestProducts,
@@ -29,9 +28,6 @@ const ProductsContainer = props => {
   const parsed = queryString.parse(location.search);
   const truePage = parsed.startPage;
 
- 
-
-
 
   let truePage2
   (!truePage)&&(truePage2=+currentPage)||(truePage>0)&&(truePage2=+truePage) //чтобы c первой загрузки /pagin активна 1я страница     
@@ -53,7 +49,19 @@ const ProductsContainer = props => {
     props.moreProducts(truePage3, pageSize);    
   };
 
+const onToTop = parsed =>{
+  try {  
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  } catch (error) {
+    //  for older browsers
+    window.scrollTo(0, 0);
+  }
 
+}
 
   return (
     <>
@@ -64,10 +72,11 @@ const ProductsContainer = props => {
         currentPage={props.currentPage}
         onPageChanged={onPageChanged}
         onLoadMore={onLoadMore}
+        onToTop={onToTop}
         products={props.products}
         parsed={parsed}
-      />
-      <ScrollToTopControlller parsed={parsed}/>
+      />   
+      {/* <div onClick={e => {onToTop()}}> TOP</div>   */}
     </>
   );
 };
