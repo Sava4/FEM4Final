@@ -62,9 +62,12 @@ const CheckboxBlock = styled.div`
 `;
 
 const FilterBox = styled.div`
+  // & >div:not(:last-child) {
   border-bottom: 1px solid lightgrey;
+  // }
 `;
 const FilterType = styled.div`
+  padding-top: 22px;
   display: flex;
   justify-content: space-between;
   & p {
