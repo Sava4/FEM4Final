@@ -55,19 +55,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     e.preventDefault();
     console.log(e.target.classList.value);
     console.log(e.target.id);
-    //   const activeFilters = {};
-    //     activeFilters[e.target.id] = e.target.value;
-    //     props.dispatchSetCheckFilter(activeFilters);
-    //    if (!e.target.checked) {
-    //  const remoteFilterCategory = e.target.id;
-    //    const remoteFilterName = e.target.value;
-    //     const delEll = {};
-    //     delEll[remoteFilterCategory] = remoteFilterName;
-    //   props.setDeleteFilter(delEll);
-    //   e.target.checked = false;
-    //    }
-
-    const activeFilters = {};
+       const activeFilters = {};
     activeFilters[e.target.className] = e.target.value;
     props.dispatchSetCheckFilter(activeFilters);
     if (!e.target.checked) {
