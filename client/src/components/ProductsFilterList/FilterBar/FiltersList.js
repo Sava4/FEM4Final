@@ -41,7 +41,7 @@ export const FiltersList = connect(mapStateToProps, {
         <FilterType id={item}>
           <p>{item} </p>
           {!isShown && (
-            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+            <ExpandMoreIcon fontSize="пше " onClick={handleChange} />
           )}
           {isShown && (
             <ExpandLessIcon fontSize="small" onClick={handleChange} />
