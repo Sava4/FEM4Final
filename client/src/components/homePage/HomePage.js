@@ -17,7 +17,7 @@ export const Homepage = () => {
       <ProductsList />
       <HomepageCategories />
       <SelectedCollections />
-      <AboutCompany />
-    </Layout>
+      <AboutCompany />    
+    </Layout>    
   );
 };

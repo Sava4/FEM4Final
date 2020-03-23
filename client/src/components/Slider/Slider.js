@@ -47,7 +47,7 @@ export const SliderHomepage = () => {
         setText(result.data);
       })
       .catch(err => {
-        /*Do something with error, e.g. show error to user*/
+       console.log(err)
       });
   }, []);
 

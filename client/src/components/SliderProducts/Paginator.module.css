@@ -1,8 +1,8 @@
 .paginator {
   margin: 50px;
   height: 30px;
+  display: inline-block;
   /* position: fixed; */
-
 }
 .page_Number {
   padding: 5px;
@@ -17,58 +17,58 @@
   border-color: black;
 }
 
-
-.unactive{
+.unactive {
   /* visibility: hidden; */
   color: lightgrey;
   border: none;
   /* display: none; */
 }
-.page_Number.active{
+.page_Number.active {
   visibility: visible;
   color: black;
   border-bottom: 1px solid lightgrey;
-  
-  }
-  .load_more.active{
-    border: 1px solid black;
-    color: black;
-    
-  }
-  .active{
-    color: black;
-  }
-.load_more{
+}
+.load_more.active {
+  border: 1px solid black;
+  color: black;
+}
+.active {
+  color: black;
+}
+.load_more {
+  display: inline-block;
   font-size: 14px;
   text-align: center;
   padding: 15px;
   border: 1px solid lightgrey;
   width: 280px;
-  /* height: 46px; */
-  margin:0 auto;
-  margin-top: 20px;
+  margin-top: 45px;
+  margin-left: 39.5%;
 }
- .arrow{
-  border: solid ;
+.arrow {
+  border: solid;
   border-width: 0 1px 1px 0;
   display: inline-block;
   padding: 5px;
   position: relative;
   bottom: 0px;
- 
- }
-.prev{  
-    right: 10px;
-    transform: rotate(135deg);    
- }
- .next{
+}
+.prev {
+  right: 10px;
+  transform: rotate(135deg);
+}
+.next {
   left: 10px;
   transform: rotate(-45deg);
- }
- .top{
-   padding:10px;
-   margin: 0 auto;
-   cursor:pointer;
-   left:200px;
+}
+
+.top {
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  margin-left: 4%;
+  position: relative;
+  top: 12px;
+  padding: 10px; 
+  cursor: pointer;  
   transform: rotate(-135deg);
- }
+}

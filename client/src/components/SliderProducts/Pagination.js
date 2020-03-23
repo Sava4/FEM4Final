@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {Paginator} from "./Paginator";
-import {LoadMore} from "./LoadMore";
+import { Paginator } from "./Paginator";
+import { LoadMore } from "./LoadMore";
 import { ProductItem } from "./productItemSlider";
+import { Layout } from "../common/Layout";
 
 export const ProductsPagination = ({
   currentPage,
@@ -14,69 +15,73 @@ export const ProductsPagination = ({
   products,
   ...props
 }) => {
-
   return (
     <div>
-      <Paginator
-        currentPage={currentPage}
-        onPageChanged={onPageChanged}
-        onLoadMore={onLoadMore}
-        productsQuantity={productsQuantity}
-        pageSize={pageSize}
-      />
-
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          width: "1000px",
-          margin: "0 auto",            
-        }}
-      >
-        {products.map((p,index) => (
-          <div id={index} key={p.itemNo}>
-    {console.log(index) }      
-            <NavLink
-              to={`/product/${p.itemNo}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ProductItem
-                product={p}
-                {...p}
-                itemNo={`${p.itemNo}`}
-                style={{
-                  display: "flex",
-                  justifyContent: "center"
-                }}
-              />
-            </NavLink>
-          </div>
-        ))}
-      </div>
-      <LoadMore
-      currentPage={currentPage}
-      onPageChanged={onPageChanged}
-      onLoadMore={onLoadMore}
-      onToTop={onToTop}
-      productsQuantity={productsQuantity}
-      pageSize={pageSize}
-      products={products}     
-      />
-      {/* <div style={{textAlign:"center", padding:"10px", border:"1px solid grey", width: "100px", margin:"0 auto", marginTop:"20px"}}
-          onClick={e => {
-            (+currentPage<4)&&(onLoadMore(+currentPage + 1)) ; //передаем в контейнер и загружаем нужную страницу
-            setTimeout(function(){
-              const el = document.getElementById(`${products.length}`);              
-              (+currentPage<4)&&(el.scrollIntoView({behavior:"smooth"}))
-            },500)  
-         //отдельный компонент и в нем useEffect вместо setTimeout
+      <Layout>
+        <div
+          style={{
+            position: "relative",
+            left: "66%"
           }}
-        >          
-          loadmore
-        </div> */}
+        >
+          <Paginator
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            onLoadMore={onLoadMore}
+            productsQuantity={productsQuantity}
+            pageSize={pageSize}
+            onToTop={onToTop}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            width: "70%",
+            margin: "0 auto"
+          }}
+        >
+          {products.map((p, index) => (
+            <div id={index} key={p.itemNo}>
+              {console.log(index)}
+              <NavLink
+                to={`/product/${p.itemNo}`}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <ProductItem
+                  product={p}
+                  {...p}
+                  itemNo={`${p.itemNo}`}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center"
+                  }}
+                />
+              </NavLink>
+            </div>
+          ))}
+        </div>
+        <div style={{ width: "100%", display: "block" }}>
+          <LoadMore
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            onLoadMore={onLoadMore}
+            onToTop={onToTop}
+            productsQuantity={productsQuantity}
+            pageSize={pageSize}
+            products={products}
+          />
+          <Paginator
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            onLoadMore={onLoadMore}
+            productsQuantity={productsQuantity}
+            pageSize={pageSize}
+            onToTop={onToTop}
+          />
+        </div>
+      </Layout>
     </div>
   );
 };
-
-

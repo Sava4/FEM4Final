@@ -8,6 +8,7 @@ import {
 } from "../../store/productsReducer";
 import { ProductsPagination } from "./Pagination";
 // import Preloader from "../common/Preloader/Preloader";
+import {ScrollToTopController} from "./LoadMore"
 import { compose } from "redux";
 import {
   getCurrentPage,
@@ -56,8 +57,7 @@ const onToTop = parsed =>{
       left: 0,
       behavior: 'smooth',
     });
-  } catch (error) {
-    //  for older browsers
+  } catch (error) {  
     window.scrollTo(0, 0);
   }
 
@@ -75,8 +75,8 @@ const onToTop = parsed =>{
         onToTop={onToTop}
         products={props.products}
         parsed={parsed}
-      />   
-      {/* <div onClick={e => {onToTop()}}> TOP</div>   */}
+      />        
+      {/* <ScrollToTopController parsed={parsed}/> */}
     </>
   );
 };

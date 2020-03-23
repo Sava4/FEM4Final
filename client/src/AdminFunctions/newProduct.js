@@ -119,8 +119,7 @@ export function deleteAllProducts() {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
-    .then(response => {
-      /*Do something with newProduct*/
+    .then(response => {   
       let token = response.data.token;
       console.log(token);
       axios.get("http://localhost:5000/products/").then(products => {
@@ -132,16 +131,15 @@ export function deleteAllProducts() {
               .delete(`http://localhost:5000/products/${i}`, {
                 headers: { Authorization: `${token}` }
               })
-              .then(res => {
-                /*Do something with newProduct*/
+              .then(res => {              
                 console.log(res);
               })
               .catch(err => {
-                /*Do something with error, e.g. show error to user*/
+                console.log(err);
               });
           })
           .catch(err => {
-            /*Do something with error, e.g. show error to user*/
+            console.log(err);
           });
       });
     });

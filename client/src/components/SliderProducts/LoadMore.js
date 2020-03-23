@@ -1,7 +1,6 @@
 import styles from "./Paginator.module.css";
 import cn from "classnames";
 import React, { useEffect } from "react";
-import { useRouter } from "state";
 
 export const LoadMore = ({
   currentPage,
@@ -18,7 +17,7 @@ export const LoadMore = ({
   //  const el = await document.getElementById(`${products.length}`)
   //  (+currentPage<4)&&(el.scrollIntoView({behavior:"smooth"}))
   // }
-
+// console.log(parsed)//undefined
   return (
     <>
       <div
@@ -33,15 +32,18 @@ export const LoadMore = ({
           // q()
           +currentPage < productsQuantity / pageSize &&
             onLoadMore(+currentPage + 1); //передаем в контейнер и загружаем нужную страницу
-          setTimeout(function() {
-            const el = document.getElementById(`${products.length}`);
-            +currentPage < productsQuantity / pageSize &&
-              el.scrollIntoView({ behavior: "smooth" });
-          }, 3000);
+           
+          // setTimeout(function() {
+          //   const el = document.getElementById(`${products.length}`);
+          //   +currentPage < productsQuantity / pageSize &&
+          //     el.scrollIntoView({ behavior: "smooth" });
+          // }, 3000);
         }}
       >
         loadmore
       </div>
+
+   
       <div
         className={cn(
           {
@@ -53,7 +55,10 @@ export const LoadMore = ({
         onClick={e => {
           onToTop();
         }}
-      ></div>
+      >
+       </div>
+       
+       
     </>
   );
 };
@@ -65,13 +70,12 @@ export const ScrollToTopController = props => {
     () => () => {
       try {
         window.scroll({
-          top: 0,
+          top: 0,//рядов*высоту одного 2*258
           left: 0,
           behavior: "smooth"
         });
       } catch (error) {
-        //for older browsers
-        window.scrollTo(0, 0);
+         window.scrollTo(200, 0);
       }
     },
     [parsed]

@@ -10,8 +10,8 @@ export const  Paginator = ({
   pageSize,
   currentPage,
   onPageChanged,
-  onLoadMore,
-  portionSize = 5 //количество страниц в порции
+  onToTop,
+  portionSize = 3//количество страниц в порции
 }) => {
 
   let pagesCount = Math.ceil(productsQuantity / pageSize) //количество страниц всего
@@ -40,7 +40,7 @@ export const  Paginator = ({
   return (
     <div className={styles.paginator}>
       
-      <NavLink onClick={handleClickPrev}
+      <NavLink onClick={e =>{handleClickPrev(); onToTop()}}
         to={`/pagin/filter?startPage=${+currentPage - 1}&perPage=${pageSize}`}
       >
         {portionNumber > 1 &&
@@ -65,6 +65,7 @@ export const  Paginator = ({
             <NavLink
               to={`/pagin/filter?startPage=${pageNumber}&perPage=${pageSize}`}
               key={pageNumber}
+              onClick={e =>{onToTop()}}
             >
               <span
                 className={cn(
@@ -83,7 +84,7 @@ export const  Paginator = ({
           );
         })}
         
-      <NavLink onClick={handleClickNext} 
+      <NavLink onClick={e =>{handleClickNext(); onToTop()}}
         to={`/pagin/filter?startPage=${+currentPage+1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&
@@ -97,7 +98,7 @@ export const  Paginator = ({
           styles.next
           )}></span>
       </NavLink>
-      <span style={{ margin: "50px" }}>Всего товаров {productsQuantity}
+      <span style={{ margin: "40px" }}>товаров {productsQuantity} страниц {pagesCount}      
       </span>    
     </div>
   );
