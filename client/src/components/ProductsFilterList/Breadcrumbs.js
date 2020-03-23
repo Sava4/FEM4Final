@@ -4,10 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 
-// import HomeIcon from '@material-ui/icons/Home';
-// import WhatshotIcon from '@material-ui/icons/Whatshot';
-// import GrainIcon from '@material-ui/icons/Grain';
-
 const useStyles = makeStyles(theme => ({
   main: {
     borderBottom: "1px solid  #002D50",
@@ -29,10 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// function handleClick(event) {
-//   event.preventDefault();
-//   console.info('You clicked a breadcrumb.');
-// }
+
 
 const IconBreadcrumbs = props => {
   const classes = useStyles();
@@ -48,18 +41,6 @@ const IconBreadcrumbs = props => {
       <NavLink to="/categories" className={classes.link}>
         Categories
       </NavLink>
-      {/* <Link color="inherit" href="/" onClick={handleClick} className={classes.link}> */}
-      {/* <HomeIcon className={classes.icon} /> */}
-      {/* </Link> */}
-      {/* <Link
-        color="inherit"
-        href="/"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        {/* <WhatshotIcon className={classes.icon} /> */}
-      {/* Core
-      </Link> */} */}
       <Typography
         color="textPrimary"
         className={classes.link}

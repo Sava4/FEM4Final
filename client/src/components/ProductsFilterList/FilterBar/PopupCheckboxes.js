@@ -55,7 +55,11 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     e.preventDefault();
     console.log(e.target.classList.value);
     console.log(e.target.id);
+<<<<<<< Updated upstream
        const activeFilters = {};
+=======
+     const activeFilters = {};
+>>>>>>> Stashed changes
     activeFilters[e.target.className] = e.target.value;
     props.dispatchSetCheckFilter(activeFilters);
     if (!e.target.checked) {
