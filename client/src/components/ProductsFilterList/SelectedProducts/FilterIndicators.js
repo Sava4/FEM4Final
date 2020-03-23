@@ -9,7 +9,7 @@ const mapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
-export const FilterIndicators = connect(mapStateToProps )(props => {
+export const FilterIndicators = connect(mapStateToProps)(props => {
   const filters = props.filters;
 
   let filtrefBy = [];
@@ -44,7 +44,7 @@ const FilterTypeDiv = styled.div`
   & p {
     font-size: 14px;
     margin: 0;
-    color: #A1A5AD;
+    color: #a1a5ad;
     text-transform: capitalize;
   }
 `;

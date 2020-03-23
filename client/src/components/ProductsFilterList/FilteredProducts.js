@@ -14,38 +14,29 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
   const { category } = props;
 
- 
   const queryString = [];
   for (let key in props.filters) {
-    
     props.filters[key].length &&
       queryString.push(`${key}=${props.filters[key].join(",")}`);
   }
-   
 
-  const query = querystring.stringify(props.filters, {arrayFormat: 'comma'});
-
+  const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
 
   useEffect(() => {
     const queryString = [];
     for (let key in props.filters) {
- 
       const url = `http://localhost:5000/products/filter?categories=${category}&${query}`;
-     
+
       props.filters[key].length
         ? queryString.push(`${key}=${props.filters[key].join()}`)
-        : axios
-            .get( url )
-            .then(result => {
-                 setProducts(result.data);
-            });
+        : axios.get(url).then(result => {
+            setProducts(result.data);
+          });
       //   .catch(err => {
       //     /*Do something with error, e.g. show error to user*/
       //   });
     }
-
- 
-  }, [category, props.filters]);
+  }, [query]);
 
   const filterdProd = products.products;
 

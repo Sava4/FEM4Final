@@ -41,7 +41,7 @@ export const FiltersList = connect(mapStateToProps, {
         <FilterType id={item}>
           <p>{item} </p>
           {!isShown && (
-            <ExpandMoreIcon fontSize="пше " onClick={handleChange} />
+            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
           )}
           {isShown && (
             <ExpandLessIcon fontSize="small" onClick={handleChange} />
@@ -63,7 +63,7 @@ const CheckboxBlock = styled.div`
 
 const FilterBox = styled.div`
   // & >div:not(:last-child) {
-    border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
   // }
 `;
 const FilterType = styled.div`

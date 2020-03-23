@@ -54,9 +54,8 @@ const ExectFilter = styled.div`
     margin: 0;
     margin-right: 10px !important;
     color: black !important;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
-
   }
   & span {
     cursor: pointer;

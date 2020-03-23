@@ -9,11 +9,11 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 // import GrainIcon from '@material-ui/icons/Grain';
 
 const useStyles = makeStyles(theme => ({
-  main:{
+  main: {
     borderBottom: "1px solid  #002D50",
-    height:"63px",
+    height: "63px",
     paddingLeft: "130px",
-    display: "flex",    
+    display: "flex"
   },
   link: {
     display: "flex",
@@ -34,13 +34,12 @@ const useStyles = makeStyles(theme => ({
 //   console.info('You clicked a breadcrumb.');
 // }
 
-const IconBreadcrumbs =(props)=> {
+const IconBreadcrumbs = props => {
   const classes = useStyles();
- const {categoryName}=props;
- const {category}=categoryName;
- console.log(category)
+  const { categoryName } = props;
+  const { category } = categoryName;
+  console.log(category);
 
- 
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.main}>
       <NavLink to="/" className={classes.link}>
@@ -61,13 +60,16 @@ const IconBreadcrumbs =(props)=> {
         {/* <WhatshotIcon className={classes.icon} /> */}
       {/* Core
       </Link> */} */}
-      <Typography color="textPrimary" className={classes.link} style={{textTransform: "capitalize"}}>
+      <Typography
+        color="textPrimary"
+        className={classes.link}
+        style={{ textTransform: "capitalize" }}
+      >
         {/* <GrainIcon className={classes.icon} /> */}
-          {category}
+        {category}
       </Typography>
     </Breadcrumbs>
   );
-}
+};
 
-
-export default  IconBreadcrumbs
+export default IconBreadcrumbs;

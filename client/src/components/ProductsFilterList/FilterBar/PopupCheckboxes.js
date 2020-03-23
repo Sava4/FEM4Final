@@ -5,18 +5,18 @@ import { v4 } from "uuid";
 
 import styled from "styled-components";
 
-import { dispatchSetCheckFilter, setDeleteFilter } from "../../../store/filters";
-import checkBox from "./check-box.png";
-import checkBoxChecked from "./check-box-checked.png";
-import {Checkbox} from "../../Forms/FormCheckbox/form-checkbox"
-
+import {
+  dispatchSetCheckFilter,
+  setDeleteFilter
+} from "../../../store/filters";
 
 const mapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
 export const PopupCheckboxes = connect(mapStateToProps, {
-  dispatchSetCheckFilter, setDeleteFilter
+  dispatchSetCheckFilter,
+  setDeleteFilter
 })(props => {
   const { filtername } = props;
 
@@ -40,7 +40,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     axios
       .get("http://localhost:5000/products")
       .then(result => {
-          setProducts(result.data);
+        setProducts(result.data);
       })
       // .then(products => {
       //   setProducts (collectionList(products))
@@ -53,56 +53,51 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const checkedFilters = e => {
     e.preventDefault();
-    console.log(e.target.classList.value)
-    console.log(e.target.id)
-  //   const activeFilters = {};
-  //     activeFilters[e.target.id] = e.target.value;
-  //     props.dispatchSetCheckFilter(activeFilters);
-  //    if (!e.target.checked) {
-  //  const remoteFilterCategory = e.target.id;
-  //    const remoteFilterName = e.target.value;
-  //     const delEll = {};
-  //     delEll[remoteFilterCategory] = remoteFilterName;
-  //   props.setDeleteFilter(delEll);
-  //   e.target.checked = false;
-  //    }  
+    console.log(e.target.classList.value);
+    console.log(e.target.id);
+    //   const activeFilters = {};
+    //     activeFilters[e.target.id] = e.target.value;
+    //     props.dispatchSetCheckFilter(activeFilters);
+    //    if (!e.target.checked) {
+    //  const remoteFilterCategory = e.target.id;
+    //    const remoteFilterName = e.target.value;
+    //     const delEll = {};
+    //     delEll[remoteFilterCategory] = remoteFilterName;
+    //   props.setDeleteFilter(delEll);
+    //   e.target.checked = false;
+    //    }
 
-     const activeFilters = {};
-     activeFilters[e.target.className] = e.target.value;
-     props.dispatchSetCheckFilter(activeFilters);
+    const activeFilters = {};
+    activeFilters[e.target.className] = e.target.value;
+    props.dispatchSetCheckFilter(activeFilters);
     if (!e.target.checked) {
-  const remoteFilterCategory = e.target.className;
-    const remoteFilterName = e.target.value;
-     const delEll = {};
-     delEll[remoteFilterCategory] = remoteFilterName;
-   props.setDeleteFilter(delEll);
-   e.target.checked = false;
-    }    
-                            
-
+      const remoteFilterCategory = e.target.className;
+      const remoteFilterName = e.target.value;
+      const delEll = {};
+      delEll[remoteFilterCategory] = remoteFilterName;
+      props.setDeleteFilter(delEll);
+      e.target.checked = false;
+    }
   };
-
-
 
   const collectionList = products && filter(products, filtername);
 
   const inputs = collectionList.map(item => {
     return (
-    //   <CheckboxDiv key={v4()}>
-    //     <CheckboxLabel fore={item}>
-    //           <InputCheckbox
-    //                 type="checkbox"
-    //                 name={item}
-    //                 value={item}
-    //                 // className={filtername}
-    //                 id={filtername}
-    //                 Checked={checkedFromStor.includes(item) && "checked"}>
-    //          </InputCheckbox>
-    //         <CheckBoxIcon/>
-    //         {item} 
-    //   </CheckboxLabel>
-    // </CheckboxDiv>
-      
+      //   <CheckboxDiv key={v4()}>
+      //     <CheckboxLabel fore={item}>
+      //           <InputCheckbox
+      //                 type="checkbox"
+      //                 name={item}
+      //                 value={item}
+      //                 // className={filtername}
+      //                 id={filtername}
+      //                 Checked={checkedFromStor.includes(item) && "checked"}>
+      //          </InputCheckbox>
+      //         <CheckBoxIcon/>
+      //         {item}
+      //   </CheckboxLabel>
+      // </CheckboxDiv>
 
       <CheckboxDiv key={v4()}>
         <input
@@ -127,7 +122,7 @@ const CheckboxDiv = styled.div`
 const Labels = styled.label`
   font-size: 14px;
   text-transform: capitalize;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 `;
 // const CheckboxText = styled.span`
 //   font-size: 11px;

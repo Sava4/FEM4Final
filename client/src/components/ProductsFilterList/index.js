@@ -15,21 +15,21 @@ export const ProductFilters = () => {
   return (
     <Layout>
       <CategoriesHeader>
-          <p>{category}</p>
+        <p>{category}</p>
       </CategoriesHeader>
 
-      <IconBreadcrumbs categoryName={{category}}/>
+      <IconBreadcrumbs categoryName={{ category }} />
 
       <CategotiesCommon>
         <CategoriesFilters>
-            <p>FILTER BY </p>
-            <FiltersList />
+          <p>FILTER BY </p>
+          <FiltersList />
         </CategoriesFilters>
 
         <SelectedProducts>
-            <p>Selected products</p>
-            <FilterIndicators />
-            <FilteredListProducts category={category}/>
+          <p>Selected products</p>
+          <FilterIndicators />
+          <FilteredListProducts category={category} />
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>
@@ -56,17 +56,17 @@ const CategotiesCommon = styled.div`
   flex-wrap: nowrap;
 `;
 const CategoriesFilters = styled.div`
- margin-top: 29px;
+  margin-top: 29px;
   margin-left: 130px;
   min-width: 280px;
   width: 30%;
-  & >p {
+  & > p {
     font-size: 17px;
-    margin-bottom:54px;
+    margin-bottom: 54px;
   }
 `;
 const SelectedProducts = styled.div`
-  & >p{
+  & > p {
     font-size: 17px;
     margin-top: 28px;
     text-transform: uppercase;
@@ -76,6 +76,3 @@ const SelectedProducts = styled.div`
   flex-direction: column;
   margin-left: 20px;
 `;
-
-
-
