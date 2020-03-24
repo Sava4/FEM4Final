@@ -78,13 +78,11 @@ export const ProdImg = styled.img`
 `;
 const WrapperLink = styled(NavLink)`
   flex: 1;
-  height: 188px;
-  margin-right: 20px;
+  margin-right: 5%;
 `;
 export const ImgWrap = styled.div`
   flex: 1;
   height: 188px;
-  margin-right: 20px;
   border: 1px solid #e9ebf5;
   &: hover {
     border: 1px solid #002d50;

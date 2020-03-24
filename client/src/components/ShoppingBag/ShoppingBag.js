@@ -203,12 +203,14 @@ const Cart = styled.div`
   display: flex;
   margin-top: 33px;
   align-self: stretch;
+  margin-bottom: 80px;
 `;
 
 const ProductTable = styled.div`
   width: 75%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   padding-right: 57px;
 `;
 const BagTotals = styled.div`
