@@ -141,5 +141,6 @@ const SectionAboutImage = styled.img`
   margin-left: 0;
   object-fit: contain;
   flex-basis: 271px;
+  width: 100%;
   `)};
 `;
