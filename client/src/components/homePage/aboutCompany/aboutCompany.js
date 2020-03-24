@@ -136,7 +136,7 @@ const SectionAboutImage = styled.img`
   object-fit: cover;
   margin-left: -100%;
   ${mediaMobile(`
-  width: auto;
+  width: 100%;
   height: auto;
   margin-left: 0;
   object-fit: contain;
