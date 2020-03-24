@@ -60,10 +60,11 @@ const GoBackText = styled.div`
   font-size: 14px;
 `;
 
-const GoBackImage = styled.div`
+export const GoBackImage = styled.div`
   width: 15px;
   height: 15px;
   background-image: url(${arrow});
   background-repeat: no-repeat;
   background-size: contain;
+  color: #80858d;
 `;

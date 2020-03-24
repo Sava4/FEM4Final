@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {useState} from "react";
+import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 
 import headerDesign from "./header-design.png";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
-import { LoginForm } from "../../Forms/LoginForm/login-form";
-import { RegisterForm } from "../../Forms/RegisterForm/register-form";
+import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import {LoginForm} from "../../Forms/LoginForm/login-form";
+import {RegisterForm} from "../../Forms/RegisterForm/register-form";
 
 import {
   ShoppingBag,
@@ -22,15 +22,15 @@ export const HeaderContent = props => {
 
   return (
     <Container>
-      <Line />
+      <Line/>
       <HeaderWrapper>
-        <Search />
+        <Search/>
         <NavLink exact to="/">
-          <Logo />
+          <Logo/>
         </NavLink>
 
         <HeaderIconWrapper>
-          <Login onClick={() => toggleModal(!isModalOpen)} />
+          <Login onClick={() => toggleModal(!isModalOpen)}/>
           {isModalOpen && (
             <LoginForm
               onRegister={onRegister}
@@ -38,7 +38,10 @@ export const HeaderContent = props => {
             />
           )}
           {isRegisterOpen && (
-            <RegisterForm onClose={() => toggleRegistration(false)} />
+            <RegisterForm
+              onClose={() => toggleRegistration(false)}
+              onLogin={GoBackToLogin}
+            />
           )}
           <NavLink
             to="/account/favorites"
@@ -47,7 +50,7 @@ export const HeaderContent = props => {
               color: "inherit"
             }}
           >
-            <Favorites />
+            <Favorites/>
           </NavLink>
           <NavLink
             to="/account/shopping-bag"
@@ -56,7 +59,7 @@ export const HeaderContent = props => {
               color: "inherit"
             }}
           >
-            <ShoppingBag />
+            <ShoppingBag/>
           </NavLink>
         </HeaderIconWrapper>
       </HeaderWrapper>
@@ -70,6 +73,11 @@ export const HeaderContent = props => {
   function onRegister() {
     toggleModal(false);
     toggleRegistration(true);
+  }
+
+  function GoBackToLogin() {
+    toggleModal(true);
+    toggleRegistration(false);
   }
 };
 
