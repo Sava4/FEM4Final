@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-import {GoBackImage} from "../OrderForm/order-form";
-import {FormButton} from "../FormButton/form-button";
-import {Modal} from "../../Modal/modal";
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import { GoBackImage } from "../OrderForm/order-form";
+import { FormButton } from "../FormButton/form-button";
+import { Modal } from "../../Modal/modal";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const RegisterForm = props => {
-  const {onClose, onLogin} = props;
+  const { onClose, onLogin } = props;
 
   const [error, setError] = useState([]);
 
@@ -105,9 +105,9 @@ export const RegisterForm = props => {
             </RightContent>
           </ContentWrapper>
           <FormButtonWrapper>
-            <FormButton value="Register" onClick={onChange}/>
+            <FormButton value="Register" onClick={onChange} />
             <GoBackWrapper onClick={onLogin}>
-              <GoBackImage/>
+              <GoBackImage />
               <GoBackText>Go back to Login</GoBackText>
             </GoBackWrapper>
           </FormButtonWrapper>
@@ -364,12 +364,12 @@ const RightContent = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  
+
   ${mediaMobile(`
   flex-direction: column;
   align-items: center;
   `)}
-`
+`;
 
 const FormButtonWrapper = styled.div`
   width: 40%;
@@ -387,9 +387,9 @@ const GoBackWrapper = styled.div`
   justify-content: center;
   margin-top: 30px;
   cursor: pointer;
-`
+`;
 
 const GoBackText = styled.span`
   font-size: 14px;
   color: #80858d;
-`
+`;
