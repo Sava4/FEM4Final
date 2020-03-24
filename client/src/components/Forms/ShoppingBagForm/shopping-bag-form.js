@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import { Modal } from "../../Modal/modal";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const ShoppingBagForm = props => {
   const history = useHistory();
@@ -31,12 +32,17 @@ export const ShoppingBagForm = props => {
 };
 
 const FormWrapper = styled.form`
-  width: 980px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #002d50;
   background: #ffffff;
+
+  ${mediaMobile(`
+  flex-direction: column;
+  align-items: center;
+  `)}
 `;
 
 const FormTitle = styled.div`
@@ -54,6 +60,12 @@ const ButtonWrapper = styled.div`
   display: flex;
   margin-bottom: 100px;
   margin-top: 70px;
+
+  ${mediaMobile(`
+  width: 80%;
+  flex-direction: column;
+  margin-bottom: 40px;
+  `)}
 `;
 
 const ButtonCheckout = styled.input`
@@ -70,6 +82,11 @@ const ButtonCheckout = styled.input`
   :focus {
     outline: none;
   }
+
+  ${mediaMobile(`
+  margin-bottom: 15px;
+  margin-left: 0;
+  `)}
 `;
 
 const ButtonBackToShopping = styled(ButtonCheckout)`
