@@ -47,7 +47,7 @@ export const SliderHomepage = () => {
         setText(result.data);
       })
       .catch(err => {
-       console.log(err)
+        console.log(err);
       });
   }, []);
 

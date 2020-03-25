@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
-import {ScrollToTopController} from "../SliderProducts/LoadMore"
+import { ScrollToTopController } from "../SliderProducts/LoadMore";
 
 export const StaticPage = props => {
   let { url } = useParams();

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
-  console.log(props)
+  console.log(props);
   return (
     <Card key={props.key} itemNo={props.itemNo}>
       <Image

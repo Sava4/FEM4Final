@@ -84,11 +84,11 @@ export const SliderPromoButton = styled.a`
   `)}
 `;
 export const CarouselImage = styled.div`
-  background: url(http://localhost:3000/${props => props.imageUrl}) no-repeat; 
+  background: url(http://localhost:3000/${props => props.imageUrl}) no-repeat;
   background-size: cover;
   height: 425px;
-  opacity: 1; 
-  
+  opacity: 1;
+
   ${mediaTablet(`
   background-position: center;
   `)}
