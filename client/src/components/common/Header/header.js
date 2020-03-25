@@ -38,7 +38,10 @@ export const HeaderContent = props => {
             />
           )}
           {isRegisterOpen && (
-            <RegisterForm onClose={() => toggleRegistration(false)} />
+            <RegisterForm
+              onClose={() => toggleRegistration(false)}
+              onLogin={GoBackToLogin}
+            />
           )}
           <NavLink
             to="/account/favorites"
@@ -70,6 +73,11 @@ export const HeaderContent = props => {
   function onRegister() {
     toggleModal(false);
     toggleRegistration(true);
+  }
+
+  function GoBackToLogin() {
+    toggleModal(true);
+    toggleRegistration(false);
   }
 };
 

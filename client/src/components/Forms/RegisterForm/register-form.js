@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+import { GoBackImage } from "../OrderForm/order-form";
 import { FormButton } from "../FormButton/form-button";
 import { Modal } from "../../Modal/modal";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const RegisterForm = props => {
-  const { onClose } = props;
+  const { onClose, onLogin } = props;
 
   const [error, setError] = useState([]);
 
@@ -43,68 +44,74 @@ export const RegisterForm = props => {
           </ErrorMessage>
         )}
         <FormRegister>
-          <LeftContent>
-            <Input
-              value={login}
-              type="text"
-              placeholder="Login *"
-              onChange={onLoginChange}
-              invalid={!loginValidation}
-              onBlur={onLoginBlur}
-            />
-            <Input
-              value={firstName}
-              type="text"
-              placeholder="First Name *"
-              onChange={onFirstNameChange}
-              invalid={!firstNameValidation}
-              onBlur={onFirstNameBlur}
-            />
-            <Input
-              value={lastName}
-              type="text"
-              placeholder="Last Name *"
-              onChange={onLastNameChange}
-              invalid={!lastNameValidation}
-              onBlur={onLastNameBlur}
-            />
-          </LeftContent>
-          <RightContent>
-            <Input
-              value={email}
-              type="email"
-              placeholder="Email *"
-              onChange={onEmailChange}
-              invalid={!emailValidation}
-              onBlur={onEmailBlur}
-            />
-            <InputPasswordWrapper>
-              <InputPassword
-                value={password}
-                type="password"
-                placeholder="Password *"
-                onChange={onPasswordChange}
-                invalid={!passwordValidation}
-                onBlur={onPasswordBlur}
+          <ContentWrapper>
+            <LeftContent>
+              <Input
+                value={login}
+                type="text"
+                placeholder="Login *"
+                onChange={onLoginChange}
+                invalid={!loginValidation}
+                onBlur={onLoginBlur}
               />
-              <InputBottomText>
-                At least 7 characters long, containing uppercase and lowercase
-                letters and numbers.
-              </InputBottomText>
-            </InputPasswordWrapper>
-            <Input
-              value={confirmPassword}
-              type="password"
-              placeholder="Confirm Password *"
-              onChange={onConfirmPasswordChange}
-              invalid={!confirmPasswordValidation}
-              onBlur={onConfirmPasswordBlur}
-            />
-          </RightContent>
+              <Input
+                value={firstName}
+                type="text"
+                placeholder="First Name *"
+                onChange={onFirstNameChange}
+                invalid={!firstNameValidation}
+                onBlur={onFirstNameBlur}
+              />
+              <Input
+                value={lastName}
+                type="text"
+                placeholder="Last Name *"
+                onChange={onLastNameChange}
+                invalid={!lastNameValidation}
+                onBlur={onLastNameBlur}
+              />
+            </LeftContent>
+            <RightContent>
+              <Input
+                value={email}
+                type="email"
+                placeholder="Email *"
+                onChange={onEmailChange}
+                invalid={!emailValidation}
+                onBlur={onEmailBlur}
+              />
+              <InputPasswordWrapper>
+                <InputPassword
+                  value={password}
+                  type="password"
+                  placeholder="Password *"
+                  onChange={onPasswordChange}
+                  invalid={!passwordValidation}
+                  onBlur={onPasswordBlur}
+                />
+                <InputBottomText>
+                  At least 7 characters long, containing uppercase and lowercase
+                  letters and numbers.
+                </InputBottomText>
+              </InputPasswordWrapper>
+              <Input
+                value={confirmPassword}
+                type="password"
+                placeholder="Confirm Password *"
+                onChange={onConfirmPasswordChange}
+                invalid={!confirmPasswordValidation}
+                onBlur={onConfirmPasswordBlur}
+              />
+            </RightContent>
+          </ContentWrapper>
+          <FormButtonWrapper>
+            <FormButton value="Register" onClick={onChange} />
+            <GoBackWrapper onClick={onLogin}>
+              <GoBackImage />
+              <GoBackText>Go back to Login</GoBackText>
+            </GoBackWrapper>
+          </FormButtonWrapper>
         </FormRegister>
-        <FormButtonWrapper>
-          <FormButton value="Register" onClick={onChange} />
-        </FormButtonWrapper>
       </FormWrapper>
     </Modal>
   );
@@ -263,6 +270,8 @@ const FormWrapper = styled.form`
 `;
 const FormRegister = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-right: 70px;
   margin-left: 70px;
 
@@ -270,6 +279,8 @@ const FormRegister = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
+  margin-right: 0;
+  margin-left: 0;
   `)}
 `;
 
@@ -351,11 +362,34 @@ const RightContent = styled.div`
   `)}
 `;
 
-const FormButtonWrapper = styled.div`
-  width: 40%;
-  margin-bottom: 70px;
+const ContentWrapper = styled.div`
+  display: flex;
 
   ${mediaMobile(`
-  margin-bottom: 50px;
+  flex-direction: column;
+  align-items: center;
   `)}
+`;
+
+const FormButtonWrapper = styled.div`
+  width: 40%;
+  margin-bottom: 50px;
+
+  ${mediaMobile(`
+  width: 80%;
+  margin-bottom: 40px;
+  `)}
+`;
+
+const GoBackWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  cursor: pointer;
+`;
+
+const GoBackText = styled.span`
+  font-size: 14px;
+  color: #80858d;
 `;
