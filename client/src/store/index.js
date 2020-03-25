@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-// import logger from "redux-logger";
+import logger from "redux-logger";
 import { productsReducer } from "./productsReducer";
 import { shoppingCartReducer } from "./shopping-cart";
 import { favoritesReducer } from "./favorites";
@@ -15,49 +15,39 @@ import { userReducer } from "./user";
 import { loginStatusReducer } from "./login-status";
 
 const persistConfig = {
+  key: "app",
+  storage,
+  whitelist: ["favorites", "login", "user"],
+  stateReconciler: autoMergeLevel2
+};
+
+const cartPersistcfg = {
   key: "cart",
   storage,
   stateReconciler: autoMergeLevel2
-  // only Cart will be persisted
+  // additional Cart persist config for cart objects locCart srvCart
 };
 
-const logPersistConfig = {
-  key: "token",
-  storage,
-  stateReconciler: autoMergeLevel2
-  // only Token will be persisted
-};
-
-const favoritesPersistConfig = {
-  key: "favorites",
-  storage,
-  stateReconciler: autoMergeLevel2
-  // only Favorites will be persisted
-};
-
-const persistedCart = persistReducer(persistConfig, shoppingCartReducer);
-const persistedToken = persistReducer(logPersistConfig, loginReducer);
-const persistedFavorites = persistReducer(
-  favoritesPersistConfig,
-  favoritesReducer
-);
+const persistedCart = persistReducer(cartPersistcfg, shoppingCartReducer);
 
 // import { reducer as formReducer } from 'redux-form'
 // import appReducer from "./app-reducer";
 const rootReducer = combineReducers({
   productsPage: productsReducer,
   shoppingCart: persistedCart,
-  favorites: persistedFavorites,
+  favorites: favoritesReducer,
   categories: categoriesReduser,
-  login: persistedToken,
+  login: loginReducer,
   loginStatus: loginStatusReducer,
   filters: filtersReduser,
   user: userReducer
 });
 
+const persistedStore = persistReducer(persistConfig, rootReducer);
+
 export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  persistedStore,
+  composeWithDevTools(applyMiddleware(thunk, logger))
 );
 
 export const persistor = persistStore(store);
