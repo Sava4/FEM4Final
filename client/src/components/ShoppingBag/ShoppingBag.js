@@ -12,6 +12,7 @@ import { logoutAction } from "../../store/login";
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem";
 import { FormButton } from "../Forms/FormButton/form-button";
+import { Spinner } from "../";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);
@@ -162,7 +163,7 @@ export const ShoppingBag = () => {
             </Cart>
           </>
         ) : loading ? (
-          <div>...Loading</div>
+          <Spinner />
         ) : (
           <EmptyCart text={"Your Shopping Bag is currently empty."} />
         )}
@@ -202,12 +203,14 @@ const Cart = styled.div`
   display: flex;
   margin-top: 33px;
   align-self: stretch;
+  margin-bottom: 80px;
 `;
 
 const ProductTable = styled.div`
   width: 75%;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   padding-right: 57px;
 `;
 const BagTotals = styled.div`
