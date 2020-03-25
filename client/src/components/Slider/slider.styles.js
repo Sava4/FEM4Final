@@ -84,8 +84,7 @@ export const SliderPromoButton = styled.a`
   `)}
 `;
 export const CarouselImage = styled.div`
-  background-image: url(${props => props.imageUrl});
-  background-repeat: no-repeat;
+  background: url(http://localhost:3000/${props => props.imageUrl}) no-repeat;
   background-size: cover;
   height: 425px;
   opacity: 1;

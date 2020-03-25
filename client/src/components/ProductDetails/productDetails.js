@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
@@ -9,6 +9,7 @@ import {
   mediaMobile,
   mediaTablet
 } from "../../styled-components/media-breakpoints-mixin";
+import Slider from "react-slick";
 
 import styled, { css } from "styled-components";
 
@@ -32,25 +33,65 @@ export const ProductDetails = () => {
   }, [id]);
 
   return (
-    <Details1
-      name={products.name}
-      itemNo={products.itemNo}
-      id={products._id}
-      previousPrice={price}
-      gemstone={products.gemstone}
-      collection={products.collection}
-      metal={products.metal}
-      metal_color={products.metal_color}
-      weight={products.weight}
-      sample={products.sample}
-      img={images[0]}
-    />
+    <>
+      <Details1
+        products={products}
+        name={products.name}
+        itemNo={products.itemNo}
+        id={products._id}
+        previousPrice={price}
+        gemstone={products.gemstone}
+        collection={products.collection}
+        metal={products.metal}
+        metal_color={products.metal_color}
+        weight={products.weight}
+        sample={products.sample}
+        img={images[0]}
+      />
+    </>
   );
 };
+
 const Details1 = props => {
   const [isModalOpen, toggleModal] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector(state => state.login.token);
+  const products = props.products;
+  const product = products !== undefined && products;
+  console.log(products);
+  console.log(product);
+  const images = product.imageUrls !== undefined && product.imageUrls;
+  const imagesArr = Array.from(images);
+  const avatars = imagesArr.length;
+
+  let imagesSlider = imagesArr.map(image => {
+    return (
+      <div key={image}>
+        <Image
+          alt=""
+          src={`http://localhost:3000/${image}`}
+          style={{
+            width: "99%",
+            height: "99%",
+            border: `1px solid #E9EBF5`,
+            boxSizing: "border-box"
+          }}
+        />
+      </div>
+    );
+  });
+
+  const slider1 = useRef();
+  const slider2 = useRef();
+  const [state, setState] = useState({ nav1: null, nav2: null });
+
+  useEffect(() => {
+    setState({
+      nav1: slider1.current,
+      nav2: slider2.current
+    });
+  }, []);
+  const { nav1, nav2 } = state;
 
   const add = () => {
     token
@@ -87,7 +128,50 @@ const Details1 = props => {
           onClose={() => toggleModal(false)}
         />
       )}
-      <Image alt="" src={`/${props.img}`} />
+
+      <div
+        className="carousel_wrapper"
+        style={{
+          height: ``,
+          width: `6%`,
+          marginTop: `40px`,
+          marginRight: `20px`
+        }}
+      >
+        <Slider
+          asNavFor={nav1}
+          ref={slider => (slider2.current = slider)}
+          slidesToShow={avatars}
+          slidesToScroll={1}
+          focusOnSelect={true}
+          vertical={true}
+          style={{ boxSizing: "border-box" }}
+        >
+          {imagesSlider}
+        </Slider>
+      </div>
+      <div
+        className="carousel_wrapper"
+        style={{
+          height: ``,
+          width: `43%`,
+          marginTop: `40px`,
+          marginRight: `20px`,
+          boxSizing: `border-box`
+        }}
+      >
+        <Slider
+          asNavFor={nav2}
+          ref={slider => (slider1.current = slider)}
+          speed={0.1}
+          arrows={false}
+          draggable={false}
+          // fade={true}
+        >
+          {imagesSlider}
+        </Slider>
+      </div>
+
       <Wrapper>
         <Name line={"true"}>{`${props.name}`}</Name>
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>

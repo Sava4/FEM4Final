@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
+import { ScrollToTopController } from "../SliderProducts/LoadMore";
 
 export const StaticPage = props => {
-  // console.log(props)
   let { url } = useParams();
   const [page, setPage] = useState({});
   console.log(url);
@@ -24,6 +24,7 @@ export const StaticPage = props => {
   return (
     <div>
       <Page>{page.htmlContent}</Page>
+      <ScrollToTopController parsed={url} />
     </div>
   );
 };
