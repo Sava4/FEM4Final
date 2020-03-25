@@ -46,7 +46,7 @@ export const ProductsPagination = ({
             <div id={index} key={p.itemNo}>
               {console.log(index)}
               <NavLink
-                to={`/product/${p.itemNo}`}
+                to={`/product-details/${p.itemNo}`}
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <ProductItem
