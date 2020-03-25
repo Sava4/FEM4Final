@@ -9,10 +9,11 @@ import {
   SliderPromo,
   SliderPromoMobile,
   SliderPromoText,
-  SliderPromoButton
+  SliderPromoButton,
+  H4
 } from "./slider.styles";
 
-export const SliderHomepage = () => {
+export const SliderHomepage = props => {
   const mediaMatch = window.matchMedia("(max-width: 767px)");
   const [matches, setMatches] = useState(mediaMatch.matches);
 
@@ -29,54 +30,71 @@ export const SliderHomepage = () => {
 
   const settings = {
     accessibility: true,
-    dots: true,
+    dots: props.dots,
     arrows: matches ? false : true,
     infinite: true,
+    centerMode: props.center,
     draggable: true,
-    autoplay: true,
+    autoplay: props.auto,
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
 
-  const [text, setText] = useState([]);
+  const [slides, setSlides] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5000/slides")
       .then(result => {
-        setText(result.data);
+        setSlides(result.data);
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
 
-  return (
-    <CarouselWrapper className="carousel_wrapper">
-      <Slider {...settings}>
-        {text.map(item => {
-          return (
-            <div key={item._id}>
-              <CarouselImage {...item}>
-                <SliderPromo>
+  const itemsHomePage = slides.slice(0, 3);
+  const items = slides.slice(2);
+
+  if (props.homePage == true) {
+    return (
+      <CarouselWrapper className="carousel_wrapper">
+        <Slider {...settings}>
+          {itemsHomePage.map(item => {
+            return (
+              <div key={item._id}>
+                <CarouselImage {...item}>
+                  <SliderPromo>
+                    <SliderPromoText>{item.description}</SliderPromoText>
+                    <SliderPromoButton>
+                      <div>SHOP NOW</div>
+                    </SliderPromoButton>
+                  </SliderPromo>
+                </CarouselImage>
+                <SliderPromoMobile>
                   <SliderPromoText>{item.description}</SliderPromoText>
                   <SliderPromoButton>
                     <div>SHOP NOW</div>
                   </SliderPromoButton>
-                </SliderPromo>
-              </CarouselImage>
-              <SliderPromoMobile>
-                <SliderPromoText>{item.description}</SliderPromoText>
-                <SliderPromoButton>
-                  <div>SHOP NOW</div>
-                </SliderPromoButton>
-              </SliderPromoMobile>
-            </div>
-          );
-        })}
-      </Slider>
-    </CarouselWrapper>
-  );
+                </SliderPromoMobile>
+              </div>
+            );
+          })}
+        </Slider>
+      </CarouselWrapper>
+    );
+  } else {
+    return (
+      <CarouselWrapper className="carousel_wrapper">
+        <H4>{props.h4}</H4>
+        <Slider {...settings}>
+          {items.map(item => {
+            return <CarouselImage key={item._id} {...item} />;
+          })}
+        </Slider>
+      </CarouselWrapper>
+    );
+  }
 };
 
 function SampleNextArrow(props) {
