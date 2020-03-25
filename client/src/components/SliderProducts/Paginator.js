@@ -32,15 +32,15 @@ export const  Paginator = ({
 //  console.log(rightPortionPageNumber )
  
  const handleClickNext = (e) => {
-    currentPage==pagesCount && e.preventDefault()     
+    +currentPage==+pagesCount && e.preventDefault()     
 }
  const handleClickPrev = (e) => {
-   currentPage == 1 && e.preventDefault() 
+   +currentPage <= 1 && e.preventDefault() 
  }
   return (
     <div className={styles.paginator}>
       
-      <NavLink onClick={e =>{handleClickPrev(); onToTop()}}
+      <NavLink onClick={e =>{handleClickPrev(e); onToTop()}}
         to={`/pagin/filter?startPage=${+currentPage - 1}&perPage=${pageSize}`}
       >
         {portionNumber > 1 &&
@@ -84,7 +84,7 @@ export const  Paginator = ({
           );
         })}
         
-      <NavLink onClick={e =>{handleClickNext(); onToTop()}}
+      <NavLink onClick={e =>{handleClickNext(e); onToTop()}}
         to={`/pagin/filter?startPage=${+currentPage+1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&
