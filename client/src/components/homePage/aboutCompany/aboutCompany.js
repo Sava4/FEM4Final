@@ -34,7 +34,7 @@ export const AboutCompany = () => {
             woman.
           </Text>
         </SectionAboutDesc>
-        <SectionAboutImage />
+        <SectionAboutImage src={aboutCompany} alt="Having fun at a party" />
       </SectionAboutWrapper>
     </SectionAbout>
   );
@@ -55,23 +55,26 @@ const SectionAboutTitle = styled.div`
 
 const SectionAboutWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
+  ${mediaMobile(`
+flex-direction: column;
+align-items: stretch;
+justify-content: flex-start;
+background: #002d50;
+padding-bottom: 42px;
+  `)}
 `;
 
 const SectionAboutDesc = styled.div`
   width: 784px;
   height: 418px;
-  position: absolute;
-  left: 0;
   background: #002d50;
   opacity: 0.9;
 
   ${mediaMobile(`
-  width: 100%;
-  position: relative;
-  height: 790px;
+  height: auto;
+  width: auto;
   opacity: 1;
   `)}
 `;
@@ -127,18 +130,16 @@ const Text = styled.div`
   `)}
 `;
 
-const SectionAboutImage = styled.div`
+const SectionAboutImage = styled.img`
   width: 840px;
   height: 586px;
-  background-image: url(${aboutCompany});
-  background-size: cover;
-
+  object-fit: cover;
+  margin-left: -100%;
   ${mediaMobile(`
   width: 100%;
-  height: 350px;
-  position: absolute;
-  bottom: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  `)}
+  height: auto;
+  margin-left: 0;
+  object-fit: contain;
+  flex-basis: 271px;
+  `)};
 `;
