@@ -69,12 +69,12 @@ padding-bottom: 42px;
 
 const SectionAboutDesc = styled.div`
   width: 784px;
-  height: 418px;
+  min-height: 418px;
   background: #002d50;
   opacity: 0.9;
 
   ${mediaMobile(`
-  height: auto;
+  min-height: auto;
   width: auto;
   opacity: 1;
   `)}
@@ -132,15 +132,12 @@ const Text = styled.div`
 `;
 
 const SectionAboutImage = styled.img`
-  width: 840px;
-  height: 586px;
-  object-fit: cover;
+  width: 846px;
+  height: 583px;
   margin-left: -100%;
   ${mediaMobile(`
   width: 100%;
   height: auto;
   margin-left: 0;
-  object-fit: contain;
-  flex-basis: 271px;
   `)};
 `;
