@@ -7,14 +7,18 @@ import {
 
 export const Page = styled.div` 
 margin: 0 auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+max-width: 1200px;
   
 ${mediaDesktop(`
-width: 80%;     
+   
 `)}
 ${mediaTablet(`
-width: 80%;     
+    
 `)}
 ${mediaMobile(`
-width: 80%;    
+
 `)}
 `;
