@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
+import { addFavorites, removeFavorites } from "../../store/favorites";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
-
 import { useParams } from "react-router";
 import {
   mediaMobile,
   mediaTablet
 } from "../../styled-components/media-breakpoints-mixin";
+
 import styled, { css } from "styled-components";
 
 export const ProductDetails = () => {
   const { id } = useParams();
   const [products, setProducts] = useState({});
   const [images, setImages] = useState([]);
+  const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,19 +25,18 @@ export const ProductDetails = () => {
       const res = await axios.get(`http://localhost:5000/products/${id}`);
       setImages(res.data.imageUrls);
       setProducts(res.data);
+      setPrice(res.data.previousPrice.toLocaleString("de-CH"));
       setLoading(false);
     };
     fetchPosts();
   }, [id]);
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <Details1
       name={products.name}
       itemNo={products.itemNo}
       id={products._id}
-      previousPrice={products.previousPrice}
+      previousPrice={price}
       gemstone={products.gemstone}
       collection={products.collection}
       metal={products.metal}
@@ -59,6 +59,26 @@ const Details1 = props => {
     toggleModal(!isModalOpen);
   };
 
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
+  );
+
+  const FavoriteButton = () => {
+    return isFavorites ? (
+      <WishWrapper>
+        <WishButton>Remove from wishlist</WishButton>
+        <HeartRose onClick={() => dispatch(removeFavorites(props.id))}>
+          &#9825;
+        </HeartRose>
+      </WishWrapper>
+    ) : (
+      <WishWrapper>
+        <WishButton>Add to wishlist</WishButton>
+        <Heart onClick={() => dispatch(addFavorites(props.id))}>&#9825;</Heart>
+      </WishWrapper>
+    );
+  };
+
   return (
     <Container>
       {isModalOpen && (
@@ -72,11 +92,8 @@ const Details1 = props => {
         <Name line={"true"}>{`${props.name}`}</Name>
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
         <PriceWrapper>
-          <Price>{`${props.previousPrice}`}</Price>
-          <WishWrapper>
-            <WishButton>Add to wish list</WishButton>
-            <Heart>&#9825;</Heart>
-          </WishWrapper>
+          <Price>{props.previousPrice}</Price>
+          <FavoriteButton />
         </PriceWrapper>
         <Add onClick={add}>Add to bag</Add>
         <Details>Details</Details>
@@ -100,19 +117,12 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px 15px;
-  ${mediaTablet(`
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`)}
   ${mediaMobile(`
     width: 95%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `)}
-  
   ${props =>
     props.flex === "column" &&
     css`
@@ -141,21 +151,35 @@ ${mediaTablet(`
   ${props =>
     props.size === "small" &&
     css`
-      width: 206px;
-      height: 258px;
-      @media (max-width: 992px) {
-        width: 206px;
-        height: 258px;
-      }
-      @media (max-width: 767px) {
-        width: 156px;
-        height: 208px;
-      }
-      @media (max-width: 439px) {
-        width: 150px;
-        height: 202px;
-      }
+      width: 154px;
+      height: 193px;
+      ${mediaTablet(`
+        width: 117px;
+        height: 156px;
+`)}
+      ${mediaMobile(`
+         width: 117px;
+        height: 156px;
+`)}
     `}
+    ${props =>
+      props.size === "xSmall" &&
+      css`
+        width: 103px;
+        height: 129px;
+        @media (max-width: 992px) {
+          width: 206px;
+          height: 258px;
+        }
+        @media (max-width: 767px) {
+          width: 156px;
+          height: 208px;
+        }
+        @media (max-width: 439px) {
+          width: 150px;
+          height: 202px;
+        }
+      `}
 `;
 export const Name = styled.p`
   text-transform: uppercase;
@@ -232,27 +256,42 @@ export const WishWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 135px;
   height: 30px;
+  ${props =>
+    props.item === true &&
+    css`
+      z-index: 2;
+      padding-right: 3px;
+      width: 100%;
+      height: auto;
+      justify-content: flex-end;
+    `}
 `;
 export const WishButton = styled.span`
   font-size: 14px;
   padding-bottom: 4px;
+  padding-right: 3px;
 `;
 export const Heart = styled.button`
-  position: relative;
   bottom: -2px;
   background: transparent;
   border: none;
   font-size: 24px;
   color: #262c37;
   cursor: pointer;
-
   &:focus {
     outline: none;
   }
-  &:hover {
-    font-size: 27px;
+`;
+export const HeartRose = styled.button`
+  bottom: -2px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #ff8fbc;
+  cursor: pointer;
+  &:focus {
+    outline: none;
   }
 `;
 export const Add = styled.button`
@@ -267,6 +306,11 @@ export const Add = styled.button`
   font-size: 12px;
   color: #fff;
   cursor: pointer;
+  ${props =>
+    props.size === "small" &&
+    css`
+      width: 50px;
+    `}
 `;
 export const Details = styled.div`
   text-transform: uppercase;

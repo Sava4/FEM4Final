@@ -1,12 +1,42 @@
 import React from "react";
-import { Image, Name, Price } from "../ProductDetails/productDetails";
+import {
+  Heart,
+  HeartRose,
+  Image,
+  Name,
+  Price,
+  WishWrapper
+} from "../ProductDetails/productDetails";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorites, removeFavorites } from "../../store/favorites";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
 export const ProductItem = props => {
-  console.log(props);
+  const dispatch = useDispatch();
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
+  );
+  const clickFavorites = (e, props) => {
+    e.preventDefault();
+    isFavorites
+      ? dispatch(removeFavorites(props.id))
+      : dispatch(addFavorites(props.id));
+  };
+  const FavoriteButton = () => {
+    return isFavorites ? (
+      <WishWrapper item={true}>
+        <HeartRose onclick={clickFavorites}>&#9825;</HeartRose>
+      </WishWrapper>
+    ) : (
+      <WishWrapper item={true}>
+        <Heart onclick={clickFavorites}>&#9825;</Heart>
+      </WishWrapper>
+    );
+  };
   return (
     <Card key={props.key} itemNo={props.itemNo}>
+      <FavoriteButton />
       <Image
         alt=""
         src={`http://localhost:3000/${props.imageUrls[0]}`}

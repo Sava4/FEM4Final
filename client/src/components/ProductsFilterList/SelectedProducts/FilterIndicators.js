@@ -1,10 +1,7 @@
 import React from "react";
 import { v4 } from "uuid";
-
 import { connect } from "react-redux";
-
 import styled from "styled-components";
-// Store functions
 
 import { SelectedFilters } from "./SelectedFilters";
 
@@ -26,8 +23,6 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     let itemClass = item.replace(" ", "");
 
     let selectedFilters = filters[item];
-    console.log(selectedFilters);
-    //  console.log(headChosenFilt)
     return selectedFilters.length ? (
       <FilterMarker key={v4()}>
         <p>{item}</p>
@@ -47,8 +42,9 @@ const FilterTypeDiv = styled.div`
   flex-wrap: wrap;
   height: content;
   & p {
+    font-size: 14px;
     margin: 0;
-    color: lightgrey;
+    color: #a1a5ad;
     text-transform: capitalize;
   }
 `;
