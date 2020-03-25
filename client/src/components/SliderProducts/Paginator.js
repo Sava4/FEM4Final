@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Paginator.module.css";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
-import { LoadMore } from "./LoadMore";
+// Console Warnings
+// import { LoadMore } from "./LoadMore";
 
 export const Paginator = ({
   productsQuantity,
@@ -29,7 +30,8 @@ export const Paginator = ({
   //  console.log(rightPortionPageNumber )
 
   const handleClickNext = e => {
-    +currentPage == +pagesCount && e.preventDefault();
+    // Console Warning == instead of ===
+    +currentPage === +pagesCount && e.preventDefault();
   };
   const handleClickPrev = e => {
     +currentPage <= 1 && e.preventDefault();
@@ -75,7 +77,8 @@ export const Paginator = ({
               <span
                 className={cn(
                   {
-                    [styles.selected_Page]: currentPage == pageNumber
+                    // Console Warning == instead of ===
+                    [styles.selected_Page]: currentPage === pageNumber
                   },
                   styles.page_Number
                 )}

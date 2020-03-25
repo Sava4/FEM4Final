@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
+// Console Warnings
+// import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
 import { ProductItem } from "./productItemSlider";
-import { Layout } from "../common/Layout";
 
 export const ProductsPagination = ({
   currentPage,
@@ -17,7 +18,7 @@ export const ProductsPagination = ({
 }) => {
   return (
     <div>
-      <Layout>
+      <>
         <div
           style={{
             position: "relative",
@@ -81,7 +82,7 @@ export const ProductsPagination = ({
             onToTop={onToTop}
           />
         </div>
-      </Layout>
+      </>
     </div>
   );
 };

@@ -36,8 +36,8 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
       //     /*Do something with error, e.g. show error to user*/
       //   });
     }
-  }, [query]);
-
+  }, [query, category, props.filters]);
+  // Console Warnings
   const filterdProd = products.products;
 
   const ListProduct =

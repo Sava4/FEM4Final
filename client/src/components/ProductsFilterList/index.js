@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 
-import { Layout } from "../common/Layout";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
 // import { Checkboxes } from "./FilterBar/PopupCheckboxes";
@@ -13,7 +12,7 @@ export const ProductFilters = () => {
   const { category } = useParams();
 
   return (
-    <Layout>
+    <>
       <CategoriesHeader>
         <p>{category}</p>
       </CategoriesHeader>
@@ -32,7 +31,7 @@ export const ProductFilters = () => {
           <FilteredListProducts category={category} />
         </SelectedProducts>
       </CategotiesCommon>
-    </Layout>
+    </>
   );
 };
 

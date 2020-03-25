@@ -31,7 +31,8 @@ export const Search = props => {
         });
     }, 1000);
     setTimer(timeoutId);
-  }, [search]);
+    // Console Warning timer required for array below [] but with timer it hangs
+  }, [search, timer]);
 
   return (
     <Filter>

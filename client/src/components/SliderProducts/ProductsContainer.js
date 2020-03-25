@@ -8,7 +8,9 @@ import {
 } from "../../store/productsReducer";
 import { ProductsPagination } from "./Pagination";
 // import Preloader from "../common/Preloader/Preloader";
-import { ScrollToTopController } from "./LoadMore";
+
+// Console Warning below not used
+// import { ScrollToTopController } from "./LoadMore";
 import { compose } from "redux";
 import {
   getCurrentPage,
@@ -23,7 +25,8 @@ const ProductsContainer = props => {
   const { currentPage, pageSize } = props;
 
   let location = useLocation();
-  let path = `filter${location.search}`;
+  // Console warning unused below
+  // let path = `filter${location.search}`;
 
   const queryString = require("query-string");
   const parsed = queryString.parse(location.search);
@@ -35,7 +38,8 @@ const ProductsContainer = props => {
 
   useEffect(() => {
     props.getProducts(truePage2, pageSize);
-  }, [truePage2]);
+    // Console Warning array requires pageSize, props
+  }, [truePage2, pageSize, props]);
 
   const onPageChanged = pageNumber => {
     // из пагинатора
@@ -82,9 +86,10 @@ const ProductsContainer = props => {
 };
 
 let mapStateToProps = state => {
+  // Console warning duplicate key products, products -> second changed to moreProducts
   return {
     products: getProducts(state),
-    products: moreProducts(state),
+    moreProducts: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state)

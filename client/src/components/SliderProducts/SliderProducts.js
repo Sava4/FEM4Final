@@ -81,6 +81,7 @@ export const SliderProducts = props => {
               interpretation={"carousel"}
               img={item.imageUrls[0]}
               id={item._id}
+              key={item._id}
               itemNo={`${item.itemNo}`}
               style={{
                 display: "flex",

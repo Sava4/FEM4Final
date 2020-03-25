@@ -1,13 +1,12 @@
 import React from "react";
-import { Layout } from "../common/Layout";
 
 // import styled from "styled-components"
 
 export const Checkout = () => {
   return (
-    <Layout>
+    <>
       <h2> Checkout</h2>
-    </Layout>
+    </>
   );
 };
 //      const SectionCategiries = styled.div`

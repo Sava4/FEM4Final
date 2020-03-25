@@ -10,6 +10,7 @@ import {
   mediaTablet
 } from "../../styled-components/media-breakpoints-mixin";
 import Slider from "react-slick";
+import { Spinner } from "../";
 
 import styled, { css } from "styled-components";
 
@@ -47,6 +48,7 @@ export const ProductDetails = () => {
         weight={products.weight}
         sample={products.sample}
         img={images[0]}
+        loading={loading}
       />
     </>
   );
@@ -128,73 +130,82 @@ const Details1 = props => {
           onClose={() => toggleModal(false)}
         />
       )}
+      {!props.loading ? (
+        <>
+          <div
+            className="carousel_wrapper"
+            style={{
+              height: ``,
+              width: `6%`,
+              marginTop: `40px`,
+              marginRight: `20px`
+            }}
+          >
+            <Slider
+              asNavFor={nav1}
+              ref={slider => (slider2.current = slider)}
+              slidesToShow={avatars}
+              slidesToScroll={1}
+              focusOnSelect={true}
+              vertical={true}
+              style={{ boxSizing: "border-box" }}
+            >
+              {imagesSlider}
+            </Slider>
+          </div>
+          <div
+            className="carousel_wrapper"
+            style={{
+              height: ``,
+              width: `43%`,
+              marginTop: `40px`,
+              marginRight: `20px`,
+              boxSizing: `border-box`
+            }}
+          >
+            <Slider
+              asNavFor={nav2}
+              ref={slider => (slider1.current = slider)}
+              speed={0.1}
+              arrows={false}
+              draggable={false}
+              // fade={true}
+            >
+              {imagesSlider}
+            </Slider>
+          </div>
 
-      <div
-        className="carousel_wrapper"
-        style={{
-          height: ``,
-          width: `6%`,
-          marginTop: `40px`,
-          marginRight: `20px`
-        }}
-      >
-        <Slider
-          asNavFor={nav1}
-          ref={slider => (slider2.current = slider)}
-          slidesToShow={avatars}
-          slidesToScroll={1}
-          focusOnSelect={true}
-          vertical={true}
-          style={{ boxSizing: "border-box" }}
-        >
-          {imagesSlider}
-        </Slider>
-      </div>
-      <div
-        className="carousel_wrapper"
-        style={{
-          height: ``,
-          width: `43%`,
-          marginTop: `40px`,
-          marginRight: `20px`,
-          boxSizing: `border-box`
-        }}
-      >
-        <Slider
-          asNavFor={nav2}
-          ref={slider => (slider1.current = slider)}
-          speed={0.1}
-          arrows={false}
-          draggable={false}
-          // fade={true}
-        >
-          {imagesSlider}
-        </Slider>
-      </div>
-
-      <Wrapper>
-        <Name line={"true"}>{`${props.name}`}</Name>
-        <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
-        <PriceWrapper>
-          <Price>{props.previousPrice}</Price>
-          <FavoriteButton />
-        </PriceWrapper>
-        <Add onClick={add}>Add to bag</Add>
-        <Details>Details</Details>
-        <UL>
-          <LI>{`Gemstone: ${props.gemstone}`} </LI>
-          <LI>{`Collection: ${props.collection}`}</LI>
-          <LI>{`Metal: ${props.metal}`}</LI>
-          <LI>{`Metal Color: ${props.metal_color}`}</LI>
-          <LI>{`Weight: ${props.weight}`}</LI>
-          <LI>{`Sample: ${props.sample}`}</LI>
-        </UL>
-      </Wrapper>
+          <Wrapper>
+            <Name line={"true"}>{`${props.name}`}</Name>
+            <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
+            <PriceWrapper>
+              <Price>{props.previousPrice}</Price>
+              <FavoriteButton />
+            </PriceWrapper>
+            <Add onClick={add}>Add to bag</Add>
+            <Details>Details</Details>
+            <UL>
+              <LI>{`Gemstone: ${props.gemstone}`} </LI>
+              <LI>{`Collection: ${props.collection}`}</LI>
+              <LI>{`Metal: ${props.metal}`}</LI>
+              <LI>{`Metal Color: ${props.metal_color}`}</LI>
+              <LI>{`Weight: ${props.weight}`}</LI>
+              <LI>{`Sample: ${props.sample}`}</LI>
+            </UL>
+          </Wrapper>
+        </>
+      ) : (
+        <StyledSpinner />
+      )}
     </Container>
   );
 };
 
 //*** STYLED-COMPONENTS ***//
+
+const StyledSpinner = styled(Spinner)`
+  margin: auto;
+`;
 
 export const Container = styled.div`
   display: flex;

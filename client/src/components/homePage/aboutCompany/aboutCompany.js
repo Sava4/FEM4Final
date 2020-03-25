@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 import aboutCompany from "./aboutCompany.png";
 import {
-  mediaMobile,
-  mediaTablet
+  mediaMobile
+  // Console Warning about mediaTablet not used remove warning
+  //  mediaTablet
 } from "../../../styled-components/media-breakpoints-mixin";
 
 export const AboutCompany = () => {

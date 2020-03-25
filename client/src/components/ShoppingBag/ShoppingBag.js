@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Layout } from "../common/Layout";
 import axios from "axios";
 import styled from "styled-components/macro";
 import { setServerCart } from "../../store/shopping-cart";
@@ -119,7 +118,7 @@ export const ShoppingBag = () => {
   };
 
   return (
-    <Layout>
+    <>
       <Container>
         <BagHeader>Shopping Bag</BagHeader>
         {cartProps.length > 0 && !loading ? (
@@ -168,7 +167,7 @@ export const ShoppingBag = () => {
           <EmptyCart text={"Your Shopping Bag is currently empty."} />
         )}
       </Container>
-    </Layout>
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { LoaderWrapper, Loader } from "./spinner.styles";
 
-export const Spinner = () => {
+export const Spinner = ({ className }) => {
   return (
-    <LoaderWrapper>
+    <LoaderWrapper className={className}>
       <Loader>
         <div></div>
         <div></div>
