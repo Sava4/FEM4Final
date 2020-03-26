@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
-import ring from "./ring-with-diamonds-1302307.jpg";
+
 import styled, { css } from "styled-components";
 
+import { ScrollToTopController } from "../SliderProducts/LoadMore";
+
 export const StaticPage = props => {
-  // console.log(props)
   let { url } = useParams();
   const [page, setPage] = useState({});
   const [images, setImages] = useState([]);
   const [res, setResponse] = useState("");
   console.log(url);
-  const str =
-    '';
+  const str = "";
 
   const updatedPage = {
-    htmlContent: " <WrapperPage><HeadPage>Care instructions</HeadPage><TextPage>Your <ZarinaPage>Zarina</ZarinaPage> jewel is a precious and refined piece. By taking a few precautions in using and maintaining it, you will be able to preserve its original beauty over time.</TextPage><TextPage>• Your jewelry should be cleaned regularly. You can use a very soft brush and soapy water to clean it, then rinse your piece with clean lukewarm water. Jewels with leather parts can be cleaned with a soft cloth. We recommend that you bring your jewels to a Bulgari boutique annually, to have them checked, professionally cleaned and restored.</TextPage><TextPage>• Consider removing your jewelry before going to sleep, practicing any sport, washing your hands or using corrosive products. Avoid contact with Fragrance, alcohol, cosmetics, ammonia, chlorine and keep your pieces away from intense sources of heat and extreme temperature changes.</TextPage><TextPage>• Prevent damage or loss of your jewels by storing them individually in their original box or pouch after wearing them; contact with other jewelry pieces could cause scratches. Chains should be closed and laid flat to avoid their becoming tangling.</TextPage><TextPage>• If your jewelry suffers a shock or hit, the stone setting may need to be checked. Avoid forcing clasps, joints and metal frames and be sure to check that the clasp and safety latch close properly. If you have any concerns, you should not wear your jewel until you have had it checked by an expert in a Bulgari boutique.</TextPage></WrapperPage>"
+    htmlContent:
+      " <WrapperPage><HeadPage>Care instructions</HeadPage><TextPage>Your <ZarinaPage>Zarina</ZarinaPage> jewel is a precious and refined piece. By taking a few precautions in using and maintaining it, you will be able to preserve its original beauty over time.</TextPage><TextPage>• Your jewelry should be cleaned regularly. You can use a very soft brush and soapy water to clean it, then rinse your piece with clean lukewarm water. Jewels with leather parts can be cleaned with a soft cloth. We recommend that you bring your jewels to a Bulgari boutique annually, to have them checked, professionally cleaned and restored.</TextPage><TextPage>• Consider removing your jewelry before going to sleep, practicing any sport, washing your hands or using corrosive products. Avoid contact with Fragrance, alcohol, cosmetics, ammonia, chlorine and keep your pieces away from intense sources of heat and extreme temperature changes.</TextPage><TextPage>• Prevent damage or loss of your jewels by storing them individually in their original box or pouch after wearing them; contact with other jewelry pieces could cause scratches. Chains should be closed and laid flat to avoid their becoming tangling.</TextPage><TextPage>• If your jewelry suffers a shock or hit, the stone setting may need to be checked. Avoid forcing clasps, joints and metal frames and be sure to check that the clasp and safety latch close properly. If you have any concerns, you should not wear your jewel until you have had it checked by an expert in a Bulgari boutique.</TextPage></WrapperPage>"
   };
   console.log(updatedPage.htmlContent);
   // axios
@@ -47,25 +48,29 @@ export const StaticPage = props => {
         console.log(err);
       });
   }, [url]);
+
   console.log(images[0]);
   const someHtml = page.htmlContent;
-  return <Page>
-    <Server dangerouslySetInnerHTML={{ __html: someHtml }}/>
-    <ImagePage src={images[0]} alt=''/>
-    </Page>
+  return (
+    <Fragment>
+      <Page>
+        <Server dangerouslySetInnerHTML={{ __html: someHtml }} />
+        <ImagePage src={images[0]} alt="" />
+      </Page>
+      <ScrollToTopController parsed={url} />
+    </Fragment>
+  );
 };
 
 //<Server dangerouslySetInnerHTML={{ __html: someHtml }}/>
 //<ImagePage src={images[0]} alt=''/>
-const Server = styled.div`
-
-`;
+const Server = styled.div``;
 const WrapperPage = styled.div`
   max-width: 1200px;
   width: 70%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   padding-bottom: 40px;
 `;
 const HeadPage = styled.h1`

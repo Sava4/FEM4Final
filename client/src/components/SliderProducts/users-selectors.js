@@ -4,6 +4,10 @@ const getProductsSelector = state => {
   return state.productsPage.products;
 };
 
+export const moreProducts = createSelector(getProductsSelector, products => {
+  return products.filter(p => true);
+});
+
 export const getProducts = createSelector(getProductsSelector, products => {
   return products.filter(p => true);
 });
