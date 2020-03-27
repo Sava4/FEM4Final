@@ -29,16 +29,33 @@ export const SliderHomepage = props => {
   });
 
   const settings = {
+    slidesToShow: props.show,   
     accessibility: true,
     dots: props.dots,
     arrows: matches ? false : true,
     infinite: true,
-    centerMode: props.center,
     draggable: true,
     autoplay: props.auto,
     speed: 500,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    nextArrow: <SampleNextArrow homePage={props.homePage}/>,
+    prevArrow: <SamplePrevArrow homePage={props.homePage}/>,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: props.showMedia,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: props.dots
+        }
+      },
+      {
+        breakpoint: 798,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
   };
 
   const [slides, setSlides] = useState([]);
@@ -54,7 +71,7 @@ export const SliderHomepage = props => {
   }, []);
 
   const itemsHomePage = slides.slice(0, 3);
-  const items = slides.slice(2);
+  const items = slides.slice(3);
 
   if (props.homePage == true) {
     return (
@@ -63,7 +80,7 @@ export const SliderHomepage = props => {
           {itemsHomePage.map(item => {
             return (
               <div key={item._id}>
-                <CarouselImage {...item}>
+                <CarouselImage height={props.height} {...item}>
                   <SliderPromo>
                     <SliderPromoText>{item.description}</SliderPromoText>
                     <SliderPromoButton>
@@ -85,80 +102,163 @@ export const SliderHomepage = props => {
     );
   } else {
     return (
-      <CarouselWrapper className="carousel_wrapper">
-        <H4>{props.h4}</H4>
-        <Slider {...settings}>
-          {items.map(item => {
-            return <CarouselImage key={item._id} {...item} />;
-          })}
-        </Slider>
-      </CarouselWrapper>
+      <div
+        style={{
+          width: "95%",
+          marginLeft: "55px",
+          marginTop: "75px",
+          marginBottom: "56px"
+        }}
+      >
+        <CarouselWrapper className="carousel_wrapper">
+          <H4>{props.h4}</H4>
+          <Slider {...settings}>
+            {items.map(item => {
+              return (
+                <div style={{ boxSizing: "border-box" }}>
+                  <CarouselImage
+                    height={props.height}
+                    width={props.width}
+                    key={item._id}
+                    {...item}
+                  />
+                </div>
+              );
+            })}
+          </Slider>
+        </CarouselWrapper>
+      </div>
     );
   }
 };
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        width: "25px",
-        height: "30px",
-        backgroundColor: "white",
-        // border: "1px solid grey",
-        right: "26%",
-        zIndex: "1",
-        top: "96.7%"
-      }}
-      onClick={onClick}
-    >
+  if (props.homePage == true) {
+    return (
       <div
+        className={className}
         style={{
-          border: "solid grey",
-          borderWidth: "0 1px 1px 0",
-          display: "inline-block",
-          padding: "7px",
-          position: "relative",
-          bottom: "12px",
-          transform: "rotate(-45deg)"
+          ...style,
+          display: "block",
+          width: "25px",
+          height: "30px",
+          backgroundColor: "white",
+          right: "26%",
+          zIndex: "1",
+          top: "96.7%"
         }}
-      ></div>
-    </div>
-  );
+        onClick={onClick}
+      >
+        <div
+          style={{
+            border: "solid grey",
+            borderWidth: "0 1px 1px 0",
+            display: "inline-block",
+            padding: "7px",
+            position: "relative",
+            bottom: "12px",
+            transform: "rotate(-45deg)"
+          }}
+        ></div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          right: "0.5%",
+          zIndex: "1",
+          backgroundColor: "white",
+          border: "1px solid rgb(233,235,245)",
+          width: "25px",
+          height: "30px"
+        }}
+        onClick={onClick}
+      >
+        <div
+          style={{
+            border: "solid grey",
+            borderWidth: "0 1px 1px 0",
+            display: "inline-block",
+            padding: "7px",
+            position: "relative",
+            right:"0.5%",
+            bottom: "13px",
+            transform: "rotate(-45deg)"
+          }}
+        />
+      </div>
+    );
+  }
 }
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        backgroundColor: "white",
-        width: "25px",
-        height: "30px",
-        left: "70%",
-        zIndex: "1",
-        top: "96.7%"
-      }}
-      onClick={onClick}
-    >
+  if (props.homePage == true) {
+    return (
       <div
+        className={className}
         style={{
-          border: "solid grey",
-          borderWidth: "0 1px 1px 0",
-          display: "inline-block",
-          padding: "7px",
-          position: "relative",
-          bottom: "12px",
-          left: "8px",
-          transform: "rotate(135deg)"
+          ...style,
+          display: "block",
+          backgroundColor: "white",
+          width: "25px",
+          height: "30px",
+          left: "70%",
+          zIndex: "1",
+          top: "96.7%"
         }}
-      ></div>
-    </div>
-  );
+        onClick={onClick}
+      >
+        <div
+          style={{
+            border: "solid grey",
+            borderWidth: "0 1px 1px 0",
+            display: "inline-block",
+            padding: "7px",
+            position: "relative",
+            bottom: "12px",
+            left:"8px" ,          
+            transform: "rotate(135deg)"
+          }}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          border: "1px solid rgb(233,235,245)",
+          backgroundColor: "white",        
+          width: "25px",
+          height: "30px",
+        left:"-3%",
+        top: "50%",
+        bottom: "10px",
+          zIndex: "1"
+        }}
+        onClick={onClick}
+      >
+        <div
+          style={{
+            border: "solid grey",
+            borderWidth: "0 1px 1px 0",
+            display: "inline-block",
+            padding: "7px",
+            position: "relative",
+            bottom: "13px",
+            left: "8px",
+            transform: "rotate(135deg)"
+          }}
+        />
+      </div>
+    );
+  }
 }

@@ -2,11 +2,8 @@ import axios from "axios";
 
 export function addSlide() {
   const newSlide = {
-    customId: "promotion-1",
-    imageUrl: "./../../img/slider/img1.jpg",
-    title: "ghyuyiopu[o]uyioryufgiohp",
-    description: "Do not miss our hot offer. Promotion ends 25/06/2020",
-    category: "5d99f68e419d040eec0f722c"
+    customId: "look_6",
+    imageUrl: "img/looks/9.png",   
   };
 
   axios
@@ -14,24 +11,22 @@ export function addSlide() {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
-    .then(response => {
-      /*Do something with newProduct*/
+    .then(response => {     
       let token = response.data.token;
 
       axios
         .post("http://localhost:5000/slides", newSlide, {
           headers: { Authorization: `${token}` }
         })
-        .then(newSlide => {
-          /*Do something with newProduct*/
+        .then(newSlide => {        
           console.log(newSlide);
         })
         .catch(err => {
-          /*Do something with error, e.g. show error to user*/
+         console.log(err)
         });
     })
     .catch(err => {
-      /*Do something with error, e.g. show error to user*/
+      console.log(err)
     });
 }
 

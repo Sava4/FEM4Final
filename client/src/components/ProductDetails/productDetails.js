@@ -45,8 +45,7 @@ export const ProductDetails = () => {
         metal={products.metal}
         metal_color={products.metal_color}
         weight={products.weight}
-        sample={products.sample}
-        img={images[0]}
+        sample={products.sample}  
       />
     </>
   );
@@ -71,8 +70,7 @@ const Details1 = props => {
           alt=""
           src={`http://localhost:3000/${image}`}
           style={{
-            width: "99%",
-            height: "99%",
+            width: "99%",           
             border: `1px solid #E9EBF5`,
             boxSizing: "border-box"
           }}
@@ -133,9 +131,9 @@ const Details1 = props => {
         className="carousel_wrapper"
         style={{
           height: ``,
-          width: `6%`,
-          marginTop: `40px`,
-          marginRight: `20px`
+          width: `5%`,
+          marginTop: `20px`,
+          marginRight: `5px`
         }}
       >
         <Slider
@@ -154,19 +152,18 @@ const Details1 = props => {
         className="carousel_wrapper"
         style={{
           height: ``,
-          width: `43%`,
-          marginTop: `40px`,
+          width: `50%`,
+          marginTop: `20px`,
           marginRight: `20px`,
           boxSizing: `border-box`
         }}
       >
-        <Slider
+        <Slider        
           asNavFor={nav2}
           ref={slider => (slider1.current = slider)}
           speed={0.1}
           arrows={false}
-          draggable={false}
-          // fade={true}
+          draggable={false}          
         >
           {imagesSlider}
         </Slider>
@@ -214,7 +211,8 @@ export const Container = styled.div`
     `}
 `;
 export const Wrapper = styled.div`
-  width: 48%;
+margin-top: 20px;
+  width: 33%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -224,7 +222,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
-
 ${mediaTablet(`
     width: 70%;
 `)}

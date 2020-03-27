@@ -104,10 +104,9 @@ function SampleNextArrow(props) {
         display: "block",
         right: "0.5%",
         zIndex: "1",
-        border: "1px solid #A7AABB",
+        border: "1px solid rgb(233,235,245)",
         width: "25px",
-        height: "30px"
-        // content: "›"
+        height: "30px"      
       }}
       onClick={onClick}
     >
@@ -118,7 +117,7 @@ function SampleNextArrow(props) {
           display: "inline-block",
           padding: "7px",
           position: "relative",
-          bottom: "12px",
+          bottom: "13px",
           transform: "rotate(-45deg)"
         }}
       />
@@ -134,7 +133,7 @@ function SamplePrevArrow(props) {
       style={{
         ...style,
         display: "block",
-        border: "1px solid #A7AABB",
+        border: "1px solid rgb(233,235,245)",
         width: "25px",
         height: "30px",
         right: "0%",
@@ -149,7 +148,7 @@ function SamplePrevArrow(props) {
           display: "inline-block",
           padding: "7px",
           position: "relative",
-          bottom: "12px",
+          bottom: "13px",
           left: "8px",
           transform: "rotate(135deg)"
         }}

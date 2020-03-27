@@ -15,6 +15,8 @@ export const Homepage = () => {
         center={false}
         auto={true}
         homePage={true}
+        show={1}
+        height={425}
       />
       <SliderProducts h4={"FEATURED"} reverse={"reverse"} />
       <HomepageCategories />
