@@ -29,12 +29,9 @@ deploy:
   skip_cleanup: true
   region: eu-central-1
   on:
-    branch: deploy_test
+    branch: master
 
 branches:
   only:
     - master
     - develop
-    - deploy_test
-# zip -r deploy.zip . -x /node_modules* /client*
-# zip -r deploy.zip /client/build
