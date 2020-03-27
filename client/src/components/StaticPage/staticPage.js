@@ -2,8 +2,9 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
-
+import { MapBox } from "../Map/mapbox";
 import styled, { css } from "styled-components";
+import {AddressesSelect} from "../Map/addressesPage"
 
 import { ScrollToTopController } from "../SliderProducts/LoadMore";
 
@@ -51,7 +52,16 @@ export const StaticPage = props => {
 
   console.log(images[0]);
   const someHtml = page.htmlContent;
-  return (
+  return url === "find-your-store" ? (
+    <Fragment>
+      <Page>
+        <HeadPage>Find your store</HeadPage>
+          <AddressesSelect/>
+          <MapBox />
+      </Page>
+      <ScrollToTopController parsed={url} />
+    </Fragment>
+  ) : (
     <Fragment>
       <Page>
         <Server dangerouslySetInnerHTML={{ __html: someHtml }} />
