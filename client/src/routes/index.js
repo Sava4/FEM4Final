@@ -9,7 +9,7 @@ import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { Wishlist } from "../components/Wishlist/wishlist";
 import { ShoppingBag } from "../components/ShoppingBag";
-import { Error } from "../components/404error";
+import { Error404 } from "../components/404error/index";
 import { ProductSliderView } from "../components/SliderProducts/productSliderView";
 import ProductsContainer from "../components/SliderProducts/ProductsContainer";
 import { Checkout } from "../components/Checkout";
@@ -50,7 +50,7 @@ export const Routes = () => {
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route path="/login" component={ProductFilters} />
-      <Route path="/404error" component={Error} />
+      <Route path="/404error" component={Error404} />
       <Redirect to="/" />
     </Switch>
   );
