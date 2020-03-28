@@ -12,7 +12,7 @@ import {
 import Slider from "react-slick";
 
 import styled, { css } from "styled-components";
-import {Spinner} from "../Spinner/spinner";
+import { Spinner } from "../Spinner/spinner";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -33,31 +33,30 @@ export const ProductDetails = () => {
     };
     fetchPosts();
   }, [id]);
-const sayError = () => {
-    return (<ShoppingBagForm
-        isError={isError}
-        onClose={() => toggleError(false)}
-    />)
-
-}
-  return (
-      (loading
-      ?<Container><Spinner/></Container>
-
-      :<Details1
-    products={products}
-    name={products.name}
-    itemNo={products.itemNo}
-    id={products._id}
-    previousPrice={price}
-    gemstone={products.gemstone}
-    collection={products.collection}
-    metal={products.metal}
-    metal_color={products.metal_color}
-    weight={products.weight}
-    sample={products.sample}
-    img={images[0]}
-    />)
+  const sayError = () => {
+    return (
+      <ShoppingBagForm isError={isError} onClose={() => toggleError(false)} />
+    );
+  };
+  return loading ? (
+    <Container>
+      <Spinner />
+    </Container>
+  ) : (
+    <Details1
+      products={products}
+      name={products.name}
+      itemNo={products.itemNo}
+      id={products._id}
+      previousPrice={price}
+      gemstone={products.gemstone}
+      collection={products.collection}
+      metal={products.metal}
+      metal_color={products.metal_color}
+      weight={products.weight}
+      sample={products.sample}
+      img={images[0]}
+    />
   );
 };
 
@@ -128,7 +127,6 @@ const Details1 = props => {
   };
 
   return (
-
     <Container>
       {isModalOpen && (
         <ShoppingBagForm
