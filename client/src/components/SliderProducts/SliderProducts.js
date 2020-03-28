@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { H4 } from "./sliderProducts.styles";
+import {v4} from 'uuid';
 import { ProductItem } from "../ProductsList/productItem";
 
 export const SliderProducts = props => {
@@ -78,6 +79,7 @@ export const SliderProducts = props => {
           return (
             <ProductItem
               {...item}
+              key={v4}
               interpretation={"carousel"}
               img={item.imageUrls[0]}
               id={item._id}
