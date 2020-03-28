@@ -78,7 +78,7 @@ export const SliderProducts = props => {
         {text1.map(item => {
           return (
             <ProductItem
-                key={v4}
+                key={v4()}
               {...item}
               interpretation={"carousel"}
               img={item.imageUrls[0]}
