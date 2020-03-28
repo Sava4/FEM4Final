@@ -1,27 +1,14 @@
 import React from "react";
 import { Layout } from "../common/Layout";
+import {Page404} from "./page404";
+import {HomepageCategories} from "../homePage/categories";
 
-// import styled from "styled-components"
 
-export const Error = () => {
+export const Error404 = () => {
   return (
     <Layout>
-      <h2> ERROR</h2>
+     <Page404/>
+     <HomepageCategories/>
     </Layout>
   );
 };
-//      const SectionCategiries = styled.div`
-//     {
-//         height:712px;
-//         width: 100vw;
-//         & p{
-//             text-align: center;
-//         }
-//     }`
-//    const Categories = styled.div`
-//         {
-//         display: flex;
-//         & div{
-//             margin-left: 20px
-//         }
-//     `;
