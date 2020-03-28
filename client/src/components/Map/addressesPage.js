@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import Select from "react-select";
 import {
   Berdychiv,
@@ -23,7 +23,7 @@ import {
 
 import styled from "styled-components";
 
-export const AddressesSelect = props => {
+export const AddressesSelect = () => {
   const [state, setState] = useState([]);
 
   const Addresses = () => {
