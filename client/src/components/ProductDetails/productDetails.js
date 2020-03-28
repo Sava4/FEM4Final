@@ -58,8 +58,6 @@ const Details1 = props => {
   const token = useSelector(state => state.login.token);
   const products = props.products;
   const product = products !== undefined && products;
-  console.log(products);
-  console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
