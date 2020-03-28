@@ -122,6 +122,37 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Montserrat", system-ui, sans-serif;
     font-size: 14px;
   }
+  TextPage {
+    text-align: justify;
+    font-size: 16px;
+    line-height: 2;
+    color: #484848;
+  }
+ WrapperPage {
+    max-width: 1200px;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+}
+  HeadPage {
+    text-align: center;
+    align-self: center;
+    font-size: 30px;
+    margin: 45px;
+    color: #484848;
+    &: first-child {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 60px;
+    }
+  }
+  ZarinaPage {
+    font-weight: bold;
+}
+
+
 `;
 
 export { GlobalStyle as default };

@@ -3,6 +3,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { v4 } from "uuid";
 import { H4 } from "./sliderProducts.styles";
 import { ProductItem } from "../ProductsList/productItem";
 
@@ -77,6 +78,7 @@ export const SliderProducts = props => {
         {text1.map(item => {
           return (
             <ProductItem
+              key={v4()}
               {...item}
               interpretation={"carousel"}
               img={item.imageUrls[0]}

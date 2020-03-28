@@ -20,7 +20,7 @@ export const SelectedCollections = () => {
         </CollectionsItemPrive>
         <CollectionsItemMelenka>
           <MelankaImage />
-          <ImageDesc>MELENKA</ImageDesc>
+          <ImageDesc>MELANKA</ImageDesc>
         </CollectionsItemMelenka>
         <CollectionsItemAultra>
           <AultraImage />

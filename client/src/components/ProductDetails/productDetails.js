@@ -12,6 +12,7 @@ import {
 import Slider from "react-slick";
 
 import styled, { css } from "styled-components";
+import { Spinner } from "../Spinner/spinner";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ export const ProductDetails = () => {
   const [images, setImages] = useState([]);
   const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isError, toggleError] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -31,24 +33,30 @@ export const ProductDetails = () => {
     };
     fetchPosts();
   }, [id]);
-
-  return (
-    <>
-      <Details1
-        products={products}
-        name={products.name}
-        itemNo={products.itemNo}
-        id={products._id}
-        previousPrice={price}
-        gemstone={products.gemstone}
-        collection={products.collection}
-        metal={products.metal}
-        metal_color={products.metal_color}
-        weight={products.weight}
-        sample={products.sample}
-        img={images[0]}
-      />
-    </>
+  const sayError = () => {
+    return (
+      <ShoppingBagForm isError={isError} onClose={() => toggleError(false)} />
+    );
+  };
+  return loading ? (
+    <Container>
+      <Spinner />
+    </Container>
+  ) : (
+    <Details1
+      products={products}
+      name={products.name}
+      itemNo={products.itemNo}
+      id={products._id}
+      previousPrice={price}
+      gemstone={products.gemstone}
+      collection={products.collection}
+      metal={products.metal}
+      metal_color={products.metal_color}
+      weight={products.weight}
+      sample={products.sample}
+      img={images[0]}
+    />
   );
 };
 
@@ -58,8 +66,6 @@ const Details1 = props => {
   const token = useSelector(state => state.login.token);
   const products = props.products;
   const product = products !== undefined && products;
-  console.log(products);
-  console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
