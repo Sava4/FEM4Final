@@ -3,6 +3,8 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { SampleNextArrow, SamplePrevArrow } from "./Arrows";
+
 import {
   CarouselWrapper,
   CarouselImage,
@@ -21,7 +23,6 @@ export const SliderHomepage = props => {
     const onMediaChange = mediaMatchEvent => {
       setMatches(mediaMatchEvent.matches);
     };
-
     mediaMatch.addListener(onMediaChange);
     return () => {
       mediaMatch.removeListener(onMediaChange);
@@ -29,7 +30,7 @@ export const SliderHomepage = props => {
   });
 
   const settings = {
-    slidesToShow: props.show,   
+    slidesToShow: props.show,
     accessibility: true,
     dots: props.dots,
     arrows: matches ? false : true,
@@ -37,8 +38,10 @@ export const SliderHomepage = props => {
     draggable: true,
     autoplay: props.auto,
     speed: 500,
-    nextArrow: <SampleNextArrow homePage={props.homePage}/>,
-    prevArrow: <SamplePrevArrow homePage={props.homePage}/>,
+    nextArrow: <SampleNextArrow homePage={props.homePage} right={26} />,
+    prevArrow: (
+      <SamplePrevArrow homePage={props.homePage} left={70} prev={-3} />
+    ),
     responsive: [
       {
         breakpoint: 1000,
@@ -52,7 +55,10 @@ export const SliderHomepage = props => {
       {
         breakpoint: 798,
         settings: {
-          slidesToShow: 1
+          slidesToShow: 1,
+          arrows: props.arrows,
+          nextArrow: <SampleNextArrow homePage={true} right={61} />,
+          prevArrow: <SamplePrevArrow homePage={true} left={28} />
         }
       }
     ]
@@ -73,7 +79,7 @@ export const SliderHomepage = props => {
   const itemsHomePage = slides.slice(0, 3);
   const items = slides.slice(3);
 
-  if (props.homePage == true) {
+  if (props.homePage === true) {
     return (
       <CarouselWrapper className="carousel_wrapper">
         <Slider {...settings}>
@@ -118,7 +124,7 @@ export const SliderHomepage = props => {
                 <div style={{ boxSizing: "border-box" }}>
                   <CarouselImage
                     height={props.height}
-                    width={props.width}
+                    width={`${props.width}`}
                     key={item._id}
                     {...item}
                   />
@@ -131,134 +137,3 @@ export const SliderHomepage = props => {
     );
   }
 };
-
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  if (props.homePage == true) {
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          width: "25px",
-          height: "30px",
-          backgroundColor: "white",
-          right: "26%",
-          zIndex: "1",
-          top: "96.7%"
-        }}
-        onClick={onClick}
-      >
-        <div
-          style={{
-            border: "solid grey",
-            borderWidth: "0 1px 1px 0",
-            display: "inline-block",
-            padding: "7px",
-            position: "relative",
-            bottom: "12px",
-            transform: "rotate(-45deg)"
-          }}
-        ></div>
-      </div>
-    );
-  } else {
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          right: "0.5%",
-          zIndex: "1",
-          backgroundColor: "white",
-          border: "1px solid rgb(233,235,245)",
-          width: "25px",
-          height: "30px"
-        }}
-        onClick={onClick}
-      >
-        <div
-          style={{
-            border: "solid grey",
-            borderWidth: "0 1px 1px 0",
-            display: "inline-block",
-            padding: "7px",
-            position: "relative",
-            right:"0.5%",
-            bottom: "13px",
-            transform: "rotate(-45deg)"
-          }}
-        />
-      </div>
-    );
-  }
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  if (props.homePage == true) {
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          backgroundColor: "white",
-          width: "25px",
-          height: "30px",
-          left: "70%",
-          zIndex: "1",
-          top: "96.7%"
-        }}
-        onClick={onClick}
-      >
-        <div
-          style={{
-            border: "solid grey",
-            borderWidth: "0 1px 1px 0",
-            display: "inline-block",
-            padding: "7px",
-            position: "relative",
-            bottom: "12px",
-            left:"8px" ,          
-            transform: "rotate(135deg)"
-          }}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          border: "1px solid rgb(233,235,245)",
-          backgroundColor: "white",        
-          width: "25px",
-          height: "30px",
-        left:"-3%",
-        top: "50%",
-        bottom: "10px",
-          zIndex: "1"
-        }}
-        onClick={onClick}
-      >
-        <div
-          style={{
-            border: "solid grey",
-            borderWidth: "0 1px 1px 0",
-            display: "inline-block",
-            padding: "7px",
-            position: "relative",
-            bottom: "13px",
-            left: "8px",
-            transform: "rotate(135deg)"
-          }}
-        />
-      </div>
-    );
-  }
-}

@@ -3,6 +3,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { SampleNextArrow, SamplePrevArrow } from "./../Slider/Arrows";
 import { H4 } from "./sliderProducts.styles";
 import { ProductItem } from "../ProductsList/productItem";
 
@@ -17,16 +18,14 @@ export const SliderProducts = props => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow homepage={false} />,
+    prevArrow: <SamplePrevArrow homepage={false} prev={-2} />,
     responsive: [
       {
         breakpoint: 1000,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
+          slidesToScroll: 3
         }
       },
       {
@@ -77,6 +76,7 @@ export const SliderProducts = props => {
         {text1.map(item => {
           return (
             <ProductItem
+              key={item._id}
               {...item}
               interpretation={"carousel"}
               img={item.imageUrls[0]}
@@ -93,66 +93,3 @@ export const SliderProducts = props => {
     </div>
   );
 };
-
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        right: "0.5%",
-        zIndex: "1",
-        border: "1px solid rgb(233,235,245)",
-        width: "25px",
-        height: "30px"      
-      }}
-      onClick={onClick}
-    >
-      <div
-        style={{
-          border: "solid grey",
-          borderWidth: "0 1px 1px 0",
-          display: "inline-block",
-          padding: "7px",
-          position: "relative",
-          bottom: "13px",
-          transform: "rotate(-45deg)"
-        }}
-      />
-    </div>
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        border: "1px solid rgb(233,235,245)",
-        width: "25px",
-        height: "30px",
-        right: "0%",
-        zIndex: "1"
-      }}
-      onClick={onClick}
-    >
-      <div
-        style={{
-          border: "solid grey",
-          borderWidth: "0 1px 1px 0",
-          display: "inline-block",
-          padding: "7px",
-          position: "relative",
-          bottom: "13px",
-          left: "8px",
-          transform: "rotate(135deg)"
-        }}
-      />
-    </div>
-  );
-}

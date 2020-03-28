@@ -45,7 +45,7 @@ export const ProductDetails = () => {
         metal={products.metal}
         metal_color={products.metal_color}
         weight={products.weight}
-        sample={products.sample}  
+        sample={products.sample}
       />
     </>
   );
@@ -70,7 +70,7 @@ const Details1 = props => {
           alt=""
           src={`http://localhost:3000/${image}`}
           style={{
-            width: "99%",           
+            width: "99%",
             border: `1px solid #E9EBF5`,
             boxSizing: "border-box"
           }}
@@ -158,12 +158,12 @@ const Details1 = props => {
           boxSizing: `border-box`
         }}
       >
-        <Slider        
+        <Slider
           asNavFor={nav2}
           ref={slider => (slider1.current = slider)}
           speed={0.1}
           arrows={false}
-          draggable={false}          
+          draggable={false}
         >
           {imagesSlider}
         </Slider>
@@ -211,7 +211,7 @@ export const Container = styled.div`
     `}
 `;
 export const Wrapper = styled.div`
-margin-top: 20px;
+  margin-top: 20px;
   width: 33%;
   display: flex;
   flex-direction: column;

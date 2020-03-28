@@ -18,6 +18,7 @@ export const ProductDetailsLayout = () => {
         homePage={false}
         show={3}
         showMedia={2}
+        arrows={true}
         height={460}
         width={380}
       />

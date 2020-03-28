@@ -3,7 +3,7 @@ import axios from "axios";
 export function addSlide() {
   const newSlide = {
     customId: "look_6",
-    imageUrl: "img/looks/9.png",   
+    imageUrl: "img/looks/9.png"
   };
 
   axios
@@ -11,22 +11,22 @@ export function addSlide() {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
-    .then(response => {     
+    .then(response => {
       let token = response.data.token;
 
       axios
         .post("http://localhost:5000/slides", newSlide, {
           headers: { Authorization: `${token}` }
         })
-        .then(newSlide => {        
+        .then(newSlide => {
           console.log(newSlide);
         })
         .catch(err => {
-         console.log(err)
+          console.log(err);
         });
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
     });
 }
 
