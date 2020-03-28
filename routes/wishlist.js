@@ -22,7 +22,7 @@ router.post(
 );
 
 // @route   PUT /wishlist
-// @desc    Update wishlist when adding / deleting products in wishlist
+// @desc    Update wishlist when adding/deleting products in wishlist
 // @access  Private
 router.put(
   "/",

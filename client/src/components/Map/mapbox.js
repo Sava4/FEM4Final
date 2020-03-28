@@ -7,7 +7,7 @@ export const MapBox = () => {
     latitude: 50.4941311,
     longitude: 30.3568245,
     width: "60vw",
-    height: "60vh",
+    height: "70vh",
     zoom: 10
   });
   const [selectedStore, setSelectedStore] = useState(null);
@@ -65,7 +65,6 @@ export const MapBox = () => {
           >
             <div>
               <h2>{selectedStore.properties.NAME}</h2>
-              <p></p>
               <p>{selectedStore.properties.ADDRESS}</p>
             </div>
           </Popup>

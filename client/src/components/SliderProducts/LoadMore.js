@@ -35,7 +35,7 @@ export const LoadMore = ({
 
           // setTimeout(function() {
           //   const el = document.getElementById(`${products.length}`);
-          //   +currentPage < productsQuantity / pageSize &&
+          //   +currentPage < productsQuantity/pageSize &&
           //     el.scrollIntoView({ behavior: "smooth" });
           // }, 3000);
         }}

@@ -33,7 +33,7 @@ export const Loader = styled.div`
     background: #ba253e;
     width: 12.18px;
     height: 33.06px;
-    border-radius: 6.09px / 16.53px;
+    border-radius: 6.09px/16.53px;
     transform-origin: 6.09px 35.67px;
   }
 

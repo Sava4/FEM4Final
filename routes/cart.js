@@ -19,7 +19,7 @@ const {
 router.post("/", passport.authenticate("jwt", { session: false }), createCart);
 
 // @route   PUT /cart
-// @desc    Update cart when adding / deleting products in cart
+// @desc    Update cart when adding/deleting products in cart
 // @access  Private
 router.put("/", passport.authenticate("jwt", { session: false }), updateCart);
 
