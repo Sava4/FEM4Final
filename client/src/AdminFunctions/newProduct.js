@@ -120,7 +120,6 @@ export function deleteAllProducts() {
       password: "1111111"
     })
     .then(response => {
-      /*Do something with newProduct*/
       let token = response.data.token;
       console.log(token);
       axios.get("http://localhost:5000/products/").then(products => {
@@ -133,15 +132,14 @@ export function deleteAllProducts() {
                 headers: { Authorization: `${token}` }
               })
               .then(res => {
-                /*Do something with newProduct*/
                 console.log(res);
               })
               .catch(err => {
-                /*Do something with error, e.g. show error to user*/
+                console.log(err);
               });
           })
           .catch(err => {
-            /*Do something with error, e.g. show error to user*/
+            console.log(err);
           });
       });
     });

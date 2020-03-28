@@ -1,20 +1,16 @@
 import React from "react";
-
-import "./spinner.css";
+import { LoaderWrapper, Loader } from "./spinner.styles";
 
 export const Spinner = () => {
   return (
-    <div className="loadingio-spinner-double-ring-34ui5p1znfs">
-      <div className="ldio-n51isyr5srq">
+    <LoaderWrapper>
+      <Loader>
         <div></div>
         <div></div>
-        <div>
-          <div></div>
-        </div>
-        <div>
-          <div></div>
-        </div>
-      </div>
-    </div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </Loader>
+    </LoaderWrapper>
   );
 };

@@ -99,10 +99,11 @@ const Wrapper = styled.div`
   width: 250px;
 `)}
        ${mediaMobile(`
-  width: 250px;
+        width: 250px;
   `)}
-   @media (max-width: 500px) {
+   @media (max-width: 480px) {
          width: 250px;
+         margin-left: 30px;
        }
      `}
 `;

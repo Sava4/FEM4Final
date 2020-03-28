@@ -3,10 +3,8 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CarouselImage, H4 } from "./sliderProducts.styles";
-import { ProductItem } from "./productItemSlider";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { H4 } from "./sliderProducts.styles";
+import { ProductItem } from "../ProductsList/productItem";
 
 export const SliderProducts = props => {
   const settings = {
@@ -20,7 +18,33 @@ export const SliderProducts = props => {
     slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 798,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   const [text, setText] = useState([]);
@@ -52,22 +76,17 @@ export const SliderProducts = props => {
       <Slider {...settings}>
         {text1.map(item => {
           return (
-            <CarouselImage key={item._id} itemNo={`${item.itemNo}`}>
-              <NavLink
-                to={`/product/${item.itemNo}`}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <ProductItem
-                  {...item}
-                  id={item._id}
-                  itemNo={`${item.itemNo}`}
-                  style={{
-                    display: "flex",
-                    justifyContent: "center"
-                  }}
-                />
-              </NavLink>
-            </CarouselImage>
+            <ProductItem
+              {...item}
+              interpretation={"carousel"}
+              img={item.imageUrls[0]}
+              id={item._id}
+              itemNo={`${item.itemNo}`}
+              style={{
+                display: "flex",
+                justifyContent: "center"
+              }}
+            />
           );
         })}
       </Slider>
