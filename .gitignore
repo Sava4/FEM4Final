@@ -24,6 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # dotenv environment variables file
-client/public/img/.env
+.env
 .env.test
 .vscode
