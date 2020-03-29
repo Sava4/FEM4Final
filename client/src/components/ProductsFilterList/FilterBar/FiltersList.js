@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { v4 } from "uuid";
 
 import styled from "styled-components";
-
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import { setTogleShown } from "./../../../store/filters";
 import { setDeleteFilter } from "./../../../store/filters";
 
@@ -39,7 +39,7 @@ export const FiltersList = connect(mapStateToProps, {
     return (
       <FilterBox key={v4()}>
         <FilterType id={item}>
-          <p>{item} </p>
+          <p>{item.replace("_", " ")} </p>
           {!isShown && (
             <ExpandMoreIcon fontSize="small" onClick={handleChange} />
           )}
@@ -62,9 +62,10 @@ const CheckboxBlock = styled.div`
 `;
 
 const FilterBox = styled.div`
-  // & >div:not(:last-child) {
-  border-bottom: 1px solid lightgrey;
-  // }
+${mediaMobile(`
+display: none;
+width: 0;
+`)}
 `;
 const FilterType = styled.div`
   padding-top: 22px;

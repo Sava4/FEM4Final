@@ -35,6 +35,12 @@ export const Navigation = connect(mapStateToProps, { getCategoriesList })(
         });
     }, []);
  
+
+
+
+
+
+
     return (
       <HeaderDropMenu>
         <HeaderMenuElem categoriesAllData={categoriesAllData} />
@@ -48,4 +54,5 @@ const HeaderDropMenu = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
+  position: relative;
 `;

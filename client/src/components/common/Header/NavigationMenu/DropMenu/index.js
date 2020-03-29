@@ -37,6 +37,8 @@ export const HeaderMenuElem = props => {
   
   };
 
+  const hideDropmenu =() =>{setDropMenuState(initialState)}
+
 
   const categList = categArrey.map(item => {
     const menuName = item.name;
@@ -53,32 +55,40 @@ export const HeaderMenuElem = props => {
     const isShown = stateObj.length && stateObj[0].isOpen;
 
     return (
-      <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
+      <CategoriesLi  key={item._id} id={item.id} onClick={openDropmenu}  >
         {item.id}
-        {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} /> : null}
+        {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} style={{height:"209px"}}/> : null}
       </CategoriesLi>
     );
   });
-  return <Categories>{categList}</Categories>;
+  return <Categories >{categList}</Categories>;
 };
-
+//  onMouseLeave={hideDropmenu}
 const Categories = styled.ul`
   padding: 0;
   margin: 0;
   font-size: 14px;
-  width: 70vw;
+  width: 100vw;
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  position: relative;
+  position: absolute; 
   cursor: pointer;
-
+  z-index:3;
+  background-color:  #FFFFFF;
   ${mediaMobile(`
     display: none;
   `)}
 `;
 
 const CategoriesLi = styled.ul`
-  list-style-type: none;
+  list-style-type: none;   
+  :first-child{
+    margin-left 230px;
+  }
+  :last-child{
+    margin-right 230px;
+  }
 `;
+

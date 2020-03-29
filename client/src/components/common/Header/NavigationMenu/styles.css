@@ -9,14 +9,14 @@
   text-transform: capitalize;
   cursor: pointer;
   flex-wrap: wrap;
-  width: in;
+  width: fit-content;
 }
 .navy :not(:first-child) {
   display: inline;
   justify-content: space-between;
   position: absolute;
   text-align: center;
-  background-color: whitesmoke;
+  background-color: grey;
   text-transform: capitalize;
   border-bottom: 1px solid black;
 }
