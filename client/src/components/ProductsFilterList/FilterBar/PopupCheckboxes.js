@@ -55,16 +55,13 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const checkedFilters = e => {
     e.preventDefault();
-    console.log(e.target.classList.value);
-    console.log(e.target.getAttribute("data-filtername"));  
-    console.log(e.target.id);
-
+    console.log(e.target.getAttribute("data-filtergrupname"))
     const activeFilters = {};
-    activeFilters[e.target.id] = e.target.getAttribute("data-filtername");
+    activeFilters[e.target.getAttribute("data-filtergrupname")] = e.target.getAttribute("data-filtername");
     props.dispatchSetCheckFilter(activeFilters);
      if (!e.target.checked)
       {
-      const remoteFilterCategory = e.target.id;
+      const remoteFilterCategory = e.target.getAttribute("data-filtergrupname");
       const remoteFilterName = e.target.getAttribute("data-filtername");
       const delEll = {};
       delEll[remoteFilterCategory] = remoteFilterName;
@@ -84,8 +81,8 @@ export const PopupCheckboxes = connect(mapStateToProps, {
                       name={item}
                       value={item}
                       data-filtername={item}
-                      id={filtername}
-                      checked={checkedFromStor.includes(item) && "checked"}>
+                      data-filtergrupname = {filtername}                  
+                      defaultChecked={checkedFromStor.includes(item) && "checked"}>
                </InputCheckbox>
               <CheckBoxIcon/>
               {item}
@@ -122,6 +119,7 @@ const CheckboxLabel = styled.label`
   font-size: 12px;
   letter-spacing: 0.5px;
   cursor: pointer;
+  text-transform: capitalize;
 
  `;
 

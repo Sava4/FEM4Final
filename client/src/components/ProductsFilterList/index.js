@@ -1,38 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
-// import { Checkboxes } from "./FilterBar/PopupCheckboxes";
+import {MobileFiltersList} from './FilterBar/MobileFiltersList'
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 
 export const ProductFilters = () => {
   const { category } = useParams();
-
+  const [nambertOfFilterdItems, setNambertOfFilterdItems] =useState(0);
+  const [openFiltwin, setOpenFiltwilnd] = useState(true)
   return (
     <Layout>
-      <CategoriesHeader>
-        <p>{category}</p>
-      </CategoriesHeader>
+        <CategoriesHeader>
+            <p>
+              {category}
+            </p>
+        </CategoriesHeader>
 
-      <IconBreadcrumbs categoryName={{ category }} />
+        <IconBreadcrumbs categoryName={{ category }} />
 
-      <CategotiesCommon>
-          <CategoriesFilters>
-              <FiltersbarHead>FILTER BY </FiltersbarHead>
-              <FiltersbarHeadMob>FILTER BY </FiltersbarHeadMob>
-            <FiltersList />
-        </CategoriesFilters>
+        <MobileCategotiesCommon>      
+                <p onClick={()=>setOpenFiltwilnd(true)}>
+                    FILTER BY
+                </p>                              
+{openFiltwin && <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd}/>}
+        </MobileCategotiesCommon>
 
-        <SelectedProducts>
-          <p>Selected products</p>     
-            <FilterIndicators />
-            <FilteredListProducts category={category} />         
-        </SelectedProducts>
-      </CategotiesCommon>
+        <CategotiesCommon>
+            <CategoriesFilters>
+                <p>
+                  FILTER BY 
+                </p>
+              <FiltersList />
+            </CategoriesFilters>
+
+          <SelectedProducts>
+            <p>{`Selected products ( ${nambertOfFilterdItems} )`}</p>     
+              <FilterIndicators />
+              <FilteredListProducts category={category} setNambertOfFilterdItems={setNambertOfFilterdItems}/>         
+          </SelectedProducts>
+        </CategotiesCommon>
     </Layout>
   );
 };
@@ -60,33 +71,52 @@ const CategotiesCommon = styled.div`
 `)}
  
 `;
+const MobileCategotiesCommon = styled.div`
+display: none;
+flex-wrap: nowrap;
+${mediaMobile(`
+display: block;
+// flex-direction:column;
+ & > p {
+  font-size: 17px;
+  margin-left: 20px;
+  margin-top: 18px;
+  margin-bottom: 20px;
+  width:fit-content;
+  cursor: pointer;
+ }
+`)}
+ 
+`;
 const CategoriesFilters = styled.div`
   margin-top: 29px;
   margin-left: 130px;
   min-width: 280px;
   width: 30%;
+  & p {
+    font-size: 17px;
+    margin-bottom: 22px;
+  }
   ${mediaMobile(`
-    height: fit-content;
-    margin-left: 20px;
+  display:none;
+    // height: fit-content;
+    // margin-left: 20px;
+    // & p {
+      
+    // }
 `)}
-  // & > p {
-  //   font-size: 17px;
-  //   margin-bottom: 54px;
-  //     ${mediaMobile(`
-  //       margin-bottom: 11px;
-  //       width:fit-content;
-  //     `)}
 `;
-const FiltersbarHead = styled.p`
-font-size: 17px;
-margin-bottom: 54px;
-  ${mediaMobile(`
-   display:none;
-  `)}
-`;
+
+// const FiltersbarHead = styled.p`
+
+//   ${mediaMobile(`
+   
+//   `)}
+// `;
 const FiltersbarHeadMob = styled.p`
-  display::none;
+  display:none;
   ${mediaMobile(`
+    display:block;
     font-size: 17px;
     margin-bottom: 54px;
     margin-bottom: 11px;
@@ -101,9 +131,9 @@ const SelectedProducts = styled.div`
     text-transform: uppercase;
     margin-bottom: 23px;
     ${mediaMobile(`
-      text-align:right;
+      text-align:left;
       margin: 0;
-      margin-top: -27px;
+      // margin-top: -45px;
       margin-right: 21px;
 
       `)}

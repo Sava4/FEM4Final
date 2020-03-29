@@ -38,18 +38,20 @@ export const FiltersList = connect(mapStateToProps, {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>
-        <FilterType id={item}>
-          <p>{item.replace("_", " ")} </p>
-          {!isShown && (
-            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
-          )}
-          {isShown && (
-            <ExpandLessIcon fontSize="small" onClick={handleChange} />
-          )}
-        </FilterType>
-        <CheckboxBlock isOpen={isShown}>
-          <PopupCheckboxes filtername={item} />
-        </CheckboxBlock>
+          <FilterType id={item}>
+              <p>
+                {item.replace("_", " ")}
+              </p>
+              {!isShown && (
+                <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+              )}
+              {isShown && (
+                <ExpandLessIcon fontSize="small" onClick={handleChange} />
+              )}
+          </FilterType>
+          <CheckboxBlock isOpen={isShown}>
+              <PopupCheckboxes filtername={item} />
+          </CheckboxBlock>
       </FilterBox>
     );
   });
@@ -62,20 +64,18 @@ const CheckboxBlock = styled.div`
 `;
 
 const FilterBox = styled.div`
-${mediaMobile(`
-display: none;
-width: 0;
-`)}
+height: fit-content;
+ border-bottom: 1px solid #E9EBF5;
+
 `;
 const FilterType = styled.div`
   padding-top: 22px;
   display: flex;
   justify-content: space-between;
-  & p {
+  margin: 0px; 
+  & >p {
     font-size: 14px;
     text-transform: uppercase;
-    margin: 0;
-    margin-right: 20px;
-    padding-bottom: 31px;
+
   }
 `;

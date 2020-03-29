@@ -59,8 +59,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
       };
     }
     case SET_IS_SHOWN: {
-      console.log(payload);
-      return {
+        return {
         ...store,
         menuState: { ...store.menuState, [payload]: !store.menuState[payload] }
       };

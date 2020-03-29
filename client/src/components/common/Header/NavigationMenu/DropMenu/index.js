@@ -61,9 +61,9 @@ export const HeaderMenuElem = props => {
       </CategoriesLi>
     );
   });
-  return <Categories >{categList}</Categories>;
+  return <Categories onMouseLeave={hideDropmenu}>{categList}</Categories>;
 };
-//  onMouseLeave={hideDropmenu}
+
 const Categories = styled.ul`
   padding: 0;
   margin: 0;

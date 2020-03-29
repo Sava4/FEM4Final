@@ -14,9 +14,11 @@
 .navy :not(:first-child) {
   display: inline;
   justify-content: space-between;
+  align-items: center;
   position: absolute;
   text-align: center;
   background-color: grey;
   text-transform: capitalize;
   border-bottom: 1px solid black;
+  background-color: white !important;
 }
