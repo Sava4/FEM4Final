@@ -5,6 +5,7 @@ import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { addFavorites, removeFavorites } from "../../store/favorites";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
 import { useParams } from "react-router";
+import { ScrollToTopController } from "../SliderProducts/LoadMore";
 import {
   mediaMobile,
   mediaTablet
@@ -47,6 +48,7 @@ export const ProductDetails = () => {
         weight={products.weight}
         sample={products.sample}
       />
+      <ScrollToTopController parsed={id} />
     </>
   );
 };

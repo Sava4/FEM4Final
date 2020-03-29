@@ -1,6 +1,6 @@
 import styles from "./Paginator.module.css";
 import cn from "classnames";
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export const LoadMore = ({
   currentPage,
@@ -12,12 +12,6 @@ export const LoadMore = ({
   parsed,
   ...props
 }) => {
-  //   async function q(){
-  //     (+currentPage<4)&&( onLoadMore(+currentPage + 1) )
-  //  const el = await document.getElementById(`${products.length}`)
-  //  (+currentPage<4)&&(el.scrollIntoView({behavior:"smooth"}))
-  // }
-  // console.log(parsed)//undefined
   return (
     <>
       <div
@@ -29,15 +23,8 @@ export const LoadMore = ({
           styles.unactive
         )}
         onClick={e => {
-          // q()
           +currentPage < productsQuantity / pageSize &&
             onLoadMore(+currentPage + 1); //передаем в контейнер и загружаем нужную страницу
-
-          // setTimeout(function() {
-          //   const el = document.getElementById(`${products.length}`);
-          //   +currentPage < productsQuantity / pageSize &&
-          //     el.scrollIntoView({ behavior: "smooth" });
-          // }, 3000);
         }}
       >
         loadmore
@@ -52,27 +39,65 @@ export const LoadMore = ({
           styles.top
         )}
         onClick={e => {
-          onToTop();
+          onTop();
         }}
       ></div>
     </>
   );
 };
 
+export const ShowOnTop = () => {
+  let [pos, setPos] = useState(window.pageYOffset);
+  let [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let temp = window.pageYOffset;
+
+      setVisible(pos > temp);
+      setPos(temp);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
+  return (
+    <div
+      className={cn(
+        {
+          [styles.hidden]: !visible
+        },
+        styles.arrow,
+        styles.top,
+        styles.onTop
+      )}
+      onClick={e => {
+        onTop();
+      }}
+    />
+  );
+};
+
+export const onTop = parsed => {
+  try {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  } catch (error) {
+    window.scrollTo(0, 0);
+  }
+  return null;
+};
+
 export const ScrollToTopController = props => {
   let parsed = props.parsed;
-  console.log(parsed);
   useEffect(
     () => () => {
-      try {
-        window.scroll({
-          top: 0, //рядов*высоту одного 2*258
-          left: 0,
-          behavior: "smooth"
-        });
-      } catch (error) {
-        window.scrollTo(200, 0);
-      }
+      onTop();
     },
     [parsed]
   );

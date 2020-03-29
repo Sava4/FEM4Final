@@ -5,8 +5,13 @@ import { Page } from "./staticPage.styles";
 import { MapBox } from "../Map/mapbox";
 import { AddressesSelect } from "../Map/addressesPage";
 import { GiftCard } from "./giftCard";
-import { ScrollToTopController } from "../SliderProducts/LoadMore";
-
+import {
+  ScrollToTopController,
+  onTop,
+  ShowOnTop
+} from "../SliderProducts/LoadMore";
+import styles from "../SliderProducts/Paginator.module.css";
+import cn from "classnames";
 import styled, { css } from "styled-components";
 
 export const StaticPage = () => {
@@ -37,7 +42,6 @@ export const StaticPage = () => {
             <AddressesSelect />
             <MapBox />
           </Page>
-          <ScrollToTopController parsed={url} />
         </Fragment>
       );
     if (url === "gift-cards")
@@ -47,7 +51,6 @@ export const StaticPage = () => {
             <HeadPage>Gift cards</HeadPage>
             <GiftCard />
           </Page>
-          <ScrollToTopController parsed={url} />
         </Fragment>
       );
     return (
@@ -56,11 +59,16 @@ export const StaticPage = () => {
           <Server dangerouslySetInnerHTML={{ __html: someHtml }} />
           <ImagePage src={images[0]} alt="" />
         </Page>
-        <ScrollToTopController parsed={url} />
       </Fragment>
     );
   };
-  return <Static />;
+  return (
+    <>
+      <Static />
+      {/* <ScrollToTopController parsed={url} /> */}
+      <ShowOnTop />
+    </>
+  );
 };
 
 const Server = styled.div``;
