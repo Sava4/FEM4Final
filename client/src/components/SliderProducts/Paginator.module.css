@@ -74,6 +74,8 @@
   position: fixed;
   width: 30px;
   height: 30px;
+  background-color: transparent;
   margin-left: 95%;
-  margin-top: 350px;
+  margin-top: 400px;
+  z-index: 10;
 }

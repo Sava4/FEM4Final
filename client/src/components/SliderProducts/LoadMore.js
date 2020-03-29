@@ -46,7 +46,7 @@ export const LoadMore = ({
   );
 };
 
-export const ShowOnTop = () => {
+export const ShowOnTop = props => {
   let [pos, setPos] = useState(window.pageYOffset);
   let [visible, setVisible] = useState(false);
 
@@ -62,12 +62,11 @@ export const ShowOnTop = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
-
   return (
     <div
       className={cn(
         {
-          [styles.hidden]: !visible
+          [styles.hidden]: visible // if controller inactive !visible
         },
         styles.arrow,
         styles.top,
@@ -80,6 +79,16 @@ export const ShowOnTop = () => {
   );
 };
 
+export const ScrollToTopController = props => {
+  let parsed = props.parsed;
+  useEffect(
+    () => () => {
+      onTop();
+    },
+    [parsed]
+  );
+  return null;
+};
 export const onTop = parsed => {
   try {
     window.scroll({
@@ -90,16 +99,5 @@ export const onTop = parsed => {
   } catch (error) {
     window.scrollTo(0, 0);
   }
-  return null;
-};
-
-export const ScrollToTopController = props => {
-  let parsed = props.parsed;
-  useEffect(
-    () => () => {
-      onTop();
-    },
-    [parsed]
-  );
   return null;
 };
