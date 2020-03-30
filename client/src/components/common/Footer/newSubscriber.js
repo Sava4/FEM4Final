@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 import axios from "axios";
+import styled from "styled-components";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export function AddSubscriber(props) {
+  const [show, setShow] = useState(false);
+  // function onHide() {
+  //   setModal(!showModal);
+
+  // }
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+
   let email = props.email;
   const newSubscriber = {
     email: `${email}`,
@@ -11,6 +24,7 @@ export function AddSubscriber(props) {
   };
   // console.log(email);
   if (email !== "") {
+    // ПРОВЕРКА ВВОДА
     axios
       .post("http://localhost:5000/customers/login", {
         loginOrEmail: "customer@gmail.com",
@@ -25,6 +39,7 @@ export function AddSubscriber(props) {
           .then(newSubscriber => {
             console.log("success");
             console.log(newSubscriber);
+            // setShow(true);
           })
           .catch(err => {
             console.log("error add");
@@ -36,8 +51,18 @@ export function AddSubscriber(props) {
         console.log(err);
       });
   }
-  return <div></div>;
+  return (
+    <>
+      <button onClick={handleShow}>OPEN</button>     
+      <Modal show={show} onHide={handleClose} style={{zIndex:"20",opacity:"1",background:"blue",marginLeft:"700px",marginTop:"100px",width:'300px',height:'30px',display:"flex",justifyContent:"center"}}>
+        <button style={{width:"100%"}} onClick={() => setShow(false)}>x</button> You are successfuly subscribed!
+      </Modal>
+    </>
+  );
 }
+
+
+
 
 export function UpdateSubscriber() {
   const updateSubscriber = {
@@ -75,3 +100,30 @@ export function UpdateSubscriber() {
       console.log(err);
     });
 }
+// const Modal = styled.div`
+//   width: 100px;
+//   height: 100px;
+//   display: none;
+//   border: 1px solid #002d50;
+//   background: #ffffff;
+
+//   ${mediaMobile(`
+//   flex-direction: column;
+//   align-items: center;
+//   `)}
+// `;
+
+// const FormLogIn = styled.div`
+//   width: 55%;
+//   display: flex;
+//   flex-direction: column;
+//   margin-left: 70px;
+//   margin-right: 70px;
+//   margin-bottom: 70px;
+
+//   ${mediaMobile(`
+//   width: 80%;
+//   margin: 0 0 50px 0;
+//   align-items: center;
+//   `)}
+// `;
