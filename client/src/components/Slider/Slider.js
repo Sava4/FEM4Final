@@ -121,11 +121,10 @@ export const SliderHomepage = props => {
           <Slider {...settings}>
             {items.map(item => {
               return (
-                <div style={{ boxSizing: "border-box" }}>
+                <div style={{ boxSizing: "border-box" }} key={item._id}>
                   <CarouselImage
                     height={props.height}
                     width={`${props.width}`}
-                    key={item._id}
                     {...item}
                   />
                 </div>

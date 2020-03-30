@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { SocialMenu } from "./Social";
 import { Email } from "./Email";
+import { ScrollToTopController } from "./../../SliderProducts/LoadMore";
 import {
   LinkToStatic,
   FooterMain,
@@ -22,7 +24,7 @@ import {
 
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
-
+  let { url } = useParams();
   useEffect(() => {
     axios
       .get("http://localhost:5000/links")
@@ -110,6 +112,7 @@ export const Footer = () => {
       <FooterBottom>
         <FooterText>&copy; 2013-2020 ZARINA.UA All Rights</FooterText>
       </FooterBottom>
+      <ScrollToTopController parsed={url} />
     </FooterMain>
   );
 };
