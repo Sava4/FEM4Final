@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import headerDesign from "./header-design.png";
@@ -13,8 +12,10 @@ import {
   Login,
   Search,
   Logo,
+  MainMenu,
   Navigation
 } from "../Header/index";
+import { NavState } from "./HamburgerMenu/navState";
 
 export const HeaderContent = props => {
   const [isModalOpen, toggleModal] = useState(false);
@@ -24,11 +25,11 @@ export const HeaderContent = props => {
     <Container>
       <Line />
       <HeaderWrapper>
+        <NavState>
+          <MainMenu />
+        </NavState>
         <Search />
-        <NavLink exact to="/">
-          <Logo />
-        </NavLink>
-
+        <Logo />
         <HeaderIconWrapper>
           <Login onClick={() => toggleModal(!isModalOpen)} />
           {isModalOpen && (
@@ -43,29 +44,13 @@ export const HeaderContent = props => {
               onLogin={GoBackToLogin}
             />
           )}
-          <NavLink
-            to="/account/favorites"
-            style={{
-              textDecoration: "none",
-              color: "inherit"
-            }}
-          >
-            <Favorites />
-          </NavLink>
-          <NavLink
-            to="/account/shopping-bag"
-            style={{
-              textDecoration: "none",
-              color: "inherit"
-            }}
-          >
-            <ShoppingBag />
-          </NavLink>
+          <Favorites />
+          <ShoppingBag />
         </HeaderIconWrapper>
       </HeaderWrapper>
 
       <Categories>
-        <Navigation></Navigation>
+        <Navigation />
       </Categories>
     </Container>
   );
@@ -104,7 +89,8 @@ const HeaderWrapper = styled.div`
 
   ${mediaMobile(`
     border-bottom: 1px solid black;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
+    margin-top: 20px;
     margin-bottom: 0;
   `)}
 `;
@@ -115,11 +101,8 @@ const HeaderIconWrapper = styled.div`
 
 const Categories = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
   border-bottom: 1px solid black;
   padding-bottom: 30px;
-  position: relative;
 
   ${mediaMobile(`
     display: none;

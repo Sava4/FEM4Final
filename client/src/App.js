@@ -8,8 +8,6 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "./store";
 
-//import {Header, Spinner} from "./components";
-
 function App() {
   return (
     <BrowserRouter>

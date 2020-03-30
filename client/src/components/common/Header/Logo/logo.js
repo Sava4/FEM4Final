@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import logo from "./mainLogo.png";
@@ -9,10 +10,10 @@ import {
 } from "../../../../styled-components/media-breakpoints-mixin";
 
 export const Logo = () => {
-  return <MainLogo />;
+  return <MainLogo exact to="/" />;
 };
 
-const MainLogo = styled.div`
+const MainLogo = styled(NavLink)`
   background-image: url(${logo});
   background-repeat: no-repeat;
   background-size: contain;

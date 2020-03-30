@@ -3,4 +3,5 @@ export { Logo } from "./Logo/logo";
 export { Search } from "./Search/search";
 export { ShoppingBag } from "./ShoppingBag/shopping-bag";
 export { Favorites } from "./Favorites/favorites";
+export { MainMenu } from "./HamburgerMenu/mainMenu";
 export { Navigation } from "./NavigationMenu";

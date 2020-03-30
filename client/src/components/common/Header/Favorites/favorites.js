@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 import favorites from "./favorites.png";
 import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
@@ -9,7 +10,7 @@ export const Favorites = () => {
   const count = useSelector(state => state.favorites.favArr.length) || 0;
 
   return (
-    <ServicesIcon>
+    <ServicesIcon to="/account/favorites">
       <FavoritesIcon />
       <span>({count})</span>
     </ServicesIcon>
@@ -25,7 +26,7 @@ const FavoritesIcon = styled.div`
   background-size: contain;
 `;
 
-const ServicesIcon = styled.div`
+const ServicesIcon = styled(NavLink)`
   display: flex;
   align-items: center;
   margin-left: 30px;
