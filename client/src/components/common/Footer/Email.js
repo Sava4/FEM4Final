@@ -9,10 +9,7 @@ export const Email = () => {
   const submitButton = () => {
     setEmail(emailRef.current.value);
   };
-//   function handleSubmit(e){
-//     e.preventDefault();
-//     e.target.reset();
-// }
+
   return (
     <div>
       <EmailInput ref={emailRef} type="email" placeholder="Email" />
