@@ -39,7 +39,9 @@ export function AddSubscriber(props) {
           .then(newSubscriber => {
             console.log("success");
             console.log(newSubscriber);
-            // setShow(true);
+            alert(email)
+          
+            
           })
           .catch(err => {
             console.log("error add");
@@ -53,10 +55,11 @@ export function AddSubscriber(props) {
   }
   return (
     <>
-      <button onClick={handleShow}>OPEN</button>     
+    
+      {/* <button onClick={handleShow}>OPEN</button>     
       <Modal show={show} onHide={handleClose} style={{zIndex:"20",opacity:"1",background:"blue",marginLeft:"700px",marginTop:"100px",width:'300px',height:'30px',display:"flex",justifyContent:"center"}}>
         <button style={{width:"100%"}} onClick={() => setShow(false)}>x</button> You are successfuly subscribed!
-      </Modal>
+      </Modal> */}
     </>
   );
 }
