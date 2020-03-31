@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { addFavorites, removeFavorites } from "../../store/favorites";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
 import { useParams } from "react-router";
+import { ScrollToTopController, ShowOnTop } from "../SliderProducts/LoadMore";
 import {
   mediaMobile,
   mediaTablet
 } from "../../styled-components/media-breakpoints-mixin";
 import Slider from "react-slick";
+import {Spinner} from "../Spinner/spinner";
 
 import styled, { css } from "styled-components";
-import { Spinner } from "../Spinner/spinner";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -20,7 +21,6 @@ export const ProductDetails = () => {
   const [images, setImages] = useState([]);
   const [price, setPrice] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isError, toggleError] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,30 +33,28 @@ export const ProductDetails = () => {
     };
     fetchPosts();
   }, [id]);
-  const sayError = () => {
-    return (
-      <ShoppingBagForm isError={isError} onClose={() => toggleError(false)} />
-    );
-  };
-  return loading ? (
-    <Container>
-      <Spinner />
-    </Container>
-  ) : (
-    <Details1
-      products={products}
-      name={products.name}
-      itemNo={products.itemNo}
-      id={products._id}
-      previousPrice={price}
-      gemstone={products.gemstone}
-      collection={products.collection}
-      metal={products.metal}
-      metal_color={products.metal_color}
-      weight={products.weight}
-      sample={products.sample}
-      img={images[0]}
-    />
+
+  return (
+      loading
+          ? <Container><Spinner/></Container>
+      :<Fragment>
+      <Details1
+        products={products}
+        name={products.name}
+        itemNo={products.itemNo}
+        id={products._id}
+        previousPrice={price}
+        gemstone={products.gemstone}
+        collection={products.collection}
+        metal={products.metal}
+        metal_color={products.metal_color}
+        weight={products.weight}
+        sample={products.sample}
+      />
+      <ScrollToTopController parsed={id} />
+      <ShowOnTop />
+    </Fragment>
+
   );
 };
 
@@ -66,6 +64,8 @@ const Details1 = props => {
   const token = useSelector(state => state.login.token);
   const products = props.products;
   const product = products !== undefined && products;
+  console.log(products);
+  console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
@@ -78,7 +78,6 @@ const Details1 = props => {
           src={`http://localhost:3000/${image}`}
           style={{
             width: "99%",
-            height: "99%",
             border: `1px solid #E9EBF5`,
             boxSizing: "border-box"
           }}
@@ -139,9 +138,9 @@ const Details1 = props => {
         className="carousel_wrapper"
         style={{
           height: ``,
-          width: `6%`,
-          marginTop: `40px`,
-          marginRight: `20px`
+          width: `5%`,
+          marginTop: `20px`,
+          marginRight: `5px`
         }}
       >
         <Slider
@@ -160,8 +159,8 @@ const Details1 = props => {
         className="carousel_wrapper"
         style={{
           height: ``,
-          width: `43%`,
-          marginTop: `40px`,
+          width: `50%`,
+          marginTop: `20px`,
           marginRight: `20px`,
           boxSizing: `border-box`
         }}
@@ -172,7 +171,6 @@ const Details1 = props => {
           speed={0.1}
           arrows={false}
           draggable={false}
-          // fade={true}
         >
           {imagesSlider}
         </Slider>
@@ -220,7 +218,8 @@ export const Container = styled.div`
     `}
 `;
 export const Wrapper = styled.div`
-  width: 48%;
+  margin-top: 20px;
+  width: 33%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -230,7 +229,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
-
 ${mediaTablet(`
     width: 70%;
 `)}

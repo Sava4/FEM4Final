@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { SocialMenu } from "./Social";
 import { Email } from "./Email";
-
+import { ScrollToTopController } from "./../../SliderProducts/LoadMore";
 import {
   LinkToStatic,
   FooterMain,
@@ -32,6 +33,8 @@ export const Footer = () => {
   const handleToggleContact = () => setContactOpen(!contactOpen);
   const handleToggleInfo = () => setInfoOpen(!infoOpen);
   const handleToggleService = () => setServiceOpen(!serviceOpen);
+
+  let { url } = useParams();
 
   useEffect(() => {
     axios
@@ -145,6 +148,7 @@ export const Footer = () => {
       <FooterBottom>
         <FooterText>&copy; 2013-2020 ZARINA.UA All Rights</FooterText>
       </FooterBottom>
+      <ScrollToTopController parsed={url} />
     </FooterMain>
   );
 };

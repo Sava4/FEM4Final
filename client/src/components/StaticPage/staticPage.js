@@ -4,42 +4,22 @@ import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 import { MapBox } from "../Map/mapbox";
 import { AddressesSelect } from "../Map/addressesPage";
-import { GiftCard } from "./GiftCard/giftCard";
-import { ScrollToTopController } from "../SliderProducts/LoadMore";
 import {Server,
 HeadPage,
 ImagePage} from "./GiftCard/giftCard.styles";
+import { GiftCard } from "./GiftCard/giftCard";
+import {
+  ScrollToTopController,
+  onTop,
+  ShowOnTop
+} from "../SliderProducts/LoadMore";
+
 
 export const StaticPage = () => {
   let { url } = useParams();
   const [page, setPage] = useState({});
   const [images, setImages] = useState([]);
-  const [res, setResponse] = useState("");
 
-  const updatedPage = {
-    description: "Website Policies"
-  };
-
-  axios
-    .post("http://localhost:5000/customers/login", {
-      loginOrEmail: "customer@gmail.com",
-      password: "1111111"
-    })
-    .then(response => {
-      /*Do something with newProduct*/
-      setResponse(response.data.token);
-      console.log(res);
-    });
-  axios
-    .put("http://localhost:5000/links/5e5183bbe7e84c18cc340b66", updatedPage, {
-      headers: { Authorization: res }
-    })
-    .then(updatedPage => {
-      console.log(updatedPage);
-    })
-    .catch(err => {
-      console.log(err);
-    });
   useEffect(() => {
     axios
       .get(`http://localhost:5000/pages/${url}`)
@@ -63,7 +43,6 @@ export const StaticPage = () => {
             <AddressesSelect />
             <MapBox />
           </Page>
-          <ScrollToTopController parsed={url} />
         </Fragment>
       );
     if (url === "gift-cards")
@@ -73,7 +52,6 @@ export const StaticPage = () => {
             <HeadPage>Gift cards</HeadPage>
             <GiftCard />
           </Page>
-          <ScrollToTopController parsed={url} />
         </Fragment>
       );
     return (
@@ -82,10 +60,15 @@ export const StaticPage = () => {
           <Server dangerouslySetInnerHTML={{ __html: someHtml }} />
           <ImagePage src={images[0]} alt="" />
         </Page>
-        <ScrollToTopController parsed={url} />
       </Fragment>
     );
   };
-  return <Static />;
+  return (
+    <>
+      <Static />
+      {/* <ScrollToTopController parsed={url} /> */}
+      <ShowOnTop />
+    </>
+  );
 };
 

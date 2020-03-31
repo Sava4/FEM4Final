@@ -86,7 +86,8 @@ export const SliderPromoButton = styled.a`
 export const CarouselImage = styled.div`
   background: url(http://localhost:3000/${props => props.imageUrl}) no-repeat;
   background-size: cover;
-  height: 425px;
+  height: ${props => props.height}px;
+  width: ${props => props.width}px;
   opacity: 1;
 
   ${mediaTablet(`
@@ -96,4 +97,14 @@ export const CarouselImage = styled.div`
   ${mediaMobile(`
   background-position: center;
   `)}
+`;
+export const H4 = styled.h4`
+  display: block;
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 30px;
 `;
