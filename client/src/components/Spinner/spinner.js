@@ -5,11 +5,11 @@ export const Spinner = () => {
   return (
     <LoaderWrapper>
       <Loader>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
-        <div/>
+        <div />
+        <div />
+        <div />
+        <div />
+        <div />
       </Loader>
     </LoaderWrapper>
   );
