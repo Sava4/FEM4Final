@@ -1,9 +1,11 @@
 import React, { useRef, useContext } from "react";
+import styled from "styled-components";
 
 import { useOnClickOutside } from "./onClickOutside";
 import { HamburgerButton } from "./burgerMobile";
 import { SideMenu } from "./slideMenu";
 import { MenuContext } from "./navState";
+import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 
 export const MainMenu = () => {
   const node = useRef();
@@ -15,9 +17,17 @@ export const MainMenu = () => {
   });
 
   return (
-    <header ref={node}>
+    <Header ref={node}>
       <HamburgerButton />
       <SideMenu />
-    </header>
+    </Header>
   );
 };
+
+const Header = styled.div`
+  display: none;
+  
+  ${mediaMobile(`
+  display: block;
+  `)}
+`;

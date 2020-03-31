@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MenuContext } from "./navState";
 import styled from "styled-components";
+import {mediaMobile} from "../../../../styled-components/media-breakpoints-mixin";
 
 export const HamburgerButton = () => {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
@@ -19,8 +20,14 @@ export const HamburgerButton = () => {
 };
 
 const MenuButton = styled.button`
+  ${mediaMobile(`
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  position: fixed;
+  top: 40.5px;
+  left: 30px;
+  z-index: 3;
 
   span {
     transition: all 0.3s ease-in-out;
@@ -39,6 +46,8 @@ const MenuButton = styled.button`
       transform: rotate(-45deg) translate(4px, -5px);
     }
   }
+  `)}
+  
 `;
 
 const Bar = styled.span`
@@ -47,5 +56,5 @@ const Bar = styled.span`
   margin-top: 2.5px;
   margin-bottom: 2.5px;
   background-color: #000000;
-  z-index: 2;
+  z-index: 3;
 `;

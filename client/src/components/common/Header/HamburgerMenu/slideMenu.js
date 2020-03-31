@@ -20,11 +20,11 @@ SideMenu.propTypes = {
 };
 
 const Menu = styled.nav`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 2;
   min-width: 100vw;
   background-color: #ffffff;
   transform: translateX(-100%);
