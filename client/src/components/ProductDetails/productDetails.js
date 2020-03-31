@@ -8,9 +8,23 @@ import { useParams } from "react-router";
 import { ScrollToTopController, ShowOnTop } from "../SliderProducts/LoadMore";
 import Slider from "react-slick";
 import { Spinner } from "../Spinner/spinner";
-import {Container, Image, WishButton, WishWrapper, Heart, HeartRose, Price, PriceWrapper, Wrapper, Add, Details, UL, LI, Vendor, Name} from "./productDetails.styles"
-
-
+import {
+  Container,
+  Image,
+  WishButton,
+  WishWrapper,
+  Heart,
+  HeartRose,
+  Price,
+  PriceWrapper,
+  Wrapper,
+  Add,
+  Details,
+  UL,
+  LI,
+  Vendor,
+  Name
+} from "./productDetails.styles";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -195,6 +209,3 @@ const Details1 = props => {
     </Container>
   );
 };
-
-
-

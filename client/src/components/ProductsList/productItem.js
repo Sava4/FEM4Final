@@ -9,7 +9,7 @@ import {
   Price,
   WishWrapper
 } from "../ProductDetails/productDetails.styles";
-import {Wrapper, Card} from "./productItem.styles"
+import { Wrapper, Card } from "./productItem.styles";
 export const ProductItem = props => {
   const dispatch = useDispatch();
   const isFavorites = useSelector(state =>
@@ -43,4 +43,3 @@ export const ProductItem = props => {
     </Wrapper>
   );
 };
-

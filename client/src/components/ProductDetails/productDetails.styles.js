@@ -1,5 +1,8 @@
-import styled, {css} from "styled-components";
-import {mediaMobile, mediaTablet} from "../../styled-components/media-breakpoints-mixin";
+import styled, { css } from "styled-components";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styled-components/media-breakpoints-mixin";
 
 export const Container = styled.div`
   display: flex;
@@ -52,8 +55,8 @@ ${mediaTablet(`
 `)}
     `}
     ${props =>
-    props.size === "xSmall" &&
-    css`
+      props.size === "xSmall" &&
+      css`
         width: 103px;
         height: 129px;
         @media (max-width: 992px) {

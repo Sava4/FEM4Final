@@ -1,6 +1,9 @@
-import styled, {css} from "styled-components";
-import {NavLink} from "react-router-dom";
-import {mediaMobile, mediaTablet} from "../../styled-components/media-breakpoints-mixin";
+import styled, { css } from "styled-components";
+import { NavLink } from "react-router-dom";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styled-components/media-breakpoints-mixin";
 
 export const Card = styled(NavLink)`
   display: flex;
@@ -35,8 +38,8 @@ export const Wrapper = styled.div`
   ${mediaMobile(`
   `)}
    ${props =>
-    props.interpretation === "carousel" &&
-    css`
+     props.interpretation === "carousel" &&
+     css`
        display: flex;
        flex-direction: column;
        align-items: center;
