@@ -107,14 +107,14 @@ export const Arrow = styled.div`
   background-image: url(${footerArrow});
   `)}
     ${props =>
-      props.rotate === true &&
+      props.arrow === true &&
       css`
         margin-top: -3px;
         transform: rotate(180deg);
         transition: 0.3s;
       `}
      ${props =>
-       props.rotate === false &&
+       props.arrow === false &&
        css`
          background-image: url(${footerArrow});
          transition: 0.3s;

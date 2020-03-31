@@ -40,7 +40,6 @@ export const Footer = () => {
     axios
       .get("http://localhost:5000/links")
       .then(result => {
-        // console.log(result.data);
         setStaticLinks(result.data);
       })
       .catch(err => {
@@ -77,7 +76,6 @@ export const Footer = () => {
 
   const itemLinkArr = Array.from(itemLink); // если let то три раза вызывает map из 21 строки
 
-  console.log(itemLinkArr);
   return (
     <FooterMain>
       <FooterInfo>
@@ -86,7 +84,7 @@ export const Footer = () => {
             <InfoContactWrapper>
               <h4>Contact Us</h4>
               <H4 onClick={handleToggleContact}>Contact Us</H4>
-              <Arrow rotate={contactOpen} onClick={handleToggleContact} />
+              <Arrow arrow={contactOpen} onClick={handleToggleContact} />
             </InfoContactWrapper>
             {contactOpen && (
               <MobileWrap>
@@ -109,7 +107,7 @@ export const Footer = () => {
             <InfoAboutWrapper>
               <h4>Information</h4>
               <H4 onClick={handleToggleInfo}>Information</H4>
-              <Arrow rotate={infoOpen} onClick={handleToggleInfo} />
+              <Arrow arrow={infoOpen} onClick={handleToggleInfo} />
             </InfoAboutWrapper>
             <ul>{itemLinkArr.slice(1, 5)}</ul>
           </div>
@@ -119,7 +117,7 @@ export const Footer = () => {
               <ArrowWrapper>
                 <h4>Costumer Service</h4>
                 <H4 onClick={handleToggleService}>Costumer Service</H4>
-                <Arrow rotate={serviceOpen} onClick={handleToggleService} />
+                <Arrow arrow={serviceOpen} onClick={handleToggleService} />
               </ArrowWrapper>
               <SocialContainerMobile>
                 {" "}
