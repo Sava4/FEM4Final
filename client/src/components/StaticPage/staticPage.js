@@ -13,7 +13,32 @@ export const StaticPage = () => {
   let { url } = useParams();
   const [page, setPage] = useState({});
   const [images, setImages] = useState([]);
+  const [res, setResponse] = useState("");
 
+  const updatedPage = {
+    description: "Website Policies"
+  };
+
+  axios
+    .post("http://localhost:5000/customers/login", {
+      loginOrEmail: "customer@gmail.com",
+      password: "1111111"
+    })
+    .then(response => {
+      /*Do something with newProduct*/
+      setResponse(response.data.token);
+      console.log(res);
+    });
+  axios
+    .put("http://localhost:5000/links/5e5183bbe7e84c18cc340b66", updatedPage, {
+      headers: { Authorization: res }
+    })
+    .then(updatedPage => {
+      console.log(updatedPage);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   useEffect(() => {
     axios
       .get(`http://localhost:5000/pages/${url}`)

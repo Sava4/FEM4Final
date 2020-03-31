@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import headerDesign from "../Header/header-design.png";
 import footerArrow from "./footer-arrow.png";
 import {
@@ -43,6 +43,7 @@ export const FooterInfoName = styled.div`
     font-weight: bold;
 
     ${mediaMobile(`
+    display: none;
     margin-top: 25px;
     margin-bottom: 0;
     `)}
@@ -98,12 +99,26 @@ export const InfoServiceWrapper = styled.div`
 
 export const Arrow = styled.div`
   ${mediaMobile(`
+  margin-left: 3px;
   width: 12px;
   height: 8px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url(${footerArrow});
   `)}
+    ${props =>
+      props.rotate === true &&
+      css`
+        margin-top: -3px;
+        transform: rotate(180deg);
+        transition: 0.3s;
+      `}
+     ${props =>
+       props.rotate === false &&
+       css`
+         background-image: url(${footerArrow});
+         transition: 0.3s;
+       `}
 `;
 
 export const ArrowWrapper = styled.div`
@@ -178,4 +193,22 @@ export const SocialLink = styled.a`
   width: 25px;
   background: url(${props => props.icon}) no-repeat;
   background-size: contain;
+`;
+export const Contact = styled.p`
+  margin-top: 15px;
+`;
+export const MobileWrap = styled.div`
+  margin-top: 10px;
+`;
+export const H4 = styled.div`
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  ${mediaMobile(`
+    display: inline;
+   margin-top: 25px;
+    margin-bottom: 0;
+ `)}
 `;
