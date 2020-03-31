@@ -4,16 +4,13 @@ import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 import { MapBox } from "../Map/mapbox";
 import { AddressesSelect } from "../Map/addressesPage";
-import {Server,
-HeadPage,
-ImagePage} from "./GiftCard/giftCard.styles";
+import { Server, HeadPage, ImagePage } from "./GiftCard/giftCard.styles";
 import { GiftCard } from "./GiftCard/giftCard";
 import {
   ScrollToTopController,
   onTop,
   ShowOnTop
 } from "../SliderProducts/LoadMore";
-
 
 export const StaticPage = () => {
   let { url } = useParams();
@@ -71,4 +68,3 @@ export const StaticPage = () => {
     </>
   );
 };
-

@@ -11,7 +11,7 @@ import {
   mediaTablet
 } from "../../styled-components/media-breakpoints-mixin";
 import Slider from "react-slick";
-import {Spinner} from "../Spinner/spinner";
+import { Spinner } from "../Spinner/spinner";
 
 import styled, { css } from "styled-components";
 
@@ -34,10 +34,12 @@ export const ProductDetails = () => {
     fetchPosts();
   }, [id]);
 
-  return (
-      loading
-          ? <Container><Spinner/></Container>
-      :<Fragment>
+  return loading ? (
+    <Container>
+      <Spinner />
+    </Container>
+  ) : (
+    <Fragment>
       <Details1
         products={products}
         name={products.name}
@@ -54,7 +56,6 @@ export const ProductDetails = () => {
       <ScrollToTopController parsed={id} />
       <ShowOnTop />
     </Fragment>
-
   );
 };
 

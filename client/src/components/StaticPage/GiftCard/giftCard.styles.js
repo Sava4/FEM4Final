@@ -1,5 +1,5 @@
-import styled, {css} from "styled-components";
-import {mediaMobile} from "../../../styled-components/media-breakpoints-mixin";
+import styled, { css } from "styled-components";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export const Server = styled.div``;
 
@@ -26,7 +26,7 @@ export const GiftContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-    ${mediaMobile(`
+  ${mediaMobile(`
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -46,4 +46,3 @@ export const Price = styled.span`
   margin-left: -52px;
   margin-top: 145px;
 `;
-
