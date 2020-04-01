@@ -4,7 +4,9 @@ import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
 import { ProductItem } from "./productItemSlider";
 import { Layout } from "../common/Layout";
-
+//игоря
+import { useParams } from "react-router";
+import {FilteredListProducts} from "./../../components/ProductsFilterList/FilteredProducts"
 export const ProductsPagination = ({
   currentPage,
   productsQuantity,
@@ -15,9 +17,11 @@ export const ProductsPagination = ({
   products,
   ...props
 }) => {
+  ///// игоря
+  const { category } = useParams();
   return (
     <div>
-      <Layout>
+      {/* <Layout> */}
         <div
           style={{
             position: "relative",
@@ -42,7 +46,7 @@ export const ProductsPagination = ({
             margin: "0 auto"
           }}
         >
-          {products.map((p, index) => (
+          {/* {products.map((p, index) => (
             <div id={index} key={p.itemNo}>
               {console.log(index)}
               <NavLink
@@ -60,7 +64,8 @@ export const ProductsPagination = ({
                 />
               </NavLink>
             </div>
-          ))}
+          ))} */}
+          <FilteredListProducts category={category} />
         </div>
         <div style={{ width: "100%", display: "block" }}>
           <LoadMore
@@ -81,7 +86,7 @@ export const ProductsPagination = ({
             onToTop={onToTop}
           />
         </div>
-      </Layout>
+      {/* </Layout> */}
     </div>
   );
 };

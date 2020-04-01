@@ -8,7 +8,7 @@ import { FiltersList } from "./FilterBar/FiltersList";
 // import { Checkboxes } from "./FilterBar/PopupCheckboxes";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
-
+import ProductsContainer from './../SliderProducts/ProductsContainer'
 export const ProductFilters = () => {
   const { category } = useParams();
 
@@ -31,6 +31,7 @@ export const ProductFilters = () => {
           <FilterIndicators />
           <FilteredListProducts category={category} />
         </SelectedProducts>
+        <ProductsContainer/>
       </CategotiesCommon>
     </Layout>
   );
