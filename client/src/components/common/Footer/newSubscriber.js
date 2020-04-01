@@ -5,30 +5,32 @@ import styled from "styled-components";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export function AddSubscriber(props) {
-let emailValue=props.emailValue;
-let setSignup = props.setSignup;
-let [email, setEmail] = useState(props.email)
-// let email
-//   (props.email!==null) && (email = props.email)
+  const email = props.email;
+  let emailValue = props.emailValue;
+  let setSignup = props.setSignup;
+  let setEmail = props.setEmail
+  let reset=props.reset
+  // let email
+  //   (props.email!==null) && (email = props.email)
+console.log(email)
   const newSubscriber = {
     email: `${email}`,
     letterSubject: "Test letter (final project)",
     letterHtml:
       "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>"
   };
-  // console.log(email);
- 
-  if (email) {
+
+console.log(email)
+  if (email !== "" && email!==undefined&&emailValue===email) {
     //ПРОВЕРКА ВВОДА
-  
+
     axios
       .post("http://localhost:5000/customers/login", {
         loginOrEmail: "customer@gmail.com",
         password: "1111111"
       })
       .then(response => {
-        let token = response.data.token;
-        // setSignup("ОТПРАВЛЯЕМ ПИСЬМО");
+        let token = response.data.token;        
         axios
           .post("http://localhost:5000/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }
@@ -36,32 +38,29 @@ let [email, setEmail] = useState(props.email)
           .then(newSubscriber => {
             console.log("success");
             console.log(newSubscriber);
-            setEmail(false)
-            alert(email);
-            setSignup("ПОДПИСКА ДОБАВЛЕНА");
-
+            // setEmail(undefined)
+            // alert(email);            
+            setTimeout(() =>setSignup("ПОДПИСКА ДОБАВЛЕНА"),1500); 
+            setTimeout(() => setSignup("Sign Up"),3000);
+            reset()
           })
           .catch(err => {
             console.log("error add");
             console.log(err.response);
-            setTimeout(setSignup("УЖЕ ЕСТЬ ТАКОЙ"),2000);
-            setTimeout(setSignup('Sign Up'),8000)
-            setEmail(false)
+            setTimeout(() =>setSignup("НЕВЕРНЫЙ АДРЕС"),1500);            
+            setTimeout(() => setSignup("Sign Up"),3000);
+            reset()
+            // setTimeout(setSignup("Sign Up"), 50);
+            // setEmail(undefined)
           });
       })
       .catch(err => {
         console.log("error auth");
         console.log(err);
       });
-   
   }
 
-
-  return (
-    <>
-  
-    </>
-  );
+  return <></>;
 }
 
 export function UpdateSubscriber() {
