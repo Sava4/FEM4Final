@@ -6,26 +6,46 @@ import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { AddSubscriber } from "./newSubscriber";
+import { useEffect } from "react";
 
 let Email = props => {
-  const { error, handleSubmit, pristine, reset, emailValue, formValues, value, submitting } = props;
-  let [email, setEmail] = useState("");//если без рефов и через emailValue то он каждый символ передает и запускат регистрацию
+  const {
+    error,
+    handleSubmit,
+    pristine,
+    reset,
+    emailValue,
+    formValues,  
+    submitting
+  } = props;
+
+
+  let [email, setEmail] = useState(); //если без рефов и через emailValue то он каждый символ передает и запускат регистрацию
+  let [signup, setSignup] = useState("Sign Up");
   let emailRef = useRef();
+
   const submitButton = () => {
-    setEmail(emailRef.current.value);
-    reset(); //чистим поле ввода  
-//    ()=> EmailValue="привет" 
+let i = emailRef.current.value
+   console.log(i)  
+    setEmail(i);
+    console.log(email)
+    reset(); //чистим поле ввода
+    
+    setSignup("ОТПРАВЛЯЕМ ПИСЬМО");
+  
+    
   };
 
+  // if(emailValue && emailValue.length1){setSignup('')}
   return (
     <div>
-      <form onSubmit={handleSubmit(submitButton)}>
+      <form onSubmit={handleSubmit}>
         <div>
           <Field
             name="emailValue"
             component={Input}
             type="email"
-            placeholder="Email"         
+            placeholder="Email"
             ref={emailRef}
             validate={[required, Length]}
             style={{
@@ -36,24 +56,26 @@ let Email = props => {
               fontSize: "14px"
             }}
           />
-        </div>       
+        </div>
         <div>
-          <EmailButton type="submit" onClick={submitButton}>
-            {" "}
-            Sign up   
-       {emailValue}
-                 
+          <EmailButton type="submit" onClick={handleSubmit(submitButton)}>
+            {signup}
+            {/* {emailValue} */}
           </EmailButton>
         </div>
-      </form>     
-      <AddSubscriber email={email} emailValue={emailValue} />
+        <AddSubscriber
+          email={email}
+          emailValue={emailValue}
+          setSignup={setSignup}
+        />
+      </form>
     </div>
   );
 };
 
 //validators
 export const required = value => {
-console.log("TCL: value", value)
+  console.log("TCL: value", value);
   if (value) return undefined;
   return "Field is required";
 };
@@ -74,10 +96,9 @@ const FormControl = ({ input, meta: { touched, error }, children }) => {
   );
 };
 
-export const submit = emailValue=>{
-console.log("TCL: value", emailValue)
-
-}
+export const submit = emailValue => {
+  console.log("TCL: value", emailValue);
+};
 
 export const Input = props => {
   const { input, meta, child, ...restProps } = props;
@@ -99,12 +120,11 @@ Email = reduxForm({
 // Decorate with connect to read form values
 const selector = formValueSelector("emailValue"); // <-- same as form name
 
-
 Email = connect(state => {
   // can select values individually
   const emailValue = selector(state, "emailValue");
-  return {emailValue};
-  console.log("TCL: emailValue", emailValue)
+  return { emailValue };
+  console.log("TCL: emailValue", emailValue);
 })(Email);
 
 export default Email;

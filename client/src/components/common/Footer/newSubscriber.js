@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export function AddSubscriber(props) {
-  const [show, setShow] = useState(false);
-  // function onHide() {
-  //   setModal(!showModal);
-
-  // }
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-
-
-  let email = props.email;
+let emailValue=props.emailValue;
+let setSignup = props.setSignup;
+let [email, setEmail] = useState(props.email)
+// let email
+//   (props.email!==null) && (email = props.email)
   const newSubscriber = {
     email: `${email}`,
     letterSubject: "Test letter (final project)",
@@ -23,8 +17,10 @@ export function AddSubscriber(props) {
       "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>"
   };
   // console.log(email);
-  if (email !== "") {
-    // ПРОВЕРКА ВВОДА
+ 
+  if (email) {
+    //ПРОВЕРКА ВВОДА
+  
     axios
       .post("http://localhost:5000/customers/login", {
         loginOrEmail: "customer@gmail.com",
@@ -32,6 +28,7 @@ export function AddSubscriber(props) {
       })
       .then(response => {
         let token = response.data.token;
+        // setSignup("ОТПРАВЛЯЕМ ПИСЬМО");
         axios
           .post("http://localhost:5000/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }
@@ -39,33 +36,33 @@ export function AddSubscriber(props) {
           .then(newSubscriber => {
             console.log("success");
             console.log(newSubscriber);
-            alert(email)
-          
-            
+            setEmail(false)
+            alert(email);
+            setSignup("ПОДПИСКА ДОБАВЛЕНА");
+
           })
           .catch(err => {
             console.log("error add");
             console.log(err.response);
+            setTimeout(setSignup("УЖЕ ЕСТЬ ТАКОЙ"),2000);
+            setTimeout(setSignup('Sign Up'),8000)
+            setEmail(false)
           });
       })
       .catch(err => {
         console.log("error auth");
         console.log(err);
       });
+   
   }
+
+
   return (
     <>
-    
-      {/* <button onClick={handleShow}>OPEN</button>     
-      <Modal show={show} onHide={handleClose} style={{zIndex:"20",opacity:"1",background:"blue",marginLeft:"700px",marginTop:"100px",width:'300px',height:'30px',display:"flex",justifyContent:"center"}}>
-        <button style={{width:"100%"}} onClick={() => setShow(false)}>x</button> You are successfuly subscribed!
-      </Modal> */}
+  
     </>
   );
 }
-
-
-
 
 export function UpdateSubscriber() {
   const updateSubscriber = {
