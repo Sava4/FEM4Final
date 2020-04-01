@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import headerDesign from "../Header/header-design.png";
+import headerDesign from "../Header/headerDesign.png";
 import footerArrow from "./footer-arrow.png";
 import {
   mediaMobile,
   mediaTablet
-} from "../../../styled-components/media-breakpoints-mixin";
+} from "../../../styled-components/MediaBreakpointsMixin";
 
 //компонент родитель создал, чтобы пробросить пропсами переменную url в запрос
 export const LinkToStatic = styled.div`

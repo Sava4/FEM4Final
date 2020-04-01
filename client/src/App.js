@@ -1,19 +1,17 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
-import { Provider } from "react-redux";
-
 import GlobalStyle from "./styled-components/GlobalStyle";
-import {OnLoadCategories} from "./components/common/Header/NavigationMenu/onLoadCategories"
+import { Provider } from "react-redux";
+import { LoadCategories } from "./components/common/Header/NavigationMenu/LoadCategories";
 import { Routes } from "./routes";
 import { persistor, store } from "./store";
-
 
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <OnLoadCategories/>
+        <LoadCategories />
         <PersistGate loading={null} persistor={persistor}>
           <GlobalStyle />
           <Routes />
@@ -21,6 +19,6 @@ function App() {
       </Provider>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

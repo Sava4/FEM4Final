@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
 
 import diamond from "./diamond.png";
-import { FormButton } from "../Forms/FormButton/form-button";
+import { FormButton } from "../Forms/FormButton/FormButton";
 
 export const EmptyCart = props => {
   const history = useHistory();

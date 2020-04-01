@@ -12,7 +12,7 @@ import { logoutAction } from "../../store/login";
 
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem";
-import { FormButton } from "../Forms/FormButton/form-button";
+import { FormButton } from "../Forms/FormButton/FormButton";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);

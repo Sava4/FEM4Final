@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
+} from "../../styled-components/MediaBreakpointsMixin";
 
 export const CarouselWrapper = styled.div`
   ${mediaMobile(`

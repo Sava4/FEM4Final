@@ -11,7 +11,7 @@ import { categoriesReducer } from "./headerMenu";
 import { loginReducer } from "./login";
 import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
-import { loginStatusReducer } from "./login-status";
+import { loginStatusReducer } from "./loginStatus";
 
 const persistConfig = {
   key: "cart",

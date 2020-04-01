@@ -3,12 +3,12 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { addFavorites, removeFavorites } from "../../store/favorites";
-import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
+import { ShoppingBagForm } from "../Forms/ShoppingBagForm/ShoppingBagForm";
 import { useParams } from "react-router";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
+} from "../../styled-components/MediaBreakpointsMixin";
 
 import styled, { css } from "styled-components";
 

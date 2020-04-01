@@ -1,7 +1,7 @@
 import axios from "axios";
 import { userAction } from "./user";
 import { mergeCarts } from "./shopping-cart";
-import { loginStatusAction } from "./login-status";
+import { loginStatusAction } from "./loginStatus";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";

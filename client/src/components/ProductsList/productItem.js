@@ -13,7 +13,7 @@ import {
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
+} from "../../styled-components/MediaBreakpointsMixin";
 import styled, { css } from "styled-components";
 
 export const ProductItem = props => {
