@@ -11,7 +11,7 @@ import {
   ProductDescription,
   RemoveBtn
 } from "../ShoppingBag/CartItem";
-import { mediaMobile } from "../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import bug from "../common/Header/ShoppingBag/shoppingBagIcon.png";
 
 import styled from "styled-components";

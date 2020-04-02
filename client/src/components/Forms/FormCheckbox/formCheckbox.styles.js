@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import checkBox from "./checkBox.png";
 import checkBoxChecked from "./checkBoxChecked.png";
-import { mediaMobile } from "../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const CheckboxLabel = styled.label`
   display: flex;

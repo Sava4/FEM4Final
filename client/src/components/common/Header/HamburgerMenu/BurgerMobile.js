@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { MenuContext } from "./navState";
+import React, {useContext} from "react";
+import {MenuContext} from "./navState";
 import styled from "styled-components";
-import { mediaMobile } from "../../../../styled-components/MediaBreakpointsMixin";
+import {mediaMobile} from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const HamburgerButton = () => {
-  const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
+  const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);
 
   const clickHandler = () => {
     toggleMenuMode();
@@ -12,9 +12,9 @@ export const HamburgerButton = () => {
 
   return (
     <MenuButton className={isMenuOpen ? "active" : " "} onClick={clickHandler}>
-      <Bar />
-      <Bar />
-      <Bar />
+      <Bar/>
+      <Bar/>
+      <Bar/>
     </MenuButton>
   );
 };
@@ -24,16 +24,17 @@ const MenuButton = styled.button`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  position: fixed;
-  top: 40.5px;
-  left: 30px;
-  z-index: 3;
-
+  transition: all 0.3 ease-in-out;
   span {
     transition: all 0.3s ease-in-out;
   }
 
   &.active {
+    position: fixed;
+    top: 40.5px;
+    left: 30px;
+    z-index: 3;
+  
     span:nth-of-type(1) {
       transform: rotate(45deg) translate(4px, 5px);
     }

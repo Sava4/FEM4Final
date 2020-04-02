@@ -5,7 +5,7 @@ import { useOnClickOutside } from "./onClickOutside";
 import { HamburgerButton } from "./BurgerMobile";
 import { SideMenu } from "./SlideMenu";
 import { MenuContext } from "./navState";
-import { mediaMobile } from "../../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const MainMenu = () => {
   const node = useRef();

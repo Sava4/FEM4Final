@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   mediaMobile,
   mediaTablet
-} from "../../../styled-components/MediaBreakpointsMixin";
+} from "../../../styledComponents/MediaBreakpointsMixin";
 import prive from "./Prive.png";
 import melanka from "./Melanca.png";
 import aultra from "./Aultra.png";

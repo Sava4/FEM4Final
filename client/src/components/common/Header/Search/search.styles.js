@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import search from "./search.png";
-import { mediaMobile } from "../../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const Filter = styled.div`
   position: relative;

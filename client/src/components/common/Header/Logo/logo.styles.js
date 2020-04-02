@@ -5,7 +5,7 @@ import {
   mediaDesktop,
   mediaMobile,
   mediaTablet
-} from "../../../../styled-components/MediaBreakpointsMixin";
+} from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const MainLogo = styled(NavLink)`
   background-image: url(${logo});

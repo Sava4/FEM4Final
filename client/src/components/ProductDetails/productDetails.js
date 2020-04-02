@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/MediaBreakpointsMixin";
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 import styled, { css } from "styled-components";
 

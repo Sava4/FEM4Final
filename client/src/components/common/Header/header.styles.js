@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import headerDesign from "./headerDesign.png";
-import { mediaMobile } from "../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const Container = styled.div`
   display: flex;

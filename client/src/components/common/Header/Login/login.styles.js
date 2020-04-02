@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import login from "./login.png";
-import { mediaMobile } from "../../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const LoginIcon = styled.div`
   width: 20px;

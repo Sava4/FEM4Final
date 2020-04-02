@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const SectionAbout = styled.div`
   margin-bottom: 60px;

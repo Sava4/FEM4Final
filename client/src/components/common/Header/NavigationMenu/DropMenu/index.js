@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { mediaMobile } from "../../../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import { DropMenu } from "./dropmenu";
 
 export const HeaderMenuElem = props => {

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import favorites from "./favorites.png";
-import { mediaMobile } from "../../../../styled-components/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const FavoritesIcon = styled.div`
   width: 19px;

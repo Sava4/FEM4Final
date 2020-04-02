@@ -33,7 +33,7 @@ export const SliderHomepage = () => {
     arrows: matches ? false : true,
     infinite: true,
     draggable: true,
-    autoplay: true,
+    autoplay: false,
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />

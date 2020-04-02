@@ -4,7 +4,7 @@ import footerArrow from "./footer-arrow.png";
 import {
   mediaMobile,
   mediaTablet
-} from "../../../styled-components/MediaBreakpointsMixin";
+} from "../../../styledComponents/MediaBreakpointsMixin";
 
 //компонент родитель создал, чтобы пробросить пропсами переменную url в запрос
 export const LinkToStatic = styled.div`

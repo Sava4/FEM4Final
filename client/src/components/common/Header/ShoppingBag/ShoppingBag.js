@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import {
   ServicesIcon,
   ShoppingBagIcon,
-  ShoppingBagCounter
+  ShoppingBagCounter,
+  CounterMobile
 } from "./shoppingBag.styles";
 
 export const ShoppingBag = () => {
@@ -27,6 +28,7 @@ export const ShoppingBag = () => {
     <ServicesIcon to="/account/shopping-bag">
       <ShoppingBagIcon />
       <ShoppingBagCounter>({count})</ShoppingBagCounter>
+      <CounterMobile>{count}</CounterMobile>
     </ServicesIcon>
   );
 };

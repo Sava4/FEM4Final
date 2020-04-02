@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/MediaBreakpointsMixin";
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const CarouselWrapper = styled.div`
   ${mediaMobile(`
@@ -77,6 +77,10 @@ export const SliderPromoButton = styled.a`
   color: black;
   font-size: 14px;
   cursor: pointer;
+  
+  ${(mediaTablet(`
+  top: 240px;
+  `))}
 
   ${mediaMobile(`
   top: auto;
@@ -92,9 +96,11 @@ export const CarouselImage = styled.div`
 
   ${mediaTablet(`
   background-position: center;
+  height: 345px;
   `)}
 
   ${mediaMobile(`
   background-position: center;
+  height: 266px;
   `)}
 `;
