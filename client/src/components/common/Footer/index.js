@@ -19,17 +19,27 @@ import {
   FooterInfoSocial,
   FooterBottom,
   SocialContainer,
-  SocialContainerMobile
+  SocialContainerMobile,
+  Contact,
+  MobileWrap,
+  H4
 } from "./footer.styles.js";
 
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [serviceOpen, setServiceOpen] = useState(false);
+  const handleToggleContact = () => setContactOpen(!contactOpen);
+  const handleToggleInfo = () => setInfoOpen(!infoOpen);
+  const handleToggleService = () => setServiceOpen(!serviceOpen);
+
   let { url } = useParams();
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/links")
       .then(result => {
-        // console.log(result.data);
         setStaticLinks(result.data);
       })
       .catch(err => {
@@ -41,8 +51,6 @@ export const Footer = () => {
   const itemLink =
     staticLinks.length &&
     staticLinks[0].links.map(item => {
-      // console.log(item.url);
-
       return (
         // в бекэнде не совпадает адреса в links /documents, а в pages /pages и приходит массив в нем объект с названием и в нем массив links
         <div key={item._id}>
@@ -54,8 +62,20 @@ export const Footer = () => {
         </div>
       );
     });
+  const itemArr =
+    staticLinks.length &&
+    staticLinks[0].links.map(item => {
+      return (
+        <Contact key={item._id}>
+          <LinkToStatic url={`${item.url}`}>
+            <NavLink to={`/pages/${item.url}`}>{item.description}</NavLink>
+          </LinkToStatic>
+        </Contact>
+      );
+    });
+
   const itemLinkArr = Array.from(itemLink); // если let то три раза вызывает map из 21 строки
-  // console.log(itemLinkArr);
+
   return (
     <FooterMain>
       <FooterInfo>
@@ -63,8 +83,18 @@ export const Footer = () => {
           <div>
             <InfoContactWrapper>
               <h4>Contact Us</h4>
-              <Arrow />
+              <H4 onClick={handleToggleContact}>Contact Us</H4>
+              <Arrow arrow={contactOpen} onClick={handleToggleContact} />
             </InfoContactWrapper>
+            {contactOpen && (
+              <MobileWrap>
+                <Contact>+38 (044) 274-90-11</Contact>
+                <Contact>+38 (073) 119-00-11</Contact>
+                <Contact>Email:</Contact>
+                <Contact>zarina-help@zarina.ua</Contact>
+                {itemArr[0]}
+              </MobileWrap>
+            )}
             <ul>
               <li>+38 (044) 274-90-11</li>
               <li>+38 (073) 119-00-11</li>
@@ -76,15 +106,18 @@ export const Footer = () => {
           <div>
             <InfoAboutWrapper>
               <h4>Information</h4>
-              <Arrow />
+              <H4 onClick={handleToggleInfo}>Information</H4>
+              <Arrow arrow={infoOpen} onClick={handleToggleInfo} />
             </InfoAboutWrapper>
             <ul>{itemLinkArr.slice(1, 5)}</ul>
           </div>
+          {infoOpen && <MobileWrap>{itemArr.slice(1, 5)}</MobileWrap>}
           <div>
             <InfoServiceWrapper>
               <ArrowWrapper>
                 <h4>Costumer Service</h4>
-                <Arrow />
+                <H4 onClick={handleToggleService}>Costumer Service</H4>
+                <Arrow arrow={serviceOpen} onClick={handleToggleService} />
               </ArrowWrapper>
               <SocialContainerMobile>
                 {" "}
@@ -92,6 +125,7 @@ export const Footer = () => {
               </SocialContainerMobile>
             </InfoServiceWrapper>
             <ul>{itemLinkArr.slice(5, 12)}</ul>
+            {serviceOpen && <MobileWrap>{itemArr.slice(5, 12)}</MobileWrap>}
           </div>
         </FooterInfoName>
         <FooterInfoSocial>
