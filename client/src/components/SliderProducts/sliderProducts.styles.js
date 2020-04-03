@@ -6,7 +6,7 @@ export const H4 = styled.h4`
   font-family: Montserrat, sans-serif;
   font-weight: normal;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 75px;
   margin-bottom: 20px;
   margin-right: 30px;
 `;

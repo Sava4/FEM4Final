@@ -2,26 +2,21 @@
   margin: 50px;
   height: 30px;
   display: inline-block;
-  /* position: fixed; */
 }
 .page_Number {
   padding: 5px;
   padding-top: 5px;
   padding-bottom: 3px;
   border-bottom: 1px solid transparent;
-  /* color: grey; */
 }
 
 .selected_Page {
-  /* font-weight: bold; */
   border-color: black;
 }
 
 .unactive {
-  /* visibility: hidden; */
   color: lightgrey;
   border: none;
-  /* display: none; */
 }
 .page_Number.active {
   visibility: visible;
@@ -71,4 +66,16 @@
   padding: 10px;
   cursor: pointer;
   transform: rotate(-135deg);
+}
+.hidden {
+  display: none;
+}
+.onTop {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  margin-left: 95%;
+  margin-top: 400px;
+  z-index: 10;
 }
