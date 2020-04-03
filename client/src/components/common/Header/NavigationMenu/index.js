@@ -34,12 +34,6 @@ export const Navigation = connect(mapStateToProps, { getCategoriesList })(
           /*Do something with error, e.g. show error to user*/
         });
     }, []);
- 
-
-
-
-
-
 
     return (
       <HeaderDropMenu>

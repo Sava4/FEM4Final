@@ -12,7 +12,7 @@ const MapStateToProps = store => ({
 });
 export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
-  const { category , setNambertOfFilterdItems} = props;
+  const { category, setNambertOfFilterdItems } = props;
 
   const queryString = [];
   for (let key in props.filters) {
@@ -37,13 +37,12 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
       //   });
     }
   }, [query]);
-  
+
   const filterdProd = products.products;
-filterdProd && setNambertOfFilterdItems(filterdProd.length)
+  filterdProd && setNambertOfFilterdItems(filterdProd.length);
   const ListProduct =
     filterdProd &&
     filterdProd.map(product => {
-      
       return (
         <ProductItem
           id={product._id}

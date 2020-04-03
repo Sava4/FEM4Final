@@ -22,9 +22,8 @@ export const HeaderMenuElem = props => {
 
   const [dropMenuState, setDropMenuState] = useState([]);
 
- 
   const openDropmenu = e => {
-   const newState = [];
+    const newState = [];
     initialState.forEach(item => {
       const stateObj = {};
       stateObj.menuName = item.menuName;
@@ -34,15 +33,14 @@ export const HeaderMenuElem = props => {
     });
 
     setDropMenuState(newState);
-  
   };
 
-  const hideDropmenu =() =>{setDropMenuState(initialState)}
-
+  const hideDropmenu = () => {
+    setDropMenuState(initialState);
+  };
 
   const categList = categArrey.map(item => {
     const menuName = item.name;
-  
 
     let dropMenuArrey = categoriesAllData.filter(
       item => item.parentId === `${menuName}`
@@ -55,9 +53,11 @@ export const HeaderMenuElem = props => {
     const isShown = stateObj.length && stateObj[0].isOpen;
 
     return (
-      <CategoriesLi  key={item._id} id={item.id} onClick={openDropmenu}  >
+      <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
         {item.id}
-        {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} style={{height:"209px"}}/> : null}
+        {isShown && (
+          <Dropmenu dropMenuArrey={dropMenuArrey} style={{ height: "209px" }} />
+        )}
       </CategoriesLi>
     );
   });
@@ -73,10 +73,10 @@ const Categories = styled.ul`
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  position: absolute; 
+  position: absolute;
   cursor: pointer;
-  z-index:3;
-  background-color:  #FFFFFF;
+  z-index: 3;
+  background-color: #ffffff;
   ${mediaMobile(`
     display: none;
   `)}
@@ -91,4 +91,3 @@ const CategoriesLi = styled.ul`
     margin-right 230px;
   }
 `;
-

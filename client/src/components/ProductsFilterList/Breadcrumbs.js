@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -25,8 +24,6 @@ const useStyles = makeStyles(theme => ({
     height: 20
   }
 }));
-
-
 
 const IconBreadcrumbs = props => {
   const classes = useStyles();
@@ -55,4 +52,3 @@ const IconBreadcrumbs = props => {
 };
 
 export default IconBreadcrumbs;
-

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { v4 } from "uuid";
 
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+// import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import { setTogleShown } from "./../../../store/filters";
 import { setDeleteFilter } from "./../../../store/filters";
 
@@ -38,20 +38,18 @@ export const FiltersList = connect(mapStateToProps, {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>
-          <FilterType id={item}>
-              <p>
-                {item.replace("_", " ")}
-              </p>
-              {!isShown && (
-                <ExpandMoreIcon fontSize="small" onClick={handleChange} />
-              )}
-              {isShown && (
-                <ExpandLessIcon fontSize="small" onClick={handleChange} />
-              )}
-          </FilterType>
-          <CheckboxBlock isOpen={isShown}>
-              <PopupCheckboxes filtername={item} />
-          </CheckboxBlock>
+        <FilterType id={item}>
+          <p>{item.replace("_", " ")}</p>
+          {!isShown && (
+            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+          )}
+          {isShown && (
+            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+          )}
+        </FilterType>
+        <CheckboxBlock isOpen={isShown}>
+          <PopupCheckboxes filtername={item} />
+        </CheckboxBlock>
       </FilterBox>
     );
   });
@@ -64,18 +62,16 @@ const CheckboxBlock = styled.div`
 `;
 
 const FilterBox = styled.div`
-height: fit-content;
- border-bottom: 1px solid #E9EBF5;
-
+  height: fit-content;
+  border-bottom: 1px solid #e9ebf5;
 `;
 const FilterType = styled.div`
   padding-top: 22px;
   display: flex;
   justify-content: space-between;
-  margin: 0px; 
-  & >p {
+  margin: 0px;
+  & > p {
     font-size: 14px;
     text-transform: uppercase;
-
   }
 `;

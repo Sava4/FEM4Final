@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import aboutCompany from "./aboutCompany.png";
 import {
-  mediaMobile,
+  mediaMobile
   // mediaTablet
 } from "../../../styled-components/media-breakpoints-mixin";
 

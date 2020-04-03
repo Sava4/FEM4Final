@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
-
 import styled from "styled-components";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import modalClose from "./modal-close-btn.png";
@@ -21,7 +20,6 @@ export const MobileFiltersList = connect(mapStateToProps, {
   setTogleShown,
   setDeleteFilter
 })(props => {
-  // console.log(props);
   const filtredBy = [
     "collection",
     "metal",
@@ -40,48 +38,45 @@ export const MobileFiltersList = connect(mapStateToProps, {
   let filters = filtredBy.map(item => {
     let isShown = props.filters[item];
     return (
-        
-              <FilterBox key={v4()}>
-                <FilterType id={item}>
-                    <p>
-                    {item.replace("_", " ")}
-                    </p>
-        {!isShown && (
-                    <ExpandMoreIcon fontSize="small" onClick={handleChange} />
-                    )}
-        {isShown && (
-                    <ExpandLessIcon fontSize="small" onClick={handleChange} />
-                    )}
-                </FilterType>
-                    <CheckboxBlock isOpen={isShown}>
-                        <PopupCheckboxes filtername={item} />
-                    </CheckboxBlock>
-            </FilterBox>
-              
+      <FilterBox key={v4()}>
+        <FilterType id={item}>
+          <p>{item.replace("_", " ")}</p>
+          {!isShown && (
+            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+          )}
+          {isShown && (
+            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+          )}
+        </FilterType>
+        <CheckboxBlock isOpen={isShown}>
+          <PopupCheckboxes filtername={item} />
+        </CheckboxBlock>
+      </FilterBox>
     );
   });
 
-  return <FiltersModal >
-        <ModalClose onClick={()=> setOpenFiltwilnd(false)} />
-            {filters}
-        </FiltersModal>   
+  return (
+    <FiltersModal>
+      <ModalClose onClick={() => setOpenFiltwilnd(false)} />
+      {filters}
+    </FiltersModal>
+  );
 });
 
-
 const FiltersModal = styled.div`
-display: flex;
-flex-direction:column;
-align-items: center;
-position: fixed;
-z-index: 2;
-left: 0;
-top: 0;
-width: 100% !important;
-height: 100%;
-padding-top: 40px;
-overflow: auto;
-background-color: white;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100%;
+  padding-top: 40px;
+  overflow: auto;
+  background-color: white;
+`;
 const ModalClose = styled.div`
   width: 25px;
   height: 25px;
@@ -96,12 +91,11 @@ const ModalClose = styled.div`
 
 const CheckboxBlock = styled.div`
   display: ${props => (props.isOpen ? "block" : "none")};
-
 `;
 
 const FilterBox = styled.div`
-display: none;
-${mediaMobile(`
+  display: none;
+  ${mediaMobile(`
 display: block;
 text-align: center;
 width: 80%;
@@ -109,7 +103,7 @@ border-bottom: 1px solid #E9EBF5;
 `)}
 `;
 const FilterType = styled.div`
-${mediaMobile(`
+  ${mediaMobile(`
   padding-top: 22px;
   display: flex;
   justify-content: space-between;
@@ -121,5 +115,4 @@ ${mediaMobile(`
     padding-bottom: 31px;
   }
 `)}
-
 `;

@@ -1,49 +1,48 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
-import {MobileFiltersList} from './FilterBar/MobileFiltersList'
+import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 
 export const ProductFilters = () => {
   const { category } = useParams();
-  const [nambertOfFilterdItems, setNambertOfFilterdItems] =useState(0);
-  const [openFiltwin, setOpenFiltwilnd] = useState(true)
+  const [nambertOfFilterdItems, setNambertOfFilterdItems] = useState(0);
+  const [openFiltwin, setOpenFiltwilnd] = useState(true);
   return (
     <Layout>
-        <CategoriesHeader>
-            <p>
-              {category}
-            </p>
-        </CategoriesHeader>
+      <CategoriesHeader>
+        <p>{category}</p>
+      </CategoriesHeader>
 
-        <IconBreadcrumbs categoryName={{ category }} />
+      <IconBreadcrumbs categoryName={category} />
 
-        <MobileCategotiesCommon>      
-                <p onClick={()=>setOpenFiltwilnd(true)}>
-                    FILTER BY
-                </p>                              
-{openFiltwin && <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd}/>}
-        </MobileCategotiesCommon>
+      <MobileCategotiesCommon>
+        <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
+        {openFiltwin && (
+          <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
+        )}
+      </MobileCategotiesCommon>
 
-        <CategotiesCommon>
-            <CategoriesFilters>
-                <p>
-                  FILTER BY 
-                </p>
-              <FiltersList />
-            </CategoriesFilters>
+      <CategotiesCommon>
+        <CategoriesFilters>
+          <p>FILTER BY</p>
+          <FiltersList />
+        </CategoriesFilters>
 
-          <SelectedProducts>
-            <p>{`Selected products ( ${nambertOfFilterdItems} )`}</p>     
-              <FilterIndicators />
-              <FilteredListProducts category={category} setNambertOfFilterdItems={setNambertOfFilterdItems}/>         
-          </SelectedProducts>
-        </CategotiesCommon>
+        <SelectedProducts>
+          <p>{`Selected products ( ${nambertOfFilterdItems} )`}</p>
+          <FilterIndicators />
+          <FilteredListProducts
+            category={category}
+            setNambertOfFilterdItems={setNambertOfFilterdItems}
+          />
+        </SelectedProducts>
+      </CategotiesCommon>
     </Layout>
   );
 };
@@ -69,12 +68,11 @@ const CategotiesCommon = styled.div`
   ${mediaMobile(`
   flex-direction:column;
 `)}
- 
 `;
 const MobileCategotiesCommon = styled.div`
-display: none;
-flex-wrap: nowrap;
-${mediaMobile(`
+  display: none;
+  flex-wrap: nowrap;
+  ${mediaMobile(`
 display: block;
 // flex-direction:column;
  & > p {
@@ -86,7 +84,6 @@ display: block;
   cursor: pointer;
  }
 `)}
- 
 `;
 const CategoriesFilters = styled.div`
   margin-top: 29px;
@@ -107,23 +104,6 @@ const CategoriesFilters = styled.div`
 `)}
 `;
 
-// const FiltersbarHead = styled.p`
-
-//   ${mediaMobile(`
-   
-//   `)}
-// `;
-const FiltersbarHeadMob = styled.p`
-  display:none;
-  ${mediaMobile(`
-    display:block;
-    font-size: 17px;
-    margin-bottom: 54px;
-    margin-bottom: 11px;
-    width:fit-content;
-    cursor: pointer;
-  `)}
-`;
 const SelectedProducts = styled.div`
   & > p {
     font-size: 17px;
@@ -137,7 +117,6 @@ const SelectedProducts = styled.div`
       margin-right: 21px;
 
       `)}
-  
   }
   display: flex;
   flex-direction: column;
