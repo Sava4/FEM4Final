@@ -9,9 +9,9 @@ import { FiltersList } from "./FilterBar/FiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from './../SliderProducts/ProductsContainer'
-export const ProductFilters = () => {
-  const { category } = useParams();
 
+export const ProductFilters = (props) => {  
+  const { category } = useParams();
   return (
     <Layout>
       <CategoriesHeader>
@@ -31,7 +31,7 @@ export const ProductFilters = () => {
           <FilterIndicators />
           <FilteredListProducts category={category} />
         </SelectedProducts>
-        <ProductsContainer/>
+        <ProductsContainer />
       </CategotiesCommon>
     </Layout>
   );

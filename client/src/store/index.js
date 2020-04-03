@@ -46,13 +46,13 @@ const persistedFavorites = persistReducer(
 // import { reducer as formReducer } from 'redux-form'
 // import appReducer from "./app-reducer";
 const rootReducer = combineReducers({
-  productsPage: productsReducer,
+  productsPage: productsReducer, filtersReduser,
   shoppingCart: persistedCart,
   favorites: persistedFavorites,
   categories: categoriesReduser,
   login: persistedToken,
   loginStatus: loginStatusReducer,
-  filters: filtersReduser,
+  filters: filtersReduser, productsReducer,
   user: userReducer,
   form: formReducer,
 });

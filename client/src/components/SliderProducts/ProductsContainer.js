@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useLocation, withRouter } from "react-router";
+import { useParams,useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
+import querystring from "query-string";
 import {
   setCurrentPage,
   useRequestProducts,
@@ -19,14 +20,16 @@ import {
 } from "./users-selectors";
 
 const ProductsContainer = props => {
-  // console.log(props);
+  console.log(props);
   const { currentPage, pageSize } = props;
 
   let location = useLocation();
   let path = `filter${location.search}`;
+  console.log("TCL: path", path)
 
-  const queryString = require("query-string");
-  const parsed = queryString.parse(location.search);
+  
+  const queryString2 = require("query-string");
+  const parsed = queryString2.parse(location.search);
   const truePage = parsed.startPage;
 
   let truePage2;
@@ -34,7 +37,7 @@ const ProductsContainer = props => {
     (truePage > 0 && (truePage2 = +truePage)); //чтобы c первой загрузки /pagin активна 1я страница
 
   useEffect(() => {
-    props.getProducts(truePage2, pageSize);
+    props.getProducts(truePage2, pageSize, categoryQuery);
   }, [truePage2]);
 
   const onPageChanged = pageNumber => {
@@ -50,7 +53,19 @@ const ProductsContainer = props => {
     const { pageSize } = props;
     props.moreProducts(truePage3, pageSize);
   };
+  const { category } = useParams();
+  const queryString = [];
+  for (let key in props.filters) {
+    props.filters[key].length &&
+      queryString.push(`${key}=${props.filters[key].join(",")}`);
+  }
 
+  const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
+
+  const categoryQuery=`&categories=${category}&${query}`
+  console.log("TCL: categoryQuery", categoryQuery)
+  
+  
   const onToTop = parsed => {
     try {
       window.scroll({
@@ -81,21 +96,25 @@ const ProductsContainer = props => {
   );
 };
 
-let mapStateToProps = state => {
+let mapStateToProps = (state, store, categoryQuery) => {
   return {
+    categoryQuery: categoryQuery,
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
-    currentPage: getCurrentPage(state)
+    currentPage: getCurrentPage(state),   
+    filters: state.filters.selFilters
   };
 };
 
+
 let UrlProductsContainer = withRouter(ProductsContainer);
 export default compose(
-  connect(mapStateToProps, {
+  connect(mapStateToProps,{
     setCurrentPage,
     getProducts: useRequestProducts,
-    moreProducts: useMoreProducts
+    moreProducts: useMoreProducts,
+    
   }) //mapDispatchToProps
 )(UrlProductsContainer);

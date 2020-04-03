@@ -1,11 +1,12 @@
 import { productsAPI } from "../components/SliderProducts/api";
-
+// const GET_FILTRED_PRODUCTS = "GET_FILTRED_PRODUCTS";
 const SET_PRODUCTS = "SET_PRODUCTS";
 const SET_MORE_PRODUCTS = "SET_MORE_PRODUCTS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
 
 let initialState = {
+  // category: "earrings",
   products: [],
   pageSize: 6,
   productsQuantity: 0,
@@ -14,7 +15,7 @@ let initialState = {
 
 export const productsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCTS: {
+     case SET_PRODUCTS: {
       return { ...state, products: action.products };
     }
     case SET_MORE_PRODUCTS: {
@@ -36,7 +37,10 @@ export const setMoreProducts = products => ({
   type: SET_MORE_PRODUCTS,
   products
 });
-export const setProducts = products => ({ type: SET_PRODUCTS, products });
+export const setProducts = products => ({
+  type: SET_PRODUCTS,
+  products
+});
 export const setCurrentPage = currentPage => ({
   type: SET_CURRENT_PAGE,
   currentPage
@@ -47,12 +51,12 @@ export const setTotalProductsCount = productsQuantity => ({
 });
 
 //вызов хука внутри хука не работает??
-export const useRequestProducts = (page, pageSize) => {
+export const useRequestProducts = (page, pageSize, categoryQuery) => {
   return async dispatch => {
-    // console.log(page, pageSize);
     dispatch(setCurrentPage(page));
     // console.log(page);
-    let data = await productsAPI.getProducts(page, pageSize);
+    let data = await productsAPI.getProducts(page, pageSize,categoryQuery);
+    console.log("TCL: useRequestProducts -> categoryQuery", categoryQuery)
     // dispatch(toggleIsFetching(false));
     dispatch(setProducts(data.products));
     dispatch(setTotalProductsCount(data.productsQuantity));

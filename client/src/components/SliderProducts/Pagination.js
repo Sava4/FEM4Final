@@ -7,6 +7,7 @@ import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";
 import {FilteredListProducts} from "./../../components/ProductsFilterList/FilteredProducts"
+
 export const ProductsPagination = ({
   currentPage,
   productsQuantity,
@@ -46,7 +47,7 @@ export const ProductsPagination = ({
             margin: "0 auto"
           }}
         >
-          {/* {products.map((p, index) => (
+          {products.map((p, index) => (
             <div id={index} key={p.itemNo}>
               {console.log(index)}
               <NavLink
@@ -64,8 +65,8 @@ export const ProductsPagination = ({
                 />
               </NavLink>
             </div>
-          ))} */}
-          <FilteredListProducts category={category} />
+          ))}
+          {/* <FilteredListProducts category={category} /> */}
         </div>
         <div style={{ width: "100%", display: "block" }}>
           <LoadMore
