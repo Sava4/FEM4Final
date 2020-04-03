@@ -1,12 +1,13 @@
 import React from "react";
 import { Layout } from "../common/Layout";
+import { CheckoutForm } from "./checkout";
 
 // import styled from "styled-components"
 
 export const Checkout = () => {
   return (
     <Layout>
-      <h2> Checkout</h2>
+      <CheckoutForm />
     </Layout>
   );
 };
