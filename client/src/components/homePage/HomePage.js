@@ -10,7 +10,15 @@ import { AboutCompany } from "./aboutCompany/AboutCompany";
 export const Homepage = () => {
   return (
     <Layout>
-      <SliderHomepage />
+      <SliderHomepage
+        dots={true}
+        center={false}
+        auto={true}
+        homePage={true}
+        show={1}
+        height={425}
+        arrows={false}
+      />
       <SliderProducts h4={"FEATURED"} reverse={"reverse"} />
       <HomepageCategories />
       <SelectedCollections />

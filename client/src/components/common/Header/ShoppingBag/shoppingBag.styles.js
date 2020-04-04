@@ -20,7 +20,7 @@ export const ShoppingBagCounter = styled.span`
 
 export const CounterMobile = styled.div`
   display: none;
-  ${(mediaMobile(`
+  ${mediaMobile(`
   display: block;
   position: absolute;
   top: 10px;
@@ -30,7 +30,7 @@ export const CounterMobile = styled.div`
   border-radius: 100%;
   padding: 2px 4px;
   font-size: 9px;
-  `))}
+  `)}
 `;
 
 export const ServicesIcon = styled(NavLink)`

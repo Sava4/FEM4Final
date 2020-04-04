@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
-import {MenuContext} from "./navState";
+import React, { useContext } from "react";
+import { MenuContext } from "./navState";
 import styled from "styled-components";
-import {mediaMobile} from "../../../../styledComponents/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin";
 
 export const HamburgerButton = () => {
-  const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);
+  const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
   const clickHandler = () => {
     toggleMenuMode();
@@ -12,9 +12,9 @@ export const HamburgerButton = () => {
 
   return (
     <MenuButton className={isMenuOpen ? "active" : " "} onClick={clickHandler}>
-      <Bar/>
-      <Bar/>
-      <Bar/>
+      <Bar />
+      <Bar />
+      <Bar />
     </MenuButton>
   );
 };

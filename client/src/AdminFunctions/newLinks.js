@@ -94,7 +94,7 @@ export function updateLinks() {
         url: "supply-chain-acts"
       },
       {
-        description: "NWebsite Policies",
+        description: "Website Policies",
         url: "website-policies"
       },
       {

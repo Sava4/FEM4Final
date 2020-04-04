@@ -10,7 +10,7 @@ import { Account } from "../components/Account";
 import { Wishlist } from "../components/Wishlist/wishlist";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
-import { ProductSliderView } from "../components/SliderProducts/productSliderView";
+// import { ProductSliderView } from "../components/SliderProducts/productSliderView";
 import ProductsContainer from "../components/SliderProducts/ProductsContainer";
 import { Checkout } from "../components/Checkout";
 
@@ -22,12 +22,9 @@ export const Routes = () => {
       <Route exact path="/" component={Homepage} />
       {/* <Route exact path="/:parentmMenu/:chosenMenu" component={HeaderProductFilters} /> */}
       <Route path="/categories/:category" component={ProductFilters} />
-      {/* <Route path="/categories/earrings" component={ProductFilters} />
-      <Route path="/categories/bracelets" component={ProductFilters} />
-      <Route path="/categories/necklaces" component={ProductFilters} /> */}
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
-      <Route exact path="/product/:itemNo" component={ProductSliderView} />
+      {/* <Route exact path="/product/:itemNo" component={ProductSliderView} /> */}
       <Route path="/pagin/:path?" component={ProductsContainer} />
       <Route exact path="/account" component={Account} />
       +

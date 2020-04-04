@@ -51,7 +51,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
     // console.log(
     //   `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`
     // );
-  }, [category, props.filters]);
+  }, [query]);
 
   const filterdProd = products.products;
 

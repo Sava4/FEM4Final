@@ -6,7 +6,7 @@ import {
   Name,
   Price,
   WishWrapper
-} from "../ProductDetails/productDetails";
+} from "../ProductDetails/productDetails.styles";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorites, removeFavorites } from "../../store/favorites";
