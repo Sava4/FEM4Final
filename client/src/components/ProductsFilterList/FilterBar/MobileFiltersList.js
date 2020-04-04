@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
-
 import styled from "styled-components";
-// import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import modalClose from "./modal-close-btn.png";
 import { setTogleShown } from "./../../../store/filters";
 import { setDeleteFilter } from "./../../../store/filters";
 
@@ -16,11 +16,10 @@ const mapStateToProps = store => ({
   filters: store.filters.menuState
 });
 
-export const FiltersList = connect(mapStateToProps, {
+export const MobileFiltersList = connect(mapStateToProps, {
   setTogleShown,
   setDeleteFilter
 })(props => {
-  // console.log(props);
   const filtredBy = [
     "collection",
     "metal",
@@ -28,6 +27,8 @@ export const FiltersList = connect(mapStateToProps, {
     "gemstone",
     "gemstone_color"
   ];
+
+  const { setOpenFiltwilnd } = props;
 
   const handleChange = (e, nodes) => {
     e.preventDefault();
@@ -54,24 +55,64 @@ export const FiltersList = connect(mapStateToProps, {
     );
   });
 
-  return <div>{filters}</div>;
+  return (
+    <FiltersModal>
+      <ModalClose onClick={() => setOpenFiltwilnd(false)} />
+      {filters}
+    </FiltersModal>
+  );
 });
+
+const FiltersModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100%;
+  padding-top: 40px;
+  overflow: auto;
+  background-color: white;
+`;
+const ModalClose = styled.div`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  background: url(${modalClose});
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+`;
 
 const CheckboxBlock = styled.div`
   display: ${props => (props.isOpen ? "block" : "none")};
 `;
 
 const FilterBox = styled.div`
-  height: fit-content;
-  border-bottom: 1px solid #e9ebf5;
+  display: none;
+  ${mediaMobile(`
+display: block;
+text-align: center;
+width: 80%;
+border-bottom: 1px solid #E9EBF5;
+`)}
 `;
 const FilterType = styled.div`
+  ${mediaMobile(`
   padding-top: 22px;
   display: flex;
   justify-content: space-between;
-  margin: 0px;
-  & > p {
+  height: fit-content;
+  & p {
     font-size: 14px;
     text-transform: uppercase;
+    margin: 0;  
+    padding-bottom: 31px;
   }
+`)}
 `;

@@ -2,6 +2,7 @@ import React from "react";
 import { v4 } from "uuid";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 import { SelectedFilters } from "./SelectedFilters";
 
@@ -41,6 +42,9 @@ const FilterTypeDiv = styled.div`
   width: 100%;
   flex-wrap: wrap;
   height: content;
+  ${mediaMobile(`
+  margin-top: 11px;
+`)}
   & p {
     font-size: 14px;
     margin: 0;
@@ -50,6 +54,9 @@ const FilterTypeDiv = styled.div`
 `;
 const FilterMarker = styled.div`
   margin-left: 5px;
+  ${mediaMobile(`
+  width:fit-content;
+`)}
 `;
 const SelectedFiltersStyled = styled.div`
   flex-wrap: wrap;

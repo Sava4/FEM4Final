@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { v4 } from "uuid";
 
 import styled from "styled-components";
+import checkBox from "./check-box.png";
+import checkBoxChecked from "./check-box-checked.png";
 
 import {
   dispatchSetCheckFilter,
@@ -53,26 +55,15 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const checkedFilters = e => {
     e.preventDefault();
-    console.log(e.target.classList.value);
-    console.log(e.target.id);
-    //   const activeFilters = {};
-    //     activeFilters[e.target.id] = e.target.value;
-    //     props.dispatchSetCheckFilter(activeFilters);
-    //    if (!e.target.checked) {
-    //  const remoteFilterCategory = e.target.id;
-    //    const remoteFilterName = e.target.value;
-    //     const delEll = {};
-    //     delEll[remoteFilterCategory] = remoteFilterName;
-    //   props.setDeleteFilter(delEll);
-    //   e.target.checked = false;
-    //    }
-
+    console.log(e.target.getAttribute("data-filtergrupname"));
     const activeFilters = {};
-    activeFilters[e.target.className] = e.target.value;
+    activeFilters[
+      e.target.getAttribute("data-filtergrupname")
+    ] = e.target.getAttribute("data-filtername");
     props.dispatchSetCheckFilter(activeFilters);
     if (!e.target.checked) {
-      const remoteFilterCategory = e.target.className;
-      const remoteFilterName = e.target.value;
+      const remoteFilterCategory = e.target.getAttribute("data-filtergrupname");
+      const remoteFilterName = e.target.getAttribute("data-filtername");
       const delEll = {};
       delEll[remoteFilterCategory] = remoteFilterName;
       props.setDeleteFilter(delEll);
@@ -84,30 +75,19 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const inputs = collectionList.map(item => {
     return (
-      //   <CheckboxDiv key={v4()}>
-      //     <CheckboxLabel fore={item}>
-      //           <InputCheckbox
-      //                 type="checkbox"
-      //                 name={item}
-      //                 value={item}
-      //                 // className={filtername}
-      //                 id={filtername}
-      //                 Checked={checkedFromStor.includes(item) && "checked"}>
-      //          </InputCheckbox>
-      //         <CheckBoxIcon/>
-      //         {item}
-      //   </CheckboxLabel>
-      // </CheckboxDiv>
-
       <CheckboxDiv key={v4()}>
-        <input
-          type="checkbox"
-          name={item}
-          value={item}
-          className={filtername}
-          defaultChecked={checkedFromStor.includes(item) && "checked"}
-        ></input>
-        <Labels fore={item}>{item} </Labels>
+        <CheckboxLabel fore={item}>
+          <InputCheckbox
+            type="checkbox"
+            name={item}
+            value={item}
+            data-filtername={item}
+            data-filtergrupname={filtername}
+            defaultChecked={checkedFromStor.includes(item) && "checked"}
+          ></InputCheckbox>
+          <CheckBoxIcon />
+          {item}
+        </CheckboxLabel>
       </CheckboxDiv>
     );
   });
@@ -119,40 +99,31 @@ const CheckboxDiv = styled.div`
   margin-bottom: 20px;
 `;
 
-const Labels = styled.label`
-  font-size: 14px;
+const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 20px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
   text-transform: capitalize;
-  font-family: "Montserrat", sans-serif;
 `;
-// const CheckboxText = styled.span`
-//   font-size: 11px;
-// `;
 
-// const CheckboxLabel = styled.label`
-//   display: flex;
-//   align-items: center;
-//   background-repeat: no-repeat;
-//   background-size: contain;
-//   margin-bottom: 20px;
-//   font-size: 12px;
-//   letter-spacing: 0.5px;
-//   cursor: pointer;
+const CheckBoxIcon = styled.span`
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  background-image: url(${checkBox});
+  background-size: contain;
+  background-repeat: no-repeat;
 
-//  `;
+  input:checked + & {
+    background-image: url(${checkBoxChecked});
+  }
+`;
 
-// const CheckBoxIcon = styled.span`
-//   width: 10px;
-//   height: 10px;
-//   margin-right: 5px;
-//   background-image: url(${checkBox});
-//   background-size: contain;
-//   background-repeat: no-repeat;
-
-//   input:checked + & {
-//     background-image: url(${checkBoxChecked});
-//   }
-// `;
-
-// const InputCheckbox = styled.input`
-//   display: none;
-// `;
+const InputCheckbox = styled.input`
+  display: none;
+`;

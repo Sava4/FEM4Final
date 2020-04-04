@@ -22,12 +22,7 @@ export const HeaderMenuElem = props => {
 
   const [dropMenuState, setDropMenuState] = useState([]);
 
-  // useEffect(()=>{
-  //   initialState && setDropMenuState(initialState)
-  // }, [])
-
   const openDropmenu = e => {
-    // console.log(e.target.id);
     const newState = [];
     initialState.forEach(item => {
       const stateObj = {};
@@ -38,14 +33,14 @@ export const HeaderMenuElem = props => {
     });
 
     setDropMenuState(newState);
-    // initialState =  newState
   };
 
-  // }
-  // console.log(dropMenuState);
+  const hideDropmenu = () => {
+    setDropMenuState(initialState);
+  };
+
   const categList = categArrey.map(item => {
     const menuName = item.name;
-    // console.log(menuName)
 
     let dropMenuArrey = categoriesAllData.filter(
       item => item.parentId === `${menuName}`
@@ -56,34 +51,43 @@ export const HeaderMenuElem = props => {
       : initialState.filter(item => item.menuName === menuName);
 
     const isShown = stateObj.length && stateObj[0].isOpen;
-    // console.log(item)
+
     return (
       <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
         {item.id}
-        {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} /> : null}
+        {isShown && (
+          <Dropmenu dropMenuArrey={dropMenuArrey} style={{ height: "209px" }} />
+        )}
       </CategoriesLi>
     );
   });
-  return <Categories>{categList}</Categories>;
+  return <Categories onMouseLeave={hideDropmenu}>{categList}</Categories>;
 };
 
 const Categories = styled.ul`
   padding: 0;
   margin: 0;
   font-size: 14px;
-  width: 70vw;
+  width: 100vw;
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  position: relative;
+  position: absolute;
   cursor: pointer;
-
+  z-index: 3;
+  background-color: #ffffff;
   ${mediaMobile(`
     display: none;
   `)}
 `;
 
 const CategoriesLi = styled.ul`
-  list-style-type: none;
+  list-style-type: none;   
+  :first-child{
+    margin-left 230px;
+  }
+  :last-child{
+    margin-right 230px;
+  }
 `;

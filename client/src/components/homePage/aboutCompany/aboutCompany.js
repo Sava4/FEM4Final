@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import aboutCompany from "./aboutCompany.png";
 import {
-  mediaMobile,
-  mediaTablet
+  mediaMobile
+  // mediaTablet
 } from "../../../styled-components/media-breakpoints-mixin";
 
 export const AboutCompany = () => {

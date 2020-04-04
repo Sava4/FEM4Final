@@ -34,13 +34,6 @@ export const Navigation = connect(mapStateToProps, { getCategoriesList })(
           /*Do something with error, e.g. show error to user*/
         });
     }, []);
-    // console.log(categoriesAllData);
-    // console.log(props.categories.categories);
-    // const categories = categoriesAllData && categoriesAllData;
-    // console.log(categories);
-
-    // let categArrey = categories.filter(item => item.parentId === "null");
-    // console.log(categArrey);
 
     return (
       <HeaderDropMenu>
@@ -55,4 +48,5 @@ const HeaderDropMenu = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
