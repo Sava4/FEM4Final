@@ -21,7 +21,7 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       {/* <Route exact path="/:parentmMenu/:chosenMenu" component={HeaderProductFilters} /> */}
-      <Route path="/categories/:category?" component={ProductFilters} />
+      <Route path="/categories/:category/:path?" component={ProductFilters} />
 
       {/* <Route path="/categories/earrings" component={ProductFilters} />
       <Route path="/categories/bracelets" component={ProductFilters} />

@@ -1,5 +1,5 @@
 import { productsAPI } from "../components/SliderProducts/api";
-// const GET_FILTRED_PRODUCTS = "GET_FILTRED_PRODUCTS";
+
 const SET_PRODUCTS = "SET_PRODUCTS";
 const SET_MORE_PRODUCTS = "SET_MORE_PRODUCTS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";

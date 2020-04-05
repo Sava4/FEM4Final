@@ -10,6 +10,7 @@ import {FilteredListProducts} from "./../../components/ProductsFilterList/Filter
 
 export const ProductsPagination = ({
   currentPage,
+  truePage,
   productsQuantity,
   pageSize,
   onPageChanged,
@@ -87,6 +88,7 @@ export const ProductsPagination = ({
             onLoadMore={onLoadMore}
             productsQuantity={productsQuantity}
             pageSize={pageSize}
+            truePage={truePage}
                      />
         </div>
       {/* </Layout> */}

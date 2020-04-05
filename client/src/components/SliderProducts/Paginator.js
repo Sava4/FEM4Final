@@ -3,16 +3,15 @@ import { useParams } from "react-router";
 import styles from "./Paginator.module.css";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
-import { LoadMore, onTop} from "./LoadMore";
+import { onTop } from "./LoadMore";
 
 export const Paginator = ({
   productsQuantity,
   pageSize,
   currentPage,
-  onPageChanged,
-  categoryQuery,
-  apiCategory,
-  
+  truePage,
+  onPageChanged, 
+  apiCategory,  
   portionSize = 3 //количество страниц в порции
 }) => {
   let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего
@@ -31,6 +30,8 @@ export const Paginator = ({
   //   console.log(leftPortionPageNumber )
   //  console.log(rightPortionPageNumber )
   console.log(apiCategory)
+  let apiCategory2
+  apiCategory&&(apiCategory2=apiCategory)
   const handleClickNext = e => {
     +currentPage == +pagesCount && e.preventDefault();
   };
@@ -44,7 +45,7 @@ export const Paginator = ({
           handleClickPrev(e);
           onTop();
         }}
-        to={`/categories/${category}/filter?startPage=${+currentPage - 1}&perPage=${pageSize}&${apiCategory}`}
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage - 1}&perPage=${pageSize}`}
       >
         {console.log(apiCategory)}
         {portionNumber > 1 &&
@@ -70,7 +71,7 @@ export const Paginator = ({
         .map(pageNumber => {
           return (
             <NavLink
-              to={`/categories/${category}/filter?startPage=${pageNumber}&perPage=${pageSize}&${apiCategory}`}
+              to={`/categories/${category}/filter?${apiCategory}&startPage=${pageNumber}&perPage=${pageSize}`}
               key={pageNumber}
               onClick={e => {
                 onTop();
@@ -98,7 +99,7 @@ export const Paginator = ({
           handleClickNext(e);
           onTop();
         }}
-        to={`/categories/${category}/filter?startPage=${+currentPage + 1}&perPage=${pageSize}&${apiCategory}`}
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage + 1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&
           currentPage > rightPortionPageNumber &&
