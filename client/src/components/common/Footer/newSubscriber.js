@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap";
 import axios from "axios";
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+// import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 
 export function AddSubscriber(props) {
   const email = props.email;

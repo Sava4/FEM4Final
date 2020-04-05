@@ -60,7 +60,7 @@ const Card = styled.div`
   justify-content: space-between;
   border: 1px solid rgb(233, 235, 245);
   margin: 5px;
-  width: 280px;
+  width: 250px;
   height: 392px;
   @media (max-width: 1050px) {
   }

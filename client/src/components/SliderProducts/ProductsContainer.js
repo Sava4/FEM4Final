@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
 import querystring from "query-string";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   setCurrentPage,
   useRequestProducts,

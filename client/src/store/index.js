@@ -12,7 +12,6 @@ import { loginReducer } from "./login";
 import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
 import { loginStatusReducer } from "./loginStatus";
-import { loginStatusReducer } from "./login-status";
 import { reducer as formReducer } from "redux-form";
 
 const persistConfig = {

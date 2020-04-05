@@ -4,8 +4,8 @@ import { SliderHomepage } from "../Slider/Slider";
 import { SliderProducts } from "../SliderProducts/SliderProducts";
 import { Layout } from "../common/Layout";
 import { HomepageCategories } from "./categories";
-import { SelectedCollections } from "./selectedCollections/SelectedCollections";
-import { AboutCompany } from "./aboutCompany/AboutCompany";
+import { SelectedCollections } from "./selectedCollections/selectedCollections";
+import { AboutCompany } from "./aboutCompany/aboutCompany";
 
 export const Homepage = () => {
   return (
