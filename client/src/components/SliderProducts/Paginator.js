@@ -10,8 +10,8 @@ export const Paginator = ({
   pageSize,
   currentPage,
   truePage,
-  onPageChanged, 
-  apiCategory,  
+  onPageChanged,
+  apiCategory,
   portionSize = 3 //количество страниц в порции
 }) => {
   let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего
@@ -29,9 +29,9 @@ export const Paginator = ({
 
   //   console.log(leftPortionPageNumber )
   //  console.log(rightPortionPageNumber )
-  console.log(apiCategory)
-  let apiCategory2
-  apiCategory&&(apiCategory2=apiCategory)
+  console.log(apiCategory);
+  let apiCategory2;
+  apiCategory && (apiCategory2 = apiCategory);
   const handleClickNext = e => {
     +currentPage == +pagesCount && e.preventDefault();
   };
@@ -45,7 +45,8 @@ export const Paginator = ({
           handleClickPrev(e);
           onTop();
         }}
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage - 1}&perPage=${pageSize}`}
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage -
+          1}&perPage=${pageSize}`}
       >
         {console.log(apiCategory)}
         {portionNumber > 1 &&
@@ -99,7 +100,8 @@ export const Paginator = ({
           handleClickNext(e);
           onTop();
         }}
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage + 1}&perPage=${pageSize}`}
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage +
+          1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&
           currentPage > rightPortionPageNumber &&
@@ -121,4 +123,3 @@ export const Paginator = ({
     </div>
   );
 };
-

@@ -6,7 +6,7 @@ export const LoadMore = ({
   currentPage,
   productsQuantity,
   pageSize,
-  onLoadMore,  
+  onLoadMore,
   products,
   parsed,
   ...props

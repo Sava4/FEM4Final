@@ -22,7 +22,6 @@ export const Routes = () => {
       <Route exact path="/" component={Homepage} />
       {/* <Route exact path="/:parentmMenu/:chosenMenu" component={HeaderProductFilters} /> */}
       <Route path="/categories/:category/:path?" component={ProductFilters} />
-
       {/* <Route path="/categories/earrings" component={ProductFilters} />
       <Route path="/categories/bracelets" component={ProductFilters} />
       <Route path="/categories/necklaces" component={ProductFilters} /> */}

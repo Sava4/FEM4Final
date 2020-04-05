@@ -52,7 +52,12 @@ let Email = props => {
           />
         </div>
         <div>
-          <EmailButton type="submit" disabled={submitting} validate={[required, Length, emailValid]} onClick={handleSubmit(submitButton)}>
+          <EmailButton
+            type="submit"
+            disabled={submitting}
+            validate={[required, Length, emailValid]}
+            onClick={handleSubmit(submitButton)}
+          >
             {signup}
             {/* {emailValue} */}
           </EmailButton>
@@ -77,8 +82,8 @@ export const required = value => {
 };
 const emailValid = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'still not email'
-    : undefined
+    ? "still not email"
+    : undefined;
 export const LengthCreator = Length => value => {
   if (value.length > Length) return `Max length is ${Length} symbols`;
   return undefined;
@@ -110,11 +115,9 @@ export const Input = props => {
 
 // export default reduxForm({form: 'emailValue'})(Email);
 
-
 Email = reduxForm({
   form: "emailValue" // a unique identifier for this form
 })(Email);
-
 
 const selector = formValueSelector("emailValue"); // <-- same as form name
 

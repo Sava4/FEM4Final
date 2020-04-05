@@ -13,12 +13,10 @@ export const Email = () => {
   return (
     <div>
       <EmailInput ref={emailRef} type="email" placeholder="Email" />
-      <EmailButton type="button" onClick={submitButton}
-      >
+      <EmailButton type="button" onClick={submitButton}>
         Sign up
       </EmailButton>
       <AddSubscriber email={email} />
-      
     </div>
   );
 };

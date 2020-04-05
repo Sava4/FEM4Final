@@ -13,7 +13,7 @@ import { loginReducer } from "./login";
 import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
 import { loginStatusReducer } from "./login-status";
-import { reducer as formReducer } from 'redux-form'
+import { reducer as formReducer } from "redux-form";
 
 const persistConfig = {
   key: "cart",
@@ -46,15 +46,17 @@ const persistedFavorites = persistReducer(
 // import { reducer as formReducer } from 'redux-form'
 // import appReducer from "./app-reducer";
 const rootReducer = combineReducers({
-  productsPage: productsReducer, filtersReduser,
+  productsPage: productsReducer,
+  filtersReduser,
   shoppingCart: persistedCart,
   favorites: persistedFavorites,
   categories: categoriesReduser,
   login: persistedToken,
   loginStatus: loginStatusReducer,
-  filters: filtersReduser, productsReducer,
+  filters: filtersReduser,
+  productsReducer,
   user: userReducer,
-  form: formReducer,
+  form: formReducer
 });
 
 export const store = createStore(

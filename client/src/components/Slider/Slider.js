@@ -20,14 +20,15 @@ export const SliderHomepage = props => {
     slidesToShow: props.show,
     accessibility: true,
     dots: props.dots,
-    arrows:  true,
+    arrows: true,
     infinite: true,
     draggable: true,
     autoplay: props.auto,
     speed: 500,
     nextArrow: <SampleNextArrow homePage={props.homePage} right={26} />,
-    prevArrow: <SamplePrevArrow homePage={props.homePage} left={70} prev={-3} />
-    ,
+    prevArrow: (
+      <SamplePrevArrow homePage={props.homePage} left={70} prev={-3} />
+    ),
     responsive: [
       {
         breakpoint: 1000,
@@ -42,7 +43,7 @@ export const SliderHomepage = props => {
       {
         breakpoint: 798,
         settings: {
-          slidesToShow: 1,      
+          slidesToShow: 1,
           nextArrow: <SampleNextArrow homePage={true} right={40} />,
           prevArrow: <SamplePrevArrow homePage={true} left={40} />
         }

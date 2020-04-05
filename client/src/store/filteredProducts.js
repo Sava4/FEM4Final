@@ -22,7 +22,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
 
 export const setfilterList = url => dispatch => {
   axios
-    .get(`/products/filter?${url}`)  
+    .get(`/products/filter?${url}`)
     .then(products => {
       /*Do something with products*/
     })

@@ -8,16 +8,15 @@ import { FiltersList } from "./FilterBar/FiltersList";
 // import { Checkboxes } from "./FilterBar/PopupCheckboxes";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
-import ProductsContainer from './../SliderProducts/ProductsContainer'
+import ProductsContainer from "./../SliderProducts/ProductsContainer";
 import querystring from "query-string";
 
-export const ProductFilters = (props) => {  
+export const ProductFilters = props => {
   const { category } = useParams();
-  
+
   let location = useLocation();
   let path = `filter${location.search}`;
-  console.log("TCL: ProductFilters -> path", path)
- 
+  console.log("TCL: ProductFilters -> path", path);
 
   return (
     <Layout>

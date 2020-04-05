@@ -11,7 +11,6 @@ const MapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
-
 export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
   const { category } = props;

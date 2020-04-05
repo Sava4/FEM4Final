@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { SocialMenu } from "./Social";
 // import { Email } from "./Email";
- import Email  from "./form";
+import Email from "./form";
 import { ScrollToTopController } from "./../../SliderProducts/LoadMore";
 import {
   LinkToStatic,

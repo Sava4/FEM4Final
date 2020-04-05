@@ -8,11 +8,11 @@ export function AddSubscriber(props) {
   const email = props.email;
   let emailValue = props.emailValue;
   let setSignup = props.setSignup;
-  let setEmail = props.setEmail
-  let reset=props.reset
+  let setEmail = props.setEmail;
+  let reset = props.reset;
   // let email
   //   (props.email!==null) && (email = props.email)
-console.log(email)
+  console.log(email);
   const newSubscriber = {
     email: `${email}`,
     letterSubject: "Test letter (final project)",
@@ -20,8 +20,8 @@ console.log(email)
       "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>"
   };
 
-console.log(email)
-  if (email !== "" && email!==undefined&&emailValue===email) {
+  console.log(email);
+  if (email !== "" && email !== undefined && emailValue === email) {
     //ПРОВЕРКА ВВОДА
 
     axios
@@ -30,7 +30,7 @@ console.log(email)
         password: "1111111"
       })
       .then(response => {
-        let token = response.data.token;        
+        let token = response.data.token;
         axios
           .post("http://localhost:5000/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }
@@ -39,17 +39,17 @@ console.log(email)
             console.log("success");
             console.log(newSubscriber);
             // setEmail(undefined)
-            // alert(email);            
-            setTimeout(() =>setSignup("ПОДПИСКА ДОБАВЛЕНА"),1500); 
-            setTimeout(() => setSignup("Sign Up"),3000);
-            reset()
+            // alert(email);
+            setTimeout(() => setSignup("ПОДПИСКА ДОБАВЛЕНА"), 1500);
+            setTimeout(() => setSignup("Sign Up"), 3000);
+            reset();
           })
           .catch(err => {
             console.log("error add");
             console.log(err.response);
-            setTimeout(() =>setSignup("НЕВЕРНЫЙ АДРЕС"),1500);            
-            setTimeout(() => setSignup("Sign Up"),3000);
-            reset()
+            setTimeout(() => setSignup("НЕВЕРНЫЙ АДРЕС"), 1500);
+            setTimeout(() => setSignup("Sign Up"), 3000);
+            reset();
             // setTimeout(setSignup("Sign Up"), 50);
             // setEmail(undefined)
           });
