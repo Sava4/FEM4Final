@@ -97,6 +97,7 @@ const ProductsContainer = props => {
         parsed={parsed}
         categoryQuery={categoryQuery}
         category={category}
+        apiCategory={apiCategory}
       />
       {/* <ScrollToTopController parsed={parsed}/> */}
     </>
