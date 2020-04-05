@@ -9,7 +9,7 @@ export const productsAPI = {
     console.log(currentPage, pageSize,categoryQuery,apiCategory);
 
     return instance
-      .get(`/products/filter?startPage=${currentPage}&perPage=${pageSize}${apiCategory}`)
+      .get(`/products/filter?startPage=${currentPage}&perPage=${pageSize}&${apiCategory}`)
       .then(response => {
         console.log(response.data);
         return response.data;

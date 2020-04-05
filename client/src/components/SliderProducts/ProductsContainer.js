@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams,useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
 import querystring from "query-string";
@@ -43,15 +43,31 @@ const ProductsContainer = props => {
     
     const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
     const categoryQuery=`${query}`
-    const category2=`&categories=${category}`
     console.log("TCL: categoryQuery", categoryQuery)
+
+    const category2=`&categories=${category}`
+
     const apiCategory=query+category2
-    // (apiCategory!==undefined)&&apiCategory
+    
     console.log("TCL: apiCategory", apiCategory)
 
   useEffect(() => {
     props.getProducts(truePage2, pageSize, categoryQuery,apiCategory );
   }, [truePage2]);
+
+  useEffect(() => {
+    props.getProducts(truePage2, pageSize, categoryQuery,apiCategory );
+  }, [apiCategory]);
+  
+  
+//   let [filtered, setFiltered]=useState(false)
+//   categoryQuery && setFiltered(true)
+// let onFiltered
+//   filtered&&(onFiltered=(apiCategory,pageNumber )=>{
+//     // из пагинатора
+//     const { pageSize } = props;
+//     props.getProducts(pageNumber, pageSize, categoryQuery,apiCategory )
+//   })
 
   const onPageChanged = pageNumber => {
     // из пагинатора
@@ -71,17 +87,7 @@ const ProductsContainer = props => {
   
   
   
-  const onToTop = parsed => {
-    try {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      });
-    } catch (error) {
-      window.scrollTo(0, 0);
-    }
-  };
+
 
   return (
     <>
@@ -91,8 +97,7 @@ const ProductsContainer = props => {
         pageSize={props.pageSize}
         currentPage={props.currentPage}
         onPageChanged={onPageChanged}
-        onLoadMore={onLoadMore}
-        onToTop={onToTop}
+        onLoadMore={onLoadMore}      
         products={props.products}
         parsed={parsed}
         categoryQuery={categoryQuery}
@@ -104,10 +109,10 @@ const ProductsContainer = props => {
   );
 };
 
-let mapStateToProps = (state, store, categoryQuery,apiCategory) => {
+let mapStateToProps = (state,categoryQuery,apiCategory) => {
   return {
     apiCategory: apiCategory,
-    categoryQuery: categoryQuery,
+    categoryQuery: categoryQuery,    
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
@@ -123,7 +128,6 @@ export default compose(
   connect(mapStateToProps,{
     setCurrentPage,
     getProducts: useRequestProducts,
-    moreProducts: useMoreProducts,
-    
+    moreProducts: useMoreProducts,    
   }) //mapDispatchToProps
 )(UrlProductsContainer);

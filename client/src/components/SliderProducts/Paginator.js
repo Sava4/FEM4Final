@@ -3,14 +3,13 @@ import { useParams } from "react-router";
 import styles from "./Paginator.module.css";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
-import { LoadMore } from "./LoadMore";
+import { LoadMore, onTop} from "./LoadMore";
 
 export const Paginator = ({
   productsQuantity,
   pageSize,
   currentPage,
   onPageChanged,
-  onToTop,
   categoryQuery,
   apiCategory,
   
@@ -43,7 +42,7 @@ export const Paginator = ({
       <NavLink
         onClick={e => {
           handleClickPrev(e);
-          onToTop();
+          onTop();
         }}
         to={`/categories/${category}/filter?startPage=${+currentPage - 1}&perPage=${pageSize}&${apiCategory}`}
       >
@@ -74,7 +73,7 @@ export const Paginator = ({
               to={`/categories/${category}/filter?startPage=${pageNumber}&perPage=${pageSize}&${apiCategory}`}
               key={pageNumber}
               onClick={e => {
-                onToTop();
+                onTop();
               }}
             >
               <span
@@ -97,7 +96,7 @@ export const Paginator = ({
       <NavLink
         onClick={e => {
           handleClickNext(e);
-          onToTop();
+          onTop();
         }}
         to={`/categories/${category}/filter?startPage=${+currentPage + 1}&perPage=${pageSize}&${apiCategory}`}
       >
@@ -122,4 +121,3 @@ export const Paginator = ({
   );
 };
 
-// export default Paginator;

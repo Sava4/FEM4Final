@@ -56,7 +56,7 @@ export const useRequestProducts = (page, pageSize, categoryQuery,apiCategory) =>
     dispatch(setCurrentPage(page));
     // console.log(page);
     let data = await productsAPI.getProducts(page, pageSize,categoryQuery,apiCategory);
-    console.log("TCL: useRequestProducts -> categoryQuery", categoryQuery,apiCategory)
+    console.log("TCL: useRequestProducts -> categoryQuery,apiCategory", categoryQuery,apiCategory)
     // dispatch(toggleIsFetching(false));
     dispatch(setProducts(data.products));
     dispatch(setTotalProductsCount(data.productsQuantity));

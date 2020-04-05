@@ -36,8 +36,7 @@ export const ProductsPagination = ({
             onPageChanged={onPageChanged}
             onLoadMore={onLoadMore}
             productsQuantity={productsQuantity}
-            pageSize={pageSize}
-            onToTop={onToTop}
+            pageSize={pageSize}          
             categoryQuery={categoryQuery}
             category={category}
             apiCategory={apiCategory}
@@ -77,8 +76,7 @@ export const ProductsPagination = ({
           <LoadMore
             currentPage={currentPage}
             onPageChanged={onPageChanged}
-            onLoadMore={onLoadMore}
-            onToTop={onToTop}
+            onLoadMore={onLoadMore}          
             productsQuantity={productsQuantity}
             pageSize={pageSize}
             products={products}
@@ -89,8 +87,7 @@ export const ProductsPagination = ({
             onLoadMore={onLoadMore}
             productsQuantity={productsQuantity}
             pageSize={pageSize}
-            onToTop={onToTop}
-          />
+                     />
         </div>
       {/* </Layout> */}
     </div>
