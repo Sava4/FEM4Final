@@ -2,7 +2,7 @@ import React from "react";
 import { v4 } from "uuid";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 import { SelectedFilters } from "./SelectedFilters";
 

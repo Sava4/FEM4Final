@@ -1,52 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
+import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { connect } from "react-redux";
-
 import { HeaderMenuElem } from "./DropMenu";
-import { getCategoriesList } from "../../../../store/headerMenu";
 
-// import { addCategory} from "./DropMenu/newCategory"
-// import { SimpleMenu } from "./HederMenu";
+export const Navigation = () => {
+  const allCategories = useSelector(state => state.categories);
 
-const mapStateToProps = store => ({
-  categories: store
-});
+  return (
+    <HeaderDropMenu>
+      <HeaderMenuElem categoriesAllData={allCategories} />
+    </HeaderDropMenu>
+  );
+};
 
-export const Navigation = connect(mapStateToProps, { getCategoriesList })(
-  props => {
-    // console.log(props);
-    const [categoriesAllData, setCategoriesAllData] = useState([]);
-
-    useEffect(() => {
-      // props.getCategoriesList();
-      // console.log("Categories:", props);
-      axios
-        .get("http://localhost:5000/catalog")
-        .then(result => {
-          // console.log("Secsess ");
-          // console.log(result.data);
-          setCategoriesAllData(result.data);
-        })
-        .catch(err => {
-          /*Do something with error, e.g. show error to user*/
-        });
-    }, []);
-
-    return (
-      <HeaderDropMenu>
-        <HeaderMenuElem categoriesAllData={categoriesAllData} />
-      </HeaderDropMenu>
-    );
-  }
-);
-
-const HeaderDropMenu = styled.div`
-  padding: 0;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  position: relative;
-`;
+const HeaderDropMenu = styled.div``;

@@ -10,7 +10,7 @@ import { Account } from "../components/Account";
 import { Wishlist } from "../components/Wishlist/wishlist";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
-import { ProductSliderView } from "../components/SliderProducts/productSliderView";
+// import { ProductSliderView } from "../components/SliderProducts/productSliderView";
 import ProductsContainer from "../components/SliderProducts/ProductsContainer";
 import { Checkout } from "../components/Checkout";
 

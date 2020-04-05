@@ -1,19 +1,17 @@
 import React from "react";
-import { Provider } from "react-redux";
-import { Routes } from "./routes";
 import { BrowserRouter } from "react-router-dom";
-import GlobalStyle from "./styled-components/GlobalStyle";
-
 import { PersistGate } from "redux-persist/integration/react";
-
+import GlobalStyle from "./styledComponents/GlobalStyle";
+import { Provider } from "react-redux";
+import { LoadCategories } from "./components/common/Header/NavigationMenu/LoadCategories";
+import { Routes } from "./routes";
 import { persistor, store } from "./store";
-
-//import {Header, Spinner} from "./components";
 
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
+        <LoadCategories />
         <PersistGate loading={null} persistor={persistor}>
           <GlobalStyle />
           <Routes />

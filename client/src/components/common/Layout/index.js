@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { HeaderContent } from "../Header/header";
+import { HeaderContent } from "../Header/Header";
 import { Footer } from "../Footer";
 
 export const Layout = props => {

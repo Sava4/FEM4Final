@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { Layout } from "../common/Layout";
-import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";

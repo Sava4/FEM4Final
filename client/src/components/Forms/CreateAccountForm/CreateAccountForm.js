@@ -1,7 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import {
+  FormWrapper,
+  CreateAccountTitle,
+  Content,
+  CreateAccountSubtitle
+} from "./createAccountForm.styles";
 
-import { Modal } from "../../Modal/modal";
+import { Modal } from "../../Modal/Modal";
 
 export const CreateAccountForm = props => {
   const { onClose } = props;
@@ -21,29 +26,3 @@ export const CreateAccountForm = props => {
     </Modal>
   );
 };
-
-const FormWrapper = styled.form`
-  width: 980px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #002d50;
-  background: #ffffff;
-`;
-
-const CreateAccountTitle = styled.div`
-  margin-top: 100px;
-  margin-bottom: 65px;
-  text-align: center;
-`;
-
-const Content = styled.div`
-  font-size: 24px;
-  line-height: 40px;
-  text-transform: uppercase;
-`;
-
-const CreateAccountSubtitle = styled.div`
-  margin-bottom: 100px;
-  font-size: 14px;
-`;

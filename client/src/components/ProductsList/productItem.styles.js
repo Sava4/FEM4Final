@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Card = styled(NavLink)`
   display: flex;
