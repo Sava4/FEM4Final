@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addFavorites, removeFavorites } from "../../store/favorites";
 import {
@@ -9,13 +8,8 @@ import {
   Name,
   Price,
   WishWrapper
-} from "../ProductDetails/productDetails";
-import {
-  mediaMobile,
-  mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
-import styled, { css } from "styled-components";
-
+} from "../ProductDetails/productDetails.styles";
+import { Wrapper, Card } from "./productItem.styles";
 export const ProductItem = props => {
   const dispatch = useDispatch();
   const isFavorites = useSelector(state =>
@@ -49,61 +43,3 @@ export const ProductItem = props => {
     </Wrapper>
   );
 };
-
-export const Card = styled(NavLink)`
-  display: flex;
-  padding-bottom: 3px;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 350px;
-  text-decoration: none;
-  box-sizing: border-box;
-  color: #000;
-`;
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin: 5px;
-  width: 32%;
-  height: 350px;
-  text-decoration: none;
-  box-sizing: border-box;
-  color: #000;
-  border: 1px solid #e9ebf5;
-  &: hover {
-    border: 1px solid #002d50;
-  }
-  ${mediaTablet(`
-
-  align-items: space-between;
-  width: 43%;
-`)}
-  ${mediaMobile(`
-  width: 43%;
-  `)}
-   ${props =>
-     props.interpretation === "carousel" &&
-     css`
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       justify-content: space-between;
-       border: 1px solid rgb(233, 235, 245);
-       margin: 5px;
-       width: 280px;
-       height: 392px;
-       ${mediaTablet(`
-  width: 250px;
-`)}
-       ${mediaMobile(`
-        width: 250px;
-  `)}
-   @media (max-width: 480px) {
-         width: 250px;
-         margin-left: 30px;
-       }
-     `}
-`;

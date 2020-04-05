@@ -11,8 +11,8 @@ import {
   ProductDescription,
   RemoveBtn
 } from "../ShoppingBag/CartItem";
-import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
-import bug from "../common/Header/ShoppingBag/shopping-bag.png";
+import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
+import bug from "../common/Header/ShoppingBag/shoppingBagIcon.png";
 
 import styled from "styled-components";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";

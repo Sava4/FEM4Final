@@ -4,15 +4,13 @@ import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 import { MapBox } from "../Map/mapbox";
 import { AddressesSelect } from "../Map/addressesPage";
-import { GiftCard } from "./giftCard";
+import { Server, HeadPage, ImagePage } from "./GiftCard/giftCard.styles";
+import { GiftCard } from "./GiftCard/giftCard";
 import {
   ScrollToTopController,
   onTop,
   ShowOnTop
 } from "../SliderProducts/LoadMore";
-import styles from "../SliderProducts/Paginator.module.css";
-import cn from "classnames";
-import styled, { css } from "styled-components";
 
 export const StaticPage = () => {
   let { url } = useParams();
@@ -70,23 +68,3 @@ export const StaticPage = () => {
     </>
   );
 };
-
-const Server = styled.div``;
-const HeadPage = styled.h1`
-  text-align: center;
-  align-self: center;
-  font-size: 30px;
-  margin: 45px;
-  color: #484848;
-  ${props =>
-    props.main === true &&
-    css`
-      font-weight: bold;
-      font-size: 40px;
-      margin: 45px;
-    `}
-`;
-const ImagePage = styled.img`
-  margin: 0 auto 35px auto;
-  width: 80%;
-`;
