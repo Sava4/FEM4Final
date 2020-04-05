@@ -56,7 +56,7 @@ const ProductsContainer = props => {
   }, [truePage2]);
 
   useEffect(() => {
-    props.getProducts(truePage2, pageSize, categoryQuery,apiCategory );
+    props.getProducts(truePage2=1, pageSize, categoryQuery,apiCategory );
   }, [apiCategory]);
   
   
