@@ -8,7 +8,7 @@ const SET_TOTAL_PRODUCTS_COUNT = "SET_TOTAL_PRODUCTS_COUNT";
 let initialState = {
   // category: "earrings",
   products: [],
-  pageSize: 6,
+  pageSize: 3,
   productsQuantity: 0,
   currentPage: 1
 };
@@ -51,22 +51,22 @@ export const setTotalProductsCount = productsQuantity => ({
 });
 
 //вызов хука внутри хука не работает??
-export const useRequestProducts = (page, pageSize, categoryQuery) => {
+export const useRequestProducts = (page, pageSize, categoryQuery,apiCategory) => {
   return async dispatch => {
     dispatch(setCurrentPage(page));
     // console.log(page);
-    let data = await productsAPI.getProducts(page, pageSize,categoryQuery);
-    console.log("TCL: useRequestProducts -> categoryQuery", categoryQuery)
+    let data = await productsAPI.getProducts(page, pageSize,categoryQuery,apiCategory);
+    console.log("TCL: useRequestProducts -> categoryQuery", categoryQuery,apiCategory)
     // dispatch(toggleIsFetching(false));
     dispatch(setProducts(data.products));
     dispatch(setTotalProductsCount(data.productsQuantity));
   };
 };
 
-export const useMoreProducts = (page, pageSize) => {
+export const useMoreProducts = (page, pageSize,categoryQuery,apiCategory) => {
   return async dispatch => {
     dispatch(setCurrentPage(page));
-    let moreData = await productsAPI.getProducts(page, pageSize);
+    let moreData = await productsAPI.getProducts(page, pageSize,categoryQuery,apiCategory);
     dispatch(setMoreProducts(moreData.products));
   };
 };

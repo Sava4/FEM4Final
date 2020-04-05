@@ -16,6 +16,7 @@ export const ProductsPagination = ({
   onLoadMore,
   onToTop,
   products,
+  categoryQuery,
   ...props
 }) => {
   ///// игоря
@@ -36,6 +37,7 @@ export const ProductsPagination = ({
             productsQuantity={productsQuantity}
             pageSize={pageSize}
             onToTop={onToTop}
+            categoryQuery={categoryQuery}
           />
         </div>
         <div

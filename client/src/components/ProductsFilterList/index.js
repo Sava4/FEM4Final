@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router";
 
 import { Layout } from "../common/Layout";
 import IconBreadcrumbs from "./Breadcrumbs.js";
@@ -12,6 +12,9 @@ import ProductsContainer from './../SliderProducts/ProductsContainer'
 
 export const ProductFilters = (props) => {  
   const { category } = useParams();
+  let location = useLocation();
+  let path = `filter${location.search}`;
+  console.log("TCL: ProductFilters -> path", path)
   return (
     <Layout>
       <CategoriesHeader>
@@ -29,7 +32,7 @@ export const ProductFilters = (props) => {
         <SelectedProducts>
           <p>Selected products</p>
           <FilterIndicators />
-          <FilteredListProducts category={category} />
+          {/* <FilteredListProducts category={category} /> */}
         </SelectedProducts>
         <ProductsContainer />
       </CategotiesCommon>
