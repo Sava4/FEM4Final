@@ -60,19 +60,6 @@ const Card = styled.div`
   justify-content: space-between;
   border: 1px solid rgb(233, 235, 245);
   margin: 5px;
-  width: 280px;
+  max-width: 280px;
   height: 392px;
-  @media (max-width: 1050px) {
-  }
-  @media (max-width: 992px) {
-    width: 43%;
-    // align-items: space-between;
-  }
-  @media (max-width: 767px) {
-    // align-items: space-between;
-    width: 43%;
-  }
-  @media (max-width: 439px) {
-    width: 43%;
-  }
 `;

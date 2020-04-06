@@ -61,9 +61,8 @@ const CategotiesCommon = styled.div`
 `;
 const CategoriesFilters = styled.div`
   margin-left: 130px;
-  min-width: 280px;
-
-  width: 30%;
+  max-width: 280px;
+  width: 100%;
   & p {
     font-size: 17px;
   }

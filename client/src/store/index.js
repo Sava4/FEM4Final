@@ -12,6 +12,7 @@ import { loginReducer } from "./login";
 import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
 import { loginStatusReducer } from "./loginStatus";
+import { reducer as formReducer } from "redux-form";
 
 const persistConfig = {
   key: "cart",
@@ -51,7 +52,9 @@ const rootReducer = combineReducers({
   login: persistedToken,
   loginStatus: loginStatusReducer,
   filters: filtersReduser,
-  user: userReducer
+  productsReducer,
+  user: userReducer,
+  form: formReducer
 });
 
 export const store = createStore(

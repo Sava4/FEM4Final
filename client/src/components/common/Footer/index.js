@@ -3,7 +3,8 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { SocialMenu } from "./Social";
-import { Email } from "./Email";
+// import { Email } from "./Email";
+import Email from "./form";
 import { ScrollToTopController } from "./../../SliderProducts/LoadMore";
 import {
   LinkToStatic,
@@ -24,6 +25,7 @@ import {
   MobileWrap,
   H4
 } from "./footer.styles.js";
+// import AddMessageForm from './form'
 
 export const Footer = () => {
   const [staticLinks, setStaticLinks] = useState([]);
@@ -136,6 +138,7 @@ export const Footer = () => {
               <li>collection launches, events and much more.</li>
             </ul>
             <Email />
+            {/* <AddMessageForm /> */}
             <SocialContainer>
               {" "}
               <SocialMenu />
