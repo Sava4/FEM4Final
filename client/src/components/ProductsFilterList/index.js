@@ -97,10 +97,10 @@ display: block;
 `;
 const CategoriesFilters = styled.div`
   margin-top: 29px;
-  margin-left: 5%; 
-  width: 25%; 
-  min-width:200px;
-  max-width:260px;
+  margin-left: 5%;
+  width: 25%;
+  min-width: 200px;
+  max-width: 260px;
   & p {
     font-size: 17px;
     margin-bottom: 22px;

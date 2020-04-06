@@ -60,7 +60,7 @@ const CategotiesCommon = styled.div`
   flex-wrap: nowrap;
 `;
 const CategoriesFilters = styled.div`
-  margin-left: 130px;  
+  margin-left: 130px;
   max-width: 280px;
   width: 100%;
   & p {

@@ -96,7 +96,8 @@ const ProductsContainer = props => {
         to={`/categories/${category}/filter?${apiCategory}&startPage=${truePage2}&perPage=${pageSize}`}
       />
 
-      <ProductsPagination style={{width:"60%"}}
+      <ProductsPagination
+        style={{ width: "60%" }}
         productsQuantity={props.productsQuantity}
         pageSize={props.pageSize}
         currentPage={props.currentPage}

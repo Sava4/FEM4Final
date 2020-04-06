@@ -42,10 +42,11 @@ export const Paginator = ({
 
   return (
     <div className={styles.paginator}>
-      {info==1&&
+      {info == 1 && (
         <span style={{ margin: "40px" }}>
-        товаров {productsQuantity} страниц {pagesCount} 
-        </span>}
+          товаров {productsQuantity} страниц {pagesCount}
+        </span>
+      )}
       <NavLink
         onClick={e => {
           handleClickPrev(e);

@@ -29,7 +29,7 @@ export const ProductsPagination = ({
       <div
         style={{
           position: "relative",
-          textAlign:"right"
+          textAlign: "right"
         }}
       >
         <Paginator
@@ -50,7 +50,7 @@ export const ProductsPagination = ({
           flexWrap: "wrap",
           justifyContent: "center",
           width: "100%",
-          minWidth:"260px",
+          minWidth: "260px",
           margin: "0 auto"
         }}
       >
@@ -91,7 +91,6 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           truePage={truePage}
-          
         />
       </div>
       {/* </Layout> */}
