@@ -42,8 +42,11 @@ const FilterTypeDiv = styled.div`
   width: 100%;
   flex-wrap: wrap;
   height: content;
+  position: absolute;
+  margin-top: 2%;
+  margin-left: 1%
   ${mediaMobile(`
-  margin-top: 11px;
+  margin-top: 11px;  
 `)}
   & p {
     font-size: 14px;
@@ -61,4 +64,5 @@ const FilterMarker = styled.div`
 const SelectedFiltersStyled = styled.div`
   flex-wrap: wrap;
   display: flex;
+
 `;

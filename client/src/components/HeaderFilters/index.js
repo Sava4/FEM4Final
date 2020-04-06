@@ -60,10 +60,9 @@ const CategotiesCommon = styled.div`
   flex-wrap: nowrap;
 `;
 const CategoriesFilters = styled.div`
-  margin-left: 130px;
-  min-width: 280px;
-
-  width: 30%;
+  margin-left: 130px;  
+  max-width: 280px;
+  width: 100%;
   & p {
     font-size: 17px;
   }

@@ -11,6 +11,7 @@ export const Paginator = ({
   currentPage,
   truePage,
   onPageChanged,
+  info,
   apiCategory,
   portionSize = 3 //количество страниц в порции
 }) => {
@@ -38,8 +39,13 @@ export const Paginator = ({
   const handleClickPrev = e => {
     +currentPage <= 1 && e.preventDefault();
   };
+
   return (
     <div className={styles.paginator}>
+      {info==1&&
+        <span style={{ margin: "40px" }}>
+        товаров {productsQuantity} страниц {pagesCount} 
+        </span>}
       <NavLink
         onClick={e => {
           handleClickPrev(e);
@@ -117,9 +123,9 @@ export const Paginator = ({
           )}
         ></span>
       </NavLink>
-      <span style={{ margin: "40px" }}>
+      {/* <span style={{ margin: "40px" }}>
         товаров {productsQuantity} страниц {pagesCount}
-      </span>
+      </span> */}
     </div>
   );
 };

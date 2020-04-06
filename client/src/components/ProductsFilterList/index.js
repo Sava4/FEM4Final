@@ -81,7 +81,7 @@ const CategotiesCommon = styled.div`
 `;
 const MobileCategotiesCommon = styled.div`
   display: none;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   ${mediaMobile(`
 display: block;
 // flex-direction:column;
@@ -97,21 +97,17 @@ display: block;
 `;
 const CategoriesFilters = styled.div`
   margin-top: 29px;
-  margin-left: 130px;
-  min-width: 280px;
-  width: 30%;
+  margin-left: 5%; 
+  width: 25%; 
+  min-width:200px;
+  max-width:260px;
   & p {
     font-size: 17px;
     margin-bottom: 22px;
   }
   ${mediaMobile(`
-  display:none;
-    // height: fit-content;
-    // margin-left: 20px;
-    // & p {
-      
-    // }
-`)}
+  width:200px;
+  `)}
 `;
 
 const SelectedProducts = styled.div`
