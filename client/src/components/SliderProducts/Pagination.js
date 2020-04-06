@@ -7,7 +7,7 @@ import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";
 import { FilteredListProducts } from "./../../components/ProductsFilterList/FilteredProducts";
-
+import {FilterIndicators} from './../ProductsFilterList/SelectedProducts/FilterIndicators'
 export const ProductsPagination = ({
   currentPage,
   truePage,
@@ -26,6 +26,7 @@ export const ProductsPagination = ({
   return (
     <div>
       {/* <Layout> */}
+      <FilterIndicators />
       <div
         style={{
           position: "relative",
