@@ -1,21 +1,9 @@
-import React from "react";
 import styled from "styled-components";
+import checkBox from "./checkBox.png";
+import checkBoxChecked from "./checkBoxChecked.png";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
-import checkBox from "./check-box.png";
-import checkBoxChecked from "./check-box-checked.png";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
-
-export const Checkbox = props => {
-  return (
-    <CheckboxLabel>
-      <InputCheckbox type="checkbox" onClick={props.onClick} />
-      <CheckBoxIcon />
-      {props.children}
-    </CheckboxLabel>
-  );
-};
-
-const CheckboxLabel = styled.label`
+export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
@@ -30,7 +18,7 @@ const CheckboxLabel = styled.label`
   `)}
 `;
 
-const CheckBoxIcon = styled.span`
+export const CheckBoxIcon = styled.span`
   width: 10px;
   height: 10px;
   margin-right: 5px;
@@ -43,6 +31,6 @@ const CheckBoxIcon = styled.span`
   }
 `;
 
-const InputCheckbox = styled.input`
+export const InputCheckbox = styled.input`
   display: none;
 `;

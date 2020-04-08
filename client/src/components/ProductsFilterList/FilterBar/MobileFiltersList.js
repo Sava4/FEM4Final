@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
 import { setTogleShown, 
         setClearFilters, 

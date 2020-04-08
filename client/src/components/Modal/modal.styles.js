@@ -1,22 +1,7 @@
-import React from "react";
 import styled from "styled-components";
+import modalClose from "./modalCloseBtn.png";
 
-import modalClose from "./modal-close-btn.png";
-
-export const Modal = props => {
-  const { isModalOpen, onClose, children } = props;
-
-  return (
-    <CreateModal isOpen={isModalOpen}>
-      <ModalCloseWrapper>
-        <ModalClose onClick={onClose} />
-        {children}
-      </ModalCloseWrapper>
-    </CreateModal>
-  );
-};
-
-const CreateModal = styled.div`
+export const CreateModal = styled.div`
   display: flex;
   position: fixed;
   z-index: 2;
@@ -30,13 +15,13 @@ const CreateModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const ModalCloseWrapper = styled.div`
+export const ModalCloseWrapper = styled.div`
   width: 70%;
   position: relative;
   margin: 0 auto;
 `;
 
-const ModalClose = styled.div`
+export const ModalClose = styled.div`
   width: 25px;
   height: 25px;
   position: absolute;

@@ -1,18 +1,13 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
 import logo from "./mainLogo.png";
 import {
   mediaDesktop,
   mediaMobile,
   mediaTablet
-} from "../../../../styled-components/media-breakpoints-mixin";
+} from "../../../../styledComponents/MediaBreakpointsMixin";
 
-export const Logo = () => {
-  return <MainLogo />;
-};
-
-const MainLogo = styled.div`
+export const MainLogo = styled(NavLink)`
   background-image: url(${logo});
   background-repeat: no-repeat;
   background-size: contain;

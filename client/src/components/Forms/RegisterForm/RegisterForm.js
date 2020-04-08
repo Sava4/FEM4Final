@@ -1,11 +1,25 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import axios from "axios";
+import {
+  FormWrapper,
+  FormTitle,
+  ErrorMessage,
+  FormRegister,
+  ContentWrapper,
+  LeftContent,
+  Input,
+  RightContent,
+  InputPasswordWrapper,
+  InputPassword,
+  InputBottomText,
+  FormButtonWrapper,
+  GoBackWrapper,
+  GoBackText
+} from "./registerForm.styles";
 
-import { GoBackImage } from "../OrderForm/order-form";
-import { FormButton } from "../FormButton/form-button";
-import { Modal } from "../../Modal/modal";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { GoBackImage } from "../OrderForm/orderForm.styles";
+import { FormButton } from "../FormButton/FormButton";
+import { Modal } from "../../Modal/Modal";
 
 export const RegisterForm = props => {
   const { onClose, onLogin } = props;
@@ -129,7 +143,6 @@ export const RegisterForm = props => {
     setLoginValidation(status);
   }
 
-  //firstName
   function onFirstNameChange(event) {
     setFirstName(event.target.value);
   }
@@ -143,7 +156,6 @@ export const RegisterForm = props => {
     setFirstNameValidation(status);
   }
 
-  //lastName
   function onLastNameChange(event) {
     setLastName(event.target.value);
   }
@@ -157,7 +169,6 @@ export const RegisterForm = props => {
     setLastNameValidation(status);
   }
 
-  //email
   function onEmailChange(event) {
     setEmail(event.target.value);
   }
@@ -172,7 +183,6 @@ export const RegisterForm = props => {
     setEmailValidation(status);
   }
 
-  //password
   function onPasswordChange(event) {
     setPassword(event.target.value);
   }
@@ -186,7 +196,6 @@ export const RegisterForm = props => {
     setPasswordValidation(status);
   }
 
-  //confirm password
   function onConfirmPasswordChange(event) {
     setConfirmPassword(event.target.value);
   }
@@ -254,142 +263,3 @@ export const RegisterForm = props => {
       });
   }
 };
-
-const FormWrapper = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #002d50;
-  background: #ffffff;
-
-  ${mediaMobile(`
-  flex-direction: column;
-  align-items: center;
-  `)}
-`;
-const FormRegister = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 70px;
-  margin-left: 70px;
-
-  ${mediaMobile(`
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 0;
-  margin-left: 0;
-  `)}
-`;
-
-const FormTitle = styled.span`
-  margin-top: 70px;
-  margin-bottom: 50px;
-  font-size: 24px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-  ${mediaMobile(`
-  margin-top: 50px;
-  margin-bottom: 40px;
-  `)}
-`;
-
-const ErrorMessage = styled.span`
-  font-size: 14px;
-  color: red;
-`;
-
-const LeftContent = styled.div`
-  width: 50%;
-  margin-right: 50px;
-
-  ${mediaMobile(`
-  width: 80%;
-  margin: 0;
-  `)}
-`;
-
-const Input = styled.input`
-  width: 100%;
-  margin-bottom: 45px;
-  padding-bottom: 5px;
-  border: none;
-  border-bottom: 1px solid #80858d;
-  border-bottom-color: ${props => (props.invalid ? "red" : "#80858D")};
-  letter-spacing: 0.5px;
-  font-size: 12px;
-
-  :-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0 50px #fff !important;
-    -webkit-text-fill-color: #999 !important;
-    color: #999 !important;
-  }
-
-  ::placeholder {
-    color: #80858d;
-  }
-
-  :focus {
-    outline: none;
-  }
-`;
-
-const InputPassword = styled(Input)`
-  margin-bottom: 5px;
-`;
-
-const InputPasswordWrapper = styled.div`
-  margin-bottom: 32px;
-`;
-
-const InputBottomText = styled.div`
-  font-size: 8px;
-  color: #80858d;
-`;
-
-const RightContent = styled.div`
-  width: 50%;
-  margin-left: 50px;
-  margin-bottom: 20px;
-
-  ${mediaMobile(`
-  width: 80%;
-  margin: 0;
-  `)}
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-
-  ${mediaMobile(`
-  flex-direction: column;
-  align-items: center;
-  `)}
-`;
-
-const FormButtonWrapper = styled.div`
-  width: 40%;
-  margin-bottom: 50px;
-
-  ${mediaMobile(`
-  width: 80%;
-  margin-bottom: 40px;
-  `)}
-`;
-
-const GoBackWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  cursor: pointer;
-`;
-
-const GoBackText = styled.span`
-  font-size: 14px;
-  color: #80858d;
-`;

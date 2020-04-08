@@ -3,35 +3,25 @@ import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
-export const Dropmenu = props => {
-  const { dropMenuArrey } = props;
+export const DropMenu = props => {
+  const { dropMenuArray } = props;
 
-  let categArrey = dropMenuArrey.filter(item => item.parentId !== "null");
-
+  let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =
-    categArrey.length &&
-    categArrey.map(({ parentId, name, _id }) => {
-      const parentMenu = parentId.toLowerCase();
-      const chosenMenu = name.toLowerCase();
+    categoryArray.length &&
+    categoryArray.map(item => {
+      const parentMenu = item.parentId.toLowerCase();
+      const chosenMenu = item.name.toLowerCase();
       return (
-        <DromenuList key={_id}>
-          <NavLink to={`/${parentMenu}/${chosenMenu}`}>{name}</NavLink>
-        </DromenuList>
+        <DroMenuList key={item._id}>
+          <NavLink to={`/${parentMenu}/${chosenMenu}`}>{item.name}</NavLink>
+        </DroMenuList>
       );
     });
-
   return dropMenu;
 };
 
-const DromenuList = styled.li`
+const DroMenuList = styled.div`
   margin-top: 20px;
   width: 100%;
-  :last-child {
-    margin-bottom: 20px;
-  }
-  & a {
-    text-decoration: none;
-    font-size: 14px;
-    text-transform: none;
-  }
 `;

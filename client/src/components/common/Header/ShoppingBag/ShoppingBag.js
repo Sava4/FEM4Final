@@ -1,9 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import {
+  ServicesIcon,
+  ShoppingBagIcon,
+  ShoppingBagCounter,
+  CounterMobile
+} from "./shoppingBag.styles";
 
-import bug from "./shopping-bag.png";
-import { mediaMobile } from "../../../../styled-components/media-breakpoints-mixin";
 export const ShoppingBag = () => {
   // Use state Local Store Cart Quantity if not logged in,
   // after login use state.shoppingCart.srvCart Cart Quantity from Server
@@ -22,30 +25,10 @@ export const ShoppingBag = () => {
   });
 
   return (
-    <ServicesIcon>
+    <ServicesIcon to="/account/shopping-bag">
       <ShoppingBagIcon />
       <ShoppingBagCounter>({count})</ShoppingBagCounter>
+      <CounterMobile>{count}</CounterMobile>
     </ServicesIcon>
   );
 };
-
-const ShoppingBagIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  background-image: url(${bug});
-  background-repeat: no-repeat;
-  background-size: contain;
-`;
-
-const ShoppingBagCounter = styled.span`
-  ${mediaMobile(`
-        display: none;
-    `)}
-`;
-
-const ServicesIcon = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 30px;
-`;

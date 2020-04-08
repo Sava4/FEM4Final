@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Container = styled.div`
   display: flex;

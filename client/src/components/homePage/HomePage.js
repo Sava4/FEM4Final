@@ -17,7 +17,9 @@ export const Homepage = () => {
         homePage={true}
         show={1}
         height={425}
+        width={`inherit`}
         arrows={false}
+        dots={true}
       />
       <SliderProducts h4={"FEATURED"} reverse={"reverse"} />
       <HomepageCategories />

@@ -3,11 +3,11 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { addFavorites, removeFavorites } from "../../store/favorites";
-import { ShoppingBagForm } from "../Forms/ShoppingBagForm/shopping-bag-form";
+import { ShoppingBagForm } from "../Forms/ShoppingBagForm/ShoppingBagForm";
 import { useParams } from "react-router";
 import { ScrollToTopController, ShowOnTop } from "../SliderProducts/LoadMore";
 import Slider from "react-slick";
-import { Spinner } from "../Spinner/spinner";
+import { Spinner } from "../Spinner/Spinner";
 import {
   Container,
   Image,

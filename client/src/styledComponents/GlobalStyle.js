@@ -142,7 +142,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 30px;
     margin: 45px;
     color: #484848;
-    &: first-child {
+    &:first-child {
     font-size: 30px;
     font-weight: bold;
     margin: 60px;
@@ -151,8 +151,6 @@ const GlobalStyle = createGlobalStyle`
   ZarinaPage {
     font-weight: bold;
 }
-
-
 `;
 
 export { GlobalStyle as default };

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   mediaMobile,
   mediaTablet
-} from "../../../styled-components/media-breakpoints-mixin";
+} from "../../../styledComponents/MediaBreakpointsMixin";
 
 import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
 import BraceletsPict from "../../../img/homePage/categories/bracelets.png";

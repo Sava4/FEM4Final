@@ -35,7 +35,7 @@ export const Routes = () => {
       <Route exact path="/logout" component={ProductFilters} />
       <Route exact path="/404error" component={Error} />
       <Route exact path="/pages/:url" component={StaticPageView} />
-      <Redirect to="/" />
+      {/* <Redirect to="/" /> */}
     </Switch>
   ) : (
     <Switch>

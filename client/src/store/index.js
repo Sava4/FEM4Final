@@ -4,15 +4,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-// import logger from "redux-logger";
 import { productsReducer } from "./productsReducer";
 import { shoppingCartReducer } from "./shopping-cart";
 import { favoritesReducer } from "./favorites";
-import { categoriesReduser } from "./headerMenu";
+import { categoriesReducer } from "./headerMenu";
 import { loginReducer } from "./login";
 import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
-import { loginStatusReducer } from "./login-status";
+import { loginStatusReducer } from "./loginStatus";
+import { reducer as formReducer } from "redux-form";
 
 const persistConfig = {
   key: "cart",
@@ -48,11 +48,13 @@ const rootReducer = combineReducers({
   productsPage: productsReducer,
   shoppingCart: persistedCart,
   favorites: persistedFavorites,
-  categories: categoriesReduser,
+  categories: categoriesReducer,
   login: persistedToken,
   loginStatus: loginStatusReducer,
   filters: filtersReduser,
-  user: userReducer
+  productsReducer,
+  user: userReducer,
+  form: formReducer
 });
 
 export const store = createStore(
