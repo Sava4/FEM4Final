@@ -43,7 +43,7 @@ const ProductsContainer = props => {
     props.getProducts(pageNumber, pageSize);
   };
   let truePage3 = +currentPage + 1;
-  console.log(truePage3);
+  // console.log(truePage3);
 
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора

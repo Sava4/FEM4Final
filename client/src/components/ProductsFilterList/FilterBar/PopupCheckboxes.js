@@ -9,7 +9,7 @@ import checkBoxChecked from "./check-box-checked.png";
 
 import {
   dispatchSetCheckFilter,
-  setDeleteFilter
+  setDeleteFilter,  
 } from "../../../store/filters";
 
 const mapStateToProps = store => ({
@@ -18,7 +18,7 @@ const mapStateToProps = store => ({
 
 export const PopupCheckboxes = connect(mapStateToProps, {
   dispatchSetCheckFilter,
-  setDeleteFilter
+  setDeleteFilter,
 })(props => {
   const { filtername } = props;
 
@@ -105,7 +105,8 @@ const CheckboxLabel = styled.label`
   background-repeat: no-repeat;
   background-size: contain;
   margin-bottom: 20px;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 14px;
   letter-spacing: 0.5px;
   cursor: pointer;
   text-transform: capitalize;

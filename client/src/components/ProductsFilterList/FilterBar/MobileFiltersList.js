@@ -4,13 +4,13 @@ import { v4 } from "uuid";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import modalClose from "./modal-close-btn.png";
-import { setTogleShown } from "./../../../store/filters";
-import { setDeleteFilter } from "./../../../store/filters";
-
+import { setTogleShown, 
+        setClearFilters, 
+        setDeleteFilter} from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
 import { PopupCheckboxes } from "./PopupCheckboxes";
+import {Button} from  "../../Buttons/button"
 
 const mapStateToProps = store => ({
   filters: store.filters.menuState
@@ -18,7 +18,8 @@ const mapStateToProps = store => ({
 
 export const MobileFiltersList = connect(mapStateToProps, {
   setTogleShown,
-  setDeleteFilter
+  setDeleteFilter,
+  setClearFilters
 })(props => {
   const filtredBy = [
     "collection",
@@ -54,11 +55,25 @@ export const MobileFiltersList = connect(mapStateToProps, {
       </FilterBox>
     );
   });
+  const backgroundColor = {
+    background:"blue",
+    color:"white"
+  }
 
   return (
     <FiltersModal>
       <ModalClose onClick={() => setOpenFiltwilnd(false)} />
       {filters}
+      <BottomBlock>
+        <Button primary
+         value={"APPLY FILTERS"}
+         width={"168px"}
+         onClick={() => setOpenFiltwilnd(false)}/>
+        <Button
+        onClick={()=>props.setClearFilters()}
+        value={"CLEAR ALL"} 
+        width={"168px"}/>
+      </BottomBlock >
     </FiltersModal>
   );
 });
@@ -116,3 +131,13 @@ const FilterType = styled.div`
   }
 `)}
 `;
+
+const BottomBlock = styled.div`
+width: inherit;
+margin-top: 30px;
+margin-bottom: 30px;
+display: flex;
+justify-content: space-around;
+`;
+
+

@@ -12,6 +12,12 @@ const deleteFilter = payload => ({
   payload
 });
 
+const CLEAR_FILTERS = "CLEAR_FILTERS";
+
+const clearFilters = () => ({
+  type: CLEAR_FILTERS
+});
+
 const SET_CHECKED_FILTERS = "SET_CHECKED_FILTERS";
 
 const setCheckFilter = payload => ({
@@ -58,6 +64,20 @@ export function filtersReduser(store = initialState, { type, payload }) {
         }
       };
     }
+    case CLEAR_FILTERS: {
+      console.log(payload)
+      return {
+        ...store,
+        selFilters: {
+          ...store.selFilters,
+          collection: [],
+          metal: [],
+          metal_color: [],
+          gemstone: [],
+          gemstone_color: []
+        }
+      };
+    }
     case SET_IS_SHOWN: {
       return {
         ...store,
@@ -97,6 +117,10 @@ export const setTogleShown = filter => dispatch => {
 
 export const setDeleteFilter = filterName => dispatch => {
   dispatch(deleteFilter(filterName));
+};
+
+export const setClearFilters = () => dispatch => {
+  dispatch(clearFilters());
 };
 
 export const dispatchSetCheckFilter = FilterType => dispatch => {

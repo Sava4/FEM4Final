@@ -28,7 +28,7 @@ export const HeaderMenuElem = props => {
       const stateObj = {};
       stateObj.menuName = item.menuName;
       stateObj.isOpen =
-        item.menuName === e.target.id && (item.isOpen = !item.isOpen);
+      item.menuName === e.target.id && (item.isOpen = !item.isOpen);
       newState.push(stateObj);
     });
 
@@ -50,7 +50,7 @@ export const HeaderMenuElem = props => {
       ? dropMenuState.filter(item => item.menuName === menuName)
       : initialState.filter(item => item.menuName === menuName);
 
-    const isShown = stateObj.length && stateObj[0].isOpen;
+    const isShown = stateObj.length > 0 && stateObj[0].isOpen;
 
     return (
       <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>

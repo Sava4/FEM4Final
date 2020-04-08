@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const FormButton = props => {
   return (
-    <InputWrapper>
+    <InputWrapper >
       <Input
         type="submit"
         value={props.value}
@@ -15,7 +15,7 @@ export const FormButton = props => {
 };
 
 const InputWrapper = styled.div`
-  width: 100%;
+  // width: 100%;
   display: flex;
   justify-content: center;
   background: #002d50;
@@ -23,7 +23,7 @@ const InputWrapper = styled.div`
 `;
 
 const Input = styled.input`
-  width: inherit;
+  // width: inherit;
   padding: 18px 0;
   font-size: 14px;
   letter-spacing: 1px;
