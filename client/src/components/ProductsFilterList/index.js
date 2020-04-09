@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useParams, useLocation } from "react-router";
-
+import { connect } from "react-redux";
+import querystring from "query-string";
 import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
@@ -10,16 +11,23 @@ import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
-import querystring from "query-string";
+// import querystring from "query-string";
+const MapStateToProps = store => ({
+  filters: store.filters.selFilters
+});
 
-export const ProductFilters = props => {
+export const ProductFilters = 
+// connect(MapStateToProps)(
+  props => {
   const { category } = useParams();
-  const [nambertOfFilterdItems, setNambertOfFilterdItems] = useState(0);
+  const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
   const [openFiltwin, setOpenFiltwilnd] = useState(true);
-
-  let location = useLocation();
-  let path = `filter${location.search}`;
-  console.log("TCL: ProductFilters -> path", path);
+  const queryCategory=(!category )?(""):(`categories=${category}&`)
+  const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
+  const apiCategory = queryCategory + query
+  // let location = useLocation();
+  // let path = `filter${location.search}`;
+  console.log(category,apiCategory);
 
   return (
     <Layout>
@@ -43,19 +51,20 @@ export const ProductFilters = props => {
         </CategoriesFilters>
 
         <SelectedProducts>
-          {/* <p>{`Selected products ( ${nambertOfFilterdItems} )`}</p> */}
+          <p>{`Selected products ( ${nambertOfFilteredItems} )`}</p>
           <FilterIndicators />
           {/* <FilteredListProducts
             category={category}
-            setNambertOfFilterdItems={setNambertOfFilterdItems}
-          /> */}
-          {/* <FilteredListProducts category={category} /> */}
+            setNambertOfFilteredItems={setNambertOfFilteredItems}
+          />          */}
         </SelectedProducts>
         <ProductsContainer />
-      </CategotiesCommon>
+      </CategotiesCommon >
     </Layout>
   );
-};
+}
+// )
+;
 
 const CategoriesHeader = styled.div`
   background-color: black;
@@ -106,7 +115,7 @@ const CategoriesFilters = styled.div`
     margin-bottom: 22px;
   }
   ${mediaMobile(`
-  width:200px;
+  display:none;
   `)}
 `;
 

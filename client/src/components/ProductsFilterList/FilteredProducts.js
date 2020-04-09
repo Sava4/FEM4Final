@@ -4,7 +4,7 @@ import axios from "axios";
 import { v4 } from "uuid";
 import querystring from "query-string";
 import { ProductItem } from "../ProductsList/productItem";
-import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../styledComponents/GlobalStyle";
 // import ProductsContainer from "../SliderProducts/ProductsContainer" 
 
 import styled from "styled-components";
@@ -15,7 +15,7 @@ const MapStateToProps = store => ({
 
 export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
-  const { category, setNambertOfFilterdItems } = props;
+  const { category, setNambertOfFilteredItems} = props;
   const queryCategory=(!category)?(""):(`categories=${category}&`)
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
 
@@ -23,7 +23,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
     // const queryString = [];
     // for (let key in props.filters) {
       const url = `http://localhost:5000/products/filter?${queryCategory}${query}`;
-      console.log(url)
+      
       // props.filters[key].length
       //   ? queryString.push(`${key}=${props.filters[key].join()}`)
       //   : 
@@ -35,12 +35,12 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
       //   });
     // }
   }, [query]);
-
-  const filterdProd = products.products;
-  filterdProd && setNambertOfFilterdItems(filterdProd.length);
+// console.log(props)
+  const filteredProd = products.products;
+  filteredProd && setNambertOfFilteredItems(filteredProd.length);
   const ListProduct =
-    filterdProd &&
-    filterdProd.map(product => {
+    filteredProd &&
+    filteredProd.map(product => {
       return (
         <ProductItem
           id={product._id}

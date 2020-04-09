@@ -13,7 +13,7 @@ export const productsAPI = {
         `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`
       )
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
       });
   }
