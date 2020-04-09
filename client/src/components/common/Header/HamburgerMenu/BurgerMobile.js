@@ -56,5 +56,4 @@ const Bar = styled.span`
   margin-top: 2.5px;
   margin-bottom: 2.5px;
   background-color: #000000;
-  z-index: 3;
 `;
