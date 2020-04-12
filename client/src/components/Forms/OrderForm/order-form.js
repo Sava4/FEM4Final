@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { Modal } from "../../Modal/modal";
 
 import arrow from "./arrow.png";
+import { SummaryWrapper, Wrapper } from "../../Checkout/checkout.styles";
 
 export const OrderForm = props => {
-  const { isModalOpen, onClose } = props;
+  const { isModalOpen, onClose, email, icons } = props;
 
   return (
     <Modal isModalOpen={isModalOpen} onClose={onClose}>
@@ -14,8 +15,10 @@ export const OrderForm = props => {
         <CreateAccountTitle>
           <Content>Thank you for your order with Zarina!</Content>
         </CreateAccountTitle>
+        <Wrapper icons={"icons"}>{icons}</Wrapper>
         <CreateAccountSubtitle>
-          We sent an email to mtanya95@gmail.com with your order details.
+          We sent an email to <u> {email.toLowerCase()} </u> with your order
+          details.
         </CreateAccountSubtitle>
         <GoBackWrapper>
           <GoBackImage />

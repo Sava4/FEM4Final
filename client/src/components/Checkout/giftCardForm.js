@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import { Price } from "./checkout.styles";
 
 export const GiftCardInput = () => {

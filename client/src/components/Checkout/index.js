@@ -1,8 +1,7 @@
 import React from "react";
 import { Layout } from "../common/Layout";
-import { CheckoutForm } from "./checkout";
-
-// import styled from "styled-components"
+import { CheckoutForm } from "./checkoutRenderForm";
+import { PagesHeader } from "./checkout.styles";
 
 export const Checkout = () => {
   return (
@@ -11,18 +10,3 @@ export const Checkout = () => {
     </Layout>
   );
 };
-//      const SectionCategiries = styled.div`
-//     {
-//         height:712px;
-//         width: 100vw;
-//         & p{
-//             text-align: center;
-//         }
-//     }`
-//    const Categories = styled.div`
-//         {
-//         display: flex;
-//         & div{
-//             margin-left: 20px
-//         }
-//     `;

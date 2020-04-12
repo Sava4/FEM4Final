@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+import { reducer as formReducer } from "redux-form";
 // import logger from "redux-logger";
 import { productsReducer } from "./productsReducer";
 import { shoppingCartReducer } from "./shopping-cart";
@@ -13,6 +14,7 @@ import { loginReducer } from "./login";
 import { filtersReduser } from "./filters";
 import { userReducer } from "./user";
 import { loginStatusReducer } from "./login-status";
+import { informationReducer } from "./checkout";
 
 const persistConfig = {
   key: "cart",
@@ -34,7 +36,16 @@ const favoritesPersistConfig = {
   stateReconciler: autoMergeLevel2
   // only Favorites will be persisted
 };
-
+const informationPersistConfig = {
+  key: "form",
+  storage,
+  stateReconciler: autoMergeLevel2
+  // only Favorites will be persisted
+};
+const persistedInformation = persistReducer(
+  informationPersistConfig,
+  informationReducer
+);
 const persistedCart = persistReducer(persistConfig, shoppingCartReducer);
 const persistedToken = persistReducer(logPersistConfig, loginReducer);
 const persistedFavorites = persistReducer(
@@ -52,7 +63,9 @@ const rootReducer = combineReducers({
   login: persistedToken,
   loginStatus: loginStatusReducer,
   filters: filtersReduser,
-  user: userReducer
+  user: userReducer,
+  form: formReducer,
+  information: persistedInformation
 });
 
 export const store = createStore(
