@@ -1,20 +1,53 @@
+os: linux
 dist: bionic
 language: node_js
 node_js:
   - "12.13.1"
 
 cache:
+  npm: true
   directories:
     - ./client/node_modules
-    - ./node_modules
 
 before_script:
   - npm install --prefix client
   - npm run front:lint
-  - npm install
 
 script:
   - npm run test --prefix client
+
+before_deploy:
+  - npm run front-build
+  - zip -r deploy_$TRAVIS_BUILD_NUMBER.zip . -x /node_modules* /client*
+  - zip -r deploy_$TRAVIS_BUILD_NUMBER.zip ./client/build
+  - mkdir -p upload
+  - mv deploy_$TRAVIS_BUILD_NUMBER.zip ./upload/
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_KEY_ID
+    secret_access_key: $AWS_SECRET
+    bucket: fem4
+    region: eu-central-1
+    upload_dir: travis-builds
+    local_dir: upload
+    cleanup: false
+    edge: true
+    on:
+      branch: master
+  - provider: codedeploy
+    access_key_id: $AWS_CDP_ID
+    secret_access_key: $AWS_CDP_SECRET
+    bucket: fem4
+    region: eu-central-1
+    key: travis-builds/deploy_$TRAVIS_BUILD_NUMBER.zip
+    bundle_type: zip
+    application: Zarina_Application
+    deployment_group: Zarina_Deployment_Group
+    file_exists_behavior: overwrite
+    edge: true
+    on:
+      branch: master
 
 branches:
   only:
