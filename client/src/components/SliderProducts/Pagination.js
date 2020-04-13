@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
-import { ProductItem } from "./productItemSlider";
+import { ProductItem } from "./../ProductsList/productItem";
 import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";
@@ -56,20 +56,24 @@ export const ProductsPagination = ({
         }}
       >
         {products.map((p, index) => (
-          <div id={index} key={p.itemNo}>
-            {console.log(index)}
+          <div id={index} key={p.itemNo}>          
             <NavLink
               to={`/product-details/${p.itemNo}`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ProductItem
-                product={p}
+                product={p}                
                 {...p}
                 itemNo={`${p.itemNo}`}
                 style={{
                   display: "flex",
                   justifyContent: "center"
-                }}
+                }}           
+               
+                interpretation={"carousel"}
+                img={p.imageUrls[0]}     
+              
+          
               />
             </NavLink>
           </div>

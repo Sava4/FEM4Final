@@ -87,7 +87,7 @@ const Details1 = props => {
       <div key={image}>
         <Image
           alt=""
-          src={`http://localhost:3000/${image}`}
+          src={`${image}`}
           style={{
             width: "99%",
             border: `1px solid #E9EBF5`,
