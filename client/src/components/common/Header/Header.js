@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {useHistory} from "react-router";
 import {
   Container,
   Line,
@@ -23,18 +25,20 @@ import {
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
   const [isRegisterOpen, toggleRegistration] = useState(false);
+  const user = useSelector(state => state.user);
+  const history = useHistory();
 
   return (
     <Container>
-      <Line />
+      <Line/>
       <HeaderWrapper>
         <NavState>
-          <MainMenu />
+          <MainMenu/>
         </NavState>
-        <Search />
-        <Logo />
+        <Search/>
+        <Logo/>
         <HeaderIconWrapper>
-          <Login onClick={() => toggleModal(!isModalOpen)} />
+          <Login onClick={onLoginClick}/>
           {isModalOpen && (
             <LoginForm
               onRegister={onRegister}
@@ -47,13 +51,13 @@ export const HeaderContent = () => {
               onLogin={GoBackToLogin}
             />
           )}
-          <Favorites />
-          <ShoppingBag />
+          <Favorites/>
+          <ShoppingBag/>
         </HeaderIconWrapper>
       </HeaderWrapper>
 
       <Categories>
-        <Navigation />
+        <Navigation/>
       </Categories>
     </Container>
   );
@@ -66,5 +70,13 @@ export const HeaderContent = () => {
   function GoBackToLogin() {
     toggleModal(true);
     toggleRegistration(false);
+  }
+
+  function onLoginClick() {
+    if (user) {
+      history.push("/account/personal-details");
+      return;
+    }
+    toggleModal(!isModalOpen);
   }
 };

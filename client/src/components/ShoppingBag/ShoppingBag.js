@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 import { setServerCart } from "../../store/shopping-cart";
 import { useHistory } from "react-router-dom";
 import arrow from "./arrow.png";
-import setAuthorizationToken from "../../store/login";
+import { setAuthorizationToken } from "../../store/login";
 import { logoutAction } from "../../store/login";
 
 import { EmptyCart } from "./EmptyCart";

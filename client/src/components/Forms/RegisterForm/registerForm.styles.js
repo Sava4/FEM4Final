@@ -66,7 +66,7 @@ export const Input = styled.input`
   border: none;
   border-bottom: 1px solid #80858d;
   border-bottom-color: ${props => (props.invalid ? "red" : "#80858D")};
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
   font-size: 12px;
 
   :-webkit-autofill {
