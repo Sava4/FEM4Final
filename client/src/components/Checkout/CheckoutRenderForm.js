@@ -13,9 +13,11 @@ import { Spinner } from "../Spinner/Spinner";
 import { EmptyCart } from "../ShoppingBag/EmptyCart";
 import {
   CheckoutWrapper,
+  CustomForm,
   PagesHeader,
   SummaryWrapper
 } from "./checkout.styles";
+import { OrderMobile } from "./OrderMobile";
 
 export const CheckoutForm = () => {
   const token = useSelector(state => state.login.token);
@@ -35,6 +37,14 @@ export const CheckoutForm = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [totalPrices, setTotalPrices] = useState([]);
+  const [isMobile, setMobile] = useState({});
+  const handleWindowSizeChange = () => {
+    setMobile({ width: window.innerWidth });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+  }, []);
+  console.log(isMobile);
   useEffect(() => {
     setLoading(true);
     axios
@@ -60,7 +70,7 @@ export const CheckoutForm = () => {
       })
       .finally(() => setLoading(false));
   }, [token, dispatch]);
-
+  console.log(isMobile.width);
   const ListProduct = products.map(item => {
     return (
       <OrderItem
@@ -116,7 +126,6 @@ export const CheckoutForm = () => {
         dispatch(setServerCart([]));
       })
       .catch(err => console.error("Request Error", err));
-
   };
   console.log("contact", contactInformation);
   console.log("SHIPPING", shippingInformation);
@@ -165,6 +174,21 @@ export const CheckoutForm = () => {
       <CheckoutWrapper spinner={"spinner"}>
         <Spinner />
       </CheckoutWrapper>
+    ) : window.matchMedia("(max-width: 800px)").matches ||
+      isMobile.width < 800 ? (
+      <Fragment>
+        <PagesHeader>CHECKOUT</PagesHeader>
+        <CheckoutWrapper flexDirection={"column"}>
+          <SummaryWrapper width={"full"}>
+            <OrderMobile
+              icons={ListProduct}
+              totalPrices={totalPrices}
+              onSubmit={onSubmitPayment}
+              onClick={console.log(paymentInformation)}
+            />
+          </SummaryWrapper>
+        </CheckoutWrapper>
+      </Fragment>
     ) : (
       <Fragment>
         <PagesHeader>CHECKOUT</PagesHeader>
@@ -172,9 +196,17 @@ export const CheckoutForm = () => {
           <SummaryWrapper>
             {contactOpen && <ReduxUserInformation onSubmit={onSubmitContact} />}
             {shippingOpen && <CheckoutShipping onSubmit={onSubmitShipping} />}
-            {paymentOpen && <ReduxPayment onSubmit={onSubmitPayment} onClick={console.log(paymentInformation)}/>}
+            {paymentOpen && (
+              <ReduxPayment
+                onSubmit={onSubmitPayment}
+                onClick={console.log(paymentInformation)}
+              />
+            )}
           </SummaryWrapper>
-          <OrderSummary icons={ListProduct} totalPrices={totalPrices} />
+          <SummaryWrapper>
+            {" "}
+            <OrderSummary icons={ListProduct} totalPrices={totalPrices} />{" "}
+          </SummaryWrapper>
         </CheckoutWrapper>
       </Fragment>
     )
@@ -184,10 +216,17 @@ export const CheckoutForm = () => {
         <OrderForm
           onClose={() => setOrderForm(false)}
           icons={ListIcons}
-          email={contactInformation.email}
+          email={contactInformation.email || paymentInformation.email}
         />
       )}
-      <EmptyCart text={"Your Shopping Bag is currently empty."} />
+      {window.matchMedia("(max-width: 800px)").matches ||
+      isMobile.width < 800 ? (
+        isOrderFormOpen ? null : (
+          <EmptyCart text={"Your Shopping Bag is currently empty."} />
+        )
+      ) : (
+        <EmptyCart text={"Your Shopping Bag is currently empty."} />
+      )}
     </SummaryWrapper>
   );
 };

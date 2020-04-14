@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const InputWrapper = styled.div`
   width: ${props => (props.width ? props.width : "100%")};
@@ -21,9 +21,4 @@ export const Input = styled.input`
   :focus {
     outline: none;
   }
-  ${props =>
-    props.display === "none" &&
-    css`
-      display: none;
-    `}
 `;

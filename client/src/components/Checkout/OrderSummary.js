@@ -23,7 +23,7 @@ export const OrderSummary = props => {
   const { icons, totalPrices } = props;
 
   return (
-    <SummaryWrapper>
+    <Fragment>
       <Header>Order Summary</Header>
       <ProductContainer> {icons} </ProductContainer>
       <GiftCardInput />
@@ -41,7 +41,7 @@ export const OrderSummary = props => {
         <Header>Total</Header>
         <Price>{totalPrices.toLocaleString("de-CH")}</Price>
       </ItemContainer>
-    </SummaryWrapper>
+    </Fragment>
   );
 };
 
@@ -52,7 +52,7 @@ export const OrderItem = props => {
         <TotalContainer>
           <Total>{props.cartQuantity}</Total>
           <WrapperLink to={`/product-details/${props.itemNo}`}>
-            <Img src={`/${props.img}`} alt="" />
+            <Img src={`${props.img}`} alt="" />
           </WrapperLink>
         </TotalContainer>
         <Name>{props.name}</Name>
@@ -64,7 +64,7 @@ export const OrderItem = props => {
 export const OrderIcon = props => {
   return (
     <WrapperLink to={`/product-details/${props.itemNo}`}>
-      <Img src={`/${props.img}`} alt="" />
+      <Img src={`${props.img}`} alt="" />
     </WrapperLink>
   );
 };

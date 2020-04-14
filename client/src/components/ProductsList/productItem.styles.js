@@ -35,28 +35,26 @@ export const Wrapper = styled.div`
   width: 224px;
   align-items: space-between;
 `)}
-  ${mediaMobile(`
-  `)}
-   ${props =>
-     props.interpretation === "carousel" &&
-     css`
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       justify-content: space-between;
-       border: 1px solid rgb(233, 235, 245);
-       margin: 5px;
-       width: 280px;
-       height: 392px;
-       ${mediaTablet(`
+  ${props =>
+    props.interpretation === "carousel" &&
+    css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgb(233, 235, 245);
+      margin: 5px;
+      width: 280px;
+      height: 392px;
+      ${mediaTablet(`
   width: 250px;
 `)}
-       ${mediaMobile(`
+      ${mediaMobile(`
         width: 250px;
   `)}
    @media (max-width: 480px) {
-         width: 250px;
-         margin-left: 30px;
-       }
-     `}
+        width: 250px;
+        margin-left: 30px;
+      }
+    `}
 `;

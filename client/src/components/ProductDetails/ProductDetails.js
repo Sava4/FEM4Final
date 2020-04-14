@@ -25,7 +25,7 @@ import {
   Vendor,
   Name
 } from "./productDetails.styles";
-import {FormButton} from "../Forms/FormButton/FormButton";
+import { FormButton } from "../Forms/FormButton/FormButton";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -88,7 +88,7 @@ const Details1 = props => {
       <div key={image}>
         <Image
           alt=""
-          src={`http://localhost:3000/${image}`}
+          src={`${image}`}
           style={{
             width: "99%",
             border: `1px solid #E9EBF5`,
@@ -196,7 +196,7 @@ const Details1 = props => {
           <Price>{props.previousPrice}</Price>
           <FavoriteButton />
         </PriceWrapper>
-          <FormButton value={"Add to bag"} onClick={add}/>
+        <FormButton value={"Add to bag"} onClick={add} />
         <Details>Details</Details>
         <UL>
           <LI>{`Gemstone: ${props.gemstone}`} </LI>

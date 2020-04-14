@@ -9,7 +9,7 @@ const SET_API_CATEGORY = "SET_API_CATEGORY";
 let initialState = {
   // category: "earrings",
   products: [],
-  pageSize: 3,
+  pageSize: 9,
   productsQuantity: 0,
   currentPage: 1,
   apiCategory: ""

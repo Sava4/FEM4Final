@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   CustomForm,
   ErrorInput,
@@ -8,9 +8,9 @@ import {
   Wrapper
 } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
-import {FormButton} from "../Forms/FormButton/FormButton";
+import { FormButton } from "../Forms/FormButton/FormButton";
 
-const validate = (values, props) => {
+export const validate = (values, props) => {
   const errors = {};
   if (!values.firstName) {
     errors.firstName = "Required";
@@ -26,9 +26,7 @@ const validate = (values, props) => {
   if (!values.phone) {
     errors.phone = "Required";
   } else if (
-    !/^((\+?3)?8)?((0\(\d{2}\)?)|(\(0\d{2}\))|(0\d{2}))\d{7}$/.test(
-      values.phone
-    )
+    !/^((\+3)8)((0\(\d{2}\)?)|(\(0\d{2}\))|(0\d{2}))\d{7}$/.test(values.phone)
   ) {
     errors.phone = "Invalid phone. The phone number have to start +380";
   }
@@ -55,16 +53,8 @@ const renderField = ({
   </ErrorInput>
 );
 
-
 const UserInformation = props => {
-    const [isMobile, setMobile] = useState({});
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-    }, []);
-    const handleWindowSizeChange = () => {
-        setMobile({ width: window.innerWidth });
-    };
-    return (
+  return (
     <CustomForm onSubmit={props.handleSubmit}>
       <Header align={"left"}>Contact Information</Header>
       <Field
@@ -108,9 +98,7 @@ const UserInformation = props => {
         placeholder={"Phone*"}
         component={renderField}
       />
-        {isMobile.width<850
-        ? null
-        : <FormButton value={"CONTINUE TO SHIPPING"} type="submit" />}
+      <FormButton value={"CONTINUE TO SHIPPING"} type="submit" />
     </CustomForm>
   );
 };

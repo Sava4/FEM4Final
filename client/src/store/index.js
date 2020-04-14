@@ -38,8 +38,8 @@ const favoritesPersistConfig = {
 const persistedCart = persistReducer(persistConfig, shoppingCartReducer);
 const persistedToken = persistReducer(logPersistConfig, loginReducer);
 const persistedFavorites = persistReducer(
-    favoritesPersistConfig,
-    favoritesReducer
+  favoritesPersistConfig,
+  favoritesReducer
 );
 
 // import { reducer as formReducer } from 'redux-form'
@@ -58,8 +58,8 @@ const rootReducer = combineReducers({
 });
 
 export const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 export const persistor = persistStore(store);

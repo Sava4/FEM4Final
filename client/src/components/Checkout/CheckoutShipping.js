@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Field, reduxForm } from "redux-form";
 import {
   ButtonSubmit,
@@ -7,7 +7,7 @@ import {
   Wrapper,
   Location
 } from "./checkout.styles";
-import {FormButton} from "../Forms/FormButton/FormButton";
+import { FormButton } from "../Forms/FormButton/FormButton";
 
 export const CheckoutShipping = props => {
   return <CheckoutShippingForm onSubmit={props.onSubmit} />;
@@ -19,13 +19,6 @@ const Addresses = [
   "Kyiv, Berkovetska Street, Lavina Mall, ZARINA Store"
 ];
 const ShippingInformation = props => {
-  const [isMobile, setMobile] = useState({});
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
-  }, []);
-  const handleWindowSizeChange = () => {
-    setMobile({ width: window.innerWidth });
-  };
   const giveLocation = () => {
     setLocation(true);
   };
@@ -124,10 +117,7 @@ const ShippingInformation = props => {
           {ArrayLocationDisable}
         </div>
       )}
-      {isMobile.width<850
-          ? null
-          : <FormButton value={"CONTINUE TO PAYMENT"} type="submit" />}
-      }
+      <FormButton value={"CONTINUE TO PAYMENT"} type="submit" />}
     </CustomForm>
   );
 };

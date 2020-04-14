@@ -34,11 +34,9 @@ export const ProductItem = props => {
     <Wrapper interpretation={props.interpretation}>
       <FavoriteButton />
       <Card to={`/product-details/${props.itemNo}`} key={props.id}>
-        <Image alt="" src={`/${props.img}`} size={"small"} />
+        <Image alt="" src={`${props.img}`} size={"small"} />
         <Name size={"small"}>{`${props.name}`}</Name>
-        <Price size={"small"}>
-          {props.previousPrice}
-        </Price>
+        <Price size={"small"}>{props.previousPrice}</Price>
       </Card>
     </Wrapper>
   );

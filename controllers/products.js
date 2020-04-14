@@ -136,26 +136,53 @@ exports.getProductById = (req, res, next) => {
     );
 };
 
+exports.deleteProductById = (req, res, next) => {
+  Product.findOneAndRemove({
+    itemNo: req.params.itemNo
+  })
+    .then(product => {
+      if (!product) {
+        res.status(400).json({
+          message: `Product with itemNo ${req.params.itemNo} is not found`
+        });
+      } else {
+       console.log( res.json(product))
+        
+      }
+    })
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
 exports.getProductsFilterParams = async (req, res, next) => {
   const mongooseQuery = filterParser(req.query);
   const perPage = Number(req.query.perPage);
   const startPage = Number(req.query.startPage);
   const sort = req.query.sort;
+  console.log("TCL: exports.getProductsFilterParams -> sort", sort)
+  
 
   try {
     const products = await Product.find(mongooseQuery)
       .skip(startPage * perPage - perPage)
       .limit(perPage)
       .sort(sort);
-
-    const productsQuantity = await Product.find(mongooseQuery);
+      console.log("TCL: exports.getProductsFilterParams -> sort", sort)
+  
+     
+    const productsQuantity = await Product.find(mongooseQuery);  
 
     res.json({ products, productsQuantity: productsQuantity.length });
+    console.log("TCL: exports.getProductsFilterParams ->  products",  products)
   } catch (err) {
-    res.status(400).json({
-      message: `Error happened on server: "${err}" `
+    res.status(400).json({   
+      message: `Error happened on server: "${err}" `,     
     });
   }
+ 
 };
 
 exports.searchProducts = async (req, res, next) => {
@@ -173,9 +200,9 @@ exports.searchProducts = async (req, res, next) => {
   let queryArr = query.split(" ");
 
   // Finding ALL products, that have at least one match
-  let matchedProducts = await Product.find({
+  let matchedProducts = await Product.find({ 
     $text: { $search: query }
   });
-
+  console.log("TCL: exports.searchProducts -> matchedProducts", matchedProducts)
   res.send(matchedProducts);
 };

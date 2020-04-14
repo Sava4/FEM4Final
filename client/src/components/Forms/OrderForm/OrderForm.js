@@ -1,14 +1,42 @@
-import React from "react";
-import styled from "styled-components";
-
+import React, { useEffect, useState } from "react";
 import { Modal } from "../../Modal/Modal";
 import arrow from "./arrow.png";
-import { SummaryWrapper, Wrapper } from "../../Checkout/checkout.styles";
+import { useHistory } from "react-router";
+import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
+import { FormButton } from "../FormButton/FormButton";
+import { Wrapper } from "../../Checkout/checkout.styles";
+import styled from "styled-components";
 
 export const OrderForm = props => {
   const { isModalOpen, onClose, email, icons } = props;
+  const [isMobile, setMobile] = useState({});
+  const history = useHistory();
+  const handleWindowSizeChange = () => {
+    setMobile({ width: window.innerWidth });
+  };
+  const handleClickBack = () => history.push("/products");
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+  }, []);
 
-  return (
+  return window.matchMedia("(max-width: 800px)").matches ||
+    isMobile.width < 800 ? (
+    <Order>
+      <CreateAccountTitle>
+        <Content>Thank you for your order with Zarina!</Content>
+      </CreateAccountTitle>
+      <Wrapper icons={"icons"}>{icons}</Wrapper>
+      <CreateAccountSubtitle>
+        We sent an email to <u> {email.toLowerCase()} </u> with your order
+        details.
+      </CreateAccountSubtitle>
+      <FormButton
+        width={"90%"}
+        value={"Go back to shopping"}
+        onClick={handleClickBack}
+      />
+    </Order>
+  ) : (
     <Modal isModalOpen={isModalOpen} onClose={onClose}>
       <FormWrapper>
         <CreateAccountTitle>
@@ -19,7 +47,7 @@ export const OrderForm = props => {
           We sent an email to <u> {email.toLowerCase()} </u> with your order
           details.
         </CreateAccountSubtitle>
-        <GoBackWrapper>
+        <GoBackWrapper onClick={handleClickBack}>
           <GoBackImage />
           <GoBackText>Go back to shopping</GoBackText>
         </GoBackWrapper>
@@ -29,7 +57,8 @@ export const OrderForm = props => {
 };
 
 const FormWrapper = styled.form`
-  width: 980px;
+  max-width: 1100px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,6 +76,9 @@ const Content = styled.div`
   font-size: 24px;
   line-height: 40px;
   text-transform: uppercase;
+  ${mediaTablet(`
+font-size: 16px;
+  `)}
 `;
 
 const CreateAccountSubtitle = styled.div`
@@ -69,4 +101,12 @@ export const GoBackImage = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   color: #80858d;
+`;
+const Order = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  width: 98%;
 `;

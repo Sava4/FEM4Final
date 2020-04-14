@@ -54,6 +54,12 @@ export const CheckoutWrapper = styled.div`
     css`
       padding-top: 100px;
     `}
+  ${props =>
+    props.flexDirection === "column" &&
+    css`
+      flex-direction: column;
+      width: 97%;
+    `}
 `;
 export const ItemContainer = styled.div`
   display: flex;

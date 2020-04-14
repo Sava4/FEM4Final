@@ -26,6 +26,7 @@ export const Wishlist = props => {
         id={products._id}
         name={products.name}
         previousPrice={products.previousPrice}
+        currentPrice={products.currentPrice}
         collection={products.collection}
       />
     );

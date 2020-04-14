@@ -124,23 +124,22 @@ export function deleteAllProducts() {
       console.log(token);
       axios.get("http://localhost:5000/products/").then(products => {
         console.log(products);
-        products.data
-          .forEach(element => {
-            let i = element.itemNo;
-            axios
-              .delete(`http://localhost:5000/products/${i}`, {
-                headers: { Authorization: `${token}` }
-              })
-              .then(res => {
-                console.log(res);
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          })
-          .catch(err => {
-            console.log(err);
-          });
+        products.data.forEach(element => {
+          let i = element.itemNo;
+          axios
+            .delete(`http://localhost:5000/products/${i}`, {
+              headers: { Authorization: `${token}` }
+            })
+            .then(res => {
+              console.log(res);
+            });
+          // .catch(err => {
+          //   console.log(err);
+          // });
+        });
+        // .catch(err => {
+        //   console.log(err);
+        // });
       });
     });
 }

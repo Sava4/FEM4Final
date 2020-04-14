@@ -1,15 +1,10 @@
-import React from "react";
-import {
-  CustomForm,
-  Header,
-  ProductContainer,
-  Wrap,
-} from "./checkout.styles";
+import React, { useEffect, useState } from "react";
+import { CustomForm, Header, ProductContainer, Wrap } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
-import {FormButton} from "../Forms/FormButton/FormButton";
+import { FormButton } from "../Forms/FormButton/FormButton";
 
 export const PaymentForm = props => {
-    const {onClick} = props;
+  const { onClick } = props;
   return (
     <CustomForm onSubmit={props.handleSubmit}>
       <Header align={"left"}>Payment</Header>
@@ -34,7 +29,12 @@ export const PaymentForm = props => {
         Card
       </Wrap>
 
-      <FormButton value={"COMPLETE ORDER"} type="submit" width={"100%"} onClick={props}/>
+      <FormButton
+        value={"COMPLETE ORDER"}
+        type="submit"
+        width={"100%"}
+        onClick={props}
+      />
     </CustomForm>
   );
 };
