@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { v4 } from "uuid";
 import querystring from "query-string";
-import { ProductItem } from "../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
 
 import styled from "styled-components";
 
 const MapStateToProps = store => ({
   filters: store.filters.selFilters
 });
+
 export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
-  const { category } = props;
+  const { category, setNambertOfFilterdItems } = props;
 
   const queryString = [];
   for (let key in props.filters) {
@@ -39,7 +40,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   }, [query]);
 
   const filterdProd = products.products;
-
+  filterdProd && setNambertOfFilterdItems(filterdProd.length);
   const ListProduct =
     filterdProd &&
     filterdProd.map(product => {

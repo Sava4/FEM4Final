@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { v4 } from "uuid";
 import querystring from "querystring";
-import { ProductItem } from "../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
 
 import styled from "styled-components";
 
@@ -51,7 +51,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
     // console.log(
     //   `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`
     // );
-  }, [category, props.filters]);
+  }, [query]);
 
   const filterdProd = products.products;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ProductItem } from "./productItem";
+import { ProductItem } from "./ProductItem";
 
 import styled from "styled-components";
 import { v4 } from "uuid";

@@ -6,5 +6,5 @@
     "stylelint-config-recommended",
     "stylelint-config-styled-components"
   ],
-    "ignoreFiles": ["src/styled-components/GlobalStyle.js", "node_modules/**/*"]
+    "ignoreFiles": ["src/styledComponents/GlobalStyle.js", "node_modules/**/*"]
 }

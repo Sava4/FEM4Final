@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
-import { mediaMobile } from "../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 
 export const SummaryWrapper = styled.div`
   display: flex;
@@ -179,21 +179,6 @@ export const Wrapper = styled.div`
         margin-bottom: 49px;
         justify-content: center;
       `}
-`;
-export const ButtonSubmit = styled.input`
-  width: inherit;
-  padding: 18px 0;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: #002d50;
-  color: white;
-  border: none;
-  cursor: pointer;
-
-  :focus {
-    outline: none;
-  }
 `;
 
 export const Location = styled.div`

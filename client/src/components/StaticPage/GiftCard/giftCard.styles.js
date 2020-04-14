@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const Server = styled.div``;
 

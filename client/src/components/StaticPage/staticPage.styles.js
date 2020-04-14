@@ -3,7 +3,7 @@ import {
   mediaDesktop,
   mediaMobile,
   mediaTablet
-} from "./../../styled-components/media-breakpoints-mixin";
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Page = styled.div` 
 margin: 15px auto;

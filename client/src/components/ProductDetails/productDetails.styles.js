@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import {
   mediaMobile,
   mediaTablet
-} from "../../styled-components/media-breakpoints-mixin";
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Container = styled.div`
   display: flex;
@@ -118,6 +118,7 @@ export const Vendor = styled.p`
 `;
 export const PriceWrapper = styled.div`
   width: 100%;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,12 +147,14 @@ export const Price = styled.div`
 `;
 export const WishWrapper = styled.div`
   display: flex;
+  margin-top: 10px;
   justify-content: space-between;
   align-items: flex-end;
   height: 30px;
   ${props =>
     props.item === true &&
     css`
+      margin-top: 0;
       padding-right: 3px;
       width: 100%;
       height: auto;
@@ -204,6 +207,7 @@ export const Add = styled.button`
     `}
 `;
 export const Details = styled.div`
+  margin-top: 20px;
   text-transform: uppercase;
   font-size: 14px;
   padding-top: 21px;

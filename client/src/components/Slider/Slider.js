@@ -16,24 +16,11 @@ import {
 } from "./slider.styles";
 
 export const SliderHomepage = props => {
-  const mediaMatch = window.matchMedia("(max-width: 767px)");
-  const [matches, setMatches] = useState(mediaMatch.matches);
-
-  useEffect(() => {
-    const onMediaChange = mediaMatchEvent => {
-      setMatches(mediaMatchEvent.matches);
-    };
-    mediaMatch.addListener(onMediaChange);
-    return () => {
-      mediaMatch.removeListener(onMediaChange);
-    };
-  });
-
   const settings = {
     slidesToShow: props.show,
     accessibility: true,
     dots: props.dots,
-    arrows: matches ? false : true,
+    arrows: true,
     infinite: true,
     draggable: true,
     autoplay: props.auto,
@@ -46,19 +33,19 @@ export const SliderHomepage = props => {
       {
         breakpoint: 1000,
         settings: {
-          slidesToShow: props.showMedia,
+          slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: props.dots
+          nextArrow: <SampleNextArrow homePage={true} right={40} />,
+          prevArrow: <SamplePrevArrow homePage={true} left={40} />
         }
       },
       {
         breakpoint: 798,
         settings: {
           slidesToShow: 1,
-          arrows: props.arrows,
-          nextArrow: <SampleNextArrow homePage={true} right={61} />,
-          prevArrow: <SamplePrevArrow homePage={true} left={28} />
+          nextArrow: <SampleNextArrow homePage={true} right={40} />,
+          prevArrow: <SamplePrevArrow homePage={true} left={40} />
         }
       }
     ]

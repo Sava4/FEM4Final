@@ -1,89 +1,97 @@
-import React, { useState } from "react";
-
-import { mediaMobile } from "../../../../../styled-components/media-breakpoints-mixin";
-
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Dropmenu } from "./dropmenu";
+
+import { mediaMobile } from "../../../../../styledComponents/MediaBreakpointsMixin";
+import { DropMenu } from "./dropmenu";
 
 export const HeaderMenuElem = props => {
   const { categoriesAllData } = props;
-
-  let categArrey = categoriesAllData.filter(item => item.parentId === "null");
-  const initialState = [];
-
-  categArrey.map(item => {
-    const stateObj = {
-      menuName: item.id,
-      isOpen: false
-    };
-    initialState.push(stateObj);
-    return initialState;
-  });
-
   const [dropMenuState, setDropMenuState] = useState([]);
 
-  // useEffect(()=>{
-  //   initialState && setDropMenuState(initialState)
-  // }, [])
+  useEffect(() => {
+    const menu = categoriesAllData
+      .filter(item => item.parentId === "null")
+      .map(item => {
+        return {
+          menuName: item.id,
+          isOpen: false
+        };
+      });
 
-  const openDropmenu = e => {
-    // console.log(e.target.id);
-    const newState = [];
-    initialState.forEach(item => {
-      const stateObj = {};
-      stateObj.menuName = item.menuName;
-      stateObj.isOpen =
-        item.menuName === e.target.id && (item.isOpen = !item.isOpen);
-      newState.push(stateObj);
+    setDropMenuState(menu);
+  }, [categoriesAllData]);
+
+  const openDropMenu = category => {
+    const newDropMenu = dropMenuState.map(item => {
+      const { menuName, isOpen } = item;
+      return {
+        menuName,
+        isOpen: item === category ? !isOpen : false
+      };
     });
 
-    setDropMenuState(newState);
-    // initialState =  newState
+    setDropMenuState(newDropMenu);
   };
 
-  // }
-  // console.log(dropMenuState);
-  const categList = categArrey.map(item => {
-    const menuName = item.name;
-    // console.log(menuName)
-
-    let dropMenuArrey = categoriesAllData.filter(
-      item => item.parentId === `${menuName}`
+  const categoryList = dropMenuState.map(item => {
+    const dropMenuArray = categoriesAllData.filter(
+      child => child.parentId === item.menuName
     );
 
-    const stateObj = dropMenuState
-      ? dropMenuState.filter(item => item.menuName === menuName)
-      : initialState.filter(item => item.menuName === menuName);
-
-    const isShown = stateObj.length && stateObj[0].isOpen;
-    // console.log(item)
     return (
-      <CategoriesLi key={item._id} id={item.id} onClick={openDropmenu}>
-        {item.id}
-        {isShown ? <Dropmenu dropMenuArrey={dropMenuArrey} /> : null}
-      </CategoriesLi>
+      <div key={item.menuName}>
+        {item.isOpen ? <CategoryDropBackground /> : null}
+        <Category>
+          <CategoryHeader onClick={() => openDropMenu(item)}>
+            {item.menuName}
+          </CategoryHeader>
+          {item.isOpen ? (
+            <CategoryDropHolder>
+              <DropMenu dropMenuArray={dropMenuArray} />
+            </CategoryDropHolder>
+          ) : null}
+        </Category>
+      </div>
     );
   });
-  return <Categories>{categList}</Categories>;
+
+  return <Categories>{categoryList}</Categories>;
 };
 
-const Categories = styled.ul`
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-  width: 70vw;
-  text-transform: uppercase;
+const Categories = styled.div`
   display: flex;
-  justify-content: space-between;
-  list-style-type: none;
+  justify-content: space-evenly;
   position: relative;
   cursor: pointer;
+`;
+
+const CategoryDropBackground = styled.div`
+  min-height: 180px;
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: white;
+  border-bottom: 1px solid black;
+  border-top: 1px solid #a7aabb;
 
   ${mediaMobile(`
-    display: none;
+  display: none;
   `)}
 `;
 
-const CategoriesLi = styled.ul`
-  list-style-type: none;
+const Category = styled.div`
+  position: relative;
+`;
+
+const CategoryHeader = styled.div`
+  text-transform: uppercase;
+`;
+
+const CategoryDropHolder = styled.div`
+  width: 110px;
+  position: absolute;
+  top: 35px;
+  z-index: 2;
 `;
