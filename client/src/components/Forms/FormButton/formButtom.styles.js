@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InputWrapper = styled.div`
-  width: 100%;
+  width: ${props => (props.width ? props.width : "100%")};
   display: flex;
   justify-content: center;
   background: #002d50;
@@ -14,9 +14,9 @@ export const Input = styled.input`
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  background: #002d50;
-  color: white;
-  border: none;
+  background: ${props => (props.secondary ? "#ffffff" : "#002d50")};
+  color: ${props => (props.secondary ? "#000000" : "#ffffff")};
+  border: 1px solid #002d50;
   cursor: pointer;
 
   :focus {
