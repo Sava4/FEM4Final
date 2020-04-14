@@ -24,7 +24,7 @@ const comments = require("./routes/comments");
 const shippingMethods = require("./routes/shippingMethods");
 const paymentMethods = require("./routes/paymentMethods");
 const partners = require("./routes/partners");
-const mainRoute = require("./routes/index");
+// const mainRoute = require("./routes/index");
 
 const app = express();
 app.use(cors());
@@ -71,8 +71,10 @@ app.use("/comments", comments);
 app.use("/shipping-methods", shippingMethods);
 app.use("/payment-methods", paymentMethods);
 app.use("/partners", partners);
-app.use("/", mainRoute);
+// app.use("/", mainRoute);
 
+// NGINX Serves static files.
+// This is in case no route match is found to redirect to index and show 404 with React-Router.
 // Server static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
