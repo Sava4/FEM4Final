@@ -1,34 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect} from "react";
 import styled from "styled-components";
 import { useParams, useLocation } from "react-router";
 import { connect } from "react-redux";
-import querystring from "query-string";
+import axios from "axios";
+// import querystring from "query-string";
 import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
+import {setAvaliFilters} from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
+
 // import querystring from "query-string";
 const MapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
-export const ProductFilters = 
-// connect(MapStateToProps)(
+export const ProductFilters = connect(MapStateToProps, {setAvaliFilters})(
   props => {
   const { category } = useParams();
   const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
-  const [openFiltwin, setOpenFiltwilnd] = useState(true);
-  const queryCategory=(!category )?(""):(`categories=${category}&`)
-  const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
-  const apiCategory = queryCategory + query
-  // let location = useLocation();
-  // let path = `filter${location.search}`;
-  console.log(category,apiCategory);
+  const [openFiltwin, setOpenFiltwilnd] = useState(false);
 
+  useLayoutEffect(() => {
+    axios
+      .get("http://localhost:5000/products")
+      .then(result => {
+        props.setAvaliFilters(result.data);
+      
+      })
+      // .then(products => {
+      //   setProducts (collectionList(products))
+
+      // })
+      .catch(err => {
+        /*Do something with error, e.g. show error to user*/
+      });
+  }, []);
+ 
   return (
     <Layout>
       <CategoriesHeader>
@@ -36,19 +48,25 @@ export const ProductFilters =
       </CategoriesHeader>
 
       <IconBreadcrumbs categoryName={category} />
+    
+      
 
-      <MobileCategotiesCommon>
+      <CategotiesCommon>
+
+      {window.innerWidth<767 ? (
+    <MobileCategoriesFilters>
         <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
         {openFiltwin && (
           <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
         )}
-      </MobileCategotiesCommon>
-
-      <CategotiesCommon>
+      </MobileCategoriesFilters>
+    ): 
+    (
         <CategoriesFilters>
-          <p>FILTER BY</p>
+          <p>FILTER BY</p>        
           <FiltersList />
         </CategoriesFilters>
+    )}          
 
         <SelectedProducts>
           <p>{`Selected products ( ${nambertOfFilteredItems} )`}</p>
@@ -58,12 +76,12 @@ export const ProductFilters =
             setNambertOfFilteredItems={setNambertOfFilteredItems}
           />          */}
         </SelectedProducts>
-        <ProductsContainer />
+        <ProductsContainer/>
       </CategotiesCommon >
     </Layout>
   );
 }
-// )
+)
 ;
 
 const CategoriesHeader = styled.div`
@@ -88,7 +106,7 @@ const CategotiesCommon = styled.div`
   flex-direction:column;
 `)}
 `;
-const MobileCategotiesCommon = styled.div`
+const MobileCategoriesFilters = styled.div`
   display: none;
   flex-wrap: wrap;
   ${mediaMobile(`
@@ -120,14 +138,15 @@ const CategoriesFilters = styled.div`
 `;
 
 const SelectedProducts = styled.div`
-  & > p {
+  & >p {
     font-size: 17px;
     margin-top: 28px;
     text-transform: uppercase;
     margin-bottom: 23px;
     ${mediaMobile(`
       text-align:left;
-      margin: 0;
+      // margin: 0;
+      margin-bottom: 23px;
       // margin-top: -45px;
       margin-right: 21px;
 

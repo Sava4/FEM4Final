@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
-
+import axios from "axios";
 import styled from "styled-components";
 import checkBox from "./check-box.png";
 import checkBoxChecked from "./check-box-checked.png";
@@ -13,7 +12,8 @@ import {
 } from "../../../store/filters";
 
 const mapStateToProps = store => ({
-  filters: store.filters.selFilters
+  filters: store.filters.selFilters,
+  availFilters:store.filters.availFilters
 });
 
 export const PopupCheckboxes = connect(mapStateToProps, {
@@ -22,9 +22,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 })(props => {
   const { filtername } = props;
 
-  const checkedFromStor = props.filters[filtername];
-
-  const [products, setProducts] = useState([]);
+  const checkedFromStor = props.filters[filtername]; 
 
   const filter = (innerArrey, filterType) => {
     const collections = [];
@@ -38,24 +36,9 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     return collections;
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/products")
-      .then(result => {
-        setProducts(result.data);
-      })
-      // .then(products => {
-      //   setProducts (collectionList(products))
-
-      // })
-      .catch(err => {
-        /*Do something with error, e.g. show error to user*/
-      });
-  }, []);
 
   const checkedFilters = e => {
-    e.preventDefault();
-    console.log(e.target.getAttribute("data-filtergrupname"));
+    e.preventDefault();   
     const activeFilters = {};
     activeFilters[
       e.target.getAttribute("data-filtergrupname")
@@ -71,7 +54,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     }
   };
 
-  const collectionList = products && filter(products, filtername);
+  const collectionList = filter(props.availFilters, filtername);
 
   const inputs = collectionList.map(item => {
     return (

@@ -9,6 +9,7 @@ import { setTogleShown,
         setDeleteFilter} from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {PriсeRange} from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 import {Button} from  "../../Buttons/button"
 
@@ -21,7 +22,9 @@ export const MobileFiltersList = connect(mapStateToProps, {
   setDeleteFilter,
   setClearFilters
 })(props => {
+
   const filtredBy = [
+    "price",
     "collection",
     "metal",
     "metal_color",
@@ -30,7 +33,7 @@ export const MobileFiltersList = connect(mapStateToProps, {
   ];
 
   const { setOpenFiltwilnd } = props;
-
+  // const priceIsShown = props.filters["price"];
   const handleChange = (e, nodes) => {
     e.preventDefault();
     props.setTogleShown(e.target.parentNode.id);
@@ -40,18 +43,14 @@ export const MobileFiltersList = connect(mapStateToProps, {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>
-        <FilterType id={item}>
-          <p>{item.replace("_", " ")}</p>
-          {!isShown && (
-            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
-          )}
-          {isShown && (
-            <ExpandLessIcon fontSize="small" onClick={handleChange} />
-          )}
-        </FilterType>
-        <CheckboxBlock isOpen={isShown}>
-          <PopupCheckboxes filtername={item} />
-        </CheckboxBlock>
+      <FilterType id={item}>
+        <p>{item.replace("_", " ")}</p>
+        {isShown ? 
+              (<ExpandLessIcon fontSize="small" onClick={handleChange} />):
+              (<ExpandMoreIcon fontSize="small" onClick={handleChange} /> )}
+  
+      </FilterType>    
+        {isShown ?  ((item === "price")  ?<PriсeRange/> : <PopupCheckboxes filtername={item} />): null }
       </FilterBox>
     );
   });
@@ -63,6 +62,7 @@ export const MobileFiltersList = connect(mapStateToProps, {
   return (
     <FiltersModal>
       <ModalClose onClick={() => setOpenFiltwilnd(false)} />
+     
       {filters}
       <BottomBlock>
         <Button primary
@@ -103,11 +103,6 @@ const ModalClose = styled.div`
   background-size: contain;
   cursor: pointer;
 `;
-
-const CheckboxBlock = styled.div`
-  display: ${props => (props.isOpen ? "block" : "none")};
-`;
-
 const FilterBox = styled.div`
   display: none;
   ${mediaMobile(`
