@@ -7,7 +7,7 @@ import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";
 import { FilteredListProducts } from "./../../components/ProductsFilterList/FilteredProducts";
-import {FilterIndicators} from './../ProductsFilterList/SelectedProducts/FilterIndicators'
+import { FilterIndicators } from "./../ProductsFilterList/SelectedProducts/FilterIndicators";
 export const ProductsPagination = ({
   currentPage,
   truePage,
@@ -56,24 +56,21 @@ export const ProductsPagination = ({
         }}
       >
         {products.map((p, index) => (
-          <div id={index} key={p.itemNo}>          
+          <div id={index} key={p.itemNo}>
             <NavLink
               to={`/product-details/${p.itemNo}`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ProductItem
-                product={p}                
+                product={p}
                 {...p}
                 itemNo={`${p.itemNo}`}
                 style={{
                   display: "flex",
                   justifyContent: "center"
-                }}           
-               
+                }}
                 interpretation={"carousel"}
-                img={p.imageUrls[0]}     
-              
-          
+                img={p.imageUrls[0]}
               />
             </NavLink>
           </div>

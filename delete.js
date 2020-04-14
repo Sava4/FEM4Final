@@ -13,10 +13,9 @@ function deleteAllProducts() {
         //   console.log(products);
           products.data
             .forEach(element => {
-              let i = element.itemNo;
-              // console.log("TCL: deleteAllProducts -> element", element)
-              
-              if (element.categories === "rings"){
+              let i = element.itemNo;            
+              //удаление по категориям
+              // if (element.categories === "rings"){
               axios
                 .delete(`http://localhost:5000/products/${i}`, {
                   headers: { Authorization: `${token}` }
@@ -28,7 +27,7 @@ function deleteAllProducts() {
                 .catch(err => {
                   console.log('error',err);
                 });
-              }
+              // }
             })            
             // .catch(err => {
             //   console.log(err);

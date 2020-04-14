@@ -43,8 +43,7 @@ const FilterTypeDiv = styled.div`
   flex-wrap: wrap;
   height: content;
   margin-top: 2%;
-  margin-left: 1% 
-  ${mediaMobile(`
+  margin-left: 1% ${mediaMobile(`
   margin-top: 11px;  
 `)} & p {
     font-size: 14px;
@@ -55,7 +54,7 @@ const FilterTypeDiv = styled.div`
 `;
 const FilterMarker = styled.div`
   margin-left: 5px;
-  
+
   ${mediaMobile(`
   width:fit-content;
 `)}

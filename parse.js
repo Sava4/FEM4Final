@@ -5,15 +5,24 @@ var async = require("async");
 
 console.log("start");
 
-let categories = "rings";
-// не забыть папку создать
+let categories = "bracelets";
+// не забыть папку создать и поменять категорию и закомментить лишние ссылки
 var urls = [
-  //    "https://zarina.ua/ru/catalog/braslety",
+  // "https://zarina.ua/ru/catalog/braslety",
+  // "https://zarina.ua/ru/catalog/braslety?p=2",
+  // "https://zarina.ua/ru/catalog/braslety?p=3",
+
   // "https://zarina.ua/ru/catalog/sergi",
+  // "https://zarina.ua/ru/catalog/sergi?p=2",
+  // "https://zarina.ua/ru/catalog/sergi?p=3",
+
   // "https://zarina.ua/ru/catalog/kolie",
-  "https://zarina.ua/ua/catalog/kolca",
-  "https://zarina.ua/ua/catalog/kolca?p=2",
-  "https://zarina.ua/ua/catalog/kolca?p=3"
+  // "https://zarina.ua/ru/catalog/kolie?p=2",
+  // "https://zarina.ua/ru/catalog/kolie?p=3"
+
+  // "https://zarina.ua/ua/catalog/kolca",
+  // "https://zarina.ua/ua/catalog/kolca?p=2",
+  // "https://zarina.ua/ua/catalog/kolca?p=3",
 ];
 function qqq(url) {
   needle.get(
@@ -113,6 +122,14 @@ function qqqqq(url2) {
             .replace(/NATKINA.*/, "NATKINA")
             .replace(/In motion.*/, "In motion")
             .replace(/Safari.*/, "Safari")
+            .replace("ZARINA Classic", "ZARINA Classic")
+            .replace("Меланка", "Melanka")
+            .replace("Зірка", "Star")
+            .replace("Мужская", "Men")
+            .replace("Детская", "Baby")
+            .replace("Три Цвета Любви", "Love Colors")
+            .replace("Крижані Чари", "Frozen Magic")
+            .replace("Гранат", "Granat")
             .replace("Розмір", "size")
             .replace("Вага", "weight")
             .replace("Золото", "gold")
@@ -121,10 +138,6 @@ function qqqqq(url2) {
             .replace("Желтый", "yellow")
             .replace("Белый", "white")
             .replace("Білий", "white")
-            .replace("ZARINA Classic", "ZARINA Classic")
-            .replace("Меланка", "Melanka")
-            .replace("Зірка", "Star")
-            .replace("Iconic", "Iconic")
             .replace("Розмір", "size")
             .replace("Вага", "weight")
             .replace("Вес", "weight")
@@ -139,17 +152,21 @@ function qqqqq(url2) {
             .replace("Сапфир", "Sapphire")
             .replace("Изумруд", "Emerald")
             .replace("Без вставок", "Pure metal")
-            .replace("Хризоліт", "")
-            .replace("Цаворит", "")
-            .replace("Эмаль", "")
-            .replace("Халцедон", "")
-            .replace("Турмалин", "")
-            .replace("Кварц дымчатый", "")
+            .replace("Хризоліт", "Hrizolit")
+            .replace("Цитрин", "Citrin")
+            .replace("Кварц Димчатий", "Quarz")
+            .replace("Лейкосапфір", "Leicosapphire")
+            .replace("Цаворит", "Cavorit")
+            .replace("Эмаль", "Emal")
+            .replace("Халцедон", "Halcedon")
+            .replace("Турмалин", "Turmalin")
+            .replace("Кварц дымчатый", "Quarz")
             .replace("Перли", "Pearls")
             .replace("Жемчуг", "Pearls")
             .replace("Аметист", "Ametist")
             .replace("Рожевий", "rose")
             .replace("Розовый", "rose");
+
           tdd.push(tdItem);
         });
         //ставим правильную картинку на главную
@@ -200,13 +217,16 @@ function qqqqq(url2) {
           result.weight = "1.8";
         }
         if (!result.hasOwnProperty("metal_color")) {
-            result.metal_color = "white";
-          }
+          result.metal_color = "white";
+        }
         result.product_url = url2;
         result.imageUrls = imgg;
         result.imageUrls2 = imgg2;
         result.previousPrice = result.currentPrice;
-        result.name = `${result.gemstone} ${result.metal} ${categories.slice(0, -1)}`;
+        result.name = `${result.gemstone} ${result.metal} ${categories.slice(
+          0,
+          -1
+        )}`;
         // console.log("result", result)
 
         ///поле цены в некоторых товарах пеескакивает в поле пробу sample, не добавляем их
