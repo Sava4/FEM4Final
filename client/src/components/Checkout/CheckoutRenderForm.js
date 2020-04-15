@@ -110,15 +110,6 @@ export const CheckoutForm = () => {
   };
   const onSubmitPayment = formData => {
     setPaymentInformation(formData);
-    // axios
-    //     .post("http://localhost:5000/orders", newOrder)
-    //     .then(newOrder => {
-    //       /*Do something with newProduct*/
-    //       console.log(newOrder);
-    //     })
-    //     .catch(err => {
-    //       /*Do something with error, e.g. show error to user*/
-    //     });
     setOrderForm(true);
     axios
       .delete("http://localhost:5000/cart/")
@@ -127,48 +118,59 @@ export const CheckoutForm = () => {
       })
       .catch(err => console.error("Request Error", err));
   };
+ const onClickPayment = () => {
+   axios
+       .post("http://localhost:5000/orders", newOrder)
+       .then(newOrder => {
+         /*Do something with newProduct*/
+         console.log(newOrder);
+       })
+       .catch(err => {
+         /*Do something with error, e.g. show error to user*/
+       });
+ };
   console.log("contact", contactInformation);
   console.log("SHIPPING", shippingInformation);
   console.log("PAYMENT", paymentInformation);
-  const newOrder = {
-    customerId: "5d99ce196d40fb1b747bc5f5",
-    deliveryAddress: {
-      country: "Ukraine",
-      city: "Kiev",
-      address: "Kreshchatic Street 56//A",
-      postal: "01044"
-    },
-    shipping: "Kiev 50UAH",
-    paymentInfo: "Credit card",
-    status: "not shipped",
-    email: "saribeg@gmail.com",
-    mobile: "+380630000000",
-    letterSubject: "Thank you for order! You are welcome!",
-    letterHtml:
-      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
-  };
   // const newOrder = {
-  //   customId: "lolol",
+  //   customerId: "5d99ce196d40fb1b747bc5f5",
   //   deliveryAddress: {
   //     country: "Ukraine",
-  //     city: shippingInformation.shipping,
-  //     location: shippingInformation.location,
-  //     address: contactInformation.address,
+  //     city: "Kiev",
+  //     address: "Kreshchatic Street 56//A",
+  //     postal: "01044"
   //   },
-  //   email: contactInformation.email,
-  //   mobile: contactInformation.phone,
-  //   firstName: contactInformation.firstName,
-  //   lastName: contactInformation.lastName,
-  //   getMyself: contactInformation.getMyself,
-  //   contact: contactInformation,
-  //   payment: paymentInformation,
-  //   shipping: shippingInformation.shipping,
-  //   paymentInfo: paymentInformation.payment,
+  //   shipping: "Kiev 50UAH",
+  //   paymentInfo: "Credit card",
   //   status: "not shipped",
+  //   email: "saribeg@gmail.com",
+  //   mobile: "+380630000000",
   //   letterSubject: "Thank you for order! You are welcome!",
   //   letterHtml:
-  //       "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
+  //     "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
   // };
+  const newOrder = {
+    customId: "lolol",
+    deliveryAddress: {
+      country: "Ukraine",
+      city: shippingInformation.shipping,
+      location: shippingInformation.location,
+      address: contactInformation.address,
+    },
+    email: contactInformation.email,
+    mobile: contactInformation.phone,
+    firstName: contactInformation.firstName,
+    lastName: contactInformation.lastName,
+    getMyself: contactInformation.getMyself,
+    contact: contactInformation,
+    payment: paymentInformation,
+    shipping: shippingInformation.shipping,
+    paymentInfo: paymentInformation.payment,
+    status: "not shipped",
+    letterSubject: "Thank you for order! You are welcome!",
+    letterHtml:
+        "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
+  };
   return cartProps.length > 0 ? (
     loading ? (
       <CheckoutWrapper spinner={"spinner"}>
