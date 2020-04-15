@@ -54,7 +54,7 @@ const ProductsContainer = props => {
 
   useEffect(() => {
     //первая загрузка откроется, и номер страницы в урле, и работает назад вперед
-    props.getProducts(truePage2, pageSize, categoryQuery, apiCategory);
+    props.getProducts(truePage2, pageSize, categoryQuery, apiCategory, category2);
   }, [truePage2, query]);
 
   // let [filtered, setFiltered] = useState(false)
@@ -77,7 +77,7 @@ const ProductsContainer = props => {
   const onPageChanged = pageNumber => {
     // из пагинатора
     const { pageSize } = props;
-    props.getProducts(pageNumber, pageSize, categoryQuery, apiCategory);
+    props.getProducts(pageNumber, pageSize, categoryQuery, apiCategory, category2);
   };
   let truePage3 = +currentPage + 1;
   console.log(truePage3);
@@ -85,7 +85,7 @@ const ProductsContainer = props => {
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора
     const { pageSize } = props;
-    props.moreProducts(truePage3, pageSize, categoryQuery, apiCategory);
+    props.moreProducts(truePage3, pageSize, categoryQuery, apiCategory,category2);
   };
 
   return (
@@ -116,17 +116,18 @@ const ProductsContainer = props => {
   );
 };
 
-let mapStateToProps = (state, categoryQuery, apiCategory, query) => {
+let mapStateToProps = (state, categoryQuery, apiCategory, category2, query) => {
   return {
+    category2: category2,
     apiCategory: apiCategory,
     categoryQuery: categoryQuery,
+    query: query,
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state),
-    filters: state.filters.selFilters,
-    query: query
+    filters: state.filters.selFilters   
   };
 };
 

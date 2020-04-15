@@ -13,7 +13,7 @@ export const Paginator = ({
   onPageChanged,
   info,
   apiCategory,
-  portionSize = 3 //количество страниц в порции
+  portionSize = 3, //количество страниц в порции
 }) => {
   let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего
 
@@ -22,47 +22,54 @@ export const Paginator = ({
     pages.push(i);
   }
   const { category } = useParams();
+  let apiCategory2;
+  apiCategory && (apiCategory2 = apiCategory);
+
   let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
-  let [portionNumber, setPortionNumber] = useState(1); // номер порции начальный локальный стейт
+  let [portionNumber, setPortionNumber] = useState(1);// номер порции начальный локальный стейт
+  let [portionNumberR, setPortionNumberR] = useState(1); // номер порции начальный локальный стейт
+  let [portionNumberL, setPortionNumberL] = useState(0); // номер порции начальный локальный стейт
+  
 
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   let rightPortionPageNumber = portionNumber * portionSize;
 
   //   console.log(leftPortionPageNumber )
   //  console.log(rightPortionPageNumber )
-  console.log(apiCategory);
-  let apiCategory2;
-  apiCategory && (apiCategory2 = apiCategory);
-  const handleClickNext = e => {
+
+  const handleClickNext = (e) => {
     +currentPage == +pagesCount && e.preventDefault();
   };
-  const handleClickPrev = e => {
+  const handleClickPrev = (e) => {
     +currentPage <= 1 && e.preventDefault();
   };
-
+ 
   return (
     <div className={styles.paginator}>
       {info == 1 && (
         <span style={{ margin: "40px" }}>
-          товаров {productsQuantity} страниц {pagesCount}
+          ProductsQuantity {productsQuantity} Pages {pagesCount}
         </span>
       )}
+
+{/* prev стрелка < */}
       <NavLink
-        onClick={e => {
+        onClick={(e) => {
           handleClickPrev(e);
           onTop();
         }}
         to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage -
           1}&perPage=${pageSize}`}
       >
-        {console.log(apiCategory)}
         {portionNumber > 1 &&
           currentPage < leftPortionPageNumber &&
-          setPortionNumber(portionNumber - 1)}
+          setPortionNumber(portionNumber - 1)
+          // setPortionNumberR(portionNumberR)
+          }
         <span
           className={cn(
             {
-              [styles.active]: currentPage > 1
+              [styles.active]: currentPage > 1,
             },
             styles.unactive,
             styles.arrow,
@@ -70,29 +77,53 @@ export const Paginator = ({
           )}
         ></span>
       </NavLink>
+
+{/* первая страница */}
+      <NavLink
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${pagesCount}&perPage=${pageSize}`}
+        onClick={(e) => {
+          onTop();
+        }}
+      >
+        <span
+          className={cn(
+            {
+              [styles.removed]: currentPage ==='1',
+            },
+            styles.page_Number           
+          )}
+          onClick={(e) => {
+            onPageChanged('1'); //передаем в контейнер и загружаем нужную страницу
+          }}
+        >
+          {1} . . .
+        </span>
+      </NavLink>
+
+{/* обычные страницы */}
       {pages
         .filter(
-          pageNumber =>
+          (pageNumber) =>
             pageNumber >= leftPortionPageNumber &&
             pageNumber <= rightPortionPageNumber
         )
-        .map(pageNumber => {
+        .map((pageNumber) => {
           return (
             <NavLink
               to={`/categories/${category}/filter?${apiCategory}&startPage=${pageNumber}&perPage=${pageSize}`}
               key={pageNumber}
-              onClick={e => {
+              onClick={(e) => {
                 onTop();
               }}
             >
               <span
                 className={cn(
                   {
-                    [styles.selected_Page]: currentPage == pageNumber
+                    [styles.selected_Page]: currentPage == pageNumber,
                   },
                   styles.page_Number
                 )}
-                onClick={e => {
+                onClick={(e) => {
                   onPageChanged(pageNumber); //передаем в контейнер и загружаем нужную страницу
                 }}
               >
@@ -102,8 +133,32 @@ export const Paginator = ({
           );
         })}
 
+{/* последняя страница */}
       <NavLink
-        onClick={e => {
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${pagesCount}&perPage=${pageSize}`}
+        onClick={(e) => {
+          onTop();
+        }}
+      >
+        <span
+          className={cn(
+            {
+              [styles.removed]: currentPage == pagesCount,
+            },
+            styles.page_Number
+            // styles.unactive
+          )}
+          onClick={(e) => {
+            onPageChanged(pagesCount); //передаем в контейнер и загружаем нужную страницу
+          }}
+        >
+          . . . {pagesCount}
+        </span>
+      </NavLink>
+
+{/* next стрелка > */}
+      <NavLink
+        onClick={(e) => {
           handleClickNext(e);
           onTop();
         }}
@@ -116,7 +171,7 @@ export const Paginator = ({
         <span
           className={cn(
             {
-              [styles.active]: +currentPage < +pagesCount
+              [styles.active]: +currentPage < +pagesCount,
             },
             styles.unactive,
             styles.arrow,

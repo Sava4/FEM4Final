@@ -56,11 +56,7 @@ export const ProductsPagination = ({
         }}
       >
         {products.map((p, index) => (
-          <div id={index} key={p.itemNo}>
-            <NavLink
-              to={`/product-details/${p.itemNo}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
+          <div id={index} key={p.itemNo}>          
               <ProductItem
                 product={p}
                 {...p}
@@ -71,8 +67,7 @@ export const ProductsPagination = ({
                 }}
                 interpretation={"carousel"}
                 img={p.imageUrls[0]}
-              />
-            </NavLink>
+              />          
           </div>
         ))}
         {/* <FilteredListProducts category={category} /> */}

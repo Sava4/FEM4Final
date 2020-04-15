@@ -40,7 +40,7 @@ export const WishlistItem = props => {
           </WrapperLink>
           <ProductDescription>
             <Description>{`${props.name}`}</Description>
-            <ArticleNo>Article no.: {props.currentPrice}</ArticleNo>
+            <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
             <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
               <CloseImg src={close} />
               Remove

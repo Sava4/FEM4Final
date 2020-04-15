@@ -13,7 +13,9 @@
 .selected_Page {
   border-color: black;
 }
-
+.removed {
+  display: none;
+}
 .unactive {
   color: lightgrey;
   border: none;
