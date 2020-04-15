@@ -33,13 +33,13 @@ const setCheckFilter = payload => ({
 });
 
 const PRICE_RANGE = "PRICE_RANGE";
-const priceRange = payload=>({
+const priceRange = payload => ({
   type: PRICE_RANGE,
   payload
-})
+});
 
 const initialState = {
-  availFilters:[],
+  availFilters: [],
   selFilters: {
     collection: [],
     metal: [],
@@ -59,28 +59,25 @@ const initialState = {
     lowPriсe: null,
     hightPrice: null
   }
-  
 };
 
 export function filtersReduser(store = initialState, { type, payload }) {
   switch (type) {
-    case AVAIL_FILT: {    
+    case AVAIL_FILT: {
       return {
         ...store,
         availFilters: payload
-      } 
-      
+      };
     }
     case PRICE_RANGE: {
       return {
         ...store,
-        priceRange:{
+        priceRange: {
           ...store.priceRange,
-          lowPriсe:payload.min,
-          hightPrice:payload.max,          
+          lowPriсe: payload.min,
+          hightPrice: payload.max
         }
-      } 
-      
+      };
     }
 
     case DEL_FILTER: {
@@ -103,7 +100,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
       };
     }
     case CLEAR_FILTERS: {
-      console.log(payload)
+      console.log(payload);
       return {
         ...store,
         selFilters: {
@@ -115,7 +112,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
           gemstone_color: []
         }
       };
-    }    
+    }
 
     case SET_CHECKED_FILTERS: {
       let filtKey = null;
@@ -139,7 +136,6 @@ export function filtersReduser(store = initialState, { type, payload }) {
     }
 
     case SET_IS_SHOWN: {
-      
       return {
         ...store,
         menuState: { ...store.menuState, [payload]: !store.menuState[payload] }
@@ -151,7 +147,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
   }
 }
 
-export const setAvaliFilters = (allFilters) => dispatch => {
+export const setAvaliFilters = allFilters => dispatch => {
   dispatch(avaliFilters(allFilters));
 };
 
@@ -172,5 +168,5 @@ export const dispatchSetCheckFilter = FilterType => dispatch => {
 };
 
 export const setPriceRange = priceRangeVAl => dispatch => {
-  dispatch(priceRange(priceRangeVAl))
-}
+  dispatch(priceRange(priceRangeVAl));
+};

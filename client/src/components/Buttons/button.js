@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-
-  const InputWrapper = styled.div`
+const InputWrapper = styled.div`
   // width: 40%;
   display: flex;
   justify-content: center;
@@ -26,17 +25,16 @@ const Input = styled.input`
   }
 `;
 export const Button = props => {
-  console.log(props)
+  console.log(props);
   return (
-    <InputWrapper
-    style={{background: props.primary ? "blue" : "white"}}
-    >
-      <Input 
-      style={{color: props.primary ? "white" : "black",
-            background: props.primary ? "#002d50" : "white",
-            border: props.primary ? "none" : "1px solid #002D50",
-            width: props.width && props.width }}
-   
+    <InputWrapper style={{ background: props.primary ? "blue" : "white" }}>
+      <Input
+        style={{
+          color: props.primary ? "white" : "black",
+          background: props.primary ? "#002d50" : "white",
+          border: props.primary ? "none" : "1px solid #002D50",
+          width: props.width && props.width
+        }}
         type="submit"
         value={props.value}
         onClick={props.onClick}
@@ -45,6 +43,3 @@ export const Button = props => {
     </InputWrapper>
   );
 };
-
-
-

@@ -79,9 +79,9 @@
   margin-top: 400px;
   z-index: 10;
 }
-.class{
+.class {
   justify-content: space-around;
   display: flex;
-  background-color:palegreen ;
+  background-color: palegreen;
   height: fit-content;
 }

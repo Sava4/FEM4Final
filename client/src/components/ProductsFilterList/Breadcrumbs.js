@@ -27,9 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const IconBreadcrumbs = props => {
   const classes = useStyles();
-  // const { categoryName } = props;
-  // const { category } = categoryName;
-  // console.log(category);
+  const { categoryName } = props;
 
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.main}>
@@ -45,7 +43,7 @@ const IconBreadcrumbs = props => {
         style={{ textTransform: "capitalize" }}
       >
         {/* <GrainIcon className={classes.icon} /> */}
-        {/* {category} */}
+        {categoryName}
       </Typography>
     </Breadcrumbs>
   );

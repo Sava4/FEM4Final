@@ -4,14 +4,16 @@ import { v4 } from "uuid";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
-import { setTogleShown, 
-        setClearFilters, 
-        setDeleteFilter} from "./../../../store/filters";
+import {
+  setTogleShown,
+  setClearFilters,
+  setDeleteFilter
+} from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {PriсeRange} from "./PriсeRange";
+import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
-import {Button} from  "../../Buttons/button"
+import { Button } from "../../Buttons/button";
 
 const mapStateToProps = store => ({
   filters: store.filters.menuState
@@ -22,7 +24,6 @@ export const MobileFiltersList = connect(mapStateToProps, {
   setDeleteFilter,
   setClearFilters
 })(props => {
-
   const filtredBy = [
     "price",
     "collection",
@@ -43,37 +44,47 @@ export const MobileFiltersList = connect(mapStateToProps, {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>
-      <FilterType id={item}>
-        <p>{item.replace("_", " ")}</p>
-        {isShown ? 
-              (<ExpandLessIcon fontSize="small" onClick={handleChange} />):
-              (<ExpandMoreIcon fontSize="small" onClick={handleChange} /> )}
-  
-      </FilterType>    
-        {isShown ?  ((item === "price")  ?<PriсeRange/> : <PopupCheckboxes filtername={item} />): null }
+        <FilterType id={item}>
+          <p>{item.replace("_", " ")}</p>
+          {isShown ? (
+            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+          ) : (
+            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+          )}
+        </FilterType>
+        {isShown ? (
+          item === "price" ? (
+            <PriсeRange />
+          ) : (
+            <PopupCheckboxes filtername={item} />
+          )
+        ) : null}
       </FilterBox>
     );
   });
-  const backgroundColor = {
-    background:"blue",
-    color:"white"
-  }
+  // const backgroundColor = {
+  //   background:"blue",
+  //   color:"white"
+  // }
 
   return (
     <FiltersModal>
       <ModalClose onClick={() => setOpenFiltwilnd(false)} />
-     
+
       {filters}
       <BottomBlock>
-        <Button primary
-         value={"APPLY FILTERS"}
-         width={"168px"}
-         onClick={() => setOpenFiltwilnd(false)}/>
         <Button
-        onClick={()=>props.setClearFilters()}
-        value={"CLEAR ALL"} 
-        width={"168px"}/>
-      </BottomBlock >
+          primary
+          value={"APPLY FILTERS"}
+          width={"168px"}
+          onClick={() => setOpenFiltwilnd(false)}
+        />
+        <Button
+          onClick={() => props.setClearFilters()}
+          value={"CLEAR ALL"}
+          width={"168px"}
+        />
+      </BottomBlock>
     </FiltersModal>
   );
 });
@@ -128,11 +139,9 @@ const FilterType = styled.div`
 `;
 
 const BottomBlock = styled.div`
-width: inherit;
-margin-top: 30px;
-margin-bottom: 30px;
-display: flex;
-justify-content: space-around;
+  width: inherit;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
 `;
-
-

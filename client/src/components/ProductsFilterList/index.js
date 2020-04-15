@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect} from "react";
+import React, { useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { useParams, useLocation } from "react-router";
 import { connect } from "react-redux";
@@ -8,7 +8,7 @@ import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
-import {setAvaliFilters} from "../../store/filters";
+import { setAvaliFilters } from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
@@ -19,68 +19,64 @@ const MapStateToProps = store => ({
   filters: store.filters.selFilters
 });
 
-export const ProductFilters = connect(MapStateToProps, {setAvaliFilters})(
+export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
   props => {
-  const { category } = useParams();
-  const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
-  const [openFiltwin, setOpenFiltwilnd] = useState(false);
+    const { category } = useParams();
+    const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
+    const [openFiltwin, setOpenFiltwilnd] = useState(false);
 
-  useLayoutEffect(() => {
-    axios
-      .get("http://localhost:5000/products")
-      .then(result => {
-        props.setAvaliFilters(result.data);
+    useLayoutEffect(() => {
+      axios
+        .get("http://localhost:5000/products")
+        .then(result => {
+          props.setAvaliFilters(result.data);
+        })
+        // .then(products => {
+        //   setProducts (collectionList(products))
 
-      })
-      // .then(products => {
-      //   setProducts (collectionList(products))
+        // })
+        .catch(err => {
+          /*Do something with error, e.g. show error to user*/
+        });
+    }, []);
 
-      // })
-      .catch(err => {
-        /*Do something with error, e.g. show error to user*/
-      });
-  }, []);
+    return (
+      <Layout>
+        <CategoriesHeader>
+          <p>{category}</p>
+        </CategoriesHeader>
 
-  return (
-    <Layout>
-      <CategoriesHeader>
-        <p>{category}</p>
-      </CategoriesHeader>
+        <IconBreadcrumbs categoryName={category} />
 
-      <IconBreadcrumbs categoryName={category} />
+        <CategotiesCommon>
+          {window.innerWidth < 767 ? (
+            <MobileCategoriesFilters>
+              <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
+              {openFiltwin && (
+                <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
+              )}
+            </MobileCategoriesFilters>
+          ) : (
+            <CategoriesFilters>
+              <p>FILTER BY</p>
+              <FiltersList />
+            </CategoriesFilters>
+          )}
 
-      <CategotiesCommon>
-
-      {window.innerWidth<767 ? (
-    <MobileCategoriesFilters>
-        <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
-        {openFiltwin && (
-          <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
-        )}
-      </MobileCategoriesFilters>
-    ):
-    (
-        <CategoriesFilters>
-          <p>FILTER BY</p>
-          <FiltersList />
-        </CategoriesFilters>
-    )}
-
-        <SelectedProducts>
-          <p>{`Selected products ( ${nambertOfFilteredItems} )`}</p>
-          <FilterIndicators />
-          {/* <FilteredListProducts
+          <SelectedProducts>
+            <p>{`Selected products ( ${nambertOfFilteredItems} )`}</p>
+            <FilterIndicators />
+            {/* <FilteredListProducts
             category={category}
             setNambertOfFilteredItems={setNambertOfFilteredItems}
           />          */}
-        </SelectedProducts>
-        <ProductsContainer/>
-      </CategotiesCommon >
-    </Layout>
-  );
-}
-)
-;
+            <ProductsContainer />
+          </SelectedProducts>
+        </CategotiesCommon>
+      </Layout>
+    );
+  }
+);
 
 const CategoriesHeader = styled.div`
   background-color: black;
@@ -136,7 +132,7 @@ const CategoriesFilters = styled.div`
 `;
 
 const SelectedProducts = styled.div`
-  & >p {
+  & > p {
     font-size: 17px;
     margin-top: 28px;
     text-transform: uppercase;

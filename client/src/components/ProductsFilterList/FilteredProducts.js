@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 import querystring from "query-string";
 import { ProductItem } from "../ProductsList/productItem";
 import { mediaMobile } from "../../styledComponents/GlobalStyle";
-// import ProductsContainer from "../SliderProducts/ProductsContainer" 
+// import ProductsContainer from "../SliderProducts/ProductsContainer"
 
 import styled from "styled-components";
 
@@ -15,27 +15,27 @@ const MapStateToProps = store => ({
 
 export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
-  const { category, setNambertOfFilteredItems} = props;
-  const queryCategory=(!category)?(""):(`categories=${category}&`)
+  const { category, setNambertOfFilteredItems } = props;
+  const queryCategory = !category ? "" : `categories=${category}&`;
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
 
   useEffect(() => {
     // const queryString = [];
     // for (let key in props.filters) {
-      const url = `http://localhost:5000/products/filter?${queryCategory}${query}`;
-      
-      // props.filters[key].length
-      //   ? queryString.push(`${key}=${props.filters[key].join()}`)
-      //   : 
-        axios.get(url).then(result => {
-            setProducts(result.data);
-          });
-      //   .catch(err => {
-      //     /*Do something with error, e.g. show error to user*/
-      //   });
+    const url = `http://localhost:5000/products/filter?${queryCategory}${query}`;
+
+    // props.filters[key].length
+    //   ? queryString.push(`${key}=${props.filters[key].join()}`)
+    //   :
+    axios.get(url).then(result => {
+      setProducts(result.data);
+    });
+    //   .catch(err => {
+    //     /*Do something with error, e.g. show error to user*/
+    //   });
     // }
   }, [query]);
-// console.log(props)
+  // console.log(props)
   const filteredProd = products.products;
   filteredProd && setNambertOfFilteredItems(filteredProd.length);
   const ListProduct =
@@ -53,7 +53,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
         />
       );
     });
-  return <Wrapper>{ListProduct && ListProduct.splice(0, 9)}</Wrapper>
+  return <Wrapper>{ListProduct && ListProduct.splice(0, 9)}</Wrapper>;
 });
 
 //*** STYLED-COMPONENTS ***//

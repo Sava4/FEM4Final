@@ -7,8 +7,8 @@ import { v4 } from "uuid";
 
 export const ListProducts = props => {
   const [products, setProducts] = useState([]);
-  const {category} = props;
-  console.log(category)
+  const { category } = props;
+  console.log(category);
 
   useEffect(() => {
     const fetchPosts = async () => {

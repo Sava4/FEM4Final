@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import { setTogleShown } from "./../../../store/filters";
 import { setDeleteFilter } from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {PriсeRange} from "./PriсeRange";
+import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 
 const mapStateToProps = store => ({
@@ -17,7 +17,7 @@ export const FiltersList = connect(mapStateToProps, {
   setTogleShown,
   setDeleteFilter
 })(props => {
-  // const priceIsShown = props.filtersBlockState["price"]; 
+  // const priceIsShown = props.filtersBlockState["price"];
 
   const filtredBy = [
     "price",
@@ -29,31 +29,36 @@ export const FiltersList = connect(mapStateToProps, {
   ];
 
   const handleChange = (e, nodes) => {
-   
     e.preventDefault();
     props.setTogleShown(e.target.parentNode.id);
   };
 
   let filters = filtredBy.map(item => {
-      let isShown = props.filtersBlockState[item];    
+    let isShown = props.filtersBlockState[item];
     return (
       <FilterBox key={v4()}>
         <FilterType id={item}>
           <p>{item.replace("_", " ")}</p>
-          {isShown ? 
-                (<ExpandLessIcon fontSize="midle" onClick={handleChange} />):
-                (<ExpandMoreIcon fontSize="midle" onClick={handleChange} /> )}
-    
-        </FilterType>       
-          {isShown ?  ((item === "price")  ? (<PriсeRange/>) : (<PopupCheckboxes filtername={item} />)): false }       
+          {isShown ? (
+            <ExpandLessIcon fontSize="midle" onClick={handleChange} />
+          ) : (
+            <ExpandMoreIcon fontSize="midle" onClick={handleChange} />
+          )}
+        </FilterType>
+        {isShown ? (
+          item === "price" ? (
+            <PriсeRange />
+          ) : (
+            <PopupCheckboxes filtername={item} />
+          )
+        ) : (
+          false
+        )}
       </FilterBox>
     );
   });
 
-  return( 
-          <>        
-            {filters}
-          </>)
+  return <>{filters}</>;
 });
 
 const FilterBox = styled.div`
