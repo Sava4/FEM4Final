@@ -30,7 +30,7 @@ export const ProductFilters = connect(MapStateToProps, {setAvaliFilters})(
       .get("http://localhost:5000/products")
       .then(result => {
         props.setAvaliFilters(result.data);
-      
+
       })
       // .then(products => {
       //   setProducts (collectionList(products))
@@ -40,7 +40,7 @@ export const ProductFilters = connect(MapStateToProps, {setAvaliFilters})(
         /*Do something with error, e.g. show error to user*/
       });
   }, []);
- 
+
   return (
     <Layout>
       <CategoriesHeader>
@@ -48,8 +48,6 @@ export const ProductFilters = connect(MapStateToProps, {setAvaliFilters})(
       </CategoriesHeader>
 
       <IconBreadcrumbs categoryName={category} />
-    
-      
 
       <CategotiesCommon>
 
@@ -60,13 +58,13 @@ export const ProductFilters = connect(MapStateToProps, {setAvaliFilters})(
           <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
         )}
       </MobileCategoriesFilters>
-    ): 
+    ):
     (
         <CategoriesFilters>
-          <p>FILTER BY</p>        
+          <p>FILTER BY</p>
           <FiltersList />
         </CategoriesFilters>
-    )}          
+    )}
 
         <SelectedProducts>
           <p>{`Selected products ( ${nambertOfFilteredItems} )`}</p>
