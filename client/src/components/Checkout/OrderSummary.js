@@ -20,11 +20,11 @@ import {
 } from "./checkout.styles";
 
 export const OrderSummary = props => {
-  const { icons, totalPrices } = props;
+  const { icons, totalPrices, mobile } = props;
 
   return (
     <Fragment>
-      <Header>Order Summary</Header>
+      <Header mobile={mobile}>Order Summary</Header>
       <ProductContainer> {icons} </ProductContainer>
       <GiftCardInput />
       <ProductContainer>

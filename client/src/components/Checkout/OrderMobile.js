@@ -8,12 +8,18 @@ import {
   Input,
   Location,
   ProductContainer,
+  RadioWrapper,
   Wrap,
   Wrapper
 } from "./checkout.styles";
 import { FormButton } from "../Forms/FormButton/FormButton";
 import { OrderSummary } from "./OrderSummary";
-import { validate } from "./CheckoutContact";
+import {
+  renderCheckbox,
+  renderCheckboxDisable,
+  validate
+} from "./CheckoutContact";
+import { PaymentInputs } from "./CheckoutPaymentCard";
 
 const renderField = ({
   input,
@@ -55,13 +61,15 @@ const OrderInformation = props => {
     return (
       <Wrapper flexDirection={"column"}>
         <Location>
-          <Field
-            name={"Location"}
-            value={item}
-            component={"input"}
-            type={"radio"}
-          />
-          {item}{" "}
+          <RadioWrapper>
+            <Field
+              name={"Location"}
+              value={item}
+              component={renderCheckbox}
+              type={"radio"}
+            />
+            {item}{" "}
+          </RadioWrapper>
         </Location>
       </Wrapper>
     );
@@ -70,15 +78,17 @@ const OrderInformation = props => {
     return (
       <Wrapper flexDirection={"column"}>
         <Location disable={"disable"}>
-          <Field
-            name={"Location"}
-            value={item}
-            component={"input"}
-            type={"radio"}
-            disabled={true}
-            checked={false}
-          />
-          {item}{" "}
+          <RadioWrapper>
+            <Field
+              name={"Location"}
+              value={item}
+              component={renderCheckboxDisable}
+              type={"radio"}
+              disabled={true}
+              checked={false}
+            />
+            {item}{" "}
+          </RadioWrapper>
         </Location>
       </Wrapper>
     );
@@ -106,7 +116,11 @@ const OrderInformation = props => {
         component={renderField}
       />
       <Wrapper>
-        <Field name={"getMyself"} component={"input"} type={"checkbox"} />
+        <Field
+          name={"getMyself"}
+          component={renderCheckbox}
+          type={"checkbox"}
+        />
         I'll get the order myself.
       </Wrapper>
       <Header align={"left"}>Shipping Address</Header>
@@ -128,45 +142,44 @@ const OrderInformation = props => {
         placeholder={"Phone*"}
         component={renderField}
       />
-
       <Header align={"left"}>Shipping Method</Header>
       <Wrapper justifyContent={"space-between"}>
-        <div>
+        <RadioWrapper>
           <Field
             name={"Shipping"}
             value={"Kyiv"}
-            component={"input"}
+            component={renderCheckbox}
             type={"radio"}
             onClick={takeLocation}
           />
           Delivery within Kyiv{" "}
-        </div>{" "}
+        </RadioWrapper>{" "}
         <p>Free</p>
       </Wrapper>
       <Wrapper justifyContent={"space-between"}>
-        <div>
+        <RadioWrapper>
           <Field
             name={"Shipping"}
             value={"Ukraine"}
-            component={"input"}
+            component={renderCheckbox}
             type={"radio"}
             onClick={takeLocation}
           />
           Delivery within Ukraine
-        </div>{" "}
+        </RadioWrapper>{" "}
         <p>Free</p>
       </Wrapper>
       <Wrapper justifyContent={"space-between"}>
-        <div>
+        <RadioWrapper>
           <Field
             name={"Shipping"}
             value={"Location"}
-            component={"input"}
+            component={renderCheckbox}
             type={"radio"}
             onClick={giveLocation}
           />
           Pick up location
-        </div>{" "}
+        </RadioWrapper>{" "}
         <p>Free</p>
       </Wrapper>
       {location ? (
@@ -187,25 +200,30 @@ const OrderInformation = props => {
       <Header align={"left"}>Payment</Header>
       <ProductContainer>
         <Wrap>
-          <Field
-            name={"payment"}
-            component={"input"}
-            value={"Cash"}
-            type={"radio"}
-          />
-          <span>Cash</span>
+          <RadioWrapper>
+            <Field
+              name={"payment"}
+              component={renderCheckbox}
+              value={"Cash"}
+              type={"radio"}
+            />
+            <span>Cash</span>
+          </RadioWrapper>
         </Wrap>
       </ProductContainer>
       <Wrap>
-        <Field
-          name={"payment"}
-          component={"input"}
-          value={"Card"}
-          type={"radio"}
-        />
-        Card
+        <RadioWrapper>
+          <Field
+            name={"payment"}
+            component={renderCheckbox}
+            value={"Card"}
+            type={"radio"}
+          />
+          Card
+        </RadioWrapper>
       </Wrap>
-      <OrderSummary icons={icons} totalPrices={totalPrices} />
+      <PaymentInputs />
+      <OrderSummary icons={icons} totalPrices={totalPrices} mobile={true} />
       <FormButton
         value={"COMPLETE ORDER"}
         type="submit"

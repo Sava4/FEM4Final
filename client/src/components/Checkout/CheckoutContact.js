@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CustomForm,
   ErrorInput,
@@ -9,6 +9,12 @@ import {
 } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
 import { FormButton } from "../Forms/FormButton/FormButton";
+import {
+  CheckBoxIcon,
+  CheckBoxIconDisable,
+  CheckboxLabel,
+  InputCheckbox
+} from "../Forms/FormCheckbox/formCheckbox.styles";
 
 export const validate = values => {
   const errors = {};
@@ -30,13 +36,6 @@ export const validate = values => {
   ) {
     errors.phone = "Invalid phone. The phone number have to start +380";
   }
-  if (!values.age) {
-    errors.age = "Required";
-  } else if (isNaN(Number(values.age))) {
-    errors.age = "Must be a number";
-  } else if (Number(values.age) < 18) {
-    errors.age = "Sorry, you must be at least 18 years old";
-  }
   return errors;
 };
 
@@ -52,8 +51,22 @@ const renderField = ({
     {touched && error && <ErrorMessage>{error}</ErrorMessage>}
   </ErrorInput>
 );
+export const renderCheckbox = ({ input, type, onClick, value }) => (
+  <CheckboxLabel>
+    <InputCheckbox type={type} value={value} {...input} onClick={onClick} />
+    <CheckBoxIcon />
+  </CheckboxLabel>
+);
+export const renderCheckboxDisable = () => (
+  <CheckboxLabel>
+    <InputCheckbox />
+    <CheckBoxIconDisable />
+  </CheckboxLabel>
+);
 
 const UserInformation = props => {
+  const [getMyself, setGetMyself] = useState(false);
+  console.log(getMyself);
   return (
     <CustomForm onSubmit={props.handleSubmit}>
       <Header align={"left"}>Contact Information</Header>
@@ -76,7 +89,11 @@ const UserInformation = props => {
         component={renderField}
       />
       <Wrapper>
-        <Field name={"getMyself"} component={"input"} type={"checkbox"} />
+        <Field
+          name={"getMyself"}
+          component={renderCheckbox}
+          type={"checkbox"}
+        />
         I'll get the order myself.
       </Wrapper>
       <Header align={"left"}>Shipping Address</Header>

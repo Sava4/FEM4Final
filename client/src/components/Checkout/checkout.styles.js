@@ -18,11 +18,16 @@ export const Header = styled.div`
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   ${props =>
     props.align === "left" &&
     css`
       margin-right: auto;
+    `}
+  ${props =>
+    props.mobile === true &&
+    css`
+      margin-top: 40px;
     `}
 `;
 export const ProductContainer = styled.div`
@@ -150,6 +155,11 @@ export const Input = styled.input`
   :focus {
     outline: none;
   }
+  ${props =>
+    props.width === "card" &&
+    css`
+      width: 45%;
+    `}
 `;
 export const ErrorMessage = styled.span`
   font-size: 10px;
@@ -170,9 +180,11 @@ export const Wrapper = styled.div`
     css`
       justify-content: space-between;
       & p {
-      font-weight: bold;
+        font-weight: bold;
       }
-      &
+      & input {
+        margin-bottom: 10px;
+      }
     `}
   ${props =>
     props.flexDirection === "column" &&
@@ -213,4 +225,13 @@ export const PagesHeader = styled.h2`
 export const Wrap = styled.div`
   margin-top: 15px;
   margin-bottom: 15px;
+`;
+export const CardWrapper = styled.div`
+  margin-top: -27px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row-reverse;
+`;
+export const RadioWrapper = styled.div`
+  display: flex;
 `;

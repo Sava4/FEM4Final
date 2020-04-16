@@ -2,6 +2,7 @@ import React from "react";
 import { CustomForm, Header, ProductContainer, Wrap } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
 import { FormButton } from "../Forms/FormButton/FormButton";
+import { PaymentInputs } from "./CheckoutPaymentCard";
 
 export const PaymentForm = props => {
   return (
@@ -27,7 +28,7 @@ export const PaymentForm = props => {
         />
         Card
       </Wrap>
-
+      <PaymentInputs />
       <FormButton
         value={"COMPLETE ORDER"}
         type="submit"
