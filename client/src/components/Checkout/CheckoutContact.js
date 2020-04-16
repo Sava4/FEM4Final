@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   CustomForm,
   ErrorInput,
@@ -10,7 +10,7 @@ import {
 import { Field, reduxForm } from "redux-form";
 import { FormButton } from "../Forms/FormButton/FormButton";
 
-export const validate = (values, props) => {
+export const validate = values => {
   const errors = {};
   if (!values.firstName) {
     errors.firstName = "Required";
@@ -45,7 +45,7 @@ const renderField = ({
   placeholder,
   type,
   value,
-  meta: { touched, error, warning }
+  meta: { touched, error }
 }) => (
   <ErrorInput>
     <Input {...input} placeholder={placeholder} type={type} value={value} />

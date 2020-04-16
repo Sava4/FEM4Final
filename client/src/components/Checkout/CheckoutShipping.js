@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Field, reduxForm } from "redux-form";
-import {
-  ButtonSubmit,
-  CustomForm,
-  Header,
-  Wrapper,
-  Location
-} from "./checkout.styles";
+import { CustomForm, Header, Wrapper, Location } from "./checkout.styles";
 import { FormButton } from "../Forms/FormButton/FormButton";
 
 export const CheckoutShipping = props => {

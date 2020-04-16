@@ -13,7 +13,6 @@ import { Spinner } from "../Spinner/Spinner";
 import { EmptyCart } from "../ShoppingBag/EmptyCart";
 import {
   CheckoutWrapper,
-  CustomForm,
   PagesHeader,
   SummaryWrapper
 } from "./checkout.styles";
@@ -22,29 +21,26 @@ import { OrderMobile } from "./OrderMobile";
 export const CheckoutForm = () => {
   const token = useSelector(state => state.login.token);
   setAuthorizationToken(token);
-  const [contactOpen, setContactOpen] = useState(true);
-  const handleToggleContact = () => setContactOpen(!contactOpen);
-  const [shippingOpen, setShippingOpen] = useState(false);
-  const handleToggleShipping = () => setShippingOpen(!shippingOpen);
-  const [paymentOpen, setPaymentOpen] = useState(false);
-  const handleTogglePayment = () => setPaymentOpen(!paymentOpen);
   const dispatch = useDispatch();
+  const [contactOpen, setContactOpen] = useState(true);
+  const [shippingOpen, setShippingOpen] = useState(false);
+  const [paymentOpen, setPaymentOpen] = useState(false);
   const [contactInformation, setContactInformation] = useState({});
   const [shippingInformation, setShippingInformation] = useState({});
   const [paymentInformation, setPaymentInformation] = useState({});
   const [isOrderFormOpen, setOrderForm] = useState(false);
-
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [totalPrices, setTotalPrices] = useState([]);
   const [isMobile, setMobile] = useState({});
+  const handleToggleContact = () => setContactOpen(!contactOpen);
+  const handleToggleShipping = () => setShippingOpen(!shippingOpen);
   const handleWindowSizeChange = () => {
     setMobile({ width: window.innerWidth });
   };
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
   }, []);
-  console.log(isMobile);
   useEffect(() => {
     setLoading(true);
     axios
@@ -70,7 +66,6 @@ export const CheckoutForm = () => {
       })
       .finally(() => setLoading(false));
   }, [token, dispatch]);
-  console.log(isMobile.width);
   const ListProduct = products.map(item => {
     return (
       <OrderItem
@@ -112,50 +107,29 @@ export const CheckoutForm = () => {
     setPaymentInformation(formData);
     setOrderForm(true);
     axios
+      .post("http://localhost:5000/orders", newOrder)
+      .then(newOrder => {
+        /*Do something with newProduct*/
+        console.log("NewOrder", newOrder);
+      })
+      .catch(err => {
+        /*Do something with error, e.g. show error to user*/
+      });
+    axios
       .delete("http://localhost:5000/cart/")
       .then(() => {
         dispatch(setServerCart([]));
       })
       .catch(err => console.error("Request Error", err));
   };
- const onClickPayment = () => {
-   axios
-       .post("http://localhost:5000/orders", newOrder)
-       .then(newOrder => {
-         /*Do something with newProduct*/
-         console.log(newOrder);
-       })
-       .catch(err => {
-         /*Do something with error, e.g. show error to user*/
-       });
- };
-  console.log("contact", contactInformation);
-  console.log("SHIPPING", shippingInformation);
-  console.log("PAYMENT", paymentInformation);
-  // const newOrder = {
-  //   customerId: "5d99ce196d40fb1b747bc5f5",
-  //   deliveryAddress: {
-  //     country: "Ukraine",
-  //     city: "Kiev",
-  //     address: "Kreshchatic Street 56//A",
-  //     postal: "01044"
-  //   },
-  //   shipping: "Kiev 50UAH",
-  //   paymentInfo: "Credit card",
-  //   status: "not shipped",
-  //   email: "saribeg@gmail.com",
-  //   mobile: "+380630000000",
-  //   letterSubject: "Thank you for order! You are welcome!",
-  //   letterHtml:
-  //     "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
-  // };
+
   const newOrder = {
-    customId: "lolol",
+    customerId: "5d99ce196d40fb1b747bc5f5",
     deliveryAddress: {
       country: "Ukraine",
       city: shippingInformation.shipping,
       location: shippingInformation.location,
-      address: contactInformation.address,
+      address: contactInformation.address
     },
     email: contactInformation.email,
     mobile: contactInformation.phone,
@@ -169,7 +143,7 @@ export const CheckoutForm = () => {
     status: "not shipped",
     letterSubject: "Thank you for order! You are welcome!",
     letterHtml:
-        "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
+      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
   };
   return cartProps.length > 0 ? (
     loading ? (
@@ -186,7 +160,6 @@ export const CheckoutForm = () => {
               icons={ListProduct}
               totalPrices={totalPrices}
               onSubmit={onSubmitPayment}
-              onClick={console.log(paymentInformation)}
             />
           </SummaryWrapper>
         </CheckoutWrapper>
@@ -198,12 +171,7 @@ export const CheckoutForm = () => {
           <SummaryWrapper>
             {contactOpen && <ReduxUserInformation onSubmit={onSubmitContact} />}
             {shippingOpen && <CheckoutShipping onSubmit={onSubmitShipping} />}
-            {paymentOpen && (
-              <ReduxPayment
-                onSubmit={onSubmitPayment}
-                onClick={console.log(paymentInformation)}
-              />
-            )}
+            {paymentOpen && <ReduxPayment onSubmit={onSubmitPayment} />}
           </SummaryWrapper>
           <SummaryWrapper>
             {" "}
