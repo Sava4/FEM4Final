@@ -13,7 +13,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
-import { Button } from "../../Buttons/button";
+import { Button } from "../../common/Button/Button";
 
 const mapStateToProps = store => ({
   filters: store.filters.menuState
