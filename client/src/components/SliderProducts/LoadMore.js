@@ -1,18 +1,29 @@
 import styles from "./Paginator.module.css";
 import cn from "classnames";
 import React, { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 export const LoadMore = ({
+  apiCategory,
   currentPage,
   productsQuantity,
   pageSize,
   onLoadMore,
-  products,
+  products,  
   parsed,
+  category,
   ...props
 }) => {
   return (
     <>
+     {/* <NavLink
+        onClick={(e) => {
+          // handleClickNext(e);
+          // onTop();
+        }}
+        to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage},${+currentPage +
+          1}&perPage=${pageSize}`}
+      > */}
       <div
         className={cn(
           {
@@ -26,7 +37,7 @@ export const LoadMore = ({
             onLoadMore(+currentPage + 1); //передаем в контейнер и загружаем нужную страницу
         }}
       >
-        loadmore
+        Load {pageSize} more products
       </div>
 
       <div
@@ -41,6 +52,7 @@ export const LoadMore = ({
           onTop();
         }}
       ></div>
+      {/* </NavLink> */}
     </>
   );
 };

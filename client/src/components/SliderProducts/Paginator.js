@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router";
 import styles from "./Paginator.module.css";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
@@ -13,6 +12,7 @@ export const Paginator = ({
   onPageChanged,
   info,
   apiCategory,
+  category,
   portionSize = 1, //количество страниц в порции
 }) => {
   let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего и номер последней страницы
@@ -21,21 +21,14 @@ export const Paginator = ({
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  const { category } = useParams();
   let apiCategory2;
   apiCategory && (apiCategory2 = apiCategory);
 
   let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
-  let [portionNumber, setPortionNumber] = useState(1);// номер порции начальный локальный стейт
-
- 
+  let [portionNumber, setPortionNumber] = useState(1);// номер порции начальный локальный стейт 
 
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1; //крайняя цифра порции слева 
   let rightPortionPageNumber = portionNumber * portionSize;//крайняя цифра порции справа
- 
-// убрать порции сделать чтобы по одной слева и справа показывало
-let [numberR, setNumberR] = useState(2); // номер порции начальный локальный стейт
-let [numberL, setNumberL] = useState(0); // номер порции начальный локальный стейт
 
 
   const handleClickNext = (e) => {

@@ -18,7 +18,7 @@ export const ProductsPagination = ({
   onToTop,
   products,
   categoryQuery,
-  apiCategory,
+  apiCategory,  
   ...props
 }) => {
   ///// игоря
@@ -80,6 +80,8 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           products={products}
+          pageSize={pageSize}
+          category={category}
         />
         <Paginator
           currentPage={currentPage}
@@ -88,6 +90,7 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           truePage={truePage}
+          category={category}
         />
       </div>
       {/* </Layout> */}
