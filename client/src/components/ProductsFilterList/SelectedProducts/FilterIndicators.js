@@ -42,11 +42,9 @@ const FilterTypeDiv = styled.div`
   width: 100%;
   flex-wrap: wrap;
   height: content;
-  margin-left: 1%
-   ${mediaMobile(`
+  margin-left: 1% ${mediaMobile(`
   margin-top: 11px;  
-`)}
- & p {
+`)} & p {
     font-size: 14px;
     margin: 0;
     color: #a1a5ad;

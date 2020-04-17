@@ -11,7 +11,7 @@ import { FiltersList } from "./FilterBar/FiltersList";
 import { setAvaliFilters } from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
-import { FilteredListProducts } from "./FilteredProducts";
+// import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
 import earrings from "./images/earrings.png";
 import bracelets from "./images/bacelets.png";
@@ -21,7 +21,7 @@ import necklaces from "./images/necklaces.png";
 // import querystring from "query-string";
 const MapStateToProps = store => ({
   filters: store.filters.selFilters,
-  selectedProd:store.productsPage.productsQuantity,
+  selectedProd: store.productsPage.productsQuantity
 });
 
 export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
@@ -45,33 +45,30 @@ export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
         });
     }, []);
 
-const background= (name)=>{
-   switch (name) {
-  case "earrings":{
-    return earrings
-  }
-  case "necklaces":{
-    return necklaces
-  }
-  case "bracelets":{
-    return bracelets
-  }
-  case "rings":{
-    return rings
-  }
-  default:
-    return null
-}
-
-}
-
-  
+    const background = name => {
+      switch (name) {
+        case "earrings": {
+          return earrings;
+        }
+        case "necklaces": {
+          return necklaces;
+        }
+        case "bracelets": {
+          return bracelets;
+        }
+        case "rings": {
+          return rings;
+        }
+        default:
+          return null;
+      }
+    };
 
     return (
       <Layout>
         <CategoriesHeader>
-          <p>{category}</p>    
-          <CategoriesHeaderImg categoryName={background(category)}/>          
+          <p>{category}</p>
+          <CategoriesHeaderImg categoryName={background(category)} />
         </CategoriesHeader>
         <IconBreadcrumbs categoryName={category} />
         <CategotiesCommon>
@@ -110,7 +107,6 @@ const CategoriesHeader = styled.div`
   justify-content: space-between;
   width: 100vw;
   height: 250px;
-  // position: relative;
   & p {
     font-size: 40px;
     color: white;
@@ -123,11 +119,11 @@ const CategoriesHeader = styled.div`
   }
 `;
 const CategoriesHeaderImg = styled.div`
- background-image: url(${props=>props.categoryName});
- height: inherit;
- width: 668px; 
- background-repeat: no-repeat;
-`
+  background-image: url(${props => props.categoryName});
+  height: inherit;
+  width: 668px;
+  background-repeat: no-repeat;
+`;
 const CategotiesCommon = styled.div`
   display: flex;
   flex-wrap: nowrap;
