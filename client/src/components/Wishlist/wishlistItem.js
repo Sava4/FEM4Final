@@ -35,12 +35,12 @@ export const WishlistItem = props => {
         <div className="product">
           <WrapperLink to={`/product-details/${props.itemNo}`}>
             <ImgWrap>
-              <ProdImg alt="" src={`/${props.img}`} />
+              <ProdImg alt="" src={`${props.img}`} />
             </ImgWrap>
           </WrapperLink>
           <ProductDescription>
             <Description>{`${props.name}`}</Description>
-            <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
+            <ArticleNo>Article no.: {props.currentPrice}</ArticleNo>
             <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
               <CloseImg src={close} />
               Remove

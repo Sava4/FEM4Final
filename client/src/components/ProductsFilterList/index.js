@@ -44,7 +44,7 @@ export const ProductFilters = props => {
 
         <SelectedProducts>
           {/* <p>{`Selected products ( ${nambertOfFilterdItems} )`}</p> */}
-          <FilterIndicators />
+          {/* <FilterIndicators /> */}
           {/* <FilteredListProducts
             category={category}
             setNambertOfFilterdItems={setNambertOfFilterdItems}
