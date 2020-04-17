@@ -24,7 +24,7 @@ import {
   Vendor,
   Name
 } from "./productDetails.styles";
-import {Button} from "../common/Button/Button";
+import { Button } from "../common/Button/Button";
 
 export const ProductDetails = () => {
   const { id } = useParams();

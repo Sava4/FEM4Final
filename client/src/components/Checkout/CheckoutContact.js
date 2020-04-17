@@ -3,7 +3,7 @@ import { CustomForm, Header, RadioWrapper, Wrapper } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
 import { validate } from "./validate";
 import { renderCheckbox, renderField } from "./customFormElements";
-import {Button} from "../common/Button/Button";
+import { Button } from "../common/Button/Button";
 
 const UserInformation = props => {
   return (

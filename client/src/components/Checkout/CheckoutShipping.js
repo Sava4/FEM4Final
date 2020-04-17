@@ -9,7 +9,7 @@ import {
 } from "./checkout.styles";
 import { renderCheckboxDisable, renderCheckbox } from "./customFormElements";
 import { validate } from "./validate";
-import {Button} from "../common/Button/Button";
+import { Button } from "../common/Button/Button";
 
 export const CheckoutShipping = props => {
   return <CheckoutShippingForm onSubmit={props.onSubmit} />;

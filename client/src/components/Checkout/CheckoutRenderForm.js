@@ -4,7 +4,7 @@ import { CheckoutShipping } from "./CheckoutShipping";
 import { ReduxUserInformation } from "./CheckoutContact";
 import { ReduxPayment } from "./CheckoutPaymentForm";
 import v4 from "uuid/dist/esm-browser/v4";
-import {setAuthorizationToken} from "../../store/login";
+import { setAuthorizationToken } from "../../store/login";
 import { OrderIcon, OrderItem, OrderSummary } from "./OrderSummary";
 import axios from "axios";
 import { setServerCart } from "../../store/shopping-cart";

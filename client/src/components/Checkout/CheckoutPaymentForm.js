@@ -10,7 +10,7 @@ import { Field, reduxForm } from "redux-form";
 import { PaymentInputs } from "./CheckoutPaymentCard";
 import { renderCheckbox } from "./customFormElements";
 import { validate } from "./validate";
-import {Button} from "../common/Button/Button";
+import { Button } from "../common/Button/Button";
 
 export const CheckoutPaymentForm = props => {
   return (

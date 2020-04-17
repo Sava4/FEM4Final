@@ -16,7 +16,7 @@ import { OrderSummary } from "./OrderSummary";
 import { renderCheckbox, renderCheckboxDisable } from "./customFormElements";
 import { validate } from "./validate";
 import { PaymentInputs } from "./CheckoutPaymentCard";
-import {Button} from "../common/Button/Button";
+import { Button } from "../common/Button/Button";
 
 const renderField = ({
   input,
