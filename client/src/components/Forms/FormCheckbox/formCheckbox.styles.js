@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import checkBox from "./checkBox.png";
 import checkBoxChecked from "./checkBoxChecked.png";
 import checkBoxDisable from "./checkBoxDisable.png";
@@ -17,6 +17,12 @@ export const CheckboxLabel = styled.label`
   ${mediaMobile(`
   align-self: flex-start;
   `)}
+  ${props =>
+    props.marginBottom === "0" &&
+    css`
+      margin-bottom: 0;
+      letter-spacing: 0;
+    `}
 `;
 
 export const CheckBoxIcon = styled.span`

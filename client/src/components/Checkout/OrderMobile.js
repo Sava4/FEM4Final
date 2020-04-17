@@ -14,11 +14,8 @@ import {
 } from "./checkout.styles";
 import { FormButton } from "../Forms/FormButton/FormButton";
 import { OrderSummary } from "./OrderSummary";
-import {
-  renderCheckbox,
-  renderCheckboxDisable,
-  validate
-} from "./CheckoutContact";
+import { renderCheckbox, renderCheckboxDisable } from "./customFormElements";
+import { validate } from "./validate";
 import { PaymentInputs } from "./CheckoutPaymentCard";
 
 const renderField = ({
@@ -26,7 +23,7 @@ const renderField = ({
   placeholder,
   type,
   value,
-  meta: { touched, error, warning }
+  meta: { touched, error }
 }) => (
   <ErrorInput>
     <Input {...input} placeholder={placeholder} type={type} value={value} />
@@ -35,7 +32,6 @@ const renderField = ({
 );
 
 const OrderInformation = props => {
-  const [isMobile, setMobile] = useState({});
   const [location, setLocation] = useState(false);
   const { icons, totalPrices } = props;
   const Addresses = [
@@ -44,13 +40,6 @@ const OrderInformation = props => {
     "Kyiv, Bandery Avenue, Gorodok Gallery, ZARINA Store",
     "Kyiv, Berkovetska Street, Lavina Mall, ZARINA Store"
   ];
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-  }, []);
-  const handleWindowSizeChange = () => {
-    setMobile({ width: window.innerWidth });
-  };
   const giveLocation = () => {
     setLocation(true);
   };
@@ -68,7 +57,7 @@ const OrderInformation = props => {
               component={renderCheckbox}
               type={"radio"}
             />
-            {item}{" "}
+            <span>{item}</span>
           </RadioWrapper>
         </Location>
       </Wrapper>
@@ -87,7 +76,7 @@ const OrderInformation = props => {
               disabled={true}
               checked={false}
             />
-            {item}{" "}
+            <span>{item}</span>
           </RadioWrapper>
         </Location>
       </Wrapper>
@@ -100,19 +89,19 @@ const OrderInformation = props => {
       <Field
         name={"email"}
         type={"text"}
-        placeholder={"Email*"}
+        placeholder={"Email *"}
         component={renderField}
       />
       <Field
         name={"firstName"}
         type={"text"}
-        placeholder={"First Name*"}
+        placeholder={"First Name *"}
         component={renderField}
       />
       <Field
         name={"lastName"}
         type={"text"}
-        placeholder={"Last Name*"}
+        placeholder={"Last Name *"}
         component={renderField}
       />
       <Wrapper>
@@ -127,19 +116,19 @@ const OrderInformation = props => {
       <Field
         name={"city"}
         type={"text"}
-        placeholder={"City*"}
+        placeholder={"City"}
         component={renderField}
       />
       <Field
         name={"address"}
         type={"text"}
-        placeholder={"Address*"}
+        placeholder={"Address"}
         component={renderField}
       />
       <Field
         name={"phone"}
         type={"text"}
-        placeholder={"Phone*"}
+        placeholder={"Phone *"}
         component={renderField}
       />
       <Header align={"left"}>Shipping Method</Header>
@@ -152,8 +141,8 @@ const OrderInformation = props => {
             type={"radio"}
             onClick={takeLocation}
           />
-          Delivery within Kyiv{" "}
-        </RadioWrapper>{" "}
+          <span> Delivery within Kyiv </span>
+        </RadioWrapper>
         <p>Free</p>
       </Wrapper>
       <Wrapper justifyContent={"space-between"}>
@@ -166,7 +155,7 @@ const OrderInformation = props => {
             onClick={takeLocation}
           />
           Delivery within Ukraine
-        </RadioWrapper>{" "}
+        </RadioWrapper>
         <p>Free</p>
       </Wrapper>
       <Wrapper justifyContent={"space-between"}>
@@ -178,19 +167,17 @@ const OrderInformation = props => {
             type={"radio"}
             onClick={giveLocation}
           />
-          Pick up location
-        </RadioWrapper>{" "}
+          <span> Pick up location </span>
+        </RadioWrapper>
         <p>Free</p>
       </Wrapper>
       {location ? (
         <div>
-          {" "}
           <Location header={"header"}>Choose your location</Location>
           {ArrayLocation}
         </div>
       ) : (
         <div>
-          {" "}
           <Location header={"header"} disable={"disable"}>
             Choose your location
           </Location>
@@ -219,7 +206,7 @@ const OrderInformation = props => {
             value={"Card"}
             type={"radio"}
           />
-          Card
+          <span> Card </span>
         </RadioWrapper>
       </Wrap>
       <PaymentInputs />

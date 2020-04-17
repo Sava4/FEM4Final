@@ -1,12 +1,7 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import setAuthorizationToken, { logoutAction } from "../../store/login";
-import axios from "axios";
-import { setServerCart } from "../../store/shopping-cart";
-import { v4 } from "uuid";
+import React, { Fragment } from "react";
+
 import { GiftCardInput } from "./GiftCardForm";
 import {
-  SummaryWrapper,
   Header,
   ProductContainer,
   Name,
@@ -15,8 +10,7 @@ import {
   ItemContainer,
   Total,
   TotalContainer,
-  WrapperLink,
-  CheckoutWrapper
+  WrapperLink
 } from "./checkout.styles";
 
 export const OrderSummary = props => {

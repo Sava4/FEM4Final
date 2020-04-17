@@ -5,27 +5,14 @@ import {
   Header,
   Wrapper,
   Location,
-  RadioWrapper,
-  ErrorMessage,
-  ErrorInput
+  RadioWrapper
 } from "./checkout.styles";
 import { FormButton } from "../Forms/FormButton/FormButton";
-import { renderCheckboxDisable, renderCheckbox } from "./CheckoutContact";
-import {
-  CheckBoxIcon,
-  CheckboxLabel,
-  InputCheckbox
-} from "../Forms/FormCheckbox/formCheckbox.styles";
+import { renderCheckboxDisable, renderCheckbox } from "./customFormElements";
+import { validate } from "./validate";
 
 export const CheckoutShipping = props => {
   return <CheckoutShippingForm onSubmit={props.onSubmit} />;
-};
-export const validate = values => {
-  const errors = {};
-  if (!values.shipping) {
-    errors.shipping = "Required";
-  }
-  return errors;
 };
 
 const Addresses = [
@@ -56,7 +43,7 @@ const ShippingInformation = props => {
               component={renderCheckbox}
               type={"radio"}
             />
-            {item}
+            <span>{item}</span>
           </RadioWrapper>
         </Location>
       </Wrapper>
@@ -75,7 +62,7 @@ const ShippingInformation = props => {
               disabled={true}
               checked={false}
             />
-            {item}{" "}
+            <span>{item}</span>
           </RadioWrapper>
         </Location>
       </Wrapper>
@@ -94,7 +81,7 @@ const ShippingInformation = props => {
             type={"radio"}
             onClick={takeLocation || reset}
           />
-          Delivery within Kyiv
+          <span> Delivery within Kyiv </span>
         </RadioWrapper>
         <p>Free</p>
       </Wrapper>
@@ -107,7 +94,7 @@ const ShippingInformation = props => {
             type={"radio"}
             onClick={takeLocation || reset}
           />
-          Delivery within Ukraine
+          <span> Delivery within Ukraine </span>
         </RadioWrapper>
         <p>Free</p>
       </Wrapper>
@@ -120,7 +107,7 @@ const ShippingInformation = props => {
             type={"radio"}
             onClick={giveLocation}
           />
-          Pick up location
+          <span> Pick up location </span>
         </RadioWrapper>
         <p>Free</p>
       </Wrapper>

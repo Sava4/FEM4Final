@@ -175,6 +175,9 @@ export const Wrapper = styled.div`
   display: flex;
   margin-top: -15px;
   margin-bottom: 35px;
+  & span {
+  margin-top: 3px;
+  };
   ${props =>
     props.justifyContent === "space-between" &&
     css`
@@ -228,10 +231,16 @@ export const Wrap = styled.div`
 `;
 export const CardWrapper = styled.div`
   margin-top: -27px;
+  margin-left: 95%;
+  width: 5%;
   margin-bottom: 25px;
   display: flex;
-  flex-direction: row-reverse;
 `;
 export const RadioWrapper = styled.div`
   display: flex;
+  align-items: center;
+  height: 13px;
+  & span {
+    padding-top: -2px;
+  }
 `;

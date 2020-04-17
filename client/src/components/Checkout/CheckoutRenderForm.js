@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CheckoutShipping } from "./CheckoutShipping";
 import { ReduxUserInformation } from "./CheckoutContact";
-import { ReduxPayment } from "./PaymentForm";
+import { ReduxPayment } from "./CheckoutPaymentForm";
 import v4 from "uuid/dist/esm-browser/v4";
 import setAuthorizationToken from "../../store/login";
 import { OrderIcon, OrderItem, OrderSummary } from "./OrderSummary";
