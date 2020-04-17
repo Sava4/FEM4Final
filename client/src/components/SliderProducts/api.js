@@ -6,7 +6,7 @@ const instance = axios.create({
 
 export const productsAPI = {
   getProducts(currentPage, pageSize, categoryQuery, apiCategory) {
-    console.log(currentPage, pageSize, categoryQuery, apiCategory);
+    // console.log(currentPage, pageSize, categoryQuery, apiCategory);
 
     return instance
       .get(

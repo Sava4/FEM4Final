@@ -21,7 +21,7 @@ import {
 } from "./users-selectors";
 
 const ProductsContainer = props => {
-  console.log(props);
+  // console.log(props);
   const { currentPage, pageSize } = props;
 
   let location = useLocation();
