@@ -18,14 +18,13 @@ import {
   Price,
   PriceWrapper,
   Wrapper,
-  Add,
   Details,
   UL,
   LI,
   Vendor,
   Name
 } from "./productDetails.styles";
-import { FormButton } from "../Forms/FormButton/FormButton";
+import {Button} from "../common/Button/Button";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -196,7 +195,7 @@ const Details1 = props => {
           <Price>{props.previousPrice}</Price>
           <FavoriteButton />
         </PriceWrapper>
-        <FormButton value={"Add to bag"} onClick={add} />
+        <Button value={"Add to bag"} onClick={add} />
         <Details>Details</Details>
         <UL>
           <LI>{`Gemstone: ${props.gemstone}`} </LI>

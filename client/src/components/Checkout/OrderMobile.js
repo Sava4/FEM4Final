@@ -12,11 +12,11 @@ import {
   Wrap,
   Wrapper
 } from "./checkout.styles";
-import { FormButton } from "../Forms/FormButton/FormButton";
 import { OrderSummary } from "./OrderSummary";
 import { renderCheckbox, renderCheckboxDisable } from "./customFormElements";
 import { validate } from "./validate";
 import { PaymentInputs } from "./CheckoutPaymentCard";
+import {Button} from "../common/Button/Button";
 
 const renderField = ({
   input,
@@ -211,7 +211,7 @@ const OrderInformation = props => {
       </Wrap>
       <PaymentInputs />
       <OrderSummary icons={icons} totalPrices={totalPrices} mobile={true} />
-      <FormButton
+      <Button
         value={"COMPLETE ORDER"}
         type="submit"
         width={"100%"}

@@ -5,7 +5,7 @@ import {
   CheckBoxIconDisable,
   CheckboxLabel,
   InputCheckbox
-} from "../Forms/FormCheckbox/formCheckbox.styles";
+} from "../common/Checkbox/checkbox.styles";
 
 export const renderField = ({
   input,

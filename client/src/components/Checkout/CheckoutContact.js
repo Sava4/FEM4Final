@@ -1,9 +1,9 @@
 import React from "react";
 import { CustomForm, Header, RadioWrapper, Wrapper } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
-import { FormButton } from "../Forms/FormButton/FormButton";
 import { validate } from "./validate";
 import { renderCheckbox, renderField } from "./customFormElements";
+import {Button} from "../common/Button/Button";
 
 const UserInformation = props => {
   return (
@@ -56,7 +56,7 @@ const UserInformation = props => {
         placeholder={"Phone *"}
         component={renderField}
       />
-      <FormButton value={"CONTINUE TO SHIPPING"} type="submit" />
+      <Button value={"CONTINUE TO SHIPPING"} type="submit" />
     </CustomForm>
   );
 };

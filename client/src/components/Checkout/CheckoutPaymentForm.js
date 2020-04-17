@@ -7,10 +7,10 @@ import {
   Wrap
 } from "./checkout.styles";
 import { Field, reduxForm } from "redux-form";
-import { FormButton } from "../Forms/FormButton/FormButton";
 import { PaymentInputs } from "./CheckoutPaymentCard";
 import { renderCheckbox } from "./customFormElements";
 import { validate } from "./validate";
+import {Button} from "../common/Button/Button";
 
 export const CheckoutPaymentForm = props => {
   return (
@@ -42,7 +42,7 @@ export const CheckoutPaymentForm = props => {
       </Wrap>
 
       <PaymentInputs />
-      <FormButton
+      <Button
         value={"COMPLETE ORDER"}
         type="submit"
         width={"100%"}

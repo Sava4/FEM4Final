@@ -7,9 +7,9 @@ import {
   Location,
   RadioWrapper
 } from "./checkout.styles";
-import { FormButton } from "../Forms/FormButton/FormButton";
 import { renderCheckboxDisable, renderCheckbox } from "./customFormElements";
 import { validate } from "./validate";
+import {Button} from "../common/Button/Button";
 
 export const CheckoutShipping = props => {
   return <CheckoutShippingForm onSubmit={props.onSubmit} />;
@@ -124,7 +124,7 @@ const ShippingInformation = props => {
           {ArrayLocationDisable}
         </div>
       )}
-      <FormButton value={"CONTINUE TO PAYMENT"} type="submit" />
+      <Button value={"CONTINUE TO PAYMENT"} type="submit" />
     </CustomForm>
   );
 };

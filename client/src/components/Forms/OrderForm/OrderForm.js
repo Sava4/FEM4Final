@@ -3,9 +3,9 @@ import { Modal } from "../../Modal/Modal";
 import arrow from "./arrow.png";
 import { useHistory } from "react-router";
 import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
-import { FormButton } from "../FormButton/FormButton";
 import { Wrapper } from "../../Checkout/checkout.styles";
 import styled from "styled-components";
+import Button from "@material-ui/core/Button";
 
 export const OrderForm = props => {
   const { isModalOpen, onClose, email, icons } = props;
@@ -30,7 +30,7 @@ export const OrderForm = props => {
         We sent an email to <u> {email.toLowerCase()} </u> with your order
         details.
       </CreateAccountSubtitle>
-      <FormButton
+      <Button
         width={"90%"}
         value={"Go back to shopping"}
         onClick={handleClickBack}
