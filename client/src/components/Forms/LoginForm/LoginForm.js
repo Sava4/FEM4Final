@@ -11,9 +11,9 @@ import {
   FormRegisterSubtitle
 } from "./loginForm.styles";
 
-import { FormButton } from "../FormButton/FormButton";
+import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
-import { Checkbox } from "../FormCheckbox/FormCheckbox";
+import { Checkbox } from "../../common/Checkbox/Checkbox";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { InputPassword } from "../InputPassword/InputPassword";
 import { loginAction } from "../../../store/login";
@@ -58,7 +58,7 @@ export const LoginForm = props => {
           <Checkbox onClick={rememberMe}>
             <CheckboxText>Remember me</CheckboxText>
           </Checkbox>
-          <FormButton
+          <Button
             value={"Log in"}
             onClick={onSubmit}
             disabled={!emailValidation || !passwordValidation}
@@ -72,7 +72,7 @@ export const LoginForm = props => {
             faster, store multiple shipping addresses, view and track orders,
             and perform many other operations.
           </FormRegisterSubtitle>
-          <FormButton value={"Register"} onClick={onRegister} />
+          <Button value={"Register"} onClick={onRegister} />
         </FormRegister>
       </FormWrapper>
     </Modal>

@@ -18,7 +18,7 @@ import {
 } from "./registerForm.styles";
 
 import { GoBackImage } from "../OrderForm/orderForm.styles";
-import { FormButton } from "../FormButton/FormButton";
+import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
 
 export const RegisterForm = props => {
@@ -119,7 +119,7 @@ export const RegisterForm = props => {
             </RightContent>
           </ContentWrapper>
           <FormButtonWrapper>
-            <FormButton value="Register" onClick={onChange} />
+            <Button value="Register" onClick={onChange} />
             <GoBackWrapper onClick={onLogin}>
               <GoBackImage />
               <GoBackText>Go back to Login</GoBackText>
