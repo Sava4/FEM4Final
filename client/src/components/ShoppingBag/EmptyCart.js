@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
 
 import diamond from "./diamond.png";
-import { FormButton } from "../Forms/FormButton/FormButton";
+import { Button } from "../common/Button/Button";
 
 export const EmptyCart = props => {
   const history = useHistory();
@@ -13,7 +13,7 @@ export const EmptyCart = props => {
       <DiamondImg src={diamond} />
       <Text>{props.text}</Text>
       <FormButtonWrap onClick={() => history.push("/products")}>
-        <FormButton value={"Go Back To Shopping"} />
+        <Button value={"Go Back To Shopping"} />
       </FormButtonWrap>
     </>
   );

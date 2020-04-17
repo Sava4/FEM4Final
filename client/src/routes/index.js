@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { ProductFilters } from "../components/ProductsFilterList";
@@ -15,7 +15,7 @@ import { Checkout } from "../components/Checkout";
 import { PersonalDetails } from "../components/PersonalDetails/PersonalDetails";
 
 export const Routes = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector(state => state.user);
   return user ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
@@ -27,7 +27,11 @@ export const Routes = () => {
       <Route exact path="/account/favorites" component={Wishlist} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/account/checkout" component={Checkout} />
-      <Route exact path="/account/personal-details" component={PersonalDetails}/>
+      <Route
+        exact
+        path="/account/personal-details"
+        component={PersonalDetails}
+      />
       <Route exact path="/logout" component={ProductFilters} />
       <Route exact path="/404error" component={Error} />
       <Route exact path="/pages/:url" component={StaticPageView} />

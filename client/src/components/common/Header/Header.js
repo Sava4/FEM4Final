@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {useHistory} from "react-router";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import {
   Container,
   Line,
@@ -30,15 +30,15 @@ export const HeaderContent = () => {
 
   return (
     <Container>
-      <Line/>
+      <Line />
       <HeaderWrapper>
         <NavState>
-          <MainMenu/>
+          <MainMenu />
         </NavState>
-        <Search/>
-        <Logo/>
+        <Search />
+        <Logo />
         <HeaderIconWrapper>
-          <Login onClick={onLoginClick}/>
+          <Login onClick={onLoginClick} />
           {isModalOpen && (
             <LoginForm
               onRegister={onRegister}
@@ -51,13 +51,13 @@ export const HeaderContent = () => {
               onLogin={GoBackToLogin}
             />
           )}
-          <Favorites/>
-          <ShoppingBag/>
+          <Favorites />
+          <ShoppingBag />
         </HeaderIconWrapper>
       </HeaderWrapper>
 
       <Categories>
-        <Navigation/>
+        <Navigation />
       </Categories>
     </Container>
   );

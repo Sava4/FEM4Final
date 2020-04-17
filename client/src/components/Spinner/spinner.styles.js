@@ -4,7 +4,6 @@ export const LoaderWrapper = styled.div`
   margin: 0 auto;
   width: 70px;
   height: 70px;
-  display: inline-block;
   overflow: hidden;
 `;
 

@@ -79,6 +79,10 @@ export const Input = styled.input`
     color: #80858d;
   }
 
+  :focus::placeholder {
+    transform: translateY(-10px);
+  }
+
   :focus {
     outline: none;
   }

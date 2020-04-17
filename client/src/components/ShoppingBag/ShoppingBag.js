@@ -12,7 +12,7 @@ import { logoutAction } from "../../store/login";
 
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem";
-import { FormButton } from "../Forms/FormButton/FormButton";
+import { Button } from "../common/Button/Button";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);
@@ -157,7 +157,7 @@ export const ShoppingBag = () => {
                   <div>{totalInCart.toLocaleString("de-CH")} UAH</div>
                 </GrandTotalWrap>
                 <CheckoutWrap onClick={() => history.push("/account/checkout")}>
-                  <FormButton value={"CHECKOUT"} />
+                  <Button value={"CHECKOUT"} />
                 </CheckoutWrap>
               </BagTotals>
             </Cart>

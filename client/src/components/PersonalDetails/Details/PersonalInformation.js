@@ -1,9 +1,11 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import {FormButton} from "../../Forms/FormButton/FormButton";
-import {Input} from "../../Forms/RegisterForm/registerForm.styles";
+import { Button } from "../../common/Button/Button";
+import { Input } from "../../common/Input/Input";
+import arrow from "./dropdownArrow.png";
+import edit from "./edit.png";
 
 export const PersonalInformation = () => {
   const user = useSelector(state => state.user);
@@ -15,15 +17,31 @@ export const PersonalInformation = () => {
   }
   const year = yearsArray.map(year => {
     return (
-      <Options key={year} value={year}>{year}</Options>
-    )
+      <Options key={year} value={year}>
+        {year}
+      </Options>
+    );
   });
 
-  const month = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"].map(month => {
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ].map(month => {
     return (
-      <Options key={month} value={month}>{month}</Options>
-    )
+      <Options key={month} value={month}>
+        {month}
+      </Options>
+    );
   });
 
   const daysArray = [];
@@ -32,39 +50,62 @@ export const PersonalInformation = () => {
   }
   const days = daysArray.map(day => {
     return (
-      <Options key={day} value={day}>{day}</Options>
-    )
+      <Options key={day} value={day}>
+        {day}
+      </Options>
+    );
   });
 
   return (
     <Details>
-      <Description>In your Personal Account you can access and modify your personal details in order to facilitate your
-        future purchases.
-        <br/>If you want to update your details, please edit the correspondent field and then save changes.
+      <Description>
+        In your Personal Account you can access and modify your personal details
+        in order to facilitate your future purchases.
+        <br />
+        If you want to update your details, please edit the correspondent field
+        and then save changes.
       </Description>
       <InputWrapper>
-        <Input type="text" placeholder={"First Name *"} value={user.firstName}/>
-        <Input type="text" placeholder={"Last Name *"} value={user.lastName}/>
-        <Input type="email" placeholder={"Email *"} value={user.email}/>
-        <Input type="tel" placeholder={"Phone number"} value={user.phone}/>
+        <Holder>
+          <Input type="text" label="First Name *" value={user.firstName} />
+          <Edit />
+        </Holder>
+        <Holder>
+          <Input type="text" label="Last Name *" value={user.lastName} />
+          <Edit />
+        </Holder>
+        <Holder>
+          <Input type="email" label="Email" value={user.email} />
+          <Edit />
+        </Holder>
+        <Holder>
+          <Input type="tel" label="Phone" value={user.phone} />
+          <Edit />
+        </Holder>
         <Birthday>
           <Select>
-            <Options selected disabled>Month</Options>
+            <Options selected disabled>
+              Month
+            </Options>
             {month}
           </Select>
           <Select>
-            <Options selected disabled>Day</Options>
+            <Options selected disabled>
+              Day
+            </Options>
             {days}
           </Select>
           <Select>
-            <Options selected disabled>Year</Options>
+            <Options selected disabled>
+              Year
+            </Options>
             {year}
           </Select>
         </Birthday>
-        <FormButton value={"Save Changes"}/>
+        <Button value={"Save Changes"} />
       </InputWrapper>
     </Details>
-  )
+  );
 };
 
 export const Details = styled.div`
@@ -94,28 +135,38 @@ export const Birthday = styled.div`
 `;
 
 export const Select = styled.select`
-  //width: 100px;
-  //padding-bottom: 5px;
-  //font-size: 14px;
-  //letter-spacing: .4px;
-  //border: none;
-  //background: none;
-  //outline: none;
+  width: 100px;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-image: url(${arrow});
   background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 5px;
-  border: 1px solid #dfdfdf;
-  border-radius: 2px;
-  margin-right: 2rem;
-  padding: 1rem;
-  padding-right: 2rem;
+  background-size: 14px;
+  border: none;
+  border-bottom: 1px solid #80858d;
+  border-radius: 0;
+  padding-bottom: 5px;
 `;
 
-export const Options = styled.option`
-  
-`
+export const Options = styled.option``;
 
+export const Holder = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+export const Edit = styled.div`
+  width: 20px;
+  height: 20px;
+  background-image: url(${edit});
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  top: 13px;
+`;
