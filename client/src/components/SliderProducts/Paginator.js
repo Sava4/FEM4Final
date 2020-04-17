@@ -15,7 +15,7 @@ export const Paginator = ({
   apiCategory,
   portionSize = 3, //количество страниц в порции
 }) => {
-  let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего
+  let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего и номер последней страницы
 
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
@@ -25,17 +25,18 @@ export const Paginator = ({
   let apiCategory2;
   apiCategory && (apiCategory2 = apiCategory);
 
-  let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
-  let [portionNumber, setPortionNumber] = useState(1);// номер порции начальный локальный стейт
-  let [portionNumberR, setPortionNumberR] = useState(1); // номер порции начальный локальный стейт
-  let [portionNumberL, setPortionNumberL] = useState(0); // номер порции начальный локальный стейт
-  
+  // let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
+  // let [portionNumber, setPortionNumber] = useState(1);// номер порции начальный локальный стейт
 
-  let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
-  let rightPortionPageNumber = portionNumber * portionSize;
+ 
 
-  //   console.log(leftPortionPageNumber )
-  //  console.log(rightPortionPageNumber )
+  // let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1; //крайняя цифра порции слева 
+  // let rightPortionPageNumber = portionNumber * portionSize;//крайняя цифра порции справа
+ 
+// убрать порции сделать чтобы по одной слева и справа показывало
+let [numberR, setNumberR] = useState(2); // номер порции начальный локальный стейт
+let [numberL, setNumberL] = useState(0); // номер порции начальный локальный стейт
+
 
   const handleClickNext = (e) => {
     +currentPage == +pagesCount && e.preventDefault();
@@ -53,7 +54,7 @@ export const Paginator = ({
       )}
 
 {/* prev стрелка < */}
-      <NavLink
+      {/* <NavLink
         onClick={(e) => {
           handleClickPrev(e);
           onTop();
@@ -61,11 +62,10 @@ export const Paginator = ({
         to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage -
           1}&perPage=${pageSize}`}
       >
-        {portionNumber > 1 &&
-          currentPage < leftPortionPageNumber &&
-          setPortionNumber(portionNumber - 1)
-          // setPortionNumberR(portionNumberR)
-          }
+        {+currentPage > 2 &&         
+          (setNumberL(+currentPage - 2),
+          setNumberR(+currentPage))
+                   }
         <span
           className={cn(
             {
@@ -76,7 +76,7 @@ export const Paginator = ({
             styles.prev
           )}
         ></span>
-      </NavLink>
+      </NavLink> */}
 
 {/* первая страница */}
       <NavLink
@@ -102,11 +102,11 @@ export const Paginator = ({
 
 {/* обычные страницы */}
       {pages
-        .filter(
-          (pageNumber) =>
-            pageNumber >= leftPortionPageNumber &&
-            pageNumber <= rightPortionPageNumber
-        )
+        // .filter(
+        //   (pageNumber) =>
+        //     pageNumber >= leftPortionPageNumber &&
+        //     pageNumber <= rightPortionPageNumber
+        // )
         .map((pageNumber) => {
           return (
             <NavLink
@@ -157,7 +157,7 @@ export const Paginator = ({
       </NavLink>
 
 {/* next стрелка > */}
-      <NavLink
+      {/* <NavLink
         onClick={(e) => {
           handleClickNext(e);
           onTop();
@@ -165,9 +165,10 @@ export const Paginator = ({
         to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage +
           1}&perPage=${pageSize}`}
       >
-        {portionCount > portionNumber &&
-          currentPage > rightPortionPageNumber &&
-          setPortionNumber(portionNumber + 1)}
+{+currentPage < +pagesCount &&         
+          (setNumberL(+currentPage),
+          setNumberR(+currentPage+2))
+                   }      
         <span
           className={cn(
             {
@@ -178,7 +179,9 @@ export const Paginator = ({
             styles.next
           )}
         ></span>
-      </NavLink>
+      </NavLink> */}
+
+      
       {/* <span style={{ margin: "40px" }}>
         товаров {productsQuantity} страниц {pagesCount}
       </span> */}
