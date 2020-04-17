@@ -27,41 +27,16 @@ export const FormSubtitle = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+  width: 50%;
   display: flex;
+  justify-content: space-around;
   margin-bottom: 100px;
   margin-top: 70px;
 
   ${mediaMobile(`
   width: 80%;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 40px;
   `)}
-`;
-
-export const ButtonCheckout = styled.input`
-  padding: 18px 70px;
-  margin-left: 22px;
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: #002d50;
-  color: white;
-  border: none;
-  cursor: pointer;
-
-  :focus {
-    outline: none;
-  }
-
-  ${mediaMobile(`
-  margin-bottom: 15px;
-  margin-left: 0;
-  `)}
-`;
-
-export const ButtonBackToShopping = styled(ButtonCheckout)`
-  padding: 18px 22px;
-  background: white;
-  color: #002d50;
-  border: 1px solid #002d50;
 `;

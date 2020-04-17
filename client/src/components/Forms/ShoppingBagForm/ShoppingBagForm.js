@@ -1,13 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Modal } from "../../Modal/Modal";
+import { Button } from "../../common/Button/Button";
 import {
   FormWrapper,
   FormTitle,
   FormSubtitle,
-  ButtonWrapper,
-  ButtonCheckout,
-  ButtonBackToShopping
+  ButtonWrapper
 } from "./shoppingBagForm.styles";
 
 export const ShoppingBagForm = props => {
@@ -20,15 +19,18 @@ export const ShoppingBagForm = props => {
         <FormTitle>Shopping Bag</FormTitle>
         <FormSubtitle>You have a new item in your shopping bag.</FormSubtitle>
         <ButtonWrapper>
-          <ButtonCheckout
+          <Button
             onClick={() => history.push("/account/shopping-bag")}
             type="button"
             value="CHECKOUT"
+            width={"228px"}
           />
-          <ButtonBackToShopping
+          <Button
+            secondary
             type="button"
             onClick={onClose}
             value="GO BACK TO SHOPPING"
+            width={"228px"}
           />
         </ButtonWrapper>
       </FormWrapper>

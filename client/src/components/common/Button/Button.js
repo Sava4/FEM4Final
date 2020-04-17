@@ -1,7 +1,7 @@
 import React from "react";
-import { InputWrapper, Input } from "./formButtom.styles";
+import { InputWrapper, Input } from "./button.styles";
 
-export const FormButton = props => {
+export const Button = props => {
   return (
     <InputWrapper width={props.width}>
       <Input

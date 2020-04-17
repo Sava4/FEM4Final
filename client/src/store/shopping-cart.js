@@ -1,5 +1,5 @@
 import { logoutAction } from "./login";
-import setAuthorizationToken from "./login";
+import { setAuthorizationToken } from "./login";
 import axios from "axios";
 
 const ADD_LOC_SHOPPING_CART = "ADD_LOC_SHOPPING_CART";
