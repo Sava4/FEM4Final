@@ -20,6 +20,7 @@ import { OrderMobile } from "./OrderMobile";
 
 export const CheckoutForm = () => {
   const token = useSelector(state => state.login.token);
+  const user = useSelector(state => state.user);
   setAuthorizationToken(token);
   const dispatch = useDispatch();
   const [contactOpen, setContactOpen] = useState(true);
@@ -169,7 +170,8 @@ export const CheckoutForm = () => {
         <PagesHeader>CHECKOUT</PagesHeader>
         <CheckoutWrapper>
           <SummaryWrapper>
-            {contactOpen && <ReduxUserInformation onSubmit={onSubmitContact} />}
+            {contactOpen && <ReduxUserInformation onSubmit={onSubmitContact}
+                                                  initialValues={{firstName: user.firstName, lastName: user.lastName, email: user.email}}/>}
             {shippingOpen && <CheckoutShipping onSubmit={onSubmitShipping} />}
             {paymentOpen && <ReduxPayment onSubmit={onSubmitPayment} />}
           </SummaryWrapper>
