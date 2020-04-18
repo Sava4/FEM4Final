@@ -1,3 +1,10 @@
+const AVAIL_FILT = "AVAIL_FILT";
+
+const avaliFilters = payload => ({
+  type: AVAIL_FILT,
+  payload
+});
+
 const SET_IS_SHOWN = "SET_IS_SHOWN";
 
 const togleShown = payload => ({
@@ -12,6 +19,12 @@ const deleteFilter = payload => ({
   payload
 });
 
+const CLEAR_FILTERS = "CLEAR_FILTERS";
+
+const clearFilters = () => ({
+  type: CLEAR_FILTERS
+});
+
 const SET_CHECKED_FILTERS = "SET_CHECKED_FILTERS";
 
 const setCheckFilter = payload => ({
@@ -19,7 +32,14 @@ const setCheckFilter = payload => ({
   payload
 });
 
+const PRICE_RANGE = "PRICE_RANGE";
+const priceRange = payload => ({
+  type: PRICE_RANGE,
+  payload
+});
+
 const initialState = {
+  availFilters: [],
   selFilters: {
     collection: [],
     metal: [],
@@ -28,24 +48,45 @@ const initialState = {
     gemstone_color: []
   },
   menuState: {
+    price: false,
     collection: false,
     metal: false,
     metal_color: false,
     gemstone: false,
     gemstone_color: false
   },
-  lowPriсe: null,
-  hightPrice: null
+  priceRange: {
+    lowPriсe: null,
+    hightPrice: null
+  }
 };
 
 export function filtersReduser(store = initialState, { type, payload }) {
   switch (type) {
+    case AVAIL_FILT: {
+      return {
+        ...store,
+        availFilters: payload
+      };
+    }
+    case PRICE_RANGE: {
+      return {
+        ...store,
+        priceRange: {
+          ...store.priceRange,
+          lowPriсe: payload.min,
+          hightPrice: payload.max
+        }
+      };
+    }
+
     case DEL_FILTER: {
       let filtKey = null;
 
       for (let key in payload) {
         filtKey = key;
       }
+
       return {
         ...store,
         selFilters: {
@@ -58,10 +99,18 @@ export function filtersReduser(store = initialState, { type, payload }) {
         }
       };
     }
-    case SET_IS_SHOWN: {
+    case CLEAR_FILTERS: {
+      console.log(payload);
       return {
         ...store,
-        menuState: { ...store.menuState, [payload]: !store.menuState[payload] }
+        selFilters: {
+          ...store.selFilters,
+          collection: [],
+          metal: [],
+          metal_color: [],
+          gemstone: [],
+          gemstone_color: []
+        }
       };
     }
 
@@ -86,10 +135,21 @@ export function filtersReduser(store = initialState, { type, payload }) {
       };
     }
 
+    case SET_IS_SHOWN: {
+      return {
+        ...store,
+        menuState: { ...store.menuState, [payload]: !store.menuState[payload] }
+      };
+    }
+
     default:
       return store;
   }
 }
+
+export const setAvaliFilters = allFilters => dispatch => {
+  dispatch(avaliFilters(allFilters));
+};
 
 export const setTogleShown = filter => dispatch => {
   dispatch(togleShown(filter));
@@ -99,6 +159,14 @@ export const setDeleteFilter = filterName => dispatch => {
   dispatch(deleteFilter(filterName));
 };
 
+export const setClearFilters = () => dispatch => {
+  dispatch(clearFilters());
+};
+
 export const dispatchSetCheckFilter = FilterType => dispatch => {
   dispatch(setCheckFilter(FilterType));
+};
+
+export const setPriceRange = priceRangeVAl => dispatch => {
+  dispatch(priceRange(priceRangeVAl));
 };
