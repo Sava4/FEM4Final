@@ -64,6 +64,3 @@ export const ReduxUserInformation = reduxForm({
   form: "contactInformation",
   validate
 })(UserInformation);
-
-
-

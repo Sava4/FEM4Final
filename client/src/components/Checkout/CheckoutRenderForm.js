@@ -170,8 +170,16 @@ export const CheckoutForm = () => {
         <PagesHeader>CHECKOUT</PagesHeader>
         <CheckoutWrapper>
           <SummaryWrapper>
-            {contactOpen && <ReduxUserInformation onSubmit={onSubmitContact}
-                                                  initialValues={{firstName: user.firstName, lastName: user.lastName, email: user.email}}/>}
+            {contactOpen && (
+              <ReduxUserInformation
+                onSubmit={onSubmitContact}
+                initialValues={{
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  email: user.email
+                }}
+              />
+            )}
             {shippingOpen && <CheckoutShipping onSubmit={onSubmitShipping} />}
             {paymentOpen && <ReduxPayment onSubmit={onSubmitPayment} />}
           </SummaryWrapper>

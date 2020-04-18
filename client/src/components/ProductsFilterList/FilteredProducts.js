@@ -39,20 +39,20 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   const filteredProd = products.products;
   filteredProd && setNambertOfFilteredItems(filteredProd.length);
   const ListProduct =
-      filteredProd &&
-      filteredProd.map(product => {
-        return (
-            <ProductItem
-                id={product._id}
-                itemNo={product.itemNo}
-                key={v4()}
-                img={product.imageUrls[0]}
-                name={product.name}
-                previousPrice={product.previousPrice}
-                collection={product.collection}
-            />
-        );
-      });
+    filteredProd &&
+    filteredProd.map(product => {
+      return (
+        <ProductItem
+          id={product._id}
+          itemNo={product.itemNo}
+          key={v4()}
+          img={product.imageUrls[0]}
+          name={product.name}
+          previousPrice={product.previousPrice}
+          collection={product.collection}
+        />
+      );
+    });
   return <Wrapper>{ListProduct && ListProduct.splice(0, 9)}</Wrapper>;
 });
 
