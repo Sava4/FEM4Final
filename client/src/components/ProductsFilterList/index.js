@@ -1,76 +1,128 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { useParams, useLocation } from "react-router";
-
+import { connect } from "react-redux";
+import axios from "axios";
+// import querystring from "query-string";
 import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
+import { setAvaliFilters } from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
-import { FilteredListProducts } from "./FilteredProducts";
+// import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
-import querystring from "query-string";
+import earrings from "./images/earrings.png";
+import bracelets from "./images/bacelets.png";
+import rings from "./images/rings.png";
+import necklaces from "./images/necklaces.png";
 
-export const ProductFilters = props => {
-  const { category } = useParams();
-  const [nambertOfFilterdItems, setNambertOfFilterdItems] = useState(0);
-  const [openFiltwin, setOpenFiltwilnd] = useState(true);
+// import querystring from "query-string";
+const MapStateToProps = store => ({
+  filters: store.filters.selFilters,
+  selectedProd: store.productsPage.productsQuantity
+});
 
-  let location = useLocation();
-  let path = `filter${location.search}`;
-  console.log("TCL: ProductFilters -> path", path);
+export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
+  props => {
+    const { category } = useParams();
+    const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
+    const [openFiltwin, setOpenFiltwilnd] = useState(false);
+    console.log(props.selectedProd);
+    useLayoutEffect(() => {
+      axios
+        .get("http://localhost:5000/products")
+        .then(result => {
+          props.setAvaliFilters(result.data);
+        })
+        // .then(products => {
+        //   setProducts (collectionList(products))
 
-  return (
-    <Layout>
-      <CategoriesHeader>
-        <p>{category}</p>
-      </CategoriesHeader>
+        // })
+        .catch(err => {
+          /*Do something with error, e.g. show error to user*/
+        });
+    }, []);
 
-      <IconBreadcrumbs categoryName={category} />
+    const background = name => {
+      switch (name) {
+        case "earrings": {
+          return earrings;
+        }
+        case "necklaces": {
+          return necklaces;
+        }
+        case "bracelets": {
+          return bracelets;
+        }
+        case "rings": {
+          return rings;
+        }
+        default:
+          return null;
+      }
+    };
 
-      <MobileCategotiesCommon>
-        <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
-        {openFiltwin && (
-          <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
-        )}
-      </MobileCategotiesCommon>
+    return (
+      <Layout>
+        <CategoriesHeader>
+          <p>{category}</p>
+          <CategoriesHeaderImg categoryName={background(category)} />
+        </CategoriesHeader>
+        <IconBreadcrumbs categoryName={category} />
+        <CategotiesCommon>
+          {window.innerWidth < 767 ? (
+            <MobileCategoriesFilters>
+              <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
+              {openFiltwin && (
+                <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
+              )}
+            </MobileCategoriesFilters>
+          ) : (
+            <CategoriesFilters>
+              <p>FILTER BY</p>
+              <FiltersList />
+            </CategoriesFilters>
+          )}
 
-      <CategotiesCommon>
-        <CategoriesFilters>
-          <p>FILTER BY</p>
-          <FiltersList />
-        </CategoriesFilters>
-
-        <SelectedProducts>
-          {/* <p>{`Selected products ( ${nambertOfFilterdItems} )`}</p> */}
-          {/* <FilterIndicators /> */}
-          {/* <FilteredListProducts
+          <SelectedProducts>
+            <p>{`Selected products ( ${props.selectedProd} )`}</p>
+            <FilterIndicators />
+            {/* <FilteredListProducts
             category={category}
-            setNambertOfFilterdItems={setNambertOfFilterdItems}
-          /> */}
-          {/* <FilteredListProducts category={category} /> */}
-        </SelectedProducts>
-        <ProductsContainer />
-      </CategotiesCommon>
-    </Layout>
-  );
-};
+            setNambertOfFilteredItems={setNambertOfFilteredItems}
+          />          */}
+            <ProductsContainer />
+          </SelectedProducts>
+        </CategotiesCommon>
+      </Layout>
+    );
+  }
+);
 
 const CategoriesHeader = styled.div`
   background-color: black;
+  display: flex;
+  justify-content: space-between;
   width: 100vw;
   height: 250px;
-  position: relative;
   & p {
     font-size: 40px;
     color: white;
     text-transform: uppercase;
-    position: absolute;
-    margin: 0;
-    left: 129px;
-    bottom: 111px;
+    // position: absolute;
+    padding-left: 111px;
+    padding-top: 120px;
+    // left: 129px;
+    // bottom: 111px;
   }
+`;
+const CategoriesHeaderImg = styled.div`
+  background-image: url(${props => props.categoryName});
+  height: inherit;
+  width: 668px;
+  background-repeat: no-repeat;
 `;
 const CategotiesCommon = styled.div`
   display: flex;
@@ -79,7 +131,7 @@ const CategotiesCommon = styled.div`
   flex-direction:column;
 `)}
 `;
-const MobileCategotiesCommon = styled.div`
+const MobileCategoriesFilters = styled.div`
   display: none;
   flex-wrap: wrap;
   ${mediaMobile(`
@@ -106,7 +158,7 @@ const CategoriesFilters = styled.div`
     margin-bottom: 22px;
   }
   ${mediaMobile(`
-  width:200px;
+  display:none;
   `)}
 `;
 
@@ -118,7 +170,8 @@ const SelectedProducts = styled.div`
     margin-bottom: 23px;
     ${mediaMobile(`
       text-align:left;
-      margin: 0;
+      // margin: 0;
+      margin-bottom: 23px;
       // margin-top: -45px;
       margin-right: 21px;
 

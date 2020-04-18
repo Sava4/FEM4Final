@@ -26,7 +26,6 @@ export const ProductsPagination = ({
   return (
     <div>
       {/* <Layout> */}
-      <FilterIndicators />
       <div
         style={{
           position: "relative",
