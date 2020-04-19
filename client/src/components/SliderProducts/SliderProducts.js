@@ -57,113 +57,148 @@ export const SliderProducts = (props) => {
   let col = `&collection=${props.collection}`;
   // const [ids, setIds] = useState([]);
   const [products, setProducts] = useState([]);
+  const [products2, setProducts2] = useState([]);
+  console.log("TCL: SliderProducts -> products2", products2)
+  let ids2 = localStorage.getItem("recent_ids");
+     
+
   useEffect(() => {
-  if (props.h4 === "RECENTLY VIEWED") {
-    let ids2 = localStorage.getItem("recent_ids");
+    if (props.h4 === "RECENTLY VIEWED") {
+      
+      // массив ссылок на товары поштучно из localstorage
+      let ids3 = ids2.split(",");
+      console.log("TCL: ids3 ", ids3);
 
-    let ids3 = ids2.split(",");
-
-    console.log("TCL: ids3 ", ids3);
-     // массив ссылок на товары поштучно из localstorage
-  
-    (ids3 &&
-      ids3.length <= 1 &&
-      ids3.map((item) => {
-        get = `http://localhost:5000/products/filter?perPage=20`;
-        console.log("TCL:  get", get);
-        
-        //получаю ссылки но запросы не идут, как выполнить юзеффект для каждой переменной?
-      })) ||
       (ids3 &&
-        ids3.length > 1 &&
+        ids3.length <= 1 &&
         ids3.map((item) => {
-          get2 = `http://localhost:5000/products/${item}`;
-          console.log("TCL:  get2", get2); 
-          getter(get2)        
+          get = `http://localhost:5000/products/filter?perPage=20`;
+          console.log("TCL:  get", get);
+          axios
+            .get(get)
+            .then((result) => {
+              setProducts(result.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           //получаю ссылки но запросы не идут, как выполнить юзеффект для каждой переменной?
-        }));
-  }
-  
+        })) ||
+        (ids3 &&
+          ids3.length > 1 &&
+          ids3.map((item) => {
+            get2 = `http://localhost:5000/products/${item}`;
+            console.log("TCL:  get2", get2);
+            // getter(get2)
+            //получаю ссылки но запросы не идут, как выполнить юзеффект для каждой переменной?
+            axios
+              .get(get2)
+              .then((result) => {
+              // setProducts2(products2.push(result.data)) !!!!!!!!!!! нельзя исп в реакте
+              setProducts2((products2) => [... products2, result.data]);
+                console.log("TCL: getter -> products2", products2);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }));
+
+      //  }
+    }
+    console.log("TCL: getter -> products2", products2);
+    return () => {
+     console.log("TCL: getter -> products2", products2);
+    };
+  }, [get2]);
   //работает осталось массив ссылок передать из локал
   // если меньше 5 показывать без слайдера по центру? или показывать featured и вытеснять просмотренными
-  else if (props.h4 === "COMPLETE THE SET") {
-    get = `http://localhost:5000/products/${page}${col}`; //все категории кроме текущей нельзя?
-  } else if (props.h4 === "FEATURED") {
-    get = `http://localhost:5000/products/filter?perPage=20&collection=First Diamond&categories=rings,earrings,bracelets,necklaces`;
-  }
-}, [get2]);
-
   useEffect(() => {
-    axios
-      .get(get)    
-      .then((result) => {
-        setProducts(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [get]);
-
-  const [products2, setProducts2] = useState([]);
-  // let products2=[]
-  // надо отправить запрос по количеству ссылок в массиве 
-    function getter(){    
+    if (props.h4 === "COMPLETE THE SET") {
+      get = `http://localhost:5000/products/${page}${col}`; //все категории кроме текущей нельзя?
       axios
-      .get(get2)   
+        .get(get)
         .then((result) => {
-        
-products2.push(result.data)
-console.log("TCL: getter -> products2", products2)
-
-          console.log("TCL: SliderProducts -> result.data", result.data)
-          
-          
-          // получили один продукт в виде объекта        
+          setProducts(result.data);
         })
         .catch((err) => {
           console.log(err);
-        })          
- }
+        });
+    } else if (props.h4 === "FEATURED") {
+      get = `http://localhost:5000/products/filter?perPage=20&collection=First Diamond&categories=rings,earrings,bracelets,necklaces`;
+      axios
+        .get(get)
+        .then((result) => {
+          setProducts(result.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [get]);
 
-// let products2=[]
-//     // const [products2, setProducts2] = useState([]);
-//     useEffect(() => {
-//    products2=[...product]
-//     }, [product]);
- 
+  // useEffect(() => {
+  //   axios
+  //     .get(get)
+  //     .then((result) => {
+  //       setProducts(result.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [get]);
 
+  // useEffect(() => {
+  //   // function getter(){
+  //   axios
+  //     .get(get2)
+  //     .then((result) => {
+  //       setProducts2(products2.push(result.data));
+  //       console.log("TCL: getter -> products2", products2);
 
+  //       // получили один продукт в виде объекта
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   //  }
+  // }, [get2]);
 
   // if (props.reverse === "reverse") {
   // products1 = products.reverse()
   //    }
-  console.log("TCL: SliderProducts -> products2", products2)
-  let products1=[];
 
-   if(products2.length){//если в ответе не массив а один объект продукт
-    //надо сделать массив      
-    products2.length>1&&products2.map((item) => {
-    // console.log("TCL: SliderProducts ->  products1",  products1)   
-    return(
-      <ProductItem
-      key={item._id}
-      {...item}
-      interpretation={"carousel"}
-      img={item.imageUrls[0]}
-      id={item._id}
-      itemNo={`${item.itemNo}`}
-      style={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-    />
-    )
-    })
-  } 
-    else if (!products.products) {//здесь if result.data если запрос без filter?
+  console.log("TCL: SliderProducts -> products", products);
+  console.log("TCL: SliderProducts -> products2", products2) 
+
+
+  let products1;
+
+  if (products2&&products2.length>1) {
+    //если в ответе не массив а один объект продукт
+    //надо сделать массив
+    
+    products1 = products2.map((item) => {
+        // console.log("TCL: SliderProducts ->  products1",  products1)
+        return (
+          <ProductItem
+            key={item._id}
+            {...item}
+            interpretation={"carousel"}
+            img={item.imageUrls[0]}
+            id={item._id}
+            itemNo={`${item.itemNo}`}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          />
+        );
+      });
+  } else if (!products.products) {
+    //здесь if result.data если запрос без filter?
     products1 =
       products &&
-      products.length===20 &&
+      products.length >0 &&
       products.map((item) => {
         return (
           <ProductItem
@@ -180,8 +215,7 @@ console.log("TCL: getter -> products2", products2)
           />
         );
       });
-  } 
-  else if(products.products)  {
+  } else if (products.products) {
     //здесь if result.data есть внутри объект products эти если запрос с фильтром
     products1 =
       products &&
