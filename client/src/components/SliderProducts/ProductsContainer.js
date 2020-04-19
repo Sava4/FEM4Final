@@ -50,30 +50,15 @@ const ProductsContainer = props => {
 
   let truePage2;
   (!truePage && (truePage2 = +currentPage)) ||
-    (truePage > 0 && (truePage2 = +truePage)); //чтобы c первой загрузки /pagin активна 1я страница
+    (truePage > 0 && (truePage2 = +truePage))  //чтобы c первой загрузки /pagin активна 1я страница
+
+    query&&(query.length>0) && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
 
   useEffect(() => {
     //первая загрузка откроется, и номер страницы в урле, и работает назад вперед
     props.getProducts(truePage2, pageSize, categoryQuery, apiCategory, category2);
   }, [truePage2, query]);
-
-  // let [filtered, setFiltered] = useState(false)
-  // let [truePage5,setTruePage5]= useState(truePage2)
-  // // useEffect (() => {
-
-  // // }, []);
-  // if((query.length>1)&&(filtered===true)){//второй раз
-  //   setTruePage5(truePage2)
-  //   props.getProducts(truePage5, pageSize, categoryQuery, apiCategory )
-  // }
-
-  // useEffect(() => {//при фильтрации обновление и появляется урл с фильтром, но при обновлении страницы откроется первая
-  //   (props.getProducts(truePage2=1, pageSize, categoryQuery, apiCategory ))
-  //   return truePage2
-  // }, [apiCategory]);
-
-  //  все классно но фильтрует не возвращая на 1ю
-
+ 
   const onPageChanged = pageNumber => {
     // из пагинатора
     const { pageSize } = props;

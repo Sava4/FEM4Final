@@ -9,14 +9,14 @@ export const LoadMore = ({
   productsQuantity,
   pageSize,
   onLoadMore,
-  products,  
+  products,
   parsed,
   category,
   ...props
 }) => {
   return (
     <>
-     {/* <NavLink
+      {/* <NavLink
         onClick={(e) => {
           // handleClickNext(e);
           // onTop();
@@ -27,12 +27,12 @@ export const LoadMore = ({
       <div
         className={cn(
           {
-            [styles.active]: +currentPage < productsQuantity / pageSize
+            [styles.active]: +currentPage < productsQuantity / pageSize,
           },
           styles.load_more,
           styles.unactive
         )}
-        onClick={e => {
+        onClick={(e) => {
           +currentPage < productsQuantity / pageSize &&
             onLoadMore(+currentPage + 1); //передаем в контейнер и загружаем нужную страницу
         }}
@@ -43,12 +43,12 @@ export const LoadMore = ({
       <div
         className={cn(
           {
-            [styles.active]: +currentPage < productsQuantity
+            [styles.active]: +currentPage < productsQuantity,
           },
           styles.arrow,
           styles.top
         )}
-        onClick={e => {
+        onClick={(e) => {
           onTop();
         }}
       ></div>
@@ -57,7 +57,7 @@ export const LoadMore = ({
   );
 };
 
-export const ShowOnTop = props => {
+export const ShowOnTop = (props) => {
   let [pos, setPos] = useState(window.pageYOffset);
   let [visible, setVisible] = useState(false);
 
@@ -77,20 +77,20 @@ export const ShowOnTop = props => {
     <div
       className={cn(
         {
-          [styles.hidden]: visible // if controller inactive !visible
+          [styles.hidden]: visible, // if controller inactive !visible
         },
         styles.arrow,
         styles.top,
         styles.onTop
       )}
-      onClick={e => {
+      onClick={(e) => {
         onTop();
       }}
     />
   );
 };
 
-export const ScrollToTopController = props => {
+export const ScrollToTopController = (props) => {
   let parsed = props.parsed;
   useEffect(
     () => () => {
@@ -100,15 +100,16 @@ export const ScrollToTopController = props => {
   );
   return null;
 };
-export const onTop = parsed => {
+
+export function onTop(toppp = 0) {
   try {
     window.scroll({
-      top: 0,
+      top: toppp,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   } catch (error) {
-    window.scrollTo(0, 0);
+    window.scrollTo(toppp, 0);
   }
   return null;
-};
+}

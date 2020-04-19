@@ -72,7 +72,7 @@ export const ProductDetails = () => {
       />
       <SliderProducts
         h4={"COMPLETE THE SET"}
-        reverse={"reverse"}
+        // reverse={"reverse"}
         collection={products.collection}
         categories={products.categories}
         perPage={16}
@@ -90,8 +90,8 @@ const Details1 = (props) => {
   const token = useSelector((state) => state.login.token);
   const products = props.products;
   const product = products !== undefined && products;
-  console.log(products);
-  console.log(product);
+  // console.log(products);
+  // console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
