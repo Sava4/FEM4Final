@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { setDeleteFilter } from "../../../store/filters";
 
 const mapStateToProps = store => ({
-  filters: store.filters
+  filters: store.filters.selFilters
 });
 
 export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
@@ -28,8 +28,6 @@ export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
       removedEll[parentFilterName] = nameRemoteFilter;
 
       props.setDeleteFilter(removedEll);
-
-      console.log(removedEll);
     };
 
     const selectedFiltersBlocks = selectedFilters.map((item, index) => {

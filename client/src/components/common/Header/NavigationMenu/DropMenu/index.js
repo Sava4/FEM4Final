@@ -29,7 +29,17 @@ export const HeaderMenuElem = props => {
         isOpen: item === category ? !isOpen : false
       };
     });
+    setDropMenuState(newDropMenu);
+  };
 
+  const hideDropmenu = () => {
+    const newDropMenu = dropMenuState.map(item => {
+      const { menuName, isOpen } = item;
+      return {
+        menuName,
+        isOpen: false
+      };
+    });
     setDropMenuState(newDropMenu);
   };
 
@@ -40,13 +50,15 @@ export const HeaderMenuElem = props => {
 
     return (
       <div key={item.menuName}>
-        {item.isOpen ? <CategoryDropBackground /> : null}
+        {item.isOpen ? (
+          <CategoryDropBackground onMouseLeave={hideDropmenu} />
+        ) : null}
         <Category>
           <CategoryHeader onClick={() => openDropMenu(item)}>
             {item.menuName}
           </CategoryHeader>
           {item.isOpen ? (
-            <CategoryDropHolder>
+            <CategoryDropHolder onMouseLeave={hideDropmenu}>
               <DropMenu dropMenuArray={dropMenuArray} />
             </CategoryDropHolder>
           ) : null}

@@ -21,7 +21,7 @@ import {
 } from "./users-selectors";
 
 const ProductsContainer = props => {
-  console.log(props);
+  // console.log(props);
   const { currentPage, pageSize } = props;
 
   let location = useLocation();
@@ -37,12 +37,12 @@ const ProductsContainer = props => {
 
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
   const categoryQuery = `${query}`;
-  console.log("TCL: categoryQuery", categoryQuery);
+  // console.log("TCL: categoryQuery", categoryQuery);
   const category2 = `&categories=${category}`;
   // let category3
   const apiCategory = categoryQuery + category2;
 
-  console.log("TCL: apiCategory", apiCategory);
+  // console.log("TCL: apiCategory", apiCategory);
 
   const queryString2 = require("query-string");
   const parsed = queryString2.parse(location.search);

@@ -4,13 +4,16 @@ import { v4 } from "uuid";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
-import { setTogleShown } from "./../../../store/filters";
-import { setDeleteFilter } from "./../../../store/filters";
-
+import {
+  setTogleShown,
+  setClearFilters,
+  setDeleteFilter
+} from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
+import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
+import { Button } from "../../common/Button/Button";
 
 const mapStateToProps = store => ({
   filters: store.filters.menuState
@@ -18,9 +21,11 @@ const mapStateToProps = store => ({
 
 export const MobileFiltersList = connect(mapStateToProps, {
   setTogleShown,
-  setDeleteFilter
+  setDeleteFilter,
+  setClearFilters
 })(props => {
   const filtredBy = [
+    "price",
     "collection",
     "metal",
     "metal_color",
@@ -29,7 +34,7 @@ export const MobileFiltersList = connect(mapStateToProps, {
   ];
 
   const { setOpenFiltwilnd } = props;
-
+  // const priceIsShown = props.filters["price"];
   const handleChange = (e, nodes) => {
     e.preventDefault();
     props.setTogleShown(e.target.parentNode.id);
@@ -41,24 +46,45 @@ export const MobileFiltersList = connect(mapStateToProps, {
       <FilterBox key={v4()}>
         <FilterType id={item}>
           <p>{item.replace("_", " ")}</p>
-          {!isShown && (
+          {isShown ? (
+            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+          ) : (
             <ExpandMoreIcon fontSize="small" onClick={handleChange} />
           )}
-          {isShown && (
-            <ExpandLessIcon fontSize="small" onClick={handleChange} />
-          )}
         </FilterType>
-        <CheckboxBlock isOpen={isShown}>
-          <PopupCheckboxes filtername={item} />
-        </CheckboxBlock>
+        {isShown ? (
+          item === "price" ? (
+            <PriсeRange />
+          ) : (
+            <PopupCheckboxes filtername={item} />
+          )
+        ) : null}
       </FilterBox>
     );
   });
+  // const backgroundColor = {
+  //   background:"blue",
+  //   color:"white"
+  // }
 
   return (
     <FiltersModal>
       <ModalClose onClick={() => setOpenFiltwilnd(false)} />
+
       {filters}
+      <BottomBlock>
+        <Button
+          primary
+          value={"APPLY FILTERS"}
+          width={"168px"}
+          onClick={() => setOpenFiltwilnd(false)}
+        />
+        <Button
+          onClick={() => props.setClearFilters()}
+          value={"CLEAR ALL"}
+          width={"168px"}
+        />
+      </BottomBlock>
     </FiltersModal>
   );
 });
@@ -88,11 +114,6 @@ const ModalClose = styled.div`
   background-size: contain;
   cursor: pointer;
 `;
-
-const CheckboxBlock = styled.div`
-  display: ${props => (props.isOpen ? "block" : "none")};
-`;
-
 const FilterBox = styled.div`
   display: none;
   ${mediaMobile(`
@@ -115,4 +136,12 @@ const FilterType = styled.div`
     padding-bottom: 31px;
   }
 `)}
+`;
+
+const BottomBlock = styled.div`
+  width: inherit;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
 `;

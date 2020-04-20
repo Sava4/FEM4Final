@@ -10,11 +10,12 @@ export const DropMenu = props => {
   const dropMenu =
     categoryArray.length &&
     categoryArray.map(item => {
-      const parentMenu = item.parentId.toLowerCase();
-      const chosenMenu = item.name.toLowerCase();
+      const { parentId, name, _id } = item;
+      const parentMenu = parentId.toLowerCase();
+      const chosenMenu = name.toLowerCase();
       return (
-        <DroMenuList key={item._id}>
-          <NavLink to={`/${parentMenu}/${chosenMenu}`}>{item.name}</NavLink>
+        <DroMenuList key={_id}>
+          <NavLink to={`/${parentMenu}/${chosenMenu}`}>{name}</NavLink>
         </DroMenuList>
       );
     });

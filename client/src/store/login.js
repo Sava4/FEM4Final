@@ -95,7 +95,7 @@ export const auth = (loginOrEmail, password, remember, locCart, onLogin) => {
   };
 };
 
-export default function setAuthorizationToken(token) {
+export function setAuthorizationToken(token) {
   if (token) {
     axios.defaults.headers.common["Authorization"] = token;
   } else {

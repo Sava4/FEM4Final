@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CheckboxLabel,
-  InputCheckbox,
-  CheckBoxIcon
-} from "./formCheckbox.styles";
+import { CheckboxLabel, InputCheckbox, CheckBoxIcon } from "./checkbox.styles";
 
 export const Checkbox = props => {
   return (
