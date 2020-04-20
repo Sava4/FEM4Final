@@ -29,11 +29,13 @@ export const ProductsPagination = ({
       <div
         style={{
           position: "relative",
-          textAlign: "right"
+          textAlign: "right",
+          bottom: "38px",
+          right: "16.5%",   
         }}
       >
         <Paginator
-          info={1}
+          // info={1}
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           onLoadMore={onLoadMore}
