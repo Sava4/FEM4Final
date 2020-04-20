@@ -13,7 +13,7 @@ export const Paginator = ({
   info,
   apiCategory,
   category,
-  portionSize = 1, //количество страниц в порции
+  portionSize = 1 //количество страниц в порции
 }) => {
   let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего и номер последней страницы
 
@@ -30,10 +30,10 @@ export const Paginator = ({
   let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1; //крайняя цифра порции слева
   let rightPortionPageNumber = portionNumber * portionSize; //крайняя цифра порции справа
 
-  const handleClickNext = (e) => {
+  const handleClickNext = e => {
     +currentPage == +pagesCount && e.preventDefault();
   };
-  const handleClickPrev = (e) => {
+  const handleClickPrev = e => {
     +currentPage <= 1 && e.preventDefault();
   };
 
@@ -47,8 +47,8 @@ export const Paginator = ({
 
       {/* prev стрелка < */}
       <NavLink
-        onClick={(e) => {
-          handleClickPrev(e);       
+        onClick={e => {
+          handleClickPrev(e);
           onTop(450);
           onPageChanged(+currentPage - 1);
         }}
@@ -61,7 +61,7 @@ export const Paginator = ({
         <span
           className={cn(
             {
-              [styles.active]: currentPage > 1,
+              [styles.active]: currentPage > 1
             },
             styles.unactive,
             styles.arrow,
@@ -73,7 +73,7 @@ export const Paginator = ({
       {/* первая страница */}
       <NavLink
         to={`/categories/${category}/filter?${apiCategory}&startPage=${pagesCount}&perPage=${pageSize}`}
-        onClick={(e) => {
+        onClick={e => {
           onTop(450);
         }}
       >
@@ -81,11 +81,11 @@ export const Paginator = ({
           className={cn(
             {
               [styles.removed]: currentPage <= "2",
-              [styles.added]: currentPage <= "2",
+              [styles.added]: currentPage <= "2"
             },
             styles.page_Number
           )}
-          onClick={(e) => {
+          onClick={e => {
             onPageChanged("1"); //передаем в контейнер и загружаем нужную страницу
           }}
         >
@@ -97,39 +97,39 @@ export const Paginator = ({
       <NavLink
         to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage -
           2}&perPage=${pageSize}`}
-        onClick={(e) => {
+        onClick={e => {
           onTop(450);
         }}
       >
         <span
           className={cn(
             {
-              [styles.removed]: currentPage <= "3",
+              [styles.removed]: currentPage <= "3"
               // [styles.added]: currentPage <='3',
             },
             styles.page_Number
           )}
-          onClick={(e) => {
+          onClick={e => {
             onPageChanged(currentPage - 3); //передаем в контейнер и загружаем нужную страницу
           }}
         >
-          . . 
+          . .
         </span>
       </NavLink>
 
       {/* обычные страницы */}
       {pages
         .filter(
-          (pageNumber) =>
+          pageNumber =>
             pageNumber + 1 >= leftPortionPageNumber &&
             pageNumber - 1 <= rightPortionPageNumber
         )
-        .map((pageNumber) => {
+        .map(pageNumber => {
           return (
             <NavLink
               to={`/categories/${category}/filter?${apiCategory}&startPage=${pageNumber}&perPage=${pageSize}`}
               key={pageNumber}
-              onClick={(e) => {
+              onClick={e => {
                 onTop(450);
               }}
             >
@@ -142,11 +142,11 @@ export const Paginator = ({
               <span
                 className={cn(
                   {
-                    [styles.selected_Page]: currentPage == pageNumber,
+                    [styles.selected_Page]: currentPage == pageNumber
                   },
                   styles.page_Number
                 )}
-                onClick={(e) => {
+                onClick={e => {
                   onPageChanged(pageNumber); //передаем в контейнер и загружаем нужную страницу
                 }}
               >
@@ -160,41 +160,41 @@ export const Paginator = ({
       <NavLink
         to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage +
           3}&perPage=${pageSize}`}
-        onClick={(e) => {
+        onClick={e => {
           onTop(450);
         }}
       >
         <span
           className={cn(
             {
-              [styles.removed]: currentPage >= pagesCount - 2,
+              [styles.removed]: currentPage >= pagesCount - 2
               // [styles.added]: currentPage <='3',
             },
             styles.page_Number
           )}
-          onClick={(e) => {
+          onClick={e => {
             onPageChanged(currentPage + 2); //передаем в контейнер и загружаем нужную страницу
           }}
         >
-          . . 
+          . .
         </span>
       </NavLink>
       {/* последняя страница */}
       <NavLink
         to={`/categories/${category}/filter?${apiCategory}&startPage=${pagesCount}&perPage=${pageSize}`}
-        onClick={(e) => {
+        onClick={e => {
           onTop(450);
         }}
       >
         <span
           className={cn(
             {
-              [styles.removed]: currentPage >= pagesCount - 1,
+              [styles.removed]: currentPage >= pagesCount - 1
             },
             styles.page_Number
             // styles.unactive
           )}
-          onClick={(e) => {
+          onClick={e => {
             onPageChanged(pagesCount); //передаем в контейнер и загружаем нужную страницу
           }}
         >
@@ -204,7 +204,7 @@ export const Paginator = ({
 
       {/* next стрелка > */}
       <NavLink
-        onClick={(e) => {
+        onClick={e => {
           handleClickNext(e);
           onTop(450);
           onPageChanged(+currentPage + 1);
@@ -218,7 +218,7 @@ export const Paginator = ({
         <span
           className={cn(
             {
-              [styles.active]: +currentPage < +pagesCount,
+              [styles.active]: +currentPage < +pagesCount
             },
             styles.unactive,
             styles.arrow,

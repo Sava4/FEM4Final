@@ -12,7 +12,6 @@ export const productsAPI = {
       .get(
         // `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`
         `/products/filter?${categoryQuery}${category2}&startPage=${currentPage}&perPage=${pageSize}`
-
       )
       .then(response => {
         // console.log(response.data);

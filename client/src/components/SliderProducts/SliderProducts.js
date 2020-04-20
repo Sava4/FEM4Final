@@ -7,7 +7,7 @@ import { SampleNextArrow, SamplePrevArrow } from "./../Slider/Arrows";
 import { H4 } from "./sliderProducts.styles";
 import { ProductItem } from "../ProductsList/productItem";
 
-export const SliderProducts = (props) => {
+export const SliderProducts = props => {
   console.log("TCL: props", props);
 
   const settings = {
@@ -27,25 +27,25 @@ export const SliderProducts = (props) => {
         breakpoint: 1000,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-        },
+          slidesToScroll: 3
+        }
       },
       {
         breakpoint: 798,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
-        },
+          initialSlide: 2
+        }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   let get;
@@ -67,32 +67,32 @@ export const SliderProducts = (props) => {
 
       (ids3 &&
         ids3.length <= 1 &&
-        ids3.map((item) => {
+        ids3.map(item => {
           get = `http://localhost:5000/products/${page}`;
           console.log("TCL:  get", get);
           axios
             .get(get)
-            .then((result) => {
+            .then(result => {
               setProducts(result.data);
             })
-            .catch((err) => {
+            .catch(err => {
               console.log(err);
             });
         })) ||
         (ids3 &&
           ids3.length > 1 &&
-          ids3.map((item) => {
+          ids3.map(item => {
             get2 = `http://localhost:5000/products/${item}`;
             console.log("TCL:  get2", get2);
 
             axios
               .get(get2)
-              .then((result) => {
+              .then(result => {
                 // setProducts2(products2.push(result.data)) !в реакте
-                setProducts2((products2) => [...products2, result.data]);
+                setProducts2(products2 => [...products2, result.data]);
                 // console.log("TCL: getter -> products2", products2);
               })
-              .catch((err) => {
+              .catch(err => {
                 console.log(err);
               });
           }));
@@ -149,21 +149,21 @@ export const SliderProducts = (props) => {
       let n = 1;
       while (n < 5) {
         n++;
-        categories2.map((item) => {
+        categories2.map(item => {
           console.log("TCL: item", item);
 
           get4 = `http://localhost:5000/products/filter?startPage=${n}&perPage=1${col}&categories=${item}`;
           console.log("TCL:  get4", get4);
           axios
             .get(get4)
-            .then((result) => {
+            .then(result => {
               result.data.products[0] &&
-                setProducts4((products4) => [
+                setProducts4(products4 => [
                   ...products4,
-                  result.data.products[0],
+                  result.data.products[0]
                 ]);
             })
-            .catch((err) => {
+            .catch(err => {
               console.log(err);
             });
         });
@@ -172,9 +172,8 @@ export const SliderProducts = (props) => {
 
     if (props.h4 === "COMPLETE THE SET") {
       getSliderProducts(col);
-
-    } else if (props.h4 === "FEATURED") {    
-      getSliderProducts(col='');
+    } else if (props.h4 === "FEATURED") {
+      getSliderProducts((col = ""));
     }
   }, [get4]);
 
@@ -190,7 +189,7 @@ export const SliderProducts = (props) => {
 
   if (products2 && products2.length > 1) {
     products2.length > 3 &&
-      (products1 = products2.map((item) => {
+      (products1 = products2.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -201,13 +200,13 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
       }));
     products2.length <= 3 &&
-      (products3 = products2.map((item) => {
+      (products3 = products2.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -218,13 +217,13 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
       }));
   } else if (products4.length > 3) {
-    products1 = products4.map((item) => {
+    products1 = products4.map(item => {
       return (
         <ProductItem
           key={item._id}
@@ -235,34 +234,13 @@ export const SliderProducts = (props) => {
           itemNo={`${item.itemNo}`}
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         />
       );
     });
     products4.length <= 3 &&
-    (products3 = products4.map((item) => {
-      return (
-        <ProductItem
-          key={item._id}
-          {...item}
-          interpretation={"carousel"}
-          img={item.imageUrls[0]}
-          id={item._id}
-          itemNo={`${item.itemNo}`}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        />
-      );
-    }));
-  } else if (!products.products) {
-    //здесь if result.data если запрос без filter?
-    products1 =
-      products &&
-      products.length > 0 &&
-      products.map((item) => {
+      (products3 = products4.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -273,7 +251,28 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
+            }}
+          />
+        );
+      }));
+  } else if (!products.products) {
+    //здесь if result.data если запрос без filter?
+    products1 =
+      products &&
+      products.length > 0 &&
+      products.map(item => {
+        return (
+          <ProductItem
+            key={item._id}
+            {...item}
+            interpretation={"carousel"}
+            img={item.imageUrls[0]}
+            id={item._id}
+            itemNo={`${item.itemNo}`}
+            style={{
+              display: "flex",
+              justifyContent: "center"
             }}
           />
         );
@@ -283,7 +282,7 @@ export const SliderProducts = (props) => {
     products1 =
       products &&
       products.products.length &&
-      products.products.map((item) => {
+      products.products.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -294,7 +293,7 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
@@ -306,7 +305,7 @@ export const SliderProducts = (props) => {
       style={{
         height: `height: 592px`,
         marginTop: `40px`,
-        marginLeft: `30px`,
+        marginLeft: `30px`
       }}
     >
       <H4>{props.h4}</H4>

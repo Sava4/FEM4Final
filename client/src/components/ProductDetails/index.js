@@ -5,8 +5,8 @@ import { SliderProducts } from "../SliderProducts/SliderProducts";
 import { SliderHomepage } from "../Slider/Slider";
 import { productsAPI } from "../SliderProducts/api";
 
-export const ProductDetailsLayout = (props) => {
-  console.log("TCL: ProductDetailsLayout -> props", props)
+export const ProductDetailsLayout = props => {
+  console.log("TCL: ProductDetailsLayout -> props", props);
   return (
     <Layout>
       <ProductDetails />

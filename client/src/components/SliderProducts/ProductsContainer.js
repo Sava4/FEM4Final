@@ -50,19 +50,31 @@ const ProductsContainer = props => {
 
   let truePage2;
   (!truePage && (truePage2 = +currentPage)) ||
-    (truePage > 0 && (truePage2 = +truePage))  //чтобы c первой загрузки /pagin активна 1я страница
+    (truePage > 0 && (truePage2 = +truePage)); //чтобы c первой загрузки /pagin активна 1я страница
 
-    query&&(query.length>0) && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
+  query && query.length > 0 && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
 
   useEffect(() => {
     //первая загрузка откроется, и номер страницы в урле, и работает назад вперед
-    props.getProducts(truePage2, pageSize, categoryQuery, apiCategory, category2);
+    props.getProducts(
+      truePage2,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   }, [truePage2, query]);
- 
+
   const onPageChanged = pageNumber => {
     // из пагинатора
     const { pageSize } = props;
-    props.getProducts(pageNumber, pageSize, categoryQuery, apiCategory, category2);
+    props.getProducts(
+      pageNumber,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   };
   let truePage3 = +currentPage + 1;
   console.log(truePage3);
@@ -70,7 +82,13 @@ const ProductsContainer = props => {
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора
     const { pageSize } = props;
-    props.moreProducts(truePage3, pageSize, categoryQuery, apiCategory,category2);
+    props.moreProducts(
+      truePage3,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   };
 
   return (
@@ -112,7 +130,7 @@ let mapStateToProps = (state, categoryQuery, apiCategory, category2, query) => {
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state),
-    filters: state.filters.selFilters   
+    filters: state.filters.selFilters
   };
 };
 

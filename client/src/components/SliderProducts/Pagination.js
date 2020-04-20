@@ -18,7 +18,7 @@ export const ProductsPagination = ({
   onToTop,
   products,
   categoryQuery,
-  apiCategory,  
+  apiCategory,
   ...props
 }) => {
   ///// игоря
@@ -31,7 +31,7 @@ export const ProductsPagination = ({
           position: "relative",
           textAlign: "right",
           bottom: "38px",
-          right: "16.5%",   
+          right: "16.5%"
         }}
       >
         <Paginator
@@ -57,18 +57,18 @@ export const ProductsPagination = ({
         }}
       >
         {products.map((p, index) => (
-          <div id={index} key={p.itemNo}>          
-              <ProductItem
-                product={p}
-                {...p}
-                itemNo={`${p.itemNo}`}
-                style={{
-                  display: "flex",
-                  justifyContent: "center"
-                }}
-                interpretation={"carousel"}
-                img={p.imageUrls[0]}
-              />          
+          <div id={index} key={p.itemNo}>
+            <ProductItem
+              product={p}
+              {...p}
+              itemNo={`${p.itemNo}`}
+              style={{
+                display: "flex",
+                justifyContent: "center"
+              }}
+              interpretation={"carousel"}
+              img={p.imageUrls[0]}
+            />
           </div>
         ))}
         {/* <FilteredListProducts category={category} /> */}

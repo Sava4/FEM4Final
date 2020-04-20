@@ -12,7 +12,7 @@ let initialState = {
   products: [],
   pageSize: 9,
   productsQuantity: 0,
-  currentPage: 1,
+  currentPage: 1
   // apiCategory: "",
   // categoryQuery:"",
 };
@@ -72,7 +72,7 @@ export const useRequestProducts = (
   pageSize,
   categoryQuery,
   apiCategory,
-  category2,  
+  category2,
   query
 ) => {
   return async dispatch => {
@@ -99,12 +99,18 @@ export const useRequestProducts = (
   };
 };
 
-export const useMoreProducts = (page, pageSize, categoryQuery, apiCategory, category2) => {
+export const useMoreProducts = (
+  page,
+  pageSize,
+  categoryQuery,
+  apiCategory,
+  category2
+) => {
   return async dispatch => {
     dispatch(setCurrentPage(page));
     // dispatch(setaApiCategory(apiCategory));
     // dispatch(setCategoryQuery(apiCategory));
-    
+
     let moreData = await productsAPI.getProducts(
       page,
       pageSize,
