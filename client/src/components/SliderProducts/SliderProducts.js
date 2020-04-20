@@ -7,9 +7,6 @@ import { SampleNextArrow, SamplePrevArrow } from "./../Slider/Arrows";
 import { H4 } from "./sliderProducts.styles";
 import { ProductItem } from "../ProductsList/productItem";
 
-//из строки отлавливаем коллекцию
-import { useLocation } from "react-router";
-
 export const SliderProducts = (props) => {
   console.log("TCL: props", props);
 
@@ -55,10 +52,11 @@ export const SliderProducts = (props) => {
   let get2;
   let page = `filter?perPage=${props.perPage}`;
   let col = `&collection=${props.collection}`;
-  // const [ids, setIds] = useState([]);
+
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
-  console.log("TCL: SliderProducts -> products2", products2);
+  const [products4, setProducts4] = useState([]);
+
   let ids2 = localStorage.getItem("recent_ids");
 
   useEffect(() => {
@@ -92,7 +90,7 @@ export const SliderProducts = (props) => {
               .then((result) => {
                 // setProducts2(products2.push(result.data)) !в реакте
                 setProducts2((products2) => [...products2, result.data]);
-                console.log("TCL: getter -> products2", products2);
+                // console.log("TCL: getter -> products2", products2);
               })
               .catch((err) => {
                 console.log(err);
@@ -101,43 +99,92 @@ export const SliderProducts = (props) => {
 
       //  }
     }
-    console.log("TCL: getter -> products2", products2);
+    // console.log("TCL: getter -> products2", products2);
     return () => {
       console.log("TCL: getter -> products2", products2);
     };
   }, [get2]);
 
+  // useEffect(() => {
+  //   function getProducts() {
+  //     axios
+  //       .get(get)
+  //       .then((result) => {
+  //         setProducts(result.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  //   if (props.h4 === "COMPLETE THE SET") {
+  //     let categories2 = [
+  //       `bracelets`,
+  //       `rings`,
+  //       `earrings`,
+  //       `bracelets`,
+  //       `necklaces`,
+  //     ];
+  //     let categories3 = categories2.filter((word) => word !== props.categories);
+  //     console.log("TCL: categories3", categories3);
+
+  //     get = `http://localhost:5000/products/${page}${col}&categories=${categories3}`; //все категории кроме текущей
+  //     getProducts(get);
+
+  //     //вызвать четыре вызова в массив через map, по одному товару и опять так 6 раз тогда товары из разных категорий в отдельный useeffect
+
+  //   } else if (props.h4 === "FEATURED") {
+  //     get = `http://localhost:5000/products/${page}&collection=First Diamond&categories=rings,earrings,bracelets,necklaces`;
+  //     getProducts(get);
+  //   }
+  // }, [get]);
+  let get4;
+  let categories2 = [`bracelets`, `rings`, `earrings`, `necklaces`];
   useEffect(() => {
-    function getProducts() {
-      axios
-        .get(get)
-        .then((result) => {
-          setProducts(result.data);
-        })
-        .catch((err) => {
-          console.log(err);
+    function getSliderProducts(col) {
+      // let categories2 = [`bracelets`, `rings`, `earrings`, `necklaces`];
+      // let categories3;
+      // categories2.length ===4 &&
+      //   (categories3 = categories2.filter((word) => word !== props.categories)); //категория приходит поздно не хочет фильтровать
+      // categories3 && categories3.length &&(
+      let n = 1;
+      while (n < 5) {
+        n++;
+        categories2.map((item) => {
+          console.log("TCL: item", item);
+
+          get4 = `http://localhost:5000/products/filter?startPage=${n}&perPage=1${col}&categories=${item}`;
+          console.log("TCL:  get4", get4);
+          axios
+            .get(get4)
+            .then((result) => {
+              result.data.products[0] &&
+                setProducts4((products4) => [
+                  ...products4,
+                  result.data.products[0],
+                ]);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
+      }
     }
+
     if (props.h4 === "COMPLETE THE SET") {
-      let categories2=[`bracelets`,`rings`,`earrings`,`bracelets`,`necklaces`]
-let categories3=categories2.filter(word =>word!==props.categories )
-console.log("TCL: categories3", categories3)
-  
-      get = `http://localhost:5000/products/${page}${col}&categories=${categories3}`; //все категории кроме текущей нельзя?
-      getProducts(get);
-    } else if (props.h4 === "FEATURED") {
-      get = `http://localhost:5000/products/${page}&collection=First Diamond&categories=rings,earrings,bracelets,necklaces`;
-      getProducts(get);
+      getSliderProducts(col);
+
+    } else if (props.h4 === "FEATURED") {    
+      getSliderProducts(col='');
     }
-  }, [get]);
+  }, [get4]);
 
   // if (props.reverse === "reverse") {
   // products1 = products.reverse()
   //    }
 
-  console.log("TCL: SliderProducts -> products", products);
-  console.log("TCL: SliderProducts -> products2", products2);
-
+  // console.log("TCL: SliderProducts -> products", products);
+  // console.log("TCL: SliderProducts -> products2", products2);
+  // console.log("TCL: SliderProducts -> products4", products4);
   let products1;
   let products3;
 
@@ -176,6 +223,40 @@ console.log("TCL: categories3", categories3)
           />
         );
       }));
+  } else if (products4.length > 3) {
+    products1 = products4.map((item) => {
+      return (
+        <ProductItem
+          key={item._id}
+          {...item}
+          interpretation={"carousel"}
+          img={item.imageUrls[0]}
+          id={item._id}
+          itemNo={`${item.itemNo}`}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        />
+      );
+    });
+    products4.length <= 3 &&
+    (products3 = products4.map((item) => {
+      return (
+        <ProductItem
+          key={item._id}
+          {...item}
+          interpretation={"carousel"}
+          img={item.imageUrls[0]}
+          id={item._id}
+          itemNo={`${item.itemNo}`}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        />
+      );
+    }));
   } else if (!products.products) {
     //здесь if result.data если запрос без filter?
     products1 =
@@ -198,7 +279,7 @@ console.log("TCL: categories3", categories3)
         );
       });
   } else if (products.products) {
-    //здесь if result.data есть внутри объект products эти если запрос с фильтром
+    //здесь if result.data есть внутри объект products, если запрос с filter?
     products1 =
       products &&
       products.products.length &&
