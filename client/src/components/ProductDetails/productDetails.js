@@ -75,9 +75,9 @@ export const ProductDetails = () => {
         // reverse={"reverse"}
         collection={products.collection}
         categories={products.categories}
-        perPage={16}
+        perPage={24}
       />
-      <SliderProducts h4={"RECENTLY VIEWED"} perPage={16} />
+      <SliderProducts h4={"RECENTLY VIEWED"} perPage={24} />
       <ScrollToTopController parsed={id} />
       <ShowOnTop />
     </Fragment>

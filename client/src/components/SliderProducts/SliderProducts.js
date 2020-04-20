@@ -58,13 +58,11 @@ export const SliderProducts = (props) => {
   // const [ids, setIds] = useState([]);
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
-  console.log("TCL: SliderProducts -> products2", products2)
+  console.log("TCL: SliderProducts -> products2", products2);
   let ids2 = localStorage.getItem("recent_ids");
-     
 
   useEffect(() => {
     if (props.h4 === "RECENTLY VIEWED") {
-      
       // массив ссылок на товары поштучно из localstorage
       let ids3 = ids2.split(",");
       console.log("TCL: ids3 ", ids3);
@@ -72,7 +70,7 @@ export const SliderProducts = (props) => {
       (ids3 &&
         ids3.length <= 1 &&
         ids3.map((item) => {
-          get = `http://localhost:5000/products/filter?perPage=20`;
+          get = `http://localhost:5000/products/${page}`;
           console.log("TCL:  get", get);
           axios
             .get(get)
@@ -82,20 +80,18 @@ export const SliderProducts = (props) => {
             .catch((err) => {
               console.log(err);
             });
-          //получаю ссылки но запросы не идут, как выполнить юзеффект для каждой переменной?
         })) ||
         (ids3 &&
           ids3.length > 1 &&
           ids3.map((item) => {
             get2 = `http://localhost:5000/products/${item}`;
             console.log("TCL:  get2", get2);
-            // getter(get2)
-            //получаю ссылки но запросы не идут, как выполнить юзеффект для каждой переменной?
+
             axios
               .get(get2)
               .then((result) => {
-              // setProducts2(products2.push(result.data)) !!!!!!!!!!! нельзя исп в реакте
-              setProducts2((products2) => [... products2, result.data]);
+                // setProducts2(products2.push(result.data)) !в реакте
+                setProducts2((products2) => [...products2, result.data]);
                 console.log("TCL: getter -> products2", products2);
               })
               .catch((err) => {
@@ -107,24 +103,12 @@ export const SliderProducts = (props) => {
     }
     console.log("TCL: getter -> products2", products2);
     return () => {
-     console.log("TCL: getter -> products2", products2);
+      console.log("TCL: getter -> products2", products2);
     };
   }, [get2]);
-  //работает осталось массив ссылок передать из локал
-  // если меньше 5 показывать без слайдера по центру? или показывать featured и вытеснять просмотренными
+
   useEffect(() => {
-    if (props.h4 === "COMPLETE THE SET") {
-      get = `http://localhost:5000/products/${page}${col}`; //все категории кроме текущей нельзя?
-      axios
-        .get(get)
-        .then((result) => {
-          setProducts(result.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (props.h4 === "FEATURED") {
-      get = `http://localhost:5000/products/filter?perPage=20&collection=First Diamond&categories=rings,earrings,bracelets,necklaces`;
+    function getProducts() {
       axios
         .get(get)
         .then((result) => {
@@ -134,51 +118,32 @@ export const SliderProducts = (props) => {
           console.log(err);
         });
     }
+    if (props.h4 === "COMPLETE THE SET") {
+      let categories2=[`bracelets`,`rings`,`earrings`,`bracelets`,`necklaces`]
+let categories3=categories2.filter(word =>word!==props.categories )
+console.log("TCL: categories3", categories3)
+  
+      get = `http://localhost:5000/products/${page}${col}&categories=${categories3}`; //все категории кроме текущей нельзя?
+      getProducts(get);
+    } else if (props.h4 === "FEATURED") {
+      get = `http://localhost:5000/products/${page}&collection=First Diamond&categories=rings,earrings,bracelets,necklaces`;
+      getProducts(get);
+    }
   }, [get]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(get)
-  //     .then((result) => {
-  //       setProducts(result.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [get]);
-
-  // useEffect(() => {
-  //   // function getter(){
-  //   axios
-  //     .get(get2)
-  //     .then((result) => {
-  //       setProducts2(products2.push(result.data));
-  //       console.log("TCL: getter -> products2", products2);
-
-  //       // получили один продукт в виде объекта
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   //  }
-  // }, [get2]);
 
   // if (props.reverse === "reverse") {
   // products1 = products.reverse()
   //    }
 
   console.log("TCL: SliderProducts -> products", products);
-  console.log("TCL: SliderProducts -> products2", products2) 
-
+  console.log("TCL: SliderProducts -> products2", products2);
 
   let products1;
+  let products3;
 
-  if (products2&&products2.length>1) {
-    //если в ответе не массив а один объект продукт
-    //надо сделать массив
-    
-    products1 = products2.map((item) => {
-        // console.log("TCL: SliderProducts ->  products1",  products1)
+  if (products2 && products2.length > 1) {
+    products2.length > 3 &&
+      (products1 = products2.map((item) => {
         return (
           <ProductItem
             key={item._id}
@@ -193,12 +158,29 @@ export const SliderProducts = (props) => {
             }}
           />
         );
-      });
+      }));
+    products2.length <= 3 &&
+      (products3 = products2.map((item) => {
+        return (
+          <ProductItem
+            key={item._id}
+            {...item}
+            interpretation={"carousel"}
+            img={item.imageUrls[0]}
+            id={item._id}
+            itemNo={`${item.itemNo}`}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          />
+        );
+      }));
   } else if (!products.products) {
     //здесь if result.data если запрос без filter?
     products1 =
       products &&
-      products.length >0 &&
+      products.length > 0 &&
       products.map((item) => {
         return (
           <ProductItem
@@ -247,7 +229,12 @@ export const SliderProducts = (props) => {
       }}
     >
       <H4>{props.h4}</H4>
-      <Slider {...settings}>{products1}</Slider>
+      {products1 && <Slider {...settings}>{products1}</Slider>}
+      {products3 && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {products3}
+        </div>
+      )}
     </div>
   );
 };
