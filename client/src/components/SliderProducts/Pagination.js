@@ -61,6 +61,7 @@ export const ProductsPagination = ({
             <ProductItem
               product={p}
               {...p}
+              id={p._id}
               itemNo={`${p.itemNo}`}
               style={{
                 display: "flex",
@@ -68,7 +69,7 @@ export const ProductsPagination = ({
               }}
               interpretation={"carousel"}
               img={p.imageUrls[0]}
-            />
+            />            
           </div>
         ))}
         {/* <FilteredListProducts category={category} /> */}

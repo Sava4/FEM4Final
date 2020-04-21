@@ -72,7 +72,7 @@ export const ProductDetails = () => {
       />
       <SliderProducts
         h4={"COMPLETE THE SET"}
-        // reverse={"reverse"}
+        reverse={"reverse"}
         collection={products.collection}
         categories={products.categories}
         perPage={24}
@@ -90,8 +90,6 @@ const Details1 = props => {
   const token = useSelector(state => state.login.token);
   const products = props.products;
   const product = products !== undefined && products;
-  // console.log(products);
-  // console.log(product);
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
@@ -131,47 +129,6 @@ const Details1 = props => {
       </div>
     );
   });
-
-  // let ImagesSlider1 = (props) => {
-  //   let x = imagesArr.map((image) => {
-  //     const propsss = {
-  //       zoomPosition: "original",
-  //       width: 500,
-  //       offset: { vertical: 10, horizontal: 10 },
-  //       img: `${image}`,
-  //     };
-
-  //     if (props.big === 1) {
-  //       return (
-  //         <div key={image}>
-  //           <ReactImageZoom
-  //             {...propsss}
-  //             style={{
-  //               width: "99%",
-  //               border: `1px solid #E9EBF5`,
-  //               boxSizing: "border-box",
-  //             }}
-  //           />
-  //         </div>
-  //       );
-  //     } else if (!props.big) {
-  //       return (
-  //         <div key={image}>
-  //           <Image
-  //             alt=""
-  //             src={`${image}`}
-  //             style={{
-  //               width: "99%",
-  //               border: `1px solid #E9EBF5`,
-  //               boxSizing: "border-box",
-  //             }}
-  //           />
-  //         </div>
-  //       );
-  //     }
-  //   });
-  //   return x;
-  // };
 
   const slider1 = useRef();
   const slider2 = useRef();
@@ -239,8 +196,7 @@ const Details1 = props => {
           focusOnSelect={true}
           vertical={true}
           style={{ boxSizing: "border-box" }}
-        >
-          {/* <ImagesSlider1 /> */}
+        >      
           {imagesSliderPreview}
         </Slider>
       </div>
@@ -263,11 +219,8 @@ const Details1 = props => {
           arrows={false}
           draggable={false}
         >
-          {imagesSlider}
-          {/* <ImagesSlider1 big={1} /> */}
-        </Slider>
-        {/* <Square>Hover to ZOOM</Square> */}
-        {/* <Hover></Hover> */}
+          {imagesSlider}   
+        </Slider>     
       </div>
 
       <Wrapper>
@@ -292,32 +245,4 @@ const Details1 = props => {
   );
 };
 
-// const Hover = styled.div`
-// width: 100%;
-// height: 100%;
-// z-index: 10;
-// position: relative;
-// bottom: 500px;
-// background-color: red;
-// &:hover{
 
-//  z-index:0;
-// }
-// &:hover Square{
-//   opacity: 0.1;
-// }
-// `
-// const Square = styled.div`
-//   height: 50px;
-//   line-height: 50px;
-//   width: 200px;
-//   text-align: center;
-//   margin: 0 auto;
-//   background-color: lightgrey;
-//   cursor: pointer;
-//   position: relative;
-//   bottom: 50px;
-//   &:hover {
-//     opacity: 0.1;
-//   }
-// `;
