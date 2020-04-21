@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductDetails } from "./../ProductDetails/productDetails";
+import { ProductDetails } from "./ProductDetails";
 import { Layout } from "../common/Layout";
 import { SliderProducts } from "../SliderProducts/SliderProducts";
 import { SliderHomepage } from "../Slider/Slider";

@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Layout } from "../common/Layout";
 import { WishlistItem } from "./wishlistItem";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import { v4 } from "uuid";
 import { EmptyCart } from "../ShoppingBag/EmptyCart";
 import { useSelector } from "react-redux";
+import { ArrowImg, Container, Continue } from "../ShoppingBag/ShoppingBag";
+import arrow from "../ShoppingBag/arrow.png";
+import { useHistory } from "react-router";
 
 export const Wishlist = props => {
   const [products, setProducts] = useState([]);
+  const history = useHistory();
   const lengthFav = useSelector(state => state.favorites.favArr.length);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -34,26 +38,25 @@ export const Wishlist = props => {
 
   return (
     <Layout>
-      <FavoritesWrapper>
-        <FavoritesHeader>FAVORITES</FavoritesHeader>
-      </FavoritesWrapper>
-      {lengthFav > 0 ? (
-        <Container>{ListProduct}</Container>
-      ) : (
-        <Container>
+      <Container>
+        <FavoritesWrapper>
+          <FavoritesHeader>FAVORITES</FavoritesHeader>
+        </FavoritesWrapper>
+
+        <Continue onClick={() => history.push("/")}>
+          <ArrowImg src={arrow} />
+          Continue Shopping
+        </Continue>
+        {lengthFav > 0 ? (
+          <Fragment>{ListProduct}</Fragment>
+        ) : (
           <EmptyCart text={"Yor Wishlist is currently empty."} />
-        </Container>
-      )}
+        )}
+      </Container>
     </Layout>
   );
 };
-const Container = styled.div`
-  padding: 3%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+
 const FavoritesWrapper = styled.div`
   display: flex;
   flex-direction: column;
