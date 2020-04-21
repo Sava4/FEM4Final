@@ -8,6 +8,8 @@ export const HeaderMenuElem = props => {
   const { categoriesAllData } = props;
   const [dropMenuState, setDropMenuState] = useState([]);
 
+  console.log(categoriesAllData.filter(item => item.parentId === "null"));
+  
   useEffect(() => {
     const menu = categoriesAllData
       .filter(item => item.parentId === "null")

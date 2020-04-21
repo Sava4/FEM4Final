@@ -25,4 +25,5 @@ export const DropMenu = props => {
 const DroMenuList = styled.div`
   margin-top: 20px;
   width: 100%;
+  height: inherit;
 `;

@@ -8,28 +8,31 @@ import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
-import { setAvaliFilters } from "../../store/filters";
+import { setAvaliFilters ,setPriceRange  } from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
-// import { FilteredListProducts } from "./FilteredProducts";
+import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
 import earrings from "./images/earrings.png";
 import bracelets from "./images/bacelets.png";
 import rings from "./images/rings.png";
 import necklaces from "./images/necklaces.png";
-
 // import querystring from "query-string";
 const MapStateToProps = store => ({
   filters: store.filters.selFilters,
   selectedProd: store.productsPage.productsQuantity
 });
 
-export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
+export const ProductFilters = connect(MapStateToProps, { setAvaliFilters,setPriceRange})(
   props => {
     const { category } = useParams();
     const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
     const [openFiltwin, setOpenFiltwilnd] = useState(false);
     console.log(props.selectedProd);
+    const initialPriceValue = {
+                                min: 0,
+                                max: 200000
+                              }
     useLayoutEffect(() => {
       axios
         .get("http://localhost:5000/products")
@@ -43,6 +46,7 @@ export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
         .catch(err => {
           /*Do something with error, e.g. show error to user*/
         });
+        props.setPriceRange(initialPriceValue);
     }, []);
 
     const background = name => {
@@ -89,11 +93,11 @@ export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
           <SelectedProducts>
             <p>{`Selected products ( ${props.selectedProd} )`}</p>
             <FilterIndicators />
-            {/* <FilteredListProducts
+            <FilteredListProducts
             category={category}
             setNambertOfFilteredItems={setNambertOfFilteredItems}
-          />          */}
-            <ProductsContainer />
+          />         
+            {/* <ProductsContainer /> */}
           </SelectedProducts>
         </CategotiesCommon>
       </Layout>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import InputRange from "react-input-range";
 import styled from "styled-components";
@@ -12,8 +12,8 @@ const mapStateToProps = store => ({
 
 export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => {
   const [priceValue, setPriceValue] = useState({
-    min: !props.priceRange.lowPriсe ? 0 : props.priceRange.lowPriсe,
-    max: !props.priceRange.hightPrice ? 200000 : props.priceRange.hightPrice
+    min: props.priceRange.lowPriсe,
+    max: props.priceRange.hightPrice
   });
 
   return (
