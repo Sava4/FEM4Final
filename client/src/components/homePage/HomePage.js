@@ -21,7 +21,7 @@ export const Homepage = () => {
         arrows={false}
         dots={true}
       />
-      <SliderProducts h4={"FEATURED"} reverse={"reverse"} />
+      <SliderProducts h4={"FEATURED"} reverse={"reverse"} perPage={20} />
       <HomepageCategories />
       <SelectedCollections />
       <AboutCompany />

@@ -5,12 +5,13 @@ const instance = axios.create({
 });
 
 export const productsAPI = {
-  getProducts(currentPage, pageSize, categoryQuery, apiCategory) {
-    // console.log(currentPage, pageSize, categoryQuery, apiCategory);
+  getProducts(currentPage, pageSize, categoryQuery, apiCategory, category2) {
+    console.log(currentPage, pageSize, categoryQuery, apiCategory, category2);
 
     return instance
       .get(
-        `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`
+        // `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`
+        `/products/filter?${categoryQuery}${category2}&startPage=${currentPage}&perPage=${pageSize}`
       )
       .then(response => {
         // console.log(response.data);
