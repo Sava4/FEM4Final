@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CheckoutShipping } from "./CheckoutShipping";
 import { ReduxUserInformation } from "./CheckoutContact";
 import { ReduxPayment } from "./CheckoutPaymentForm";
-import v4 from "uuid/dist/esm-browser/v4";
+import { v4 } from "uuid";
 import { setAuthorizationToken } from "../../store/login";
 import { OrderIcon, OrderItem, OrderSummary } from "./OrderSummary";
 import axios from "axios";
@@ -107,15 +107,15 @@ export const CheckoutForm = () => {
   const onSubmitPayment = formData => {
     setPaymentInformation(formData);
     setOrderForm(true);
-    axios
-      .post("http://localhost:5000/orders", newOrder)
-      .then(newOrder => {
-        /*Do something with newProduct*/
-        console.log("NewOrder", newOrder);
-      })
-      .catch(err => {
-        /*Do something with error, e.g. show error to user*/
-      });
+    // axios
+    //   .post("http://localhost:5000/orders", newOrder)
+    //   .then(newOrder => {
+    //     /*Do something with newProduct*/
+    //     console.log("NewOrder", newOrder);
+    //   })
+    //   .catch(err => {
+    //     /*Do something with error, e.g. show error to user*/
+    //   });
     axios
       .delete("http://localhost:5000/cart/")
       .then(() => {
