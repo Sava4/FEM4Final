@@ -97,7 +97,7 @@ const Details1 = props => {
   let imagesSliderPreview = imagesArr.map(image => {
     return (
       <div key={image}>
-        <Image
+        <img
           alt=""
           src={`${image}`}
           style={{
@@ -111,8 +111,7 @@ const Details1 = props => {
   });
   let imagesSlider = imagesArr.map(image => {
     const propsss = {
-      zoomPosition: "original",
-      // offset: {"vertical": 10, "horizontal": 10},
+      zoomPosition: "original",     
       width: 600,
       img: `${image}`
     };

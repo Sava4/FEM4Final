@@ -40,7 +40,7 @@ props.img.length&&(img2=props.img[1]) || (img2=img1)
       <Card to={`/product-details/${props.itemNo}`} key={props.id}>
         {/* <Image alt="" src={`${props.img}`} size={"small"} />  попробовать поменять внутри src по условию*/}
         <Image alt="" img1={img1} img2={img2} size={"small"} />
-        <Name size={"small"}>{`${props.name}`}</Name>
+  <Name size={"small"}>{`${props.name}`}<p>"{props.collection}"</p></Name>
         <Price size={"small"}>
           {props.previousPrice.toLocaleString("de-CH")}
         </Price>

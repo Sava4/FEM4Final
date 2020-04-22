@@ -28,10 +28,9 @@ export const ProductsPagination = ({
       {/* <Layout> */}
       <div
         style={{
-          position: "relative",
-          textAlign: "right",
-          bottom: "38px",
-          right: "16.5%"
+          position: "absolute",          
+          top: "84%",
+          right: "14%",
         }}
       >
         <Paginator
@@ -68,7 +67,7 @@ export const ProductsPagination = ({
                 justifyContent: "center"
               }}
               interpretation={"carousel"}
-              img={p.imageUrls[0]}
+              img={p.imageUrls}
             />            
           </div>
         ))}
@@ -85,7 +84,16 @@ export const ProductsPagination = ({
           pageSize={pageSize}
           category={category}
         />
-        <Paginator
+       
+      </div>
+      <div
+         style={{
+          position: "relative",          
+          bottom: "5.1%",
+          left: "69%",  
+        }}
+      >
+      <Paginator       
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           onLoadMore={onLoadMore}
@@ -94,7 +102,7 @@ export const ProductsPagination = ({
           truePage={truePage}
           category={category}
         />
-      </div>
+        </div>
       {/* </Layout> */}
     </div>
   );

@@ -79,7 +79,7 @@ ${mediaTablet(`
         }
       `}
 `;
-export const Name = styled.p`
+export const Name = styled.div`
   text-transform: uppercase;
   font-size: 30px;
   line-height: 40px;
