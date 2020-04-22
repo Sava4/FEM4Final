@@ -21,7 +21,7 @@ export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => 
       <PriceForm className={style.form}>
         <InputRange
           maxValue={200000}
-          minValue={""}
+          minValue={0}
           formatLabel={value =>
             `₴ ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")} `
           }

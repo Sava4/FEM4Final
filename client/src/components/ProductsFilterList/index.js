@@ -26,7 +26,7 @@ const MapStateToProps = store => ({
 export const ProductFilters = connect(MapStateToProps, { setAvaliFilters,setPriceRange})(
   props => {
     const { category } = useParams();
-    const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
+    // const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
     const [openFiltwin, setOpenFiltwilnd] = useState(false);
     console.log(props.selectedProd);
     const initialPriceValue = {
@@ -91,11 +91,13 @@ export const ProductFilters = connect(MapStateToProps, { setAvaliFilters,setPric
           )}
 
           <SelectedProducts>
-            <p>{`Selected products ( ${props.selectedProd} )`}</p>
+            <p>{`Selected products ( 
+              // ${props.selectedProd}
+               )`}</p>
             <FilterIndicators />
             <FilteredListProducts
             category={category}
-            setNambertOfFilteredItems={setNambertOfFilteredItems}
+            // setNambertOfFilteredItems={setNambertOfFilteredItems}
           />         
             {/* <ProductsContainer /> */}
           </SelectedProducts>

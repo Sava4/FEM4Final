@@ -1,0 +1,24 @@
+.navy {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+}
+.navy :nth-child {
+  margin-right: 20px;
+  justify-content: space-between;
+  text-transform: capitalize;
+  cursor: pointer;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+.navy :not(:first-child) {
+  display: inline;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  background-color: grey;
+  text-transform: capitalize;
+  border-bottom: 1px solid black;
+  background-color: white !important;
+}

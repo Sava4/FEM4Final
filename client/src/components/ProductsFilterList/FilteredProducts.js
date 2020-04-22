@@ -34,7 +34,7 @@ const sort = `${query ? "&" : ""}minPrice=${props.priceFilters.lowPriсe}&maxPri
   }, [query, sort]);
   
   const filteredProd = products.products;
-  filteredProd && setNambertOfFilteredItems(filteredProd.length);
+  // filteredProd && setNambertOfFilteredItems(filteredProd.length);
   const ListProduct =
     filteredProd &&
     filteredProd.map(product => {
