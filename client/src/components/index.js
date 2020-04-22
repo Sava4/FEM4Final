@@ -1,5 +1,5 @@
 export { HeaderContent } from "./common/Header/Header";
 export { ProductsList } from "./ProductsList/productList";
-export { ProductItem } from "./ProductsList/productItem";
-export { Wishlist } from "./Wishlist/wishlist";
+export { ProductItem } from "./ProductsList/ProductItem";
+export { Wishlist } from "./Wishlist/Wishlist";
 // export { Spinner } from "../conponents/Spinner/spinner";

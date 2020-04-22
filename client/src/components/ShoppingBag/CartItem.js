@@ -84,6 +84,7 @@ const WrapperLink = styled(NavLink)`
 export const ImgWrap = styled.div`
   flex: 1;
   height: 188px;
+  width: 100px;
   margin-right: 20px;
   border: 1px solid #e9ebf5;
   &: hover {

@@ -1,29 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Modal } from "../../Modal/Modal";
+import { useHistory } from "react-router";
+import { Wrapper } from "../../Checkout/checkout.styles";
+import { Button } from "../../common/Button/Button";
 import {
-  FormWrapper,
-  CreateAccountTitle,
   Content,
   CreateAccountSubtitle,
+  CreateAccountTitle,
+  FormWrapper,
   GoBackImage,
+  GoBackText,
   GoBackWrapper,
-  GoBackText
+  Order
 } from "./orderForm.styles";
 
-import { Modal } from "../../Modal/Modal";
-
 export const OrderForm = props => {
-  const { isModalOpen, onClose } = props;
+  const { isModalOpen, onClose, email, icons } = props;
+  const [isMobile, setMobile] = useState({});
+  const history = useHistory();
+  const handleWindowSizeChange = () => {
+    setMobile({ width: window.innerWidth });
+  };
+  const handleClickBack = () => history.push("/products");
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+  }, []);
 
-  return (
+  return window.matchMedia("(max-width: 800px)").matches ||
+    isMobile.width < 800 ? (
+    <Order>
+      <CreateAccountTitle>
+        <Content>Thank you for your order with Zarina!</Content>
+      </CreateAccountTitle>
+      <Wrapper icons={"icons"}>{icons}</Wrapper>
+      <CreateAccountSubtitle>
+        We sent an email to <u> {email.toLowerCase()} </u> with your order
+        details.
+      </CreateAccountSubtitle>
+      <Button
+        width={"90%"}
+        value={"Go back to shopping"}
+        onClick={handleClickBack}
+      />
+    </Order>
+  ) : (
     <Modal isModalOpen={isModalOpen} onClose={onClose}>
       <FormWrapper>
         <CreateAccountTitle>
           <Content>Thank you for your order with Zarina!</Content>
         </CreateAccountTitle>
+        <Wrapper icons={"icons"}>{icons}</Wrapper>
         <CreateAccountSubtitle>
-          We sent an email to mtanya95@gmail.com with your order details.
+          We sent an email to <u> {email.toLowerCase()} </u> with your order
+          details.
         </CreateAccountSubtitle>
-        <GoBackWrapper>
+        <GoBackWrapper onClick={handleClickBack}>
           <GoBackImage />
           <GoBackText>Go back to shopping</GoBackText>
         </GoBackWrapper>
