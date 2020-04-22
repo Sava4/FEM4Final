@@ -29,6 +29,7 @@ const ProductsContainer = props => {
   console.log("TCL: path", path);
 
   const { category } = useParams();
+  console.log("TCL: category", category)
   const queryString = [];
   for (let key in props.filters) {
     props.filters[key].length &&
@@ -38,11 +39,10 @@ const ProductsContainer = props => {
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
   const categoryQuery = `${query}`;
   // console.log("TCL: categoryQuery", categoryQuery);
-  const category2 = `&categories=${category}`;
-  // let category3
-  const apiCategory = categoryQuery + category2;
-
-  // console.log("TCL: apiCategory", apiCategory);
+ let [category2, setCategory2]=useState('')
+  category!=='filter'&& (setCategory2 = `&categories=${category}`);
+  
+  const apiCategory = categoryQuery + category2; 
 
   const queryString2 = require("query-string");
   const parsed = queryString2.parse(location.search);
@@ -96,7 +96,7 @@ const ProductsContainer = props => {
       {/* {this.props.isFetching ? <Preloader/> : null} */}
       {/* при выборе фильтра возвращает на первую страницу */}
       <Redirect
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${truePage2}&perPage=${pageSize}`}
+        to={`/categories/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
       />
 
       <ProductsPagination
@@ -110,6 +110,7 @@ const ProductsContainer = props => {
         parsed={parsed}
         categoryQuery={categoryQuery}
         category={category}
+        category2={category2}
         apiCategory={apiCategory}
         truePage={truePage}
       />
