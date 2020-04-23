@@ -1,111 +1,95 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import axios from "axios";
 import styled from "styled-components";
+import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
 
-import { Button } from "../../common/Button/Button";
-import { Input } from "../../common/Input/Input";
-import arrow from "./dropdownArrow.png";
+import {Button} from "../../common/Button/Button";
+import {Input} from "../../common/Input/Input";
+import {Datepicker} from "../Datepicker/Datepicker";
 import edit from "./edit.png";
 
 export const PersonalInformation = () => {
   const user = useSelector(state => state.user);
-
-  const thisYear = new Date().getFullYear();
-  const yearsArray = [];
-  for (let i = 1970; i <= thisYear; i++) {
-    yearsArray.push(thisYear - (thisYear - i));
-  }
-  const year = yearsArray.map(year => {
-    return (
-      <Options key={year} value={year}>
-        {year}
-      </Options>
-    );
-  });
-
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ].map(month => {
-    return (
-      <Options key={month} value={month}>
-        {month}
-      </Options>
-    );
-  });
-
-  const daysArray = [];
-  for (let i = 1; i <= 31; i++) {
-    daysArray.push(i);
-  }
-  const days = daysArray.map(day => {
-    return (
-      <Options key={day} value={day}>
-        {day}
-      </Options>
-    );
-  });
+  const [data, setData] = useState({});
 
   return (
     <Details>
       <Description>
         In your Personal Account you can access and modify your personal details
         in order to facilitate your future purchases.
-        <br />
+        <br/>
         If you want to update your details, please edit the correspondent field
         and then save changes.
       </Description>
       <InputWrapper>
         <Holder>
-          <Input type="text" label="First Name *" value={user.firstName} />
-          <Edit />
+          <Input
+            type="text"
+            label="First Name *"
+            value={user.firstName}
+            onChange={handleDataChange("firstName")}
+          />
+          <Edit/>
         </Holder>
         <Holder>
-          <Input type="text" label="Last Name *" value={user.lastName} />
-          <Edit />
+          <Input
+            type="text"
+            label="Last Name *"
+            value={user.lastName}
+            onChange={handleDataChange("lastName")}
+          />
+          <Edit/>
         </Holder>
         <Holder>
-          <Input type="email" label="Email" value={user.email} />
-          <Edit />
+          <Input
+            type="email"
+            label="Email *"
+            value={user.email}
+            onChange={handleDataChange("email")}
+          />
+          <Edit/>
         </Holder>
         <Holder>
-          <Input type="tel" label="Phone" value={user.phone} />
-          <Edit />
+          <Input
+            type="tel"
+            label="Phone"
+            value={user.telephone}
+            onChange={handleDataChange("telephone")}
+          />
+          <Edit/>
         </Holder>
-        <Birthday>
-          <Select>
-            <Options selected disabled>
-              Month
-            </Options>
-            {month}
-          </Select>
-          <Select>
-            <Options selected disabled>
-              Day
-            </Options>
-            {days}
-          </Select>
-          <Select>
-            <Options selected disabled>
-              Year
-            </Options>
-            {year}
-          </Select>
-        </Birthday>
-        <Button value={"Save Changes"} />
+        <Datepicker value={user.date} onChange={onDatepickerChange}/>
+        <Button value={"Save Changes"} onClick={updateCustomer}/>
       </InputWrapper>
     </Details>
   );
+
+  function handleDataChange(key) {
+    return function (event) {
+      data[key] = event.target.value;
+      setData(data);
+    };
+  }
+
+  function onDatepickerChange(value) {
+    data["date"] = value;
+    setData(data);
+  }
+
+  function updateCustomer() {
+    return (
+      axios
+        .put("http://localhost:5000/customers", data)
+        .then(data => {
+          console.log(data);
+        })
+        .catch((error => {
+            console.log(error)
+          })
+        )
+    )
+  }
 };
 
 export const Details = styled.div`
@@ -115,6 +99,15 @@ export const Details = styled.div`
   margin-top: 20px;
   margin-left: 120px;
   margin-right: 130px;
+  
+  ${mediaTablet(`
+    margin-left: 50px;
+    margin-right: 50px;
+  `)}
+   
+  ${mediaMobile(`
+    // display: none;
+  `)}
 `;
 
 export const Description = styled.div`
@@ -126,34 +119,11 @@ export const Description = styled.div`
 export const InputWrapper = styled.div`
   width: 50%;
   margin-bottom: 60px;
+  
+  ${mediaTablet(`
+    width: 100%;
+  `)}
 `;
-
-export const Birthday = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 55px;
-`;
-
-export const Select = styled.select`
-  width: 100px;
-  font-size: 14px;
-  letter-spacing: 0.4px;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: transparent;
-  background-image: url(${arrow});
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px;
-  background-size: 14px;
-  border: none;
-  border-bottom: 1px solid #80858d;
-  border-radius: 0;
-  padding-bottom: 5px;
-`;
-
-export const Options = styled.option``;
 
 export const Holder = styled.div`
   display: flex;
