@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import * as storeDate from "./data/{...}zarina-stores";
 
-export const MapBox = () => {
+export const Mapbox = () => {
   const [viewport, setViewport] = useState({
     latitude: 50.4941311,
     longitude: 30.3568245,

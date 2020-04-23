@@ -172,7 +172,7 @@ export const ShoppingBag = () => {
   );
 };
 
-const Container = styled.div`
+export const Container = styled.div`
   margin: 0 130px 0 149px;
   display: flex;
   flex-direction: column;
@@ -187,13 +187,13 @@ const BagHeader = styled.h2`
   text-transform: uppercase;
 `;
 
-const Continue = styled.div`
+export const Continue = styled.div`
   align-self: flex-start;
   margin-top: 33px;
   cursor: pointer;
 `;
 
-const ArrowImg = styled.img`
+export const ArrowImg = styled.img`
   vertical-align: top;
   height: 14px;
   margin-right: 9px;

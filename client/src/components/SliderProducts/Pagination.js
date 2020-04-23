@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
-import { ProductItem } from "./../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
 import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";
@@ -29,11 +29,13 @@ export const ProductsPagination = ({
       <div
         style={{
           position: "relative",
-          textAlign: "right"
+          textAlign: "right",
+          bottom: "38px",
+          right: "16.5%"
         }}
       >
         <Paginator
-          info={1}
+          // info={1}
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           onLoadMore={onLoadMore}
@@ -56,22 +58,17 @@ export const ProductsPagination = ({
       >
         {products.map((p, index) => (
           <div id={index} key={p.itemNo}>
-            <NavLink
-              to={`/product-details/${p.itemNo}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ProductItem
-                product={p}
-                {...p}
-                itemNo={`${p.itemNo}`}
-                style={{
-                  display: "flex",
-                  justifyContent: "center"
-                }}
-                interpretation={"carousel"}
-                img={p.imageUrls[0]}
-              />
-            </NavLink>
+            <ProductItem
+              product={p}
+              {...p}
+              itemNo={`${p.itemNo}`}
+              style={{
+                display: "flex",
+                justifyContent: "center"
+              }}
+              interpretation={"carousel"}
+              img={p.imageUrls[0]}
+            />
           </div>
         ))}
         {/* <FilteredListProducts category={category} /> */}
@@ -84,6 +81,8 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           products={products}
+          pageSize={pageSize}
+          category={category}
         />
         <Paginator
           currentPage={currentPage}
@@ -92,6 +91,7 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           truePage={truePage}
+          category={category}
         />
       </div>
       {/* </Layout> */}

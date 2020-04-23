@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import arrow from "./arrow.png";
+import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
-  width: 980px;
+  max-width: 1100px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,11 +22,17 @@ export const Content = styled.div`
   font-size: 24px;
   line-height: 40px;
   text-transform: uppercase;
+  ${mediaTablet(`
+font-size: 16px;
+  `)}
 `;
 
 export const CreateAccountSubtitle = styled.div`
   margin-bottom: 80px;
   font-size: 14px;
+  ${mediaTablet(`
+text-align: center;
+  `)}
 `;
 
 export const GoBackWrapper = styled.div`
@@ -42,4 +50,12 @@ export const GoBackImage = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   color: #80858d;
+`;
+export const Order = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  width: 98%;
 `;

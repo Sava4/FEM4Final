@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import InputRange from "react-input-range";
 import styled from "styled-components";
-// import style from "./priceRange.scss";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import { setPriceRange } from "../../../store/filters";
 

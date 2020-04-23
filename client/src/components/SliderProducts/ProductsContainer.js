@@ -52,32 +52,29 @@ const ProductsContainer = props => {
   (!truePage && (truePage2 = +currentPage)) ||
     (truePage > 0 && (truePage2 = +truePage)); //чтобы c первой загрузки /pagin активна 1я страница
 
+  query && query.length > 0 && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
+
   useEffect(() => {
     //первая загрузка откроется, и номер страницы в урле, и работает назад вперед
-    props.getProducts(truePage2, pageSize, categoryQuery, apiCategory);
+    props.getProducts(
+      truePage2,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   }, [truePage2, query]);
-
-  // let [filtered, setFiltered] = useState(false)
-  // let [truePage5,setTruePage5]= useState(truePage2)
-  // // useEffect (() => {
-
-  // // }, []);
-  // if((query.length>1)&&(filtered===true)){//второй раз
-  //   setTruePage5(truePage2)
-  //   props.getProducts(truePage5, pageSize, categoryQuery, apiCategory )
-  // }
-
-  // useEffect(() => {//при фильтрации обновление и появляется урл с фильтром, но при обновлении страницы откроется первая
-  //   (props.getProducts(truePage2=1, pageSize, categoryQuery, apiCategory ))
-  //   return truePage2
-  // }, [apiCategory]);
-
-  //  все классно но фильтрует не возвращая на 1ю
 
   const onPageChanged = pageNumber => {
     // из пагинатора
     const { pageSize } = props;
-    props.getProducts(pageNumber, pageSize, categoryQuery, apiCategory);
+    props.getProducts(
+      pageNumber,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   };
   let truePage3 = +currentPage + 1;
   console.log(truePage3);
@@ -85,7 +82,13 @@ const ProductsContainer = props => {
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора
     const { pageSize } = props;
-    props.moreProducts(truePage3, pageSize, categoryQuery, apiCategory);
+    props.moreProducts(
+      truePage3,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   };
 
   return (
@@ -116,17 +119,18 @@ const ProductsContainer = props => {
   );
 };
 
-let mapStateToProps = (state, categoryQuery, apiCategory, query) => {
+let mapStateToProps = (state, categoryQuery, apiCategory, category2, query) => {
   return {
+    category2: category2,
     apiCategory: apiCategory,
     categoryQuery: categoryQuery,
+    query: query,
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state),
-    filters: state.filters.selFilters,
-    query: query
+    filters: state.filters.selFilters
   };
 };
 
