@@ -227,13 +227,16 @@ export const Paginator = ({
       </NavLink>
       {/* последняя страница */}
       <NavLink
-        to={((category === undefined ||
+        to={ 
+        
+          ((category === undefined ||
           category === "filter" ||
           category === "all_categories") &&
           (category = "all_categories") &&
-          `/products/${category}/filter?${categoryQuery}&startPage=${pagesCount}&perPage=${pageSize}`) ||
-        (category !== undefined
-          `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`)}
+          `/products/${category}/filter?${categoryQuery}&startPage=${pagesCount}&perPage=${pageSize}`)||
+          (category !== undefined&&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`)
+          }
         onClick={(e) => {
           onTop(450);
         }}
@@ -270,7 +273,7 @@ export const Paginator = ({
           (category = "all_categories") &&
           `/products/${category}/filter?${categoryQuery}&startPage=${currentPage +
             1}&perPage=${pageSize}`) ||
-        (category !== undefined
+        (category !== undefined&&
           `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage +
           1}&perPage=${pageSize}`)}
       >

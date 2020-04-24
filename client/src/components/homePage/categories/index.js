@@ -1,23 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import axios from 'axios';
+import axios from "axios";
 import {
   mediaMobile,
   mediaTablet,
 } from "../../../styledComponents/MediaBreakpointsMixin";
 
-import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
-import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
-import RingsPict from "../../../img/homePage/categories/rings.png";
-import EarringsPict from "../../../img/homePage/categories/earring.png";
+// import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
+// import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
+// import RingsPict from "../../../img/homePage/categories/rings.png";
+// import EarringsPict from "../../../img/homePage/categories/earring.png";
+import { XMasonry, XBlock } from "react-xmasonry"; // Imports JSX plain sources
+// import { XMasonry, XBlock } from "react-xmasonry/dist/index.js"; // Imports precompiled bundle
 import { set } from "mongoose";
 
 export const HomepageCategories = (props) => {
   // let categories = ["necklaces", "bracelets", "rings", "earrings"];
-let {category}=props
+  let { category } = props;
   let [categories3, setCategories3] = useState([]);
-  let get2
+  let get2;
   useEffect(() => {
     get2 = `http://localhost:5000/catalog/`;
     console.log("TCL:  get2", get2);
@@ -31,24 +33,69 @@ let {category}=props
         console.log(err);
       });
   }, [get2]);
-
+  let categoryName;
+  let categoryName2;
+  let url;
+  let url2;
   // из стора или запрос или из слайдера там товары из все категорий
   // map p{имя категории} to={имя категории
-  let categories4= Array.from(categories3) 
-  let categories2 = categories4.filter(element=>(element.imgUrl)).map((item) => {  
- let categoryName=(item.name).toLowerCase()
+  let categories4 =
+    categories3 && Array.from(categories3).filter((element) => element.imgUrl);
 
-    return (
-      <Necklaces to={`/categories/${categoryName}/filter?categories=${categoryName}`}  key={item.id} url={item.imgUrl} >
-        <p>{item.name}</p>
-      </Necklaces>
-    );
-  });
+  categoryName =
+    categories4 && categories4.length && categories4[0].name.toLowerCase();
+  categoryName2 =
+    categories4 && categories4.length && categories4[1].name.toLowerCase();
+url = categories4 && categories4.length && categories4[0].imgUrl
+url2 = categories4 && categories4.length && categories4[1].imgUrl
+  //только категории с фото
 
+  // .map((item) => {
+  // let categoryName = item.name.toLowerCase();
+
+  //   return (
+
+  //           <Necklaces
+  //             to={`/categories/${categoryName}/filter?categories=${categoryName}`}
+  //             key={item.id}
+  //             url={item.imgUrl}
+  //           >
+  //             <p>{item.name}</p>
+  //           </Necklaces>
+
+  //   );
+  // });
+
+  console.log("TCL: HomepageCategories -> categories2", categories4);
   return (
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
-      <Categories>{categories2}</Categories>
+      {/* <Categories>{categories2}</Categories>
+       */}
+      <XMasonry>
+        <XBlock>
+          <div className="card">
+            <h1>Simple Card</h1>
+            <Necklaces
+              to={`/categories/${categoryName}/filter?categories=${categoryName}`}
+              url={url}
+            >
+              <p>{categoryName}</p>
+            </Necklaces>
+          </div>
+        </XBlock>
+        <XBlock width={2}>
+          <div className="card">
+            <h1>Wider card</h1>
+            <Necklaces
+              to={`/categories/${categoryName2}/filter?categories=${categoryName2}`}
+              url={url2}
+            >
+              <p>{categoryName2}</p>
+            </Necklaces>
+          </div>
+        </XBlock>
+      </XMasonry>
     </SectionCategories>
   );
 };
@@ -87,7 +134,7 @@ const Necklaces = styled(NavLink)`
   width: 40%;
   height: 712px;
   margin-right: 2px;
-  background-image: url(http://localhost:3000${props => props.url});
+  background-image: url(http://localhost:3000${(props) => props.url});
   background-size: cover;
   background-repeat: no-repeat;
   text-transform: uppercase;
@@ -114,67 +161,67 @@ const RightCategoriesWrapper = styled.div`
   `)}
 `;
 
-const Bracelets = styled(NavLink)`
-  width: 100%;
-  height: 312px;
-  background-image: url(${BraceletsPict});
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-transform: uppercase;
-  ${mediaTablet(`
-  width: 100%;
-  height: 312px;
-  `)}
-  ${mediaMobile(`
-  width: 100%;
-  height: 231px; 
-`)}
-`;
+// const Bracelets = styled(NavLink)`
+//   width: 100%;
+//   height: 312px;
+//   background-image: url(${BraceletsPict});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   text-transform: uppercase;
+//   ${mediaTablet(`
+//   width: 100%;
+//   height: 312px;
+//   `)}
+//   ${mediaMobile(`
+//   width: 100%;
+//   height: 231px;
+// `)}
+// `;
 
-const RingsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  margin-top: 2px;
+// const RingsWrapper = styled.div`
+//   width: 100%;
+//   display: flex;
+//   margin-top: 2px;
 
-  ${mediaMobile(`
-  flex-direction: column;
-  `)}
-`;
+//   ${mediaMobile(`
+//   flex-direction: column;
+//   `)}
+// `;
 
-const Rings = styled(NavLink)`
-  width: 50%;
-  height: 397px;
-  margin-right: 2px;
-  background-image: url(${RingsPict});
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-transform: uppercase;
-  ${mediaTablet(`
-  width: 50%;
-  height: 397px;
-  `)}
-  ${mediaMobile(`
-  width: 100%;
-  height: 231px; 
-  margin-right: 0;
-  margin-bottom: 2px;
-  background-position: center;
-`)}
-`;
-const Earrings = styled(NavLink)`
-  width: 50%;
-  height: 397px;
-  background-image: url(${EarringsPict});
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-transform: uppercase;
-  ${mediaTablet(`
-  width: 50%;
-  height: 397px;
-  `)}
-  ${mediaMobile(`
-  width: 100%;
-  height: 231px;
-  background-position: center; 
-`)}
-`;
+// const Rings = styled(NavLink)`
+//   width: 50%;
+//   height: 397px;
+//   margin-right: 2px;
+//   background-image: url(${RingsPict});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   text-transform: uppercase;
+//   ${mediaTablet(`
+//   width: 50%;
+//   height: 397px;
+//   `)}
+//   ${mediaMobile(`
+//   width: 100%;
+//   height: 231px;
+//   margin-right: 0;
+//   margin-bottom: 2px;
+//   background-position: center;
+// `)}
+// `;
+// const Earrings = styled(NavLink)`
+//   width: 50%;
+//   height: 397px;
+//   background-image: url(${EarringsPict});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   text-transform: uppercase;
+//   ${mediaTablet(`
+//   width: 50%;
+//   height: 397px;
+//   `)}
+//   ${mediaMobile(`
+//   width: 100%;
+//   height: 231px;
+//   background-position: center;
+// `)}
+// `;
