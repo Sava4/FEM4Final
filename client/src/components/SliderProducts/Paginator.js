@@ -54,7 +54,12 @@ export const Paginator = ({
           onTop(450);
           onPageChanged(+currentPage - 1);
         }}
-        to={`/categories/filter?${categoryQuery}${category2}&startPage=${+currentPage -
+        
+          // to={(category===undefined)&&`/products/${category='all'}/filter?${categoryQuery}&startPage=${+currentPage -
+          //   1}&perPage=${pageSize}`}
+        
+
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage -
           1}&perPage=${pageSize}`}
       >
         {portionNumber > 1 &&
@@ -74,7 +79,7 @@ export const Paginator = ({
 
       {/* первая страница */}
       <NavLink
-        to={`/categories/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`}
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`}
         onClick={e => {
           onTop(450);
         }}
@@ -97,7 +102,7 @@ export const Paginator = ({
 
       {/* три точки ... */}
       <NavLink
-        to={`/categories/filter?${categoryQuery}${category2}&startPage=${currentPage -
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage -
           2}&perPage=${pageSize}`}
         onClick={e => {
           onTop(450);
@@ -129,7 +134,7 @@ export const Paginator = ({
         .map(pageNumber => {
           return (
             <NavLink
-              to={`/categories/filter?${categoryQuery}${category2}&startPage=${pageNumber}&perPage=${pageSize}`}
+              to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pageNumber}&perPage=${pageSize}`}
               key={pageNumber}
               onClick={e => {
                 onTop(450);
@@ -160,7 +165,7 @@ export const Paginator = ({
 
       {/* три точки ... */}
       <NavLink
-        to={`/categories/filter?${categoryQuery}${category2}&startPage=${currentPage +
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage +
           3}&perPage=${pageSize}`}
         onClick={e => {
           onTop(450);
@@ -183,7 +188,7 @@ export const Paginator = ({
       </NavLink>
       {/* последняя страница */}
       <NavLink
-        to={`/categories/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`}
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`}
         onClick={e => {
           onTop(450);
         }}
@@ -211,7 +216,10 @@ export const Paginator = ({
           onTop(450);
           onPageChanged(+currentPage + 1);
         }}
-        to={`/categories/filter?${categoryQuery}${category2}&startPage=${+currentPage +
+        // to={(category===undefined)&&(category='')&&`/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
+        //   1}&perPage=${pageSize}`}
+      
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage +
           1}&perPage=${pageSize}`}
       >
         {portionCount > portionNumber &&

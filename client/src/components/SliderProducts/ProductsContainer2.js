@@ -23,13 +23,16 @@ import {
 const ProductsContainer = props => {
   // console.log(props);
   const { currentPage, pageSize } = props;
-
+  const { category } = useParams();
   let location = useLocation();
+  // let category = location.search
   let path = `filter${location.search}`;
+  console.log("TCL: category", category)
   console.log("TCL: path", path);
 
-let { category } = useParams();
-console.log("TCL: category", category)
+
+
+
   const queryString = [];
   for (let key in props.filters) {
     props.filters[key].length &&
@@ -39,11 +42,11 @@ console.log("TCL: category", category)
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
   const categoryQuery = `${query}`;
   // console.log("TCL: categoryQuery", categoryQuery);
-  const category2 = `&categories=${category}`;
-  // let category3
-  const apiCategory = categoryQuery + category2;
-
-  // console.log("TCL: apiCategory", apiCategory);
+ let [category2, setCategory2]=useState('')
+  // category!=='filter'&& 
+  (setCategory2 = `&categories=${category}`);
+  
+  const apiCategory = categoryQuery + category2; 
 
   const queryString2 = require("query-string");
   const parsed = queryString2.parse(location.search);
@@ -91,18 +94,15 @@ console.log("TCL: category", category)
       category2
     );
   };
-let category8
+
   return (
     <>
       {/* {this.props.isFetching ? <Preloader/> : null} */}
       {/* при выборе фильтра возвращает на первую страницу */}
-      {/* {category===undefined&&(category8='/')&&
       <Redirect
-        to={`/products${category8}filter?${categoryQuery}&startPage=${truePage2}&perPage=${pageSize}`}
-      />} */}
-      {category!==undefined&&<Redirect
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
-      />}
+        to={`/categories/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
+        // to={`/categories/${path}&startPage=${truePage2}&perPage=${pageSize}`}
+      />
 
       <ProductsPagination
         style={{ width: "60%" }}
@@ -115,6 +115,7 @@ let category8
         parsed={parsed}
         categoryQuery={categoryQuery}
         category={category}
+        category2={category2}
         apiCategory={apiCategory}
         truePage={truePage}
       />

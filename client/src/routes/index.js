@@ -21,9 +21,9 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route path="/categories/:category?" component={ProductFilters} />
-      <Route path="/products" component={ProductFilters} />
+      <Route path="/products/:category?" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
-      <Route path="/pagin/:path?" component={ProductsContainer} />
+      {/* <Route path="/pagin/:path?" component={ProductsContainer} /> */}
       <Route exact path="/account" component={Account} />
       <Route exact path="/account/favorites" component={Wishlist} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />

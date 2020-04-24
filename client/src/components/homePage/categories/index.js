@@ -39,7 +39,7 @@ let {category}=props
  let categoryName=(item.name).toLowerCase()
 
     return (
-      <Necklaces to={`/categories/filter?categories=${categoryName}`}  key={item.id} url={item.imgUrl} >
+      <Necklaces to={`/categories/${categoryName}/filter?categories=${categoryName}`}  key={item.id} url={item.imgUrl} >
         <p>{item.name}</p>
       </Necklaces>
     );
