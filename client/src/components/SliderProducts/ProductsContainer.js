@@ -103,6 +103,9 @@ let category8
       {category!==undefined&&<Redirect
         to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
       />}
+       {(category===undefined)||(category==='filter')&&(category='/')&&<Redirect
+        to={`/products${category}filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
+      />}
 
       <ProductsPagination
         style={{ width: "60%" }}
