@@ -20,7 +20,7 @@ export const Routes = () => {
   return user ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
-      <Route path="/categories/:category" component={ProductFilters} />
+      <Route path="/categories/:category?" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route path="/pagin/:path?" component={ProductsContainer} />

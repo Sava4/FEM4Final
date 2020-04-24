@@ -91,3 +91,31 @@ export function addCategory() {
         });
     });
 }
+
+export function updateCategory() {
+  const updatedCategory = {
+   
+    imgUrl: "/img/homePage/categories/rings.png",
+  
+  };
+
+  axios
+    .post("http://localhost:5000/customers/login", {
+      loginOrEmail: "customer@gmail.com",
+      password: "1111111"
+    })
+    .then(response => {
+      let token = response.data.token;
+      console.log(token);
+      axios
+        .put("http://localhost:5000/catalog/RingsJewelry", updatedCategory, {
+          headers: { Authorization: `${token}` }
+        })
+        .then(updatedCategory => {       
+          console.log(updatedCategory );
+        })
+        .catch(err => {
+          console.log("Не добавлена категория",err );
+        });
+    });
+}

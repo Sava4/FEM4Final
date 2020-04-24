@@ -1,54 +1,42 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import axios from 'axios';
 import {
   mediaMobile,
-  mediaTablet,
+  mediaTablet
 } from "../../../styledComponents/MediaBreakpointsMixin";
 
 import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
 import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
 import RingsPict from "../../../img/homePage/categories/rings.png";
 import EarringsPict from "../../../img/homePage/categories/earring.png";
-import { set } from "mongoose";
 
-export const HomepageCategories = (props) => {
-  // let categories = ["necklaces", "bracelets", "rings", "earrings"];
-let {category}=props
-  let [categories3, setCategories3] = useState([]);
-  let get2
-  useEffect(() => {
-    get2 = `http://localhost:5000/catalog/`;
-    console.log("TCL:  get2", get2);
-    axios
-      .get(get2)
-      .then((result) => {
-        setCategories3(result.data);
-        console.log("TCL: HomepageCategories -> result.data", result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [get2]);
-
-  // из стора или запрос или из слайдера там товары из все категорий
-  // map p{имя категории} to={имя категории
-  let categories4= Array.from(categories3) 
-  let categories2 = categories4.filter(element=>(element.imgUrl)).map((item) => {  
- let categoryName=(item.name).toLowerCase()
-
-    return (
-      <Necklaces to={`/categories/filter?categories=${categoryName}`}  key={item.id} url={item.imgUrl} >
-        <p>{item.name}</p>
-      </Necklaces>
-    );
-  });
-
+export const HomepageCategories = () => {
+  let categories = ["necklaces", "bracelets", "rings", "earrings"];
+  //из стора или запрос или из слайдера там товары из все категорий
+  //map p{имя категории} to={имя категории}
   return (
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
-      <Categories>{categories2}</Categories>
+      <Categories>
+        <Necklaces to={`/categories/${categories[0]}`}>
+          <p>{categories[0]}</p>
+        </Necklaces>
+
+        <RightCategoriesWrapper>
+          <Bracelets to={`/categories/${categories[1]}`}>
+            <p>{categories[1]}</p>
+          </Bracelets>
+          <RingsWrapper>
+            <Rings to={`/categories/${categories[2]}`}>
+              <p>{categories[2]}</p>
+            </Rings>
+            <Earrings to={`/categories/${categories[3]}`}>
+              <p>{categories[3]}</p>
+            </Earrings>
+          </RingsWrapper>
+        </RightCategoriesWrapper>
+      </Categories>
     </SectionCategories>
   );
 };
@@ -87,7 +75,7 @@ const Necklaces = styled(NavLink)`
   width: 40%;
   height: 712px;
   margin-right: 2px;
-  background-image: url(http://localhost:3000${props => props.url});
+  background-image: url(${NecklacesPict});
   background-size: cover;
   background-repeat: no-repeat;
   text-transform: uppercase;
