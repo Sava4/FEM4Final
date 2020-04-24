@@ -6,9 +6,10 @@ import axios from "axios";
 import { v4 } from "uuid";
 import { EmptyCart } from "../ShoppingBag/EmptyCart";
 import { useSelector } from "react-redux";
-import { ArrowImg, Container, Continue } from "../ShoppingBag/ShoppingBag";
+import { ArrowImg, Continue } from "../ShoppingBag/ShoppingBag";
 import arrow from "../ShoppingBag/arrow.png";
 import { useHistory } from "react-router";
+import { PageHeader } from "../common/PageHeader/PageHeader";
 
 export const Wishlist = props => {
   const [products, setProducts] = useState([]);
@@ -40,15 +41,17 @@ export const Wishlist = props => {
     <Layout>
       <Container>
         <FavoritesWrapper>
-          <FavoritesHeader>FAVORITES</FavoritesHeader>
+          <PageHeader>FAVORITES</PageHeader>
         </FavoritesWrapper>
 
-        <Continue onClick={() => history.push("/")}>
-          <ArrowImg src={arrow} />
-          Continue Shopping
-        </Continue>
         {lengthFav > 0 ? (
-          <Fragment>{ListProduct}</Fragment>
+          <Fragment>
+            <Continue onClick={() => history.push("/")}>
+              <ArrowImg src={arrow} />
+              Continue Shopping
+            </Continue>
+            {ListProduct}
+          </Fragment>
         ) : (
           <EmptyCart text={"Yor Wishlist is currently empty."} />
         )}
@@ -63,9 +66,12 @@ const FavoritesWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const FavoritesHeader = styled.h2`
-  margin-top: 29px;
-  width: max-content;
-  font-size: 24px;
-  text-transform: uppercase;
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
