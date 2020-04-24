@@ -11,12 +11,9 @@ import { setServerCart } from "../../store/shopping-cart";
 import { OrderForm } from "../Forms/OrderForm/OrderForm";
 import { Spinner } from "../Spinner/Spinner";
 import { EmptyCart } from "../ShoppingBag/EmptyCart";
-import {
-  CheckoutWrapper,
-  PagesHeader,
-  SummaryWrapper
-} from "./checkout.styles";
+import { CheckoutWrapper, SummaryWrapper } from "./checkout.styles";
 import { OrderMobile } from "./OrderMobile";
+import { PageHeader } from "../common/PageHeader/PageHeader";
 
 export const CheckoutForm = () => {
   const token = useSelector(state => state.login.token);
@@ -154,7 +151,7 @@ export const CheckoutForm = () => {
     ) : window.matchMedia("(max-width: 800px)").matches ||
       isMobile.width < 800 ? (
       <Fragment>
-        <PagesHeader>CHECKOUT</PagesHeader>
+        <PageHeader>CHECKOUT</PageHeader>
         <CheckoutWrapper flexDirection={"column"}>
           <SummaryWrapper width={"full"}>
             <OrderMobile
@@ -167,7 +164,7 @@ export const CheckoutForm = () => {
       </Fragment>
     ) : (
       <Fragment>
-        <PagesHeader>CHECKOUT</PagesHeader>
+        <PageHeader>CHECKOUT</PageHeader>
         <CheckoutWrapper>
           <SummaryWrapper>
             {contactOpen && (
