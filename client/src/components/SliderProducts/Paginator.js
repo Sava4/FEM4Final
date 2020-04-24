@@ -57,8 +57,17 @@ export const Paginator = ({
         // to={(category===undefined)&&`/products/${category='all'}/filter?${categoryQuery}&startPage=${+currentPage -
         //   1}&perPage=${pageSize}`}
 
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage -
-          1}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
+              1}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage -
+              1}&perPage=${pageSize}`)
+        }
       >
         {portionNumber > 1 &&
           currentPage < leftPortionPageNumber &&
@@ -77,7 +86,15 @@ export const Paginator = ({
 
       {/* первая страница */}
       <NavLink
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${1}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${1}&perPage=${pageSize}`)
+        }
         onClick={(e) => {
           onTop(450);
         }}
@@ -100,8 +117,17 @@ export const Paginator = ({
 
       {/* три точки ... */}
       <NavLink
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage -
-          2}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
+              2}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage -
+              2}&perPage=${pageSize}`)
+        }
         onClick={(e) => {
           onTop(450);
         }}
@@ -133,11 +159,12 @@ export const Paginator = ({
           return (
             <NavLink
               to={
-                (category === undefined &&
-                  category === "filter" &&
-                  `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pageNumber}&perPage=${pageSize}`) ||
+                ((category === undefined ||
+                  category === "filter" ||
+                  category === "all_categories") &&
+                  (category = "all_categories") &&
+                  `/products/${category}/filter?${categoryQuery}&startPage=${pageNumber}&perPage=${pageSize}`) ||
                 (category !== undefined &&
-                  category !== "filter" &&
                   `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pageNumber}&perPage=${pageSize}`)
               }
               key={pageNumber}
@@ -170,8 +197,15 @@ export const Paginator = ({
 
       {/* три точки ... */}
       <NavLink
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage +
-          3}&perPage=${pageSize}`}
+        to={ ((category === undefined ||
+          category === "filter" ||
+          category === "all_categories") &&
+          (category = "all_categories") &&
+          `/products/${category}/filter?${categoryQuery}&startPage=${currentPage +
+            3}&perPage=${pageSize}`) ||
+        (category !== undefined &&
+          `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage +
+          3}&perPage=${pageSize}`)}
         onClick={(e) => {
           onTop(450);
         }}
@@ -193,7 +227,13 @@ export const Paginator = ({
       </NavLink>
       {/* последняя страница */}
       <NavLink
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`}
+        to={((category === undefined ||
+          category === "filter" ||
+          category === "all_categories") &&
+          (category = "all_categories") &&
+          `/products/${category}/filter?${categoryQuery}&startPage=${pagesCount}&perPage=${pageSize}`) ||
+        (category !== undefined
+          `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`)}
         onClick={(e) => {
           onTop(450);
         }}
@@ -224,8 +264,15 @@ export const Paginator = ({
         // to={(category===undefined)&&(category='')&&`/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
         //   1}&perPage=${pageSize}`}
 
-        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage +
-          1}&perPage=${pageSize}`}
+        to={((category === undefined ||
+          category === "filter" ||
+          category === "all_categories") &&
+          (category = "all_categories") &&
+          `/products/${category}/filter?${categoryQuery}&startPage=${currentPage +
+            1}&perPage=${pageSize}`) ||
+        (category !== undefined
+          `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage +
+          1}&perPage=${pageSize}`)}
       >
         {portionCount > portionNumber &&
           currentPage > rightPortionPageNumber &&
