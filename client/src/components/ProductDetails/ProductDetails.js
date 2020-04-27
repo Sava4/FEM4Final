@@ -9,7 +9,6 @@ import { ScrollToTopController, ShowOnTop } from "../SliderProducts/LoadMore";
 import Slider from "react-slick";
 import { SliderProducts } from "./../SliderProducts/SliderProducts";
 import { Spinner } from "../Spinner/Spinner";
-import styled, { css } from "styled-components";
 import {
   Container,
   Image,
@@ -28,6 +27,7 @@ import {
   Name
 } from "./productDetails.styles";
 import ReactImageZoom from "react-image-zoom";
+import { Button } from "../common/Button/Button";
 
 export const ProductDetails = () => {
   const { id } = useParams();
@@ -229,7 +229,7 @@ const Details1 = props => {
           <Price>{props.previousPrice}</Price>
           <FavoriteButton />
         </PriceWrapper>
-        <Add onClick={add}>Add to bag</Add>
+        <Button value={"Add to bag"} onClick={add} />
         <Details>Details</Details>
         <UL>
           <LI>{`Gemstone: ${props.gemstone}`} </LI>

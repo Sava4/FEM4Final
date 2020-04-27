@@ -7,7 +7,7 @@ import { ProductFilters } from "../components/ProductsFilterList";
 // import { Categories } from "../components/Categories";
 import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
-import { Wishlist } from "../components/Wishlist/wishlist";
+import { Wishlist } from "../components/Wishlist/Wishlist";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 import ProductsContainer from "../components/SliderProducts/ProductsContainer";

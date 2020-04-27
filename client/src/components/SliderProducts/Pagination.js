@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
-import { ProductItem } from "./../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
 import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";

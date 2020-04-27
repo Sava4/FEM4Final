@@ -2,10 +2,10 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
-import { MapBox } from "../Map/mapbox";
+import { Mapbox } from "../Map/Mapbox";
 import { AddressesSelect } from "../Map/addressesPage";
 import { Server, HeadPage, ImagePage } from "./GiftCard/giftCard.styles";
-import { GiftCard } from "./GiftCard/giftCard";
+import { GiftCard } from "./GiftCard/GiftCard";
 import {
   ScrollToTopController,
   onTop,
@@ -38,7 +38,7 @@ export const StaticPage = () => {
           <Page>
             <HeadPage>Find your store</HeadPage>
             <AddressesSelect />
-            <MapBox />
+            <Mapbox />
           </Page>
         </Fragment>
       );
