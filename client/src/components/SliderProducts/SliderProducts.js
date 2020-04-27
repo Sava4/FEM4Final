@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { SampleNextArrow, SamplePrevArrow } from "./../Slider/Arrows";
 import { H4 } from "./sliderProducts.styles";
-import { ProductItem } from "../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
 import { useParams } from "react-router";
 
 export const SliderProducts = props => {
