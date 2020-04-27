@@ -3,16 +3,19 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Layout } from "../common/Layout";
 import axios from "axios";
-import styled from "styled-components/macro";
+
 import { setServerCart } from "../../store/shopping-cart";
 import { useHistory } from "react-router-dom";
 import arrow from "./arrow.png";
 import { setAuthorizationToken } from "../../store/login";
 import { logoutAction } from "../../store/login";
-
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem";
 import { Button } from "../common/Button/Button";
+import { PageHeader } from "../common/PageHeader/PageHeader";
+import { Spinner } from "../Spinner/Spinner";
+
+import styled, { css } from "styled-components/macro";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);
@@ -20,6 +23,13 @@ export const ShoppingBag = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [loading, setLoading] = useState(true);
+  const [isMobile, setMobile] = useState({});
+  const handleWindowSizeChange = () => {
+    setMobile({ width: window.innerWidth });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+  }, []);
   useEffect(() => {
     setLoading(true);
     axios
@@ -121,21 +131,27 @@ export const ShoppingBag = () => {
   return (
     <Layout>
       <Container>
-        <BagHeader>Shopping Bag</BagHeader>
+        <PageHeader>Shopping Bag</PageHeader>
         {cartProps.length > 0 && !loading ? (
           <>
-            <Continue onClick={() => history.push("/")}>
-              <ArrowImg src={arrow} />
-              Continue Shopping
-            </Continue>
+            {window.matchMedia("(min-width: 750px)").matches ||
+            isMobile.width > 750 ? (
+              <Continue onClick={() => history.push("/")}>
+                <ArrowImg src={arrow} />
+                Continue Shopping
+              </Continue>
+            ) : null}
             <Cart>
               <ProductTable>
-                <Header>
-                  <div>Product</div>
-                  <div>Price</div>
-                  <div>Quantity</div>
-                  <div>Total</div>
-                </Header>
+                {window.matchMedia("(min-width: 750px)").matches ||
+                isMobile.width > 750 ? (
+                  <Header>
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Total</div>
+                  </Header>
+                ) : null}
                 <Body>
                   <form>
                     <CartList items={cartProps}> </CartList>
@@ -156,14 +172,26 @@ export const ShoppingBag = () => {
                   <p>ESTIMATED TOTAL</p>
                   <div>{totalInCart.toLocaleString("de-CH")} UAH</div>
                 </GrandTotalWrap>
+                <Discount display={"block"}>
+                  Discount and Shipping will be calculated at checkout, where
+                  applicable.
+                </Discount>
                 <CheckoutWrap onClick={() => history.push("/account/checkout")}>
-                  <Button value={"CHECKOUT"} />
+                  <Button width={"100%"} value={"CHECKOUT"} />
+                  {window.matchMedia("(max-width: 750px)").matches ||
+                  isMobile.width < 750 ? (
+                    <Button
+                      secondary
+                      width={"100%"}
+                      value={"GO BACK TO SHOPPING"}
+                    />
+                  ) : null}
                 </CheckoutWrap>
               </BagTotals>
             </Cart>
           </>
         ) : loading ? (
-          <div>...Loading</div>
+          <Spinner />
         ) : (
           <EmptyCart text={"Your Shopping Bag is currently empty."} />
         )}
@@ -173,18 +201,13 @@ export const ShoppingBag = () => {
 };
 
 export const Container = styled.div`
-  margin: 0 130px 0 149px;
+  margin: 0 auto;
+  width: 92%;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-`;
-
-const BagHeader = styled.h2`
-  margin-top: 29px;
-  width: max-content;
-  font-size: 24px;
-  text-transform: uppercase;
 `;
 
 export const Continue = styled.div`
@@ -203,6 +226,9 @@ const Cart = styled.div`
   display: flex;
   margin-top: 33px;
   align-self: stretch;
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
 `;
 
 const ProductTable = styled.div`
@@ -210,6 +236,10 @@ const ProductTable = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding-right: 57px;
+  @media (max-width: 750px) {
+    width: 98%;
+    padding-right: 0;
+  }
 `;
 const BagTotals = styled.div`
   width: 25%;
@@ -228,12 +258,34 @@ const BagTotals = styled.div`
     margin-bottom: 45px;
     text-align: center;
   }
+  @media (max-width: 750px) {
+    width: 100%;
+    border-left: 0;
+    padding-left: 0;
+    margin-top: 30px;
+    > p:first-child {
+      display: none;
+    }
+  }
 `;
 const Discount = styled.p`
   margin-top: 20px;
   font-size: 12px;
   line-height: 24px;
   text-align: left;
+  @media (max-width: 750px) {
+    display: none;
+  }
+  ${props =>
+    props.display === "block" &&
+    css`
+      @media (max-width: 750px) {
+        display: block;
+      }
+      @media (min-width: 751px) {
+        display: none;
+      }
+    `}
 `;
 
 const SubtotalWrap = styled.div`
@@ -249,6 +301,9 @@ const SubtotalWrap = styled.div`
     flex: auto;
     text-align: right;
   }
+  @media (max-width: 750px) {
+    display: none;
+  }
 `;
 
 const GrandTotalWrap = styled.div`
@@ -258,6 +313,9 @@ const GrandTotalWrap = styled.div`
   flex: initial;
   padding-top: 21px;
   border-top: 1px solid #a7aabb;
+  @media (max-width: 750px) {
+    border-top: 0;
+  }
   & p {
     text-transform: uppercase;
     flex: auto;
@@ -272,10 +330,19 @@ const GrandTotalWrap = styled.div`
 `;
 
 const CheckoutWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-top: 31px;
   max-width: 280px;
   width: 100%;
   align-self: center;
+  & div {
+    margin-bottom: 15px;
+  }
+  @media (max-width: 750px) {
+    max-width: 750px;
+  }
 `;
 
 const Header = styled.div`
