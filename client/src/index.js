@@ -5,11 +5,11 @@ import * as serviceWorker from "./serviceWorker";
 import axios from 'axios'
 function updateCategory() {
   const updatedCategory = {
-    id: "NecklacesJewelry",
-    name: "Necklaces",
+    id: "PendantsJewelry",
+    name: "Pendants",
     parentId: "Jewelry",  
    
-    imgUrl: "/img/homePage/categories/necklaces.png",    
+    imgUrl: "/img/homePage/categories/pendants.png",    
   };
 
   axios
@@ -21,7 +21,7 @@ function updateCategory() {
       let token = response.data.token;
       console.log(token);
       axios
-        .put("http://localhost:5000/catalog/BraceletsJewelry", updatedCategory, {
+        .put("http://localhost:5000/catalog/PendantsJewelry", updatedCategory, {
           headers: { Authorization: `${token}` }
         })
         .then(updatedCategory => {       
@@ -32,7 +32,7 @@ function updateCategory() {
         });
     });
 }
-// updateCategory()
+updateCategory()
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes()) {
   hydrate(<App />, rootElement);
