@@ -2,14 +2,14 @@ import React from "react";
 import { hydrate, render } from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import axios from 'axios'
+import axios from "axios";
 function updateCategory() {
   const updatedCategory = {
     id: "PendantsJewelry",
     name: "Pendants",
-    parentId: "Jewelry",  
-   
-    imgUrl: "/img/homePage/categories/pendants.png",    
+    parentId: "Jewelry",
+
+    imgUrl: "/img/homePage/categories/pendants.png"
   };
 
   axios
@@ -24,15 +24,15 @@ function updateCategory() {
         .put("http://localhost:5000/catalog/PendantsJewelry", updatedCategory, {
           headers: { Authorization: `${token}` }
         })
-        .then(updatedCategory => {       
-          console.log(updatedCategory );
+        .then(updatedCategory => {
+          console.log(updatedCategory);
         })
         .catch(err => {
-          console.log("Не добавлена категория",err );
+          console.log("Не добавлена категория", err);
         });
     });
 }
-updateCategory()
+updateCategory();
 const rootElement = document.getElementById("root");
 if (rootElement.hasChildNodes()) {
   hydrate(<App />, rootElement);

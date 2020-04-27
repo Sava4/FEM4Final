@@ -27,11 +27,8 @@ const ProductsContainer = props => {
   let location = useLocation();
   // let category = location.search
   let path = `filter${location.search}`;
-  console.log("TCL: category", category)
+  console.log("TCL: category", category);
   console.log("TCL: path", path);
-
-
-
 
   const queryString = [];
   for (let key in props.filters) {
@@ -42,11 +39,12 @@ const ProductsContainer = props => {
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
   const categoryQuery = `${query}`;
   // console.log("TCL: categoryQuery", categoryQuery);
- let [category2, setCategory2]=useState('')
-  // category!=='filter'&& 
-  (setCategory2 = `&categories=${category}`);
-  
-  const apiCategory = categoryQuery + category2; 
+  let [category2, setCategory2] = useState("")(
+    // category!=='filter'&&
+    (setCategory2 = `&categories=${category}`)
+  );
+
+  const apiCategory = categoryQuery + category2;
 
   const queryString2 = require("query-string");
   const parsed = queryString2.parse(location.search);

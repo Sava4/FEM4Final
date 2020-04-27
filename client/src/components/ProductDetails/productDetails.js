@@ -111,7 +111,7 @@ const Details1 = props => {
   });
   let imagesSlider = imagesArr.map(image => {
     const propsss = {
-      zoomPosition: "original",     
+      zoomPosition: "original",
       width: 600,
       img: `${image}`
     };
@@ -195,7 +195,7 @@ const Details1 = props => {
           focusOnSelect={true}
           vertical={true}
           style={{ boxSizing: "border-box" }}
-        >      
+        >
           {imagesSliderPreview}
         </Slider>
       </div>
@@ -218,8 +218,8 @@ const Details1 = props => {
           arrows={false}
           draggable={false}
         >
-          {imagesSlider}   
-        </Slider>     
+          {imagesSlider}
+        </Slider>
       </div>
 
       <Wrapper>
@@ -243,5 +243,3 @@ const Details1 = props => {
     </Container>
   );
 };
-
-

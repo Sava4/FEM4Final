@@ -16,9 +16,9 @@ export const ProductItem = props => {
     state.favorites.favArr.some(id => id === props.id)
   );
 
-let img1=props.img[0]
-let img2
-props.img.length&&(img2=props.img[1]) || (img2=img1)
+  let img1 = props.img[0];
+  let img2;
+  (props.img.length && (img2 = props.img[1])) || (img2 = img1);
 
   const FavoriteButton = () => {
     return isFavorites ? (
@@ -40,7 +40,10 @@ props.img.length&&(img2=props.img[1]) || (img2=img1)
       <Card to={`/product-details/${props.itemNo}`} key={props.id}>
         {/* <Image alt="" src={`${props.img}`} size={"small"} />  попробовать поменять внутри src по условию*/}
         <Image alt="" img1={img1} img2={img2} size={"small"} />
-  <Name size={"small"}>{`${props.name}`}<p>"{props.collection}"</p></Name>
+        <Name size={"small"}>
+          {`${props.name}`}
+          <p>"{props.collection}"</p>
+        </Name>
         <Price size={"small"}>
           {props.previousPrice.toLocaleString("de-CH")}
         </Price>

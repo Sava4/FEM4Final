@@ -18,7 +18,7 @@ export const ProductsPagination = ({
   onToTop,
   products,
   categoryQuery,
-  apiCategory,  
+  apiCategory,
   category2,
   ...props
 }) => {
@@ -29,9 +29,9 @@ export const ProductsPagination = ({
       {/* <Layout> */}
       <div
         style={{
-          position: "absolute",          
+          position: "absolute",
           top: "84%",
-          right: "14%",
+          right: "14%"
         }}
       >
         <Paginator
@@ -44,7 +44,7 @@ export const ProductsPagination = ({
           categoryQuery={categoryQuery}
           category={category}
           apiCategory={apiCategory}
-          category2={category2}          
+          category2={category2}
         />
       </div>
       <div
@@ -70,7 +70,7 @@ export const ProductsPagination = ({
               }}
               interpretation={"carousel"}
               img={p.imageUrls}
-            />            
+            />
           </div>
         ))}
         {/* <FilteredListProducts category={category} /> */}
@@ -86,16 +86,15 @@ export const ProductsPagination = ({
           pageSize={pageSize}
           category={category}
         />
-       
       </div>
       <div
-         style={{
-          position: "relative",          
+        style={{
+          position: "relative",
           bottom: "5.1%",
-          left: "69%",  
+          left: "69%"
         }}
       >
-      <Paginator       
+        <Paginator
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           onLoadMore={onLoadMore}
@@ -106,7 +105,7 @@ export const ProductsPagination = ({
           category2={category2}
           categoryQuery={categoryQuery}
         />
-        </div>
+      </div>
       {/* </Layout> */}
     </div>
   );

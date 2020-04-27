@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import {
   setCurrentPage,
   useRequestProducts,
-  useMoreProducts,
+  useMoreProducts
 } from "../../store/productsReducer";
 import { ProductsPagination } from "./Pagination";
 // import Preloader from "../common/Preloader/Preloader";
@@ -17,10 +17,10 @@ import {
   getPageSize,
   getTotalProductsCount,
   getProducts,
-  moreProducts,
+  moreProducts
 } from "./users-selectors";
 
-const ProductsContainer = (props) => {
+const ProductsContainer = props => {
   // console.log(props);
   const { currentPage, pageSize } = props;
 
@@ -66,7 +66,7 @@ const ProductsContainer = (props) => {
     );
   }, [truePage2, query]);
 
-  const onPageChanged = (pageNumber) => {
+  const onPageChanged = pageNumber => {
     // из пагинатора
     const { pageSize } = props;
     props.getProducts(
@@ -80,7 +80,7 @@ const ProductsContainer = (props) => {
   let truePage3 = +currentPage + 1;
   console.log(truePage3);
 
-  const onLoadMore = (truePage3) => {
+  const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора
     const { pageSize } = props;
     props.moreProducts(
@@ -91,7 +91,7 @@ const ProductsContainer = (props) => {
       category2
     );
   };
- let all_categories
+  let all_categories;
   return (
     <>
       {/* {this.props.isFetching ? <Preloader/> : null} */}
@@ -109,14 +109,12 @@ const ProductsContainer = (props) => {
 
       <Redirect
         to={
-          
-           ( (category===undefined ||
-            category === "filter" ) &&
+          ((category === undefined || category === "filter") &&
             (all_categories = "all_categories") &&
             `/products/${all_categories}/filter?${categoryQuery}&startPage=${truePage2}&perPage=${pageSize}`) ||
-          (category!==undefined&&
+          (category !== undefined &&
             `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`)
-          }
+        }
       />
 
       <ProductsPagination
@@ -150,7 +148,7 @@ let mapStateToProps = (state, categoryQuery, apiCategory, category2, query) => {
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state),
-    filters: state.filters.selFilters,
+    filters: state.filters.selFilters
   };
 };
 
@@ -159,6 +157,6 @@ export default compose(
   connect(mapStateToProps, {
     setCurrentPage,
     getProducts: useRequestProducts,
-    moreProducts: useMoreProducts,
+    moreProducts: useMoreProducts
   }) //mapDispatchToProps
 )(UrlProductsContainer);

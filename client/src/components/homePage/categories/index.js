@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import {
   mediaMobile,
-  mediaTablet,
+  mediaTablet
 } from "../../../styledComponents/MediaBreakpointsMixin";
 import { XMasonry, XBlock } from "react-xmasonry"; // Imports JSX plain sources
 
@@ -15,22 +15,22 @@ export const HomepageCategories = () => {
     get2 = `http://localhost:5000/catalog/`;
     axios
       .get(get2)
-      .then((result) => {
+      .then(result => {
         setCategories3(result.data);
         console.log("TCL: HomepageCategories -> result.data", result.data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, [get2]);
 
   let categories4 =
     categories3 &&
-    Array.from(categories3)     
-      .filter((element) => element.imgUrl)
+    Array.from(categories3)
+      .filter(element => element.imgUrl)
       //только категории с фото
       .reverse()
-      .map((item) => {
+      .map(item => {
         let categoryName = item.name.toLowerCase();
         console.log("TCL: HomepageCategories -> item", item);
         return (
@@ -46,7 +46,7 @@ export const HomepageCategories = () => {
                   style={{
                     width: "100%",
                     border: `1px solid #E9EBF5`,
-                    boxSizing: "border-box",
+                    boxSizing: "border-box"
                   }}
                 />
                 <p>{item.name}</p>
@@ -74,7 +74,7 @@ const SectionCategories = styled.div`
 `;
 
 const Necklaces = styled(NavLink)`
-  height: 100%; 
+  height: 100%;
   text-transform: uppercase;
   & p {
     text-align: right;

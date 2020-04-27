@@ -94,9 +94,7 @@ export function addCategory() {
 
 export function updateCategory() {
   const updatedCategory = {
-   
-    imgUrl: "/img/homePage/categories/rings.png",
-  
+    imgUrl: "/img/homePage/categories/rings.png"
   };
 
   axios
@@ -111,11 +109,11 @@ export function updateCategory() {
         .put("http://localhost:5000/catalog/RingsJewelry", updatedCategory, {
           headers: { Authorization: `${token}` }
         })
-        .then(updatedCategory => {       
-          console.log(updatedCategory );
+        .then(updatedCategory => {
+          console.log(updatedCategory);
         })
         .catch(err => {
-          console.log("Не добавлена категория",err );
+          console.log("Не добавлена категория", err);
         });
     });
 }
