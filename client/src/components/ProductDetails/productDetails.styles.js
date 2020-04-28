@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import {
   mediaMobile,
-  mediaTablet
+  mediaTablet,
 } from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Container = styled.div`
@@ -15,7 +15,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
 `)}
-  ${props =>
+  ${(props) =>
     props.flex === "column" &&
     css`
       flex-direction: column;
@@ -33,10 +33,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.div`
-background: url(http://localhost:3000${props => [props.img1]}) no-repeat;
+background: url(${(props) => [props.img1]}) no-repeat;
 background-size: contain;
 &:hover {
-background: url(http://localhost:3000${props => [props.img2]}) no-repeat;
+background: url(${(props) => [props.img2]}) no-repeat;
 background-size: contain;
 }
 ${mediaTablet(`
@@ -46,7 +46,7 @@ ${mediaTablet(`
    width: 60%;
 `)}
 
-  ${props =>
+  ${(props) =>
     props.size === "small" &&
     css`
       width: 200px;
@@ -60,7 +60,7 @@ ${mediaTablet(`
         height: 117px;
 `)}
     `}
-    ${props =>
+    ${(props) =>
       props.size === "xSmall" &&
       css`
         width: 103px;
@@ -88,7 +88,7 @@ export const Name = styled.div`
     font-size: 20px;
   }
 
-  ${props =>
+  ${(props) =>
     props.line === "true" &&
     css`
       &:after {
@@ -101,7 +101,7 @@ export const Name = styled.div`
         background: #3c3b3b;
       }
     `}
-  ${props =>
+  ${(props) =>
     props.size === "small" &&
     css`
       font-size: 16px;
@@ -138,7 +138,7 @@ export const Price = styled.div`
     display: inline;
     font-size: 12px;
   }
-  ${props =>
+  ${(props) =>
     props.size === "small" &&
     css`
       justify-self: flex-end;
@@ -155,7 +155,7 @@ export const WishWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   height: 30px;
-  ${props =>
+  ${(props) =>
     props.item === true &&
     css`
       padding-right: 3px;
@@ -203,7 +203,7 @@ export const Add = styled.button`
   font-size: 12px;
   color: #fff;
   cursor: pointer;
-  ${props =>
+  ${(props) =>
     props.size === "small" &&
     css`
       width: 50px;

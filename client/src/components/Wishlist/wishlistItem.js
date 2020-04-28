@@ -9,7 +9,7 @@ import {
   ItemContainer,
   ProdImg,
   ProductDescription,
-  RemoveBtn
+  RemoveBtn,
 } from "../ShoppingBag/CartItem";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import bug from "../common/Header/ShoppingBag/shoppingBagIcon.png";
@@ -18,12 +18,12 @@ import styled from "styled-components";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { removeFavorites } from "../../store/favorites";
 
-export const WishlistItem = props => {
+export const WishlistItem = (props) => {
   const dispatch = useDispatch();
-  const isFavorites = useSelector(state =>
-    state.favorites.favArr.some(id => id === props.id)
+  const isFavorites = useSelector((state) =>
+    state.favorites.favArr.some((id) => id === props.id)
   );
-  const token = useSelector(state => state.login.token);
+  const token = useSelector((state) => state.login.token);
   const add = () => {
     token
       ? dispatch(addToSrvCart(props.id, token))
@@ -35,7 +35,7 @@ export const WishlistItem = props => {
         <div className="product">
           <WrapperLink to={`/product-details/${props.itemNo}`}>
             <ImgWrap>
-              <ProdImg alt="" src={`${props.img}`} />
+              <ProdImg alt="" src={process.env.PUBLIC_URL + props.img} />
             </ImgWrap>
           </WrapperLink>
           <ProductDescription>

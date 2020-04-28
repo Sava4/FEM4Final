@@ -23,7 +23,7 @@ import {
   SocialContainerMobile,
   Contact,
   MobileWrap,
-  H4
+  H4,
 } from "./footer.styles.js";
 // import AddMessageForm from './form'
 
@@ -40,11 +40,11 @@ export const Footer = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/links")
-      .then(result => {
+      .get("/links")
+      .then((result) => {
         setStaticLinks(result.data);
       })
-      .catch(err => {
+      .catch((err) => {
         /*Do something with error, e.g. show error to user*/
       });
   }, []);
@@ -52,7 +52,7 @@ export const Footer = () => {
   //проверям массив не пустой
   const itemLink =
     staticLinks.length &&
-    staticLinks[0].links.map(item => {
+    staticLinks[0].links.map((item) => {
       return (
         // в бекэнде не совпадает адреса в links /documents, а в pages /pages и приходит массив в нем объект с названием и в нем массив links
         <div key={item._id}>
@@ -66,7 +66,7 @@ export const Footer = () => {
     });
   const itemArr =
     staticLinks.length &&
-    staticLinks[0].links.map(item => {
+    staticLinks[0].links.map((item) => {
       return (
         <Contact key={item._id}>
           <LinkToStatic url={`${item.url}`}>

@@ -8,7 +8,7 @@ export function addProduct() {
     categories: "necklaces",
 
     imageUrls: [
-      "img/products/necklaces/1-199_912_.jpg"
+      "img/products/necklaces/1-199_912_.jpg",
       // "img/products/bracelets/1-199_122_1.jpg",
       // "img/products/earrings/0990.jpg",
       // "img/products/earrings/0992.jpg",
@@ -23,31 +23,31 @@ export function addProduct() {
     gemstone: "diamond",
     weight: "2.76",
     sample: "585",
-    myCustomParam: "some string or json for custom param"
+    myCustomParam: "some string or json for custom param",
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       /*Do something with newProduct*/
       let token = response.data.token;
 
       axios
-        .post("http://localhost:5000/products", newProduct, {
-          headers: { Authorization: `${token}` }
+        .post("/products", newProduct, {
+          headers: { Authorization: `${token}` },
         })
-        .then(newProduct => {
+        .then((newProduct) => {
           /*Do something with newProduct*/
           console.log(newProduct);
         })
-        .catch(err => {
+        .catch((err) => {
           /*Do something with error, e.g. show error to user*/
         });
     })
-    .catch(err => {
+    .catch((err) => {
       /*Do something with error, e.g. show error to user*/
     });
 }
@@ -55,82 +55,82 @@ export function addProduct() {
 export function updateProduct() {
   const updatedProduct = {
     name: "Diamond white gold Necklace", //required field
-    categories: "necklaces"
+    categories: "necklaces",
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       /*Do something with newProduct*/
       let token = response.data.token;
       let _id = "5e3f10f0229fc818a0a3a35b"; // вставить _id продукта
 
       axios
-        .put(`http://localhost:5000/products/${_id}`, updatedProduct, {
-          headers: { Authorization: `${token}` }
+        .put(`/products/${_id}`, updatedProduct, {
+          headers: { Authorization: `${token}` },
         })
-        .then(updatedProduct => {
+        .then((updatedProduct) => {
           /*Do something with newProduct*/
           console.log(updatedProduct);
         })
-        .catch(err => {
+        .catch((err) => {
           /*Do something with error, e.g. show error to user*/
         });
     })
-    .catch(err => {
+    .catch((err) => {
       /*Do something with error, e.g. show error to user*/
     });
 }
 
 export function deleteOneProduct() {
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       /*Do something with newProduct*/
       let token = response.data.token;
       console.log(token);
       let itemNo = "some product itemNo"; //вставить нужный itemNo продукта
       axios
-        .delete(`http://localhost:5000/products/${itemNo}`, {
-          headers: { Authorization: `${token}` }
+        .delete(`/products/${itemNo}`, {
+          headers: { Authorization: `${token}` },
         })
-        .then(res => {
+        .then((res) => {
           /*Do something with newProduct*/
           console.log(res);
         })
-        .catch(err => {
+        .catch((err) => {
           /*Do something with error, e.g. show error to user*/
         });
     })
-    .catch(err => {
+    .catch((err) => {
       /*Do something with error, e.g. show error to user*/
     });
 }
 
 export function deleteAllProducts() {
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       let token = response.data.token;
       console.log(token);
-      axios.get("http://localhost:5000/products/").then(products => {
+      axios.get("/products/").then((products) => {
         console.log(products);
-        products.data.forEach(element => {
+        products.data.forEach((element) => {
           let i = element.itemNo;
           axios
-            .delete(`http://localhost:5000/products/${i}`, {
-              headers: { Authorization: `${token}` }
+            .delete(`/products/${i}`, {
+              headers: { Authorization: `${token}` },
             })
-            .then(res => {
+            .then((res) => {
               console.log(res);
             });
           // .catch(err => {

@@ -10,7 +10,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
       <div className="product">
         <WrapperLink to={`/product-details/${props.itemNo}`}>
           <ImgWrap>
-            <ProdImg src={`../${props.img}`} />
+            <ProdImg src={process.env.PUBLIC_URL + props.img} />
           </ImgWrap>
         </WrapperLink>
         <ProductDescription>
@@ -27,7 +27,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
         <StyledSelect>
           <select
             defaultValue={props.qty}
-            onChange={event => handleQty(event, props.id)}
+            onChange={(event) => handleQty(event, props.id)}
           >
             <option value="1">1</option>
             <option value="2">2</option>

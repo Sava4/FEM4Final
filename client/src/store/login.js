@@ -18,28 +18,28 @@ export const loginAction = (
 };
 
 export const logoutAction = () => ({
-  type: LOGOUT
+  type: LOGOUT,
 });
 
-const loginSuccessAction = token => ({
+const loginSuccessAction = (token) => ({
   type: LOGIN_SUCCESS,
   payload: {
-    token
-  }
+    token,
+  },
 });
 
 const loginRememberAction = ({ loginOrEmail, password }) => ({
   type: REMEMBER,
   payload: {
     loginOrEmail,
-    password
-  }
+    password,
+  },
 });
 
 const InitialState = {
   token: null,
   loginOrEmail: null,
-  password: null
+  password: null,
 };
 
 export function loginReducer(state = InitialState, action) {
@@ -50,7 +50,7 @@ export function loginReducer(state = InitialState, action) {
       return {
         ...state,
         loginOrEmail: action.payload.loginOrEmail,
-        password: action.payload.password
+        password: action.payload.password,
       };
     case LOGOUT:
       return { ...state, token: null };
@@ -60,26 +60,26 @@ export function loginReducer(state = InitialState, action) {
 }
 
 export const auth = (loginOrEmail, password, remember, locCart, onLogin) => {
-  return dispatch => {
+  return (dispatch) => {
     axios
-      .post("http://localhost:5000/customers/login", {
+      .post("/customers/login", {
         loginOrEmail: loginOrEmail,
-        password: password
+        password: password,
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(loginStatusAction(error.response.data));
         return Promise.reject(error);
       })
-      .then(response => {
+      .then((response) => {
         dispatch(loginStatusAction(null));
         const token = response.data.token;
         dispatch(loginSuccessAction(token));
         dispatch(mergeCarts(token, locCart));
         axios
-          .get("http://localhost:5000/customers/customer", {
-            headers: { Authorization: token }
+          .get("/customers/customer", {
+            headers: { Authorization: token },
           })
-          .then(response => {
+          .then((response) => {
             const user = response.data;
             dispatch(userAction(user));
             setAuthorizationToken(token);
@@ -89,7 +89,7 @@ export const auth = (loginOrEmail, password, remember, locCart, onLogin) => {
             onLogin();
           });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("error", error);
       });
   };

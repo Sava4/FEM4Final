@@ -12,10 +12,10 @@ import {
   SliderPromoMobile,
   SliderPromoText,
   SliderPromoButton,
-  H4
+  H4,
 } from "./slider.styles";
 
-export const SliderHomepage = props => {
+export const SliderHomepage = (props) => {
   const settings = {
     slidesToShow: props.show,
     accessibility: true,
@@ -37,28 +37,28 @@ export const SliderHomepage = props => {
           slidesToScroll: 1,
           infinite: true,
           nextArrow: <SampleNextArrow homePage={true} right={40} />,
-          prevArrow: <SamplePrevArrow homePage={true} left={40} />
-        }
+          prevArrow: <SamplePrevArrow homePage={true} left={40} />,
+        },
       },
       {
         breakpoint: 798,
         settings: {
           slidesToShow: 1,
           nextArrow: <SampleNextArrow homePage={true} right={40} />,
-          prevArrow: <SamplePrevArrow homePage={true} left={40} />
-        }
-      }
-    ]
+          prevArrow: <SamplePrevArrow homePage={true} left={40} />,
+        },
+      },
+    ],
   };
 
   const [slides, setSlides] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/slides")
-      .then(result => {
+      .get("/slides")
+      .then((result) => {
         setSlides(result.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -70,7 +70,7 @@ export const SliderHomepage = props => {
     return (
       <CarouselWrapper className="carousel_wrapper">
         <Slider {...settings}>
-          {itemsHomePage.map(item => {
+          {itemsHomePage.map((item) => {
             return (
               <div key={item._id}>
                 <CarouselImage height={props.height} {...item}>
@@ -100,13 +100,13 @@ export const SliderHomepage = props => {
           width: "95%",
           marginLeft: "55px",
           marginTop: "75px",
-          marginBottom: "56px"
+          marginBottom: "56px",
         }}
       >
         <CarouselWrapper className="carousel_wrapper">
           <H4>{props.h4}</H4>
           <Slider {...settings}>
-            {items.map(item => {
+            {items.map((item) => {
               return (
                 <div style={{ boxSizing: "border-box" }} key={item._id}>
                   <CarouselImage

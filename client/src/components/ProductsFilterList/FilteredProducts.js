@@ -9,11 +9,11 @@ import { mediaMobile } from "../../styledComponents/GlobalStyle";
 
 import styled from "styled-components";
 
-const MapStateToProps = store => ({
-  filters: store.filters.selFilters
+const MapStateToProps = (store) => ({
+  filters: store.filters.selFilters,
 });
 
-export const FilteredListProducts = connect(MapStateToProps)(props => {
+export const FilteredListProducts = connect(MapStateToProps)((props) => {
   const [products, setProducts] = useState([]);
   const { category, setNambertOfFilteredItems } = props;
   const queryCategory = !category ? "" : `categories=${category}&`;
@@ -22,12 +22,12 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   useEffect(() => {
     // const queryString = [];
     // for (let key in props.filters) {
-    const url = `http://localhost:5000/products/filter?${queryCategory}${query}`;
+    const url = `/products/filter?${queryCategory}${query}`;
 
     // props.filters[key].length
     //   ? queryString.push(`${key}=${props.filters[key].join()}`)
     //   :
-    axios.get(url).then(result => {
+    axios.get(url).then((result) => {
       setProducts(result.data);
     });
     //   .catch(err => {
@@ -40,7 +40,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   filteredProd && setNambertOfFilteredItems(filteredProd.length);
   const ListProduct =
     filteredProd &&
-    filteredProd.map(product => {
+    filteredProd.map((product) => {
       return (
         <ProductItem
           id={product._id}

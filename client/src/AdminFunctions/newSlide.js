@@ -3,59 +3,59 @@ import axios from "axios";
 export function addSlide() {
   const newSlide = {
     customId: "look_6",
-    imageUrl: "img/looks/9.png"
+    imageUrl: "img/looks/9.png",
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       let token = response.data.token;
 
       axios
-        .post("http://localhost:5000/slides", newSlide, {
-          headers: { Authorization: `${token}` }
+        .post("/slides", newSlide, {
+          headers: { Authorization: `${token}` },
         })
-        .then(newSlide => {
+        .then((newSlide) => {
           console.log(newSlide);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
 
 export function updateSlide() {
   const updatedSlide = {
-    imageUrl: "img3.jpg"
+    imageUrl: "img3.jpg",
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       let token = response.data.token;
       let customId = "promotion-3"; //вставить нужный customId продукта
       axios
-        .put(`http://localhost:5000/slides/${customId}`, updatedSlide, {
-          headers: { Authorization: `${token}` }
+        .put(`/slides/${customId}`, updatedSlide, {
+          headers: { Authorization: `${token}` },
         })
-        .then(updatedSlide => {
+        .then((updatedSlide) => {
           /*Do something with newProduct*/
           console.log(updatedSlide);
         })
-        .catch(err => {
+        .catch((err) => {
           /*Do something with error, e.g. show error to user*/
         });
     })
-    .catch(err => {
+    .catch((err) => {
       /*Do something with error, e.g. show error to user*/
     });
 }
@@ -67,26 +67,26 @@ export function addCategory() {
     parentId: "Souvenirs",
     imgUrl: " ",
     description: "A category, of earrings",
-    level: 0
+    level: 0,
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       let token = response.data.token;
       console.log(token);
       axios
-        .post("http://localhost:5000/catalog", newCategory, {
-          headers: { Authorization: `${token}` }
+        .post("/catalog", newCategory, {
+          headers: { Authorization: `${token}` },
         })
-        .then(newCategory => {
+        .then((newCategory) => {
           /*Do something with newProduct*/
           console.log(newCategory);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Не добавлена категория");
         });
     });
@@ -94,25 +94,25 @@ export function addCategory() {
 
 export function updateCategory() {
   const updatedCategory = {
-    imgUrl: "/img/homePage/categories/rings.png"
+    imgUrl: "/img/homePage/categories/rings.png",
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111"
+      password: "1111111",
     })
-    .then(response => {
+    .then((response) => {
       let token = response.data.token;
       console.log(token);
       axios
-        .put("http://localhost:5000/catalog/RingsJewelry", updatedCategory, {
-          headers: { Authorization: `${token}` }
+        .put("/catalog/RingsJewelry", updatedCategory, {
+          headers: { Authorization: `${token}` },
         })
-        .then(updatedCategory => {
+        .then((updatedCategory) => {
           console.log(updatedCategory);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("Не добавлена категория", err);
         });
     });

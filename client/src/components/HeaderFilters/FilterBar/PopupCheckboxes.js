@@ -7,13 +7,13 @@ import styled from "styled-components";
 
 import { dispatchSetCheckFilter } from "../../../store/filters";
 
-const mapStateToProps = store => ({
-  filters: store.filters.selFilters
+const mapStateToProps = (store) => ({
+  filters: store.filters.selFilters,
 });
 
 export const PopupCheckboxes = connect(mapStateToProps, {
-  dispatchSetCheckFilter
-})(props => {
+  dispatchSetCheckFilter,
+})((props) => {
   const { filtername } = props;
 
   const checkedFromStor = props.filters[filtername];
@@ -24,7 +24,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     const collections = [];
 
     innerArrey.forEach(
-      item =>
+      (item) =>
         !collections.includes(item[filterType]) &&
         collections.push(item[filterType])
     );
@@ -34,8 +34,8 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products")
-      .then(result => {
+      .get("/products")
+      .then((result) => {
         //   console.log("Secsess ");
         setProducts(result.data);
       })
@@ -43,12 +43,12 @@ export const PopupCheckboxes = connect(mapStateToProps, {
       //   setProducts (collectionList(products))
 
       // })
-      .catch(err => {
+      .catch((err) => {
         /*Do something with error, e.g. show error to user*/
       });
   }, []);
 
-  const checkedFilters = e => {
+  const checkedFilters = (e) => {
     e.preventDefault();
 
     let activeFilters = {};
@@ -58,7 +58,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const collectionList = products && filter(products, filtername);
 
-  const inputs = collectionList.map(item => {
+  const inputs = collectionList.map((item) => {
     return (
       <CheckboxDiv key={v4()}>
         <input

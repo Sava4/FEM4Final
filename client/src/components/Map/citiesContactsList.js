@@ -553,7 +553,7 @@ const Text = styled.p`
   font-size: 14px;
   line-height: 2;
   margin-bottom: 3px;
-  ${props =>
+  ${(props) =>
     props.weight === "bold" &&
     css`
       color: #5a5a5a;

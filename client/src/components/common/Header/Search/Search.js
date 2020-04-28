@@ -9,7 +9,7 @@ import {
   PreviewWrapper,
   TextHolder,
   Image,
-  ImageDescription
+  ImageDescription,
 } from "./search.styles";
 
 export const Search = () => {
@@ -26,13 +26,13 @@ export const Search = () => {
     clearTimeout(timer);
     const timeoutId = setTimeout(() => {
       axios
-        .post("http://localhost:5000/products/search", {
-          query: search
+        .post("/products/search", {
+          query: search,
         })
-        .then(products => {
+        .then((products) => {
           setSearchResults(products.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }, 1000);

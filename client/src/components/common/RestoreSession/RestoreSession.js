@@ -5,20 +5,20 @@ import { userAction } from "../../../store/user";
 import { setAuthorizationToken } from "../../../store/login";
 import { Spinner } from "../../Spinner/Spinner";
 
-export const RestoreSession = props => {
+export const RestoreSession = (props) => {
   const { children } = props;
   const dispatch = useDispatch();
-  const token = useSelector(state => state.login.token);
-  const user = useSelector(state => state.user);
+  const token = useSelector((state) => state.login.token);
+  const user = useSelector((state) => state.user);
   const [loaded, setLoaded] = useState(!Boolean(token));
 
   useEffect(() => {
     if (token) {
       axios
-        .get("http://localhost:5000/customers/customer", {
-          headers: { Authorization: token }
+        .get("/customers/customer", {
+          headers: { Authorization: token },
         })
-        .then(response => {
+        .then((response) => {
           const user = response.data;
           dispatch(userAction(user));
           setAuthorizationToken(token);

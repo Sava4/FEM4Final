@@ -9,7 +9,7 @@ import { GiftCard } from "./GiftCard/GiftCard";
 import {
   ScrollToTopController,
   onTop,
-  ShowOnTop
+  ShowOnTop,
 } from "../SliderProducts/LoadMore";
 
 export const StaticPage = () => {
@@ -19,12 +19,12 @@ export const StaticPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/pages/${url}`)
-      .then(result => {
+      .get(`/pages/${url}`)
+      .then((result) => {
         setPage(result.data);
         setImages(result.data.images);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, [url]);
@@ -55,7 +55,7 @@ export const StaticPage = () => {
       <Fragment>
         <Page>
           <Server dangerouslySetInnerHTML={{ __html: someHtml }} />
-          <ImagePage src={images[0]} alt="" />
+          <ImagePage src={process.env.PUBLIC_URL + images[0]} alt="" />
         </Page>
       </Fragment>
     );

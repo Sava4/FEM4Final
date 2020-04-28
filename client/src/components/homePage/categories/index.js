@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import {
   mediaMobile,
-  mediaTablet
+  mediaTablet,
 } from "../../../styledComponents/MediaBreakpointsMixin";
 import { XMasonry, XBlock } from "react-xmasonry"; // Imports JSX plain sources
 
@@ -12,14 +12,14 @@ export const HomepageCategories = () => {
   let [categories3, setCategories3] = useState([]);
   let get2;
   useEffect(() => {
-    get2 = `http://localhost:5000/catalog/`;
+    get2 = `/catalog/`;
     axios
       .get(get2)
-      .then(result => {
+      .then((result) => {
         setCategories3(result.data);
         console.log("TCL: HomepageCategories -> result.data", result.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, [get2]);
@@ -27,10 +27,10 @@ export const HomepageCategories = () => {
   let categories4 =
     categories3 &&
     Array.from(categories3)
-      .filter(element => element.imgUrl)
+      .filter((element) => element.imgUrl)
       //только категории с фото
       .reverse()
-      .map(item => {
+      .map((item) => {
         let categoryName = item.name.toLowerCase();
         console.log("TCL: HomepageCategories -> item", item);
         return (
@@ -42,11 +42,11 @@ export const HomepageCategories = () => {
               >
                 <img
                   alt=""
-                  src={`http://localhost:3000${item.imgUrl}`}
+                  src={process.env.PUBLIC_URL + item.imgUrl}
                   style={{
                     width: "100%",
                     border: `1px solid #E9EBF5`,
-                    boxSizing: "border-box"
+                    boxSizing: "border-box",
                   }}
                 />
                 <p>{item.name}</p>

@@ -10,7 +10,7 @@ import {
   Subtitle,
   SubtitleImg,
   SubtitleImgText,
-  Text
+  Text,
 } from "./aboutCompany.styles";
 
 export const AboutCompany = () => {

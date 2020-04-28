@@ -10,10 +10,10 @@ import {
   ItemContainer,
   Total,
   TotalContainer,
-  WrapperLink
+  WrapperLink,
 } from "./checkout.styles";
 
-export const OrderSummary = props => {
+export const OrderSummary = (props) => {
   const { icons, totalPrices, mobile } = props;
 
   return (
@@ -39,14 +39,14 @@ export const OrderSummary = props => {
   );
 };
 
-export const OrderItem = props => {
+export const OrderItem = (props) => {
   return (
     <ProductContainer>
       <ItemContainer>
         <TotalContainer>
           <Total>{props.cartQuantity}</Total>
           <WrapperLink to={`/product-details/${props.itemNo}`}>
-            <Img src={`${props.img}`} alt="" />
+            <Img src={process.env.PUBLIC_URL + props.img} alt="" />
           </WrapperLink>
         </TotalContainer>
         <Name>{props.name}</Name>
@@ -55,10 +55,10 @@ export const OrderItem = props => {
     </ProductContainer>
   );
 };
-export const OrderIcon = props => {
+export const OrderIcon = (props) => {
   return (
     <WrapperLink to={`/product-details/${props.itemNo}`}>
-      <Img src={`${props.img}`} alt="" />
+      <Img src={process.env.PUBLIC_URL + props.img} alt="" />
     </WrapperLink>
   );
 };

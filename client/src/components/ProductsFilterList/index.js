@@ -19,33 +19,33 @@ import rings from "./images/rings.png";
 import necklaces from "./images/necklaces.png";
 
 // import querystring from "query-string";
-const MapStateToProps = store => ({
+const MapStateToProps = (store) => ({
   filters: store.filters.selFilters,
-  selectedProd: store.productsPage.productsQuantity
+  selectedProd: store.productsPage.productsQuantity,
 });
 
 export const ProductFilters = connect(MapStateToProps, { setAvaliFilters })(
-  props => {
+  (props) => {
     const { category } = useParams();
     const [nambertOfFilteredItems, setNambertOfFilteredItems] = useState(0);
     const [openFiltwin, setOpenFiltwilnd] = useState(false);
     console.log(props.selectedProd);
     useLayoutEffect(() => {
       axios
-        .get("http://localhost:5000/products")
-        .then(result => {
+        .get("/products")
+        .then((result) => {
           props.setAvaliFilters(result.data);
         })
         // .then(products => {
         //   setProducts (collectionList(products))
 
         // })
-        .catch(err => {
+        .catch((err) => {
           /*Do something with error, e.g. show error to user*/
         });
     }, []);
 
-    const background = name => {
+    const background = (name) => {
       switch (name) {
         case "earrings": {
           return earrings;
@@ -119,7 +119,7 @@ const CategoriesHeader = styled.div`
   }
 `;
 const CategoriesHeaderImg = styled.div`
-  background-image: url(${props => props.categoryName});
+  background-image: url(${(props) => props.categoryName});
   height: inherit;
   width: 668px;
   background-repeat: no-repeat;
