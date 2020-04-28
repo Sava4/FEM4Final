@@ -1,8 +1,8 @@
 const GET_CATEGORIES = "GET_CATEGORIES";
 
-const setCategories = (payload) => ({
+const setCategories = payload => ({
   type: GET_CATEGORIES,
-  payload,
+  payload
 });
 
 const initialState = [];
@@ -17,7 +17,7 @@ export function categoriesReducer(store = initialState, { type, payload }) {
   }
 }
 
-export const getCategoriesList = () => async (dispatch) => {
+export const getCategoriesList = () => async dispatch => {
   const result = await fetch("/catalog");
   const json = await result.json();
   dispatch(setCategories(json));

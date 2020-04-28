@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "/",
+  baseURL: "/"
 });
 
 export const productsAPI = {
@@ -13,9 +13,9 @@ export const productsAPI = {
         // `/products/filter?${apiCategory}&startPage=${currentPage}&perPage=${pageSize}`
         `/products/filter?${categoryQuery}${category2}&startPage=${currentPage}&perPage=${pageSize}`
       )
-      .then((response) => {
+      .then(response => {
         // console.log(response.data);
         return response.data;
       });
-  },
+  }
 };

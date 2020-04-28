@@ -6,69 +6,69 @@ export function addLinks() {
     links: [
       {
         description: "Find Your Store",
-        url: "/documents/find-your-store",
+        url: "/documents/find-your-store"
       },
       {
         description: "Brand History",
-        url: "/documents/brand-history",
+        url: "/documents/brand-history"
       },
       {
         description: "News",
-        url: "/documents/news",
+        url: "/documents/news"
       },
       {
         description: "Supply Chain Acts",
-        url: "/documents/supply-chain-acts",
+        url: "/documents/supply-chain-acts"
       },
       {
         description: "NWebsite Policies",
-        url: "/documents/website-policies",
+        url: "/documents/website-policies"
       },
       {
         description: "Payments & Shipping",
-        url: "/documents/payments-shipping",
+        url: "/documents/payments-shipping"
       },
       {
         description: "Returns & Replacements",
-        url: "/documents/returns-replacements",
+        url: "/documents/returns-replacements"
       },
       {
         description: "Loyalty Program",
-        url: "/documents/loyalty-program",
+        url: "/documents/loyalty-program"
       },
       {
         description: "Product Care",
-        url: "/documents/product-care",
+        url: "/documents/product-care"
       },
       {
         description: "Gift Cards",
-        url: "/documents/gift-cards",
-      },
-    ],
+        url: "/documents/gift-cards"
+      }
+    ]
   };
 
   axios
     .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111",
+      password: "1111111"
     })
-    .then((response) => {
+    .then(response => {
       /*Do something with newProduct*/
       let token = response.data.token;
 
       axios
         .post("/links", newLinks, {
-          headers: { Authorization: `${token}` },
+          headers: { Authorization: `${token}` }
         })
-        .then((newLinks) => {
+        .then(newLinks => {
           /*Do something with newLinks*/
           console.log(newLinks);
         })
-        .catch((err) => {
+        .catch(err => {
           /*Do something with error, e.g. show error to user*/
         });
     })
-    .catch((err) => {
+    .catch(err => {
       /*Do something with error, e.g. show error to user*/
     });
 }
@@ -79,69 +79,69 @@ export function updateLinks() {
     links: [
       {
         description: "Find Your Store",
-        url: "find-your-store",
+        url: "find-your-store"
       },
       {
         description: "Brand History",
-        url: "brand-history",
+        url: "brand-history"
       },
       {
         description: "News",
-        url: "news",
+        url: "news"
       },
       {
         description: "Supply Chain Acts",
-        url: "supply-chain-acts",
+        url: "supply-chain-acts"
       },
       {
         description: "Website Policies",
-        url: "website-policies",
+        url: "website-policies"
       },
       {
         description: "Payments & Shipping",
-        url: "payments-shipping",
+        url: "payments-shipping"
       },
       {
         description: "Returns & Replacements",
-        url: "returns-replacements",
+        url: "returns-replacements"
       },
       {
         description: "Loyalty Program",
-        url: "loyalty-program",
+        url: "loyalty-program"
       },
       {
         description: "Product Care",
-        url: "product-care",
+        url: "product-care"
       },
       {
         description: "Gift Cards",
-        url: "gift-cards",
-      },
-    ],
+        url: "gift-cards"
+      }
+    ]
   };
 
   axios
     .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111",
+      password: "1111111"
     })
-    .then((response) => {
+    .then(response => {
       /*Do something with newProduct*/
       let token = response.data.token;
 
       axios
         .put("/links/5e4bcd0133960714f8cb572c", updatedLinks, {
-          headers: { Authorization: `${token}` },
+          headers: { Authorization: `${token}` }
         })
-        .then((updatedLinks) => {
+        .then(updatedLinks => {
           /*Do something with newLinks*/
           console.log(updatedLinks);
         })
-        .catch((err) => {
+        .catch(err => {
           /*Do something with error, e.g. show error to user*/
         });
     })
-    .catch((err) => {
+    .catch(err => {
       /*Do something with error, e.g. show error to user*/
     });
 }

@@ -6,22 +6,22 @@ const ADD_LOC_SHOPPING_CART = "ADD_LOC_SHOPPING_CART";
 const CLEAR_LOCAL_CART = "CLEAR_LOCAL_CART";
 const SET_SERVER_CART = "SET_SERVER_CART";
 
-export const addToLocalCart = (id) => ({
+export const addToLocalCart = id => ({
   type: ADD_LOC_SHOPPING_CART,
-  id,
+  id
 });
 
 export const clearLocCart = () => ({
-  type: CLEAR_LOCAL_CART,
+  type: CLEAR_LOCAL_CART
 });
 
 export const addToSrvCart = (id, token) => {
-  return (dispatch) => {
+  return dispatch => {
     setAuthorizationToken(token);
     axios
       .put(`/cart/${id}`)
-      .then((resp) => dispatch(setServerCart(resp.data.products)))
-      .catch((err) => {
+      .then(resp => dispatch(setServerCart(resp.data.products)))
+      .catch(err => {
         console.error("Request Error", err);
         if (err.response.status === 401) {
           dispatch(logoutAction());
@@ -34,10 +34,10 @@ export const addToSrvCart = (id, token) => {
 
 export const mergeCarts = (token, locCart) => {
   setAuthorizationToken(token);
-  return (dispatch) => {
+  return dispatch => {
     axios
       .get("/cart")
-      .then((resp) => {
+      .then(resp => {
         let srvCart;
         resp.data === null ? (srvCart = []) : (srvCart = resp.data.products);
 
@@ -48,7 +48,7 @@ export const mergeCarts = (token, locCart) => {
         function putCart(locCart, srvCart) {
           let mergedObj = { ...locCart };
           // obj example {5e3d588c08b114095879a2fe: 2}
-          srvCart.forEach((el) => {
+          srvCart.forEach(el => {
             if (el.product._id) {
               if (!mergedObj[el.product._id]) {
                 mergedObj[el.product._id] = el.cartQuantity;
@@ -58,20 +58,20 @@ export const mergeCarts = (token, locCart) => {
             }
           });
 
-          const putReq = Object.entries(mergedObj).map((el) => {
+          const putReq = Object.entries(mergedObj).map(el => {
             const [id, qty] = el;
             return { product: id, cartQuantity: qty };
           });
           axios
             .put("/cart", { products: putReq })
-            .then((resp) => {
+            .then(resp => {
               dispatch(clearLocCart());
               dispatch(setServerCart(resp.data.products));
             })
-            .catch((err) => console.error("Request Error", err));
+            .catch(err => console.error("Request Error", err));
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("Request Error", err);
         if (err.response.status === 401) {
           dispatch(logoutAction());
@@ -81,14 +81,14 @@ export const mergeCarts = (token, locCart) => {
   };
 };
 
-export const setServerCart = (payload) => ({
+export const setServerCart = payload => ({
   type: SET_SERVER_CART,
-  payload,
+  payload
 });
 
 const initialState = {
   locCart: {},
-  srvCart: [],
+  srvCart: []
 };
 
 const locCart = (state = initialState.locCart, action) => {
@@ -117,7 +117,7 @@ export function shoppingCartReducer(state = initialState, action) {
     default:
       return {
         locCart: locCart(state.locCart, action),
-        srvCart: setSrvCart(state.srvCart, action),
+        srvCart: setSrvCart(state.srvCart, action)
       };
   }
 }

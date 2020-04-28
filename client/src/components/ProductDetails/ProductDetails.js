@@ -24,7 +24,7 @@ import {
   UL,
   LI,
   Vendor,
-  Name,
+  Name
 } from "./productDetails.styles";
 import ReactImageZoom from "react-image-zoom";
 import { Button } from "../common/Button/Button";
@@ -45,7 +45,7 @@ export const ProductDetails = () => {
       setProducts(res.data);
       setPrice(res.data.previousPrice.toLocaleString("de-CH"));
       setLoading(false);
-      setIds((ids) => [...ids, id]);
+      setIds(ids => [...ids, id]);
       localStorage.setItem("recent_ids", ids);
     };
     fetchPosts();
@@ -84,17 +84,17 @@ export const ProductDetails = () => {
   );
 };
 
-const Details1 = (props) => {
+const Details1 = props => {
   const [isModalOpen, toggleModal] = useState(false);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.login.token);
+  const token = useSelector(state => state.login.token);
   const products = props.products;
   const product = products !== undefined && products;
   const images = product.imageUrls !== undefined && product.imageUrls;
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
 
-  let imagesSliderPreview = imagesArr.map((image) => {
+  let imagesSliderPreview = imagesArr.map(image => {
     return (
       <div key={image}>
         <img
@@ -103,17 +103,17 @@ const Details1 = (props) => {
           style={{
             width: "99%",
             border: `1px solid #E9EBF5`,
-            boxSizing: "border-box",
+            boxSizing: "border-box"
           }}
         />
       </div>
     );
   });
-  let imagesSlider = imagesArr.map((image) => {
+  let imagesSlider = imagesArr.map(image => {
     const propsss = {
       zoomPosition: "original",
       width: 600,
-      img: `${image}`,
+      img: `${image}`
     };
     return (
       <div key={image}>
@@ -122,7 +122,7 @@ const Details1 = (props) => {
           style={{
             width: "99%",
             border: `1px solid #E9EBF5`,
-            boxSizing: "border-box",
+            boxSizing: "border-box"
           }}
         />
       </div>
@@ -136,7 +136,7 @@ const Details1 = (props) => {
   useEffect(() => {
     setState({
       nav1: slider1.current,
-      nav2: slider2.current,
+      nav2: slider2.current
     });
   }, []);
   const { nav1, nav2 } = state;
@@ -148,8 +148,8 @@ const Details1 = (props) => {
     toggleModal(!isModalOpen);
   };
 
-  const isFavorites = useSelector((state) =>
-    state.favorites.favArr.some((id) => id === props.id)
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
   );
 
   const FavoriteButton = () => {
@@ -184,12 +184,12 @@ const Details1 = (props) => {
           width: `5%`,
           marginTop: `20px`,
           marginRight: `5px`,
-          cursor: `pointer`,
+          cursor: `pointer`
         }}
       >
         <Slider
           asNavFor={nav1}
-          ref={(slider) => (slider2.current = slider)}
+          ref={slider => (slider2.current = slider)}
           slidesToShow={avatars}
           slidesToScroll={1}
           focusOnSelect={true}
@@ -208,12 +208,12 @@ const Details1 = (props) => {
           marginTop: `20px`,
           marginRight: `20px`,
           boxSizing: `border-box`,
-          cursor: `zoom-in`,
+          cursor: `zoom-in`
         }}
       >
         <Slider
           asNavFor={nav2}
-          ref={(slider) => (slider1.current = slider)}
+          ref={slider => (slider1.current = slider)}
           speed={0.1}
           arrows={false}
           draggable={false}

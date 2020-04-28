@@ -14,14 +14,14 @@ import {
   InputBottomText,
   FormButtonWrapper,
   GoBackWrapper,
-  GoBackText,
+  GoBackText
 } from "./registerForm.styles";
 
 import { GoBackImage } from "../OrderForm/orderForm.styles";
 import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
 
-export const RegisterForm = (props) => {
+export const RegisterForm = props => {
   const { onClose, onLogin } = props;
 
   const [error, setError] = useState([]);
@@ -250,13 +250,13 @@ export const RegisterForm = (props) => {
         password: password,
         login: login,
         isAdmin: false,
-        enabled: true,
+        enabled: true
       })
-      .then((response) => {
+      .then(response => {
         onClose();
       })
-      .catch((error) => {
-        const errors = Object.keys(error.response.data).map((key) => {
+      .catch(error => {
+        const errors = Object.keys(error.response.data).map(key => {
           return error.response.data[key];
         });
         setError(errors);

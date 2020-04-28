@@ -8,7 +8,7 @@ import { H4 } from "./sliderProducts.styles";
 import { ProductItem } from "../ProductsList/ProductItem";
 import { useParams } from "react-router";
 
-export const SliderProducts = (props) => {
+export const SliderProducts = props => {
   const settings = {
     accessibility: true,
     arrows: true,
@@ -26,25 +26,25 @@ export const SliderProducts = (props) => {
         breakpoint: 1000,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-        },
+          slidesToScroll: 3
+        }
       },
       {
         breakpoint: 798,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
-        },
+          initialSlide: 2
+        }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   let get;
@@ -74,21 +74,21 @@ export const SliderProducts = (props) => {
     let n = 1;
     while (n < 5) {
       n++;
-      categories2.map((item) => {
+      categories2.map(item => {
         get4 = `/products/filter?startPage=${n}&perPage=1${col}&categories=${item}`;
 
         axios
           .get(get4)
-          .then((result) => {
+          .then(result => {
             if (mounted) {
               result.data.products[0] &&
-                setProducts4((products4) => [
+                setProducts4(products4 => [
                   ...products4,
-                  result.data.products[0],
+                  result.data.products[0]
                 ]);
             }
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
           });
       });
@@ -103,17 +103,17 @@ export const SliderProducts = (props) => {
     } else if (props.h4 === "RECENTLY VIEWED") {
       ids3 &&
         ids3.length > 0 &&
-        ids3.map((item) => {
+        ids3.map(item => {
           get2 = `/products/${item}`;
           console.log("TCL:  get2", get2);
           axios
             .get(get2)
-            .then((result) => {
+            .then(result => {
               if (mounted) {
-                setProducts2((products2) => [...products2, result.data]); // setProducts2(products2.push(result.data)) !в реакте
+                setProducts2(products2 => [...products2, result.data]); // setProducts2(products2.push(result.data)) !в реакте
               }
             })
-            .catch((err) => {
+            .catch(err => {
               console.log(err);
             });
         });
@@ -131,7 +131,7 @@ export const SliderProducts = (props) => {
 
   if (products2 && products2.length > 1) {
     products2.length > 3 &&
-      (products1 = products2.map((item) => {
+      (products1 = products2.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -142,13 +142,13 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
       }));
     products2.length <= 3 &&
-      (products3 = products2.map((item) => {
+      (products3 = products2.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -159,13 +159,13 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
       }));
   } else if (products4.length > 3) {
-    products1 = products4.map((item) => {
+    products1 = products4.map(item => {
       return (
         <ProductItem
           key={item._id}
@@ -176,13 +176,13 @@ export const SliderProducts = (props) => {
           itemNo={`${item.itemNo}`}
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         />
       );
     });
     products4.length <= 3 &&
-      (products3 = products4.map((item) => {
+      (products3 = products4.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -193,7 +193,7 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
@@ -203,7 +203,7 @@ export const SliderProducts = (props) => {
     products1 =
       products &&
       products.length > 0 &&
-      products.map((item) => {
+      products.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -214,7 +214,7 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
@@ -224,7 +224,7 @@ export const SliderProducts = (props) => {
     products1 =
       products &&
       products.products.length &&
-      products.products.map((item) => {
+      products.products.map(item => {
         return (
           <ProductItem
             key={item._id}
@@ -235,7 +235,7 @@ export const SliderProducts = (props) => {
             itemNo={`${item.itemNo}`}
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           />
         );
@@ -247,7 +247,7 @@ export const SliderProducts = (props) => {
       style={{
         height: `height: 592px`,
         marginTop: `40px`,
-        marginLeft: `30px`,
+        marginLeft: `30px`
       }}
     >
       <H4>{props.h4}</H4>

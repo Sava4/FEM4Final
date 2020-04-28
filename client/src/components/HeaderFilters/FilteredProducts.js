@@ -7,10 +7,10 @@ import { ProductItem } from "../ProductsList/ProductItem";
 
 import styled from "styled-components";
 
-const MapStateToProps = (store) => ({
-  filters: store.filters.selFilters,
+const MapStateToProps = store => ({
+  filters: store.filters.selFilters
 });
-export const FilteredListProducts = connect(MapStateToProps)((props) => {
+export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
   const { category } = props;
 
@@ -38,7 +38,7 @@ export const FilteredListProducts = connect(MapStateToProps)((props) => {
               `/products/filter?categories=${category}&${query}`
               // `/products/filter?categories=${category}&gemstone_color=violet`
             )
-            .then((result) => {
+            .then(result => {
               console.log(result.data);
               setProducts(result.data);
             });
@@ -57,7 +57,7 @@ export const FilteredListProducts = connect(MapStateToProps)((props) => {
 
   const ListProduct =
     filterdProd &&
-    filterdProd.map((product) => {
+    filterdProd.map(product => {
       return (
         <ProductItem
           id={product.itemNo}

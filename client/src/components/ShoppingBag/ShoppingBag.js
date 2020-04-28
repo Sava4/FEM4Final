@@ -15,7 +15,7 @@ import { CartItem } from "./CartItem";
 import { Button } from "../common/Button/Button";
 
 export const ShoppingBag = () => {
-  const token = useSelector((state) => state.login.token);
+  const token = useSelector(state => state.login.token);
   setAuthorizationToken(token);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,12 +24,12 @@ export const ShoppingBag = () => {
     setLoading(true);
     axios
       .get("/cart")
-      .then((resp) => {
+      .then(resp => {
         resp.data === null
           ? dispatch(setServerCart([]))
           : dispatch(setServerCart(resp.data.products));
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("Request Error", err);
         if (err.response.status === 401) {
           dispatch(logoutAction());
@@ -40,8 +40,8 @@ export const ShoppingBag = () => {
       .finally(() => setLoading(false));
   }, [token, dispatch]);
 
-  const cartProps = useSelector((state) => {
-    return state.shoppingCart.srvCart.map((prod) => {
+  const cartProps = useSelector(state => {
+    return state.shoppingCart.srvCart.map(prod => {
       let {
         cartQuantity: qty,
         product: {
@@ -49,8 +49,8 @@ export const ShoppingBag = () => {
           currentPrice: price,
           itemNo,
           imageUrls: [img],
-          _id: id,
-        },
+          _id: id
+        }
       } = prod;
       let productTotal = qty * price;
       return {
@@ -60,13 +60,13 @@ export const ShoppingBag = () => {
         price,
         itemNo,
         img,
-        productTotal,
+        productTotal
       };
     });
   });
 
   const handleQty = (event, id) => {
-    let updateCart = cartProps.map((el) => {
+    let updateCart = cartProps.map(el => {
       if (el.id === id) {
         el.qty = parseInt(event.target.value);
       }
@@ -74,27 +74,27 @@ export const ShoppingBag = () => {
     });
     axios
       .put("/cart", { products: updateCart })
-      .then((resp) => {
+      .then(resp => {
         dispatch(setServerCart(resp.data.products));
       })
-      .catch((err) => console.error("Request Error", err));
+      .catch(err => console.error("Request Error", err));
   };
 
-  const handleDel = (id) => {
+  const handleDel = id => {
     if (cartProps.length > 1) {
       axios
         .delete(`/cart/${id}`)
-        .then((resp) => {
+        .then(resp => {
           dispatch(setServerCart(resp.data.products));
         })
-        .catch((err) => console.error("Request Error", err));
+        .catch(err => console.error("Request Error", err));
     } else {
       axios
         .delete("/cart/")
         .then(() => {
           dispatch(setServerCart([]));
         })
-        .catch((err) => console.error("Request Error", err));
+        .catch(err => console.error("Request Error", err));
     }
   };
 
@@ -103,10 +103,10 @@ export const ShoppingBag = () => {
     0
   );
 
-  const CartList = (props) => {
+  const CartList = props => {
     return (
       <CartWrapper>
-        {props.items.map((item) => (
+        {props.items.map(item => (
           <CartItem
             props={item}
             key={item.id}

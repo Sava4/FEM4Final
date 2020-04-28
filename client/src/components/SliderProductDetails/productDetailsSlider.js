@@ -5,7 +5,7 @@ import Slider from "react-slick";
 
 import styled, { css } from "styled-components";
 
-export const ProductDetailsSlider = (props) => {
+export const ProductDetailsSlider = props => {
   let { itemNo } = useParams();
 
   const [productsAllData, setProductsAllData] = useState({});
@@ -13,11 +13,11 @@ export const ProductDetailsSlider = (props) => {
   useEffect(() => {
     axios
       .get(`/products/${itemNo}`)
-      .then((res) => {
+      .then(res => {
         setProductsAllData(res.data);
         console.log(res.data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, [itemNo]);
@@ -29,7 +29,7 @@ export const ProductDetailsSlider = (props) => {
   const imagesArr = Array.from(images);
   const avatars = imagesArr.length;
 
-  let imagesSlider = imagesArr.map((image) => {
+  let imagesSlider = imagesArr.map(image => {
     return (
       <div key={image}>
         <Image
@@ -39,7 +39,7 @@ export const ProductDetailsSlider = (props) => {
             width: "99%",
             height: "99%",
             border: `1px solid #E9EBF5`,
-            boxSizing: "border-box",
+            boxSizing: "border-box"
           }}
         />
       </div>
@@ -53,7 +53,7 @@ export const ProductDetailsSlider = (props) => {
   useEffect(() => {
     setState({
       nav1: slider1.current,
-      nav2: slider2.current,
+      nav2: slider2.current
     });
   }, []);
   const { nav1, nav2 } = state;
@@ -67,12 +67,12 @@ export const ProductDetailsSlider = (props) => {
             height: ``,
             width: `6%`,
             marginTop: `40px`,
-            marginRight: `20px`,
+            marginRight: `20px`
           }}
         >
           <Slider
             asNavFor={nav1}
-            ref={(slider) => (slider2.current = slider)}
+            ref={slider => (slider2.current = slider)}
             slidesToShow={avatars}
             slidesToScroll={1}
             focusOnSelect={true}
@@ -89,12 +89,12 @@ export const ProductDetailsSlider = (props) => {
             width: `43%`,
             marginTop: `40px`,
             marginRight: `20px`,
-            boxSizing: `border-box`,
+            boxSizing: `border-box`
           }}
         >
           <Slider
             asNavFor={nav2}
-            ref={(slider) => (slider1.current = slider)}
+            ref={slider => (slider1.current = slider)}
             speed={0.1}
             arrows={false}
             draggable={false}
@@ -155,7 +155,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
   }
-  ${(props) =>
+  ${props =>
     props.flex === "column" &&
     css`
       flex-direction: column;
@@ -183,7 +183,7 @@ export const Image = styled.img`
     height: 334px;
   }
 
-  ${(props) =>
+  ${props =>
     props.size === "small" &&
     css`
       width: 206px;
@@ -211,7 +211,7 @@ export const Name = styled.p`
     font-size: 20px;
   }
 
-  ${(props) =>
+  ${props =>
     props.line === "true" &&
     css`
       &:after {
@@ -224,7 +224,7 @@ export const Name = styled.p`
         background: #3c3b3b;
       }
     `}
-  ${(props) =>
+  ${props =>
     props.size === "small" &&
     css`
       font-size: 16px;
@@ -260,7 +260,7 @@ export const Price = styled.div`
     display: inline;
     font-size: 12px;
   }
-  ${(props) =>
+  ${props =>
     props.size === "small" &&
     css`
       justify-self: flex-end;

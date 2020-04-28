@@ -5,7 +5,7 @@ import { ProductItem } from "./ProductItem";
 import styled from "styled-components";
 import { v4 } from "uuid";
 
-export const ListProducts = (props) => {
+export const ListProducts = props => {
   const [products, setProducts] = useState([]);
   const { category } = props;
   console.log(category);
@@ -18,7 +18,7 @@ export const ListProducts = (props) => {
     fetchPosts();
   }, []);
 
-  const ListProduct = products.map((product) => {
+  const ListProduct = products.map(product => {
     return (
       <ProductItem
         key={v4()}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
   mediaMobile,
-  mediaTablet,
+  mediaTablet
 } from "../../styledComponents/MediaBreakpointsMixin";
 
 export const CarouselWrapper = styled.div`
@@ -88,11 +88,10 @@ export const SliderPromoButton = styled.a`
   `)}
 `;
 export const CarouselImage = styled.div`
-  background: url(${(props) => process.env.PUBLIC_URL + props.imageUrl})
-    no-repeat;
+  background: url(${props => process.env.PUBLIC_URL + props.imageUrl}) no-repeat;
   background-size: cover;
-  height: ${(props) => props.height}px;
-  width: ${(props) => props.width}px;
+  height: ${props => props.height}px;
+  width: ${props => props.width}px;
   opacity: 1;
 
   ${mediaTablet(`

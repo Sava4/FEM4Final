@@ -17,7 +17,7 @@ export function AddSubscriber(props) {
     email: `${email}`,
     letterSubject: "Test letter (final project)",
     letterHtml:
-      "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>",
+      "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>"
   };
 
   console.log(email);
@@ -27,15 +27,15 @@ export function AddSubscriber(props) {
     axios
       .post("/customers/login", {
         loginOrEmail: "customer@gmail.com",
-        password: "1111111",
+        password: "1111111"
       })
-      .then((response) => {
+      .then(response => {
         let token = response.data.token;
         axios
           .post("/subscribers", newSubscriber, {
-            headers: { Authorization: `${token}` },
+            headers: { Authorization: `${token}` }
           })
-          .then((newSubscriber) => {
+          .then(newSubscriber => {
             console.log("success");
             console.log(newSubscriber);
             // setEmail(undefined)
@@ -44,7 +44,7 @@ export function AddSubscriber(props) {
             setTimeout(() => setSignup("Sign Up"), 3000);
             reset();
           })
-          .catch((err) => {
+          .catch(err => {
             console.log("error add");
             console.log(err.response);
             setTimeout(() => setSignup("НЕВЕРНЫЙ АДРЕС"), 1500);
@@ -54,7 +54,7 @@ export function AddSubscriber(props) {
             // setEmail(undefined)
           });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("error auth");
         console.log(err);
       });
@@ -68,29 +68,29 @@ export function UpdateSubscriber() {
     email: "111@i.ua",
     enabled: true,
     letterSubject: "Welcome back",
-    letterHtml: "<p>We are glad to see you!</p>",
+    letterHtml: "<p>We are glad to see you!</p>"
   };
   axios
     .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111",
+      password: "1111111"
     })
-    .then((response) => {
+    .then(response => {
       let token = response.data.token;
       axios
         .put("/subscribers/email/mywear1@gmail.com", updateSubscriber, {
-          headers: { Authorization: `${token}` },
+          headers: { Authorization: `${token}` }
         })
-        .then((updateSubscriber) => {
+        .then(updateSubscriber => {
           console.log("success");
           console.log(updateSubscriber);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("error add");
           console.log(err.response);
         });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log("error auth");
       console.log(err);
     });

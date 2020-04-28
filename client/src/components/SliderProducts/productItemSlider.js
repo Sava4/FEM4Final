@@ -5,17 +5,17 @@ import {
   Image,
   Name,
   Price,
-  WishWrapper,
+  WishWrapper
 } from "../ProductDetails/productDetails.styles";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorites, removeFavorites } from "../../store/favorites";
 
 //на homepage работает без http://localhost:3000/ и только до ухода со страницы
-export const ProductItem = (props) => {
+export const ProductItem = props => {
   const dispatch = useDispatch();
-  const isFavorites = useSelector((state) =>
-    state.favorites.favArr.some((id) => id === props.id)
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
   );
   const clickFavorites = (e, props) => {
     e.preventDefault();

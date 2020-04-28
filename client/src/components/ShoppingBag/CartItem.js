@@ -27,7 +27,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
         <StyledSelect>
           <select
             defaultValue={props.qty}
-            onChange={(event) => handleQty(event, props.id)}
+            onChange={event => handleQty(event, props.id)}
           >
             <option value="1">1</option>
             <option value="2">2</option>

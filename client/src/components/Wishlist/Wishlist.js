@@ -10,10 +10,10 @@ import { ArrowImg, Container, Continue } from "../ShoppingBag/ShoppingBag";
 import arrow from "../ShoppingBag/arrow.png";
 import { useHistory } from "react-router";
 
-export const Wishlist = (props) => {
+export const Wishlist = props => {
   const [products, setProducts] = useState([]);
   const history = useHistory();
-  const lengthFav = useSelector((state) => state.favorites.favArr.length);
+  const lengthFav = useSelector(state => state.favorites.favArr.length);
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get("/products");
@@ -21,7 +21,7 @@ export const Wishlist = (props) => {
     };
     fetchPosts();
   }, []);
-  const ListProduct = products.map((products) => {
+  const ListProduct = products.map(products => {
     return (
       <WishlistItem
         key={v4()}

@@ -4,29 +4,29 @@ export function addSubscriber() {
   const newSubscriber = {
     email: "saribeg@gmail.com",
     letterSubject: "Test letter 2 (final project)",
-    letterHtml: "rtyuiogp",
+    letterHtml: "rtyuiogp"
   };
   axios
     .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
-      password: "1111111",
+      password: "1111111"
     })
-    .then((response) => {
+    .then(response => {
       let token = response.data.token;
       axios
         .post("/subscribers", newSubscriber, {
-          headers: { Authorization: `${token}` },
+          headers: { Authorization: `${token}` }
         })
-        .then((newSubscriber) => {
+        .then(newSubscriber => {
           console.log("success");
           console.log(newSubscriber);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("error add");
           console.log(err);
         });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log("error auth");
       console.log(err);
     });

@@ -14,13 +14,13 @@ import { EmptyCart } from "../ShoppingBag/EmptyCart";
 import {
   CheckoutWrapper,
   PagesHeader,
-  SummaryWrapper,
+  SummaryWrapper
 } from "./checkout.styles";
 import { OrderMobile } from "./OrderMobile";
 
 export const CheckoutForm = () => {
-  const token = useSelector((state) => state.login.token);
-  const user = useSelector((state) => state.user);
+  const token = useSelector(state => state.login.token);
+  const user = useSelector(state => state.user);
   setAuthorizationToken(token);
   const dispatch = useDispatch();
   const [contactOpen, setContactOpen] = useState(true);
@@ -46,9 +46,9 @@ export const CheckoutForm = () => {
     setLoading(true);
     axios
       .get("/cart")
-      .then((resp) => {
+      .then(resp => {
         setProducts(resp.data.products);
-        const PriceArray = resp.data.products.map((item) => {
+        const PriceArray = resp.data.products.map(item => {
           parseInt(item);
           return item.cartQuantity * item.product.currentPrice;
         });
@@ -61,13 +61,13 @@ export const CheckoutForm = () => {
           ? dispatch(setServerCart([]))
           : dispatch(setServerCart(resp.data.products));
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("Request Error", err);
         dispatch(setServerCart([]));
       })
       .finally(() => setLoading(false));
   }, [token, dispatch]);
-  const ListProduct = products.map((item) => {
+  const ListProduct = products.map(item => {
     return (
       <OrderItem
         key={v4()}
@@ -81,10 +81,10 @@ export const CheckoutForm = () => {
       />
     );
   });
-  const cartProps = useSelector((state) => {
+  const cartProps = useSelector(state => {
     return state.shoppingCart.srvCart;
   });
-  const ListIcons = products.map((item) => {
+  const ListIcons = products.map(item => {
     return (
       <OrderIcon
         key={v4()}
@@ -94,17 +94,17 @@ export const CheckoutForm = () => {
     );
   });
 
-  const onSubmitContact = (formData) => {
+  const onSubmitContact = formData => {
     setContactInformation(formData);
     handleToggleContact();
     setShippingOpen(!shippingOpen);
   };
-  const onSubmitShipping = (formData) => {
+  const onSubmitShipping = formData => {
     setShippingInformation(formData);
     handleToggleShipping();
     setPaymentOpen(!paymentOpen);
   };
-  const onSubmitPayment = (formData) => {
+  const onSubmitPayment = formData => {
     setPaymentInformation(formData);
     setOrderForm(true);
     // axios
@@ -121,7 +121,7 @@ export const CheckoutForm = () => {
       .then(() => {
         dispatch(setServerCart([]));
       })
-      .catch((err) => console.error("Request Error", err));
+      .catch(err => console.error("Request Error", err));
   };
 
   const newOrder = {
@@ -130,7 +130,7 @@ export const CheckoutForm = () => {
       country: "Ukraine",
       city: shippingInformation.shipping,
       location: shippingInformation.location,
-      address: contactInformation.address,
+      address: contactInformation.address
     },
     email: contactInformation.email,
     mobile: contactInformation.phone,
@@ -144,7 +144,7 @@ export const CheckoutForm = () => {
     status: "not shipped",
     letterSubject: "Thank you for order! You are welcome!",
     letterHtml:
-      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
+      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
   };
   return cartProps.length > 0 ? (
     loading ? (
@@ -176,7 +176,7 @@ export const CheckoutForm = () => {
                 initialValues={{
                   firstName: user.firstName,
                   lastName: user.lastName,
-                  email: user.email,
+                  email: user.email
                 }}
               />
             )}

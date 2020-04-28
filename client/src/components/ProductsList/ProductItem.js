@@ -7,13 +7,13 @@ import {
   Image,
   Name,
   Price,
-  WishWrapper,
+  WishWrapper
 } from "../ProductDetails/productDetails.styles";
 import { Wrapper, Card } from "./productItem.styles";
-export const ProductItem = (props) => {
+export const ProductItem = props => {
   const dispatch = useDispatch();
-  const isFavorites = useSelector((state) =>
-    state.favorites.favArr.some((id) => id === props.id)
+  const isFavorites = useSelector(state =>
+    state.favorites.favArr.some(id => id === props.id)
   );
 
   let img1 = props.img[0];
