@@ -75,7 +75,7 @@ export const SliderProducts = props => {
     while (n < 5) {
       n++;
       categories2.map(item => {
-        get4 = `http://localhost:5000/products/filter?startPage=${n}&perPage=1${col}&categories=${item}`;
+        get4 = `/products/filter?startPage=${n}&perPage=1${col}&categories=${item}`;
 
         axios
           .get(get4)
@@ -104,7 +104,7 @@ export const SliderProducts = props => {
       ids3 &&
         ids3.length > 0 &&
         ids3.map(item => {
-          get2 = `http://localhost:5000/products/${item}`;
+          get2 = `/products/${item}`;
           console.log("TCL:  get2", get2);
           axios
             .get(get2)

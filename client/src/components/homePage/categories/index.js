@@ -12,7 +12,7 @@ export const HomepageCategories = () => {
   let [categories3, setCategories3] = useState([]);
   let get2;
   useEffect(() => {
-    get2 = `http://localhost:5000/catalog/`;
+    get2 = `/catalog/`;
     axios
       .get(get2)
       .then(result => {
@@ -42,7 +42,7 @@ export const HomepageCategories = () => {
               >
                 <img
                   alt=""
-                  src={`http://localhost:3000${item.imgUrl}`}
+                  src={process.env.PUBLIC_URL + item.imgUrl}
                   style={{
                     width: "100%",
                     border: `1px solid #E9EBF5`,

@@ -7,7 +7,7 @@ export function addSlide() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -15,7 +15,7 @@ export function addSlide() {
       let token = response.data.token;
 
       axios
-        .post("http://localhost:5000/slides", newSlide, {
+        .post("/slides", newSlide, {
           headers: { Authorization: `${token}` }
         })
         .then(newSlide => {
@@ -36,7 +36,7 @@ export function updateSlide() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -44,7 +44,7 @@ export function updateSlide() {
       let token = response.data.token;
       let customId = "promotion-3"; //вставить нужный customId продукта
       axios
-        .put(`http://localhost:5000/slides/${customId}`, updatedSlide, {
+        .put(`/slides/${customId}`, updatedSlide, {
           headers: { Authorization: `${token}` }
         })
         .then(updatedSlide => {
@@ -71,7 +71,7 @@ export function addCategory() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -79,7 +79,7 @@ export function addCategory() {
       let token = response.data.token;
       console.log(token);
       axios
-        .post("http://localhost:5000/catalog", newCategory, {
+        .post("/catalog", newCategory, {
           headers: { Authorization: `${token}` }
         })
         .then(newCategory => {
@@ -98,7 +98,7 @@ export function updateCategory() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -106,7 +106,7 @@ export function updateCategory() {
       let token = response.data.token;
       console.log(token);
       axios
-        .put("http://localhost:5000/catalog/RingsJewelry", updatedCategory, {
+        .put("/catalog/RingsJewelry", updatedCategory, {
           headers: { Authorization: `${token}` }
         })
         .then(updatedCategory => {

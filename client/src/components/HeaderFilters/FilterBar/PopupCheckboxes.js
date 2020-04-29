@@ -34,7 +34,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/products")
+      .get("/products")
       .then(result => {
         //   console.log("Secsess ");
         setProducts(result.data);

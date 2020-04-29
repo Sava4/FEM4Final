@@ -40,7 +40,7 @@ export const ProductDetails = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/products/${id}`);
+      const res = await axios.get(`/products/${id}`);
       setImages(res.data.imageUrls);
       setProducts(res.data);
       setPrice(res.data.previousPrice.toLocaleString("de-CH"));
@@ -99,7 +99,7 @@ const Details1 = props => {
       <div key={image}>
         <img
           alt=""
-          src={`${image}`}
+          src={process.env.PUBLIC_URL + image}
           style={{
             width: "99%",
             border: `1px solid #E9EBF5`,

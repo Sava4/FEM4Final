@@ -29,14 +29,14 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   useEffect(() => {
     const queryString = [];
     for (let key in props.filters) {
-      // const url = `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`;
+      // const url = `/products/filter?categories=${category}&${queryString.join("&")}`;
       // console.log(url)
       props.filters[key].length
         ? queryString.push(`${key}=${props.filters[key].join()}`)
         : axios
             .get(
-              `http://localhost:5000/products/filter?categories=${category}&${query}`
-              // `http://localhost:5000/products/filter?categories=${category}&gemstone_color=violet`
+              `/products/filter?categories=${category}&${query}`
+              // `/products/filter?categories=${category}&gemstone_color=violet`
             )
             .then(result => {
               console.log(result.data);
@@ -49,7 +49,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
     // console.log(queryString.join("&"));
     // console.log(`${category}&${queryString.join("&")}`);
     // console.log(
-    //   `http://localhost:5000/products/filter?categories=${category}&${queryString.join("&")}`
+    //   `/products/filter?categories=${category}&${queryString.join("&")}`
     // );
   }, [query]);
 

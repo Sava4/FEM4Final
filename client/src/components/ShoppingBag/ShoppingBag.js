@@ -23,7 +23,7 @@ export const ShoppingBag = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/cart")
+      .get("/cart")
       .then(resp => {
         resp.data === null
           ? dispatch(setServerCart([]))
@@ -73,7 +73,7 @@ export const ShoppingBag = () => {
       return { product: el.id, cartQuantity: el.qty };
     });
     axios
-      .put("http://localhost:5000/cart", { products: updateCart })
+      .put("/cart", { products: updateCart })
       .then(resp => {
         dispatch(setServerCart(resp.data.products));
       })
@@ -83,14 +83,14 @@ export const ShoppingBag = () => {
   const handleDel = id => {
     if (cartProps.length > 1) {
       axios
-        .delete(`http://localhost:5000/cart/${id}`)
+        .delete(`/cart/${id}`)
         .then(resp => {
           dispatch(setServerCart(resp.data.products));
         })
         .catch(err => console.error("Request Error", err));
     } else {
       axios
-        .delete("http://localhost:5000/cart/")
+        .delete("/cart/")
         .then(() => {
           dispatch(setServerCart([]));
         })

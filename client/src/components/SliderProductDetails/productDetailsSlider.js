@@ -12,7 +12,7 @@ export const ProductDetailsSlider = props => {
   //может не вызывать а передавать данные с продукта уже вызваного в слайдер? через пропсы или редакс
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${itemNo}`)
+      .get(`/products/${itemNo}`)
       .then(res => {
         setProductsAllData(res.data);
         console.log(res.data);
@@ -34,7 +34,7 @@ export const ProductDetailsSlider = props => {
       <div key={image}>
         <Image
           alt=""
-          src={`http://localhost:3000/${image}`}
+          src={process.env.PUBLIC_URL + image}
           style={{
             width: "99%",
             height: "99%",

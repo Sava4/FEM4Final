@@ -10,7 +10,7 @@ export function addCategory() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -18,7 +18,7 @@ export function addCategory() {
       let token = response.data.token;
       console.log(token);
       axios
-        .post("http://localhost:5000/catalog", newCategory, {
+        .post("/catalog", newCategory, {
           headers: { Authorization: `${token}` }
         })
         .then(newCategory => {

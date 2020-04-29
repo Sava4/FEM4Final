@@ -39,7 +39,12 @@ export const ProductItem = props => {
       <FavoriteButton />
       <Card to={`/product-details/${props.itemNo}`} key={props.id}>
         {/* <Image alt="" src={`${props.img}`} size={"small"} />  попробовать поменять внутри src по условию*/}
-        <Image alt="" img1={img1} img2={img2} size={"small"} />
+        <Image
+          alt=""
+          img1={process.env.PUBLIC_URL + img1}
+          img2={process.env.PUBLIC_URL + img2}
+          size={"small"}
+        />
         <Name size={"small"}>
           {`${props.name}`}
           <p>"{props.collection}"</p>

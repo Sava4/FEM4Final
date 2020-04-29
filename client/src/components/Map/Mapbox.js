@@ -50,7 +50,10 @@ export const Mapbox = () => {
                 setSelectedStore(store);
               }}
             >
-              <img src="/img/location.svg" alt="Location Icon" />
+              <img
+                src={process.env.PUBLIC_URL + "/img/location.svg"}
+                alt="Location Icon"
+              />
             </button>
           </Marker>
         ))}

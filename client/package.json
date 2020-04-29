@@ -54,6 +54,7 @@
     "lint:css": "stylelint src/**/*.js",
     "postbuild": "react-snap"
   },
+  "proxy": "http://localhost:5000",
   "reactSnap": {
     "include": [
       "/"

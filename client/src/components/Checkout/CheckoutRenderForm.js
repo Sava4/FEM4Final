@@ -45,7 +45,7 @@ export const CheckoutForm = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/cart")
+      .get("/cart")
       .then(resp => {
         setProducts(resp.data.products);
         const PriceArray = resp.data.products.map(item => {
@@ -108,7 +108,7 @@ export const CheckoutForm = () => {
     setPaymentInformation(formData);
     setOrderForm(true);
     // axios
-    //   .post("http://localhost:5000/orders", newOrder)
+    //   .post("/orders", newOrder)
     //   .then(newOrder => {
     //     /*Do something with newProduct*/
     //     console.log("NewOrder", newOrder);
@@ -117,7 +117,7 @@ export const CheckoutForm = () => {
     //     /*Do something with error, e.g. show error to user*/
     //   });
     axios
-      .delete("http://localhost:5000/cart/")
+      .delete("/cart/")
       .then(() => {
         dispatch(setServerCart([]));
       })

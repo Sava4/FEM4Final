@@ -27,7 +27,7 @@ export function addProduct() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -36,7 +36,7 @@ export function addProduct() {
       let token = response.data.token;
 
       axios
-        .post("http://localhost:5000/products", newProduct, {
+        .post("/products", newProduct, {
           headers: { Authorization: `${token}` }
         })
         .then(newProduct => {
@@ -59,7 +59,7 @@ export function updateProduct() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -69,7 +69,7 @@ export function updateProduct() {
       let _id = "5e3f10f0229fc818a0a3a35b"; // вставить _id продукта
 
       axios
-        .put(`http://localhost:5000/products/${_id}`, updatedProduct, {
+        .put(`/products/${_id}`, updatedProduct, {
           headers: { Authorization: `${token}` }
         })
         .then(updatedProduct => {
@@ -87,7 +87,7 @@ export function updateProduct() {
 
 export function deleteOneProduct() {
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -97,7 +97,7 @@ export function deleteOneProduct() {
       console.log(token);
       let itemNo = "some product itemNo"; //вставить нужный itemNo продукта
       axios
-        .delete(`http://localhost:5000/products/${itemNo}`, {
+        .delete(`/products/${itemNo}`, {
           headers: { Authorization: `${token}` }
         })
         .then(res => {
@@ -115,19 +115,19 @@ export function deleteOneProduct() {
 
 export function deleteAllProducts() {
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
     .then(response => {
       let token = response.data.token;
       console.log(token);
-      axios.get("http://localhost:5000/products/").then(products => {
+      axios.get("/products/").then(products => {
         console.log(products);
         products.data.forEach(element => {
           let i = element.itemNo;
           axios
-            .delete(`http://localhost:5000/products/${i}`, {
+            .delete(`/products/${i}`, {
               headers: { Authorization: `${token}` }
             })
             .then(res => {

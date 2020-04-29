@@ -33,10 +33,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.div`
-background: url(http://localhost:3000${props => [props.img1]}) no-repeat;
+background: url(${props => [props.img1]}) no-repeat;
 background-size: contain;
 &:hover {
-background: url(http://localhost:3000${props => [props.img2]}) no-repeat;
+background: url(${props => [props.img2]}) no-repeat;
 background-size: contain;
 }
 ${mediaTablet(`

@@ -35,7 +35,7 @@ export const WishlistItem = props => {
         <div className="product">
           <WrapperLink to={`/product-details/${props.itemNo}`}>
             <ImgWrap>
-              <ProdImg alt="" src={`${props.img}`} />
+              <ProdImg alt="" src={process.env.PUBLIC_URL + props.img} />
             </ImgWrap>
           </WrapperLink>
           <ProductDescription>

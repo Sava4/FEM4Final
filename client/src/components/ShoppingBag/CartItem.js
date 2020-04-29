@@ -10,7 +10,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
       <div className="product">
         <WrapperLink to={`/product-details/${props.itemNo}`}>
           <ImgWrap>
-            <ProdImg src={`../${props.img}`} />
+            <ProdImg src={process.env.PUBLIC_URL + props.img} />
           </ImgWrap>
         </WrapperLink>
         <ProductDescription>

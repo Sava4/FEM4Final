@@ -40,7 +40,7 @@ export const Footer = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/links")
+      .get("/links")
       .then(result => {
         setStaticLinks(result.data);
       })
