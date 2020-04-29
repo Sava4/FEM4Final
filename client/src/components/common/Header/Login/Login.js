@@ -10,7 +10,7 @@ export const Login = props => {
   return (
     <ServicesIcon onClick={props.onClick}>
       <LoginIcon />
-      {user ? user.firstName : <LoginText>My account</LoginText>}
+      {user ? <LoginText>{user.firstName}</LoginText> : <LoginText>My account</LoginText>}
     </ServicesIcon>
   );
 };

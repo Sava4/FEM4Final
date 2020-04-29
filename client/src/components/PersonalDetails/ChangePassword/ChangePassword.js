@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import styled from "styled-components";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {
@@ -7,7 +8,7 @@ import {
   Edit,
   Holder,
   InputWrapper
-} from "./PersonalInformation";
+} from "../PersonalInformation/personalInformation.styles";
 import {Button} from "../../common/Button/Button";
 import {Input} from "../../common/Input/Input";
 
@@ -50,7 +51,9 @@ export const ChangePassword = props => {
           />
           <Edit/>
         </Holder>
-        <Button value={"Save Changes"} onClick={changePassword}/>
+        <ButtonWrapper>
+          <Button value={"Save Changes"} onClick={changePassword}/>
+        </ButtonWrapper>
       </InputWrapper>
     </Details>
   );
@@ -70,3 +73,7 @@ export const ChangePassword = props => {
     )
   }
 };
+
+const ButtonWrapper = styled.div`
+  margin-top: 25px;
+`

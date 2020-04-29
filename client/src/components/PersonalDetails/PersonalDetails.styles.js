@@ -20,7 +20,7 @@ export const Title = styled.div`
   
   ${mediaMobile(`
     padding-bottom: 18px;
-    margin: 30px 20px;
+    margin: 30px 20px 0 20px;
     border-bottom: 1px solid #A7AABB;
     font-size: 16px;
   `)}

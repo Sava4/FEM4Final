@@ -1,11 +1,9 @@
 import React, {useState} from "react";
 import {useSelector} from "react-redux";
-import {MatchMediaHOC} from "react-match-media";
 import {Container, Item, SideBar, Title} from "./PersonalDetails.styles";
 import {Layout} from "../common/Layout";
-import {PersonalInformation} from "./Details/PersonalInformation";
-import {ChangePassword} from "./Details/ChangePassword";
-import {MobileMenu} from "./MobileMenu";
+import {PersonalInformation} from "./PersonalInformation/PersonalInformation";
+import {ChangePassword} from "./ChangePassword/ChangePassword";
 
 const MAP = {
   personal: PersonalInformation,
@@ -16,7 +14,6 @@ export const PersonalDetails = props => {
   const user = useSelector(state => state.user);
   const [active, setActive] = useState("personal");
   const ActiveComponent = MAP[active];
-  const ComponentForSmallScreen = MatchMediaHOC(<MobileMenu/>, "(max-width: 767px)");
 
   return (
     <Layout>
@@ -41,7 +38,6 @@ export const PersonalDetails = props => {
         </SideBar>
         <ActiveComponent/>
       </Container>
-      <ComponentForSmallScreen/>
     </Layout>
   );
 };
