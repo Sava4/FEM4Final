@@ -1,0 +1,92 @@
+.paginator {
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  left: 5%;
+}
+.page_Number {
+  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+}
+
+.selected_Page {
+  border-color: black;
+}
+.removed {
+  display: none;
+}
+.unactive {
+  color: lightgrey;
+  border: none;
+}
+.page_Number.active {
+  visibility: visible;
+  color: black;
+  border-bottom: 1px solid lightgrey;
+}
+.load_more.active {
+  border: 1px solid black;
+  color: black;
+}
+.active {
+  color: black;
+}
+.load_more {
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid lightgrey;
+  width: 280px;
+  margin-top: 4%;
+  margin-left: 37%;
+  margin-bottom: 4%;
+  cursor: pointer;
+}
+.arrow {
+  border: solid;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 5px;
+  position: relative;
+  bottom: 0px;
+}
+.prev {
+  right: 10px;
+  transform: rotate(135deg);
+}
+.next {
+  left: 10px;
+  transform: rotate(-45deg);
+}
+
+.top {
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  margin-left: 4%;
+  position: relative;
+  top: 12px;
+  padding: 10px;
+  cursor: pointer;
+  transform: rotate(-135deg);
+}
+.hidden {
+  display: none;
+}
+.onTop {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  margin-left: 95%;
+  margin-top: 400px;
+  z-index: 10;
+}
+.class {
+  justify-content: space-around;
+  display: flex;
+  background-color: palegreen;
+  height: fit-content;
+}

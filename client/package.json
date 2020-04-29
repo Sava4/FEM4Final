@@ -1,0 +1,91 @@
+{
+  "name": "final_project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.3",
+    "@material-ui/icons": "^4.9.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "eslint-config-react-app": "^5.2.0",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "mapbox-gl": "^1.9.0",
+    "node-sass": "^4.13.1",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.11.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
+    "react-image-zoom": "^1.3.1",
+    "react-input-range": "^1.3.0",
+    "react-map-gl": "^5.2.3",
+    "react-mapbox-gl": "^4.8.3",
+    "react-payment-inputs": "^1.1.4",
+    "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.0",
+    "react-select": "^3.1.0",
+    "react-slick": "^0.25.2",
+    "react-snap": "^1.23.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.3.1",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "slick-carousel": "^1.8.1",
+    "style-it": "^2.1.4",
+    "styled-components": "^5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "env CI=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "lint:css": "stylelint src/**/*.js",
+    "postbuild": "react-snap"
+  },
+  "proxy": "http://localhost:5000",
+  "reactSnap": {
+    "include": [
+      "/"
+    ],
+    "crawl": false
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@material-ui/icons": "^4.9.1",
+    "eslint": "^6.8.0",
+    "qs": "^6.9.1",
+    "querystring": "^0.2.0",
+    "react-xmasonry": "^3.0.3",
+    "stylelint": "^13.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.9.0",
+    "uuid": "^7.0.2"
+  }
+}
