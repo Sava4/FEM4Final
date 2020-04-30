@@ -5,9 +5,9 @@ import arrow from "./dropdownArrow.png";
 
 
 export const Datepicker = props => {
-  const [month, setMonth] = useState(new Date().getMonth());
-  const [day, setDay] = useState(new Date().getDay());
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState();
+  const [day, setDay] = useState();
+  const [year, setYear] = useState();
 
 
   useEffect(() => {

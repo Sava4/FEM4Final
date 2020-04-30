@@ -1,10 +1,10 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router";
-import {Layout} from "../common/Layout";
-import {Title} from "../PersonalDetails/PersonalDetails.styles";
 import styled from "styled-components";
 import arrow from "../common/Footer/footer-arrow.png"
+import {Layout} from "../common/Layout";
+import {Title} from "../PersonalDetails/PersonalDetails.styles";
 import {mediaMobile} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Account = () => {

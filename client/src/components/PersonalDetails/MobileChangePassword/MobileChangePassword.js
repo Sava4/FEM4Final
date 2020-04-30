@@ -6,7 +6,6 @@ import {ItemHolder, ItemName, Arrow} from "../PersonalInformation/personalInform
 import {Layout} from "../../common/Layout";
 import {ChangePassword} from "../ChangePassword/ChangePassword";
 import {MediaRouter} from "../MobilePersonalInformation/MobilePersonalInformation";
-import {PersonalDetails} from "../PersonalDetails";
 
 export const MobileChangePassword = () => {
   const user = useSelector(state => state.user);
@@ -28,8 +27,9 @@ export const MobileChangePassword = () => {
   }
 };
 
+
 export const ChangePasswordRouter = () => {
   return (
-    <MediaRouter Mobile={MobileChangePassword} Web={PersonalDetails}/>
+    <MediaRouter Mobile={MobileChangePassword} Web={ChangePassword}/>
   )
 };
