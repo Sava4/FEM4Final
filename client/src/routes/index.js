@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { ProductFilters } from "../components/ProductsFilterList";
-// import { Categories } from "../components/Categories";
+import { GiftCardView } from "../components/GiftCardsView/GiftCardView"
 import { ProductDetailsLayout } from "../components/ProductDetails";
 import { Account } from "../components/Account";
 import { Wishlist } from "../components/Wishlist/Wishlist";
@@ -20,6 +20,8 @@ export const Routes = () => {
   return user ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
+      {/* <Route path="/headerMenu/:chosenMenu" component={ProductFilters} /> */}
+      <Route exact path="/giftсards" component={GiftCardView} /> 
       <Route path="/categories/:category" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
@@ -40,7 +42,9 @@ export const Routes = () => {
   ) : (
     <Switch>
       <Route exact path="/" component={Homepage} />
-      <Route path="/categories/:category" component={ProductFilters} />
+      <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
+      <Route exact path="/giftсards" component={GiftCardView} /> 
+      <Route path="/categories/:homepagecategory" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route path="/login" component={ProductFilters} />

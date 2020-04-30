@@ -17,19 +17,19 @@ export const HomepageCategories = () => {
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
       <Categories>
-        <Necklaces to={`/categories/${categories[0]}`}>
+        <Necklaces to={`/categories/homepage${categories[0]}`}>
           <p>{categories[0]}</p>
         </Necklaces>
 
         <RightCategoriesWrapper>
-          <Bracelets to={`/categories/${categories[1]}`}>
+          <Bracelets to={`/categories/homepage${categories[1]}`}>
             <p>{categories[1]}</p>
           </Bracelets>
           <RingsWrapper>
-            <Rings to={`/categories/${categories[2]}`}>
+            <Rings to={`/categories/homepage${categories[2]}`}>
               <p>{categories[2]}</p>
             </Rings>
-            <Earrings to={`/categories/${categories[3]}`}>
+            <Earrings to={`/categories/homepage${categories[3]}`}>
               <p>{categories[3]}</p>
             </Earrings>
           </RingsWrapper>

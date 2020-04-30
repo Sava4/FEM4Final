@@ -4,13 +4,13 @@ import axios from "axios";
 export const deleteCategory = () => {
   // Delate category
  
-  // axios
-  // .get("http://localhost:5000/catalog")
-  // .then(result => {
-  //  console.log(result.data);
-  //  const dropMenu = result.data.filter(item=> item.parentId==="Collections")
-  //  dropMenu.forEach(({id})=>{
-    const id = "engagement";
+  axios
+  .get("http://localhost:5000/catalog")
+  .then(result => {
+   console.log(result.data);
+   const dropMenu = result.data.filter(item=> item.parentId==="categories")
+   dropMenu.forEach(({id})=>{
+    // const id ="5ea9fa8ba29b9d1bacd8ddde";
 axios
     .post("http://localhost:5000/customers/login", {
       loginOrEmail: "customer@gmail.com",
@@ -19,8 +19,10 @@ axios
     .then(response => {
       let token = response.data.token;
 
+const url =`http://localhost:5000/catalog/${id}`;
+console.log(url);
       axios
-        .delete(`http://localhost:5000/catalog/${id}`, {
+        .delete( url, {
           headers: { Authorization: `${token}` }
         })
         .then(result => {       
@@ -30,9 +32,9 @@ axios
           console.log(`Catigory ${id} was not delated`);
         });
     });
-  //  })
+   })
 
-  // })
+  })
 
 
   

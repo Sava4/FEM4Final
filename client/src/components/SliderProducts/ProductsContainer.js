@@ -26,7 +26,7 @@ const ProductsContainer = props => {
 
   let location = useLocation();
   let path = `filter${location.search}`;
-  console.log("TCL: path", path);
+  // console.log("TCL: path", path);
 
   const { category } = useParams();
   const queryString = [];
@@ -77,7 +77,7 @@ const ProductsContainer = props => {
     );
   };
   let truePage3 = +currentPage + 1;
-  console.log(truePage3);
+  // console.log(truePage3);
 
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора

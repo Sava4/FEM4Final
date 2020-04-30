@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { mediaMobile } from "../../../../../styledComponents/MediaBreakpointsMixin";
+import { mediaMobile, mediaTablet} from "../../../../../styledComponents/MediaBreakpointsMixin";
 import { DropMenu } from "./dropmenu";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export const HeaderMenuElem = props => {
   const { categoriesAllData } = props;
   const [dropMenuState, setDropMenuState] = useState([]);
 
-  console.log(categoriesAllData.filter(item => item.parentId === "null"));
+  // console.log(categoriesAllData.filter(item => item.parentId === "null"));
   
   useEffect(() => {
     const menu = categoriesAllData
@@ -23,12 +24,13 @@ export const HeaderMenuElem = props => {
     setDropMenuState(menu);
   }, [categoriesAllData]);
 
-  const openDropMenu = category => {
+  const openDropMenu = category => {   
+    console.log(category)
     const newDropMenu = dropMenuState.map(item => {
-      const { menuName, isOpen } = item;
+      const { menuName, isOpen } = item;     
       return {
         menuName,
-        isOpen: item === category ? !isOpen : false
+        isOpen: (item === category && category.menuName!="gift cards" )? !isOpen : false
       };
     });
     setDropMenuState(newDropMenu);
@@ -51,21 +53,22 @@ export const HeaderMenuElem = props => {
     );
 
     return (
-      <div key={item.menuName}>
-        {item.isOpen ? (
-          <CategoryDropBackground onMouseLeave={hideDropmenu} />
-        ) : null}
+      <div key={item.menuName}>    
+         {item.isOpen ? ( 
+         <CategoryDropBackground onMouseLeave={hideDropmenu}/> 
+     
+      ) : null}
         <Category>
           <CategoryHeader onClick={() => openDropMenu(item)}>
-            {item.menuName}
+            {item.menuName!=="gift cards" ? item.menuName:
+            (<NavLink to="/giftсards">{item.menuName}</NavLink>)
+            }            
           </CategoryHeader>
-          {item.isOpen ? (
-            <CategoryDropHolder onMouseLeave={hideDropmenu}>
-              <DropMenu dropMenuArray={dropMenuArray} />
-            </CategoryDropHolder>
+          {item.isOpen ? (          
+              <DropMenu dropMenuArray={dropMenuArray} />   
           ) : null}
-        </Category>
-      </div>
+        </Category>     
+     </div>
     );
   });
 
@@ -80,7 +83,10 @@ const Categories = styled.div`
 `;
 
 const CategoryDropBackground = styled.div`
-  min-height: 180px;
+ height: 210px;
+  ${mediaTablet(`
+  height:260px;
+  `)}
   position: absolute;
   top: 44px;
   left: 0;
@@ -103,9 +109,4 @@ const CategoryHeader = styled.div`
   text-transform: uppercase;
 `;
 
-const CategoryDropHolder = styled.div`
-  width: 110px;
-  position: absolute;
-  top: 35px;
-  z-index: 2;
-`;
+
