@@ -9,7 +9,7 @@ import {
   PreviewWrapper,
   TextHolder,
   Image,
-  ImageDescription
+  ImageDescription,
 } from "./search.styles";
 
 export const Search = () => {
@@ -27,12 +27,12 @@ export const Search = () => {
     const timeoutId = setTimeout(() => {
       axios
         .post("/products/search", {
-          query: search
+          query: search,
         })
-        .then(products => {
+        .then((products) => {
           setSearchResults(products.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }, 1000);
@@ -61,7 +61,7 @@ export const Search = () => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={`/${product.imageUrls[0]}`} />
+                <Image icon={`${product.imageUrls[0]}`} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );
