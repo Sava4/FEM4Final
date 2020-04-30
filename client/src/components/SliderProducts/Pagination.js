@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
 import { ProductItem } from "../ProductsList/ProductItem";
-import { Layout } from "../common/Layout";
-//игоря
+import styles from "./Paginator.module.css";
+import cn from "classnames";
 import { useParams } from "react-router";
-import { FilteredListProducts } from "./../../components/ProductsFilterList/FilteredProducts";
-import { FilterIndicators } from "./../ProductsFilterList/SelectedProducts/FilterIndicators";
+
 export const ProductsPagination = ({
   currentPage,
   truePage,
@@ -31,7 +29,7 @@ export const ProductsPagination = ({
         style={{
           position: "absolute",
           top: "84%",
-          right: "14%"
+          right: "14%",
         }}
       >
         <Paginator
@@ -54,7 +52,7 @@ export const ProductsPagination = ({
           justifyContent: "center",
           width: "100%",
           minWidth: "260px",
-          margin: "0 auto"
+          margin: "0 auto",
         }}
       >
         {products.map((p, index) => (
@@ -66,7 +64,7 @@ export const ProductsPagination = ({
               itemNo={`${p.itemNo}`}
               style={{
                 display: "flex",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
               interpretation={"carousel"}
               img={p.imageUrls}
@@ -75,24 +73,22 @@ export const ProductsPagination = ({
         ))}
         {/* <FilteredListProducts category={category} /> */}
       </div>
-      <div style={{ width: "100%", display: "block" }}>
-        <LoadMore
-          currentPage={currentPage}
-          onPageChanged={onPageChanged}
-          onLoadMore={onLoadMore}
-          productsQuantity={productsQuantity}
-          pageSize={pageSize}
-          products={products}
-          pageSize={pageSize}
-          category={category}
-        />
-      </div>
+      {/* <div style={{ width: "100%", display: "block" }}> */}
+      <LoadMore
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+        onLoadMore={onLoadMore}
+        productsQuantity={productsQuantity}
+        pageSize={pageSize}
+        products={products}
+        pageSize={pageSize}
+        category={category}
+      />
+      {/* </div> */}
       <div
-        style={{
-          position: "relative",
-          bottom: "5.1%",
-          left: "69%"
-        }}
+        className={cn(
+          styles.bottom      
+        )}
       >
         <Paginator
           currentPage={currentPage}
