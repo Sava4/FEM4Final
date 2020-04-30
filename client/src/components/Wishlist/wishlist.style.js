@@ -121,5 +121,3 @@ export const Wrapper = styled.div.attrs(props => ({
   justify-self: ${props => props.justifySelf};
   justify-content: ${props => props.justifyContent};
 `;
-
-export const WrapperLink = styled(NavLink)``;
