@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Layout } from "../common/Layout";
 import axios from "axios";
-
 import { setServerCart } from "../../store/shopping-cart";
 import { useHistory } from "react-router-dom";
 import arrow from "./arrow.png";
@@ -15,7 +14,22 @@ import { Button } from "../common/Button/Button";
 import { PageHeader } from "../common/PageHeader/PageHeader";
 import { Spinner } from "../Spinner/Spinner";
 
-import styled, { css } from "styled-components/macro";
+import { mediaQueryMobile } from "../../styledComponents/MediaBreakpointsMixin";
+import {
+  ArrowImg,
+  BagTotals,
+  Body,
+  Cart,
+  CartWrapper,
+  CheckoutWrap,
+  Container,
+  Continue,
+  Discount,
+  GrandTotalWrap,
+  Header,
+  ProductTable,
+  SubtotalWrap
+} from "./shoppingBag.style";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);
@@ -33,7 +47,7 @@ export const ShoppingBag = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5000/cart")
+      .get("/cart")
       .then(resp => {
         resp.data === null
           ? dispatch(setServerCart([]))
@@ -83,7 +97,7 @@ export const ShoppingBag = () => {
       return { product: el.id, cartQuantity: el.qty };
     });
     axios
-      .put("http://localhost:5000/cart", { products: updateCart })
+      .put("/cart", { products: updateCart })
       .then(resp => {
         dispatch(setServerCart(resp.data.products));
       })
@@ -93,14 +107,14 @@ export const ShoppingBag = () => {
   const handleDel = id => {
     if (cartProps.length > 1) {
       axios
-        .delete(`http://localhost:5000/cart/${id}`)
+        .delete(`/cart/${id}`)
         .then(resp => {
           dispatch(setServerCart(resp.data.products));
         })
         .catch(err => console.error("Request Error", err));
     } else {
       axios
-        .delete("http://localhost:5000/cart/")
+        .delete("/cart/")
         .then(() => {
           dispatch(setServerCart([]));
         })
@@ -134,8 +148,8 @@ export const ShoppingBag = () => {
         <PageHeader>Shopping Bag</PageHeader>
         {cartProps.length > 0 && !loading ? (
           <>
-            {window.matchMedia("(min-width: 750px)").matches ||
-            isMobile.width > 750 ? (
+            {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`).matches ||
+            isMobile.width > mediaQueryMobile ? (
               <Continue onClick={() => history.push("/")}>
                 <ArrowImg src={arrow} />
                 Continue Shopping
@@ -143,8 +157,8 @@ export const ShoppingBag = () => {
             ) : null}
             <Cart>
               <ProductTable>
-                {window.matchMedia("(min-width: 750px)").matches ||
-                isMobile.width > 750 ? (
+                {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
+                  .matches || isMobile.width > mediaQueryMobile ? (
                   <Header>
                     <div>Product</div>
                     <div>Price</div>
@@ -178,8 +192,8 @@ export const ShoppingBag = () => {
                 </Discount>
                 <CheckoutWrap onClick={() => history.push("/account/checkout")}>
                   <Button width={"100%"} value={"CHECKOUT"} />
-                  {window.matchMedia("(max-width: 750px)").matches ||
-                  isMobile.width < 750 ? (
+                  {window.matchMedia(`(max-width: ${mediaQueryMobile}px)`)
+                    .matches || isMobile.width < mediaQueryMobile ? (
                     <Button
                       secondary
                       width={"100%"}
@@ -199,174 +213,3 @@ export const ShoppingBag = () => {
     </Layout>
   );
 };
-
-export const Container = styled.div`
-  margin: 0 auto;
-  width: 92%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const Continue = styled.div`
-  align-self: flex-start;
-  margin-top: 33px;
-  cursor: pointer;
-`;
-
-export const ArrowImg = styled.img`
-  vertical-align: top;
-  height: 14px;
-  margin-right: 9px;
-`;
-
-const Cart = styled.div`
-  display: flex;
-  margin-top: 33px;
-  align-self: stretch;
-  @media (max-width: 750px) {
-    flex-direction: column;
-  }
-`;
-
-const ProductTable = styled.div`
-  width: 75%;
-  display: flex;
-  flex-wrap: wrap;
-  padding-right: 57px;
-  @media (max-width: 750px) {
-    width: 98%;
-    padding-right: 0;
-  }
-`;
-const BagTotals = styled.div`
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  height: 505px;
-  padding-left: 42px;
-  border-left: 1px solid #a7aabb;
-  vertical-align: middle;
-  > p:first-child {
-    flex: initial;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 45px;
-    text-align: center;
-  }
-  @media (max-width: 750px) {
-    width: 100%;
-    border-left: 0;
-    padding-left: 0;
-    margin-top: 30px;
-    > p:first-child {
-      display: none;
-    }
-  }
-`;
-const Discount = styled.p`
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 24px;
-  text-align: left;
-  @media (max-width: 750px) {
-    display: none;
-  }
-  ${props =>
-    props.display === "block" &&
-    css`
-      @media (max-width: 750px) {
-        display: block;
-      }
-      @media (min-width: 751px) {
-        display: none;
-      }
-    `}
-`;
-
-const SubtotalWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex: initial;
-  & p {
-    text-transform: uppercase;
-    flex: auto;
-    text-align: left;
-  }
-  & div {
-    flex: auto;
-    text-align: right;
-  }
-  @media (max-width: 750px) {
-    display: none;
-  }
-`;
-
-const GrandTotalWrap = styled.div`
-  display: flex;
-  margin-top: 19px;
-  justify-content: space-between;
-  flex: initial;
-  padding-top: 21px;
-  border-top: 1px solid #a7aabb;
-  @media (max-width: 750px) {
-    border-top: 0;
-  }
-  & p {
-    text-transform: uppercase;
-    flex: auto;
-    font-weight: 600;
-    text-align: left;
-  }
-  & div {
-    flex: auto;
-    font-weight: 600;
-    text-align: right;
-  }
-`;
-
-const CheckoutWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 31px;
-  max-width: 280px;
-  width: 100%;
-  align-self: center;
-  & div {
-    margin-bottom: 15px;
-  }
-  @media (max-width: 750px) {
-    max-width: 750px;
-  }
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  & div:first-child {
-    flex: 3;
-    text-align: center;
-  }
-  & div {
-    flex: 1;
-    text-align: center;
-  }
-`;
-
-const CartWrapper = styled.div`
-  display: flex;
-  margin-top: 21px;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const Body = styled.div`
-  width: 100%;
-`;

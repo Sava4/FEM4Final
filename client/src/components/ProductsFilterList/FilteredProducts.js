@@ -22,7 +22,7 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
   useEffect(() => {
     // const queryString = [];
     // for (let key in props.filters) {
-    const url = `http://localhost:5000/products/filter?${queryCategory}${query}`;
+    const url = `/products/filter?${queryCategory}${query}`;
 
     // props.filters[key].length
     //   ? queryString.push(`${key}=${props.filters[key].join()}`)

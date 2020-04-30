@@ -62,7 +62,7 @@ export function loginReducer(state = InitialState, action) {
 export const auth = (loginOrEmail, password, remember, locCart, onLogin) => {
   return dispatch => {
     axios
-      .post("http://localhost:5000/customers/login", {
+      .post("/customers/login", {
         loginOrEmail: loginOrEmail,
         password: password
       })
@@ -76,7 +76,7 @@ export const auth = (loginOrEmail, password, remember, locCart, onLogin) => {
         dispatch(loginSuccessAction(token));
         dispatch(mergeCarts(token, locCart));
         axios
-          .get("http://localhost:5000/customers/customer", {
+          .get("/customers/customer", {
             headers: { Authorization: token }
           })
           .then(response => {

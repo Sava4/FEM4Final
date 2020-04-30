@@ -17,6 +17,7 @@ import {
   Wrap,
   Wrapper
 } from "./wishlist.style";
+import { mediaQueryMobile } from "../../styledComponents/MediaBreakpointsMixin";
 
 export const WishlistItem = props => {
   const dispatch = useDispatch();
@@ -39,7 +40,8 @@ export const WishlistItem = props => {
     window.addEventListener("resize", handleWindowSizeChange);
   }, []);
   return isFavorites ? (
-    window.matchMedia("(min-width: 750px)").matches || isMobile.width > 750 ? (
+    window.matchMedia(`(min-width: ${mediaQueryMobile}px)`).matches ||
+    isMobile.width > mediaQueryMobile ? (
       <Fragment>
         {isModalOpen && (
           <ShoppingBagForm
@@ -50,7 +52,7 @@ export const WishlistItem = props => {
         <ItemContainer>
           <Wrapper flexDirection={"row"} justifyContent={"space-between"}>
             <ImgWrap to={`/product-details/${props.itemNo}`}>
-              <ProdImg alt="" src={`${props.img}`} />
+              <ProdImg alt="" src={process.env.PUBLIC_URL + props.img} />
             </ImgWrap>
             <Wrapper alignItems={"start"} justifyContent={"space-between"}>
               <Description>{`${props.name}`}</Description>

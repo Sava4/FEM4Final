@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components/macro";
 import close from "./modal-close-btn.png";
 import {
   ArticleNo,
@@ -13,6 +12,8 @@ import {
   Wrap,
   Wrapper
 } from "../Wishlist/wishlist.style";
+import { mediaQueryMobile } from "../../styledComponents/MediaBreakpointsMixin";
+import { StyledSelect } from "./shoppingBag.style";
 
 export const CartItem = ({ props, handleDel, handleQty }) => {
   const [isMobile, setMobile] = useState({});
@@ -22,12 +23,12 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
   useEffect(() => {
     window.addEventListener("resize", handleWindowSizeChange);
   }, []);
-  return window.matchMedia("(min-width: 750px)").matches ||
-    isMobile.width > 750 ? (
+  return window.matchMedia(`(min-width: ${mediaQueryMobile}px)`).matches ||
+    isMobile.width > mediaQueryMobile ? (
     <ItemContainer>
       <Wrapper flexDirection={"row"} justifyContent={"space-between"}>
         <ImgWrap to={`/product-details/${props.itemNo}`}>
-          <ProdImg alt="" src={`${props.img}`} />
+          <ProdImg src={process.env.PUBLIC_URL + props.img} />
         </ImgWrap>
         <Wrapper alignItems={"start"} justifyContent={"space-between"}>
           <Description>{props.description}</Description>
@@ -67,7 +68,7 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
     <ItemContainer>
       <Wrapper flexDirection={"row"}>
         <ImgWrap to={`/product-details/${props.itemNo}`}>
-          <ProdImg alt="" src={`${props.img}`} />
+          <ProdImg src={process.env.PUBLIC_URL + props.img} />
         </ImgWrap>
         <Wrapper height={"188px"} justifyContent={"space-between"}>
           <Wrapper
@@ -113,45 +114,3 @@ export const CartItem = ({ props, handleDel, handleQty }) => {
     </ItemContainer>
   );
 };
-
-export const StyledSelect = styled.div`
-  border-bottom: 1px solid black;
-  width: 31px;
-  height: 24px;
-  position: relative;
-  margin: 0 auto;
-
-  &:after {
-    content: "";
-    top: 5px;
-    right: 4px;
-    position: absolute;
-    border: solid #262c37;
-    border-width: 0 1px 1px 0;
-    padding: 4px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    z-index: -1;
-  }
-  & select {
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
-    background-image: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    font-size: 14px;
-    font-family: "Montserrat", system-ui, sans-serif;
-    width: 31px;
-    height: 24px;
-    cursor: pointer;
-  }
-
-  & ~ select:focus {
-    outline: none;
-  }
-  & ~ option:focus {
-    outline: none;
-  }
-`;

@@ -12,7 +12,9 @@ export const Paginator = ({
   onPageChanged,
   info,
   apiCategory,
+  categoryQuery,
   category,
+  category2,
   portionSize = 1 //количество страниц в порции
 }) => {
   let pagesCount = Math.ceil(productsQuantity / pageSize); //количество страниц всего и номер последней страницы
@@ -52,8 +54,20 @@ export const Paginator = ({
           onTop(450);
           onPageChanged(+currentPage - 1);
         }}
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage -
-          1}&perPage=${pageSize}`}
+        // to={(category===undefined)&&`/products/${category='all'}/filter?${categoryQuery}&startPage=${+currentPage -
+        //   1}&perPage=${pageSize}`}
+
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
+              1}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage -
+              1}&perPage=${pageSize}`)
+        }
       >
         {portionNumber > 1 &&
           currentPage < leftPortionPageNumber &&
@@ -72,7 +86,15 @@ export const Paginator = ({
 
       {/* первая страница */}
       <NavLink
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${pagesCount}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${1}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${1}&perPage=${pageSize}`)
+        }
         onClick={e => {
           onTop(450);
         }}
@@ -95,8 +117,17 @@ export const Paginator = ({
 
       {/* три точки ... */}
       <NavLink
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage -
-          2}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
+              2}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage -
+              2}&perPage=${pageSize}`)
+        }
         onClick={e => {
           onTop(450);
         }}
@@ -127,7 +158,15 @@ export const Paginator = ({
         .map(pageNumber => {
           return (
             <NavLink
-              to={`/categories/${category}/filter?${apiCategory}&startPage=${pageNumber}&perPage=${pageSize}`}
+              to={
+                ((category === undefined ||
+                  category === "filter" ||
+                  category === "all_categories") &&
+                  (category = "all_categories") &&
+                  `/products/${category}/filter?${categoryQuery}&startPage=${pageNumber}&perPage=${pageSize}`) ||
+                (category !== undefined &&
+                  `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pageNumber}&perPage=${pageSize}`)
+              }
               key={pageNumber}
               onClick={e => {
                 onTop(450);
@@ -158,8 +197,17 @@ export const Paginator = ({
 
       {/* три точки ... */}
       <NavLink
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage +
-          3}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${currentPage +
+              3}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${currentPage +
+              3}&perPage=${pageSize}`)
+        }
         onClick={e => {
           onTop(450);
         }}
@@ -181,7 +229,15 @@ export const Paginator = ({
       </NavLink>
       {/* последняя страница */}
       <NavLink
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${pagesCount}&perPage=${pageSize}`}
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${pagesCount}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${pagesCount}&perPage=${pageSize}`)
+        }
         onClick={e => {
           onTop(450);
         }}
@@ -209,8 +265,20 @@ export const Paginator = ({
           onTop(450);
           onPageChanged(+currentPage + 1);
         }}
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${+currentPage +
-          1}&perPage=${pageSize}`}
+        // to={(category===undefined)&&(category='')&&`/products/${category}/filter?${categoryQuery}&startPage=${+currentPage -
+        //   1}&perPage=${pageSize}`}
+
+        to={
+          ((category === undefined ||
+            category === "filter" ||
+            category === "all_categories") &&
+            (category = "all_categories") &&
+            `/products/${category}/filter?${categoryQuery}&startPage=${currentPage +
+              1}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${+currentPage +
+              1}&perPage=${pageSize}`)
+        }
       >
         {portionCount > portionNumber &&
           currentPage > rightPortionPageNumber &&
