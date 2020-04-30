@@ -22,8 +22,8 @@ import {
 
 const ProductsContainer = props => {
   // console.log(props);
+  // const { currentPage, pageSize } = props;
   const { currentPage, pageSize } = props;
-
   let location = useLocation();
   let path = `filter${location.search}`;
   // console.log("TCL: path", path);

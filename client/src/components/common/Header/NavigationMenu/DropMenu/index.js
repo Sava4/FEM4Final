@@ -59,7 +59,7 @@ export const HeaderMenuElem = props => {
      
       ) : null}
         <Category>
-          <CategoryHeader onClick={() => openDropMenu(item)}>
+          <CategoryHeader onClick={() => openDropMenu(item)}   style={{borderBottom:item.isOpen && "1px solid #002d50"}}>
             {item.menuName!=="gift cards" ? item.menuName:
             (<NavLink to="/giftсards">{item.menuName}</NavLink>)
             }            
@@ -107,6 +107,9 @@ const Category = styled.div`
 
 const CategoryHeader = styled.div`
   text-transform: uppercase;
+  &: hover {
+    border-bottom: 1px solid #002d50;
+  }
 `;
 
 

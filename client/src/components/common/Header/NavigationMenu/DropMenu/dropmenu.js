@@ -19,7 +19,7 @@ export const DropMenu =connect(mapStateToProps, {setClearFilters}) (props => {
       const nameForDropMenu= (parentId==="by zarina") ? name.replace("ZARINA", "").replace("By", "") : name;     
       return (
         <DroMenuItem key={_id} onClick={()=> props.setClearFilters()}>
-          <NavLink to={`/headerMenu/${name}`}>{nameForDropMenu}</NavLink>
+          <StyledLink to={`/headerMenu/${name}`}>{nameForDropMenu}</StyledLink>
         </DroMenuItem>
       );
     });
@@ -49,3 +49,8 @@ height:210px;
   flex-direction: column;
   flex-wrap: wrap;
 `;
+const StyledLink = styled(NavLink)`
+&: hover {
+  border-bottom: 1px solid #002d50;
+}
+`
