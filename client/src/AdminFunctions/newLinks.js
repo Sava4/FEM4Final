@@ -48,7 +48,7 @@ export function addLinks() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -57,7 +57,7 @@ export function addLinks() {
       let token = response.data.token;
 
       axios
-        .post("http://localhost:5000/links", newLinks, {
+        .post("/links", newLinks, {
           headers: { Authorization: `${token}` }
         })
         .then(newLinks => {
@@ -121,7 +121,7 @@ export function updateLinks() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -130,11 +130,9 @@ export function updateLinks() {
       let token = response.data.token;
 
       axios
-        .put(
-          "http://localhost:5000/links/5e4bcd0133960714f8cb572c",
-          updatedLinks,
-          { headers: { Authorization: `${token}` } }
-        )
+        .put("/links/5e4bcd0133960714f8cb572c", updatedLinks, {
+          headers: { Authorization: `${token}` }
+        })
         .then(updatedLinks => {
           /*Do something with newLinks*/
           console.log(updatedLinks);

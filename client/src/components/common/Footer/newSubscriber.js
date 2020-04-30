@@ -25,14 +25,14 @@ export function AddSubscriber(props) {
     //ПРОВЕРКА ВВОДА
 
     axios
-      .post("http://localhost:5000/customers/login", {
+      .post("/customers/login", {
         loginOrEmail: "customer@gmail.com",
         password: "1111111"
       })
       .then(response => {
         let token = response.data.token;
         axios
-          .post("http://localhost:5000/subscribers", newSubscriber, {
+          .post("/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }
           })
           .then(newSubscriber => {
@@ -71,20 +71,16 @@ export function UpdateSubscriber() {
     letterHtml: "<p>We are glad to see you!</p>"
   };
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
     .then(response => {
       let token = response.data.token;
       axios
-        .put(
-          "http://localhost:5000/subscribers/email/mywear1@gmail.com",
-          updateSubscriber,
-          {
-            headers: { Authorization: `${token}` }
-          }
-        )
+        .put("/subscribers/email/mywear1@gmail.com", updateSubscriber, {
+          headers: { Authorization: `${token}` }
+        })
         .then(updateSubscriber => {
           // console.log("success");
           console.log(updateSubscriber);

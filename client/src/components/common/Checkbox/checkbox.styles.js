@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import checkBox from "./checkBox.png";
 import checkBoxChecked from "./checkBoxChecked.png";
+import checkBoxDisable from "./checkBoxDisable.png";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const CheckboxLabel = styled.label`
@@ -16,6 +17,12 @@ export const CheckboxLabel = styled.label`
   ${mediaMobile(`
   align-self: flex-start;
   `)}
+  ${props =>
+    props.marginBottom === "0" &&
+    css`
+      margin-bottom: 0;
+      letter-spacing: 0;
+    `}
 `;
 
 export const CheckBoxIcon = styled.span`
@@ -29,6 +36,14 @@ export const CheckBoxIcon = styled.span`
   input:checked + & {
     background-image: url(${checkBoxChecked});
   }
+`;
+export const CheckBoxIconDisable = styled.span`
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  background-image: url(${checkBoxDisable});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 export const InputCheckbox = styled.input`

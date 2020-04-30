@@ -1,7 +1,8 @@
 .paginator {
-  margin: 50px;
   height: 30px;
   display: inline-block;
+  position: relative;
+  left: 5%;
 }
 .page_Number {
   padding: 5px;
@@ -13,7 +14,9 @@
 .selected_Page {
   border-color: black;
 }
-
+.removed {
+  display: none;
+}
 .unactive {
   color: lightgrey;
   border: none;
@@ -37,8 +40,10 @@
   padding: 15px;
   border: 1px solid lightgrey;
   width: 280px;
-  margin-top: 45px;
-  margin-left: 34%;
+  margin-top: 4%;
+  margin-left: 37%;
+  margin-bottom: 4%;
+  cursor: pointer;
 }
 .arrow {
   border: solid;
@@ -78,4 +83,10 @@
   margin-left: 95%;
   margin-top: 400px;
   z-index: 10;
+}
+.class {
+  justify-content: space-around;
+  display: flex;
+  background-color: palegreen;
+  height: fit-content;
 }

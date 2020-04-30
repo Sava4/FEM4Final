@@ -21,14 +21,15 @@ import {
 } from "./users-selectors";
 
 const ProductsContainer = props => {
-  console.log(props);
+  // console.log(props);
   const { currentPage, pageSize } = props;
 
   let location = useLocation();
   let path = `filter${location.search}`;
   console.log("TCL: path", path);
 
-  const { category } = useParams();
+  let { category } = useParams();
+  console.log("TCL: category", category);
   const queryString = [];
   for (let key in props.filters) {
     props.filters[key].length &&
@@ -37,12 +38,12 @@ const ProductsContainer = props => {
 
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
   const categoryQuery = `${query}`;
-  console.log("TCL: categoryQuery", categoryQuery);
+  // console.log("TCL: categoryQuery", categoryQuery);
   const category2 = `&categories=${category}`;
   // let category3
   const apiCategory = categoryQuery + category2;
 
-  console.log("TCL: apiCategory", apiCategory);
+  // console.log("TCL: apiCategory", apiCategory);
 
   const queryString2 = require("query-string");
   const parsed = queryString2.parse(location.search);
@@ -52,32 +53,29 @@ const ProductsContainer = props => {
   (!truePage && (truePage2 = +currentPage)) ||
     (truePage > 0 && (truePage2 = +truePage)); //чтобы c первой загрузки /pagin активна 1я страница
 
+  query && query.length > 0 && (truePage2 = 1); // чтобы при активации фильтров сбрасывало на 1ю страницу
+
   useEffect(() => {
     //первая загрузка откроется, и номер страницы в урле, и работает назад вперед
-    props.getProducts(truePage2, pageSize, categoryQuery, apiCategory);
+    props.getProducts(
+      truePage2,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   }, [truePage2, query]);
-
-  // let [filtered, setFiltered] = useState(false)
-  // let [truePage5,setTruePage5]= useState(truePage2)
-  // // useEffect (() => {
-
-  // // }, []);
-  // if((query.length>1)&&(filtered===true)){//второй раз
-  //   setTruePage5(truePage2)
-  //   props.getProducts(truePage5, pageSize, categoryQuery, apiCategory )
-  // }
-
-  // useEffect(() => {//при фильтрации обновление и появляется урл с фильтром, но при обновлении страницы откроется первая
-  //   (props.getProducts(truePage2=1, pageSize, categoryQuery, apiCategory ))
-  //   return truePage2
-  // }, [apiCategory]);
-
-  //  все классно но фильтрует не возвращая на 1ю
 
   const onPageChanged = pageNumber => {
     // из пагинатора
     const { pageSize } = props;
-    props.getProducts(pageNumber, pageSize, categoryQuery, apiCategory);
+    props.getProducts(
+      pageNumber,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   };
   let truePage3 = +currentPage + 1;
   console.log(truePage3);
@@ -85,15 +83,38 @@ const ProductsContainer = props => {
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора
     const { pageSize } = props;
-    props.moreProducts(truePage3, pageSize, categoryQuery, apiCategory);
+    props.moreProducts(
+      truePage3,
+      pageSize,
+      categoryQuery,
+      apiCategory,
+      category2
+    );
   };
-
+  let all_categories;
   return (
     <>
       {/* {this.props.isFetching ? <Preloader/> : null} */}
       {/* при выборе фильтра возвращает на первую страницу */}
+      {/* {category===undefined&&(category8='/')&&
       <Redirect
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${truePage2}&perPage=${pageSize}`}
+        to={`/products${category8}filter?${categoryQuery}&startPage=${truePage2}&perPage=${pageSize}`}
+      />} */}
+      {/* {category!==undefined&&<Redirect
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
+      />}
+       {(category===undefined)||(category==='filter')&&(category='category')&&<Redirect
+        to={`/products/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
+      />} */}
+
+      <Redirect
+        to={
+          ((category === undefined || category === "filter") &&
+            (all_categories = "all_categories") &&
+            `/products/${all_categories}/filter?${categoryQuery}&startPage=${truePage2}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`)
+        }
       />
 
       <ProductsPagination
@@ -116,17 +137,18 @@ const ProductsContainer = props => {
   );
 };
 
-let mapStateToProps = (state, categoryQuery, apiCategory, query) => {
+let mapStateToProps = (state, categoryQuery, apiCategory, category2, query) => {
   return {
+    category2: category2,
     apiCategory: apiCategory,
     categoryQuery: categoryQuery,
+    query: query,
     products: getProducts(state),
     products: moreProducts(state),
     pageSize: getPageSize(state),
     productsQuantity: getTotalProductsCount(state),
     currentPage: getCurrentPage(state),
-    filters: state.filters.selFilters,
-    query: query
+    filters: state.filters.selFilters
   };
 };
 

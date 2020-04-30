@@ -54,7 +54,7 @@ export const SliderHomepage = props => {
   const [slides, setSlides] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/slides")
+      .get("/slides")
       .then(result => {
         setSlides(result.data);
       })

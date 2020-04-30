@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ProductItem } from "./productItem";
+import { ProductItem } from "./ProductItem";
 
 import styled from "styled-components";
 import { v4 } from "uuid";
 
 export const ListProducts = props => {
   const [products, setProducts] = useState([]);
+  const { category } = props;
+  console.log(category);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("http://localhost:5000/products");
+      const res = await axios.get("/products");
       setProducts(res.data);
     };
     fetchPosts();

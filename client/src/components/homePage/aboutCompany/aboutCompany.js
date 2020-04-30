@@ -13,6 +13,8 @@ import {
   Text
 } from "./aboutCompany.styles";
 
+// Change comment
+
 export const AboutCompany = () => {
   return (
     <SectionAbout>

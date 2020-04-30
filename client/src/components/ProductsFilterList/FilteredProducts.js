@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { v4 } from "uuid";
 import querystring from "query-string";
-import { ProductItem } from "../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
+import { mediaMobile } from "../../styledComponents/GlobalStyle";
+// import ProductsContainer from "../SliderProducts/ProductsContainer"
 
 import styled from "styled-components";
 
@@ -13,37 +15,32 @@ const MapStateToProps = store => ({
 
 export const FilteredListProducts = connect(MapStateToProps)(props => {
   const [products, setProducts] = useState([]);
-  const { category, setNambertOfFilterdItems } = props;
-
-  const queryString = [];
-  for (let key in props.filters) {
-    props.filters[key].length &&
-      queryString.push(`${key}=${props.filters[key].join(",")}`);
-  }
-
+  const { category, setNambertOfFilteredItems } = props;
+  const queryCategory = !category ? "" : `categories=${category}&`;
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
 
   useEffect(() => {
-    const queryString = [];
-    for (let key in props.filters) {
-      const url = `http://localhost:5000/products/filter?categories=${category}&${query}`;
+    // const queryString = [];
+    // for (let key in props.filters) {
+    const url = `/products/filter?${queryCategory}${query}`;
 
-      props.filters[key].length
-        ? queryString.push(`${key}=${props.filters[key].join()}`)
-        : axios.get(url).then(result => {
-            setProducts(result.data);
-          });
-      //   .catch(err => {
-      //     /*Do something with error, e.g. show error to user*/
-      //   });
-    }
+    // props.filters[key].length
+    //   ? queryString.push(`${key}=${props.filters[key].join()}`)
+    //   :
+    axios.get(url).then(result => {
+      setProducts(result.data);
+    });
+    //   .catch(err => {
+    //     /*Do something with error, e.g. show error to user*/
+    //   });
+    // }
   }, [query]);
-
-  const filterdProd = products.products;
-  filterdProd && setNambertOfFilterdItems(filterdProd.length);
+  // console.log(props)
+  const filteredProd = products.products;
+  filteredProd && setNambertOfFilteredItems(filteredProd.length);
   const ListProduct =
-    filterdProd &&
-    filterdProd.map(product => {
+    filteredProd &&
+    filteredProd.map(product => {
       return (
         <ProductItem
           id={product._id}
@@ -57,12 +54,6 @@ export const FilteredListProducts = connect(MapStateToProps)(props => {
       );
     });
   return <Wrapper>{ListProduct && ListProduct.splice(0, 9)}</Wrapper>;
-  // };
-  //Using splice for products array instead the pagination.
-
-  // export const ProductsList = () => {
-  //   return null
-  //   <ListProducts />;
 });
 
 //*** STYLED-COMPONENTS ***//
@@ -74,8 +65,8 @@ export const Wrapper = styled.div`
   padding-top: 30px;
   padding-bottom: 30px;
   margin: 0 auto;
-  max-width: 920px;
-  width: 80%;
+  max-width: inherit;
+  // width: 80%;
   @media (max-width: 1050px) {
     max-width: 800px;
   }

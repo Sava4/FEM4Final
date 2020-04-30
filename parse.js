@@ -5,21 +5,38 @@ var async = require("async");
 
 console.log("start");
 
-let categories = "bracelets";
-// не забыть папку создать и поменять категорию и закомментить лишние ссылки
+// let categories = "pendants";
+// let categories = "bracelets";
+// let categories = "earrings";
+// let categories = "necklaces";
+// let categories = "rings";
+
+// !!! не забыть папку для фото проверить и поменять категорию и закомментить лишние ссылки
+
 var urls = [
+
+  //pendants
+  // 'https://zarina.ua/ua/catalog/podvesy',
+  // 'https://zarina.ua/ua/catalog/podvesy?p=2',
+  // 'https://zarina.ua/ua/catalog/podvesy?p=3',
+
+// //bracelets
   // "https://zarina.ua/ru/catalog/braslety",
   // "https://zarina.ua/ru/catalog/braslety?p=2",
   // "https://zarina.ua/ru/catalog/braslety?p=3",
 
+
+  //earrings
   // "https://zarina.ua/ru/catalog/sergi",
   // "https://zarina.ua/ru/catalog/sergi?p=2",
   // "https://zarina.ua/ru/catalog/sergi?p=3",
 
+  //necklaces
   // "https://zarina.ua/ru/catalog/kolie",
   // "https://zarina.ua/ru/catalog/kolie?p=2",
   // "https://zarina.ua/ru/catalog/kolie?p=3"
 
+  //rings
   // "https://zarina.ua/ua/catalog/kolca",
   // "https://zarina.ua/ua/catalog/kolca?p=2",
   // "https://zarina.ua/ua/catalog/kolca?p=3",
@@ -118,6 +135,7 @@ function qqqqq(url2) {
             .replace("Меланка", "Melanka")
             .replace("Зірка", "Star")
             .replace("Капли Дождя", "Rain Drops")
+            .replace("Краплі Дощу", "Rain Drops")
             .replace(/Iconic.*/, "Iconic")
             .replace(/NATKINA.*/, "NATKINA")
             .replace(/In motion.*/, "In motion")
@@ -127,8 +145,24 @@ function qqqqq(url2) {
             .replace("Зірка", "Star")
             .replace("Мужская", "Men")
             .replace("Детская", "Baby")
+            .replace("Дитяча", "Baby")
+            .replace("Фрески", "Freski")
+            .replace("ВідданаByZARINA", "ViddanaByZARINA")
             .replace("Три Цвета Любви", "Love Colors")
             .replace("Крижані Чари", "Frozen Magic")
+            .replace("Крижані чари", "Frozen Magic")
+            .replace("Душа Природи", "Nature`s Soul")
+            .replace("Драгоценная шкатулка", "Precious box")
+            .replace("Дорогоцінна Скарбничка", "Precious box")
+            .replace("Дорогоцiнна скарбничка", "Precious box")
+            .replace("Бальная Книга", "Precious box")
+            .replace("Звезда", "Star")
+            .replace("Ледяные чары", "Frozen Magic")
+            .replace("Три цвета любви", "Love colors")
+            .replace("Три Кольори Кохання", "Love colors")
+            .replace("Три кольори кохання", "Love colors")   
+            .replace("Сердце Океана", "Ocean heart") 
+            .replace("Богема", "Bohemian")
             .replace("Гранат", "Granat")
             .replace("Розмір", "size")
             .replace("Вага", "weight")
@@ -151,21 +185,40 @@ function qqqqq(url2) {
             .replace("Сапфір", "Sapphire")
             .replace("Сапфир", "Sapphire")
             .replace("Изумруд", "Emerald")
+            .replace("Смарагд", "Emerald")
             .replace("Без вставок", "Pure metal")
             .replace("Хризоліт", "Hrizolit")
+            .replace("Хризолит", "Hrizolit")
             .replace("Цитрин", "Citrin")
+            .replace("Кварц Димчатий", "Quarz")           
+            .replace("Кварц димчатий", "Quarz") 
+            .replace("Кварц дымчатый", "Quarz")
             .replace("Кварц Димчатий", "Quarz")
+            .replace("Quarz Димчатий", "Quarz") 
+            .replace("Кварц Зелений", "Quarz")
+            .replace("Кварц Рожевий", "Quarz")
+            .replace("Кварц рожевий", "Quarz")           
+            .replace("Quarz Рожевий", "Quarz")
+            .replace("Кварц", "Quarz")
             .replace("Лейкосапфір", "Leicosapphire")
+            .replace("Лейкосапфир", "Leicosapphire")
             .replace("Цаворит", "Cavorit")
             .replace("Эмаль", "Emal")
+            .replace("Емаль", "Emal")
             .replace("Халцедон", "Halcedon")
-            .replace("Турмалин", "Turmalin")
-            .replace("Кварц дымчатый", "Quarz")
+            .replace("Турмалин", "Turmalin")           
+            .replace("Цирконій SWAROVSKI", "SWAROVSKI")
+            .replace("Кристалл Сваровски", "SWAROVSKI")            
+            .replace("Оникс", "Onix")
+            .replace("Агат", "Agat")
+            .replace("Силикон", "Silicon")
             .replace("Перли", "Pearls")
+            .replace("Перламутр", "Pearls")
             .replace("Жемчуг", "Pearls")
             .replace("Аметист", "Ametist")
             .replace("Рожевий", "rose")
-            .replace("Розовый", "rose");
+            .replace("Розовый", "rose")
+            .replace("Димчатий", "")
 
           tdd.push(tdItem);
         });

@@ -1,27 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
-
 import styled from "styled-components";
-// import { mediaMobile } from "../../../styled-components/media-breakpoints-mixin";
 import { setTogleShown } from "./../../../store/filters";
 import { setDeleteFilter } from "./../../../store/filters";
-
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
+import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 
 const mapStateToProps = store => ({
-  filters: store.filters.menuState
+  filtersBlockState: store.filters.menuState
 });
 
 export const FiltersList = connect(mapStateToProps, {
   setTogleShown,
   setDeleteFilter
 })(props => {
-  // console.log(props);
+  // const priceIsShown = props.filtersBlockState["price"];
+
   const filtredBy = [
+    "price",
     "collection",
     "metal",
     "metal_color",
@@ -35,31 +34,32 @@ export const FiltersList = connect(mapStateToProps, {
   };
 
   let filters = filtredBy.map(item => {
-    let isShown = props.filters[item];
+    let isShown = props.filtersBlockState[item];
     return (
       <FilterBox key={v4()}>
         <FilterType id={item}>
           <p>{item.replace("_", " ")}</p>
-          {!isShown && (
-            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
-          )}
-          {isShown && (
-            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+          {isShown ? (
+            <ExpandLessIcon fontSize="midle" onClick={handleChange} />
+          ) : (
+            <ExpandMoreIcon fontSize="midle" onClick={handleChange} />
           )}
         </FilterType>
-        <CheckboxBlock isOpen={isShown}>
-          <PopupCheckboxes filtername={item} />
-        </CheckboxBlock>
+        {isShown ? (
+          item === "price" ? (
+            <PriсeRange />
+          ) : (
+            <PopupCheckboxes filtername={item} />
+          )
+        ) : (
+          false
+        )}
       </FilterBox>
     );
   });
 
-  return <div>{filters}</div>;
+  return <>{filters}</>;
 });
-
-const CheckboxBlock = styled.div`
-  display: ${props => (props.isOpen ? "block" : "none")};
-`;
 
 const FilterBox = styled.div`
   height: fit-content;

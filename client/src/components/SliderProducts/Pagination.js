@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
-import { ProductItem } from "./../ProductsList/productItem";
+import { ProductItem } from "../ProductsList/ProductItem";
 import { Layout } from "../common/Layout";
 //игоря
 import { useParams } from "react-router";
@@ -19,6 +19,7 @@ export const ProductsPagination = ({
   products,
   categoryQuery,
   apiCategory,
+  category2,
   ...props
 }) => {
   ///// игоря
@@ -26,15 +27,15 @@ export const ProductsPagination = ({
   return (
     <div>
       {/* <Layout> */}
-      <FilterIndicators />
       <div
         style={{
-          position: "relative",
-          textAlign: "right"
+          position: "absolute",
+          top: "84%",
+          right: "14%"
         }}
       >
         <Paginator
-          info={1}
+          // info={1}
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           onLoadMore={onLoadMore}
@@ -43,6 +44,7 @@ export const ProductsPagination = ({
           categoryQuery={categoryQuery}
           category={category}
           apiCategory={apiCategory}
+          category2={category2}
         />
       </div>
       <div
@@ -57,22 +59,18 @@ export const ProductsPagination = ({
       >
         {products.map((p, index) => (
           <div id={index} key={p.itemNo}>
-            <NavLink
-              to={`/product-details/${p.itemNo}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ProductItem
-                product={p}
-                {...p}
-                itemNo={`${p.itemNo}`}
-                style={{
-                  display: "flex",
-                  justifyContent: "center"
-                }}
-                interpretation={"carousel"}
-                img={p.imageUrls[0]}
-              />
-            </NavLink>
+            <ProductItem
+              product={p}
+              {...p}
+              id={p._id}
+              itemNo={`${p.itemNo}`}
+              style={{
+                display: "flex",
+                justifyContent: "center"
+              }}
+              interpretation={"carousel"}
+              img={p.imageUrls}
+            />
           </div>
         ))}
         {/* <FilteredListProducts category={category} /> */}
@@ -85,7 +83,17 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           products={products}
+          pageSize={pageSize}
+          category={category}
         />
+      </div>
+      <div
+        style={{
+          position: "relative",
+          bottom: "5.1%",
+          left: "69%"
+        }}
+      >
         <Paginator
           currentPage={currentPage}
           onPageChanged={onPageChanged}
@@ -93,6 +101,9 @@ export const ProductsPagination = ({
           productsQuantity={productsQuantity}
           pageSize={pageSize}
           truePage={truePage}
+          category={category}
+          category2={category2}
+          categoryQuery={categoryQuery}
         />
       </div>
       {/* </Layout> */}

@@ -243,7 +243,7 @@ export const RegisterForm = props => {
     }
 
     axios
-      .post("http://localhost:5000/customers", {
+      .post("/customers", {
         firstName: firstName,
         lastName: lastName,
         email: email,

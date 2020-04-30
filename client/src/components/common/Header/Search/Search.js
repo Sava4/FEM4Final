@@ -26,7 +26,7 @@ export const Search = () => {
     clearTimeout(timer);
     const timeoutId = setTimeout(() => {
       axios
-        .post("http://localhost:5000/products/search", {
+        .post("/products/search", {
           query: search
         })
         .then(products => {

@@ -15,7 +15,7 @@ export const RestoreSession = props => {
   useEffect(() => {
     if (token) {
       axios
-        .get("http://localhost:5000/customers/customer", {
+        .get("/customers/customer", {
           headers: { Authorization: token }
         })
         .then(response => {

@@ -17,7 +17,7 @@ export function addPage() {
   };
 
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
@@ -26,7 +26,7 @@ export function addPage() {
       let token = response.data.token;
 
       axios
-        .post("http://localhost:5000/pages", newPage, {
+        .post("/pages", newPage, {
           headers: { Authorization: `${token}` }
         })
         .then(newPage => {
