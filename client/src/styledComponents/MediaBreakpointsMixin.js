@@ -18,8 +18,10 @@ export function mediaTablet(content) {
 
 export function mediaMobile(content) {
   return css`
-    @media (max-width: 767px) {
+    @media (max-width: ${mediaQueryMobile}px) {
       ${content}
     }
   `;
 }
+
+export const mediaQueryMobile = 767;
