@@ -43,13 +43,13 @@ export const MobileFiltersList = connect(mapStateToProps, {
   let filters = filtredBy.map(item => {
     let isShown = props.filters[item];
     return (
-      <FilterBox key={v4()}>
-        <FilterType id={item}>
+      <FilterBox key={v4()} onClick={handleChange}>
+        <FilterType id={item} >
           <p>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+            <ExpandLessIcon fontSize="small"  />
           ) : (
-            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+            <ExpandMoreIcon fontSize="small" />
           )}
         </FilterType>
         {isShown ? (
@@ -70,7 +70,6 @@ export const MobileFiltersList = connect(mapStateToProps, {
   return (
     <FiltersModal>
       <ModalClose onClick={() => setOpenFiltwilnd(false)} />
-
       {filters}
       <BottomBlock>
         <Button
@@ -121,6 +120,7 @@ display: block;
 text-align: center;
 width: 80%;
 border-bottom: 1px solid #E9EBF5;
+cursor: pointer;
 `)}
 `;
 const FilterType = styled.div`
