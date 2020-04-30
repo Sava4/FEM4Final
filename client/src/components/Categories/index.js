@@ -10,19 +10,3 @@ export const Categories = () => {
     </Layout>
   );
 };
-
-//      const SectionCategiries = styled.div`
-//     {
-//         height:712px;
-//         width: 100vw;
-//         & p{
-//             text-align: center;
-//         }
-//     }`
-//    const Categories = styled.div`
-//         {
-//         display: flex;
-//         & div{
-//             margin-left: 20px
-//         }
-//     `;

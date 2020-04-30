@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import close from "../ShoppingBag/modal-close-btn.png";
-import { ArticleNo } from "../ShoppingBag/CartItem";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
 import { removeFavorites } from "../../store/favorites";
 import { ShoppingBagForm } from "../Forms/ShoppingBagForm/ShoppingBagForm";
 import {
+  ArticleNo,
   CloseImg,
   Description,
   ImgWrap,
@@ -54,7 +54,7 @@ export const WishlistItem = props => {
             </ImgWrap>
             <Wrapper alignItems={"start"} justifyContent={"space-between"}>
               <Description>{`${props.name}`}</Description>
-              <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
+              <ArticleNo>Article no.: {props.itemNo}</ArticleNo>
               <Wrap>
                 <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
                   <CloseImg src={close} />
@@ -63,7 +63,7 @@ export const WishlistItem = props => {
               </Wrap>
             </Wrapper>
             <Wrapper justifySelf={"flex-end"} width={"20%"}>
-              <div>{props.previousPrice.toLocaleString("de-CH")} UAH</div>
+              <Price>{props.previousPrice.toLocaleString("de-CH")}</Price>
               <ShoppingBagIcon onClick={add} />
             </Wrapper>
           </Wrapper>

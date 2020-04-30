@@ -3,6 +3,11 @@ import { NavLink } from "react-router-dom";
 import bug from "../common/Header/ShoppingBag/shoppingBagIcon.png";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 
+export const ArticleNo = styled.p`
+  line-height: 10px;
+  color: #a1a5ad;
+  flex: 1;
+`;
 export const CloseImg = styled.img`
   margin: 3px;
   height: 14px;
@@ -16,7 +21,7 @@ export const Description = styled.p`
   margin-bottom: 12px;
   flex: 1;
   ${mediaMobile(`
-  width:100%;
+  width:90%;
   font-size: 12px;
   `)}
 `;
