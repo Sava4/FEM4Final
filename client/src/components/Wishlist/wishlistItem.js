@@ -1,25 +1,28 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import close from "../ShoppingBag/modal-close-btn.png";
+import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
+import { removeFavorites } from "../../store/favorites";
+import { ShoppingBagForm } from "../Forms/ShoppingBagForm/ShoppingBagForm";
 import {
   ArticleNo,
   CloseImg,
+  Description,
   ImgWrap,
   ItemContainer,
+  Price,
   ProdImg,
-  ProductDescription,
-  RemoveBtn
-} from "../ShoppingBag/CartItem";
-import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
-import bug from "../common/Header/ShoppingBag/shoppingBagIcon.png";
-
-import styled from "styled-components";
-import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
-import { removeFavorites } from "../../store/favorites";
+  RemoveBtn,
+  ShoppingBagIcon,
+  Wrap,
+  Wrapper
+} from "./wishlist.style";
+import { mediaQueryMobile } from "../../styledComponents/MediaBreakpointsMixin";
 
 export const WishlistItem = props => {
   const dispatch = useDispatch();
+  const [isMobile, setMobile] = useState({});
+  const [isModalOpen, toggleModal] = useState(false);
   const isFavorites = useSelector(state =>
     state.favorites.favArr.some(id => id === props.id)
   );
@@ -28,66 +31,86 @@ export const WishlistItem = props => {
     token
       ? dispatch(addToSrvCart(props.id, token))
       : dispatch(addToLocalCart(props.id));
+    toggleModal(!isModalOpen);
   };
-  const CardFavorite = () => {
-    return isFavorites ? (
-      <ItemContainer>
-        <div className="product">
-          <WrapperLink to={`/product-details/${props.itemNo}`}>
-            <ImgWrap>
+  const handleWindowSizeChange = () => {
+    setMobile({ width: window.innerWidth });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+  }, []);
+  return isFavorites ? (
+    window.matchMedia(`(min-width: ${mediaQueryMobile}px)`).matches ||
+    isMobile.width > mediaQueryMobile ? (
+      <Fragment>
+        {isModalOpen && (
+          <ShoppingBagForm
+            isModalOpen={isModalOpen}
+            onClose={() => toggleModal(false)}
+          />
+        )}
+        <ItemContainer>
+          <Wrapper flexDirection={"row"} justifyContent={"space-between"}>
+            <ImgWrap to={`/product-details/${props.itemNo}`}>
               <ProdImg alt="" src={process.env.PUBLIC_URL + props.img} />
             </ImgWrap>
-          </WrapperLink>
-          <ProductDescription>
-            <Description>{`${props.name}`}</Description>
-            <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
-            <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
-              <CloseImg src={close} />
-              Remove
-            </RemoveBtn>
-          </ProductDescription>
-        </div>
-        <Wrapper>
-          <div>{props.previousPrice.toLocaleString("de-CH")} UAH</div>
-          <ShoppingBagIcon onClick={add} />
-        </Wrapper>
-      </ItemContainer>
-    ) : null;
-  };
-  return <CardFavorite />;
+            <Wrapper alignItems={"start"} justifyContent={"space-between"}>
+              <Description>{`${props.name}`}</Description>
+              <ArticleNo>Article no.: {props.itemNo}</ArticleNo>
+              <Wrap>
+                <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
+                  <CloseImg src={close} />
+                  <span>Remove</span>
+                </RemoveBtn>
+              </Wrap>
+            </Wrapper>
+            <Wrapper justifySelf={"flex-end"} width={"20%"}>
+              <Price>{props.previousPrice.toLocaleString("de-CH")}</Price>
+              <ShoppingBagIcon onClick={add} />
+            </Wrapper>
+          </Wrapper>
+        </ItemContainer>
+      </Fragment>
+    ) : (
+      <Fragment>
+        {isModalOpen && (
+          <ShoppingBagForm
+            isModalOpen={isModalOpen}
+            onClose={() => toggleModal(false)}
+          />
+        )}
+        <ItemContainer>
+          <Wrapper flexDirection={"row"}>
+            <ImgWrap to={`/product-details/${props.itemNo}`}>
+              <ProdImg alt="" src={process.env.PUBLIC_URL + props.img} />
+            </ImgWrap>
+            <Wrapper height={"188px"} justifyContent={"space-between"}>
+              <Wrapper
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems={"start"}
+              >
+                <Description>{`${props.name}`}</Description>
+                <RemoveBtn onClick={() => dispatch(removeFavorites(props.id))}>
+                  <CloseImg src={close} />
+                </RemoveBtn>
+              </Wrapper>
+              <Wrapper alignItems={"start"}>
+                {" "}
+                <ArticleNo>Article no.: {props.previousPrice}</ArticleNo>
+              </Wrapper>
+              <Wrapper
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <ShoppingBagIcon left={"true"} onClick={add} />
+                <Price>{props.previousPrice.toLocaleString("de-CH")}</Price>
+              </Wrapper>
+            </Wrapper>
+          </Wrapper>
+        </ItemContainer>
+      </Fragment>
+    )
+  ) : null;
 };
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const ShoppingBagIcon = styled.button`
-  width: 20px;
-  height: 20px;
-  margin-left: -65px;
-  margin-top: 5px;
-  background-image: url(${bug});
-  background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
-  &: after {
-    content: "Add to bag";
-    color: #a1a5ad;
-    font-size: 12px;
-    position: absolute;
-    margin-top: -4px;
-    padding-left: 10px;
-  }
-`;
-const WrapperLink = styled(NavLink)``;
-const Description = styled.p`
-  text-transform: uppercase;
-  line-height: 24px;
-  width: 75%;
-  margin-bottom: 12px;
-  flex: 1;
-  ${mediaMobile(`
-  width:100%;
-  font-size: 12px;
-  `)}
-`;

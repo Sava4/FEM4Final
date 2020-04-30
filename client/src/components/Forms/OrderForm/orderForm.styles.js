@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import arrow from "./arrow.png";
-import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
   max-width: 1100px;
@@ -31,6 +34,9 @@ export const CreateAccountSubtitle = styled.div`
   margin-bottom: 80px;
   font-size: 14px;
   ${mediaTablet(`
+text-align: center;
+  `)}
+  ${mediaMobile(`
 text-align: center;
   `)}
 `;

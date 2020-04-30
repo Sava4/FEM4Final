@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 import { Wrapper } from "../../Checkout/checkout.styles";
 import { Button } from "../../common/Button/Button";
 import {
-  Content,
   CreateAccountSubtitle,
   CreateAccountTitle,
   FormWrapper,
@@ -13,6 +12,7 @@ import {
   GoBackWrapper,
   Order
 } from "./orderForm.styles";
+import { PageHeader } from "../../common/PageHeader/PageHeader";
 
 export const OrderForm = props => {
   const { isModalOpen, onClose, email, icons } = props;
@@ -30,7 +30,7 @@ export const OrderForm = props => {
     isMobile.width < 800 ? (
     <Order>
       <CreateAccountTitle>
-        <Content>Thank you for your order with Zarina!</Content>
+        <PageHeader>Thank you for your order with Zarina!</PageHeader>
       </CreateAccountTitle>
       <Wrapper icons={"icons"}>{icons}</Wrapper>
       <CreateAccountSubtitle>
@@ -47,7 +47,7 @@ export const OrderForm = props => {
     <Modal isModalOpen={isModalOpen} onClose={onClose}>
       <FormWrapper>
         <CreateAccountTitle>
-          <Content>Thank you for your order with Zarina!</Content>
+          <PageHeader>Thank you for your order with Zarina!</PageHeader>
         </CreateAccountTitle>
         <Wrapper icons={"icons"}>{icons}</Wrapper>
         <CreateAccountSubtitle>

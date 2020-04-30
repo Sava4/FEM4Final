@@ -3,16 +3,33 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Layout } from "../common/Layout";
 import axios from "axios";
-import styled from "styled-components/macro";
 import { setServerCart } from "../../store/shopping-cart";
 import { useHistory } from "react-router-dom";
 import arrow from "./arrow.png";
 import { setAuthorizationToken } from "../../store/login";
 import { logoutAction } from "../../store/login";
-
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem";
 import { Button } from "../common/Button/Button";
+import { PageHeader } from "../common/PageHeader/PageHeader";
+import { Spinner } from "../Spinner/Spinner";
+
+import { mediaQueryMobile } from "../../styledComponents/MediaBreakpointsMixin";
+import {
+  ArrowImg,
+  BagTotals,
+  Body,
+  Cart,
+  CartWrapper,
+  CheckoutWrap,
+  Container,
+  Continue,
+  Discount,
+  GrandTotalWrap,
+  Header,
+  ProductTable,
+  SubtotalWrap
+} from "./shoppingBag.style";
 
 export const ShoppingBag = () => {
   const token = useSelector(state => state.login.token);
@@ -20,6 +37,13 @@ export const ShoppingBag = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [loading, setLoading] = useState(true);
+  const [isMobile, setMobile] = useState({});
+  const handleWindowSizeChange = () => {
+    setMobile({ width: window.innerWidth });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+  }, []);
   useEffect(() => {
     setLoading(true);
     axios
@@ -121,21 +145,27 @@ export const ShoppingBag = () => {
   return (
     <Layout>
       <Container>
-        <BagHeader>Shopping Bag</BagHeader>
+        <PageHeader>Shopping Bag</PageHeader>
         {cartProps.length > 0 && !loading ? (
           <>
-            <Continue onClick={() => history.push("/")}>
-              <ArrowImg src={arrow} />
-              Continue Shopping
-            </Continue>
+            {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`).matches ||
+            isMobile.width > mediaQueryMobile ? (
+              <Continue onClick={() => history.push("/")}>
+                <ArrowImg src={arrow} />
+                Continue Shopping
+              </Continue>
+            ) : null}
             <Cart>
               <ProductTable>
-                <Header>
-                  <div>Product</div>
-                  <div>Price</div>
-                  <div>Quantity</div>
-                  <div>Total</div>
-                </Header>
+                {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
+                  .matches || isMobile.width > mediaQueryMobile ? (
+                  <Header>
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Total</div>
+                  </Header>
+                ) : null}
                 <Body>
                   <form>
                     <CartList items={cartProps}> </CartList>
@@ -156,14 +186,26 @@ export const ShoppingBag = () => {
                   <p>ESTIMATED TOTAL</p>
                   <div>{totalInCart.toLocaleString("de-CH")} UAH</div>
                 </GrandTotalWrap>
+                <Discount display={"block"}>
+                  Discount and Shipping will be calculated at checkout, where
+                  applicable.
+                </Discount>
                 <CheckoutWrap onClick={() => history.push("/account/checkout")}>
-                  <Button value={"CHECKOUT"} />
+                  <Button width={"100%"} value={"CHECKOUT"} />
+                  {window.matchMedia(`(max-width: ${mediaQueryMobile}px)`)
+                    .matches || isMobile.width < mediaQueryMobile ? (
+                    <Button
+                      secondary
+                      width={"100%"}
+                      value={"GO BACK TO SHOPPING"}
+                    />
+                  ) : null}
                 </CheckoutWrap>
               </BagTotals>
             </Cart>
           </>
         ) : loading ? (
-          <div>...Loading</div>
+          <Spinner />
         ) : (
           <EmptyCart text={"Your Shopping Bag is currently empty."} />
         )}
@@ -171,135 +213,3 @@ export const ShoppingBag = () => {
     </Layout>
   );
 };
-
-export const Container = styled.div`
-  margin: 0 130px 0 149px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const BagHeader = styled.h2`
-  margin-top: 29px;
-  width: max-content;
-  font-size: 24px;
-  text-transform: uppercase;
-`;
-
-export const Continue = styled.div`
-  align-self: flex-start;
-  margin-top: 33px;
-  cursor: pointer;
-`;
-
-export const ArrowImg = styled.img`
-  vertical-align: top;
-  height: 14px;
-  margin-right: 9px;
-`;
-
-const Cart = styled.div`
-  display: flex;
-  margin-top: 33px;
-  align-self: stretch;
-`;
-
-const ProductTable = styled.div`
-  width: 75%;
-  display: flex;
-  flex-wrap: wrap;
-  padding-right: 57px;
-`;
-const BagTotals = styled.div`
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  height: 505px;
-  padding-left: 42px;
-  border-left: 1px solid #a7aabb;
-  vertical-align: middle;
-  > p:first-child {
-    flex: initial;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 45px;
-    text-align: center;
-  }
-`;
-const Discount = styled.p`
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 24px;
-  text-align: left;
-`;
-
-const SubtotalWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex: initial;
-  & p {
-    text-transform: uppercase;
-    flex: auto;
-    text-align: left;
-  }
-  & div {
-    flex: auto;
-    text-align: right;
-  }
-`;
-
-const GrandTotalWrap = styled.div`
-  display: flex;
-  margin-top: 19px;
-  justify-content: space-between;
-  flex: initial;
-  padding-top: 21px;
-  border-top: 1px solid #a7aabb;
-  & p {
-    text-transform: uppercase;
-    flex: auto;
-    font-weight: 600;
-    text-align: left;
-  }
-  & div {
-    flex: auto;
-    font-weight: 600;
-    text-align: right;
-  }
-`;
-
-const CheckoutWrap = styled.div`
-  margin-top: 31px;
-  max-width: 280px;
-  width: 100%;
-  align-self: center;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  & div:first-child {
-    flex: 3;
-    text-align: center;
-  }
-  & div {
-    flex: 1;
-    text-align: center;
-  }
-`;
-
-const CartWrapper = styled.div`
-  display: flex;
-  margin-top: 21px;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const Body = styled.div`
-  width: 100%;
-`;
