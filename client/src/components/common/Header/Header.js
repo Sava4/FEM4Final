@@ -74,7 +74,7 @@ export const HeaderContent = () => {
 
   function onLoginClick() {
     if (user) {
-      history.push("/account/personal-details");
+      history.push("/account");
       return;
     }
     toggleModal(!isModalOpen);

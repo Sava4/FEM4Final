@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Container, Item, SideBar, Title } from "./PersonalDetails.styles";
 import { Layout } from "../common/Layout";
-import { PersonalInformation } from "./Details/PersonalInformation";
-import { ChangePassword } from "./Details/ChangePassword";
+import { PersonalInformation } from "./PersonalInformation/PersonalInformation";
+import { ChangePassword } from "./ChangePassword/ChangePassword";
 
 const MAP = {
   personal: PersonalInformation,
   password: ChangePassword
 };
 
-export const PersonalDetails = () => {
+export const PersonalDetails = props => {
   const user = useSelector(state => state.user);
   const [active, setActive] = useState("personal");
   const ActiveComponent = MAP[active];
 
   return (
     <Layout>
-      <Title>Welcome to your account, {user.login} !</Title>
+      <Title>Welcome to your account, {user.login}!</Title>
       <Container>
         <SideBar>
           <Item

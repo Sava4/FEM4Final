@@ -11,6 +11,7 @@ export const SearchInput = styled.input`
   width: 280px;
   border: none;
   font-size: 14px;
+  font-family: inherit;
   border-bottom: 1px solid black;
   text-align: end;
 
@@ -43,6 +44,7 @@ export const SearchIconWrapper = styled.div`
 
 export const SearchHolder = styled.div`
   display: flex;
+  align-items: flex-end;
 `;
 export const PreviewWrapper = styled.div`
   max-height: 500px;
