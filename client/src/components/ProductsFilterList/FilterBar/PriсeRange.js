@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import InputRange from "react-input-range";
 import styled from "styled-components";
-import style from "./priceRange.scss";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import { setPriceRange } from "../../../store/filters";
 
@@ -12,16 +11,16 @@ const mapStateToProps = store => ({
 
 export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => {
   const [priceValue, setPriceValue] = useState({
-    min: !props.priceRange.lowPriсe ? 0 : props.priceRange.lowPriсe,
-    max: !props.priceRange.hightPrice ? 200000 : props.priceRange.hightPrice
+    min: props.priceRange.lowPriсe,
+    max: props.priceRange.hightPrice
   });
 
   return (
     <>
-      <PriceForm className={style.form}>
+      <PriceForm>
         <InputRange
           maxValue={200000}
-          minValue={""}
+          minValue={0}
           formatLabel={value =>
             `₴ ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")} `
           }
@@ -53,6 +52,58 @@ const PriceForm = styled.form`
   margin-top: 28px;
   height: 25px;
   position: relative !important;
+  .form {
+    margin-top: 25px;
+  }
+  .input-range__track {
+    background: lightgrey;
+    border-radius: 3px;
+    cursor: pointer;
+    display: block;
+    height: 1.5px;
+    position: relative;
+    // transition: $input-range-track-transition;
+
+    .input-range--disabled & {
+      background: blue;
+    }
+  }
+
+  .input-range__track--background {
+    left: 0;
+    margin-top: -0.5 * 50px;
+    // position: absolute;
+    right: 0;
+    top: 50%;
+  }
+
+  .input-range__track--active {
+    background: #002d50;
+  }
+  .input-range__label-container {
+    display: block;
+  }
+  .input-range__label {
+    display: none;
+  }
+  .input-range__label--min {
+    display: block;
+    position: absolute;
+    top: -20px;
+  }
+  .input-range__label--max {
+    display: block;
+    position: absolute;
+    top: -18px;
+    right: 0;
+  }
+  .input-range__slider-container {
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+    width: 10px;
+    top: -5px;
+  }
 `;
 const PriceDisplay = styled.div`
   display: flex;

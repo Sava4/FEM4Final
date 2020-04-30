@@ -17,7 +17,7 @@ export const HomepageCategories = () => {
       .get(get2)
       .then(result => {
         setCategories3(result.data);
-        console.log("TCL: HomepageCategories -> result.data", result.data);
+        // console.log("TCL: HomepageCategories -> result.data", result.data);
       })
       .catch(err => {
         console.log(err);
@@ -32,12 +32,13 @@ export const HomepageCategories = () => {
       .reverse()
       .map(item => {
         let categoryName = item.name.toLowerCase();
-        console.log("TCL: HomepageCategories -> item", item);
+        // console.log("TCL: HomepageCategories -> item", item);
         return (
           <XBlock key={item.id}>
             <div className="card" style={{ marginRight: "2px" }}>
               <Necklaces
-                to={`/categories/${categoryName}/filter?categories=${categoryName}`}
+                // to={`/categories/${categoryName}/filter?categories=${categoryName}`}
+                to={`/categories/${categoryName}`}
                 key={item.id}
               >
                 <img
