@@ -79,9 +79,9 @@ axios.get(url).then(result => {
  });
     }, [category]);
 
-    const query = querystring.stringify(props.filters,  { arrayFormat: "comma" }); 
+    // const query = querystring.stringify(props.filters,  { arrayFormat: "comma" }); 
 
-const sort = `${query ? "&" : ""}minPrice=${props.priceFilters.lowPriсe}&maxPrice=${props.priceFilters.hightPrice}`;
+// const sort = `${query ? "&" : ""}minPrice=${props.priceFilters.lowPriсe}&maxPrice=${props.priceFilters.hightPrice}`;
 
     const background = name => {
       switch (name) {
