@@ -82,7 +82,7 @@ export const WishlistItem = props => {
         <ItemContainer>
           <Wrapper flexDirection={"row"}>
             <ImgWrap to={`/product-details/${props.itemNo}`}>
-              <ProdImg alt="" src={`${props.img}`} />
+              <ProdImg alt="" src={process.env.PUBLIC_URL + props.img} />
             </ImgWrap>
             <Wrapper height={"188px"} justifyContent={"space-between"}>
               <Wrapper
