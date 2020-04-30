@@ -105,7 +105,7 @@ export const addCategory = () => {
     id: "earrings",
     name: "earrings",
     parentId: nameOfKey,
-    imgUrl: '/img/homePage/categories/earrings.png',
+    imgUrl: '/img/homePage/categories/earring.png',
     // description: `A category named "${item}", of header drop menu "${nameOfKey}"`,
     level: 0
   };
