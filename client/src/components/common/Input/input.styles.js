@@ -32,7 +32,7 @@ export const InputText = styled.div`
   transform: translateY(15px);
   margin-bottom: 5px;
   font-size: 12px;
-  letter-spacing: .4px;
+  letter-spacing: 0.4px;
   color: #80858d;
   pointer-events: none;
   transition: 0.2s ease all;

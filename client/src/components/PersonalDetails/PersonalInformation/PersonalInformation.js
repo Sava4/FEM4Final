@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import {
   Details,
@@ -8,9 +8,9 @@ import {
   Holder,
   Edit
 } from "./personalInformation.styles";
-import {Button} from "../../common/Button/Button";
-import {Input} from "../../common/Input/Input";
-import {Datepicker} from "../Datepicker/Datepicker";
+import { Button } from "../../common/Button/Button";
+import { Input } from "../../common/Input/Input";
+import { Datepicker } from "../Datepicker/Datepicker";
 
 export const PersonalInformation = () => {
   const user = useSelector(state => state.user);
@@ -21,7 +21,7 @@ export const PersonalInformation = () => {
       <Description>
         In your Personal Account you can access and modify your personal details
         in order to facilitate your future purchases.
-        <br/>
+        <br />
         If you want to update your details, please edit the correspondent field
         and then save changes.
       </Description>
@@ -33,7 +33,7 @@ export const PersonalInformation = () => {
             value={user.firstName}
             onChange={handleDataChange("firstName")}
           />
-          <Edit/>
+          <Edit />
         </Holder>
         <Holder>
           <Input
@@ -42,7 +42,7 @@ export const PersonalInformation = () => {
             value={user.lastName}
             onChange={handleDataChange("lastName")}
           />
-          <Edit/>
+          <Edit />
         </Holder>
         <Holder>
           <Input
@@ -51,7 +51,7 @@ export const PersonalInformation = () => {
             value={user.email}
             onChange={handleDataChange("email")}
           />
-          <Edit/>
+          <Edit />
         </Holder>
         <Holder>
           <Input
@@ -60,16 +60,16 @@ export const PersonalInformation = () => {
             value={user.telephone}
             onChange={handleDataChange("telephone")}
           />
-          <Edit/>
+          <Edit />
         </Holder>
-        <Datepicker value={user.date} onChange={onDatepickerChange}/>
-        <Button value={"Save Changes"} onClick={updateCustomer}/>
+        <Datepicker value={user.date} onChange={onDatepickerChange} />
+        <Button value={"Save Changes"} onClick={updateCustomer} />
       </InputWrapper>
     </Details>
   );
 
   function handleDataChange(key) {
-    return function (event) {
+    return function(event) {
       data[key] = event.target.value;
       setData(data);
     };
@@ -81,18 +81,13 @@ export const PersonalInformation = () => {
   }
 
   function updateCustomer() {
-    return (
-      axios
-        .put("http://localhost:5000/customers", data)
-        .then(data => {
-          console.log(data);
-        })
-        .catch((error => {
-            console.log(error)
-          })
-        )
-    )
+    return axios
+      .put("http://localhost:5000/customers", data)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
-
-

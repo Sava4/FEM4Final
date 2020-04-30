@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import {
   Description,
   Details,
@@ -9,8 +9,8 @@ import {
   Holder,
   InputWrapper
 } from "../PersonalInformation/personalInformation.styles";
-import {Button} from "../../common/Button/Button";
-import {Input} from "../../common/Input/Input";
+import { Button } from "../../common/Button/Button";
+import { Input } from "../../common/Input/Input";
 
 export const ChangePassword = props => {
   const user = useSelector(state => state.user);
@@ -20,10 +20,10 @@ export const ChangePassword = props => {
     <Details>
       <Description>
         If you want to change your password, please fill in the required fields.
-        <br/>
+        <br />
         Your password should be at least 8 characters long containing uppercase
         and lowercase letters
-        <br/>
+        <br />
         and at least one number.
       </Description>
       <InputWrapper>
@@ -34,7 +34,7 @@ export const ChangePassword = props => {
             value={user.password}
             onChange={handlePasswordChange("password")}
           />
-          <Edit/>
+          <Edit />
         </Holder>
         <Holder>
           <Input
@@ -42,38 +42,34 @@ export const ChangePassword = props => {
             label="New Password *"
             onChange={handlePasswordChange("newPassword")}
           />
-          <Edit/>
+          <Edit />
         </Holder>
         <Holder>
-          <Input
-            type="password"
-            label="Confirm new password *"
-          />
-          <Edit/>
+          <Input type="password" label="Confirm new password *" />
+          <Edit />
         </Holder>
         <ButtonWrapper>
-          <Button value={"Save Changes"} onClick={changePassword}/>
+          <Button value={"Save Changes"} onClick={changePassword} />
         </ButtonWrapper>
       </InputWrapper>
     </Details>
   );
 
   function handlePasswordChange(key) {
-    return function (event) {
+    return function(event) {
       password[key] = event.target.value;
       setPassword(password);
     };
   }
 
   function changePassword() {
-    return (
-      axios.put("http://localhost:5000/customers/password", password)
-        .then(updatedPassword => console.log(updatedPassword))
-        .catch(error => console.log(error))
-    )
+    return axios
+      .put("http://localhost:5000/customers/password", password)
+      .then(updatedPassword => console.log(updatedPassword))
+      .catch(error => console.log(error));
   }
 };
 
 const ButtonWrapper = styled.div`
   margin-top: 25px;
-`
+`;

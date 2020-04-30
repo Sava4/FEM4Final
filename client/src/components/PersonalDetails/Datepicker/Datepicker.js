@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {getMonthOptions, getDaysOptions, getYearOptions} from "./utils";
+import React, { useEffect, useState } from "react";
+import { getMonthOptions, getDaysOptions, getYearOptions } from "./utils";
 import styled from "styled-components";
 import arrow from "./dropdownArrow.png";
-
 
 export const Datepicker = props => {
   const [month, setMonth] = useState();
   const [day, setDay] = useState();
   const [year, setYear] = useState();
-
 
   useEffect(() => {
     if (month && day && year) {
@@ -60,7 +58,7 @@ export const Holder = styled.div``;
 export const Title = styled.div`
   margin-bottom: 10px;
   font-size: 10px;
-  letter-spacing: .4px;
+  letter-spacing: 0.4px;
   color: #80858d;
 `;
 

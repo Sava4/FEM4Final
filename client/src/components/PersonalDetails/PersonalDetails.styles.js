@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import {mediaMobile, mediaTablet} from "../../styledComponents/MediaBreakpointsMixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../styledComponents/MediaBreakpointsMixin";
 
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  
+
   ${mediaMobile(`
     display: none;
   `)}
@@ -17,7 +20,7 @@ export const Title = styled.div`
   letter-spacing: 0.4px;
   text-align: center;
   text-transform: uppercase;
-  
+
   ${mediaMobile(`
     padding-bottom: 18px;
     margin: 30px 20px 0 20px;
@@ -31,7 +34,7 @@ export const SideBar = styled.div`
   flex-direction: column;
   width: 30%;
   margin-left: 130px;
-  
+
   ${mediaTablet(`
     margin-left: 50px;
   `)}
@@ -46,5 +49,3 @@ export const Item = styled.div`
   cursor: pointer;
   font-weight: ${props => (props.active ? "bold" : "normal")};
 `;
-
-

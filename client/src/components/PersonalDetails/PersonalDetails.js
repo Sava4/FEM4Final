@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {Container, Item, SideBar, Title} from "./PersonalDetails.styles";
-import {Layout} from "../common/Layout";
-import {PersonalInformation} from "./PersonalInformation/PersonalInformation";
-import {ChangePassword} from "./ChangePassword/ChangePassword";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Container, Item, SideBar, Title } from "./PersonalDetails.styles";
+import { Layout } from "../common/Layout";
+import { PersonalInformation } from "./PersonalInformation/PersonalInformation";
+import { ChangePassword } from "./ChangePassword/ChangePassword";
 
 const MAP = {
   personal: PersonalInformation,
@@ -36,7 +36,7 @@ export const PersonalDetails = props => {
           <Item>Orders</Item>
           <Item>Wishlist</Item>
         </SideBar>
-        <ActiveComponent/>
+        <ActiveComponent />
       </Container>
     </Layout>
   );
