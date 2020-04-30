@@ -17,7 +17,7 @@ export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => 
 
   return (
     <>
-      <PriceForm >
+      <PriceForm>
         <InputRange
           maxValue={200000}
           minValue={0}
@@ -52,9 +52,8 @@ const PriceForm = styled.form`
   margin-top: 28px;
   height: 25px;
   position: relative !important;
-  .form{
+  .form {
     margin-top: 25px;
-   
   }
   .input-range__track {
     background: lightgrey;
@@ -64,12 +63,12 @@ const PriceForm = styled.form`
     height: 1.5px;
     position: relative;
     // transition: $input-range-track-transition;
-  
+
     .input-range--disabled & {
       background: blue;
     }
   }
-  
+
   .input-range__track--background {
     left: 0;
     margin-top: -0.5 * 50px;
@@ -77,34 +76,33 @@ const PriceForm = styled.form`
     right: 0;
     top: 50%;
   }
-  
+
   .input-range__track--active {
-    background: #002D50 ;
+    background: #002d50;
   }
-  .input-range__label-container{
-    display: block; 
+  .input-range__label-container {
+    display: block;
   }
   .input-range__label {
-   display: none;
+    display: none;
   }
-  .input-range__label--min{
+  .input-range__label--min {
     display: block;
     position: absolute;
     top: -20px;
-  } 
-  .input-range__label--max{
+  }
+  .input-range__label--max {
     display: block;
     position: absolute;
     top: -18px;
     right: 0;
   }
-  .input-range__slider-container{
+  .input-range__slider-container {
     height: 10px;
     border-radius: 50%;
     background-color: black;
     width: 10px;
     top: -5px;
-    
   }
 `;
 const PriceDisplay = styled.div`

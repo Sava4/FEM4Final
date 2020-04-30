@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { StaticPageView } from "../components/StaticPageView/staticPageView";
 import { Homepage } from "../components/homePage/HomePage";
 import { ProductFilters } from "../components/ProductsFilterList";
-import { GiftCardView } from "../components/GiftCardsView/GiftCardView"
+import { GiftCardView } from "../components/GiftCardsView/GiftCardView";
 import { ProductDetailsLayout } from "../components/ProductDetails";
 import {
   AccountRoute,

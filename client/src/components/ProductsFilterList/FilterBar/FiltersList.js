@@ -28,7 +28,7 @@ export const FiltersList = connect(mapStateToProps, {
     "gemstone_color"
   ];
 
-  const handleChange = (e, nodes) => {    
+  const handleChange = (e, nodes) => {
     e.preventDefault();
     props.setTogleShown(e.target.parentNode.id);
   };

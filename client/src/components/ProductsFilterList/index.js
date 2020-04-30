@@ -8,7 +8,11 @@ import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
-import { setAvaliFilters ,setPriceRange,dispatchSetCheckFilter} from "../../store/filters";
+import {
+  setAvaliFilters,
+  setPriceRange,
+  dispatchSetCheckFilter
+} from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { FilteredListProducts } from "./FilteredProducts";
@@ -24,117 +28,119 @@ const MapStateToProps = store => ({
   priceFilters: store.filters.priceRange
 });
 
-export const ProductFilters = connect(MapStateToProps, { setAvaliFilters,setPriceRange, dispatchSetCheckFilter})(
-  props => {
-    const { homepagecategory } = useParams(); 
-    const {chosenMenu} = useParams(); 
-    console.log(chosenMenu, homepagecategory)
-    const category = homepagecategory ? homepagecategory.replace("homepage", "") :  chosenMenu
+export const ProductFilters = connect(MapStateToProps, {
+  setAvaliFilters,
+  setPriceRange,
+  dispatchSetCheckFilter
+})(props => {
+  const { homepagecategory } = useParams();
+  const { chosenMenu } = useParams();
+  console.log(chosenMenu, homepagecategory);
+  const category = homepagecategory
+    ? homepagecategory.replace("homepage", "")
+    : chosenMenu;
 
-    const [openFiltwin, setOpenFiltwilnd] = useState(false); 
-    const [queryCategory, setQueryCategory] = useState("");   
-    const initialPriceValue = {
-                                min: 0,
-                                max: 200000
-                              }
-    useLayoutEffect(() => {
-      axios
-        .get("/products")
-        .then(result => {
-          props.setAvaliFilters(result.data);
-        })
-        // .then(products => {
-        //   setProducts (collectionList(products))
+  const [openFiltwin, setOpenFiltwilnd] = useState(false);
+  const [queryCategory, setQueryCategory] = useState("");
+  const initialPriceValue = {
+    min: 0,
+    max: 200000
+  };
+  useLayoutEffect(() => {
+    axios
+      .get("/products")
+      .then(result => {
+        props.setAvaliFilters(result.data);
+      })
+      // .then(products => {
+      //   setProducts (collectionList(products))
 
-        // })
-        .catch(err => {
-          /*Do something with error, e.g. show error to user*/
-        });
-        props.setPriceRange(initialPriceValue);
+      // })
+      .catch(err => {
+        /*Do something with error, e.g. show error to user*/
+      });
+    props.setPriceRange(initialPriceValue);
 
+    //for products list
+    let typesAll = [];
+    const url = `/products`;
+    axios.get(url).then(result => {
+      result.data.forEach(item => typesAll.push(item.categories));
+      const unification = () => Array.from(new Set(typesAll));
+      // console.log(result.data)
+      //   const filterCheck =category &&  (categoryName => {
+      //   //  console.log(availableCategories.filter(it => it===categoryName))
+      //     if (unification().filter(it => it===categoryName.toLowerCase()).length) {
+      //       console.log("категория из вариантов")
+      //       setQueryCategory (`&categories=${categoryName}`)
+      //     }
+      //     else {
+      //   console.log("Коллекции")
+      //       props.dispatchSetCheckFilter({collection:categoryName });
+      //       setQueryCategory("");
 
-//for products list
-let typesAll = [];        
-const url = `/products`;
-axios.get(url).then(result => {
-  
-  result.data.forEach((item)=>typesAll.push(item.categories));
-  const unification = ()=> Array.from(new Set(typesAll));     
-// console.log(result.data)
-//   const filterCheck =category &&  (categoryName => {
-//   //  console.log(availableCategories.filter(it => it===categoryName))
-//     if (unification().filter(it => it===categoryName.toLowerCase()).length) {
-//       console.log("категория из вариантов")
-//       setQueryCategory (`&categories=${categoryName}`)
-//     }    
-//     else {
-//   console.log("Коллекции")     
-//       props.dispatchSetCheckFilter({collection:categoryName });
-//       setQueryCategory("");       
-      
-//     }
-//   })
+      //     }
+      //   })
 
-// const queryCategory1 = filterCheck(category) 
- });
-    }, [category]);
+      // const queryCategory1 = filterCheck(category)
+    });
+  }, [category]);
 
-    // const query = querystring.stringify(props.filters,  { arrayFormat: "comma" }); 
+  // const query = querystring.stringify(props.filters,  { arrayFormat: "comma" });
 
-// const sort = `${query ? "&" : ""}minPrice=${props.priceFilters.lowPriсe}&maxPrice=${props.priceFilters.hightPrice}`;
+  // const sort = `${query ? "&" : ""}minPrice=${props.priceFilters.lowPriсe}&maxPrice=${props.priceFilters.hightPrice}`;
 
-    const background = name => {
-      switch (name) {
-        case "earrings": {
-          return earrings;
-        }
-        case "necklaces": {
-          return necklaces;
-        }
-        case "bracelets": {
-          return bracelets;
-        }
-        case "rings": {
-          return rings;
-        }
-        default:
-          return null;
+  const background = name => {
+    switch (name) {
+      case "earrings": {
+        return earrings;
       }
-    };
+      case "necklaces": {
+        return necklaces;
+      }
+      case "bracelets": {
+        return bracelets;
+      }
+      case "rings": {
+        return rings;
+      }
+      default:
+        return null;
+    }
+  };
 
-    return (
-      <Layout>
-        <CategoriesHeader>
-          <p>{category}</p>
-          <CategoriesHeaderImg categoryName={background(category)} />
-        </CategoriesHeader>
-        <IconBreadcrumbs categoryName={category} />
-        <CategotiesCommon>
-          {window.innerWidth < 767 ? (
-            <MobileCategoriesFilters>
-              <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
-              {openFiltwin && (
-                <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
-              )}
-            </MobileCategoriesFilters>
-          ) : (
-            <CategoriesFilters>
-              <p>FILTER BY</p>
-              <FiltersList />
-            </CategoriesFilters>
-          )}
+  return (
+    <Layout>
+      <CategoriesHeader>
+        <p>{category}</p>
+        <CategoriesHeaderImg categoryName={background(category)} />
+      </CategoriesHeader>
+      <IconBreadcrumbs categoryName={category} />
+      <CategotiesCommon>
+        {window.innerWidth < 767 ? (
+          <MobileCategoriesFilters>
+            <p onClick={() => setOpenFiltwilnd(true)}>FILTER BY</p>
+            {openFiltwin && (
+              <MobileFiltersList setOpenFiltwilnd={setOpenFiltwilnd} />
+            )}
+          </MobileCategoriesFilters>
+        ) : (
+          <CategoriesFilters>
+            <p>FILTER BY</p>
+            <FiltersList />
+          </CategoriesFilters>
+        )}
 
-          <SelectedProducts>
-            <p>{`Selected products (${props.selectedProd})`}</p>
-            <FilterIndicators />
-            {/* <FilteredListProducts category={category}/>          */}
-          <ProductsContainer  />
-          </SelectedProducts>
-        </CategotiesCommon>
-      </Layout>
-    );
-  }
-);
+        <SelectedProducts>
+          <p>{`Selected products (${props.selectedProd})`}</p>
+          <FilterIndicators />
+          {/* <FilteredListProducts category={category}/>          */}
+          <ProductsContainer />
+        </SelectedProducts>
+      </CategotiesCommon>
+    </Layout>
+  );
+});
 
 const CategoriesHeader = styled.div`
   background-color: black;
@@ -216,4 +222,3 @@ const SelectedProducts = styled.div`
   flex-direction: column;
   margin-left: 20px;
 `;
-
