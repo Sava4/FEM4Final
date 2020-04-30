@@ -23,11 +23,11 @@ let Email = props => {
   let [email, setEmail] = useState(""); //если без рефов и через emailValue то он каждый символ передает и запускат регистрацию
   let [signup, setSignup] = useState("Sign Up");
   let emailRef = useRef();
-  console.log(emailValue);
+  // console.log(emailValue);
 
   const submitButton = e => {
     setEmail(emailRef.current.value);
-    console.log(email);
+    // console.log(email);
     setSignup("ДОБАВЛЯЕМ");
   };
 
@@ -76,7 +76,7 @@ let Email = props => {
 
 //validators
 export const required = value => {
-  console.log("TCL: value", value);
+  // console.log("TCL: value", value);
   if (value) return undefined;
   return "Field is required";
 };
@@ -101,7 +101,7 @@ const FormControl = ({ input, meta: { touched, error }, children }) => {
 };
 
 export const submit = emailValue => {
-  console.log("TCL: value", emailValue);
+  // console.log("TCL: value", emailValue);
 };
 
 export const Input = props => {

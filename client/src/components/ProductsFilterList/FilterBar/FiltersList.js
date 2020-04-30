@@ -40,9 +40,9 @@ export const FiltersList = connect(mapStateToProps, {
         <FilterType id={item}>
           <p>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="midle" onClick={handleChange} />
+            <ExpandLessIcon fontSize="default" onClick={handleChange} />
           ) : (
-            <ExpandMoreIcon fontSize="midle" onClick={handleChange} />
+            <ExpandMoreIcon fontSize="default" onClick={handleChange} />
           )}
         </FilterType>
         {isShown ? (

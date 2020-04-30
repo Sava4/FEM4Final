@@ -18,6 +18,7 @@ export const Input = styled.input`
   color: ${props => (props.secondary ? "#000000" : "#ffffff")};
   border: 1px solid #002d50;
   cursor: pointer;
+  -webkit-appearance: none;
 
   :focus {
     outline: none;

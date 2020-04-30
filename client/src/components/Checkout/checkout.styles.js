@@ -218,13 +218,6 @@ export const Location = styled.div`
       color: #a1a5ad;
     `}
 `;
-
-export const PagesHeader = styled.h2`
-  margin: 29px auto;
-  width: max-content;
-  font-size: 24px;
-  text-transform: uppercase;
-`;
 export const Wrap = styled.div`
   margin-top: 15px;
   margin-bottom: 15px;

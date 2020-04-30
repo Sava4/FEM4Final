@@ -4,13 +4,10 @@ import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 import { Mapbox } from "../Map/Mapbox";
 import { AddressesSelect } from "../Map/addressesPage";
-import { Server, HeadPage, ImagePage } from "./GiftCard/giftCard.styles";
+import { Server, ImagePage } from "./GiftCard/giftCard.styles";
+import { PageHeader } from "../common/PageHeader/PageHeader";
 import { GiftCard } from "./GiftCard/GiftCard";
-import {
-  ScrollToTopController,
-  onTop,
-  ShowOnTop
-} from "../SliderProducts/LoadMore";
+import { ShowOnTop } from "../SliderProducts/LoadMore";
 
 export const StaticPage = () => {
   let { url } = useParams();
@@ -36,7 +33,7 @@ export const StaticPage = () => {
       return (
         <Fragment>
           <Page>
-            <HeadPage>Find your store</HeadPage>
+            <PageHeader>Find your store</PageHeader>
             <AddressesSelect />
             <Mapbox />
           </Page>
@@ -46,7 +43,7 @@ export const StaticPage = () => {
       return (
         <Fragment>
           <Page>
-            <HeadPage>Gift cards</HeadPage>
+            <PageHeader>Gift cards</PageHeader>
             <GiftCard />
           </Page>
         </Fragment>
@@ -63,7 +60,6 @@ export const StaticPage = () => {
   return (
     <>
       <Static />
-      {/* <ScrollToTopController parsed={url} /> */}
       <ShowOnTop />
     </>
   );

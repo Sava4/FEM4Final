@@ -42,6 +42,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
       e.target.getAttribute("data-filtergrupname")
     ] = e.target.getAttribute("data-filtername");
     props.dispatchSetCheckFilter(activeFilters);
+    console.log(activeFilters);
     if (!e.target.checked) {
       const remoteFilterCategory = e.target.getAttribute("data-filtergrupname");
       const remoteFilterName = e.target.getAttribute("data-filtername");
@@ -53,7 +54,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
   };
 
   const collectionList = filter(props.availFilters, filtername);
-
+  console.log(collectionList);
   const inputs = collectionList.map(item => {
     return (
       <CheckboxDiv key={v4()}>

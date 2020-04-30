@@ -21,6 +21,7 @@ import {
   LoginForm,
   RegisterForm
 } from "../Header/index";
+// import {Navigation} from "./NavigationMenu1/index"
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
@@ -74,7 +75,7 @@ export const HeaderContent = () => {
 
   function onLoginClick() {
     if (user) {
-      history.push("/account/personal-details");
+      history.push("/account");
       return;
     }
     toggleModal(!isModalOpen);

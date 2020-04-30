@@ -22,11 +22,11 @@ import {
 
 const ProductsContainer = props => {
   // console.log(props);
+  // const { currentPage, pageSize } = props;
   const { currentPage, pageSize } = props;
-
   let location = useLocation();
   let path = `filter${location.search}`;
-  console.log("TCL: path", path);
+  // console.log("TCL: path", path);
 
   let { category } = useParams();
   console.log("TCL: category", category);
@@ -78,7 +78,7 @@ const ProductsContainer = props => {
     );
   };
   let truePage3 = +currentPage + 1;
-  console.log(truePage3);
+  // console.log(truePage3);
 
   const onLoadMore = truePage3 => {
     // можно pageNumber из пагинатора
