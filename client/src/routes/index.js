@@ -23,7 +23,7 @@ export const Routes = () => {
   return user ? (
     <Switch>
       <Route exact path="/" component={Homepage} />
-      {/* <Route path="/headerMenu/:chosenMenu" component={ProductFilters} /> */}
+      <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
       <Route exact path="/giftсards" component={GiftCardView} />
       <Route path="/categories/:homepagecategory" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
