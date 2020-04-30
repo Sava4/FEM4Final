@@ -21,11 +21,11 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       {/* <Route path="/headerMenu/:chosenMenu" component={ProductFilters} /> */}
-      <Route exact path="/giftсards" component={GiftCardView} /> 
+      <Route exact path="/giftсards" component={GiftCardView} />
       <Route path="/categories/:category" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
-      <Route path="/pagin/:path?" component={ProductsContainer} />
+      {/* <Route path="/pagin/:path?" component={ProductsContainer} /> */}
       <Route exact path="/account" component={Account} />
       <Route exact path="/account/favorites" component={Wishlist} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
@@ -43,7 +43,7 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/" component={Homepage} />
       <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
-      <Route exact path="/giftсards" component={GiftCardView} /> 
+      <Route exact path="/giftсards" component={GiftCardView} />
       <Route path="/categories/:homepagecategory" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />

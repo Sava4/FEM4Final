@@ -28,7 +28,8 @@ const ProductsContainer = props => {
   let path = `filter${location.search}`;
   // console.log("TCL: path", path);
 
-  const { category } = useParams();
+  let { category } = useParams();
+  console.log("TCL: category", category);
   const queryString = [];
   for (let key in props.filters) {
     props.filters[key].length &&
@@ -90,13 +91,30 @@ const ProductsContainer = props => {
       category2
     );
   };
-
+  let all_categories;
   return (
     <>
       {/* {this.props.isFetching ? <Preloader/> : null} */}
       {/* при выборе фильтра возвращает на первую страницу */}
+      {/* {category===undefined&&(category8='/')&&
       <Redirect
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${truePage2}&perPage=${pageSize}`}
+        to={`/products${category8}filter?${categoryQuery}&startPage=${truePage2}&perPage=${pageSize}`}
+      />} */}
+      {/* {category!==undefined&&<Redirect
+        to={`/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
+      />}
+       {(category===undefined)||(category==='filter')&&(category='category')&&<Redirect
+        to={`/products/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`}
+      />} */}
+
+      <Redirect
+        to={
+          ((category === undefined || category === "filter") &&
+            (all_categories = "all_categories") &&
+            `/products/${all_categories}/filter?${categoryQuery}&startPage=${truePage2}&perPage=${pageSize}`) ||
+          (category !== undefined &&
+            `/categories/${category}/filter?${categoryQuery}${category2}&startPage=${truePage2}&perPage=${pageSize}`)
+        }
       />
 
       <ProductsPagination

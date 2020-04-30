@@ -19,7 +19,7 @@ export const addToSrvCart = (id, token) => {
   return dispatch => {
     setAuthorizationToken(token);
     axios
-      .put(`http://localhost:5000/cart/${id}`)
+      .put(`/cart/${id}`)
       .then(resp => dispatch(setServerCart(resp.data.products)))
       .catch(err => {
         console.error("Request Error", err);
@@ -36,7 +36,7 @@ export const mergeCarts = (token, locCart) => {
   setAuthorizationToken(token);
   return dispatch => {
     axios
-      .get("http://localhost:5000/cart")
+      .get("/cart")
       .then(resp => {
         let srvCart;
         resp.data === null ? (srvCart = []) : (srvCart = resp.data.products);
@@ -63,7 +63,7 @@ export const mergeCarts = (token, locCart) => {
             return { product: id, cartQuantity: qty };
           });
           axios
-            .put("http://localhost:5000/cart", { products: putReq })
+            .put("/cart", { products: putReq })
             .then(resp => {
               dispatch(clearLocCart());
               dispatch(setServerCart(resp.data.products));

@@ -36,7 +36,7 @@ export const ProductFilters = connect(MapStateToProps, { setAvaliFilters,setPric
                               }
     useLayoutEffect(() => {
       axios
-        .get("http://localhost:5000/products")
+        .get("/products")
         .then(result => {
           props.setAvaliFilters(result.data);
         })

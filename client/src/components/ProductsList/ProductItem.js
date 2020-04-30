@@ -16,6 +16,10 @@ export const ProductItem = props => {
     state.favorites.favArr.some(id => id === props.id)
   );
 
+  let img1 = props.img[0];
+  let img2;
+  (props.img.length && (img2 = props.img[1])) || (img2 = img1);
+
   const FavoriteButton = () => {
     return isFavorites ? (
       <WishWrapper item={true}>
@@ -34,8 +38,17 @@ export const ProductItem = props => {
     <Wrapper interpretation={props.interpretation}>
       <FavoriteButton />
       <Card to={`/product-details/${props.itemNo}`} key={props.id}>
-        <Image alt="" src={`${props.img}`} size={"small"} />
-        <Name size={"small"}>{`${props.name}`}</Name>
+        {/* <Image alt="" src={`${props.img}`} size={"small"} />  попробовать поменять внутри src по условию*/}
+        <Image
+          alt=""
+          img1={process.env.PUBLIC_URL + img1}
+          img2={process.env.PUBLIC_URL + img2}
+          size={"small"}
+        />
+        <Name size={"small"}>
+          {`${props.name}`}
+          <p>"{props.collection}"</p>
+        </Name>
         <Price size={"small"}>
           {props.previousPrice.toLocaleString("de-CH")}
         </Price>

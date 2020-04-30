@@ -46,7 +46,7 @@ export const OrderItem = props => {
         <TotalContainer>
           <Total>{props.cartQuantity}</Total>
           <WrapperLink to={`/product-details/${props.itemNo}`}>
-            <Img src={`${props.img}`} alt="" />
+            <Img src={process.env.PUBLIC_URL + props.img} alt="" />
           </WrapperLink>
         </TotalContainer>
         <Name>{props.name}</Name>
@@ -58,7 +58,7 @@ export const OrderItem = props => {
 export const OrderIcon = props => {
   return (
     <WrapperLink to={`/product-details/${props.itemNo}`}>
-      <Img src={`${props.img}`} alt="" />
+      <Img src={process.env.PUBLIC_URL + props.img} alt="" />
     </WrapperLink>
   );
 };

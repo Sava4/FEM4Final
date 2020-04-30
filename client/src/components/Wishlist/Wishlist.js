@@ -16,7 +16,7 @@ export const Wishlist = props => {
   const lengthFav = useSelector(state => state.favorites.favArr.length);
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("http://localhost:5000/products");
+      const res = await axios.get("/products");
       setProducts(res.data);
     };
     fetchPosts();

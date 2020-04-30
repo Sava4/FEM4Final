@@ -39,7 +39,7 @@ export const ProductItem = props => {
       <FavoriteButton />
       <Image
         alt=""
-        src={`http://localhost:3000/${props.imageUrls[0]}`}
+        src={`${process.env.PUBLIC_URL + props.imageUrls[0]}`}
         size={"small"}
       />
       <Name

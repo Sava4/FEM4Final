@@ -32,7 +32,13 @@ export const Wrapper = styled.div`
 `)}
 `;
 
-export const Image = styled.img`
+export const Image = styled.div`
+background: url(${props => [props.img1]}) no-repeat;
+background-size: contain;
+&:hover {
+background: url(${props => [props.img2]}) no-repeat;
+background-size: contain;
+}
 ${mediaTablet(`
     width: 70%;
 `)}
@@ -43,15 +49,15 @@ ${mediaTablet(`
   ${props =>
     props.size === "small" &&
     css`
-      width: 154px;
-      height: 193px;
+      width: 200px;
+      height: 200px;
       ${mediaTablet(`
         width: 117px;
-        height: 156px;
+        height: 117px;
 `)}
       ${mediaMobile(`
          width: 117px;
-        height: 156px;
+        height: 117px;
 `)}
     `}
     ${props =>
@@ -73,7 +79,7 @@ ${mediaTablet(`
         }
       `}
 `;
-export const Name = styled.p`
+export const Name = styled.div`
   text-transform: uppercase;
   font-size: 30px;
   line-height: 40px;

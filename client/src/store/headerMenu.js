@@ -18,7 +18,7 @@ export function categoriesReducer(store = initialState, { type, payload }) {
 }
 
 export const getCategoriesList = () => async dispatch => {
-  const result = await fetch("http://localhost:5000/catalog");
+  const result = await fetch("/catalog");
   const json = await result.json();
   dispatch(setCategories(json));
 };

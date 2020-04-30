@@ -1,40 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 import {
   mediaMobile,
   mediaTablet
 } from "../../../styledComponents/MediaBreakpointsMixin";
-
-import NecklacesPict from "../../../img/homePage/categories/necklaces.png";
-import BraceletsPict from "../../../img/homePage/categories/bracelets.png";
-import RingsPict from "../../../img/homePage/categories/rings.png";
-import EarringsPict from "../../../img/homePage/categories/earring.png";
+import { XMasonry, XBlock } from "react-xmasonry"; // Imports JSX plain sources
 
 export const HomepageCategories = () => {
-  let categories = ["necklaces", "bracelets", "rings", "earrings"];
+  let [categories3, setCategories3] = useState([]);
+  let get2;
+  useEffect(() => {
+    get2 = `/catalog/`;
+    axios
+      .get(get2)
+      .then(result => {
+        setCategories3(result.data);
+        console.log("TCL: HomepageCategories -> result.data", result.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [get2]);
+
+  let categories4 =
+    categories3 &&
+    Array.from(categories3)
+      .filter(element => element.imgUrl)
+      //только категории с фото
+      .reverse()
+      .map(item => {
+        let categoryName = item.name.toLowerCase();
+        console.log("TCL: HomepageCategories -> item", item);
+        return (
+          <XBlock key={item.id}>
+            <div className="card" style={{ marginRight: "2px" }}>
+              <Necklaces
+                to={`/categories/${categoryName}/filter?categories=${categoryName}`}
+                key={item.id}
+              >
+                <img
+                  alt=""
+                  src={process.env.PUBLIC_URL + item.imgUrl}
+                  style={{
+                    width: "100%",
+                    border: `1px solid #E9EBF5`,
+                    boxSizing: "border-box"
+                  }}
+                />
+                <p>{item.name}</p>
+              </Necklaces>
+            </div>
+          </XBlock>
+        );
+      });
+
   return (
     <SectionCategories>
       <p>EXPLORE CATEGORIES</p>
-      <Categories>
-        <Necklaces to={`/categories/homepage${categories[0]}`}>
-          <p>{categories[0]}</p>
-        </Necklaces>
-
-        <RightCategoriesWrapper>
-          <Bracelets to={`/categories/homepage${categories[1]}`}>
-            <p>{categories[1]}</p>
-          </Bracelets>
-          <RingsWrapper>
-            <Rings to={`/categories/homepage${categories[2]}`}>
-              <p>{categories[2]}</p>
-            </Rings>
-            <Earrings to={`/categories/homepage${categories[3]}`}>
-              <p>{categories[3]}</p>
-            </Earrings>
-          </RingsWrapper>
-        </RightCategoriesWrapper>
-      </Categories>
+      <XMasonry targetBlockWidth={400}>{categories4}</XMasonry>
     </SectionCategories>
   );
 };
@@ -42,41 +67,23 @@ export const HomepageCategories = () => {
 const SectionCategories = styled.div`
   margin-top: 90px;
   & p {
+    margin-bottom: 20px;
     text-align: center;
     font-size: 24px;
   }
 `;
 
-const Categories = styled.div`
-  margin-top: 30px;
-  font-size: 40px;
-  display: flex;
-
-  & a {
-    text-decoration: none;
-    position: relative;
-    & p {
-      margin: 0;
-      text-shadow: 1px 1px 0 white;
-      color: black;
-      position: absolute;
-      bottom: 35px;
-      right: 30px;
-    }
-  }
-  ${mediaMobile(`
-  flex-direction: column;
-  `)}
-`;
-
 const Necklaces = styled(NavLink)`
-  width: 40%;
-  height: 712px;
-  margin-right: 2px;
-  background-image: url(${NecklacesPict});
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 100%;
   text-transform: uppercase;
+  & p {
+    text-align: right;
+    position: absolute;
+    right: 25px;
+    bottom: 0px;
+    text-shadow: 1px 1px 0 white;
+    font-size: 30px;
+  }
   ${mediaTablet(`
   width: 40%;
   height: 712px;
@@ -87,80 +94,5 @@ const Necklaces = styled(NavLink)`
   margin-right: 0;
   margin-bottom: 2px;
   background-position: center;
-`)}
-`;
-
-const RightCategoriesWrapper = styled.div`
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-
-  ${mediaMobile(`
-  width: 100%;
-  `)}
-`;
-
-const Bracelets = styled(NavLink)`
-  width: 100%;
-  height: 312px;
-  background-image: url(${BraceletsPict});
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-transform: uppercase;
-  ${mediaTablet(`
-  width: 100%;
-  height: 312px;
-  `)}
-  ${mediaMobile(`
-  width: 100%;
-  height: 231px; 
-`)}
-`;
-
-const RingsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  margin-top: 2px;
-
-  ${mediaMobile(`
-  flex-direction: column;
-  `)}
-`;
-
-const Rings = styled(NavLink)`
-  width: 50%;
-  height: 397px;
-  margin-right: 2px;
-  background-image: url(${RingsPict});
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-transform: uppercase;
-  ${mediaTablet(`
-  width: 50%;
-  height: 397px;
-  `)}
-  ${mediaMobile(`
-  width: 100%;
-  height: 231px; 
-  margin-right: 0;
-  margin-bottom: 2px;
-  background-position: center;
-`)}
-`;
-const Earrings = styled(NavLink)`
-  width: 50%;
-  height: 397px;
-  background-image: url(${EarringsPict});
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-transform: uppercase;
-  ${mediaTablet(`
-  width: 50%;
-  height: 397px;
-  `)}
-  ${mediaMobile(`
-  width: 100%;
-  height: 231px;
-  background-position: center; 
 `)}
 `;

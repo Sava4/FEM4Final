@@ -7,14 +7,14 @@ export function addSubscriber() {
     letterHtml: "rtyuiogp"
   };
   axios
-    .post("http://localhost:5000/customers/login", {
+    .post("/customers/login", {
       loginOrEmail: "customer@gmail.com",
       password: "1111111"
     })
     .then(response => {
       let token = response.data.token;
       axios
-        .post("http://localhost:5000/subscribers", newSubscriber, {
+        .post("/subscribers", newSubscriber, {
           headers: { Authorization: `${token}` }
         })
         .then(newSubscriber => {
