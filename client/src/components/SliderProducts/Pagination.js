@@ -4,7 +4,6 @@ import { LoadMore } from "./LoadMore";
 import { ProductItem } from "../ProductsList/ProductItem";
 import styles from "./Paginator.module.css";
 import cn from "classnames";
-import { useParams } from "react-router";
 
 export const ProductsPagination = ({
   currentPage,
@@ -18,19 +17,17 @@ export const ProductsPagination = ({
   categoryQuery,
   apiCategory,
   category2,
+  category,
   ...props
-}) => {
-  ///// игоря
-  const { category } = useParams();
+}) => { 
+ 
   return (
     <div>
       {/* <Layout> */}
       <div
-        style={{
-          position: "absolute",
-          top: "84%",
-          right: "14%",
-        }}
+        className={cn(
+          styles.upper     
+        )}
       >
         <Paginator
           // info={1}

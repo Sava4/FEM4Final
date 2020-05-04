@@ -21,6 +21,17 @@ export const Container = styled.div`
       flex-direction: column;
     `}
 `;
+
+export const SlidersContainer = styled.div`
+display: flex;
+flex-wrap: no-wrap;
+flex-direction: raw;
+width: 60%;
+${mediaMobile(`
+width: 95%;
+`)}
+
+`
 export const Wrapper = styled.div`
   margin-top: 20px;
   width: 33%;

@@ -4,17 +4,24 @@
   position: relative;
   left: 5%;
 }
-.bottom{
+.upper{
   position: relative;
-  bottom: 5.1%;
-  left: 69%;
+  display: inline-block; 
+  left: 73%;
+}
+.bottom{ 
+    position: relative;  
+    display: inline-block; 
+    margin-left: 3%;
 }
 @media screen and (max-width: 1050px) {
   .bottom { 
     margin: auto;
     text-align: center;
-    left: 0px;
-    bottom: 0px;
+    left: -76px;
+    bottom: 33px;  
+    display: block;
+    position: relative;
   }
 }
 .page_Number {
@@ -59,11 +66,11 @@
   cursor: pointer;
 }
 @media screen and (max-width: 1050px) {
-  .load_more {
-    /* margin-left: 30%; */
+  .load_more {   
     display: block;
     margin: auto;
     text-align: center;
+    margin-top: 20px;
   }
 }
 .arrow {
@@ -83,6 +90,26 @@
   transform: rotate(-45deg);
 }
 
+.top2 {
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  margin-left: 3%;
+  position: relative; 
+  padding: 10px;
+  cursor: pointer;
+ 
+}
+@media screen and (max-width: 1050px) {
+  .top2 {  
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    left: 108px;
+    top: 24px;
+    text-align: center;
+    position: relative;  
+  }
+}
 .top {
   border-width: 0 3px 3px 0;
   display: inline-block;
@@ -93,14 +120,7 @@
   cursor: pointer;
   transform: rotate(-135deg);
 }
-@media screen and (max-width: 1050px) {
-  .top {
-    /* margin-left: 30%; */
-    /* display: block; */
-    margin: auto;
-    text-align: center;
-  }
-}
+
 .hidden {
   display: none;
 }
