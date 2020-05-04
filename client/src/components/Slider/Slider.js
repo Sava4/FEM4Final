@@ -30,9 +30,10 @@ export const SliderHomepage = props => {
       <SamplePrevArrow homePage={props.homePage} left={70} prev={-3} />
     ),
     responsive: [
-      {
+      {      
         breakpoint: 1000,
         settings: {
+          dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
@@ -40,9 +41,10 @@ export const SliderHomepage = props => {
           prevArrow: <SamplePrevArrow homePage={true} left={40} />
         }
       },
-      {
+      {       
         breakpoint: 798,
         settings: {
+          dots: false,
           slidesToShow: 1,
           nextArrow: <SampleNextArrow homePage={true} right={40} />,
           prevArrow: <SamplePrevArrow homePage={true} left={40} />
@@ -105,7 +107,30 @@ export const SliderHomepage = props => {
       >
         <CarouselWrapper className="carousel_wrapper">
           <H4>{props.h4}</H4>
-          <Slider {...settings}>
+          <Slider {...settings}  responsive={[
+      {      
+        breakpoint: 1000,
+        settings: {
+          dots: false,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          // nextArrow: <SampleNextArrow homePage={true} right={40} />,
+          // prevArrow: <SamplePrevArrow homePage={true} left={40} />
+        }
+      },
+      {
+      breakpoint: 650,
+        settings: {
+          dots: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          // nextArrow: <SampleNextArrow homePage={true} right={40} />,
+          // prevArrow: <SamplePrevArrow homePage={true} left={40} />
+        }
+      }      
+      ]}>
             {items.map(item => {
               return (
                 <div style={{ boxSizing: "border-box" }} key={item._id}>

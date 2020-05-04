@@ -100,14 +100,17 @@
  
 }
 @media screen and (max-width: 1050px) {
-  .top2 {  
+  .top2 {    
     display: block;
+    width: 50px;
+    height: 50px;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 19px;
     left: 108px;
-    top: 24px;
+    top: 16px;
     text-align: center;
-    position: relative;  
+    position: relative;
+    z-index: 10;
   }
 }
 .top {
@@ -132,6 +135,16 @@
   margin-left: 95%;
   margin-top: 400px;
   z-index: 10;
+}
+@media screen and (max-width: 1050px) {
+  .onTop {  
+    margin-left: 89%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .onTop {  
+    margin-left: 87%;
+  }
 }
 .class {
   justify-content: space-around;

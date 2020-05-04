@@ -15,15 +15,7 @@ export const LoadMore = ({
   ...props
 }) => {
   return (
-    <>
-      {/* <NavLink
-        onClick={(e) => {
-          // handleClickNext(e);
-          // onTop();
-        }}
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage},${+currentPage +
-          1}&perPage=${pageSize}`}
-      > */}
+    <> 
       <div
         className={cn(
           {
@@ -54,7 +46,6 @@ export const LoadMore = ({
       
       />
       </div>
-      {/* </NavLink> */}
     </>
   );
 };

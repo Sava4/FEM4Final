@@ -9,7 +9,12 @@ export const CarouselWrapper = styled.div`
  .slick-dots {
   position: inherit;
   padding-bottom: 10px;
+  margin-top: 40px;
   border-bottom: 1px solid #002D50;
+ }
+ .slick-arrow{
+   margin-top: 40px;
+   border: 1px solid rgb(233, 235, 245);
  }
  `)}
 `;

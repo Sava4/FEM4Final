@@ -190,11 +190,12 @@ const Details1 = (props) => {
         <div
           style={{
             height: ``,
-            width: `7%`,
+            width: `70px`,
             marginTop: `20px`,
             marginRight: `5px`,
-            cursor: `pointer`,
-            display: `inline-block`,
+            cursor: `pointer`,           
+            position: `absolute`,
+            zIndex:`10`,
           }}
         >
           <Slider
@@ -213,12 +214,11 @@ const Details1 = (props) => {
         <div
           style={{
             height: ``,
-            width: `93%`,
+            width: `100%`,
             marginTop: `20px`,
             marginRight: `20px`,
             boxSizing: `border-box`,
-            cursor: `zoom-in`,
-            display: `inline-block`,
+            cursor: `zoom-in`,           
           }}
         >
           <Slider

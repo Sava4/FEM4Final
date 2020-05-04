@@ -22,8 +22,7 @@ export const ProductsPagination = ({
 }) => { 
  
   return (
-    <div>
-      {/* <Layout> */}
+    <div>  
       <div
         className={cn(
           styles.upper     
@@ -67,10 +66,8 @@ export const ProductsPagination = ({
               img={p.imageUrls}
             />
           </div>
-        ))}
-        {/* <FilteredListProducts category={category} /> */}
-      </div>
-      {/* <div style={{ width: "100%", display: "block" }}> */}
+        ))}    
+      </div>    
       <LoadMore
         currentPage={currentPage}
         onPageChanged={onPageChanged}
@@ -80,8 +77,7 @@ export const ProductsPagination = ({
         products={products}
         pageSize={pageSize}
         category={category}
-      />
-      {/* </div> */}
+      />  
       <div
         className={cn(
           styles.bottom      
@@ -98,8 +94,7 @@ export const ProductsPagination = ({
           category2={category2}
           categoryQuery={categoryQuery}
         />
-      </div>
-      {/* </Layout> */}
+      </div>    
     </div>
   );
 };
