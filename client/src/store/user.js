@@ -2,6 +2,7 @@ import axios from "axios";
 
 const USER = "USER";
 const USER_UPDATE = "USER_UPDATE";
+const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 const LOGOUT = "LOGOUT";
 
 export const userAction = payload => ({
@@ -11,6 +12,11 @@ export const userAction = payload => ({
 
 export const updateUser = payload => ({
   type: USER_UPDATE,
+  payload
+});
+
+export const updatePassword = payload => ({
+  type: UPDATE_PASSWORD,
   payload
 });
 
@@ -39,5 +45,16 @@ export const update = data => {
       .catch(error => {
         console.log(error);
       });
+  };
+};
+
+export const updatePass = password => {
+  return dispatch => {
+    axios
+      .put("/customers/password", password)
+      .then(response => {
+        dispatch(updatePassword(response.data));
+      })
+      .catch(error => console.log(error));
   };
 };
