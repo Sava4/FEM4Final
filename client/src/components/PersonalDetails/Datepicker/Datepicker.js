@@ -4,9 +4,10 @@ import styled from "styled-components";
 import arrow from "./dropdownArrow.png";
 
 export const Datepicker = props => {
-  const [month, setMonth] = useState();
-  const [day, setDay] = useState();
-  const [year, setYear] = useState();
+  const { value } = props;
+  const [month, setMonth] = useState(new Date(value).getMonth());
+  const [day, setDay] = useState(new Date(value).getDate());
+  const [year, setYear] = useState(new Date(value).getFullYear());
 
   useEffect(() => {
     if (month && day && year) {
@@ -18,23 +19,17 @@ export const Datepicker = props => {
     <Holder>
       <Title>Birthday</Title>
       <Birthday>
-        <Select onChange={onMonthChange} value={props.value}>
-          <Options selected={month} disabled>
-            Month
-          </Options>
+        <Select onChange={onMonthChange}>
+          <Options disabled>Month</Options>
           {getMonthOptions(month)}
         </Select>
-        <Select onChange={onDayChange} value={() => setDay(day)}>
-          <Options selected disabled>
-            Day
-          </Options>
-          {getDaysOptions()}
+        <Select onChange={onDayChange}>
+          <Options disabled>Day</Options>
+          {getDaysOptions(day)}
         </Select>
-        <Select onChange={onYearChange} value={() => setYear(year)}>
-          <Options selected disabled>
-            Year
-          </Options>
-          {getYearOptions()}
+        <Select onChange={onYearChange}>
+          <Options disabled>Year</Options>
+          {getYearOptions(year)}
         </Select>
       </Birthday>
     </Holder>

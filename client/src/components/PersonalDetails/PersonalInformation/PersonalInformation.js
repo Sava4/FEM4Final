@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Details,
   Description,
@@ -11,10 +10,12 @@ import {
 import { Button } from "../../common/Button/Button";
 import { Input } from "../../common/Input/Input";
 import { Datepicker } from "../Datepicker/Datepicker";
+import { update } from "../../../store/user";
 
 export const PersonalInformation = () => {
-  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const [data, setData] = useState({});
+  const [user, setUser] = useState(useSelector(state => state.user));
 
   return (
     <Details>
@@ -70,8 +71,14 @@ export const PersonalInformation = () => {
 
   function handleDataChange(key) {
     return function(event) {
-      data[key] = event.target.value;
-      setData(data);
+      setData({
+        ...data,
+        [key]: event.target.value
+      });
+      setUser({
+        ...user,
+        [key]: event.target.value
+      });
     };
   }
 
@@ -81,13 +88,6 @@ export const PersonalInformation = () => {
   }
 
   function updateCustomer() {
-    return axios
-      .put("http://localhost:5000/customers", data)
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    dispatch(update(data));
   }
 };
