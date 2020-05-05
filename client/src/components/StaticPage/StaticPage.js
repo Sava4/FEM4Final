@@ -41,12 +41,7 @@ export const StaticPage = () => {
       );
     if (url === "gift-cards")
       return (
-        <Fragment>
-          <Page>
-            <PageHeader>Gift cards</PageHeader>
             <GiftCard />
-          </Page>
-        </Fragment>
       );
     return (
       <Fragment>
