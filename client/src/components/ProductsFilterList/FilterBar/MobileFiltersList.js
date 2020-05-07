@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
 import {
-  setTogleShown,
+  setToggleShown,
   setClearFilters,
   setDeleteFilter
 } from "./../../../store/filters";
@@ -20,7 +20,7 @@ const mapStateToProps = store => ({
 });
 
 export const MobileFiltersList = connect(mapStateToProps, {
-  setTogleShown,
+  setToggleShown,
   setDeleteFilter,
   setClearFilters
 })(props => {
@@ -33,23 +33,22 @@ export const MobileFiltersList = connect(mapStateToProps, {
     "gemstone_color"
   ];
 
-  const { setOpenFiltwilnd } = props;
-  // const priceIsShown = props.filters["price"];
+  const { setOpenFiltwilnd } = props; 
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    props.setTogleShown(e.target.parentNode.id);
+    props.setToggleShown(e.target.parentNode.id);
   };
 
   let filters = filtredBy.map(item => {
     let isShown = props.filters[item];
     return (
-      <FilterBox key={v4()} onClick={handleChange}>
-        <FilterType id={item} >
+      <FilterBox key={v4()} >
+        <FilterType id={item} onClick={handleChange}>
           <p>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="small"  />
+            <ExpandLessIcon fontSize="default"  />
           ) : (
-            <ExpandMoreIcon fontSize="small" />
+            <ExpandMoreIcon fontSize="default" />
           )}
         </FilterType>
         {isShown ? (
@@ -58,14 +57,11 @@ export const MobileFiltersList = connect(mapStateToProps, {
           ) : (
             <PopupCheckboxes filtername={item} />
           )
-        ) : null}
+        ) : false}
       </FilterBox>
     );
   });
-  // const backgroundColor = {
-  //   background:"blue",
-  //   color:"white"
-  // }
+
 
   return (
     <FiltersModal>

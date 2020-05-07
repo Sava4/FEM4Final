@@ -8,7 +8,7 @@ export const MenuContext = createContext({
 
 export const NavState = ({ children }) => {
   const [isMenuOpen, toggleMenu] = useState(false);
-
+  
   function toggleMenuMode() {
     toggleMenu(!isMenuOpen);
   }

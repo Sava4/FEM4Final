@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useSelector } from "react-redux";
 
 import { SubMenu } from "./SubMenu";
@@ -7,7 +7,7 @@ import { CategoriesMenuMobile } from "./CategoriesMenuMobile";
 export const NavigationMenuMobile = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const allCategories = useSelector(state => state.categories);
-
+  
   return (
     <div>
       {!activeCategory && (

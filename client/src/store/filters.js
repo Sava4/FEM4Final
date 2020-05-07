@@ -7,7 +7,7 @@ const avaliFilters = payload => ({
 
 const SET_IS_SHOWN = "SET_IS_SHOWN";
 
-const togleShown = payload => ({
+const toggleShown = payload => ({
   type: SET_IS_SHOWN,
   payload
 });
@@ -151,8 +151,8 @@ export const setAvaliFilters = allFilters => dispatch => {
   dispatch(avaliFilters(allFilters));
 };
 
-export const setTogleShown = filter => dispatch => {
-  dispatch(togleShown(filter));
+export const setToggleShown = filter => dispatch => {
+  dispatch(toggleShown(filter));
 };
 
 export const setDeleteFilter = filterName => dispatch => {

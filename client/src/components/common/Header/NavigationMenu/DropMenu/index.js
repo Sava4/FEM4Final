@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import {
-  mediaMobile,
-  mediaTablet
-} from "../../../../../styledComponents/MediaBreakpointsMixin";
+import {  mediaMobile,
+          mediaTablet } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import { DropMenu } from "./dropmenu";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
