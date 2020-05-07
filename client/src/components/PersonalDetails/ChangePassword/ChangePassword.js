@@ -11,10 +11,12 @@ import {
 import { Button } from "../../common/Button/Button";
 import { Input } from "../../common/Input/Input";
 import { updatePass } from "../../../store/user";
+import { UpdateInformationForm } from "../../Forms/UpdateInformationForm/UpdateInformationForm";
 
 export const ChangePassword = props => {
   const dispatch = useDispatch();
   const [password, setPassword] = useState({});
+  const [isOpen, toggleModal] = useState(false);
 
   return (
     <Details>
@@ -49,6 +51,9 @@ export const ChangePassword = props => {
         </Holder>
         <ButtonWrapper>
           <Button value={"Save Changes"} onClick={changePassword} />
+          {isOpen && (
+            <UpdateInformationForm onClose={() => toggleModal(false)} />
+          )}
         </ButtonWrapper>
       </InputWrapper>
     </Details>
@@ -65,6 +70,7 @@ export const ChangePassword = props => {
 
   function changePassword() {
     dispatch(updatePass(password));
+    toggleModal(!isOpen);
   }
 };
 

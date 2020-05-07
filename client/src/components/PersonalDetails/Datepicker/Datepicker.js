@@ -5,9 +5,11 @@ import arrow from "./dropdownArrow.png";
 
 export const Datepicker = props => {
   const { value } = props;
-  const [month, setMonth] = useState(new Date(value).getMonth());
-  const [day, setDay] = useState(new Date(value).getDate());
-  const [year, setYear] = useState(new Date(value).getFullYear());
+  const [month, setMonth] = useState(value ? new Date(value).getMonth() : null);
+  const [day, setDay] = useState(value ? new Date(value).getDate() : null);
+  const [year, setYear] = useState(
+    value ? new Date(value).getFullYear() : null
+  );
 
   useEffect(() => {
     if (month && day && year) {
@@ -20,15 +22,21 @@ export const Datepicker = props => {
       <Title>Birthday</Title>
       <Birthday>
         <Select onChange={onMonthChange}>
-          <Options disabled>Month</Options>
+          <Options selected={!month} disabled>
+            Month
+          </Options>
           {getMonthOptions(month)}
         </Select>
         <Select onChange={onDayChange}>
-          <Options disabled>Day</Options>
+          <Options selected={!day} disabled>
+            Day
+          </Options>
           {getDaysOptions(day)}
         </Select>
         <Select onChange={onYearChange}>
-          <Options disabled>Year</Options>
+          <Options selected={!year} disabled>
+            Year
+          </Options>
           {getYearOptions(year)}
         </Select>
       </Birthday>

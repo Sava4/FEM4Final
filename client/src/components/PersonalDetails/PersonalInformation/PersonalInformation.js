@@ -11,11 +11,13 @@ import { Button } from "../../common/Button/Button";
 import { Input } from "../../common/Input/Input";
 import { Datepicker } from "../Datepicker/Datepicker";
 import { update } from "../../../store/user";
+import { UpdateInformationForm } from "../../Forms/UpdateInformationForm/UpdateInformationForm";
 
 export const PersonalInformation = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [user, setUser] = useState(useSelector(state => state.user));
+  const [isOpen, toggleModal] = useState(false);
 
   return (
     <Details>
@@ -65,6 +67,7 @@ export const PersonalInformation = () => {
         </Holder>
         <Datepicker value={user.date} onChange={onDatepickerChange} />
         <Button value={"Save Changes"} onClick={updateCustomer} />
+        {isOpen && <UpdateInformationForm onClose={() => toggleModal(false)} />}
       </InputWrapper>
     </Details>
   );
@@ -89,5 +92,6 @@ export const PersonalInformation = () => {
 
   function updateCustomer() {
     dispatch(update(data));
+    toggleModal(!isOpen);
   }
 };
