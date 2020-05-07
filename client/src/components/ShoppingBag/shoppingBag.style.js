@@ -50,7 +50,6 @@ export const BagTotals = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  height: 505px;
   padding-left: 42px;
   border-left: 1px solid #a7aabb;
   vertical-align: middle;
