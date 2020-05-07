@@ -61,7 +61,7 @@ export const Search = () => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={`/${product.imageUrls[0]}`} />
+                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );

@@ -66,7 +66,8 @@ export const HomepageCategories = () => {
 };
 
 const SectionCategories = styled.div`
-  margin-top: 90px;
+  margin: 90px auto 0;
+  max-width: 1300px;
   & p {
     margin-bottom: 20px;
     text-align: center;
