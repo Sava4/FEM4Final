@@ -53,7 +53,7 @@ export const PreviewWrapper = styled.div`
   flex-direction: column;
   position: absolute;
   top: 25px;
-  z-index: 2;
+  z-index: 3;
   background: white;
   border: 1px solid #ddd;
   border-radius: 5px;
