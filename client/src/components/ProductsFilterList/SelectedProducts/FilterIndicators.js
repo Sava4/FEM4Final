@@ -26,7 +26,7 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     let selectedFilters = filters[item];
     return selectedFilters.length ? (
       <FilterMarker key={v4()}>
-        <p>{item}</p>
+        <p>{item.replace("_", " ")}</p>
         <SelectedFiltersStyled className={itemClass}>
           <SelectedFilters selectedFilters={selectedFilters} />
         </SelectedFiltersStyled>
