@@ -7,7 +7,7 @@ import modalClose from "./modal-close-btn.png";
 import {
   setToggleShown,
   setClearFilters,
-  setDeleteFilter,
+  setDeleteFilter
 } from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -15,22 +15,22 @@ import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 import { Button } from "../../common/Button/Button";
 
-const mapStateToProps = (store) => ({
-  filters: store.filters.menuState,
+const mapStateToProps = store => ({
+  filters: store.filters.menuState
 });
 
 export const MobileFiltersList = connect(mapStateToProps, {
   setToggleShown,
   setDeleteFilter,
-  setClearFilters,
-})((props) => {
+  setClearFilters
+})(props => {
   const filtredBy = [
     "price",
     "collection",
     "metal",
     "metal_color",
     "gemstone",
-    "gemstone_color",
+    "gemstone_color"
   ];
 
   const { setOpenFiltwilnd } = props;
@@ -39,7 +39,7 @@ export const MobileFiltersList = connect(mapStateToProps, {
     props.setToggleShown(e.target.parentNode.id);
   };
 
-  let filters = filtredBy.map((item) => {
+  let filters = filtredBy.map(item => {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>

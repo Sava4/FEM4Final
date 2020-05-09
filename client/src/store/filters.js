@@ -81,8 +81,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
     }
 
     case DEL_FILTER: {
-      let filtKey = null;
-console.log(payload)
+      let filtKey = null;     
       for (let key in payload) {
         filtKey = key;
       }
