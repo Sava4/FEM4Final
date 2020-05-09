@@ -10,6 +10,7 @@ import {
 import { Layout } from "../../common/Layout";
 import { ChangePassword } from "../ChangePassword/ChangePassword";
 import { MediaRouter } from "../MobilePersonalInformation/MobilePersonalInformation";
+import { DesktopChangePassword } from "../DesktopChangePassword/DesktopChangePassword";
 
 export const MobileChangePassword = () => {
   const user = useSelector(state => state.user);
@@ -32,5 +33,7 @@ export const MobileChangePassword = () => {
 };
 
 export const ChangePasswordRouter = () => {
-  return <MediaRouter Mobile={MobileChangePassword} Web={ChangePassword} />;
+  return (
+    <MediaRouter Mobile={MobileChangePassword} Web={DesktopChangePassword} />
+  );
 };

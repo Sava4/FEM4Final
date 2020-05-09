@@ -3,6 +3,7 @@ import {
   FormWrapper,
   CreateAccountTitle,
   Content,
+  Text,
   CreateAccountSubtitle
 } from "./createAccountForm.styles";
 
@@ -16,11 +17,10 @@ export const CreateAccountForm = props => {
       <FormWrapper>
         <CreateAccountTitle>
           <Content>Thank you for creating an account with Zarina!</Content>
-          <Content>Please check your inbox.</Content>
+          <Text>Please check your inbox.</Text>
         </CreateAccountTitle>
         <CreateAccountSubtitle>
-          We sent an email to mtanya95@gmail.com with the instructions to
-          activate your account.
+          We sent to your email the instructions to activate your account.
         </CreateAccountSubtitle>
       </FormWrapper>
     </Modal>
