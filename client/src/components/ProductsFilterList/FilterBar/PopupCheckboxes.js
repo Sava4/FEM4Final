@@ -45,7 +45,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     props.dispatchSetCheckFilter(activeFilters);
     console.log(activeFilters);
     if (!e.target.checked) {
-      const remoteFilterCategory = e.target.getAttribute("data-filtergrupname");
+      const remoteFilterCategory = e.target.getAttribute("data-filtergroupname");
       const remoteFilterName = e.target.getAttribute("data-filtername");
       const delEll = {};
       delEll[remoteFilterCategory] = remoteFilterName;
