@@ -8,17 +8,15 @@ export const CategoriesMenuMobile = props => {
   const categories = categoriesAllData
     .filter(item => item.parentId === "null")
     .map(item => {
-     
-      return item.name !== "gift cards" ? 
-        (<Item key={item.id} onClick={() => onSelect(item)}>
+      return item.name !== "gift cards" ? (
+        <Item key={item.id} onClick={() => onSelect(item)}>
           {item.name}
-        </Item>) :
-        (<Item key={item.id} >
-          <NavLink to="/giftсards">
-            {item.name}
-          </NavLink>        
-        </Item>);
-     
+        </Item>
+      ) : (
+        <Item key={item.id}>
+          <NavLink to="/giftсards">{item.name}</NavLink>
+        </Item>
+      );
     });
 
   return <ItemsHolder>{categories}</ItemsHolder>;

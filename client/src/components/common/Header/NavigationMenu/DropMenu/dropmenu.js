@@ -10,7 +10,7 @@ const mapStateToProps = store => ({
 });
 
 export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
-  console.log(props)
+  console.log(props);
   const { dropMenuArray, setClearFilters } = props;
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =

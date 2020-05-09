@@ -6,7 +6,7 @@ import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin"
 export const HamburgerButton = () => {
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
-  const clickHandler = () => {    
+  const clickHandler = () => {
     toggleMenuMode();
   };
 

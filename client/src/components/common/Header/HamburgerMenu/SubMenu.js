@@ -1,7 +1,6 @@
-import React, {  useContext }  from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-
 
 import styled from "styled-components";
 import arrow from "../../../Forms/OrderForm/arrow.png";
@@ -13,9 +12,9 @@ const mapStateToProps = store => ({
   filters: store.filters.menuState
 });
 
-export const SubMenu =connect(mapStateToProps ,{setClearFilters}) (props => {
+export const SubMenu = connect(mapStateToProps, { setClearFilters })(props => {
   const { activeCategory, categories, goBack, setClearFilters } = props;
-  const { toggleMenuMode} = useContext(MenuContext);  
+  const { toggleMenuMode } = useContext(MenuContext);
 
   const subCategories = categories
     .filter(category => category.parentId === activeCategory.id)
@@ -24,14 +23,20 @@ export const SubMenu =connect(mapStateToProps ,{setClearFilters}) (props => {
       const nameForDropMenu =
         parentId === "by zarina"
           ? name.replace("ZARINA", "").replace("By", "")
-          : name;         
-      return <Item key={_id} onClick={() => {setClearFilters(); goBack(); toggleMenuMode()} }>
-                <NavLink to={`/headerMenu/${name}`}>
-                    {nameForDropMenu}
-                </NavLink>                
-              </Item>;
+          : name;
+      return (
+        <Item
+          key={_id}
+          onClick={() => {
+            setClearFilters();
+            goBack();
+            toggleMenuMode();
+          }}
+        >
+          <NavLink to={`/headerMenu/${name}`}>{nameForDropMenu}</NavLink>
+        </Item>
+      );
     });
-
 
   return (
     <Holder>

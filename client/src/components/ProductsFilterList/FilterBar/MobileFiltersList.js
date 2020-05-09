@@ -33,7 +33,7 @@ export const MobileFiltersList = connect(mapStateToProps, {
     "gemstone_color"
   ];
 
-  const { setOpenFiltwilnd } = props; 
+  const { setOpenFiltwilnd } = props;
   const handleChange = (e, nodes) => {
     e.preventDefault();
     props.setToggleShown(e.target.parentNode.id);
@@ -46,7 +46,7 @@ export const MobileFiltersList = connect(mapStateToProps, {
         <FilterType id={item} onClick={handleChange}>
           <p>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="default"  />
+            <ExpandLessIcon fontSize="default" onClick={handleChange}/>
           ) : (
             <ExpandMoreIcon fontSize="default" />
           )}
@@ -57,11 +57,12 @@ export const MobileFiltersList = connect(mapStateToProps, {
           ) : (
             <PopupCheckboxes filtername={item} />
           )
-        ) : false}
+        ) : (
+          false
+        )}
       </FilterBox>
     );
   });
-
 
   return (
     <FiltersModal>

@@ -37,7 +37,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
 
   const checkedFilters = e => {
     e.preventDefault();
-    console.log( e.target);
+    console.log(e.target);
     const activeFilters = {};
     activeFilters[
       e.target.getAttribute("data-filtergroupname")
