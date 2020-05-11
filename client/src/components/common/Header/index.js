@@ -1,6 +1,6 @@
 export { Login } from "./Login/Login";
 export { Logo } from "./Logo/Logo";
-export { Search } from "../Header/Search/Search";
+export { Search } from "./Search/SearchInput";
 export { ShoppingBag } from "./ShoppingBag/ShoppingBag";
 export { Favorites } from "./Favorites/Favorites";
 export { MainMenu } from "./HamburgerMenu/MainMenu";
