@@ -18,8 +18,7 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
     filtrefBy.push(key);
   }
 
-  const filtredByBlocks = filtrefBy.map(item => {   
-
+  const filtredByBlocks = filtrefBy.map(item => {
     let itemClass = item.replace(" ", "");
 
     let selectedFilters = filters[item];
