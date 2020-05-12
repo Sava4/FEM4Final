@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import * as storeDate from "./data/{...}zarina-stores";
+import {AddressesSelect} from "./addressesPage";
 
 export const Mapbox = () => {
   const [viewport, setViewport] = useState({
     latitude: 50.4941311,
     longitude: 30.3568245,
-    width: "60vw",
+    width: "90vw",
     height: "70vh",
     zoom: 10
   });
@@ -27,6 +28,7 @@ export const Mapbox = () => {
 
   return (
     <div>
+      <AddressesSelect />
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={
