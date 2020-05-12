@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
 import {
-  setTogleShown,
+  setToggleShown,
   setClearFilters,
   setDeleteFilter
 } from "./../../../store/filters";
@@ -20,7 +20,7 @@ const mapStateToProps = store => ({
 });
 
 export const MobileFiltersList = connect(mapStateToProps, {
-  setTogleShown,
+  setToggleShown,
   setDeleteFilter,
   setClearFilters
 })(props => {
@@ -34,22 +34,21 @@ export const MobileFiltersList = connect(mapStateToProps, {
   ];
 
   const { setOpenFiltwilnd } = props;
-  // const priceIsShown = props.filters["price"];
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    props.setTogleShown(e.target.parentNode.id);
+    props.setToggleShown(e.target.parentNode.id);
   };
 
   let filters = filtredBy.map(item => {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>
-        <FilterType id={item}>
+        <FilterType id={item} onClick={handleChange}>
           <p>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="small" onClick={handleChange} />
+            <ExpandLessIcon fontSize="default" onClick={handleChange} />
           ) : (
-            <ExpandMoreIcon fontSize="small" onClick={handleChange} />
+            <ExpandMoreIcon fontSize="default" />
           )}
         </FilterType>
         {isShown ? (
@@ -58,19 +57,16 @@ export const MobileFiltersList = connect(mapStateToProps, {
           ) : (
             <PopupCheckboxes filtername={item} />
           )
-        ) : null}
+        ) : (
+          false
+        )}
       </FilterBox>
     );
   });
-  // const backgroundColor = {
-  //   background:"blue",
-  //   color:"white"
-  // }
 
   return (
     <FiltersModal>
       <ModalClose onClick={() => setOpenFiltwilnd(false)} />
-
       {filters}
       <BottomBlock>
         <Button
@@ -121,6 +117,7 @@ display: block;
 text-align: center;
 width: 80%;
 border-bottom: 1px solid #E9EBF5;
+cursor: pointer;
 `)}
 `;
 const FilterType = styled.div`
