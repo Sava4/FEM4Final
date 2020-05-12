@@ -22,7 +22,7 @@ import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
 
 export const RegisterForm = props => {
-  const { onClose, onLogin } = props;
+  const { onClose, onRegister, onLogin } = props;
 
   const [error, setError] = useState([]);
 
@@ -253,7 +253,7 @@ export const RegisterForm = props => {
         enabled: true
       })
       .then(response => {
-        onClose();
+        onRegister();
       })
       .catch(error => {
         const errors = Object.keys(error.response.data).map(key => {

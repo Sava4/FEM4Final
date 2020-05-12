@@ -18,8 +18,8 @@ export const FormRegister = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 70px;
-  margin-left: 70px;
+  margin-right: 60px;
+  margin-left: 60px;
 
   ${mediaMobile(`
   width: 100%;
@@ -32,15 +32,16 @@ export const FormRegister = styled.div`
 
 export const FormTitle = styled.span`
   margin-top: 70px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   font-size: 24px;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
 
   ${mediaMobile(`
-  margin-top: 50px;
-  margin-bottom: 40px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-size: 16px;
   `)}
 `;
 
@@ -51,10 +52,10 @@ export const ErrorMessage = styled.span`
 
 export const LeftContent = styled.div`
   width: 50%;
-  margin-right: 50px;
+  margin-right: 30px;
 
   ${mediaMobile(`
-  width: 80%;
+  width: 85%;
   margin: 0;
   `)}
 `;
@@ -103,11 +104,10 @@ export const InputBottomText = styled.div`
 
 export const RightContent = styled.div`
   width: 50%;
-  margin-left: 50px;
-  margin-bottom: 20px;
+  margin-left: 30px;
 
   ${mediaMobile(`
-  width: 80%;
+  width: 85%;
   margin: 0;
   `)}
 `;
@@ -123,10 +123,10 @@ export const ContentWrapper = styled.div`
 
 export const FormButtonWrapper = styled.div`
   width: 40%;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 
   ${mediaMobile(`
-  width: 80%;
+  width: 85%;
   margin-bottom: 40px;
   `)}
 `;
