@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const CategoriesMenuMobile = props => {
@@ -7,9 +8,13 @@ export const CategoriesMenuMobile = props => {
   const categories = categoriesAllData
     .filter(item => item.parentId === "null")
     .map(item => {
-      return (
+      return item.name !== "gift cards" ? (
         <Item key={item.id} onClick={() => onSelect(item)}>
           {item.name}
+        </Item>
+      ) : (
+        <Item key={item.id}>
+          <NavLink to="/giftсards">{item.name}</NavLink>
         </Item>
       );
     });

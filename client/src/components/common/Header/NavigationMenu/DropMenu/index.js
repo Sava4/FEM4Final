@@ -34,7 +34,7 @@ export const HeaderMenuElem = props => {
       return {
         menuName,
         isOpen:
-          item === category && category.menuName != "gift cards"
+          item === category && category.menuName !== "gift cards"
             ? !isOpen
             : false
       };
