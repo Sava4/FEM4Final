@@ -50,40 +50,40 @@ export const Wishlist = props => {
   });
 
   return (
-      <Container>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <Fragment>
-            <FavoritesWrapper>
-              <PageHeader>FAVORITES</PageHeader>
-            </FavoritesWrapper>
+    <Container>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <FavoritesWrapper>
+            <PageHeader>FAVORITES</PageHeader>
+          </FavoritesWrapper>
 
-            {lengthFav > 0 ? (
-              <Fragment>
-                {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
-                  .matches || isMobile.width > mediaQueryMobile ? (
-                  <Continue onClick={() => history.push("/")}>
-                    <ArrowImg src={arrow} />
-                    Continue Shopping
-                  </Continue>
-                ) : null}
-                {ListProduct}
-                {window.matchMedia(`(max-width: ${mediaQueryMobile}px)`)
-                  .matches || isMobile.width < mediaQueryMobile ? (
-                  <Button
-                    secondary
-                    width={"100%"}
-                    value={"GO BACK TO SHOPPING"}
-                  />
-                ) : null}
-              </Fragment>
-            ) : (
-              <EmptyCart text={"Yor Wishlist is currently empty."} />
-            )}
-          </Fragment>
-        )}
-      </Container>
+          {lengthFav > 0 ? (
+            <Fragment>
+              {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
+                .matches || isMobile.width > mediaQueryMobile ? (
+                <Continue onClick={() => history.push("/")}>
+                  <ArrowImg src={arrow} />
+                  Continue Shopping
+                </Continue>
+              ) : null}
+              {ListProduct}
+              {window.matchMedia(`(max-width: ${mediaQueryMobile}px)`)
+                .matches || isMobile.width < mediaQueryMobile ? (
+                <Button
+                  secondary
+                  width={"100%"}
+                  value={"GO BACK TO SHOPPING"}
+                />
+              ) : null}
+            </Fragment>
+          ) : (
+            <EmptyCart text={"Yor Wishlist is currently empty."} />
+          )}
+        </Fragment>
+      )}
+    </Container>
   );
 };
 
