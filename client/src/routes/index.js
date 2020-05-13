@@ -16,6 +16,7 @@ import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 // import ProductsContainer from "../components/SliderProducts/ProductsContainer";
 import { Checkout } from "../components/Checkout";
+import {WishlistRouter} from "../components/PersonalDetails/MobileWishlist/MobileWishlist";
 
 export const Routes = () => {
   const user = useSelector(state => state.user);
@@ -40,6 +41,7 @@ export const Routes = () => {
         path="/account/change-password"
         component={ChangePasswordRouter}
       />
+      <Route exact path={"/account/wish-list"} component={WishlistRouter}/>
       <Route exact path="/account/favorites" component={Wishlist} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/account/checkout" component={Checkout} />

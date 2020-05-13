@@ -29,23 +29,4 @@ export const Title = styled.div`
   `)}
 `;
 
-export const SideBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin-left: 130px;
 
-  ${mediaTablet(`
-    margin-left: 50px;
-  `)}
-`;
-
-export const Item = styled.div`
-  padding-bottom: 20px;
-  padding-top: 20px;
-  font-size: 14px;
-  text-transform: uppercase;
-  border-bottom: 1px solid #a7aabb;
-  cursor: pointer;
-  font-weight: ${props => (props.active ? "bold" : "normal")};
-`;

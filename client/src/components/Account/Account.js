@@ -23,16 +23,16 @@ export const Account = () => {
           <Item>Change Password</Item>
           <Arrow onClick={onPasswordClick} />
         </Holder>
+        <Holder onClick={onWishlistClick}>
+          <Item>Wishlist</Item>
+          <Arrow onClick={onWishlistClick}/>
+        </Holder>
         <Holder>
           <Item>Adess book</Item>
           <Arrow />
         </Holder>
         <Holder>
           <Item>Orders</Item>
-          <Arrow />
-        </Holder>
-        <Holder>
-          <Item>Wishlist</Item>
           <Arrow />
         </Holder>
       </Container>
@@ -45,6 +45,10 @@ export const Account = () => {
 
   function onPasswordClick() {
     history.push("/account/change-password");
+  }
+
+  function onWishlistClick() {
+    history.push("/account/wish-list")
   }
 };
 

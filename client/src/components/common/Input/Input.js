@@ -1,21 +1,23 @@
-import React, { useState } from "react";
-import { LabelInput, InputText, InputElement } from "./input.styles";
+import React, {useState} from "react";
+import {Holder, LabelInput, InputText, InputElement} from "./input.styles";
 
 export const Input = props => {
   const [filled, setFilled] = useState(Boolean(props.value));
 
   return (
-    <LabelInput>
-      <InputText className={filled ? "active" : ""}>{props.label}</InputText>
-      <InputElement
-        type={props.type}
-        value={props.value}
-        invalid={props.invalid}
-        onBlur={onBlur}
-        onChange={props.onChange}
-        onFocus={onFocus}
-      />
-    </LabelInput>
+    <Holder>
+      <LabelInput>
+        <InputText className={filled ? "active" : ""}>{props.label}</InputText>
+        <InputElement
+          type={props.type}
+          value={props.value}
+          invalid={props.invalid}
+          onBlur={onBlur}
+          onChange={props.onChange}
+          onFocus={onFocus}
+        />
+      </LabelInput>
+    </Holder>
   );
 
   function onBlur(event) {
@@ -30,6 +32,8 @@ export const Input = props => {
 };
 
 Input.defaultProps = {
-  onFocus: () => {},
-  onBlur: () => {}
+  onFocus: () => {
+  },
+  onBlur: () => {
+  }
 };

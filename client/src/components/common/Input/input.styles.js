@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Holder = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+`
+
 export const LabelInput = styled.label`
   width: 100%;
   margin-bottom: 3px;
