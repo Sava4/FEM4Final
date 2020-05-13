@@ -50,7 +50,6 @@ export const Wishlist = props => {
   });
 
   return (
-    <Layout>
       <Container>
         {loading ? (
           <Spinner />
@@ -85,7 +84,6 @@ export const Wishlist = props => {
           </Fragment>
         )}
       </Container>
-    </Layout>
   );
 };
 

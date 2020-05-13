@@ -16,6 +16,7 @@ import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
 // import ProductsContainer from "../components/SliderProducts/ProductsContainer";
 import { Checkout } from "../components/Checkout";
+import {WishlistView} from "../components/Wishlist/WishlistView";
 
 export const Routes = () => {
   const user = useSelector(state => state.user);
@@ -40,7 +41,7 @@ export const Routes = () => {
         path="/account/change-password"
         component={ChangePasswordRouter}
       />
-      <Route exact path="/account/favorites" component={Wishlist} />
+      <Route exact path="/favorites" component={WishlistView} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/account/checkout" component={Checkout} />
       <Route exact path="/logout" component={ProductFilters} />
@@ -50,6 +51,7 @@ export const Routes = () => {
   ) : (
     <Switch>
       <Route exact path="/" component={Homepage} />
+        <Route exact path="/favorites" component={WishlistView} />
       <Route path="/headerMenu/:chosenMenu" component={ProductFilters} />
       <Route exact path="/giftсards" component={GiftCardView} />
       <Route path="/categories/:homepagecategory" component={ProductFilters} />
