@@ -114,6 +114,5 @@ const SelectCustom = styled(Select)`
   color: gray;
   font-size: 14px;
   border: none;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin: 20px auto;
 `;

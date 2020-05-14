@@ -60,6 +60,9 @@ const UserInformation = props => {
     </CustomForm>
   );
 };
+
+const mapStateToProps = state => ({ user: state.user });
+
 export const ReduxUserInformation = reduxForm({
   form: "contactInformation",
   validate
