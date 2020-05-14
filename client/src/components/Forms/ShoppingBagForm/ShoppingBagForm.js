@@ -1,17 +1,18 @@
 import React from "react";
-import {useHistory} from "react-router-dom";
-import {Modal} from "../../Modal/Modal";
-import {Button} from "../../common/Button/Button";
+import { useHistory } from "react-router-dom";
+import { Modal } from "../../Modal/Modal";
+import { Button } from "../../common/Button/Button";
 import {
   FormWrapper,
   FormTitle,
   FormSubtitle,
-  ButtonWrapper, Holder
+  ButtonWrapper,
+  Holder
 } from "./shoppingBagForm.styles";
 
 export const ShoppingBagForm = props => {
   const history = useHistory();
-  const {isModalOpen, onClose} = props;
+  const { isModalOpen, onClose } = props;
 
   return (
     <Modal isModalOpen={isModalOpen} onClose={onClose}>

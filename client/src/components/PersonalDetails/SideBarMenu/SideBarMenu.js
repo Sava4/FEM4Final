@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import {mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
+import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const SideBarMenu = () => {
   const history = useHistory();

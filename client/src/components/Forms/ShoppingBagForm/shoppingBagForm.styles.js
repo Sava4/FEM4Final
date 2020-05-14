@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
   width: 100%;
@@ -43,13 +46,13 @@ export const ButtonWrapper = styled.div`
 export const Holder = styled.div`
   width: 25%;
   margin: 0 20px;
-  
+
   ${mediaTablet(`
     width: 30%;
   `)}
-  
+
   ${mediaMobile(`
     width: 80%;
     margin-bottom: 20px;
    `)}
-`
+`;

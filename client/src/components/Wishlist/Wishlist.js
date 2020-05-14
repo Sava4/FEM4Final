@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Layout } from "../common/Layout";
 import { WishlistItem } from "./wishlistItem";
 import styled from "styled-components";
 import axios from "axios";
@@ -50,57 +49,42 @@ export const Wishlist = props => {
   });
 
   return (
-    <Layout>
-      <Container>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <Fragment>
-            <FavoritesWrapper>
-              <PageHeader>FAVORITES</PageHeader>
-            </FavoritesWrapper>
-
-            {lengthFav > 0 ? (
-              <Fragment>
-                {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
-                  .matches || isMobile.width > mediaQueryMobile ? (
-                  <Continue onClick={() => history.push("/")}>
-                    <ArrowImg src={arrow} />
-                    Continue Shopping
-                  </Continue>
-                ) : null}
-                {ListProduct}
-                {window.matchMedia(`(max-width: ${mediaQueryMobile}px)`)
-                  .matches || isMobile.width < mediaQueryMobile ? (
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          {lengthFav > 0 ? (
+            <Fragment>
+              {window.matchMedia(`(min-width: ${mediaQueryMobile}px)`)
+                .matches || isMobile.width > mediaQueryMobile ? (
+                <Continue onClick={() => history.push("/")}>
+                  <ArrowImg src={arrow} />
+                  Continue Shopping
+                </Continue>
+              ) : null}
+              {ListProduct}
+              {window.matchMedia(`(max-width: ${mediaQueryMobile}px)`)
+                .matches || isMobile.width < mediaQueryMobile ? (
+                <ButtonWrapper>
                   <Button
                     secondary
                     width={"100%"}
                     value={"GO BACK TO SHOPPING"}
                   />
-                ) : null}
-              </Fragment>
-            ) : (
-              <EmptyCart text={"Yor Wishlist is currently empty."} />
-            )}
-          </Fragment>
-        )}
-      </Container>
-    </Layout>
+                </ButtonWrapper>
+              ) : null}
+            </Fragment>
+          ) : (
+            <EmptyCart text={"Yor Wishlist is currently empty."} />
+          )}
+        </>
+      )}
+    </>
   );
 };
 
-const FavoritesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 5px auto;
-  padding: 0 4%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+const ButtonWrapper = styled.div`
+  width: 100%;
+  margin-top: 40px;
 `;

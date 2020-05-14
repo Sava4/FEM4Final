@@ -24,7 +24,6 @@ const Addresses = [
 const ShippingInformation = props => {
   const { reset } = props;
   const [location, setLocation] = useState(false);
-  console.log(location);
   const giveLocation = () => {
     setLocation(true);
   };

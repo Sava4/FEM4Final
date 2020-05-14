@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Filter,
@@ -11,11 +11,11 @@ import {
   Image,
   ImageDescription
 } from "./search.styles";
-import {MobileSearch} from "./MobileSearch/MobileSearch";
-import {useComponentVisible} from "./utils";
+import { MobileSearch } from "./MobileSearch/MobileSearch";
+import { useComponentVisible } from "./utils";
 
 export const Search = () => {
-  const {ref, visible} = useComponentVisible(true);
+  const { ref, visible } = useComponentVisible(true);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,12 +38,12 @@ export const Search = () => {
       <SearchIconWrapper>
         <SearchHolder>
           {matches ? (
-            <SearchIcon onClick={() => setMobileMenuOpen(true)}/>
+            <SearchIcon onClick={() => setMobileMenuOpen(true)} />
           ) : (
-            <SearchIcon onClick={onSearch}/>
+            <SearchIcon onClick={onSearch} />
           )}
           {mobileMenuOpen && (
-            <MobileSearch onClose={() => setMobileMenuOpen(false)}/>
+            <MobileSearch onClose={() => setMobileMenuOpen(false)} />
           )}
           <SearchInput
             type="text"
@@ -63,7 +63,7 @@ export const Search = () => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]}/>
+                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );

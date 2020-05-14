@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
-import {WishlistItem} from "../../Wishlist/wishlistItem";
-import {v4} from "uuid";
+import React, { useState, useEffect } from "react";
+import { WishlistItem } from "../../Wishlist/wishlistItem";
+import { v4 } from "uuid";
 import axios from "axios";
-import {Details} from "../PersonalInformation/personalInformation.styles";
+import { Details } from "../PersonalInformation/personalInformation.styles";
 
 export const WishList = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ export const WishList = () => {
     };
     fetchPosts();
     // setLoading(false);
-  },[]);
+  }, []);
 
   const Products = products.map(products => {
     return (
@@ -33,9 +33,5 @@ export const WishList = () => {
     );
   });
 
-  return (
-    <Details>
-      {Products}
-    </Details>
-  )
+  return <Details>{Products}</Details>;
 };

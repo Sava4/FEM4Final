@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Holder, LabelInput, InputText, InputElement} from "./input.styles";
+import React, { useState } from "react";
+import { Holder, LabelInput, InputText, InputElement } from "./input.styles";
 
 export const Input = props => {
   const [filled, setFilled] = useState(Boolean(props.value));
@@ -30,8 +30,6 @@ export const Input = props => {
 };
 
 Input.defaultProps = {
-  onFocus: () => {
-  },
-  onBlur: () => {
-  }
+  onFocus: () => {},
+  onBlur: () => {}
 };

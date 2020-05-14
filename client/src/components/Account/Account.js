@@ -25,7 +25,7 @@ export const Account = () => {
         </Holder>
         <Holder onClick={onWishlistClick}>
           <Item>Wishlist</Item>
-          <Arrow onClick={onWishlistClick}/>
+          <Arrow onClick={onWishlistClick} />
         </Holder>
         <Holder>
           <Item>Adess book</Item>
@@ -48,7 +48,7 @@ export const Account = () => {
   }
 
   function onWishlistClick() {
-    history.push("/account/wish-list")
+    history.push("/account/wish-list");
   }
 };
 

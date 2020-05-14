@@ -10,7 +10,7 @@ export const Details = styled.div`
   width: 70%;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-bottom: 40px;
   margin-left: 120px;
   margin-right: 130px;
 
@@ -53,11 +53,12 @@ export const Description = styled.div`
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 20px;
+  margin-top: 20px;
 `;
 
 export const InputWrapper = styled.div`
   width: 50%;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 
   ${mediaTablet(`
     width: 100%;
