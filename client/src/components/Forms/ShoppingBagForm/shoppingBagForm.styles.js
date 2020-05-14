@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
+import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
   width: 100%;
@@ -27,16 +27,29 @@ export const FormSubtitle = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
+  width: 100%;
+  margin-top: 50px;
   margin-bottom: 100px;
-  margin-top: 70px;
+  display: flex;
+  justify-content: center;
 
   ${mediaMobile(`
-  width: 80%;
   flex-direction: column;
   align-items: center;
   margin-bottom: 40px;
   `)}
 `;
+
+export const Holder = styled.div`
+  width: 25%;
+  margin: 0 20px;
+  
+  ${mediaTablet(`
+    width: 30%;
+  `)}
+  
+  ${mediaMobile(`
+    width: 80%;
+    margin-bottom: 20px;
+   `)}
+`
