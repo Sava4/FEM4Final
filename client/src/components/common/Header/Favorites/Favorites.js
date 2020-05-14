@@ -6,7 +6,7 @@ export const Favorites = () => {
   const count = useSelector(state => state.favorites.favArr.length) || 0;
 
   return (
-    <ServicesIcon to="/account/favorites">
+    <ServicesIcon to="/favorites">
       <FavoritesIcon />
       <span>({count})</span>
     </ServicesIcon>

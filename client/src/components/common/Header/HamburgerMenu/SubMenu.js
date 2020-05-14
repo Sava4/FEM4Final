@@ -1,16 +1,41 @@
-import React from "react";
-// import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 import styled from "styled-components";
 import arrow from "../../../Forms/OrderForm/arrow.png";
 
-export const SubMenu = props => {
-  const { activeCategory, categories, goBack } = props;
+import { MenuContext } from "./navState";
+import { setClearFilters } from "../../../../store/filters";
+
+const mapStateToProps = store => ({
+  filters: store.filters.menuState
+});
+
+export const SubMenu = connect(mapStateToProps, { setClearFilters })(props => {
+  const { activeCategory, categories, goBack, setClearFilters } = props;
+  const { toggleMenuMode } = useContext(MenuContext);
 
   const subCategories = categories
     .filter(category => category.parentId === activeCategory.id)
     .map(category => {
-      return <Item key={category.id}>{category.name}</Item>;
+      const { parentId, name, _id } = category;
+      const nameForDropMenu =
+        parentId === "by zarina"
+          ? name.replace("ZARINA", "").replace("By", "")
+          : name;
+      return (
+        <Item
+          key={_id}
+          onClick={() => {
+            setClearFilters();
+            goBack();
+            toggleMenuMode();
+          }}
+        >
+          <NavLink to={`/headerMenu/${name}`}>{nameForDropMenu}</NavLink>
+        </Item>
+      );
     });
 
   return (
@@ -22,7 +47,7 @@ export const SubMenu = props => {
       <SubCategory>{subCategories}</SubCategory>
     </Holder>
   );
-};
+});
 
 const Item = styled.div`
   margin-top: 22px;

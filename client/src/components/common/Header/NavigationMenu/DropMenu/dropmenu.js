@@ -10,7 +10,8 @@ const mapStateToProps = store => ({
 });
 
 export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
-  const { dropMenuArray } = props;
+  console.log(props);
+  const { dropMenuArray, setClearFilters } = props;
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =
     categoryArray.length &&
@@ -21,7 +22,7 @@ export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
           ? name.replace("ZARINA", "").replace("By", "")
           : name;
       return (
-        <DroMenuItem key={_id} onClick={() => props.setClearFilters()}>
+        <DroMenuItem key={_id} onClick={() => setClearFilters()}>
           <StyledLink to={`/headerMenu/${name}`}>{nameForDropMenu}</StyledLink>
         </DroMenuItem>
       );

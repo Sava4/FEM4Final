@@ -11,39 +11,38 @@ import {
   Image,
   ImageDescription
 } from "./search.styles";
+import { MobileSearch } from "./MobileSearch/MobileSearch";
 
 export const Search = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [timer, setTimer] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mediaMatch = window.matchMedia("(max-width: 767px)");
+  const [matches, setMatches] = useState(mediaMatch.matches);
 
   useEffect(() => {
-    if (search === "") {
-      setSearchResults([]);
-      return;
-    }
+    const onMediaChange = mediaMatchEvent => {
+      setMatches(mediaMatchEvent.matches);
+    };
+    mediaMatch.addListener(onMediaChange);
 
-    clearTimeout(timer);
-    const timeoutId = setTimeout(() => {
-      axios
-        .post("/products/search", {
-          query: search
-        })
-        .then(products => {
-          setSearchResults(products.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }, 1000);
-    setTimer(timeoutId);
-  }, [search]);
+    return () => {
+      mediaMatch.removeListener(onMediaChange);
+    };
+  });
 
   return (
     <Filter>
       <SearchIconWrapper>
         <SearchHolder>
-          <SearchIcon />
+          {matches ? (
+            <SearchIcon onClick={() => setMobileMenuOpen(true)} />
+          ) : (
+            <SearchIcon onClick={onSearch} />
+          )}
+          {mobileMenuOpen && (
+            <MobileSearch onClose={() => setMobileMenuOpen(false)} />
+          )}
           <SearchInput
             type="text"
             placeholder="Search"
@@ -61,7 +60,7 @@ export const Search = () => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={`/${product.imageUrls[0]}`} />
+                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );
@@ -73,6 +72,24 @@ export const Search = () => {
 
   function onSearchChange(event) {
     setSearch(event.target.value);
+  }
+
+  function onSearch() {
+    if (search === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    axios
+      .post("/products/search", {
+        query: search
+      })
+      .then(products => {
+        setSearchResults(products.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   function onProductSelect() {
