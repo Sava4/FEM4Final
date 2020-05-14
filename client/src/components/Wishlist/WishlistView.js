@@ -1,9 +1,8 @@
 import React from "react";
-
+import styled from "styled-components";
 import { Layout } from "../common/Layout";
 import { Wishlist } from "./Wishlist";
 import { PageHeader } from "../common/PageHeader/PageHeader";
-import styled from "styled-components";
 
 export const WishlistView = () => {
   return (

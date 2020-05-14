@@ -6,6 +6,7 @@ import arrow from "../common/Footer/footer-arrow.png";
 import { Layout } from "../common/Layout";
 import { Title } from "../PersonalDetails/PersonalDetails.styles";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
+import { UserLogout } from "../PersonalDetails/Logout";
 
 export const Account = () => {
   const user = useSelector(state => state.user);
@@ -35,6 +36,7 @@ export const Account = () => {
           <Item>Orders</Item>
           <Arrow />
         </Holder>
+        <UserLogout />
       </Container>
     </Layout>
   );

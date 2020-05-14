@@ -1,9 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
+import { UserLogout } from "../Logout";
+import { userLogoutAction } from "../../../store/login";
 
 export const SideBarMenu = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   return (
@@ -13,6 +17,7 @@ export const SideBarMenu = () => {
       <Item onClick={onWishlistClick}>Wishlist</Item>
       <Item onClick={onOrdersClick}>Orders</Item>
       <Item onClick={onAddressClick}>Address Book</Item>
+      <UserLogout onClick={onLogout} />
     </SideBar>
   );
 
@@ -34,6 +39,11 @@ export const SideBarMenu = () => {
 
   function onWishlistClick() {
     history.push("/account/wish-list");
+  }
+
+  function onLogout() {
+    dispatch(userLogoutAction());
+    history.push("/");
   }
 };
 

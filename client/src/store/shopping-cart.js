@@ -1,6 +1,7 @@
+import axios from "axios";
 import { logoutAction } from "./login";
 import { setAuthorizationToken } from "./login";
-import axios from "axios";
+import { USER_LOGOUT } from "./login";
 
 const ADD_LOC_SHOPPING_CART = "ADD_LOC_SHOPPING_CART";
 const CLEAR_LOCAL_CART = "CLEAR_LOCAL_CART";
@@ -107,6 +108,8 @@ const setSrvCart = (state = initialState.srvCart, action) => {
   switch (action.type) {
     case SET_SERVER_CART:
       return [...action.payload];
+    case USER_LOGOUT:
+      return [];
     default:
       return state;
   }

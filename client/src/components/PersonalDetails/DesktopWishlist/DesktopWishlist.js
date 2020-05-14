@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styledComponents/MediaBreakpointsMixin";
 import { useSelector } from "react-redux";
 import { Container, Title } from "../PersonalDetails.styles";
 import { Layout } from "../../common/Layout";
@@ -28,8 +31,8 @@ const Details = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 40px;
-  margin-left: 120px;
-  margin-right: 130px;
+  margin-left: 100px;
+  margin-right: 100px;
 
   ${mediaTablet(`
     margin-left: 50px;
@@ -40,4 +43,4 @@ const Details = styled.div`
     width: inherit;
     margin: 20px 20px 0 20px;
   `)}
-`
+`;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { USER_LOGOUT } from "./login";
 
 const USER = "USER";
 const USER_UPDATE = "USER_UPDATE";
@@ -29,6 +30,8 @@ export function userReducer(store = initialState, action) {
     case USER_UPDATE:
       return action.payload;
     case LOGOUT:
+      return null;
+    case USER_LOGOUT:
       return null;
     default:
       return store;

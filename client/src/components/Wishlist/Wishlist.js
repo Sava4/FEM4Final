@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { ArrowImg, Continue } from "../ShoppingBag/shoppingBag.style";
 import arrow from "../ShoppingBag/arrow.png";
 import { useHistory } from "react-router";
-import { PageHeader } from "../common/PageHeader/PageHeader";
 import { mediaQueryMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import { Button } from "../common/Button/Button";
 import { Spinner } from "../Spinner/Spinner";
