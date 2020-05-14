@@ -5,19 +5,17 @@ export const Input = props => {
   const [filled, setFilled] = useState(Boolean(props.value));
 
   return (
-    <Holder>
-      <LabelInput>
-        <InputText className={filled ? "active" : ""}>{props.label}</InputText>
-        <InputElement
-          type={props.type}
-          value={props.value}
-          invalid={props.invalid}
-          onBlur={onBlur}
-          onChange={props.onChange}
-          onFocus={onFocus}
-        />
-      </LabelInput>
-    </Holder>
+    <LabelInput>
+      <InputText className={filled ? "active" : ""}>{props.label}</InputText>
+      <InputElement
+        type={props.type}
+        value={props.value}
+        invalid={props.invalid}
+        onBlur={onBlur}
+        onChange={props.onChange}
+        onFocus={onFocus}
+      />
+    </LabelInput>
   );
 
   function onBlur(event) {

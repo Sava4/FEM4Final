@@ -71,6 +71,7 @@ export const InputWrapper = styled.div`
 export const Holder = styled.div`
   display: flex;
   position: relative;
+  margin-bottom: 25px;
 `;
 
 export const Edit = styled.div`
