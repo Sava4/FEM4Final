@@ -17,7 +17,7 @@ export const SideBarMenu = () => {
       <Item onClick={onWishlistClick}>Wishlist</Item>
       <Item onClick={onOrdersClick}>Orders</Item>
       <Item onClick={onAddressClick}>Address Book</Item>
-      <UserLogout onClick={onLogout} />
+      <UserLogout onClick={Logout} />
     </SideBar>
   );
 
@@ -41,7 +41,7 @@ export const SideBarMenu = () => {
     history.push("/account/wish-list");
   }
 
-  function onLogout() {
+  function Logout() {
     dispatch(userLogoutAction());
     history.push("/");
   }
