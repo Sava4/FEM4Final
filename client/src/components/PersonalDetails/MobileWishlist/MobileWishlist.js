@@ -12,7 +12,6 @@ import { Layout } from "../../common/Layout";
 import { MediaRouter } from "../MobilePersonalInformation/MobilePersonalInformation";
 import { Wishlist } from "../..";
 import { DesktopWishlist } from "../DesktopWishlist/DesktopWishlist";
-// import {WishList} from "../WishList/WishList";
 
 export const MobileWishlist = () => {
   const user = useSelector(state => state.user);
@@ -25,7 +24,6 @@ export const MobileWishlist = () => {
         <ItemName>Wishlist</ItemName>
         <Arrow onClick={onClick} />
       </ItemHolder>
-      {/*<WishList/>*/}
       <Holder>
         <Wishlist />
       </Holder>
@@ -43,4 +41,7 @@ export const WishlistRouter = () => {
 
 const Holder = styled.div`
   margin: 0 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

@@ -1,11 +1,11 @@
 import React from "react";
+import styled from "styled-components";
+import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
 import { useSelector } from "react-redux";
 import { Container, Title } from "../PersonalDetails.styles";
 import { Layout } from "../../common/Layout";
 import { SideBarMenu } from "../SideBarMenu/SideBarMenu";
 import { Wishlist } from "../..";
-import { Details } from "../PersonalInformation/personalInformation.styles";
-// import {WishList} from "../WishList/WishList";
 
 export const DesktopWishlist = () => {
   const user = useSelector(state => state.user);
@@ -14,7 +14,6 @@ export const DesktopWishlist = () => {
       <Title>Welcome to your account, {user.login}!</Title>
       <Container>
         <SideBarMenu />
-        {/*<WishList/>*/}
         <Details>
           <Wishlist />
         </Details>
@@ -22,3 +21,23 @@ export const DesktopWishlist = () => {
     </Layout>
   );
 };
+
+const Details = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  margin-left: 120px;
+  margin-right: 130px;
+
+  ${mediaTablet(`
+    margin-left: 50px;
+    margin-right: 50px;
+  `)}
+
+  ${mediaMobile(`
+    width: inherit;
+    margin: 20px 20px 0 20px;
+  `)}
+`
