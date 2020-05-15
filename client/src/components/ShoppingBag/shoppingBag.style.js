@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const Continue = styled.div`
   align-self: flex-start;
-  margin-top: 33px;
+  margin-top: 15px;
   cursor: pointer;
 `;
 
@@ -50,7 +50,6 @@ export const BagTotals = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  height: 505px;
   padding-left: 42px;
   border-left: 1px solid #a7aabb;
   vertical-align: middle;

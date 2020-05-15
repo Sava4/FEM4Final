@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { InputWrapper, Input, ErrorMessage } from "./inputPassword.styles";
+import { ErrorMessage } from "../InputEmail/InputEmail";
+import { Input } from "../../common/Input/Input";
 
 export const InputPassword = props => {
   const [password, setPassword] = useState(props.value);
@@ -10,10 +11,10 @@ export const InputPassword = props => {
   });
 
   return (
-    <InputWrapper>
+    <>
       <Input
         type="password"
-        placeholder={props.placeholder}
+        label="Password"
         value={password}
         invalid={!passwordValidation}
         onChange={onChange}
@@ -24,7 +25,7 @@ export const InputPassword = props => {
           The password is not correct. Please, try again
         </ErrorMessage>
       )}
-    </InputWrapper>
+    </>
   );
 
   function onChange(event) {

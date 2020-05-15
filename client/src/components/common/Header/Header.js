@@ -19,12 +19,14 @@ import {
   Navigation,
   NavState,
   LoginForm,
-  RegisterForm
+  RegisterForm,
+  CreateAccountForm
 } from "../Header/index";
 
 export const HeaderContent = () => {
   const [isModalOpen, toggleModal] = useState(false);
   const [isRegisterOpen, toggleRegistration] = useState(false);
+  const [isSuccess, toggleSuccess] = useState(false);
   const user = useSelector(state => state.user);
   const history = useHistory();
 
@@ -49,7 +51,11 @@ export const HeaderContent = () => {
             <RegisterForm
               onClose={() => toggleRegistration(false)}
               onLogin={GoBackToLogin}
+              onRegister={onRegisterSuccess}
             />
+          )}
+          {isSuccess && (
+            <CreateAccountForm onClose={() => toggleSuccess(false)} />
           )}
           <Favorites />
           <ShoppingBag />
@@ -65,6 +71,12 @@ export const HeaderContent = () => {
   function onRegister() {
     toggleModal(false);
     toggleRegistration(true);
+  }
+
+  function onRegisterSuccess() {
+    toggleRegistration(false);
+    toggleSuccess(true);
+    console.log("done");
   }
 
   function GoBackToLogin() {

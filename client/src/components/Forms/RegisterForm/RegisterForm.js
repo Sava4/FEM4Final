@@ -4,25 +4,21 @@ import {
   FormWrapper,
   FormTitle,
   ErrorMessage,
-  FormRegister,
   ContentWrapper,
   LeftContent,
-  Input,
   RightContent,
-  InputPasswordWrapper,
-  InputPassword,
-  InputBottomText,
   FormButtonWrapper,
   GoBackWrapper,
   GoBackText
 } from "./registerForm.styles";
-
 import { GoBackImage } from "../OrderForm/orderForm.styles";
+import { InputHolder } from "../LoginForm/loginForm.styles";
 import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
+import { Input } from "../../common/Input/Input";
 
 export const RegisterForm = props => {
-  const { onClose, onLogin } = props;
+  const { onClose, onRegister, onLogin } = props;
 
   const [error, setError] = useState([]);
 
@@ -57,75 +53,79 @@ export const RegisterForm = props => {
             })}
           </ErrorMessage>
         )}
-        <FormRegister>
-          <ContentWrapper>
-            <LeftContent>
+        <ContentWrapper>
+          <LeftContent>
+            <InputHolder>
               <Input
-                value={login}
                 type="text"
-                placeholder="Login *"
-                onChange={onLoginChange}
+                label="Login *"
+                value={login}
                 invalid={!loginValidation}
+                onChange={onLoginChange}
                 onBlur={onLoginBlur}
               />
+            </InputHolder>
+            <InputHolder>
               <Input
-                value={firstName}
                 type="text"
-                placeholder="First Name *"
-                onChange={onFirstNameChange}
+                label="First Name *"
+                value={firstName}
                 invalid={!firstNameValidation}
+                onChange={onFirstNameChange}
                 onBlur={onFirstNameBlur}
               />
+            </InputHolder>
+            <InputHolder>
               <Input
-                value={lastName}
                 type="text"
-                placeholder="Last Name *"
-                onChange={onLastNameChange}
+                label="Last Name *"
+                value={lastName}
                 invalid={!lastNameValidation}
+                onChange={onLastNameChange}
                 onBlur={onLastNameBlur}
               />
-            </LeftContent>
-            <RightContent>
+            </InputHolder>
+          </LeftContent>
+          <RightContent>
+            <InputHolder>
               <Input
-                value={email}
                 type="email"
-                placeholder="Email *"
-                onChange={onEmailChange}
+                label="Email *"
+                value={email}
                 invalid={!emailValidation}
+                onChange={onEmailChange}
                 onBlur={onEmailBlur}
               />
-              <InputPasswordWrapper>
-                <InputPassword
-                  value={password}
-                  type="password"
-                  placeholder="Password *"
-                  onChange={onPasswordChange}
-                  invalid={!passwordValidation}
-                  onBlur={onPasswordBlur}
-                />
-                <InputBottomText>
-                  At least 7 characters long, containing uppercase and lowercase
-                  letters and numbers.
-                </InputBottomText>
-              </InputPasswordWrapper>
+            </InputHolder>
+            <InputHolder>
               <Input
-                value={confirmPassword}
                 type="password"
-                placeholder="Confirm Password *"
-                onChange={onConfirmPasswordChange}
+                label="Password *"
+                value={password}
+                invalid={!passwordValidation}
+                onChange={onPasswordChange}
+                onBlur={onPasswordBlur}
+              />
+            </InputHolder>
+            <InputHolder>
+              <Input
+                type="password"
+                label="Confirm Password *"
+                value={confirmPassword}
                 invalid={!confirmPasswordValidation}
+                onChange={onConfirmPasswordChange}
                 onBlur={onConfirmPasswordBlur}
               />
-            </RightContent>
-          </ContentWrapper>
-          <FormButtonWrapper>
-            <Button value="Register" onClick={onChange} />
-            <GoBackWrapper onClick={onLogin}>
-              <GoBackImage />
-              <GoBackText>Go back to Login</GoBackText>
-            </GoBackWrapper>
-          </FormButtonWrapper>
-        </FormRegister>
+            </InputHolder>
+          </RightContent>
+        </ContentWrapper>
+        <FormButtonWrapper>
+          <Button value="Register" onClick={onChange} />
+          <GoBackWrapper onClick={onLogin}>
+            <GoBackImage />
+            <GoBackText>Go back to Login</GoBackText>
+          </GoBackWrapper>
+        </FormButtonWrapper>
       </FormWrapper>
     </Modal>
   );
@@ -253,7 +253,7 @@ export const RegisterForm = props => {
         enabled: true
       })
       .then(response => {
-        onClose();
+        onRegister();
       })
       .catch(error => {
         const errors = Object.keys(error.response.data).map(key => {

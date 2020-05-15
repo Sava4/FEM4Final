@@ -90,7 +90,28 @@ export const CheckoutForm = () => {
       />
     );
   });
-
+  const newOrder = {
+    customerId: "",
+    deliveryAddress: {
+      country: "Ukraine",
+      city: shippingInformation.shipping,
+      location: shippingInformation.location,
+      address: contactInformation.address
+    },
+    email: contactInformation.email,
+    mobile: contactInformation.phone,
+    firstName: contactInformation.firstName,
+    lastName: contactInformation.lastName,
+    getMyself: contactInformation.getMyself,
+    contact: contactInformation,
+    payment: paymentInformation,
+    shipping: shippingInformation.shipping,
+    paymentInfo: paymentInformation.payment,
+    status: "not shipped",
+    letterSubject: "Thank you for order! You are welcome!",
+    letterHtml:
+      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
+  };
   const onSubmitContact = formData => {
     setContactInformation(formData);
     handleToggleContact();
@@ -121,28 +142,6 @@ export const CheckoutForm = () => {
       .catch(err => console.error("Request Error", err));
   };
 
-  const newOrder = {
-    customerId: "5d99ce196d40fb1b747bc5f5",
-    deliveryAddress: {
-      country: "Ukraine",
-      city: shippingInformation.shipping,
-      location: shippingInformation.location,
-      address: contactInformation.address
-    },
-    email: contactInformation.email,
-    mobile: contactInformation.phone,
-    firstName: contactInformation.firstName,
-    lastName: contactInformation.lastName,
-    getMyself: contactInformation.getMyself,
-    contact: contactInformation,
-    payment: paymentInformation,
-    shipping: shippingInformation.shipping,
-    paymentInfo: paymentInformation.payment,
-    status: "not shipped",
-    letterSubject: "Thank you for order! You are welcome!",
-    letterHtml:
-      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>"
-  };
   return cartProps.length > 0 ? (
     loading ? (
       <CheckoutWrapper spinner={"spinner"}>

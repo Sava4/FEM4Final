@@ -34,20 +34,12 @@ export const StaticPage = () => {
         <Fragment>
           <Page>
             <PageHeader>Find your store</PageHeader>
-            <AddressesSelect />
+
             <Mapbox />
           </Page>
         </Fragment>
       );
-    if (url === "gift-cards")
-      return (
-        <Fragment>
-          <Page>
-            <PageHeader>Gift cards</PageHeader>
-            <GiftCard />
-          </Page>
-        </Fragment>
-      );
+    if (url === "gift-cards") return <GiftCard />;
     return (
       <Fragment>
         <Page>

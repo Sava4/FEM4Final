@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   Description,
   Details,
@@ -11,10 +10,13 @@ import {
 } from "../PersonalInformation/personalInformation.styles";
 import { Button } from "../../common/Button/Button";
 import { Input } from "../../common/Input/Input";
+import { updatePass } from "../../../store/user";
+import { UpdateInformationForm } from "../../Forms/UpdateInformationForm/UpdateInformationForm";
 
 export const ChangePassword = props => {
-  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const [password, setPassword] = useState({});
+  const [isOpen, toggleModal] = useState(false);
 
   return (
     <Details>
@@ -31,7 +33,6 @@ export const ChangePassword = props => {
           <Input
             type="password"
             label="Current Password *"
-            value={user.password}
             onChange={handlePasswordChange("password")}
           />
           <Edit />
@@ -50,6 +51,9 @@ export const ChangePassword = props => {
         </Holder>
         <ButtonWrapper>
           <Button value={"Save Changes"} onClick={changePassword} />
+          {isOpen && (
+            <UpdateInformationForm onClose={() => toggleModal(false)} />
+          )}
         </ButtonWrapper>
       </InputWrapper>
     </Details>
@@ -57,19 +61,19 @@ export const ChangePassword = props => {
 
   function handlePasswordChange(key) {
     return function(event) {
-      password[key] = event.target.value;
-      setPassword(password);
+      setPassword({
+        ...password,
+        [key]: event.target.value
+      });
     };
   }
 
   function changePassword() {
-    return axios
-      .put("http://localhost:5000/customers/password", password)
-      .then(updatedPassword => console.log(updatedPassword))
-      .catch(error => console.log(error));
+    dispatch(updatePass(password));
+    toggleModal(!isOpen);
   }
 };
 
 const ButtonWrapper = styled.div`
-  margin-top: 25px;
+  margin-top: 50px;
 `;

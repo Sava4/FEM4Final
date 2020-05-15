@@ -52,7 +52,7 @@ const CustomerSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    default: null
   }
 });
 

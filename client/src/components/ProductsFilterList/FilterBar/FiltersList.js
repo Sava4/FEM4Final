@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
-import { setTogleShown } from "./../../../store/filters";
-import { setDeleteFilter } from "./../../../store/filters";
+import { setToggleShown } from "../../../store/filters";
+import { setDeleteFilter } from "../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PriсeRange } from "./PriсeRange";
@@ -14,7 +14,7 @@ const mapStateToProps = store => ({
 });
 
 export const FiltersList = connect(mapStateToProps, {
-  setTogleShown,
+  setToggleShown,
   setDeleteFilter
 })(props => {
   // const priceIsShown = props.filtersBlockState["price"];
@@ -30,7 +30,7 @@ export const FiltersList = connect(mapStateToProps, {
 
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    props.setTogleShown(e.target.parentNode.id);
+    props.setToggleShown(e.target.parentNode.id);
   };
 
   let filters = filtredBy.map(item => {
@@ -40,9 +40,9 @@ export const FiltersList = connect(mapStateToProps, {
         <FilterType id={item}>
           <p>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="midle" onClick={handleChange} />
+            <ExpandLessIcon fontSize="default" onClick={handleChange} />
           ) : (
-            <ExpandMoreIcon fontSize="midle" onClick={handleChange} />
+            <ExpandMoreIcon fontSize="default" onClick={handleChange} />
           )}
         </FilterType>
         {isShown ? (

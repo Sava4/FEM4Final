@@ -22,10 +22,15 @@ export const FormLogIn = styled.div`
   margin-bottom: 70px;
 
   ${mediaMobile(`
-  width: 80%;
+  width: 85%;
   margin: 0 0 50px 0;
   align-items: center;
   `)}
+`;
+
+export const InputHolder = styled.div`
+  width: 100%;
+  margin-bottom: 25px;
 `;
 
 export const Line = styled.div`
@@ -35,7 +40,7 @@ export const Line = styled.div`
   border-right: 1px solid #a7aabb;
 
   ${mediaMobile(`
-  width: 70%;
+  width: 75%;
   height: 1px;
   border-bottom: 1px solid black;
   `)}
@@ -50,7 +55,7 @@ export const FormRegister = styled.div`
   margin-bottom: 70px;
 
   ${mediaMobile(`
-  width: 80%;
+  width: 85%;
   margin: 0 0 50px 0;
   align-items: center;
   `)}
@@ -65,16 +70,21 @@ export const FormTitle = styled.span`
 
   ${mediaMobile(`
   margin: 50px 0 15px 0;
+  font-size: 16px;
   `)}
 `;
 
 export const FormSubtitle = styled.span`
   font-size: 12px;
   letter-spacing: 0.5px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 export const FormRegisterSubtitle = styled(FormSubtitle)`
   line-height: 30px;
+
+  ${mediaMobile(`
+    margin-left: 12px;
+  `)}
 `;
 
 export const CheckboxText = styled.span`
