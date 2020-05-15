@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LabelInput = styled.label`
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 3px;
 `;
 
 export const InputElement = styled.input`

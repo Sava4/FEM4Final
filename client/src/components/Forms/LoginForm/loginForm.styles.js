@@ -28,6 +28,11 @@ export const FormLogIn = styled.div`
   `)}
 `;
 
+export const InputHolder = styled.div`
+  width: 100%;
+  margin-bottom: 25px;
+`;
+
 export const Line = styled.div`
   display: flex;
   align-self: center;
@@ -72,7 +77,7 @@ export const FormTitle = styled.span`
 export const FormSubtitle = styled.span`
   font-size: 12px;
   letter-spacing: 0.5px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 export const FormRegisterSubtitle = styled(FormSubtitle)`
   line-height: 30px;

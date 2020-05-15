@@ -12,8 +12,10 @@ import {
   ImageDescription
 } from "./search.styles";
 import { MobileSearch } from "./MobileSearch/MobileSearch";
+import { useComponentVisible } from "./utils";
 
 export const Search = () => {
+  const { ref, visible } = useComponentVisible(true);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,6 +53,7 @@ export const Search = () => {
           />
         </SearchHolder>
       </SearchIconWrapper>
+
       {searchResults.length > 0 && (
         <PreviewWrapper>
           {searchResults.map((product, index) => {

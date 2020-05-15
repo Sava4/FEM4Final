@@ -75,5 +75,5 @@ export const ChangePassword = props => {
 };
 
 const ButtonWrapper = styled.div`
-  margin-top: 25px;
+  margin-top: 50px;
 `;

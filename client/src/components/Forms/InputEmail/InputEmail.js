@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { InputWrapper, Input, ErrorMessage } from "./inputEmail.styles";
+import styled from "styled-components";
+import { Input } from "../../common/Input/Input";
 
 export const InputEmail = props => {
   const error = useSelector(state => {
@@ -10,19 +11,19 @@ export const InputEmail = props => {
   const [emailValidation, setEmailValidation] = useState(true);
 
   return (
-    <InputWrapper>
+    <>
       <Input
         type="email"
-        placeholder={props.placeholder}
+        label="Email"
         value={email}
-        onChange={onChange}
         invalid={!emailValidation}
+        onChange={onChange}
         onBlur={onEmailBlur}
       />
       {error && error.loginOrEmail && (
         <ErrorMessage>The email is not correct. Please, try again</ErrorMessage>
       )}
-    </InputWrapper>
+    </>
   );
 
   function onChange(event) {
@@ -40,3 +41,8 @@ export const InputEmail = props => {
     setEmailValidation(status);
   }
 };
+
+export const ErrorMessage = styled.span`
+  font-size: 10px;
+  color: red;
+`;

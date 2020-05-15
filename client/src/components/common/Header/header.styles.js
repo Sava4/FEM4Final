@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Line = styled.div`
   background-image: url(${headerDesign});
-  background-size: contain;
+  background-size: cover;
   height: 11px;
   width: 100%;
 `;

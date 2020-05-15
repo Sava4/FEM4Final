@@ -15,7 +15,7 @@ export const FooterMain = styled.div`
   height: 11px;
   width: 100%;
   background-image: url(${headerDesign});
-  background-size: contain;
+  background-size: cover;
 `;
 
 export const FooterInfo = styled.div`
