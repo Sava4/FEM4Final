@@ -1,5 +1,11 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import modalClose from "./modalCloseBtn.png";
+
+export const OverflowBody = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`;
 
 export const CreateModal = styled.div`
   display: flex;
@@ -10,7 +16,7 @@ export const CreateModal = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 170px;
-  overflow: auto;
+  overflow: hidden;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 `;
