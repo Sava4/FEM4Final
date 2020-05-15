@@ -25,14 +25,15 @@ export function AddSubscriber(props) {
     //ПРОВЕРКА ВВОДА
 
     axios
-      .post("/customers/login", {
-        loginOrEmail: "customer@gmail.com",
-        password: "1111111"
+      .post("http://localhost:5000/customers/login", {
+        loginOrEmail: "alexander.savchenko@djangostars.com",
+        password: "pyg6MW3mi7HRuH9"
       })
       .then(response => {
         let token = response.data.token;
+        console.log("TCL: AddSubscriber -> token", token)
         axios
-          .post("/subscribers", newSubscriber, {
+          .post("http://localhost:5000/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }
           })
           .then(newSubscriber => {
@@ -40,15 +41,17 @@ export function AddSubscriber(props) {
             console.log(newSubscriber);
             // setEmail(undefined)
             // alert(email);
-            setTimeout(() => setSignup("ПОДПИСКА ДОБАВЛЕНА"), 1500);
-            setTimeout(() => setSignup("Sign Up"), 3000);
+            setTimeout(() => setSignup("New Subscriber added"), 1500);
+            setTimeout(() => setSignup("Check your mail"), 2500);
+            setTimeout(() => setSignup("Sign Up"), 3500);
             reset();
           })
           .catch(err => {
             console.log("error add");
             console.log(err.response);
-            setTimeout(() => setSignup("НЕВЕРНЫЙ АДРЕС"), 1500);
-            setTimeout(() => setSignup("Sign Up"), 3000);
+            setTimeout(() => setSignup("e-mail already exist"), 1500);
+            setTimeout(() => setSignup("try another e-mail"), 2500);
+            setTimeout(() => setSignup("Sign Up"), 3500);
             reset();
             // setTimeout(setSignup("Sign Up"), 50);
             // setEmail(undefined)

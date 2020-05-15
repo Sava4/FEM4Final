@@ -10,9 +10,9 @@ import { XMasonry, XBlock } from "react-xmasonry"; // Imports JSX plain sources
 
 export const HomepageCategories = () => {
   let [categories3, setCategories3] = useState([]);
-  let get2;
+ 
   useEffect(() => {
-    get2 = `/catalog/`;
+    let get2 = `/catalog/`;
     axios
       .get(get2)
       .then(result => {
@@ -22,7 +22,7 @@ export const HomepageCategories = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [get2]);
+  }, []);
 
   let categories4 =
     categories3 &&

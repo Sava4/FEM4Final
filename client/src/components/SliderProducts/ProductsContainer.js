@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useParams, useLocation, withRouter } from "react-router";
 import { connect } from "react-redux";
 import querystring from "query-string";

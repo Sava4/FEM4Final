@@ -23,8 +23,7 @@ export const Paginator = ({
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  let apiCategory2;
-  apiCategory && (apiCategory2 = apiCategory);
+
 
   let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
   let [portionNumber, setPortionNumber] = useState(1); // номер порции начальный локальный стейт
@@ -33,7 +32,7 @@ export const Paginator = ({
   let rightPortionPageNumber = portionNumber * portionSize; //крайняя цифра порции справа
 
   const handleClickNext = e => {
-    +currentPage == +pagesCount && e.preventDefault();
+    +currentPage === +pagesCount && e.preventDefault();
   };
   const handleClickPrev = e => {
     +currentPage <= 1 && e.preventDefault();
@@ -41,7 +40,7 @@ export const Paginator = ({
 
   return (
     <div className={styles.paginator}>
-      {info == 1 && (
+      {info === 1 && (
         <span style={{ margin: "40px" }}>
           ProductsQuantity {productsQuantity} Pages {pagesCount}
         </span>
@@ -181,7 +180,7 @@ export const Paginator = ({
               <span
                 className={cn(
                   {
-                    [styles.selected_Page]: currentPage == pageNumber
+                    [styles.selected_Page]: currentPage === pageNumber
                   },
                   styles.page_Number
                 )}
