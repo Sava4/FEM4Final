@@ -38,7 +38,7 @@ const ProductsContainer = props => {
 
   const query = querystring.stringify(props.filters, { arrayFormat: "comma" });
   const categoryQuery = `${query}`;
-  // console.log("TCL: categoryQuery", categoryQuery);
+  console.log("TCL: categoryQuery", categoryQuery);
   const category2 = `&categories=${category}`;
   // let category3
   const apiCategory = categoryQuery + category2;
