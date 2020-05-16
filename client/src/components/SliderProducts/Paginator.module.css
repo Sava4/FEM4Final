@@ -4,22 +4,22 @@
   position: relative;
   left: 5%;
 }
-.upper{
+.upper {
   position: relative;
-  display: inline-block; 
+  display: inline-block;
   left: 73%;
 }
-.bottom{ 
-    position: relative;  
-    display: inline-block; 
-    margin-left: 3%;
+.bottom {
+  position: relative;
+  display: inline-block;
+  margin-left: 3%;
 }
 @media screen and (max-width: 1050px) {
-  .bottom { 
+  .bottom {
     margin: auto;
     text-align: center;
     left: -76px;
-    bottom: 33px;  
+    bottom: 33px;
     display: block;
     position: relative;
   }
@@ -66,7 +66,7 @@
   cursor: pointer;
 }
 @media screen and (max-width: 1050px) {
-  .load_more {   
+  .load_more {
     display: block;
     margin: auto;
     text-align: center;
@@ -94,13 +94,12 @@
   border-width: 0 3px 3px 0;
   display: inline-block;
   margin-left: 3%;
-  position: relative; 
+  position: relative;
   padding: 10px;
   cursor: pointer;
- 
 }
 @media screen and (max-width: 1050px) {
-  .top2 {    
+  .top2 {
     display: block;
     width: 50px;
     height: 50px;
@@ -137,12 +136,12 @@
   z-index: 10;
 }
 @media screen and (max-width: 1050px) {
-  .onTop {  
+  .onTop {
     margin-left: 89%;
   }
 }
 @media screen and (max-width: 750px) {
-  .onTop {  
+  .onTop {
     margin-left: 87%;
   }
 }

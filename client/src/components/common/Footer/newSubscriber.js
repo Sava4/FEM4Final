@@ -31,7 +31,7 @@ export function AddSubscriber(props) {
       })
       .then(response => {
         let token = response.data.token;
-        console.log("TCL: AddSubscriber -> token", token)
+        console.log("TCL: AddSubscriber -> token", token);
         axios
           .post("http://localhost:5000/subscribers", newSubscriber, {
             headers: { Authorization: `${token}` }

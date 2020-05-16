@@ -23,15 +23,15 @@ export const Container = styled.div`
 `;
 
 export const SlidersContainer = styled.div`
-display: flex;
-flex-wrap: no-wrap;
-flex-direction: raw;
-position: relative;
-width: 60%;
-${mediaMobile(`
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: raw;
+  position: relative;
+  width: 60%;
+  ${mediaMobile(`
 width: 95%;
 `)}
-`
+`;
 export const SliderItemPreviews = styled.div`
 width: 4%,
 marginTop: 20px,
@@ -41,7 +41,7 @@ display: inline-block,
 // ${mediaMobile(`
 // width: 9%;
 // `)}
-`
+`;
 export const SliderItemMain = styled.div`
 width: 95%,
 marginTop: 20px,
@@ -52,7 +52,7 @@ display: inline-block,
 // ${mediaMobile(`
 // width: 90%;
 // `)}
-`
+`;
 
 export const Wrapper = styled.div`
   margin-top: 20px;

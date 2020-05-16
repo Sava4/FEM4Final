@@ -19,15 +19,10 @@ export const ProductsPagination = ({
   category2,
   category,
   ...props
-}) => { 
- 
+}) => {
   return (
-    <div>  
-      <div
-        className={cn(
-          styles.upper     
-        )}
-      >
+    <div>
+      <div className={cn(styles.upper)}>
         <Paginator
           // info={1}
           currentPage={currentPage}
@@ -48,7 +43,7 @@ export const ProductsPagination = ({
           justifyContent: "center",
           width: "100%",
           minWidth: "260px",
-          margin: "0 auto",
+          margin: "0 auto"
         }}
       >
         {products.map((p, index) => (
@@ -60,14 +55,14 @@ export const ProductsPagination = ({
               itemNo={`${p.itemNo}`}
               style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "center"
               }}
               interpretation={"carousel"}
               img={p.imageUrls}
             />
           </div>
-        ))}    
-      </div>    
+        ))}
+      </div>
       <LoadMore
         currentPage={currentPage}
         onPageChanged={onPageChanged}
@@ -77,12 +72,8 @@ export const ProductsPagination = ({
         products={products}
         pageSize={pageSize}
         category={category}
-      />  
-      <div
-        className={cn(
-          styles.bottom      
-        )}
-      >
+      />
+      <div className={cn(styles.bottom)}>
         <Paginator
           currentPage={currentPage}
           onPageChanged={onPageChanged}
@@ -94,7 +85,7 @@ export const ProductsPagination = ({
           category2={category2}
           categoryQuery={categoryQuery}
         />
-      </div>    
+      </div>
     </div>
   );
 };

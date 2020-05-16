@@ -24,7 +24,6 @@ export const Paginator = ({
     pages.push(i);
   }
 
-
   let portionCount = Math.ceil(pagesCount / portionSize); // количество порций
   let [portionNumber, setPortionNumber] = useState(1); // номер порции начальный локальный стейт
 
