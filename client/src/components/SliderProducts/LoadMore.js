@@ -16,14 +16,6 @@ export const LoadMore = ({
 }) => {
   return (
     <>
-      {/* <NavLink
-        onClick={(e) => {
-          // handleClickNext(e);
-          // onTop();
-        }}
-        to={`/categories/${category}/filter?${apiCategory}&startPage=${currentPage},${+currentPage +
-          1}&perPage=${pageSize}`}
-      > */}
       <div
         className={cn(
           {
@@ -39,20 +31,22 @@ export const LoadMore = ({
       >
         Load {pageSize} more products
       </div>
-
       <div
-        className={cn(
-          {
-            [styles.active]: +currentPage < productsQuantity
-          },
-          styles.arrow,
-          styles.top
-        )}
+        className={cn(styles.top2)}
         onClick={e => {
           onTop();
         }}
-      ></div>
-      {/* </NavLink> */}
+      >
+        <div
+          className={cn(
+            {
+              [styles.active]: +currentPage < productsQuantity
+            },
+            styles.arrow,
+            styles.top
+          )}
+        />
+      </div>
     </>
   );
 };

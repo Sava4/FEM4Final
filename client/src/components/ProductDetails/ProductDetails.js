@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Fragment,
+  MediaQuery
+} from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToLocalCart, addToSrvCart } from "../../store/shopping-cart";
@@ -24,7 +30,8 @@ import {
   UL,
   LI,
   Vendor,
-  Name
+  Name,
+  SlidersContainer
 } from "./productDetails.styles";
 import ReactImageZoom from "react-image-zoom";
 import { Button } from "../common/Button/Button";
@@ -112,11 +119,13 @@ const Details1 = props => {
   let imagesSlider = imagesArr.map(image => {
     const propsss = {
       zoomPosition: "original",
-      width: 600,
+      width: 500,
       img: `${image}`
     };
     return (
       <div key={image}>
+        {/* <MediaQuery query='(min-width: 800px)'>   */}
+
         <ReactImageZoom
           {...propsss}
           style={{
@@ -125,6 +134,7 @@ const Details1 = props => {
             boxSizing: "border-box"
           }}
         />
+        {/* </MediaQuery> */}
       </div>
     );
   });
@@ -176,52 +186,52 @@ const Details1 = props => {
           onClose={() => toggleModal(false)}
         />
       )}
-
-      <div
-        className="carousel_wrapper"
-        style={{
-          height: ``,
-          width: `5%`,
-          marginTop: `20px`,
-          marginRight: `5px`,
-          cursor: `pointer`
-        }}
-      >
-        <Slider
-          asNavFor={nav1}
-          ref={slider => (slider2.current = slider)}
-          slidesToShow={avatars}
-          slidesToScroll={1}
-          focusOnSelect={true}
-          vertical={true}
-          style={{ boxSizing: "border-box" }}
+      <SlidersContainer>
+        <div
+          style={{
+            height: ``,
+            width: `70px`,
+            marginTop: `20px`,
+            marginRight: `5px`,
+            cursor: `pointer`,
+            position: `absolute`,
+            zIndex: `10`
+          }}
         >
-          {imagesSliderPreview}
-        </Slider>
-      </div>
+          <Slider
+            asNavFor={nav1}
+            ref={slider => (slider2.current = slider)}
+            slidesToShow={avatars}
+            slidesToScroll={1}
+            focusOnSelect={true}
+            vertical={true}
+            style={{ boxSizing: "border-box" }}
+          >
+            {imagesSliderPreview}
+          </Slider>
+        </div>
 
-      <div
-        className="carousel_wrapper"
-        style={{
-          height: ``,
-          width: `50%`,
-          marginTop: `20px`,
-          marginRight: `20px`,
-          boxSizing: `border-box`,
-          cursor: `zoom-in`
-        }}
-      >
-        <Slider
-          asNavFor={nav2}
-          ref={slider => (slider1.current = slider)}
-          speed={0.1}
-          arrows={false}
-          draggable={false}
+        <div
+          style={{
+            height: ``,
+            width: `100%`,
+            marginTop: `20px`,
+            marginRight: `20px`,
+            boxSizing: `border-box`,
+            cursor: `zoom-in`
+          }}
         >
-          {imagesSlider}
-        </Slider>
-      </div>
-
+          <Slider
+            asNavFor={nav2}
+            ref={slider => (slider1.current = slider)}
+            speed={0.1}
+            arrows={false}
+            draggable={false}
+          >
+            {imagesSlider}
+          </Slider>
+        </div>
+      </SlidersContainer>
       <Wrapper>
         <Name line={"true"}>{`${props.name}`}</Name>
         <Vendor>{`Article no.:  ${props.itemNo}`}</Vendor>
