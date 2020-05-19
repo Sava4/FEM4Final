@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {
   Filter,
@@ -11,8 +11,8 @@ import {
   Image,
   ImageDescription
 } from "./search.styles";
-import { MobileSearch } from "./MobileSearch/MobileSearch";
-import { useOnClickOutside } from "../HamburgerMenu/onClickOutside";
+import {MobileSearch} from "./MobileSearch/MobileSearch";
+import {useOnClickOutside} from "../HamburgerMenu/onClickOutside";
 
 export const Search = () => {
   const [search, setSearch] = useState("");
@@ -20,6 +20,7 @@ export const Search = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mediaMatch = window.matchMedia("(max-width: 767px)");
   const [matches, setMatches] = useState(mediaMatch.matches);
+
   const node = useRef();
   useOnClickOutside(node, () => {
     setSearchResults([]);
@@ -41,12 +42,12 @@ export const Search = () => {
       <SearchIconWrapper>
         <SearchHolder>
           {matches ? (
-            <SearchIcon onClick={() => setMobileMenuOpen(true)} />
+            <SearchIcon onClick={() => setMobileMenuOpen(true)}/>
           ) : (
-            <SearchIcon onClick={onSearch} />
+            <SearchIcon onClick={onSearch}/>
           )}
           {mobileMenuOpen && (
-            <MobileSearch onClose={() => setMobileMenuOpen(false)} />
+            <MobileSearch onClose={() => setMobileMenuOpen(false)}/>
           )}
           <SearchInput
             type="text"
@@ -66,7 +67,7 @@ export const Search = () => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]} />
+                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]}/>
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );
@@ -99,8 +100,8 @@ export const Search = () => {
       .then(products => {
         setSearchResults(products.data);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
       });
   }
 
@@ -108,4 +109,6 @@ export const Search = () => {
     setSearchResults([]);
     setSearch("");
   }
+
+
 };
