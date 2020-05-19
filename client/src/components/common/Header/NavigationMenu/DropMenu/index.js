@@ -28,7 +28,7 @@ export const HeaderMenuElem = props => {
   }, [categoriesAllData]);
 
   const openDropMenu = category => {
-    console.log(category);
+    // console.log(category);
     const newDropMenu = dropMenuState.map(item => {
       const { menuName, isOpen } = item;
       return {
@@ -42,15 +42,16 @@ export const HeaderMenuElem = props => {
     setDropMenuState(newDropMenu);
   };
 
-  const hideDropmenu = () => {
-    const newDropMenu = dropMenuState.map(item => {
-      const { menuName, isOpen } = item;
-      return {
-        menuName,
-        isOpen: false
-      };
-    });
-    setDropMenuState(newDropMenu);
+  const hideDropmenu = (e) => {
+    console.log( e.target)
+    // const newDropMenu = dropMenuState.map(item => {
+    //   const { menuName, isOpen } = item;
+    //   return {
+    //     menuName,
+    //     isOpen: false
+    //   };
+    // });
+    // setDropMenuState(newDropMenu);
   };
 
   const categoryList = dropMenuState.map(item => {
@@ -59,14 +60,16 @@ export const HeaderMenuElem = props => {
     );
 
     return (
-      <div key={item.menuName}>
+      <div key={item.menuName} >
         {item.isOpen ? (
-          <CategoryDropBackground onMouseLeave={hideDropmenu} />
+          <CategoryDropBackground 
+          // onMouseLeave={hideDropmenu}          
+          />
         ) : null}
         <Category>
           <CategoryHeader
-            onClick={() => openDropMenu(item)}
-            style={{ borderBottom: item.isOpen && "1px solid #002d50" }}
+            onClick={() => openDropMenu(item)} 
+            style={{  textDecoration: item.isOpen && "underline" }}
           >
             {item.menuName !== "gift cards" ? (
               item.menuName
@@ -74,6 +77,7 @@ export const HeaderMenuElem = props => {
               <NavLink to="/giftсards">{item.menuName}</NavLink>
             )}
           </CategoryHeader>
+          
           {item.isOpen ? <DropMenu dropMenuArray={dropMenuArray} /> : null}
         </Category>
       </div>
@@ -87,10 +91,10 @@ const Categories = styled.div`
   display: flex;
   justify-content: space-evenly;
   position: relative;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 
-const CategoryDropBackground = styled.div`
+const CategoryDropBackground = styled.div`  
   height: 210px;
   ${mediaTablet(`
   height:260px;
@@ -99,7 +103,7 @@ const CategoryDropBackground = styled.div`
   top: 44px;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 1;
   background: white;
   border-bottom: 1px solid black;
   border-top: 1px solid #a7aabb;
@@ -116,6 +120,6 @@ const Category = styled.div`
 const CategoryHeader = styled.div`
   text-transform: uppercase;
   &: hover {
-    border-bottom: 1px solid #002d50;
+    text-decoration: underline;
   }
 `;

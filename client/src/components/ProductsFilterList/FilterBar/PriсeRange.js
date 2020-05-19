@@ -61,8 +61,8 @@ const PriceForm = styled.form`
     cursor: pointer;
     display: block;
     height: 1.5px;
-    position: relative;
-    // transition: $input-range-track-transition;
+    position: relative; 
+    transition: $input-range-track-transition;
 
     .input-range--disabled & {
       background: blue;

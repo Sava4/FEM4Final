@@ -29,7 +29,7 @@ export const FilteredListProducts = connect(MapStateToProps, {
     axios.get(url).then(result => {
       result.data.forEach(item => typesAll.push(item.categories));
       const unification = () => Array.from(new Set(typesAll));
-      console.log(result.data);
+      // console.log(result.data);
       const filterCheck = categoryName => {
         //  console.log(availableCategories.filter(it => it===categoryName))
         if (
@@ -52,13 +52,13 @@ export const FilteredListProducts = connect(MapStateToProps, {
 
   const sort = `${query ? "&" : ""}minPrice=${
     props.priceFilters.lowPriсe
-  }&maxPrice=${props.priceFilters.hightPrice}`;
+  }&maxPrice=${props.priceFilters.hightPrice}&sort=+currentPrice`;
 
   useEffect(() => {
-    const filterUurl = `/products/filter?${queryCategory}&${query}${sort}`;
-    console.log(filterUurl);
-    axios.get(filterUurl).then(result => {
-      // console.log(result.data)
+    const filterUrl = `/products/filter?${queryCategory}&${query}${sort}`;
+    console.log(filterUrl);
+    axios.get(filterUrl).then(result => {
+      console.log(result.data)
       setProducts(result.data);
     });
     //   .catch(err => {

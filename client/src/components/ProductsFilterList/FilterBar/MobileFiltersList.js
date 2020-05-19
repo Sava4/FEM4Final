@@ -43,12 +43,12 @@ export const MobileFiltersList = connect(mapStateToProps, {
     let isShown = props.filters[item];
     return (
       <FilterBox key={v4()}>
-        <FilterType id={item} onClick={handleChange}>
-          <p>{item.replace("_", " ")}</p>
+        <FilterType id={item} >
+          <p onClick={handleChange}>{item.replace("_", " ")}</p>
           {isShown ? (
             <ExpandLessIcon fontSize="default" onClick={handleChange} />
           ) : (
-            <ExpandMoreIcon fontSize="default" />
+            <ExpandMoreIcon fontSize="default" onClick={handleChange}/>
           )}
         </FilterType>
         {isShown ? (
@@ -131,6 +131,8 @@ const FilterType = styled.div`
     text-transform: uppercase;
     margin: 0;  
     padding-bottom: 31px;
+    width: 100%;
+    text-align: left;
   }
 `)}
 `;

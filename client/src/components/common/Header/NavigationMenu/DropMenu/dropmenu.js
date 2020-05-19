@@ -9,8 +9,7 @@ const mapStateToProps = store => ({
   filters: store.filters.menuState
 });
 
-export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
-  console.log(props);
+export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => { 
   const { dropMenuArray, setClearFilters } = props;
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =
@@ -20,10 +19,10 @@ export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
       const nameForDropMenu =
         parentId === "by zarina"
           ? name.replace("ZARINA", "").replace("By", "")
-          : name;
+          : name.toLowerCase();
       return (
         <DroMenuItem key={_id} onClick={() => setClearFilters()}>
-          <StyledLink to={`/headerMenu/${name}`}>{nameForDropMenu}</StyledLink>
+          <StyledLink to={`/headerMenu/${name}`}><p>{nameForDropMenu}</p></StyledLink>
         </DroMenuItem>
       );
     });
@@ -48,7 +47,11 @@ const CategoryDropHolder = styled.div`
   flex-wrap: wrap;
 `;
 const StyledLink = styled(NavLink)`
-  &: hover {
-    border-bottom: 1px solid #002d50;
+line-height: 18px;
+  & p:hover {   
+    text-decoration: underline;
   }
+  & p:first-letter {
+    text-transform:capitalize;
+}
 `;

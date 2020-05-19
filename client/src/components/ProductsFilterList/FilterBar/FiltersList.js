@@ -38,7 +38,7 @@ export const FiltersList = connect(mapStateToProps, {
     return (
       <FilterBox key={v4()}>
         <FilterType id={item}>
-          <p>{item.replace("_", " ")}</p>
+          <p onClick={handleChange} >{item.replace("_", " ")}</p>
           {isShown ? (
             <ExpandLessIcon fontSize="default" onClick={handleChange} />
           ) : (
@@ -73,5 +73,8 @@ const FilterType = styled.div`
   & > p {
     font-size: 14px;
     text-transform: uppercase;
+    width: 100%;
+    text-align: left;
+    cursor:pointer;
   }
 `;
