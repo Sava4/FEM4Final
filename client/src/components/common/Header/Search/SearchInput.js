@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {
   Filter,
@@ -9,21 +9,23 @@ import {
   PreviewWrapper,
   TextHolder,
   Image,
-  ImageDescription
+  ImageDescription,
+  Loaded
 } from "./search.styles";
-import {MobileSearch} from "./MobileSearch/MobileSearch";
-import {useOnClickOutside} from "../HamburgerMenu/onClickOutside";
+import { MobileSearch } from "./MobileSearch/MobileSearch";
+import { useOnClickOutside } from "../HamburgerMenu/onClickOutside";
 
 export const Search = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mediaMatch = window.matchMedia("(max-width: 767px)");
   const [matches, setMatches] = useState(mediaMatch.matches);
-
   const node = useRef();
   useOnClickOutside(node, () => {
     setSearchResults([]);
+    setLoaded(false);
   });
 
   useEffect(() => {
@@ -42,12 +44,12 @@ export const Search = () => {
       <SearchIconWrapper>
         <SearchHolder>
           {matches ? (
-            <SearchIcon onClick={() => setMobileMenuOpen(true)}/>
+            <SearchIcon onClick={() => setMobileMenuOpen(true)} />
           ) : (
-            <SearchIcon onClick={onSearch}/>
+            <SearchIcon onClick={onSearch} />
           )}
           {mobileMenuOpen && (
-            <MobileSearch onClose={() => setMobileMenuOpen(false)}/>
+            <MobileSearch onClose={() => setMobileMenuOpen(false)} />
           )}
           <SearchInput
             type="text"
@@ -58,6 +60,11 @@ export const Search = () => {
           />
         </SearchHolder>
       </SearchIconWrapper>
+      {loaded && searchResults.length === 0 && (
+        <PreviewWrapper ref={node}>
+          <Loaded>No items have been found</Loaded>
+        </PreviewWrapper>
+      )}
       {searchResults.length > 0 && (
         <PreviewWrapper ref={node}>
           {searchResults.map((product, index) => {
@@ -67,7 +74,7 @@ export const Search = () => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]}/>
+                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );
@@ -88,7 +95,7 @@ export const Search = () => {
   }
 
   function onSearch() {
-    if (search === "" && search.length < 3) {
+    if (search.length < 3) {
       setSearchResults([]);
       return;
     }
@@ -99,6 +106,7 @@ export const Search = () => {
       })
       .then(products => {
         setSearchResults(products.data);
+        setLoaded(true);
       })
       .catch(error => {
         console.log(error);
@@ -109,6 +117,4 @@ export const Search = () => {
     setSearchResults([]);
     setSearch("");
   }
-
-
 };
