@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
 
-import { MenuContext } from "./navState";
-import { NavigationMenuMobile } from "./NavigationMenuMobile";
+import {MenuContext} from "./navState";
+import {NavigationMenuMobile} from "./NavigationMenuMobile";
+import {OverflowBody} from "../../../Modal/modal.styles";
 
 export const SideMenu = () => {
-  const { isMenuOpen } = useContext(MenuContext);
+  const {isMenuOpen} = useContext(MenuContext);
 
   return (
     <Menu open={isMenuOpen}>
-      <NavigationMenuMobile />
+      <NavigationMenuMobile/>
+      {isMenuOpen && <OverflowBody/>}
     </Menu>
   );
 };
@@ -31,8 +33,8 @@ const Menu = styled.nav`
   transition: all 0.3s ease-in-out;
 
   ${props =>
-    props.open &&
-    css`
+  props.open &&
+  css`
       transform: translateX(0);
     `}
 `;

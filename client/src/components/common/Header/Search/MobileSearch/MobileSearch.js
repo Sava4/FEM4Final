@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import close from "../../../../Modal/modalCloseBtn.png";
 import search from "../search.png";
+import {OverflowBody} from "../../../../Modal/modal.styles";
 
 export const MobileSearch = props => {
   const { onClose } = props;
@@ -38,6 +39,7 @@ export const MobileSearch = props => {
           })}
         </PreviewWrapper>
       )}
+      <OverflowBody/>
     </Holder>
   );
 
