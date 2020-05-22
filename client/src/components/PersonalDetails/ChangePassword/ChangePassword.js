@@ -16,6 +16,7 @@ import { UpdateInformationForm } from "../../Forms/UpdateInformationForm/UpdateI
 export const ChangePassword = props => {
   const dispatch = useDispatch();
   const [password, setPassword] = useState({});
+  const [passwordValidation, setPasswordValidation] = useState(false);
   const [isOpen, toggleModal] = useState(false);
 
   return (
@@ -42,6 +43,9 @@ export const ChangePassword = props => {
             type="password"
             label="New Password *"
             onChange={handlePasswordChange("newPassword")}
+            invalid={!passwordValidation}
+            value={password}
+            onBlur={onPasswordBlur}
           />
           <Edit />
         </Holder>
@@ -66,6 +70,15 @@ export const ChangePassword = props => {
         [key]: event.target.value
       });
     };
+  }
+
+  function isPasswordValid(password) {
+    return password.length < 7 ? false : true;
+  }
+
+  function onPasswordBlur() {
+    const status = isPasswordValid(password);
+    setPasswordValidation(status);
   }
 
   function changePassword() {

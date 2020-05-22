@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { mediaTablet } from "../../../styledComponents/MediaBreakpointsMixin";
-import { UserLogout } from "../Logout";
+import { UserLogout } from "../Logout/Logout";
 import { userLogoutAction } from "../../../store/login";
 
 export const SideBarMenu = () => {

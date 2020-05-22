@@ -6,7 +6,7 @@ import arrow from "../common/Footer/footer-arrow.png";
 import { Layout } from "../common/Layout";
 import { Title } from "../PersonalDetails/PersonalDetails.styles";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
-import { UserLogout } from "../PersonalDetails/Logout";
+import { UserLogout } from "../PersonalDetails/Logout/Logout";
 import { userLogoutAction } from "../../store/login";
 
 export const Account = () => {
