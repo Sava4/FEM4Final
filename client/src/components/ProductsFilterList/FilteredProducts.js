@@ -4,7 +4,6 @@ import axios from "axios";
 import { v4 } from "uuid";
 import querystring from "query-string";
 import { ProductItem } from "../ProductsList/ProductItem";
-// import { mediaMobile } from "../../styledComponents/GlobalStyle";
 import { dispatchSetCheckFilter } from "../../store/filters";
 
 import styled from "styled-components";
@@ -21,7 +20,7 @@ export const FilteredListProducts = connect(MapStateToProps, {
   const [queryCategory, setQueryCategory] = useState("");
   // const [clickedCollection, setClickedCollection]= useState([]);
   const { category, setNambertOfFilteredItems } = props;
-  console.log(category);
+  // console.log(category);
   //Часть по унификации
   useLayoutEffect(() => {
     let typesAll = [];
@@ -35,11 +34,11 @@ export const FilteredListProducts = connect(MapStateToProps, {
         if (
           unification().filter(it => it === categoryName.toLowerCase()).length
         ) {
-          console.log("категория из вариантов");
+          // console.log("категория из вариантов");
           setQueryCategory(`categories=${categoryName}&`);
         } else {
-          console.log("Коллекции");
-          props.dispatchSetCheckFilter({ collection: categoryName });
+          // console.log("Коллекции");
+          // props.dispatchSetCheckFilter({ collection: categoryName });
           setQueryCategory("");
         }
       };
@@ -55,10 +54,10 @@ export const FilteredListProducts = connect(MapStateToProps, {
   }&maxPrice=${props.priceFilters.hightPrice}&sort=+currentPrice`;
 
   useEffect(() => {
-    const filterUrl = `/products/filter?${queryCategory}&${query}${sort}`;
+    const filterUrl = `/products/filter?${queryCategory}${query}${sort}`;
     console.log(filterUrl);
     axios.get(filterUrl).then(result => {
-      console.log(result.data)
+      // console.log(result.data)
       setProducts(result.data);
     });
     //   .catch(err => {

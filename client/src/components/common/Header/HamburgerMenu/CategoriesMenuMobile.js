@@ -24,7 +24,7 @@ export const CategoriesMenuMobile = props => {
 
 const ItemsHolder = styled.div`
   padding-top: 100px;
-  margin-left: 20px;
+  margin-left: 20px;  
 `;
 
 const Item = styled.div`
