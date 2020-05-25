@@ -70,6 +70,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
       };
     }
     case PRICE_RANGE: {
+      console.log(payload)
       return {
         ...store,
         priceRange: {

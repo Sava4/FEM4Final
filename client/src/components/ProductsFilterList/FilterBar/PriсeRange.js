@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { connect , useDispatch} from "react-redux";
 import InputRange from "react-input-range";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
@@ -10,12 +10,13 @@ const mapStateToProps = store => ({
 });
 
 export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => {
+  const dispatch = useDispatch()
   const [priceValue, setPriceValue] = useState({min: props.priceRange.lowPriсe,
                                                 max: props.priceRange.hightPrice                                              });
-
+console.log(props)
   return (
     <>
-      <PriceForm>
+     <PriceForm>
         <InputRange
           maxValue={200000}
           minValue={0}
@@ -24,7 +25,8 @@ export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => 
           }
           value={priceValue}
           onChange={value => setPriceValue(value)}
-          onChangeComplete={value => props.setPriceRange(priceValue)}
+          onChangeComplete={value => dispatch(setPriceRange(priceValue))}
+          // onChangeComplete={value => console.log(priceValue)}
         />
       </PriceForm>
       <PriceDisplay>
@@ -40,7 +42,7 @@ export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => 
             {priceValue.max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}
           </p>
         </Prices>
-      </PriceDisplay>
+      </PriceDisplay> 
     </>
   );
 });

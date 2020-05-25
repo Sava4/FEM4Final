@@ -77,7 +77,7 @@ export const ProductFilters = props => {
       let typesAll = result.data.map(({ categories }) => { return categories });
       const unification = (arreyForUnif) => Array.from(new Set(arreyForUnif));
       // console.log(result.data)
-      const filterCheck = category && (categoryName => {
+      const filterCheck = category && ((categoryName) => {
 
         if (unification(typesAll).filter(it => it === categoryName.toLowerCase()).length) {
           // console.log("категория из вариантов")
