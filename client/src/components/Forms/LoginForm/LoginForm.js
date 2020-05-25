@@ -30,7 +30,6 @@ export const LoginForm = props => {
   const localCart = useSelector(state => state.shoppingCart.locCart);
 
   const storedPassword = useSelector(state => state.login.password);
-  const [passwordShown, setPasswordShown] = useState(false);
   const [password, setPassword] = useState(
     storedPassword ? storedPassword : ""
   );
