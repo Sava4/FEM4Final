@@ -10,10 +10,8 @@ const mapStateToProps = store => ({
 });
 
 export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => {
-  const [priceValue, setPriceValue] = useState({
-    min: props.priceRange.lowPriсe,
-    max: props.priceRange.hightPrice
-  });
+  const [priceValue, setPriceValue] = useState({min: props.priceRange.lowPriсe,
+                                                max: props.priceRange.hightPrice                                              });
 
   return (
     <>

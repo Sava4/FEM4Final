@@ -30,9 +30,13 @@ export const MobileFiltersList = props => {
         <FilterType id={item} >
           <p onClick={handleChange}>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="default" onClick={handleChange} />
+            <div>
+              <ExpandLessIcon fontSize="default" onClick={handleChange} />
+            </div>            
           ) : (
-            <ExpandMoreIcon fontSize="default" onClick={handleChange}/>
+            <div>
+              <ExpandMoreIcon fontSize="default" onClick={handleChange}/>
+            </div>            
           )}
         </FilterType>
         {isShown ? (
@@ -73,10 +77,10 @@ const FiltersModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
+  position: fixed;  
   z-index: 2;
   left: 0;
-  top: 0;
+  top: 0;  
   width: 100% !important;
   height: 100%;
   padding-top: 40px;
@@ -106,15 +110,17 @@ cursor: pointer;
 `;
 const FilterType = styled.div`
   ${mediaMobile(`
-  padding-top: 22px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: fit-content;
-  & p {
+  & >p {
     font-size: 14px;
     text-transform: uppercase;
-    margin: 0;  
-    padding-bottom: 31px;
+    margin: 0;   
+    // padding-bottom: 31px;
+    // padding-top: 20px;
+    padding: 20px 0 31px;
     width: 100%;
     text-align: left;
   }

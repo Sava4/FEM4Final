@@ -5,28 +5,29 @@ import styled from "styled-components";
 import dropArrow from "./images/DroppArrow.png";
 
 export const SortedbyPopup = (props) => {
-  const { setSortType, setIsOpenSortedPopup } = props;
+  const { setSortType, setIsOpenSortedPopup, sortType} = props;
+  // const typePlaceholder = sortType ? (`Sorted by ${sortType.toLowerCase()}`) : ('Choose sort type')
   const selectAction = (e) => {
-    console.log(e.target);
+    console.log(e.target.options[e.target.selectedIndex]);
     setSortType(e.target.value);
     setIsOpenSortedPopup(false);
   };
+  
   return (
-    <MoadalContainer>
-      <form>
-        <StyledSelect onChange={selectAction} defaultValue="Choose">
-          <option value="priceIncrease">Price increase</option>
-          <option value="priceDecrease">Price decrease</option>
+    <MoadalContainer >
+     
+        <StyledSelect onChange={selectAction} >
+        <option default>Choose sort type</option>
+          <option value="price Increase">Price increase</option>
+          <option value="price Decrease">Price decrease</option>
         </StyledSelect>
-      </form>
+   
     </MoadalContainer>
   );
 };
 
 const MoadalContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
+line-height:20px; 
 `;
 
 const StyledSelect = styled.select`
@@ -35,7 +36,7 @@ const StyledSelect = styled.select`
   margin-left: 25px;
   appearance: none;
   background: url(${dropArrow}) no-repeat right center;
-  min-width: 115px;
+  min-width: 135px;
   outline: 0;
   input[type="select"]:focus {
     border: none;

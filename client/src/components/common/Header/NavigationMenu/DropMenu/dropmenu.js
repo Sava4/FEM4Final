@@ -1,19 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import {  useDispatch} from "react-redux";
 import { setClearFilters } from "../../../../../store/filters";
 import { mediaTablet } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import styled from "styled-components";
 
-const mapStateToProps = store => ({
-  filters: store.filters.menuState
-});
 
-export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => { 
-  const { dropMenuArray, setClearFilters } = props;
+
+export const DropMenu = props => { 
+  const { dropMenuArray} = props;
+  const dispatch = useDispatch();
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
-  const dropMenu =
-    categoryArray.length &&
+  const dropMenu =  categoryArray.length &&
     categoryArray.map(item => {
       const { parentId, name, _id } = item;
       const nameForDropMenu =
@@ -21,13 +19,13 @@ export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
           ? name.replace("ZARINA", "").replace("By", "")
           : name.toLowerCase();
       return (
-        <DroMenuItem key={_id} onClick={() => setClearFilters()}>
+        <DroMenuItem key={_id} onClick={() => dispatch(setClearFilters())}>
           <StyledLink to={`/headerMenu/${name}`}><p>{nameForDropMenu}</p></StyledLink>
         </DroMenuItem>
       );
     });
   return <CategoryDropHolder>{dropMenu}</CategoryDropHolder>;
-});
+};
 
 const DroMenuItem = styled.div`
   margin-top: 20px;

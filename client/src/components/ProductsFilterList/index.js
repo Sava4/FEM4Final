@@ -1,21 +1,23 @@
-import React, { useState, useLayoutEffect , useEffect} from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import styled from "styled-components";
 import { useParams, useLocation } from "react-router";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import querystring from "query-string";
 import { Layout } from "../common/Layout";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
 import IconBreadcrumbs from "./Breadcrumbs.js";
 import { FiltersList } from "./FilterBar/FiltersList";
-import {setAvaliFilters,
-        setPriceRange,
-        dispatchSetCheckFilter,
-        setClearFilters} from "../../store/filters";
+import {
+  setAvaliFilters,
+  setPriceRange,
+  dispatchSetCheckFilter,
+  setClearFilters
+} from "../../store/filters";
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { Button } from "../common/Button/Button";
-import {SortedbyPopup} from "./SortedbyPopup"
+import { SortedbyPopup } from "./SortedbyPopup"
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
 import earrings from "./images/earrings.png";
@@ -25,9 +27,7 @@ import necklaces from "./images/necklaces.png";
 import dropArrow from "./images/DroppArrow.png";
 
 
-export const ProductFilters = 
-
-  props => {
+export const ProductFilters = props => {
   const { homepagecategory } = useParams();
   const { chosenMenu } = useParams();
   const dispatch = useDispatch();
@@ -35,11 +35,11 @@ export const ProductFilters =
   const selectedProd = useSelector(state => state.productsPage.productsQuantity);
   const priceFilters = useSelector(state => state.filters.priceRange);
   const category = homepagecategory ? homepagecategory.replace("homepage", "")
-                                    : chosenMenu;
+    : chosenMenu;
   const [openFiltwin, setOpenFiltwind] = useState(false);
-  const [isOpenSortedPopup, setIsOpenSortedPopup] =useState(false);
+  const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
   const [queryCategory, setQueryCategory] = useState("");
-  const [sortType, setSortType] = useState("priceIncrease");
+  const [sortType, setSortType] = useState("");
   const initialPriceValue = {
     min: 0,
     max: 200000
@@ -68,57 +68,57 @@ export const ProductFilters =
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });
-      dispatch(setPriceRange(initialPriceValue));
+    dispatch(setPriceRange(initialPriceValue));
 
     //for products list
-   
+
     const url = `/products`;
     axios.get(url).then(result => {
-      let typesAll = result.data.map(({categories}) =>{return categories});
+      let typesAll = result.data.map(({ categories }) => { return categories });
       const unification = (arreyForUnif) => Array.from(new Set(arreyForUnif));
       // console.log(result.data)
-        const filterCheck =category &&  (categoryName => {
-   
-          if (unification(typesAll).filter(it => it===categoryName.toLowerCase()).length) {
-            // console.log("категория из вариантов")
-            setQueryCategory (`&categories=${categoryName}`)
-          }
-          else {
-        // console.log("Коллекции")
-        dispatch(dispatchSetCheckFilter({collection:categoryName }));
-            setQueryCategory("");
+      const filterCheck = category && (categoryName => {
 
-          }
-        })
-       filterCheck(category)
+        if (unification(typesAll).filter(it => it === categoryName.toLowerCase()).length) {
+          // console.log("категория из вариантов")
+          setQueryCategory(`&categories=${categoryName}`)
+        }
+        else {
+          // console.log("Коллекции")
+          dispatch(dispatchSetCheckFilter({ collection: categoryName }));
+          setQueryCategory("");
+
+        }
+      })
+      filterCheck(category)
     });
   }, [category]);
 
-  const query = querystring.stringify(filters,  { arrayFormat: "comma" });
-  const querySort =sortType && ((sortType==="priceIncrease") ? ("&sort=+currentPrice") : ("&sort=-currentPrice")); 
+  const query = querystring.stringify(filters, { arrayFormat: "comma" });
+  const querySort = sortType && ((sortType === "price Increase") ? ("&sort=+currentPrice") : ("&sort=-currentPrice"));
   const commonSort = `${query ? "&" : ""}minPrice=${priceFilters.lowPriсe}&maxPrice=${priceFilters.hightPrice}${querySort}`;
 
   console.log(sortType, querySort)
 
-  const selectAction = (e) =>{      
+  const selectAction = (e) => {
     setSortType(e.target.value)
   }
 
-  
 
-  useEffect(() => {    
+
+  useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
     console.log(filterUrl);
-    
+
     // axios.get(filterUrl).then(result => {
     //   console.log(result.data)
-      // setProducts(result.data);
+    // setProducts(result.data);
     // });
     //   .catch(err => {
     //     /*Do something with error, e.g. show error to user*/
     //   });
     // }
-  }, [query, commonSort, queryCategory,sortType]);
+  }, [query, commonSort, queryCategory, sortType]);
 
   const background = name => {
     switch (name) {
@@ -145,29 +145,41 @@ export const ProductFilters =
         <p>{category}</p>
         <CategoriesHeaderImg categoryName={background(category)} />
       </CategoriesHeader>
-      {window.innerWidth < 767 ? null : <IconBreadcrumbs categoryName={category}/>}
+      {window.innerWidth < 767 ? null : <IconBreadcrumbs categoryName={category} />}
       <CategotiesCommon>
         {window.innerWidth < 767 ? (
           <MobileCategoriesFilters>
-            <p onClick={() => setOpenFiltwind(true)}>FILTER BY</p>
-            <p onClick={()=>setIsOpenSortedPopup(true)}>SORTED BY</p>
-            {isOpenSortedPopup && <SortedbyPopup setSortType={setSortType} setIsOpenSortedPopup={setIsOpenSortedPopup}/>}
+            <p onClick={() => setOpenFiltwind(true)}>
+              FILTER BY
+            </p>
+            <div>
+              <p onClick={() => setIsOpenSortedPopup(!isOpenSortedPopup)}>
+                SORTED BY
+            </p>
+              {isOpenSortedPopup ?
+                <SortedbyPopup setSortType={setSortType}
+                  setIsOpenSortedPopup={setIsOpenSortedPopup}
+                  sortType={sortType} />
+                : <p onClick={() => setIsOpenSortedPopup(!isOpenSortedPopup)}>
+                  {sortType ? sortType.toLowerCase() : "choose sorting type"}
+                </p>}
+            </div>
             {openFiltwin && (
               <MobileFiltersList filtredBy={filtredBy} setOpenFiltwind={setOpenFiltwind} />
             )}
           </MobileCategoriesFilters>
         ) : (
-          <CategoriesFilters>
-            <p>FILTER BY</p>
-            <FiltersList filtredBy={filtredBy}/>
-            <ButtonSection>
+            <CategoriesFilters>
+              <p>FILTER BY</p>
+              <FiltersList filtredBy={filtredBy} />
+              <ButtonSection>
                 <Button onClick={() => dispatch(setClearFilters())}
-                        value={"CLEAR ALL"}
-                        width={"168px"}/>
-            </ButtonSection>
-          
-          </CategoriesFilters>
-        )}
+                  value={"CLEAR ALL"}
+                  width={"168px"} />
+              </ButtonSection>
+
+            </CategoriesFilters>
+          )}
 
         <SelectedProducts>
           <SelectedProductsHeader>
@@ -175,15 +187,15 @@ export const ProductFilters =
             <SortSection>
               <p >SORTED BY</p>
               <StyledSelect onChange={selectAction}
-                            defaultValue = "Choose">                
+                defaultValue="Choose">
                 <option value="priceIncrease">Price increase</option>
                 <option value="priceDecrease">Price decrease</option>
-              </StyledSelect> 
+              </StyledSelect>
             </SortSection>
-            
-          </SelectedProductsHeader>          
+
+          </SelectedProductsHeader>
           <FilterIndicators />
-          <FilteredListProducts category={category}/>         
+          <FilteredListProducts category={category} />
           {/* <ProductsContainer /> */}
         </SelectedProducts>
       </CategotiesCommon>
@@ -234,7 +246,7 @@ const MobileCategoriesFilters = styled.div`
   ${mediaMobile(`
   display: flex;
   justify-content: space-between;
-  position: relative;
+  
   & > p {
     font-size: 17px;
     margin-left: 20px;
@@ -243,15 +255,22 @@ const MobileCategoriesFilters = styled.div`
     width:fit-content;
     cursor: pointer; 
   }
-  & >p:nth-child(2) {
-    
+  & >div{    
     font-size: 17px;
     margin-left: 20px;
     margin-top: 18px;
     margin-bottom: 20px;
     width:fit-content;
-    cursor: pointer; 
+    cursor: pointer;
+    >p{
+      text-align:right;
+    }
+    p:last-child{
+      font-size: 14px;
+      line-height:20px;
+    } 
   }
+
 `)}
 `;
 const CategoriesFilters = styled.div`

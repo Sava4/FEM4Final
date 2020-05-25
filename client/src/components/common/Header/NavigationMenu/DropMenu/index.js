@@ -44,14 +44,14 @@ export const HeaderMenuElem = props => {
 
   const hideDropmenu = (e) => {
     console.log( e.target)
-    // const newDropMenu = dropMenuState.map(item => {
-    //   const { menuName, isOpen } = item;
-    //   return {
-    //     menuName,
-    //     isOpen: false
-    //   };
-    // });
-    // setDropMenuState(newDropMenu);
+    const newDropMenu = dropMenuState.map(item => {
+      const { menuName, isOpen } = item;
+      return {
+        menuName,
+        isOpen: false
+      };
+    });
+    setDropMenuState(newDropMenu);
   };
 
   const categoryList = dropMenuState.map(item => {
@@ -69,12 +69,12 @@ export const HeaderMenuElem = props => {
         <Category>
           <CategoryHeader
             onClick={() => openDropMenu(item)} 
-            style={{  textDecoration: item.isOpen && "underline" }}
+            style={{  borderColor: item.isOpen && "#007395" }}
           >
             {item.menuName !== "gift cards" ? (
               item.menuName
             ) : (
-              <NavLink to="/giftсards">{item.menuName}</NavLink>
+              <NavLink to="/giftсards" >{item.menuName}</NavLink>
             )}
           </CategoryHeader>
           
@@ -119,7 +119,6 @@ const Category = styled.div`
 
 const CategoryHeader = styled.div`
   text-transform: uppercase;
-  &: hover {
-    text-decoration: underline;
-  }
+  border-bottom: 1px solid transparent;
+
 `;
