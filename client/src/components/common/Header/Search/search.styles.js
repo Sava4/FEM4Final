@@ -22,21 +22,21 @@ export const SearchInput = styled.input`
   :focus {
     outline: none;
   }
-  
+
   :focus::-webkit-input-placeholder {
-    color: transparent
-  } 
- 
+    color: transparent;
+  }
+
   :focus::-moz-placeholder {
-    color: transparent
+    color: transparent;
   }
- 
+
   :focus:-moz-placeholder {
-    color: transparent
+    color: transparent;
   }
- 
+
   :focus:-ms-input-placeholder {
-    color: transparent
+    color: transparent;
   }
 
   ${mediaMobile(`
@@ -82,7 +82,7 @@ export const Loaded = styled.div`
   height: 500px;
   margin: 15px 15px 0 15px;
   text-align: center;
-  color: #80858D;
+  color: #80858d;
 `;
 
 export const TextHolder = styled(NavLink)`

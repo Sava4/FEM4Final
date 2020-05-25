@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import {OverflowBody} from "../../../../Modal/modal.styles";
+import { OverflowBody } from "../../../../Modal/modal.styles";
 import {
   Holder,
   SearchClose,
@@ -15,16 +15,16 @@ import {
 } from "./mobileSearch.styles";
 
 export const MobileSearch = props => {
-  const {onClose} = props;
+  const { onClose } = props;
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
   return (
     <Holder>
-      <SearchClose onClick={onClose}/>
+      <SearchClose onClick={onClose} />
       <Wrapper>
-        <SearchIcon onClick={onSearch}/>
+        <SearchIcon onClick={onSearch} />
         <SearchInput
           type="text"
           placeholder="Search"
@@ -44,14 +44,14 @@ export const MobileSearch = props => {
                 to={`/product-details/${product.itemNo}`}
                 key={index}
               >
-                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]}/>
+                <Image icon={process.env.PUBLIC_URL + product.imageUrls[0]} />
                 <ImageDescription>{product.name}</ImageDescription>
               </TextHolder>
             );
           })}
         </PreviewWrapper>
       )}
-      <OverflowBody/>
+      <OverflowBody />
     </Holder>
   );
 
@@ -83,5 +83,3 @@ export const MobileSearch = props => {
     setSearch("");
   }
 };
-
-

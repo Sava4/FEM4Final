@@ -9,7 +9,7 @@ export const Layout = props => {
     <MainLayout>
       <HeaderContent />
       <main className="content">{props.children}</main>
-      <Footer></Footer>
+      <Footer />
     </MainLayout>
   );
 };

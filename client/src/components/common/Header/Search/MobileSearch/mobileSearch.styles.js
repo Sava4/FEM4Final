@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import close from "../../../../Modal/modalCloseBtn.png";
 import search from "../search.png";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Holder = styled.div`
   display: flex;
@@ -61,28 +61,28 @@ export const SearchInput = styled.input`
   :focus {
     outline: none;
   }
-  
+
   :focus::-webkit-input-placeholder {
-    color: transparent
+    color: transparent;
   }
- 
+
   :focus::-moz-placeholder {
-    color: transparent
+    color: transparent;
   }
- 
+
   :focus:-moz-placeholder {
-    color: transparent
+    color: transparent;
   }
- 
+
   :focus:-ms-input-placeholder {
-    color: transparent
+    color: transparent;
   }
 `;
 
 export const Loaded = styled.div`
   margin: 15px 15px;
   text-align: center;
-  color: #80858D;
+  color: #80858d;
 `;
 
 export const PreviewWrapper = styled.div`
