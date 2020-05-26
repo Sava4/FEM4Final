@@ -53,11 +53,11 @@ export const InputPassword = props => {
   }
 };
 
-const Holder = styled.div`
+export const Holder = styled.div`
   position: relative;
 `;
 
-const Eye = styled.div`
+export const Eye = styled.div`
   width: 17px;
   height: 15px;
   position: absolute;

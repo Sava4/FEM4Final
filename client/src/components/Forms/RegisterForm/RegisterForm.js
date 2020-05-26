@@ -16,11 +16,13 @@ import { InputHolder } from "../LoginForm/loginForm.styles";
 import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
 import { Input } from "../../common/Input/Input";
+import {Eye} from "../InputPassword/InputPassword";
 
 export const RegisterForm = props => {
   const { onClose, onRegister, onLogin } = props;
 
   const [error, setError] = useState([]);
+  console.log(error);
 
   const [login, setLogin] = useState("");
   const [loginValidation, setLoginValidation] = useState(true);
@@ -35,9 +37,11 @@ export const RegisterForm = props => {
   const [emailValidation, setEmailValidation] = useState(true);
 
   const [password, setPassword] = useState("");
+  const [passwordShown, setPasswordShown] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState(true);
 
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(true);
   const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(
     true
   );
@@ -99,23 +103,25 @@ export const RegisterForm = props => {
             </InputHolder>
             <InputHolder>
               <Input
-                type="password"
+                type={passwordShown ? "password" : "text"}
                 label="Password *"
                 value={password}
                 invalid={!passwordValidation}
                 onChange={onPasswordChange}
                 onBlur={onPasswordBlur}
               />
+             {password && <Eye onClick={() => setPasswordShown(!passwordShown)}/>}
             </InputHolder>
             <InputHolder>
               <Input
-                type="password"
+                type={confirmPasswordShown ? "password" : "text"}
                 label="Confirm Password *"
                 value={confirmPassword}
                 invalid={!confirmPasswordValidation}
                 onChange={onConfirmPasswordChange}
                 onBlur={onConfirmPasswordBlur}
               />
+              {confirmPassword && <Eye onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}/>}
             </InputHolder>
           </RightContent>
         </ContentWrapper>

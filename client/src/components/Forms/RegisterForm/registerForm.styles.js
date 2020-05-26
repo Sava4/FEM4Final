@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
+import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
   display: flex;
@@ -40,10 +40,15 @@ export const LeftContent = styled.div`
   flex-direction: column;
   margin-right: 30px;
   margin-left: 100px;
+  
+  ${mediaTablet(`
+    margin-left: 60px;
+    margin-right: 20px;
+  `)}
 
   ${mediaMobile(`
-  width: 85%;
-  margin: 0;
+    width: 85%;
+    margin: 0;
   `)}
 `;
 
@@ -54,9 +59,14 @@ export const RightContent = styled.div`
   margin-left: 30px;
   margin-right: 100px;
 
+  ${mediaTablet(`
+    margin-right: 60px;
+    margin-left: 20px;
+  `)}
+
   ${mediaMobile(`
-  width: 85%;
-  margin: 0;
+    width: 85%;
+    margin: 0;
   `)}
 `;
 
@@ -64,10 +74,14 @@ export const ContentWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 40px;
+  
+  ${mediaTablet(`
+    margin-bottom: 30px;
+  `)}
 
   ${mediaMobile(`
-  flex-direction: column;
-  align-items: center;
+    flex-direction: column;
+    align-items: center;
   `)}
 `;
 

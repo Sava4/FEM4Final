@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {
   Description,
   Details,
-  Edit,
   Holder,
   InputWrapper
 } from "../PersonalInformation/personalInformation.styles";
@@ -12,11 +11,14 @@ import { Button } from "../../common/Button/Button";
 import { Input } from "../../common/Input/Input";
 import { updatePass } from "../../../store/user";
 import { UpdateInformationForm } from "../../Forms/UpdateInformationForm/UpdateInformationForm";
+import {Eye} from "../../Forms/InputPassword/InputPassword";
 
 export const ChangePassword = props => {
   const dispatch = useDispatch();
   const [password, setPassword] = useState({});
-  const [passwordValidation, setPasswordValidation] = useState(false);
+  const [currentPasswordShown, setCurrentPasswordShown] = useState(true);
+  const [newPasswordShown, setNewPasswordShown] = useState(true);
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(true);
   const [isOpen, toggleModal] = useState(false);
 
   return (
@@ -32,26 +34,26 @@ export const ChangePassword = props => {
       <InputWrapper>
         <Holder>
           <Input
-            type="password"
+            type={currentPasswordShown ? "password" : "text"}
             label="Current Password *"
             onChange={handlePasswordChange("password")}
           />
-          <Edit />
+          <Eye onClick={() => setCurrentPasswordShown(!currentPasswordShown)}/>
         </Holder>
         <Holder>
           <Input
-            type="password"
+            type={newPasswordShown ? "password" : "text"}
             label="New Password *"
             onChange={handlePasswordChange("newPassword")}
-            invalid={!passwordValidation}
-            value={password}
-            onBlur={onPasswordBlur}
           />
-          <Edit />
+          <Eye onClick={() => setNewPasswordShown(!newPasswordShown)}/>
         </Holder>
         <Holder>
-          <Input type="password" label="Confirm new password *" />
-          <Edit />
+          <Input
+            type={confirmPasswordShown ? "password" : "text"}
+            label="Confirm new password *"
+          />
+          <Eye onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}/>
         </Holder>
         <ButtonWrapper>
           <Button value={"Save Changes"} onClick={changePassword} />
@@ -70,15 +72,6 @@ export const ChangePassword = props => {
         [key]: event.target.value
       });
     };
-  }
-
-  function isPasswordValid(password) {
-    return password.length < 7 ? false : true;
-  }
-
-  function onPasswordBlur() {
-    const status = isPasswordValid(password);
-    setPasswordValidation(status);
   }
 
   function changePassword() {
