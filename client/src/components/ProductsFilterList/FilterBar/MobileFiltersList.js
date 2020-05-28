@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
-import {setToggleShown,
+import {setTogleShown,
         setClearFilters,} from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -20,7 +20,7 @@ export const MobileFiltersList = props => {
   const { setOpenFiltwind } = props;
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    dispatch(setToggleShown(e.target.parentNode.id));
+    dispatch(setTogleShown(e.target.parentNode.id));
   };
 
   let filters = filtredBy.map(item => {

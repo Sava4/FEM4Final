@@ -151,7 +151,7 @@ export const setAvaliFilters = allFilters => dispatch => {
   dispatch(avaliFilters(allFilters));
 };
 
-export const setToggleShown = filter => dispatch => {
+export const setTogleShown = filter => dispatch => {
   dispatch(toggleShown(filter));
 };
 

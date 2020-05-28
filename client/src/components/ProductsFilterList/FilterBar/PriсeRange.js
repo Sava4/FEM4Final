@@ -14,6 +14,7 @@ export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => 
   const [priceValue, setPriceValue] = useState({min: props.priceRange.lowPriсe,
                                                 max: props.priceRange.hightPrice                                              });
 console.log(props)
+function dispatshRange (){dispatch(setPriceRange(priceValue))}
   return (
     <>
      <PriceForm>
@@ -25,7 +26,7 @@ console.log(props)
           }
           value={priceValue}
           onChange={value => setPriceValue(value)}
-          onChangeComplete={value => dispatch(setPriceRange(priceValue))}
+          onChangeComplete={value => setTimeout(dispatshRange(), 100)}
           // onChangeComplete={value => console.log(priceValue)}
         />
       </PriceForm>

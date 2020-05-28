@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
-import { setToggleShown } from "../../../store/filters";
+import { setTogleShown } from "../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PriсeRange } from "./PriсeRange";
@@ -16,7 +16,7 @@ export const FiltersList = props => {
 
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    dispatch (setToggleShown(e.target.parentNode.id));
+    dispatch (setTogleShown(e.target.parentNode.id));
   };
 
   let filters = filtredBy.map(item => {
