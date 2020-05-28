@@ -16,13 +16,12 @@ import { InputHolder } from "../LoginForm/loginForm.styles";
 import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
 import { Input } from "../../common/Input/Input";
-import {Eye} from "../InputPassword/InputPassword";
+import { Eye } from "../InputPassword/InputPassword";
 
 export const RegisterForm = props => {
   const { onClose, onRegister, onLogin } = props;
 
   const [error, setError] = useState([]);
-  console.log(error);
 
   const [login, setLogin] = useState("");
   const [loginValidation, setLoginValidation] = useState(true);

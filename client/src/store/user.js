@@ -53,11 +53,10 @@ export const update = data => {
 
 export const updatePass = password => {
   return dispatch => {
-    axios
+    return axios
       .put("/customers/password", password)
       .then(response => {
         dispatch(updatePassword(response.data));
-      })
-      .catch(error => console.log(error));
+      });
   };
 };
