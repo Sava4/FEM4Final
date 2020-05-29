@@ -10,7 +10,7 @@ export const InputElement = styled.input`
   border: none;
   border-radius: 0;
   border-bottom: 1px solid #80858d;
-  border-bottom-color: ${props => (props.invalid ? "red" : "#80858D")};
+  border-bottom-color: ${props => (props.invalid ? "#DB3D3D" : "#80858D")};
   letter-spacing: 0.7px;
   font-size: 12px;
   -webkit-appearance: none;

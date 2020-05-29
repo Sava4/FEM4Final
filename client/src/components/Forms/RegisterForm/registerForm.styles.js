@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import {mediaMobile, mediaTablet} from "../../../styledComponents/MediaBreakpointsMixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
   display: flex;
@@ -30,8 +33,8 @@ export const FormTitle = styled.span`
 `;
 
 export const ErrorMessage = styled.span`
-  font-size: 14px;
-  color: red;
+  font-size: 10px;
+  color: #db3d3d;
 `;
 
 export const LeftContent = styled.div`
@@ -40,7 +43,7 @@ export const LeftContent = styled.div`
   flex-direction: column;
   margin-right: 30px;
   margin-left: 100px;
-  
+
   ${mediaTablet(`
     margin-left: 60px;
     margin-right: 20px;
@@ -74,7 +77,7 @@ export const ContentWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 40px;
-  
+
   ${mediaTablet(`
     margin-bottom: 30px;
   `)}

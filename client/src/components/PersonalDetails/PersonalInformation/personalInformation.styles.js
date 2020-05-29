@@ -56,7 +56,7 @@ export const Description = styled.div`
   margin-top: 20px;
 `;
 
-export const InputWrapper = styled.form`
+export const InputWrapper = styled.div`
   width: 50%;
   margin-bottom: 20px;
 

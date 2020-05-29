@@ -8,13 +8,13 @@ import {
 } from "../PersonalInformation/personalInformation.styles";
 import { Eye } from "../../Forms/InputPassword/InputPassword";
 import { renderField } from "../../common/ValidationRules/Field";
-import { validate } from "../../common/ValidationRules/validationRules";
+import { validate } from "./passwordValidation";
 import { Button } from "../../common/Button/Button";
 import { UpdateInformationForm } from "../../Forms/UpdateInformationForm/UpdateInformationForm";
 import { updatePass } from "../../../store/user";
 
 const ValidationForm = props => {
-  const {invalid} = props;
+  const { invalid } = props;
   const dispatch = useDispatch();
   const [isOpen, toggleModal] = useState(false);
   const [state, setState] = useState({
@@ -60,10 +60,14 @@ const ValidationForm = props => {
           component={renderField}
           onChange={handlePasswordChange("confirmPassword")}
         />
-        <Eye onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}/>
+        <Eye onClick={() => setConfirmPasswordShown(!confirmPasswordShown)} />
       </Holder>
       <ButtonWrapper>
-        <Button value="Save Changes" type="submit" disabled={submitting || invalid}/>
+        <Button
+          value="Save Changes"
+          type="submit"
+          disabled={submitting || invalid}
+        />
         {isOpen && <UpdateInformationForm onClose={() => toggleModal(false)} />}
       </ButtonWrapper>
     </Form>
@@ -92,7 +96,6 @@ export const ChangePasswordValidationForm = reduxForm({
   form: "PasswordValidation",
   validate
 })(ValidationForm);
-
 
 const ButtonWrapper = styled.div`
   padding-top: 5px;

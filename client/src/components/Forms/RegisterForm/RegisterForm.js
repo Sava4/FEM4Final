@@ -17,45 +17,32 @@ import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
 import { Input } from "../../common/Input/Input";
 import { Eye } from "../InputPassword/InputPassword";
+import {
+  confirmPasswordValidate,
+  emailValidate,
+  firstNameValidate,
+  lastNameValidate,
+  loginValidate,
+  passwordValidate
+} from "../../common/ValidationRules/validationRules";
 
 export const RegisterForm = props => {
   const { onClose, onRegister, onLogin } = props;
 
-  const [error, setError] = useState([]);
-
-  const [login, setLogin] = useState("");
-  const [loginValidation, setLoginValidation] = useState(true);
-
+  const [error, setError] = useState({});
+  const [login, setLogin] = useState();
   const [firstName, setFirstName] = useState("");
-  const [firstNameValidation, setFirstNameValidation] = useState(true);
-
   const [lastName, setLastName] = useState("");
-  const [lastNameValidation, setLastNameValidation] = useState(true);
-
   const [email, setEmail] = useState("");
-  const [emailValidation, setEmailValidation] = useState(true);
-
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(true);
-  const [passwordValidation, setPasswordValidation] = useState(true);
-
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordShown, setConfirmPasswordShown] = useState(true);
-  const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(
-    true
-  );
 
   return (
     <Modal onClose={onClose}>
       <FormWrapper>
         <FormTitle>Create your account</FormTitle>
-        {error && (
-          <ErrorMessage>
-            {error.map((error, index) => {
-              return <div key={index}>{error}</div>;
-            })}
-          </ErrorMessage>
-        )}
         <ContentWrapper>
           <LeftContent>
             <InputHolder>
@@ -63,30 +50,32 @@ export const RegisterForm = props => {
                 type="text"
                 label="Login *"
                 value={login}
-                invalid={!loginValidation}
+                invalid={error.login}
                 onChange={onLoginChange}
-                onBlur={onLoginBlur}
               />
+              {error.login && <ErrorMessage>{error.login}</ErrorMessage>}
             </InputHolder>
             <InputHolder>
               <Input
                 type="text"
                 label="First Name *"
                 value={firstName}
-                invalid={!firstNameValidation}
+                invalid={error.firstName}
                 onChange={onFirstNameChange}
-                onBlur={onFirstNameBlur}
               />
+              {error.firstName && (
+                <ErrorMessage>{error.firstName}</ErrorMessage>
+              )}
             </InputHolder>
             <InputHolder>
               <Input
                 type="text"
                 label="Last Name *"
                 value={lastName}
-                invalid={!lastNameValidation}
+                invalid={error.lastName}
                 onChange={onLastNameChange}
-                onBlur={onLastNameBlur}
               />
+              {error.lastName && <ErrorMessage>{error.lastName}</ErrorMessage>}
             </InputHolder>
           </LeftContent>
           <RightContent>
@@ -95,32 +84,40 @@ export const RegisterForm = props => {
                 type="email"
                 label="Email *"
                 value={email}
-                invalid={!emailValidation}
+                invalid={error.email}
                 onChange={onEmailChange}
-                onBlur={onEmailBlur}
               />
+              {error.email && <ErrorMessage>{error.email}</ErrorMessage>}
             </InputHolder>
             <InputHolder>
               <Input
                 type={passwordShown ? "password" : "text"}
                 label="Password *"
                 value={password}
-                invalid={!passwordValidation}
+                invalid={error.password}
                 onChange={onPasswordChange}
-                onBlur={onPasswordBlur}
               />
-             {password && <Eye onClick={() => setPasswordShown(!passwordShown)}/>}
+              {password && (
+                <Eye onClick={() => setPasswordShown(!passwordShown)} />
+              )}
+              {error.password && <ErrorMessage>{error.password}</ErrorMessage>}
             </InputHolder>
             <InputHolder>
               <Input
                 type={confirmPasswordShown ? "password" : "text"}
                 label="Confirm Password *"
                 value={confirmPassword}
-                invalid={!confirmPasswordValidation}
+                invalid={error.confirmPassword}
                 onChange={onConfirmPasswordChange}
-                onBlur={onConfirmPasswordBlur}
               />
-              {confirmPassword && <Eye onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}/>}
+              {confirmPassword && (
+                <Eye
+                  onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}
+                />
+              )}
+              {error.confirmPassword && (
+                <ErrorMessage>{error.confirmPassword}</ErrorMessage>
+              )}
             </InputHolder>
           </RightContent>
         </ContentWrapper>
@@ -137,91 +134,69 @@ export const RegisterForm = props => {
 
   function onLoginChange(event) {
     setLogin(event.target.value);
-  }
-
-  function isLoginValid(login) {
-    return login.length < 3 ? false : true;
-  }
-
-  function onLoginBlur() {
-    const status = isLoginValid(login);
-    setLoginValidation(status);
+    const loginError = loginValidate(login);
+    setError({
+      ...error,
+      login: loginError
+    });
   }
 
   function onFirstNameChange(event) {
     setFirstName(event.target.value);
-  }
-
-  function isFirstNameValid(firstName) {
-    return firstName === "" ? false : true;
-  }
-
-  function onFirstNameBlur() {
-    const status = isFirstNameValid(firstName);
-    setFirstNameValidation(status);
+    const firstNameError = firstNameValidate(firstName);
+    setError({
+      ...error,
+      firstName: firstNameError
+    });
   }
 
   function onLastNameChange(event) {
     setLastName(event.target.value);
-  }
-
-  function isLastNameValid(lastName) {
-    return lastName === "" ? false : true;
-  }
-
-  function onLastNameBlur() {
-    const status = isLastNameValid(lastName);
-    setLastNameValidation(status);
+    const lastNameError = lastNameValidate(lastName);
+    setError({
+      ...error,
+      lastName: lastNameError
+    });
   }
 
   function onEmailChange(event) {
     setEmail(event.target.value);
-  }
-
-  function isEmailValid(email) {
-    const emailPattern = /\S+@\S+\.\S+/;
-    return emailPattern.test(email);
-  }
-
-  function onEmailBlur() {
-    const status = isEmailValid(email);
-    setEmailValidation(status);
+    const emailError = emailValidate(email);
+    setError({
+      ...error,
+      email: emailError
+    });
   }
 
   function onPasswordChange(event) {
     setPassword(event.target.value);
-  }
-
-  function isPasswordValid(password) {
-    return password.length < 7 ? false : true;
-  }
-
-  function onPasswordBlur() {
-    const status = isPasswordValid(password);
-    setPasswordValidation(status);
+    const passwordError = passwordValidate(password);
+    setError({
+      ...error,
+      password: passwordError
+    });
   }
 
   function onConfirmPasswordChange(event) {
     setConfirmPassword(event.target.value);
-  }
-
-  function isConfirmPasswordValid(password, confirmPassword) {
-    return password === confirmPassword ? true : false;
-  }
-
-  function onConfirmPasswordBlur() {
-    const status = isConfirmPasswordValid(password, confirmPassword);
-    setConfirmPasswordValidation(status);
+    const confirmPasswordError = confirmPasswordValidate(
+      confirmPassword,
+      password
+    );
+    setError({
+      ...error,
+      confirmPassword: confirmPasswordError
+    });
   }
 
   function isFormValid() {
     return (
-      isLoginValid(login) &&
-      isFirstNameValid(firstName) &&
-      isLastNameValid(lastName) &&
-      isEmailValid(email) &&
-      isPasswordValid(password) &&
-      isConfirmPasswordValid(password, confirmPassword)
+      loginValidate(login) &&
+      firstNameValidate(firstName) &&
+      lastNameValidate(lastName) &&
+      emailValidate(email) &&
+      passwordValidate(password) &&
+      confirmPasswordValidate(confirmPassword, password)
     );
   }
 
@@ -229,21 +204,13 @@ export const RegisterForm = props => {
     event.preventDefault();
 
     if (!isFormValid()) {
-      const statusLogin = isLoginValid(login);
-      setLoginValidation(statusLogin);
-      const statusFirstName = isFirstNameValid(firstName);
-      setFirstNameValidation(statusFirstName);
-      const statusLastName = isLastNameValid(lastName);
-      setLastNameValidation(statusLastName);
-      const statusEmail = isEmailValid(email);
-      setEmailValidation(statusEmail);
-      const statusPassword = isPasswordValid(password);
-      setPasswordValidation(statusPassword);
-      const statusConfirmPassword = isConfirmPasswordValid(
-        password,
-        confirmPassword
-      );
-      setConfirmPasswordValidation(statusConfirmPassword);
+      loginValidate(error.login) ||
+        firstNameValidate(error.firstName) ||
+        lastNameValidate(error.lastName) ||
+        emailValidate(error.email) ||
+        passwordValidate(error.password) ||
+        confirmPasswordValidate(error.confirmPassword && error.password);
+
       return;
     }
 
@@ -260,11 +227,6 @@ export const RegisterForm = props => {
       .then(response => {
         onRegister();
       })
-      .catch(error => {
-        const errors = Object.keys(error.response.data).map(key => {
-          return error.response.data[key];
-        });
-        setError(errors);
-      });
+      .catch(error => setError(error.response.data));
   }
 };

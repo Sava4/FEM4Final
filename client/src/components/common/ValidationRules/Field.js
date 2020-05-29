@@ -10,8 +10,10 @@ export const renderField = props => {
   } = props;
   return (
     <LabelInput>
-      <InputText className={active || input.value ? "active" : ""}>{label}</InputText>
-      <InputElement {...input} type={type} invalid={touched && error}/>
+      <InputText className={active || input.value ? "active" : ""}>
+        {label}
+      </InputText>
+      <InputElement {...input} type={type} invalid={touched && error} />
       {touched && error && <Error>{error}</Error>}
     </LabelInput>
   );

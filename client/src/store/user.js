@@ -40,23 +40,16 @@ export function userReducer(store = initialState, action) {
 
 export const update = data => {
   return dispatch => {
-    axios
-      .put("/customers", data)
-      .then(response => {
-        dispatch(updateUser(response.data));
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    return axios.put("/customers", data).then(response => {
+      dispatch(updateUser(response.data));
+    });
   };
 };
 
 export const updatePass = password => {
   return dispatch => {
-    return axios
-      .put("/customers/password", password)
-      .then(response => {
-        dispatch(updatePassword(response.data));
-      });
+    return axios.put("/customers/password", password).then(response => {
+      dispatch(updatePassword(response.data));
+    });
   };
 };

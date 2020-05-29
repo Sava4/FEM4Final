@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { HeaderContent } from "../Header/Header";
 import { Footer } from "../Footer";
-import {mediaMobile} from "../../../styledComponents/MediaBreakpointsMixin";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const Layout = props => {
   return (
@@ -23,7 +23,7 @@ const MainLayout = styled.div`
   & .content {
     flex-grow: 1;
   }
-  
+
   ${mediaMobile(`
     & .content {
     flex-grow: 0;
