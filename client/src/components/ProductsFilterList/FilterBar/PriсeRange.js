@@ -1,117 +1,148 @@
-import React, { useState } from "react";
-import { connect , useDispatch} from "react-redux";
-import InputRange from "react-input-range";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector} from "react-redux";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import { setPriceRange } from "../../../store/filters";
 
-const mapStateToProps = store => ({
-  priceRange: store.filters.priceRange
+
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    marginTop: '20px',
+  },
 });
 
-export const PriсeRange = connect(mapStateToProps, { setPriceRange })(props => {
-  const dispatch = useDispatch()
-  const [priceValue, setPriceValue] = useState({min: props.priceRange.lowPriсe,
-                                                max: props.priceRange.hightPrice                                              });
-console.log(props)
-function dispatshRange (){dispatch(setPriceRange(priceValue))}
+const AirbnbSlider = withStyles({
+  root: {
+    color: '#002D50',
+    height: 0.5,
+    padding: '13px 0',
+    margin: 0
+  },
+  thumb: {
+    height: 15,
+    width: 15,
+    backgroundColor: '#002D50',
+    marginTop: -7,
+    marginLeft: -7,   
+    '&:focus, &:hover, &$active': {
+      boxShadow: '#002D50 0 2px 3px 1px',
+    },
+  
+  },
+  active: {},
+  track: {
+    height: 1,
+  },
+  rail: {
+    color: '#d8d8d8',
+    opacity: 1,
+    height: 1,
+  },
+markLabel:{
+  fontSize: '14px',
+  lineHeight: '10px',
+  top: '-17px',
+  fontFamily: 'Montserrat',
+  // left: '90%!important'
+},
+markLabelActive:{
+
+}
+})(Slider);
+
+export const PriсeRange =props => {
+  const dispatch = useDispatch();
+  const   priceRange = useSelector (state => state.filters.priceRange) 
+  const [priceValue, setPriceValue] = useState({min: priceRange.lowPriсe,
+                                                max: priceRange.hightPrice});
+  const classes = useStyles();
+  const [value, setValue] = useState([priceRange.lowPriсe, priceRange.hightPrice]);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    
+  };
+
+  const sendToStore = ()=>{
+    
+    const rangeToStore = {
+          min:value[0],
+          max:value[1]
+        }
+        console.log(rangeToStore)  
+  dispatch(setPriceRange(rangeToStore));
+  
+  }
+
+  // useEffect (()=>{
+  //   const rangeToStore = {
+  //     min:value[0],
+  //     max:value[1]
+  //   }
+  // },[value])
+
+
+
+  // function valuetext(value) {
+    // return `${value}°C`;
+  // }
+  const marks = [
+    {
+      value: 0,
+      label: '₴',
+    },    
+    {
+      value: 200000,
+      label: '₴ 200\'000',
+    },
+  ];
+
   return (
-    <>
-     <PriceForm>
-        <InputRange
-          maxValue={200000}
-          minValue={0}
-          formatLabel={value =>
-            `₴ ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")} `
-          }
-          value={priceValue}
-          onChange={value => setPriceValue(value)}
-          onChangeComplete={value => setTimeout(dispatshRange(), 100)}
-          // onChangeComplete={value => console.log(priceValue)}
-        />
-      </PriceForm>
+    <div>    
+     <div className={classes.root}>     
+      <AirbnbSlider
+       min={0}
+       max={200000}
+        value={value}
+        onChange={handleChange}
+        valueLabelDisplay="auto"
+        aria-labelledby="range-slider"
+        // getAriaValueText={valuetext}
+        onChangeCommitted={sendToStore}
+        marks={marks}
+      />
+    </div>
+   
       <PriceDisplay>
         <Prices>
           <p>From ₴-</p>
           <p>
-            {priceValue.min.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}
+            {value[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}
           </p>
         </Prices>
         <Prices>
           <p>To ₴-</p>
           <p>
-            {priceValue.max.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}
+            {value[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'")}
           </p>
         </Prices>
       </PriceDisplay> 
-    </>
+    </div>
   );
-});
+};
 
-const PriceForm = styled.form`
-  width: 95%;
-  margin-top: 28px;
-  height: 25px;
-  position: relative !important;
-  .form {
-    margin-top: 25px;
-  }
-  .input-range__track {
-    background: lightgrey;
-    border-radius: 3px;
-    cursor: pointer;
-    display: block;
-    height: 1.5px;
-    position: relative; 
-    transition: $input-range-track-transition;
 
-    .input-range--disabled & {
-      background: blue;
-    }
-  }
-
-  .input-range__track--background {
-    left: 0;
-    margin-top: -0.5 * 50px;
-    // position: absolute;
-    right: 0;
-    top: 50%;
-  }
-
-  .input-range__track--active {
-    background: #002d50;
-  }
-  .input-range__label-container {
-    display: block;
-  }
-  .input-range__label {
-    display: none;
-  }
-  .input-range__label--min {
-    display: block;
-    position: absolute;
-    top: -20px;
-  }
-  .input-range__label--max {
-    display: block;
-    position: absolute;
-    top: -18px;
-    right: 0;
-  }
-  .input-range__slider-container {
-    height: 10px;
-    border-radius: 50%;
-    background-color: black;
-    width: 10px;
-    top: -5px;
-  }
-`;
 const PriceDisplay = styled.div`
   display: flex;
   justify-content: space-around;
 `;
 const Prices = styled.div`
-  display: flex;
+margin-top:10px;  
+display: flex;
   align-items: center;
   ${mediaMobile(`
 margin-bottom:30px;

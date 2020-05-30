@@ -33,7 +33,7 @@ export const FiltersList = props => {
         </FilterType>
         {isShown ? (
           item === "price" ? (
-            <PriсeRange />
+            <PriсeRange />            
           ) : (
             <PopupCheckboxes filtername={item} />
           )

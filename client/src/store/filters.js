@@ -48,7 +48,7 @@ const initialState = {
     gemstone_color: []
   },
   menuState: {
-    price: false,
+    price: true,
     collection: false,
     metal: false,
     metal_color: false,
@@ -56,8 +56,8 @@ const initialState = {
     gemstone_color: false
   },
   priceRange: {
-    lowPriсe: null,
-    hightPrice: null
+    lowPriсe: 0,
+    hightPrice: 200000
   }
 };
 
@@ -99,8 +99,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
         }
       };
     }
-    case CLEAR_FILTERS: {
-      console.log(payload);
+    case CLEAR_FILTERS: {      
       return {
         ...store,
         selFilters: {
