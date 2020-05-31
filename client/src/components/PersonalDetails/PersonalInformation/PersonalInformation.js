@@ -85,9 +85,6 @@ export const PersonalInformation = () => {
         <Button
           value={"Save Changes"}
           onClick={updateCustomer}
-          disabled={
-            error.firstName || error.lastName || error.email || error.telephone
-          }
         />
         {isOpen && <UpdateInformationForm onClose={() => toggleModal(false)} />}
       </InputWrapper>
@@ -148,7 +145,17 @@ export const PersonalInformation = () => {
     setData(data);
   }
 
+  // function isFormValid() {
+  //   firstNameValidate(user.firstName)
+  // }
+
   function updateCustomer() {
+    // if (!isFormValid) {
+    //   firstNameValidate(error.firstName);
+    //
+    //   return;
+    // }
+
     dispatch(update(data))
       .then(() => toggleModal(!isOpen))
       .catch(error => setError(error.response.data));

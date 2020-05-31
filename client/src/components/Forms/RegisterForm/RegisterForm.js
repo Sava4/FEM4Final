@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {
   FormWrapper,
@@ -11,12 +11,12 @@ import {
   GoBackWrapper,
   GoBackText
 } from "./registerForm.styles";
-import { GoBackImage } from "../OrderForm/orderForm.styles";
-import { InputHolder } from "../LoginForm/loginForm.styles";
-import { Button } from "../../common/Button/Button";
-import { Modal } from "../../Modal/Modal";
-import { Input } from "../../common/Input/Input";
-import { Eye } from "../InputPassword/InputPassword";
+import {GoBackImage} from "../OrderForm/orderForm.styles";
+import {InputHolder} from "../LoginForm/loginForm.styles";
+import {Button} from "../../common/Button/Button";
+import {Modal} from "../../Modal/Modal";
+import {Input} from "../../common/Input/Input";
+import {Eye} from "../InputPassword/InputPassword";
 import {
   confirmPasswordValidate,
   emailValidate,
@@ -27,10 +27,10 @@ import {
 } from "../../common/ValidationRules/validationRules";
 
 export const RegisterForm = props => {
-  const { onClose, onRegister, onLogin } = props;
+  const {onClose, onRegister, onLogin} = props;
 
   const [error, setError] = useState({});
-  const [login, setLogin] = useState();
+  const [login, setLogin] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -52,6 +52,7 @@ export const RegisterForm = props => {
                 value={login}
                 invalid={error.login}
                 onChange={onLoginChange}
+                onBlur={onLoginBlur}
               />
               {error.login && <ErrorMessage>{error.login}</ErrorMessage>}
             </InputHolder>
@@ -62,6 +63,7 @@ export const RegisterForm = props => {
                 value={firstName}
                 invalid={error.firstName}
                 onChange={onFirstNameChange}
+                onBlur={onFirstNameBlur}
               />
               {error.firstName && (
                 <ErrorMessage>{error.firstName}</ErrorMessage>
@@ -74,6 +76,7 @@ export const RegisterForm = props => {
                 value={lastName}
                 invalid={error.lastName}
                 onChange={onLastNameChange}
+                onBlur={onLastNameBlur}
               />
               {error.lastName && <ErrorMessage>{error.lastName}</ErrorMessage>}
             </InputHolder>
@@ -86,6 +89,7 @@ export const RegisterForm = props => {
                 value={email}
                 invalid={error.email}
                 onChange={onEmailChange}
+                onBlur={onEmailBlur}
               />
               {error.email && <ErrorMessage>{error.email}</ErrorMessage>}
             </InputHolder>
@@ -96,9 +100,10 @@ export const RegisterForm = props => {
                 value={password}
                 invalid={error.password}
                 onChange={onPasswordChange}
+                onBlur={onPasswordBlur}
               />
               {password && (
-                <Eye onClick={() => setPasswordShown(!passwordShown)} />
+                <Eye onClick={() => setPasswordShown(!passwordShown)}/>
               )}
               {error.password && <ErrorMessage>{error.password}</ErrorMessage>}
             </InputHolder>
@@ -109,6 +114,7 @@ export const RegisterForm = props => {
                 value={confirmPassword}
                 invalid={error.confirmPassword}
                 onChange={onConfirmPasswordChange}
+                onBlur={onConfirmPasswordBlur}
               />
               {confirmPassword && (
                 <Eye
@@ -122,9 +128,9 @@ export const RegisterForm = props => {
           </RightContent>
         </ContentWrapper>
         <FormButtonWrapper>
-          <Button value="Register" onClick={onChange} />
+          <Button value="Register" onClick={onCustomerRegister}/>
           <GoBackWrapper onClick={onLogin}>
-            <GoBackImage />
+            <GoBackImage/>
             <GoBackText>Go back to Login</GoBackText>
           </GoBackWrapper>
         </FormButtonWrapper>
@@ -134,7 +140,15 @@ export const RegisterForm = props => {
 
   function onLoginChange(event) {
     setLogin(event.target.value);
-    const loginError = loginValidate(login);
+    const loginError = loginValidate(event.target.value);
+    setError({
+      ...error,
+      login: loginError
+    });
+  }
+
+  function onLoginBlur(event) {
+    const loginError = loginValidate(event.target.value);
     setError({
       ...error,
       login: loginError
@@ -143,7 +157,15 @@ export const RegisterForm = props => {
 
   function onFirstNameChange(event) {
     setFirstName(event.target.value);
-    const firstNameError = firstNameValidate(firstName);
+    const firstNameError = firstNameValidate(event.target.value);
+    setError({
+      ...error,
+      firstName: firstNameError
+    });
+  }
+
+  function onFirstNameBlur(event) {
+    const firstNameError = firstNameValidate(event.target.value);
     setError({
       ...error,
       firstName: firstNameError
@@ -152,7 +174,15 @@ export const RegisterForm = props => {
 
   function onLastNameChange(event) {
     setLastName(event.target.value);
-    const lastNameError = lastNameValidate(lastName);
+    const lastNameError = lastNameValidate(event.target.value);
+    setError({
+      ...error,
+      lastName: lastNameError
+    });
+  }
+
+  function onLastNameBlur(event) {
+    const lastNameError = lastNameValidate(event.target.value);
     setError({
       ...error,
       lastName: lastNameError
@@ -161,7 +191,15 @@ export const RegisterForm = props => {
 
   function onEmailChange(event) {
     setEmail(event.target.value);
-    const emailError = emailValidate(email);
+    const emailError = emailValidate(event.target.value);
+    setError({
+      ...error,
+      email: emailError
+    });
+  }
+
+  function onEmailBlur(event) {
+    const emailError = emailValidate(event.target.value);
     setError({
       ...error,
       email: emailError
@@ -170,7 +208,15 @@ export const RegisterForm = props => {
 
   function onPasswordChange(event) {
     setPassword(event.target.value);
-    const passwordError = passwordValidate(password);
+    const passwordError = passwordValidate(event.target.value);
+    setError({
+      ...error,
+      password: passwordError
+    });
+  }
+
+  function onPasswordBlur(event) {
+    const passwordError = passwordValidate(event.target.value);
     setError({
       ...error,
       password: passwordError
@@ -179,37 +225,51 @@ export const RegisterForm = props => {
 
   function onConfirmPasswordChange(event) {
     setConfirmPassword(event.target.value);
-    const confirmPasswordError = confirmPasswordValidate(
-      confirmPassword,
-      password
-    );
+    const confirmPasswordError = confirmPasswordValidate(event.target.value);
     setError({
       ...error,
       confirmPassword: confirmPasswordError
     });
   }
 
-  function isFormValid() {
+  function onConfirmPasswordBlur(event) {
+    const confirmPasswordError = confirmPasswordValidate(event.target.value);
+    setError({
+      ...error,
+      confirmPassword: confirmPasswordError
+    });
+  }
+
+  function isFormInvalid() {
     return (
-      loginValidate(login) &&
-      firstNameValidate(firstName) &&
-      lastNameValidate(lastName) &&
-      emailValidate(email) &&
-      passwordValidate(password) &&
+      loginValidate(login) ||
+      firstNameValidate(firstName) ||
+      lastNameValidate(lastName) ||
+      emailValidate(email) ||
+      passwordValidate(password) ||
       confirmPasswordValidate(confirmPassword, password)
     );
   }
 
-  function onChange(event) {
+  function onCustomerRegister(event) {
     event.preventDefault();
 
-    if (!isFormValid()) {
-      loginValidate(error.login) ||
-        firstNameValidate(error.firstName) ||
-        lastNameValidate(error.lastName) ||
-        emailValidate(error.email) ||
-        passwordValidate(error.password) ||
-        confirmPasswordValidate(error.confirmPassword && error.password);
+    if (isFormInvalid()) {
+      const loginError = loginValidate(login);
+      const firstNameError = firstNameValidate(firstName);
+      const lastNameError = lastNameValidate(lastName);
+      const emailError = emailValidate(email);
+      const passwordError = passwordValidate(password);
+      const confirmPasswordError = confirmPasswordValidate(confirmPassword, password);
+      setError({
+        ...error,
+        login: loginError,
+        firstName: firstNameError,
+        lastName: lastNameError,
+        email: emailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError
+      });
 
       return;
     }
