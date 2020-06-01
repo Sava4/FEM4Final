@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import { Paginator } from "./Paginator";
 import { LoadMore } from "./LoadMore";
 import { ProductItem } from "../ProductsList/ProductItem";
-import { Layout } from "../common/Layout";
-//игоря
-import { useParams } from "react-router";
-import { FilteredListProducts } from "./../../components/ProductsFilterList/FilteredProducts";
-import { FilterIndicators } from "./../ProductsFilterList/SelectedProducts/FilterIndicators";
+import styles from "./Paginator.module.css";
+import cn from "classnames";
+
 export const ProductsPagination = ({
   currentPage,
   truePage,
@@ -20,20 +17,12 @@ export const ProductsPagination = ({
   categoryQuery,
   apiCategory,
   category2,
+  category,
   ...props
 }) => {
-  ///// игоря
-  const { category } = useParams();
   return (
     <div>
-      {/* <Layout> */}
-      <div
-        style={{
-          position: "absolute",
-          top: "84%",
-          right: "14%"
-        }}
-      >
+      <div className={cn(styles.upper)}>
         <Paginator
           // info={1}
           currentPage={currentPage}
@@ -73,27 +62,18 @@ export const ProductsPagination = ({
             />
           </div>
         ))}
-        {/* <FilteredListProducts category={category} /> */}
       </div>
-      <div style={{ width: "100%", display: "block" }}>
-        <LoadMore
-          currentPage={currentPage}
-          onPageChanged={onPageChanged}
-          onLoadMore={onLoadMore}
-          productsQuantity={productsQuantity}
-          pageSize={pageSize}
-          products={products}
-          pageSize={pageSize}
-          category={category}
-        />
-      </div>
-      <div
-        style={{
-          position: "relative",
-          bottom: "5.1%",
-          left: "69%"
-        }}
-      >
+      <LoadMore
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+        onLoadMore={onLoadMore}
+        productsQuantity={productsQuantity}
+        pageSize={pageSize}
+        products={products}
+        pageSize={pageSize}
+        category={category}
+      />
+      <div className={cn(styles.bottom)}>
         <Paginator
           currentPage={currentPage}
           onPageChanged={onPageChanged}
@@ -106,7 +86,6 @@ export const ProductsPagination = ({
           categoryQuery={categoryQuery}
         />
       </div>
-      {/* </Layout> */}
     </div>
   );
 };
