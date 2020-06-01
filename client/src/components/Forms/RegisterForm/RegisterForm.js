@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   FormWrapper,
@@ -11,12 +11,12 @@ import {
   GoBackWrapper,
   GoBackText
 } from "./registerForm.styles";
-import {GoBackImage} from "../OrderForm/orderForm.styles";
-import {InputHolder} from "../LoginForm/loginForm.styles";
-import {Button} from "../../common/Button/Button";
-import {Modal} from "../../Modal/Modal";
-import {Input} from "../../common/Input/Input";
-import {Eye} from "../InputPassword/InputPassword";
+import { GoBackImage } from "../OrderForm/orderForm.styles";
+import { InputHolder } from "../LoginForm/loginForm.styles";
+import { Button } from "../../common/Button/Button";
+import { Modal } from "../../Modal/Modal";
+import { Input } from "../../common/Input/Input";
+import { Eye } from "../InputPassword/InputPassword";
 import {
   confirmPasswordValidate,
   emailValidate,
@@ -27,7 +27,7 @@ import {
 } from "../../common/ValidationRules/validationRules";
 
 export const RegisterForm = props => {
-  const {onClose, onRegister, onLogin} = props;
+  const { onClose, onRegister, onLogin } = props;
 
   const [error, setError] = useState({});
   const [login, setLogin] = useState("");
@@ -103,7 +103,7 @@ export const RegisterForm = props => {
                 onBlur={onPasswordBlur}
               />
               {password && (
-                <Eye onClick={() => setPasswordShown(!passwordShown)}/>
+                <Eye onClick={() => setPasswordShown(!passwordShown)} />
               )}
               {error.password && <ErrorMessage>{error.password}</ErrorMessage>}
             </InputHolder>
@@ -128,9 +128,9 @@ export const RegisterForm = props => {
           </RightContent>
         </ContentWrapper>
         <FormButtonWrapper>
-          <Button value="Register" onClick={onCustomerRegister}/>
+          <Button value="Register" onClick={onCustomerRegister} />
           <GoBackWrapper onClick={onLogin}>
-            <GoBackImage/>
+            <GoBackImage />
             <GoBackText>Go back to Login</GoBackText>
           </GoBackWrapper>
         </FormButtonWrapper>
@@ -260,7 +260,10 @@ export const RegisterForm = props => {
       const lastNameError = lastNameValidate(lastName);
       const emailError = emailValidate(email);
       const passwordError = passwordValidate(password);
-      const confirmPasswordError = confirmPasswordValidate(confirmPassword, password);
+      const confirmPasswordError = confirmPasswordValidate(
+        confirmPassword,
+        password
+      );
       setError({
         ...error,
         login: loginError,

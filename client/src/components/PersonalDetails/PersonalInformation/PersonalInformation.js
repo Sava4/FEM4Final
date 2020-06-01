@@ -24,6 +24,8 @@ export const PersonalInformation = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [user, setUser] = useState(useSelector(state => state.user));
+  console.log(user);
+  const originUser = useSelector(state => state.user);
   const [isOpen, toggleModal] = useState(false);
   const [error, setError] = useState({});
 
@@ -82,10 +84,7 @@ export const PersonalInformation = () => {
           {error.telephone && <Error>{error.telephone}</Error>}
         </Holder>
         <Datepicker value={user.date} onChange={onDatepickerChange} />
-        <Button
-          value={"Save Changes"}
-          onClick={updateCustomer}
-        />
+        <Button value={"Save Changes"} onClick={updateCustomer} />
         {isOpen && <UpdateInformationForm onClose={() => toggleModal(false)} />}
       </InputWrapper>
     </Details>
@@ -106,6 +105,15 @@ export const PersonalInformation = () => {
 
   function onFirstNameChange(event) {
     handleDataChange("firstName")(event);
+    if (event.target.value === (originUser.firstName || "")) {
+      const { firstName, ...rest } = data;
+      setData(rest);
+      setError({
+        ...error,
+        firstName: ""
+      });
+      return;
+    }
     const firstNameError = firstNameValidate(event.target.value);
     setError({
       ...error,
@@ -115,6 +123,15 @@ export const PersonalInformation = () => {
 
   function onLastNameChange(event) {
     handleDataChange("lastName")(event);
+    if (event.target.value === (originUser.lastName || "")) {
+      const { lastName, ...rest } = data;
+      setData(rest);
+      setError({
+        ...error,
+        lastName: ""
+      });
+      return;
+    }
     const lastNameError = lastNameValidate(event.target.value);
     setError({
       ...error,
@@ -124,6 +141,14 @@ export const PersonalInformation = () => {
 
   function onEmailChange(event) {
     handleDataChange("email")(event);
+    if (event.target.value === (originUser.email || "")) {
+      const { email, ...rest } = data;
+      setData(rest);
+      setError({
+        ...error,
+        email: ""
+      });
+    }
     const emailError = emailValidate(event.target.value);
     setError({
       ...error,
@@ -133,6 +158,15 @@ export const PersonalInformation = () => {
 
   function onTelephoneChange(event) {
     handleDataChange("telephone")(event);
+    if (event.target.value === (originUser.telephone || "")) {
+      const { telephone, ...rest } = data;
+      setData(rest);
+      setError({
+        ...error,
+        telephone: ""
+      });
+      return;
+    }
     const telephoneError = telephoneValidate(event.target.value);
     setError({
       ...error,
@@ -145,16 +179,17 @@ export const PersonalInformation = () => {
     setData(data);
   }
 
-  // function isFormValid() {
-  //   firstNameValidate(user.firstName)
-  // }
+  function updateCustomer(event) {
+    event.preventDefault();
 
-  function updateCustomer() {
-    // if (!isFormValid) {
-    //   firstNameValidate(error.firstName);
-    //
-    //   return;
-    // }
+    if (
+      (user.firstName || "") === (originUser.firstName || "") &&
+      (user.lastName || "") === (originUser.lastName || "") &&
+      (user.email || "") === (originUser.email || "") &&
+      (user.telephone || "") === (originUser.telephone || "")
+    ) {
+      return;
+    }
 
     dispatch(update(data))
       .then(() => toggleModal(!isOpen))
