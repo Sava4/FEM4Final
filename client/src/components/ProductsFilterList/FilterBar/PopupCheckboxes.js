@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
 import checkBox from "./check-box.png";
@@ -16,7 +16,7 @@ export const PopupCheckboxes = props => {
   const { filtername } = props;
   const checkedFromStor = filters[filtername];
 
-  const filter = (innerArrey, filterType) => {
+  const filter = (innerArrey, filterType) => {   
     const collections = [];
     innerArrey.forEach(
       (item) =>
@@ -47,6 +47,7 @@ export const PopupCheckboxes = props => {
   };
 
   const collectionList = filter(availFilters, filtername);
+  // console.log(collectionList)
   const inputs = collectionList.map((item) => {
     return (
       <CheckboxDiv key={v4()}>

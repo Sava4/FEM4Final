@@ -41,12 +41,10 @@ export const ProductFilters = props => {
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
   const [queryCategory, setQueryCategory] = useState("");
   const [sortType, setSortType] = useState("");
-  const initialPriceValue = {
-    min: 0,
-    max: 200000
-  };
+  const initialPriceValue = {min: 0,
+                            max: 200000};
 
-  console.log(homepagecategory, chosenMenu, category)
+  // console.log(homepagecategory, chosenMenu, category)
   const filtredBy = [
     "price",
     "collection",
@@ -99,8 +97,6 @@ export const ProductFilters = props => {
   const query = querystring.stringify(filters, { arrayFormat: "comma" });
   const querySort = sortType && ((sortType === "price Increase") ? ("&sort=+currentPrice") : ("&sort=-currentPrice"));
   const commonSort = `${query ? "&" : ""}minPrice=${priceFilters.lowPriсe}&maxPrice=${priceFilters.hightPrice}${querySort}`;
-
-  console.log(sortType, querySort)
 
   const selectAction = (e) => {
     setSortType(e.target.value)

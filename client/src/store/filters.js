@@ -48,7 +48,7 @@ const initialState = {
     gemstone_color: []
   },
   menuState: {
-    price: true,
+    price: false,
     collection: false,
     metal: false,
     metal_color: false,
@@ -69,8 +69,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
         availFilters: payload
       };
     }
-    case PRICE_RANGE: {
-      console.log(payload)
+    case PRICE_RANGE: {     
       return {
         ...store,
         priceRange: {
