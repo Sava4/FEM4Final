@@ -102,7 +102,7 @@ export const PriсeRange =props => {
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
-        // getAriaValueText={valuetext}
+// getAriaValueText={valuetext}
         onChangeCommitted={sendToStore}
         marks={marks}
       />

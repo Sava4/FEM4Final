@@ -193,8 +193,8 @@ export const ProductFilters = props => {
 
           </SelectedProductsHeader>
           <FilterIndicators />
-          <FilteredListProducts category={category} />
-          {/* <ProductsContainer /> */}
+          {/* <FilteredListProducts category={category} /> */}
+          <ProductsContainer />
         </SelectedProducts>
       </CategotiesCommon>
     </Layout>
