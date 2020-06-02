@@ -10,8 +10,8 @@ import { setPriceRange } from "../../../store/filters";
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
-    marginTop: '20px',
+    width: '90%',
+    margin: '0 auto',   
   },
 });
 
@@ -47,11 +47,10 @@ markLabel:{
   lineHeight: '10px',
   top: '-17px',
   fontFamily: 'Montserrat',
-  // left: '90%!important'
+  left: '90%!important',
+  color: '#000000',
 },
-markLabelActive:{
 
-}
 })(Slider);
 
 export const PriсeRange =props => {
@@ -78,23 +77,14 @@ export const PriсeRange =props => {
   
   }
 
-  // useEffect (()=>{
-  //   const rangeToStore = {
-  //     min:value[0],
-  //     max:value[1]
-  //   }
-  // },[value])
-
-
-
-  // function valuetext(value) {
+ // function valuetext(value) {
     // return `${value}°C`;
   // }
   const marks = [
-    {
-      value: 0,
-      label: '₴',
-    },    
+    // {
+    //   value: 0,
+    //   label: '₴',
+    // },    
     {
       value: 200000,
       label: '₴ 200\'000',
@@ -103,7 +93,8 @@ export const PriсeRange =props => {
 
   return (
     <div>    
-     <div className={classes.root}>     
+     <div className={classes.root}> 
+     <LeftMarc>₴</LeftMarc>    
       <AirbnbSlider
        min={0}
        max={200000}
@@ -156,3 +147,11 @@ margin-bottom:30px;
     border-bottom: 1px solid #a7aabb;
   }
 `;
+
+const LeftMarc = styled.p`
+margin-bottom: 7px!important;
+font-size: 14px!important;
+line-height: 10px;  
+font-family: Montserrat;
+text-align: left;
+`
