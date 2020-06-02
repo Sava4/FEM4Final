@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 
 import { MenuContext } from "./navState";
 import { NavigationMenuMobile } from "./NavigationMenuMobile";
+import { OverflowBody } from "../../../Modal/modal.styles";
 
 export const SideMenu = () => {
   const { isMenuOpen } = useContext(MenuContext);
@@ -11,6 +12,7 @@ export const SideMenu = () => {
   return (
     <Menu open={isMenuOpen}>
       <NavigationMenuMobile />
+      {isMenuOpen && <OverflowBody />}
     </Menu>
   );
 };

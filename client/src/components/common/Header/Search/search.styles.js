@@ -23,6 +23,22 @@ export const SearchInput = styled.input`
     outline: none;
   }
 
+  :focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+
+  :focus::-moz-placeholder {
+    color: transparent;
+  }
+
+  :focus:-moz-placeholder {
+    color: transparent;
+  }
+
+  :focus:-ms-input-placeholder {
+    color: transparent;
+  }
+
   ${mediaMobile(`
     display: none;
   `)}
@@ -47,6 +63,7 @@ export const SearchHolder = styled.div`
   align-items: flex-end;
 `;
 export const PreviewWrapper = styled.div`
+  width: 100%;
   max-height: 500px;
   padding: 15px 0;
   display: flex;
@@ -59,6 +76,13 @@ export const PreviewWrapper = styled.div`
   border-radius: 5px;
   overflow: scroll;
   cursor: pointer;
+`;
+
+export const Loaded = styled.div`
+  height: 500px;
+  margin: 15px 15px 0 15px;
+  text-align: center;
+  color: #80858d;
 `;
 
 export const TextHolder = styled(NavLink)`

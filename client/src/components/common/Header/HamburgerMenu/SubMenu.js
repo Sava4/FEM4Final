@@ -83,5 +83,7 @@ const Arrow = styled.div`
 `;
 
 const SubCategory = styled.div`
+  max-height: 100vh;
   margin-left: 20px;
+  overflow: scroll;
 `;

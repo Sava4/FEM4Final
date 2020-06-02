@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { ErrorMessage } from "../InputEmail/InputEmail";
 import { Input } from "../../common/Input/Input";
+import eye from "./eye.png";
 
 export const InputPassword = props => {
   const [password, setPassword] = useState(props.value);
+  const [passwordShown, setPasswordShown] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState(true);
   const error = useSelector(state => {
     return state.loginStatus;
@@ -12,14 +15,17 @@ export const InputPassword = props => {
 
   return (
     <>
-      <Input
-        type="password"
-        label="Password"
-        value={password}
-        invalid={!passwordValidation}
-        onChange={onChange}
-        onBlur={onPasswordBlur}
-      />
+      <Holder>
+        <Input
+          type={passwordShown ? "password" : "text"}
+          label="Password"
+          value={password}
+          invalid={!passwordValidation}
+          onChange={onChange}
+          onBlur={onPasswordBlur}
+        />
+        {password && <Eye onClick={() => setPasswordShown(!passwordShown)} />}
+      </Holder>
       {error && error.password && (
         <ErrorMessage>
           The password is not correct. Please, try again
@@ -46,3 +52,18 @@ export const InputPassword = props => {
     setPasswordValidation(status);
   }
 };
+
+export const Holder = styled.div`
+  position: relative;
+`;
+
+export const Eye = styled.div`
+  width: 17px;
+  height: 15px;
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  background-image: url(${eye});
+  background-size: contain;
+  background-repeat: no-repeat;
+`;

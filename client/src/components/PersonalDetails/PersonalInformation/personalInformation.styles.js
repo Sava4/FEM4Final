@@ -21,7 +21,7 @@ export const Details = styled.div`
 
   ${mediaMobile(`
     width: inherit;
-    margin: 20px 20px 0 20px;
+    margin: 20px 20px 30px 20px;
   `)}
 `;
 
@@ -66,6 +66,21 @@ export const InputWrapper = styled.div`
 
   ${mediaMobile(`
     width: 100%;
+    margin-bottom: 0;
+  `)}
+`;
+
+export const Form = styled.form`
+  width: 50%;
+  margin-bottom: 20px;
+
+  ${mediaTablet(`
+    width: 100%;
+  `)}
+
+  ${mediaMobile(`
+    width: 100%;
+    margin-bottom: 0;
   `)}
 `;
 

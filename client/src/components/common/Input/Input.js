@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Holder, LabelInput, InputText, InputElement } from "./input.styles";
+import { LabelInput, InputText, InputElement } from "./input.styles";
 
 export const Input = props => {
   const [filled, setFilled] = useState(Boolean(props.value));

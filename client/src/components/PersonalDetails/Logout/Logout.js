@@ -8,6 +8,7 @@ export const UserLogout = props => {
 const Logout = styled.div`
   width: 60px;
   margin-top: 25px;
+  margin-bottom: 30px;
   padding-bottom: 2px;
   font-size: 14px;
   text-transform: uppercase;

@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 import { HeaderContent } from "../Header/Header";
 import { Footer } from "../Footer";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const Layout = props => {
   return (
     <MainLayout>
       <HeaderContent />
       <main className="content">{props.children}</main>
-      <Footer></Footer>
+      <Footer />
     </MainLayout>
   );
 };
@@ -22,4 +23,10 @@ const MainLayout = styled.div`
   & .content {
     flex-grow: 1;
   }
+
+  ${mediaMobile(`
+    & .content {
+    flex-grow: 0;
+  }
+  `)}
 `;
