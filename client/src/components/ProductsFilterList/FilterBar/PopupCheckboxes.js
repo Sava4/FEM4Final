@@ -5,21 +5,22 @@ import styled from "styled-components";
 import checkBox from "./check-box.png";
 import checkBoxChecked from "./check-box-checked.png";
 
-import { dispatchSetCheckFilter,
-          setDeleteFilter,} from "../../../store/filters";
-
+import {
+  dispatchSetCheckFilter,
+  setDeleteFilter
+} from "../../../store/filters";
 
 export const PopupCheckboxes = props => {
   const dispatch = useDispatch();
-  const filters= useSelector(state =>state.filters.selFilters);
-  const availFilters= useSelector(state =>state.filters.availFilters);
+  const filters = useSelector(state => state.filters.selFilters);
+  const availFilters = useSelector(state => state.filters.availFilters);
   const { filtername } = props;
   const checkedFromStor = filters[filtername];
 
-  const filter = (innerArrey, filterType) => {   
+  const filter = (innerArrey, filterType) => {
     const collections = [];
     innerArrey.forEach(
-      (item) =>
+      item =>
         !collections.includes(item[filterType]) &&
         collections.push(item[filterType])
     );
@@ -27,13 +28,13 @@ export const PopupCheckboxes = props => {
     return collections;
   };
 
-  const checkedFilters = (e) => {
+  const checkedFilters = e => {
     e.preventDefault();
     const activeFilters = {};
     activeFilters[
       e.target.getAttribute("data-filtergroupname")
     ] = e.target.getAttribute("data-filtername");
-    dispatch (dispatchSetCheckFilter(activeFilters));
+    dispatch(dispatchSetCheckFilter(activeFilters));
     if (!e.target.checked) {
       const remoteFilterCategory = e.target.getAttribute(
         "data-filtergroupname"
@@ -41,14 +42,14 @@ export const PopupCheckboxes = props => {
       const remoteFilterName = e.target.getAttribute("data-filtername");
       const delEll = {};
       delEll[remoteFilterCategory] = remoteFilterName;
-      dispatch (setDeleteFilter(delEll));
+      dispatch(setDeleteFilter(delEll));
       e.target.checked = false;
     }
   };
 
   const collectionList = filter(availFilters, filtername);
   // console.log(collectionList)
-  const inputs = collectionList.map((item) => {
+  const inputs = collectionList.map(item => {
     return (
       <CheckboxDiv key={v4()}>
         <CheckboxLabel fore={item}>

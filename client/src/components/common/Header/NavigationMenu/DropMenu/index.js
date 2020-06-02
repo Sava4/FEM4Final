@@ -42,8 +42,8 @@ export const HeaderMenuElem = props => {
     setDropMenuState(newDropMenu);
   };
 
-  const hideDropmenu = (e) => {
-    console.log( e.target)
+  const hideDropmenu = e => {
+    console.log(e.target);
     const newDropMenu = dropMenuState.map(item => {
       const { menuName, isOpen } = item;
       return {
@@ -60,24 +60,24 @@ export const HeaderMenuElem = props => {
     );
 
     return (
-      <div key={item.menuName} >
+      <div key={item.menuName}>
         {item.isOpen ? (
-          <CategoryDropBackground 
-          // onMouseLeave={hideDropmenu}          
+          <CategoryDropBackground
+          // onMouseLeave={hideDropmenu}
           />
         ) : null}
         <Category>
           <CategoryHeader
-            onClick={() => openDropMenu(item)} 
-            style={{  borderColor: item.isOpen && "#007395" }}
+            onClick={() => openDropMenu(item)}
+            style={{ borderColor: item.isOpen && "#007395" }}
           >
             {item.menuName !== "gift cards" ? (
               item.menuName
             ) : (
-              <NavLink to="/giftсards" >{item.menuName}</NavLink>
+              <NavLink to="/giftсards">{item.menuName}</NavLink>
             )}
           </CategoryHeader>
-          
+
           {item.isOpen ? <DropMenu dropMenuArray={dropMenuArray} /> : null}
         </Category>
       </div>
@@ -94,7 +94,7 @@ const Categories = styled.div`
   // cursor: pointer;
 `;
 
-const CategoryDropBackground = styled.div`  
+const CategoryDropBackground = styled.div`
   height: 210px;
   ${mediaTablet(`
   height:260px;
@@ -120,5 +120,4 @@ const Category = styled.div`
 const CategoryHeader = styled.div`
   text-transform: uppercase;
   border-bottom: 1px solid transparent;
-
 `;

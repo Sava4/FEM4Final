@@ -8,15 +8,14 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 
-
-export const FiltersList = props => { 
+export const FiltersList = props => {
   const dispatch = useDispatch();
-  const  filtersBlockState = useSelector(state=>state.filters.menuState) 
-  const {filtredBy} = props;
+  const filtersBlockState = useSelector(state => state.filters.menuState);
+  const { filtredBy } = props;
 
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    dispatch (setTogleShown(e.target.parentNode.id));
+    dispatch(setTogleShown(e.target.parentNode.id));
   };
 
   let filters = filtredBy.map(item => {
@@ -24,7 +23,7 @@ export const FiltersList = props => {
     return (
       <FilterBox key={v4()}>
         <FilterType id={item}>
-          <p onClick={handleChange} >{item.replace("_", " ")}</p>
+          <p onClick={handleChange}>{item.replace("_", " ")}</p>
           {isShown ? (
             <ExpandLessIcon fontSize="default" onClick={handleChange} />
           ) : (
@@ -33,7 +32,7 @@ export const FiltersList = props => {
         </FilterType>
         {isShown ? (
           item === "price" ? (
-            <PriсeRange />            
+            <PriсeRange />
           ) : (
             <PopupCheckboxes filtername={item} />
           )
@@ -61,6 +60,6 @@ const FilterType = styled.div`
     text-transform: uppercase;
     width: 100%;
     text-align: left;
-    cursor:pointer;
+    cursor: pointer;
   }
 `;

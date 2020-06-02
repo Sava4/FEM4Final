@@ -17,7 +17,7 @@ import {
 import { MobileFiltersList } from "./FilterBar/MobileFiltersList";
 import { FilterIndicators } from "./SelectedProducts/FilterIndicators";
 import { Button } from "../common/Button/Button";
-import { SortedbyPopup } from "./SortedbyPopup"
+import { SortedbyPopup } from "./SortedbyPopup";
 import { FilteredListProducts } from "./FilteredProducts";
 import ProductsContainer from "./../SliderProducts/ProductsContainer";
 import earrings from "./images/earrings.png";
@@ -26,23 +26,23 @@ import rings from "./images/rings.png";
 import necklaces from "./images/necklaces.png";
 import dropArrow from "./images/DroppArrow.png";
 
-
 export const ProductFilters = props => {
   const { homepagecategory } = useParams();
   const { chosenMenu } = useParams();
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filters.selFilters);
-  const selectedProd = useSelector(state => state.productsPage.productsQuantity);
+  const selectedProd = useSelector(
+    state => state.productsPage.productsQuantity
+  );
   const priceFilters = useSelector(state => state.filters.priceRange);
   // const category = (!!homepagecategory) ? chosenMenu : homepagecategory.replace("homepage", "");
-    const category = (!!homepagecategory) ? homepagecategory : chosenMenu;
+  const category = !!homepagecategory ? homepagecategory : chosenMenu;
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
   const [queryCategory, setQueryCategory] = useState("");
   const [sortType, setSortType] = useState("");
-  const initialPriceValue = {min: 0,
-                            max: 200000};
+  const initialPriceValue = { min: 0, max: 200000 };
 
   // console.log(homepagecategory, chosenMenu, category)
   const filtredBy = [
@@ -53,7 +53,6 @@ export const ProductFilters = props => {
     "gemstone",
     "gemstone_color"
   ];
-
 
   useLayoutEffect(() => {
     axios
@@ -74,35 +73,41 @@ export const ProductFilters = props => {
 
     const url = `/products`;
     axios.get(url).then(result => {
-      let typesAll = result.data.map(({ categories }) => { return categories });
-      const unification = (arreyForUnif) => Array.from(new Set(arreyForUnif));
+      let typesAll = result.data.map(({ categories }) => {
+        return categories;
+      });
+      const unification = arreyForUnif => Array.from(new Set(arreyForUnif));
       // console.log(result.data)
-      const filterCheck = (categoryName) => {
-
-        if (unification(typesAll).filter(it => it === categoryName.toLowerCase()).length) {
+      const filterCheck = categoryName => {
+        if (
+          unification(typesAll).filter(it => it === categoryName.toLowerCase())
+            .length
+        ) {
           // console.log("категория из вариантов")
-          setQueryCategory(`&categories=${categoryName}`)
-        }
-        else {
+          setQueryCategory(`&categories=${categoryName}`);
+        } else {
           // console.log("Коллекции")
           dispatch(dispatchSetCheckFilter({ collection: categoryName }));
           setQueryCategory("");
-
         }
-      }
-      category &&  filterCheck(category)
+      };
+      category && filterCheck(category);
     });
   }, [category]);
 
   const query = querystring.stringify(filters, { arrayFormat: "comma" });
-  const querySort = sortType && ((sortType === "price Increase") ? ("&sort=+currentPrice") : ("&sort=-currentPrice"));
-  const commonSort = `${query ? "&" : ""}minPrice=${priceFilters.lowPriсe}&maxPrice=${priceFilters.hightPrice}${querySort}`;
+  const querySort =
+    sortType &&
+    (sortType === "price Increase"
+      ? "&sort=+currentPrice"
+      : "&sort=-currentPrice");
+  const commonSort = `${query ? "&" : ""}minPrice=${
+    priceFilters.lowPriсe
+  }&maxPrice=${priceFilters.hightPrice}${querySort}`;
 
-  const selectAction = (e) => {
-    setSortType(e.target.value)
-  }
-
-
+  const selectAction = e => {
+    setSortType(e.target.value);
+  };
 
   useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
@@ -143,54 +148,60 @@ export const ProductFilters = props => {
         <p>{category}</p>
         <CategoriesHeaderImg categoryName={background(category)} />
       </CategoriesHeader>
-      {window.innerWidth < 767 ? null : <IconBreadcrumbs categoryName={category} />}
+      {window.innerWidth < 767 ? null : (
+        <IconBreadcrumbs categoryName={category} />
+      )}
       <CategotiesCommon>
         {window.innerWidth < 767 ? (
           <MobileCategoriesFilters>
-            <p onClick={() => setOpenFiltwind(true)}>
-              FILTER BY
-            </p>
+            <p onClick={() => setOpenFiltwind(true)}>FILTER BY</p>
             <div>
               <p onClick={() => setIsOpenSortedPopup(!isOpenSortedPopup)}>
                 SORTED BY
-            </p>
-              {isOpenSortedPopup ?
-                <SortedbyPopup setSortType={setSortType}
+              </p>
+              {isOpenSortedPopup ? (
+                <SortedbyPopup
+                  setSortType={setSortType}
                   setIsOpenSortedPopup={setIsOpenSortedPopup}
-                  sortType={sortType} />
-                : <p onClick={() => setIsOpenSortedPopup(!isOpenSortedPopup)}>
+                  sortType={sortType}
+                />
+              ) : (
+                <p onClick={() => setIsOpenSortedPopup(!isOpenSortedPopup)}>
                   {sortType ? sortType.toLowerCase() : "choose sorting type"}
-                </p>}
+                </p>
+              )}
             </div>
             {openFiltwin && (
-              <MobileFiltersList filtredBy={filtredBy} setOpenFiltwind={setOpenFiltwind} />
+              <MobileFiltersList
+                filtredBy={filtredBy}
+                setOpenFiltwind={setOpenFiltwind}
+              />
             )}
           </MobileCategoriesFilters>
         ) : (
-            <CategoriesFilters>
-              <p>FILTER BY</p>
-              <FiltersList filtredBy={filtredBy} />
-              <ButtonSection>
-                <Button onClick={() => dispatch(setClearFilters())}
-                  value={"CLEAR ALL"}
-                  width={"168px"} />
-              </ButtonSection>
-
-            </CategoriesFilters>
-          )}
+          <CategoriesFilters>
+            <p>FILTER BY</p>
+            <FiltersList filtredBy={filtredBy} />
+            <ButtonSection>
+              <Button
+                onClick={() => dispatch(setClearFilters())}
+                value={"CLEAR ALL"}
+                width={"168px"}
+              />
+            </ButtonSection>
+          </CategoriesFilters>
+        )}
 
         <SelectedProducts>
           <SelectedProductsHeader>
             <p>{`Selected products (${selectedProd})`}</p>
             <SortSection>
-              <p >SORTED BY</p>
-              <StyledSelect onChange={selectAction}
-                defaultValue="Choose">
+              <p>SORTED BY</p>
+              <StyledSelect onChange={selectAction} defaultValue="Choose">
                 <option value="priceIncrease">Price increase</option>
                 <option value="priceDecrease">Price decrease</option>
               </StyledSelect>
             </SortSection>
-
           </SelectedProductsHeader>
           <FilterIndicators />
           {/* <FilteredListProducts category={category} /> */}
@@ -199,7 +210,7 @@ export const ProductFilters = props => {
       </CategotiesCommon>
     </Layout>
   );
-}
+};
 // );
 
 const CategoriesHeader = styled.div`
@@ -211,10 +222,9 @@ const CategoriesHeader = styled.div`
   & p {
     font-size: 40px;
     color: white;
-    text-transform: uppercase;   
+    text-transform: uppercase;
     padding-left: 111px;
     padding-top: 120px;
- ;
   }
 `;
 const CategoriesHeaderImg = styled.div`
@@ -234,13 +244,13 @@ const CategotiesCommon = styled.div`
 `;
 
 const ButtonSection = styled.div`
-  margin: 20px auto;   
+  margin: 20px auto;
   width: fit-content;
-`
+`;
 const MobileCategoriesFilters = styled.div`
   font-family: Old Standard TT;
-  display: none; 
-  
+  display: none;
+
   ${mediaMobile(`
   display: flex;
   justify-content: space-between;
@@ -290,40 +300,39 @@ const SelectedProducts = styled.div`
   margin: 0 20px;
   display: flex;
   flex-direction: column;
- 
 `;
 
 const SelectedProductsHeader = styled.div`
-display: flex;
-justify-content: space-between;
-& > p {
-  font-family: Old Standard TT;
-  font-size: 17px;    
-  text-transform: uppercase;
-  margin-bottom: 23px;
+  display: flex;
+  justify-content: space-between;
+  & > p {
+    font-family: Old Standard TT;
+    font-size: 17px;
+    text-transform: uppercase;
+    margin-bottom: 23px;
   }
   ${mediaMobile(`;
      display:none;     
     `)}
-`
+`;
 const SortSection = styled.div`
-display: flex;
-align-items: end;
-& > p {
-  font-family: Old Standard TT;
-  font-size: 17px;    
-  text-transform: uppercase;
-}
-`
+  display: flex;
+  align-items: end;
+  & > p {
+    font-family: Old Standard TT;
+    font-size: 17px;
+    text-transform: uppercase;
+  }
+`;
 const StyledSelect = styled.select`
-font-family: Montserrat;
-border: none;
-margin-left:25px;
-appearance: none;
-background: url(${dropArrow}) no-repeat right center;
-min-width: 115px;
-outline: 0;
-input[type=select]:focus {
+  font-family: Montserrat;
   border: none;
-}
-`    
+  margin-left: 25px;
+  appearance: none;
+  background: url(${dropArrow}) no-repeat right center;
+  min-width: 115px;
+  outline: 0;
+  input[type="select"]:focus {
+    border: none;
+  }
+`;

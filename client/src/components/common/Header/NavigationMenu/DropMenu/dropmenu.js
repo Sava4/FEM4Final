@@ -1,17 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {  useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { setClearFilters } from "../../../../../store/filters";
 import { mediaTablet } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import styled from "styled-components";
 
-
-
-export const DropMenu = props => { 
-  const { dropMenuArray} = props;
+export const DropMenu = props => {
+  const { dropMenuArray } = props;
   const dispatch = useDispatch();
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
-  const dropMenu =  categoryArray.length &&
+  const dropMenu =
+    categoryArray.length &&
     categoryArray.map(item => {
       const { parentId, name, _id } = item;
       const nameForDropMenu =
@@ -20,7 +19,9 @@ export const DropMenu = props => {
           : name.toLowerCase();
       return (
         <DroMenuItem key={_id} onClick={() => dispatch(setClearFilters())}>
-          <StyledLink to={`/headerMenu/${name}`}><p>{nameForDropMenu}</p></StyledLink>
+          <StyledLink to={`/headerMenu/${name}`}>
+            <p>{nameForDropMenu}</p>
+          </StyledLink>
         </DroMenuItem>
       );
     });
@@ -45,11 +46,11 @@ const CategoryDropHolder = styled.div`
   flex-wrap: wrap;
 `;
 const StyledLink = styled(NavLink)`
-line-height: 18px;
-  & p:hover {   
+  line-height: 18px;
+  & p:hover {
     text-decoration: underline;
   }
   & p:first-letter {
-    text-transform:capitalize;
-}
+    text-transform: capitalize;
+  }
 `;

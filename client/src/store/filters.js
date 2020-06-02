@@ -69,7 +69,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
         availFilters: payload
       };
     }
-    case PRICE_RANGE: {     
+    case PRICE_RANGE: {
       return {
         ...store,
         priceRange: {
@@ -98,7 +98,7 @@ export function filtersReduser(store = initialState, { type, payload }) {
         }
       };
     }
-    case CLEAR_FILTERS: {      
+    case CLEAR_FILTERS: {
       return {
         ...store,
         selFilters: {

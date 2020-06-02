@@ -29,7 +29,7 @@ export const FilteredListProducts = connect(MapStateToProps, {
       result.data.forEach(item => typesAll.push(item.categories));
       const unification = () => Array.from(new Set(typesAll));
       // console.log(result.data);
-      const filterCheck = (categoryName) => {
+      const filterCheck = categoryName => {
         //  console.log(availableCategories.filter(it => it===categoryName))
         if (
           unification().filter(it => it === categoryName.toLowerCase()).length

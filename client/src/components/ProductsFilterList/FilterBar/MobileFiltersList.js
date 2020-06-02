@@ -1,11 +1,10 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
-import {setTogleShown,
-        setClearFilters,} from "./../../../store/filters";
+import { setTogleShown, setClearFilters } from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PriсeRange } from "./PriсeRange";
@@ -14,8 +13,8 @@ import { Button } from "../../common/Button/Button";
 
 export const MobileFiltersList = props => {
   const dispatch = useDispatch();
-  const filtersList= useSelector(state =>state.filters.menuState); 
-  const {filtredBy} = props;
+  const filtersList = useSelector(state => state.filters.menuState);
+  const { filtredBy } = props;
 
   const { setOpenFiltwind } = props;
   const handleChange = (e, nodes) => {
@@ -27,16 +26,16 @@ export const MobileFiltersList = props => {
     let isShown = filtersList[item];
     return (
       <FilterBox key={v4()}>
-        <FilterType id={item} >
+        <FilterType id={item}>
           <p onClick={handleChange}>{item.replace("_", " ")}</p>
           {isShown ? (
             <div>
               <ExpandLessIcon fontSize="default" onClick={handleChange} />
-            </div>            
+            </div>
           ) : (
             <div>
-              <ExpandMoreIcon fontSize="default" onClick={handleChange}/>
-            </div>            
+              <ExpandMoreIcon fontSize="default" onClick={handleChange} />
+            </div>
           )}
         </FilterType>
         {isShown ? (
@@ -77,10 +76,10 @@ const FiltersModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;  
+  position: fixed;
   z-index: 2;
   left: 0;
-  top: 0;  
+  top: 0;
   width: 100% !important;
   height: 100%;
   padding-top: 40px;
