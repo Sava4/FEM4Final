@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const Continue = styled.div`
   align-self: flex-start;
-  margin-top: 33px;
+  margin-top: 15px;
   cursor: pointer;
 `;
 

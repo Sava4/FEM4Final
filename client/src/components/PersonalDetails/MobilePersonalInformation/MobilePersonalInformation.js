@@ -66,10 +66,10 @@ export const MediaRouter = props => {
     const onMediaChange = mediaMatchEvent => {
       setMatches(mediaMatchEvent.matches);
     };
-    mediaMatch.addEventListener("change", onMediaChange);
+    mediaMatch.addListener(onMediaChange);
 
     return () => {
-      mediaMatch.removeEventListener("change", onMediaChange);
+      mediaMatch.removeListener(onMediaChange);
     };
   });
 

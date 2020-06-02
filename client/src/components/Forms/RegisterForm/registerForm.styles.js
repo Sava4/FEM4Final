@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
+import {
+  mediaMobile,
+  mediaTablet
+} from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const FormWrapper = styled.form`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,21 +14,6 @@ export const FormWrapper = styled.form`
   ${mediaMobile(`
   flex-direction: column;
   align-items: center;
-  `)}
-`;
-export const FormRegister = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 60px;
-  margin-left: 60px;
-
-  ${mediaMobile(`
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 0;
-  margin-left: 0;
   `)}
 `;
 
@@ -46,83 +33,63 @@ export const FormTitle = styled.span`
 `;
 
 export const ErrorMessage = styled.span`
-  font-size: 14px;
-  color: red;
+  font-size: 10px;
+  color: #db3d3d;
 `;
 
 export const LeftContent = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
   margin-right: 30px;
+  margin-left: 100px;
+
+  ${mediaTablet(`
+    margin-left: 60px;
+    margin-right: 20px;
+  `)}
 
   ${mediaMobile(`
-  width: 85%;
-  margin: 0;
+    width: 85%;
+    margin: 0;
   `)}
-`;
-
-export const Input = styled.input`
-  width: 100%;
-  margin-bottom: 45px;
-  padding-bottom: 5px;
-  border: none;
-  border-bottom: 1px solid #80858d;
-  border-bottom-color: ${props => (props.invalid ? "red" : "#80858D")};
-  letter-spacing: 0.7px;
-  font-size: 12px;
-
-  :-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0 50px #fff !important;
-    -webkit-text-fill-color: #999 !important;
-    color: #999 !important;
-  }
-
-  ::placeholder {
-    color: #80858d;
-  }
-
-  :focus::placeholder {
-    transform: translateY(-10px);
-  }
-
-  :focus {
-    outline: none;
-  }
-`;
-
-export const InputPassword = styled(Input)`
-  margin-bottom: 5px;
-`;
-
-export const InputPasswordWrapper = styled.div`
-  margin-bottom: 32px;
-`;
-
-export const InputBottomText = styled.div`
-  font-size: 8px;
-  color: #80858d;
 `;
 
 export const RightContent = styled.div`
   width: 50%;
+  display: flex;
+  flex-direction: column;
   margin-left: 30px;
+  margin-right: 100px;
+
+  ${mediaTablet(`
+    margin-right: 60px;
+    margin-left: 20px;
+  `)}
 
   ${mediaMobile(`
-  width: 85%;
-  margin: 0;
+    width: 85%;
+    margin: 0;
   `)}
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
+  width: 100%;
+  margin-bottom: 40px;
+
+  ${mediaTablet(`
+    margin-bottom: 30px;
+  `)}
 
   ${mediaMobile(`
-  flex-direction: column;
-  align-items: center;
+    flex-direction: column;
+    align-items: center;
   `)}
 `;
 
 export const FormButtonWrapper = styled.div`
-  width: 40%;
+  width: 35%;
   margin-bottom: 35px;
 
   ${mediaMobile(`

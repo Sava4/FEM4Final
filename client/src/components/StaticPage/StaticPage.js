@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 import { Mapbox } from "../Map/Mapbox";
-import { AddressesSelect } from "../Map/addressesPage";
 import { Server, ImagePage } from "./GiftCard/giftCard.styles";
 import { PageHeader } from "../common/PageHeader/PageHeader";
 import { GiftCard } from "./GiftCard/GiftCard";
@@ -34,20 +33,11 @@ export const StaticPage = () => {
         <Fragment>
           <Page>
             <PageHeader>Find your store</PageHeader>
-            <AddressesSelect />
             <Mapbox />
           </Page>
         </Fragment>
       );
-    if (url === "gift-cards")
-      return (
-        <Fragment>
-          <Page>
-            <PageHeader>Gift cards</PageHeader>
-            <GiftCard />
-          </Page>
-        </Fragment>
-      );
+    if (url === "gift-cards") return <GiftCard />;
     return (
       <Fragment>
         <Page>

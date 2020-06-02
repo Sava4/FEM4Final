@@ -234,7 +234,7 @@ exports.updatePassword = (req, res) => {
     customer.comparePassword(oldPassword, function(err, isMatch) {
       if (!isMatch) {
         errors.password = "Password does not match";
-        res.json(errors);
+        res.status(400).json(errors);
       } else {
         let newPassword = req.body.newPassword;
 

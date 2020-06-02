@@ -21,6 +21,39 @@ export const Container = styled.div`
       flex-direction: column;
     `}
 `;
+
+export const SlidersContainer = styled.div`
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: raw;
+  position: relative;
+  width: 60%;
+  ${mediaMobile(`
+width: 95%;
+`)}
+`;
+export const SliderItemPreviews = styled.div`
+width: 4%,
+marginTop: 20px,
+margin-right: 5px,
+cursor: pointer,
+display: inline-block,
+// ${mediaMobile(`
+// width: 9%;
+// `)}
+`;
+export const SliderItemMain = styled.div`
+width: 95%,
+marginTop: 20px,
+marginRight: 20px,
+box-sizing: border-box,
+cursor: zoom-in,
+display: inline-block,
+// ${mediaMobile(`
+// width: 90%;
+// `)}
+`;
+
 export const Wrapper = styled.div`
   margin-top: 20px;
   width: 33%;
@@ -127,6 +160,7 @@ export const PriceWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 export const Price = styled.div`
   margin-top: 25px;

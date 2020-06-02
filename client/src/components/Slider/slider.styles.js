@@ -9,7 +9,12 @@ export const CarouselWrapper = styled.div`
  .slick-dots {
   position: inherit;
   padding-bottom: 10px;
+  margin-top: 40px;
   border-bottom: 1px solid #002D50;
+ }
+ .slick-arrow{
+   margin-top: 40px;
+   border: 1px solid rgb(233, 235, 245);
  }
  `)}
 `;
@@ -109,7 +114,7 @@ export const H4 = styled.h4`
   text-align: center;
   font-family: Montserrat, sans-serif;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 24px;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 30px;

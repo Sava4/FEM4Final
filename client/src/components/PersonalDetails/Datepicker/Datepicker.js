@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getMonthOptions, getDaysOptions, getYearOptions } from "./utils";
 import styled from "styled-components";
 import arrow from "./dropdownArrow.png";
+import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
 export const Datepicker = props => {
   const { value } = props;
@@ -69,6 +70,10 @@ export const Birthday = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 55px;
+
+  ${mediaMobile(`
+    margin-bottom: 30px;
+  `)}
 `;
 
 export const Select = styled.select`

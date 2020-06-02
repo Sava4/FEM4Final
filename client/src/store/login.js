@@ -5,6 +5,7 @@ import { loginStatusAction } from "./loginStatus";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
+export const USER_LOGOUT = "USER_LOGOUT";
 const REMEMBER = "REMEMBER";
 
 export const loginAction = (
@@ -19,6 +20,10 @@ export const loginAction = (
 
 export const logoutAction = () => ({
   type: LOGOUT
+});
+
+export const userLogoutAction = () => ({
+  type: USER_LOGOUT
 });
 
 const loginSuccessAction = token => ({
@@ -54,6 +59,13 @@ export function loginReducer(state = InitialState, action) {
       };
     case LOGOUT:
       return { ...state, token: null };
+    case USER_LOGOUT:
+      return {
+        ...state,
+        token: null,
+        loginOrEmail: null,
+        password: null
+      };
     default:
       return state;
   }

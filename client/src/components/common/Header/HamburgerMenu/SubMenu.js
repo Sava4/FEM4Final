@@ -56,9 +56,6 @@ const Item = styled.div`
 
 const Holder = styled.div`
   padding-top: 100px;
-  // overflow: auto;
-  // height: 100vh;
-  
 `;
 
 const CategoryHolder = styled.div`
@@ -86,7 +83,7 @@ const Arrow = styled.div`
 `;
 
 const SubCategory = styled.div`
-  margin-left: 20px; 
-  overflow: auto;
-  height: 100vh; 
+  max-height: 100vh;
+  margin-left: 20px;
+  overflow: scroll;
 `;
