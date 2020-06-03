@@ -52,7 +52,7 @@ export const PopupCheckboxes = props => {
   const inputs = collectionList.map(item => {
     return (
       <CheckboxDiv key={v4()}>
-        <CheckboxLabel fore={item}>
+        <CheckboxLabel fore={item} checked={checkedFromStor.includes(item)}>
           <InputCheckbox
             type="checkbox"
             name={item}
@@ -60,9 +60,9 @@ export const PopupCheckboxes = props => {
             data-filtername={item}
             data-filtergroupname={filtername}
             defaultChecked={checkedFromStor.includes(item) && "checked"}
-          ></InputCheckbox>
+          />
           <CheckBoxIcon />
-          {item}
+          <p>{item}</p>
         </CheckboxLabel>
       </CheckboxDiv>
     );
@@ -86,8 +86,11 @@ const CheckboxLabel = styled.label`
   letter-spacing: 0.5px;
   cursor: pointer;
   text-transform: capitalize;
+  & p {
+    margin: 0 !important;
+    font-weight: ${props => (props.checked ? "600" : "400")};
+  }
 `;
-
 const CheckBoxIcon = styled.span`
   width: 10px;
   height: 10px;

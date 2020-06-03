@@ -248,7 +248,7 @@ const ButtonSection = styled.div`
   width: fit-content;
 `;
 const MobileCategoriesFilters = styled.div`
-  font-family: Old Standard TT;
+  font-family: Montserrat;
   display: none;
 
   ${mediaMobile(`
@@ -282,7 +282,7 @@ const MobileCategoriesFilters = styled.div`
 `)}
 `;
 const CategoriesFilters = styled.div`
-  font-family: Old Standard TT;
+  font-family: Montserrat;
   width: 25%;
   min-width: 200px;
   max-width: 260px;
@@ -306,7 +306,7 @@ const SelectedProductsHeader = styled.div`
   display: flex;
   justify-content: space-between;
   & > p {
-    font-family: Old Standard TT;
+    font-family: Montserrat;
     font-size: 17px;
     text-transform: uppercase;
     margin-bottom: 23px;
@@ -319,7 +319,7 @@ const SortSection = styled.div`
   display: flex;
   align-items: end;
   & > p {
-    font-family: Old Standard TT;
+    font-family: Montserrat;
     font-size: 17px;
     text-transform: uppercase;
   }

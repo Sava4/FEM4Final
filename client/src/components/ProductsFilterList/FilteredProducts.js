@@ -96,7 +96,6 @@ export const Wrapper = styled.div`
   padding-bottom: 30px;
   margin: 0 auto;
   max-width: inherit;
-  // width: 80%;
   @media (max-width: 1050px) {
     max-width: 800px;
   }
