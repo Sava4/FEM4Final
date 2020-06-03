@@ -4,7 +4,6 @@ import axios from "axios";
 import { v4 } from "uuid";
 import querystring from "query-string";
 import { ProductItem } from "../ProductsList/ProductItem";
-// import { mediaMobile } from "../../styledComponents/GlobalStyle";
 import { dispatchSetCheckFilter } from "../../store/filters";
 
 import styled from "styled-components";
@@ -21,7 +20,7 @@ export const FilteredListProducts = connect(MapStateToProps, {
   const [queryCategory, setQueryCategory] = useState("");
   // const [clickedCollection, setClickedCollection]= useState([]);
   const { category, setNambertOfFilteredItems } = props;
-  console.log(category);
+  // console.log(category);
   //Часть по унификации
   useLayoutEffect(() => {
     let typesAll = [];
@@ -29,17 +28,17 @@ export const FilteredListProducts = connect(MapStateToProps, {
     axios.get(url).then(result => {
       result.data.forEach(item => typesAll.push(item.categories));
       const unification = () => Array.from(new Set(typesAll));
-      console.log(result.data);
+      // console.log(result.data);
       const filterCheck = categoryName => {
         //  console.log(availableCategories.filter(it => it===categoryName))
         if (
           unification().filter(it => it === categoryName.toLowerCase()).length
         ) {
-          console.log("категория из вариантов");
+          // console.log("категория из вариантов");
           setQueryCategory(`categories=${categoryName}&`);
         } else {
-          console.log("Коллекции");
-          props.dispatchSetCheckFilter({ collection: categoryName });
+          // console.log("Коллекции");
+          // props.dispatchSetCheckFilter({ collection: categoryName });
           setQueryCategory("");
         }
       };
@@ -52,12 +51,12 @@ export const FilteredListProducts = connect(MapStateToProps, {
 
   const sort = `${query ? "&" : ""}minPrice=${
     props.priceFilters.lowPriсe
-  }&maxPrice=${props.priceFilters.hightPrice}`;
+  }&maxPrice=${props.priceFilters.hightPrice}&sort=+currentPrice`;
 
   useEffect(() => {
-    const filterUurl = `/products/filter?${queryCategory}&${query}${sort}`;
-    console.log(filterUurl);
-    axios.get(filterUurl).then(result => {
+    const filterUrl = `/products/filter?${queryCategory}${query}${sort}`;
+    console.log(filterUrl);
+    axios.get(filterUrl).then(result => {
       // console.log(result.data)
       setProducts(result.data);
     });
@@ -97,7 +96,6 @@ export const Wrapper = styled.div`
   padding-bottom: 30px;
   margin: 0 auto;
   max-width: inherit;
-  // width: 80%;
   @media (max-width: 1050px) {
     max-width: 800px;
   }

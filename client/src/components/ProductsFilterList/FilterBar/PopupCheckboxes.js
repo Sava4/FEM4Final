@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
 import checkBox from "./check-box.png";
@@ -10,22 +10,15 @@ import {
   setDeleteFilter
 } from "../../../store/filters";
 
-const mapStateToProps = store => ({
-  filters: store.filters.selFilters,
-  availFilters: store.filters.availFilters
-});
-
-export const PopupCheckboxes = connect(mapStateToProps, {
-  dispatchSetCheckFilter,
-  setDeleteFilter
-})(props => {
+export const PopupCheckboxes = props => {
+  const dispatch = useDispatch();
+  const filters = useSelector(state => state.filters.selFilters);
+  const availFilters = useSelector(state => state.filters.availFilters);
   const { filtername } = props;
-
-  const checkedFromStor = props.filters[filtername];
+  const checkedFromStor = filters[filtername];
 
   const filter = (innerArrey, filterType) => {
     const collections = [];
-
     innerArrey.forEach(
       item =>
         !collections.includes(item[filterType]) &&
@@ -41,7 +34,7 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     activeFilters[
       e.target.getAttribute("data-filtergroupname")
     ] = e.target.getAttribute("data-filtername");
-    props.dispatchSetCheckFilter(activeFilters);
+    dispatch(dispatchSetCheckFilter(activeFilters));
     if (!e.target.checked) {
       const remoteFilterCategory = e.target.getAttribute(
         "data-filtergroupname"
@@ -49,16 +42,17 @@ export const PopupCheckboxes = connect(mapStateToProps, {
       const remoteFilterName = e.target.getAttribute("data-filtername");
       const delEll = {};
       delEll[remoteFilterCategory] = remoteFilterName;
-      props.setDeleteFilter(delEll);
+      dispatch(setDeleteFilter(delEll));
       e.target.checked = false;
     }
   };
 
-  const collectionList = filter(props.availFilters, filtername);
+  const collectionList = filter(availFilters, filtername);
+  // console.log(collectionList)
   const inputs = collectionList.map(item => {
     return (
       <CheckboxDiv key={v4()}>
-        <CheckboxLabel fore={item}>
+        <CheckboxLabel fore={item} checked={checkedFromStor.includes(item)}>
           <InputCheckbox
             type="checkbox"
             name={item}
@@ -66,16 +60,16 @@ export const PopupCheckboxes = connect(mapStateToProps, {
             data-filtername={item}
             data-filtergroupname={filtername}
             defaultChecked={checkedFromStor.includes(item) && "checked"}
-          ></InputCheckbox>
+          />
           <CheckBoxIcon />
-          {item}
+          <p>{item}</p>
         </CheckboxLabel>
       </CheckboxDiv>
     );
   });
 
   return <form onChange={checkedFilters}>{inputs}</form>;
-});
+};
 
 const CheckboxDiv = styled.div`
   margin-bottom: 20px;
@@ -92,8 +86,11 @@ const CheckboxLabel = styled.label`
   letter-spacing: 0.5px;
   cursor: pointer;
   text-transform: capitalize;
+  & p {
+    margin: 0 !important;
+    font-weight: ${props => (props.checked ? "600" : "400")};
+  }
 `;
-
 const CheckBoxIcon = styled.span`
   width: 10px;
   height: 10px;

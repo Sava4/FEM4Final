@@ -1,54 +1,41 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 } from "uuid";
 import styled from "styled-components";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 import modalClose from "./modal-close-btn.png";
-import {
-  setToggleShown,
-  setClearFilters,
-  setDeleteFilter
-} from "./../../../store/filters";
+import { setTogleShown, setClearFilters } from "./../../../store/filters";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { PriсeRange } from "./PriсeRange";
 import { PopupCheckboxes } from "./PopupCheckboxes";
 import { Button } from "../../common/Button/Button";
 
-const mapStateToProps = store => ({
-  filters: store.filters.menuState
-});
+export const MobileFiltersList = props => {
+  const dispatch = useDispatch();
+  const filtersList = useSelector(state => state.filters.menuState);
+  const { filtredBy } = props;
 
-export const MobileFiltersList = connect(mapStateToProps, {
-  setToggleShown,
-  setDeleteFilter,
-  setClearFilters
-})(props => {
-  const filtredBy = [
-    "price",
-    "collection",
-    "metal",
-    "metal_color",
-    "gemstone",
-    "gemstone_color"
-  ];
-
-  const { setOpenFiltwilnd } = props;
+  const { setOpenFiltwind } = props;
   const handleChange = (e, nodes) => {
     e.preventDefault();
-    props.setToggleShown(e.target.parentNode.id);
+    dispatch(setTogleShown(e.target.parentNode.id));
   };
 
   let filters = filtredBy.map(item => {
-    let isShown = props.filters[item];
+    let isShown = filtersList[item];
     return (
       <FilterBox key={v4()}>
-        <FilterType id={item} onClick={handleChange}>
-          <p>{item.replace("_", " ")}</p>
+        <FilterType id={item}>
+          <p onClick={handleChange}>{item.replace("_", " ")}</p>
           {isShown ? (
-            <ExpandLessIcon fontSize="default" onClick={handleChange} />
+            <div>
+              <ExpandLessIcon fontSize="default" onClick={handleChange} />
+            </div>
           ) : (
-            <ExpandMoreIcon fontSize="default" />
+            <div>
+              <ExpandMoreIcon fontSize="default" onClick={handleChange} />
+            </div>
           )}
         </FilterType>
         {isShown ? (
@@ -66,24 +53,24 @@ export const MobileFiltersList = connect(mapStateToProps, {
 
   return (
     <FiltersModal>
-      <ModalClose onClick={() => setOpenFiltwilnd(false)} />
+      <ModalClose onClick={() => setOpenFiltwind(false)} />
       {filters}
       <BottomBlock>
         <Button
           primary
           value={"APPLY FILTERS"}
           width={"168px"}
-          onClick={() => setOpenFiltwilnd(false)}
+          onClick={() => setOpenFiltwind(false)}
         />
         <Button
-          onClick={() => props.setClearFilters()}
+          onClick={() => dispatch(setClearFilters())}
           value={"CLEAR ALL"}
           width={"168px"}
         />
       </BottomBlock>
     </FiltersModal>
   );
-});
+};
 
 const FiltersModal = styled.div`
   display: flex;
@@ -122,15 +109,19 @@ cursor: pointer;
 `;
 const FilterType = styled.div`
   ${mediaMobile(`
-  padding-top: 22px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: fit-content;
-  & p {
+  & >p {
     font-size: 14px;
     text-transform: uppercase;
-    margin: 0;  
-    padding-bottom: 31px;
+    margin: 0;   
+    // padding-bottom: 31px;
+    // padding-top: 20px;
+    padding: 20px 0 31px;
+    width: 100%;
+    text-align: left;
   }
 `)}
 `;

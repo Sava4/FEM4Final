@@ -167,9 +167,10 @@ exports.getProductsFilterParams = async (req, res, next) => {
 
   try {
     const products = await Product.find(mongooseQuery)
+      .sort(sort)
       .skip(startPage * perPage - perPage)
-      .limit(perPage)
-      .sort(sort);
+      .limit(perPage);
+
       console.log("TCL: exports.getProductsFilterParams -> sort", sort)
   
      
