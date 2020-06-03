@@ -30,6 +30,7 @@ export const FormLogIn = styled.div`
 
 export const InputHolder = styled.div`
   width: 100%;
+  display: flex;
   position: relative;
   margin-bottom: 25px;
 `;

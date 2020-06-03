@@ -33,6 +33,8 @@ export const FormTitle = styled.span`
 `;
 
 export const ErrorMessage = styled.span`
+  position: absolute;
+  bottom: -12px;
   font-size: 10px;
   color: #db3d3d;
 `;
