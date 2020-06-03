@@ -56,8 +56,8 @@ const initialState = {
     gemstone_color: false
   },
   priceRange: {
-    lowPriсe: null,
-    hightPrice: null
+    lowPriсe: 0,
+    hightPrice: 200000
   }
 };
 
@@ -99,7 +99,6 @@ export function filtersReduser(store = initialState, { type, payload }) {
       };
     }
     case CLEAR_FILTERS: {
-      console.log(payload);
       return {
         ...store,
         selFilters: {
@@ -150,7 +149,7 @@ export const setAvaliFilters = allFilters => dispatch => {
   dispatch(avaliFilters(allFilters));
 };
 
-export const setToggleShown = filter => dispatch => {
+export const setTogleShown = filter => dispatch => {
   dispatch(toggleShown(filter));
 };
 

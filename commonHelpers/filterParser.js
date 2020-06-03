@@ -1,4 +1,4 @@
-const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice"];
+const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "sort"];
 
 module.exports = function filterParser(filtersQueryString) {
   const mongooseQuery = {};
