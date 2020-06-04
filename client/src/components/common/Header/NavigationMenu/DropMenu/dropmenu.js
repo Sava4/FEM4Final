@@ -40,7 +40,7 @@ const CategoryDropHolder = styled.div`
   height: 210px;
   width: 110px;
   position: absolute;
-  top: 35px;
+  top: 25px;
   z-index: 2;
   display: flex;
   flex-direction: column;

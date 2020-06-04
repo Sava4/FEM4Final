@@ -129,7 +129,7 @@ const CategoryDropBackground = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   background: white;
   border-bottom: 1px solid black;
   border-top: 1px solid #a7aabb;
@@ -149,5 +149,5 @@ const Category = styled.div`
 
 const CategoryHeader = styled.div`
   text-transform: uppercase;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
 `;
