@@ -232,6 +232,7 @@ const CategoriesHeaderImg = styled.div`
   height: inherit;
   width: 668px;
   background-repeat: no-repeat;
+  background-position: right;
 `;
 const CategotiesCommon = styled.div`
   margin: 29px 130px;
