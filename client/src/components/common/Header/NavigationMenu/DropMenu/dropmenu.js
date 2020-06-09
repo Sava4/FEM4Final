@@ -5,8 +5,8 @@ import { setClearFilters } from "../../../../../store/filters";
 import { mediaTablet } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import styled from "styled-components";
 
-export const DropMenu = props => {
-  const { dropMenuArray } = props;
+export const DropMenu = React.forwardRef((props, ref) => {
+  const { dropMenuArray, onClick } = props;
   const dispatch = useDispatch();
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =
@@ -25,8 +25,12 @@ export const DropMenu = props => {
         </DroMenuItem>
       );
     });
-  return <CategoryDropHolder>{dropMenu}</CategoryDropHolder>;
-};
+  return (
+    <CategoryDropHolder onClick={onClick} ref={ref}>
+      {dropMenu}
+    </CategoryDropHolder>
+  );
+});
 
 const DroMenuItem = styled.div`
   margin-top: 20px;
@@ -34,16 +38,17 @@ const DroMenuItem = styled.div`
 `;
 const CategoryDropHolder = styled.div`
   height: 210px;
-  ${mediaTablet(`
-  height:260px;
-  `)}
   width: 110px;
   position: absolute;
-  top: 35px;
+  top: 25px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
+  ${mediaTablet(`
+  height:260px;
+  `)}
 `;
 const StyledLink = styled(NavLink)`
   line-height: 18px;
