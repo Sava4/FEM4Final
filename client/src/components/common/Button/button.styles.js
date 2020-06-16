@@ -4,7 +4,7 @@ export const InputWrapper = styled.div`
   width: ${props => (props.width ? props.width : "100%")};
   display: flex;
   justify-content: center;
-  background: #002d50;
+  background: ${props => (props.secondary ? "#002d50" : "#ffffff")};
   cursor: pointer;
 `;
 
@@ -17,6 +17,7 @@ export const Input = styled.input`
   background: ${props => (props.secondary ? "#ffffff" : "#002d50")};
   color: ${props => (props.secondary ? "#000000" : "#ffffff")};
   border: 1px solid #002d50;
+  border-radius: 0;
   cursor: pointer;
   -webkit-appearance: none;
 

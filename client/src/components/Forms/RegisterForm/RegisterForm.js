@@ -4,245 +4,286 @@ import {
   FormWrapper,
   FormTitle,
   ErrorMessage,
-  FormRegister,
   ContentWrapper,
   LeftContent,
-  Input,
   RightContent,
-  InputPasswordWrapper,
-  InputPassword,
-  InputBottomText,
   FormButtonWrapper,
   GoBackWrapper,
   GoBackText
 } from "./registerForm.styles";
-
 import { GoBackImage } from "../OrderForm/orderForm.styles";
+import { InputHolder } from "../LoginForm/loginForm.styles";
 import { Button } from "../../common/Button/Button";
 import { Modal } from "../../Modal/Modal";
+import { Input } from "../../common/Input/Input";
+import { Eye } from "../InputPassword/InputPassword";
+import {
+  confirmPasswordValidate,
+  emailValidate,
+  firstNameValidate,
+  lastNameValidate,
+  loginValidate,
+  passwordValidate
+} from "../../common/ValidationRules/validationRules";
 
 export const RegisterForm = props => {
   const { onClose, onRegister, onLogin } = props;
 
-  const [error, setError] = useState([]);
-
+  const [error, setError] = useState({});
   const [login, setLogin] = useState("");
-  const [loginValidation, setLoginValidation] = useState(true);
-
   const [firstName, setFirstName] = useState("");
-  const [firstNameValidation, setFirstNameValidation] = useState(true);
-
   const [lastName, setLastName] = useState("");
-  const [lastNameValidation, setLastNameValidation] = useState(true);
-
   const [email, setEmail] = useState("");
-  const [emailValidation, setEmailValidation] = useState(true);
-
   const [password, setPassword] = useState("");
-  const [passwordValidation, setPasswordValidation] = useState(true);
-
+  const [passwordShown, setPasswordShown] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordValidation, setConfirmPasswordValidation] = useState(
-    true
-  );
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(true);
 
   return (
     <Modal onClose={onClose}>
       <FormWrapper>
         <FormTitle>Create your account</FormTitle>
-        {error && (
-          <ErrorMessage>
-            {error.map((error, index) => {
-              return <div key={index}>{error}</div>;
-            })}
-          </ErrorMessage>
-        )}
-        <FormRegister>
-          <ContentWrapper>
-            <LeftContent>
+        <ContentWrapper>
+          <LeftContent>
+            <InputHolder>
               <Input
-                value={login}
                 type="text"
-                placeholder="Login *"
+                label="Login *"
+                value={login}
+                invalid={error.login}
                 onChange={onLoginChange}
-                invalid={!loginValidation}
                 onBlur={onLoginBlur}
               />
+              {error.login && <ErrorMessage>{error.login}</ErrorMessage>}
+            </InputHolder>
+            <InputHolder>
               <Input
-                value={firstName}
                 type="text"
-                placeholder="First Name *"
+                label="First Name *"
+                value={firstName}
+                invalid={error.firstName}
                 onChange={onFirstNameChange}
-                invalid={!firstNameValidation}
                 onBlur={onFirstNameBlur}
               />
+              {error.firstName && (
+                <ErrorMessage>{error.firstName}</ErrorMessage>
+              )}
+            </InputHolder>
+            <InputHolder>
               <Input
-                value={lastName}
                 type="text"
-                placeholder="Last Name *"
+                label="Last Name *"
+                value={lastName}
+                invalid={error.lastName}
                 onChange={onLastNameChange}
-                invalid={!lastNameValidation}
                 onBlur={onLastNameBlur}
               />
-            </LeftContent>
-            <RightContent>
+              {error.lastName && <ErrorMessage>{error.lastName}</ErrorMessage>}
+            </InputHolder>
+          </LeftContent>
+          <RightContent>
+            <InputHolder>
               <Input
-                value={email}
                 type="email"
-                placeholder="Email *"
+                label="Email *"
+                value={email}
+                invalid={error.email}
                 onChange={onEmailChange}
-                invalid={!emailValidation}
                 onBlur={onEmailBlur}
               />
-              <InputPasswordWrapper>
-                <InputPassword
-                  value={password}
-                  type="password"
-                  placeholder="Password *"
-                  onChange={onPasswordChange}
-                  invalid={!passwordValidation}
-                  onBlur={onPasswordBlur}
-                />
-                <InputBottomText>
-                  At least 7 characters long, containing uppercase and lowercase
-                  letters and numbers.
-                </InputBottomText>
-              </InputPasswordWrapper>
+              {error.email && <ErrorMessage>{error.email}</ErrorMessage>}
+            </InputHolder>
+            <InputHolder>
               <Input
+                type={passwordShown ? "password" : "text"}
+                label="Password *"
+                value={password}
+                invalid={error.password}
+                onChange={onPasswordChange}
+                onBlur={onPasswordBlur}
+              />
+              {password && (
+                <Eye onClick={() => setPasswordShown(!passwordShown)} />
+              )}
+              {error.password && <ErrorMessage>{error.password}</ErrorMessage>}
+            </InputHolder>
+            <InputHolder>
+              <Input
+                type={confirmPasswordShown ? "password" : "text"}
+                label="Confirm Password *"
                 value={confirmPassword}
-                type="password"
-                placeholder="Confirm Password *"
+                invalid={error.confirmPassword}
                 onChange={onConfirmPasswordChange}
-                invalid={!confirmPasswordValidation}
                 onBlur={onConfirmPasswordBlur}
               />
-            </RightContent>
-          </ContentWrapper>
-          <FormButtonWrapper>
-            <Button value="Register" onClick={onChange} />
-            <GoBackWrapper onClick={onLogin}>
-              <GoBackImage />
-              <GoBackText>Go back to Login</GoBackText>
-            </GoBackWrapper>
-          </FormButtonWrapper>
-        </FormRegister>
+              {confirmPassword && (
+                <Eye
+                  onClick={() => setConfirmPasswordShown(!confirmPasswordShown)}
+                />
+              )}
+              {error.confirmPassword && (
+                <ErrorMessage>{error.confirmPassword}</ErrorMessage>
+              )}
+            </InputHolder>
+          </RightContent>
+        </ContentWrapper>
+        <FormButtonWrapper>
+          <Button value="Register" onClick={onCustomerRegister} />
+          <GoBackWrapper onClick={onLogin}>
+            <GoBackImage />
+            <GoBackText>Go back to Login</GoBackText>
+          </GoBackWrapper>
+        </FormButtonWrapper>
       </FormWrapper>
     </Modal>
   );
 
   function onLoginChange(event) {
     setLogin(event.target.value);
+    const loginError = loginValidate(event.target.value);
+    setError({
+      ...error,
+      login: loginError
+    });
   }
 
-  function isLoginValid(login) {
-    return login.length < 3 ? false : true;
-  }
-
-  function onLoginBlur() {
-    const status = isLoginValid(login);
-    setLoginValidation(status);
+  function onLoginBlur(event) {
+    const loginError = loginValidate(event.target.value);
+    setError({
+      ...error,
+      login: loginError
+    });
   }
 
   function onFirstNameChange(event) {
     setFirstName(event.target.value);
+    const firstNameError = firstNameValidate(event.target.value);
+    setError({
+      ...error,
+      firstName: firstNameError
+    });
   }
 
-  function isFirstNameValid(firstName) {
-    return firstName === "" ? false : true;
-  }
-
-  function onFirstNameBlur() {
-    const status = isFirstNameValid(firstName);
-    setFirstNameValidation(status);
+  function onFirstNameBlur(event) {
+    const firstNameError = firstNameValidate(event.target.value);
+    setError({
+      ...error,
+      firstName: firstNameError
+    });
   }
 
   function onLastNameChange(event) {
     setLastName(event.target.value);
+    const lastNameError = lastNameValidate(event.target.value);
+    setError({
+      ...error,
+      lastName: lastNameError
+    });
   }
 
-  function isLastNameValid(lastName) {
-    return lastName === "" ? false : true;
-  }
-
-  function onLastNameBlur() {
-    const status = isLastNameValid(lastName);
-    setLastNameValidation(status);
+  function onLastNameBlur(event) {
+    const lastNameError = lastNameValidate(event.target.value);
+    setError({
+      ...error,
+      lastName: lastNameError
+    });
   }
 
   function onEmailChange(event) {
     setEmail(event.target.value);
+    const emailError = emailValidate(event.target.value);
+    setError({
+      ...error,
+      email: emailError
+    });
   }
 
-  function isEmailValid(email) {
-    const emailPattern = /\S+@\S+\.\S+/;
-    return emailPattern.test(email);
-  }
-
-  function onEmailBlur() {
-    const status = isEmailValid(email);
-    setEmailValidation(status);
+  function onEmailBlur(event) {
+    const emailError = emailValidate(event.target.value);
+    setError({
+      ...error,
+      email: emailError
+    });
   }
 
   function onPasswordChange(event) {
     setPassword(event.target.value);
+    const passwordError = passwordValidate(event.target.value);
+    setError({
+      ...error,
+      password: passwordError
+    });
   }
 
-  function isPasswordValid(password) {
-    return password.length < 7 ? false : true;
-  }
-
-  function onPasswordBlur() {
-    const status = isPasswordValid(password);
-    setPasswordValidation(status);
+  function onPasswordBlur(event) {
+    const passwordError = passwordValidate(event.target.value);
+    setError({
+      ...error,
+      password: passwordError
+    });
   }
 
   function onConfirmPasswordChange(event) {
     setConfirmPassword(event.target.value);
+    const confirmPasswordError = confirmPasswordValidate(
+      password,
+      event.target.value
+    );
+    setError({
+      ...error,
+      confirmPassword: confirmPasswordError
+    });
   }
 
-  function isConfirmPasswordValid(password, confirmPassword) {
-    return password === confirmPassword ? true : false;
+  function onConfirmPasswordBlur(event) {
+    const confirmPasswordError = confirmPasswordValidate(
+      password,
+      event.target.value
+    );
+    setError({
+      ...error,
+      confirmPassword: confirmPasswordError
+    });
   }
 
-  function onConfirmPasswordBlur() {
-    const status = isConfirmPasswordValid(password, confirmPassword);
-    setConfirmPasswordValidation(status);
-  }
-
-  function isFormValid() {
+  function isFormInvalid() {
     return (
-      isLoginValid(login) &&
-      isFirstNameValid(firstName) &&
-      isLastNameValid(lastName) &&
-      isEmailValid(email) &&
-      isPasswordValid(password) &&
-      isConfirmPasswordValid(password, confirmPassword)
+      loginValidate(login) ||
+      firstNameValidate(firstName) ||
+      lastNameValidate(lastName) ||
+      emailValidate(email) ||
+      passwordValidate(password) ||
+      confirmPasswordValidate(password, confirmPassword)
     );
   }
 
-  function onChange(event) {
+  function onCustomerRegister(event) {
     event.preventDefault();
 
-    if (!isFormValid()) {
-      const statusLogin = isLoginValid(login);
-      setLoginValidation(statusLogin);
-      const statusFirstName = isFirstNameValid(firstName);
-      setFirstNameValidation(statusFirstName);
-      const statusLastName = isLastNameValid(lastName);
-      setLastNameValidation(statusLastName);
-      const statusEmail = isEmailValid(email);
-      setEmailValidation(statusEmail);
-      const statusPassword = isPasswordValid(password);
-      setPasswordValidation(statusPassword);
-      const statusConfirmPassword = isConfirmPasswordValid(
+    if (isFormInvalid()) {
+      const loginError = loginValidate(login);
+      const firstNameError = firstNameValidate(firstName);
+      const lastNameError = lastNameValidate(lastName);
+      const emailError = emailValidate(email);
+      const passwordError = passwordValidate(password);
+      const confirmPasswordError = confirmPasswordValidate(
         password,
         confirmPassword
       );
-      setConfirmPasswordValidation(statusConfirmPassword);
+      setError({
+        ...error,
+        login: loginError,
+        firstName: firstNameError,
+        lastName: lastNameError,
+        email: emailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError
+      });
+
       return;
     }
 
-    axios
+    return axios
       .post("/customers", {
         firstName: firstName,
         lastName: lastName,
@@ -252,14 +293,9 @@ export const RegisterForm = props => {
         isAdmin: false,
         enabled: true
       })
-      .then(response => {
+      .then(() => {
         onRegister();
       })
-      .catch(error => {
-        const errors = Object.keys(error.response.data).map(key => {
-          return error.response.data[key];
-        });
-        setError(errors);
-      });
+      .catch(error => setError(error.response.data));
   }
 };

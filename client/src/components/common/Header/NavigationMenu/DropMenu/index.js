@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
 import {
   mediaMobile,
   mediaTablet
 } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import { DropMenu } from "./dropmenu";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { OverflowBody } from "../../../../Modal/modal.styles";
+import { useOnClickOutside } from "../../HamburgerMenu/onClickOutside";
 
 export const HeaderMenuElem = props => {
   const { categoriesAllData } = props;
   const [dropMenuState, setDropMenuState] = useState([]);
-
-  // console.log(categoriesAllData.filter(item => item.parentId === "null"));
+  const background = useRef();
+  const dropMenu = useRef();
+  useOnClickOutside([background, dropMenu], () => {
+    const newDropMenu = dropMenuState.map(item => {
+      const { menuName } = item;
+      return {
+        menuName
+      };
+    });
+    setDropMenuState(newDropMenu);
+  });
 
   useEffect(() => {
     const menu = categoriesAllData
@@ -28,7 +38,6 @@ export const HeaderMenuElem = props => {
   }, [categoriesAllData]);
 
   const openDropMenu = category => {
-    console.log(category);
     const newDropMenu = dropMenuState.map(item => {
       const { menuName, isOpen } = item;
       return {
@@ -42,16 +51,16 @@ export const HeaderMenuElem = props => {
     setDropMenuState(newDropMenu);
   };
 
-  const hideDropmenu = () => {
-    const newDropMenu = dropMenuState.map(item => {
-      const { menuName, isOpen } = item;
-      return {
-        menuName,
-        isOpen: false
-      };
-    });
-    setDropMenuState(newDropMenu);
-  };
+  // const hideDropmenu = e => {
+  //   const newDropMenu = dropMenuState.map(item => {
+  //     const { menuName } = item;
+  //     return {
+  //       menuName,
+  //       isOpen: false
+  //     };
+  //   });
+  //   setDropMenuState(newDropMenu);
+  // };
 
   const categoryList = dropMenuState.map(item => {
     const dropMenuArray = categoriesAllData.filter(
@@ -61,12 +70,15 @@ export const HeaderMenuElem = props => {
     return (
       <div key={item.menuName}>
         {item.isOpen ? (
-          <CategoryDropBackground onMouseLeave={hideDropmenu} />
+          <Background>
+            <CategoryDropBackground ref={background} />
+            <OverflowBody />
+          </Background>
         ) : null}
         <Category>
           <CategoryHeader
             onClick={() => openDropMenu(item)}
-            style={{ borderBottom: item.isOpen && "1px solid #002d50" }}
+            style={{ borderColor: item.isOpen && "#007395" }}
           >
             {item.menuName !== "gift cards" ? (
               item.menuName
@@ -74,7 +86,13 @@ export const HeaderMenuElem = props => {
               <NavLink to="/giftсards">{item.menuName}</NavLink>
             )}
           </CategoryHeader>
-          {item.isOpen ? <DropMenu dropMenuArray={dropMenuArray} /> : null}
+          {item.isOpen ? (
+            <DropMenu
+              ref={dropMenu}
+              onClick={() => openDropMenu(null)}
+              dropMenuArray={dropMenuArray}
+            />
+          ) : null}
         </Category>
       </div>
     );
@@ -90,19 +108,35 @@ const Categories = styled.div`
   cursor: pointer;
 `;
 
+const Background = styled.div`
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 179px;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  ${mediaTablet(`
+    top: 165px;
+  `)}
+`;
+
 const CategoryDropBackground = styled.div`
   height: 210px;
-  ${mediaTablet(`
-  height:260px;
-  `)}
   position: absolute;
-  top: 44px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 2;
   background: white;
   border-bottom: 1px solid black;
   border-top: 1px solid #a7aabb;
+
+  ${mediaTablet(`
+  height:260px;
+  `)}
 
   ${mediaMobile(`
   display: none;
@@ -115,7 +149,5 @@ const Category = styled.div`
 
 const CategoryHeader = styled.div`
   text-transform: uppercase;
-  &: hover {
-    border-bottom: 1px solid #002d50;
-  }
+  border-bottom: 2px solid transparent;
 `;

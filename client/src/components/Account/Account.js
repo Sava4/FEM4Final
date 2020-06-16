@@ -1,14 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import arrow from "../common/Footer/footer-arrow.png";
 import { Layout } from "../common/Layout";
 import { Title } from "../PersonalDetails/PersonalDetails.styles";
 import { mediaMobile } from "../../styledComponents/MediaBreakpointsMixin";
+import { UserLogout } from "../PersonalDetails/Logout/Logout";
+import { userLogoutAction } from "../../store/login";
 
 export const Account = () => {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   return (
@@ -23,6 +26,10 @@ export const Account = () => {
           <Item>Change Password</Item>
           <Arrow onClick={onPasswordClick} />
         </Holder>
+        <Holder onClick={onWishlistClick}>
+          <Item>Wishlist</Item>
+          <Arrow onClick={onWishlistClick} />
+        </Holder>
         <Holder>
           <Item>Adess book</Item>
           <Arrow />
@@ -31,10 +38,7 @@ export const Account = () => {
           <Item>Orders</Item>
           <Arrow />
         </Holder>
-        <Holder>
-          <Item>Wishlist</Item>
-          <Arrow />
-        </Holder>
+        <UserLogout onClick={Logout} />
       </Container>
     </Layout>
   );
@@ -45,6 +49,15 @@ export const Account = () => {
 
   function onPasswordClick() {
     history.push("/account/change-password");
+  }
+
+  function onWishlistClick() {
+    history.push("/account/wish-list");
+  }
+
+  function Logout() {
+    dispatch(userLogoutAction());
+    history.push("/");
   }
 };
 

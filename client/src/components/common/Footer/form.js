@@ -28,7 +28,7 @@ let Email = props => {
   const submitButton = e => {
     setEmail(emailRef.current.value);
     // console.log(email);
-    setSignup("ДОБАВЛЯЕМ");
+    setSignup("Adding ...");
   };
 
   return (
@@ -82,7 +82,7 @@ export const required = value => {
 };
 const emailValid = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "still not email"
+    ? "example: zz@xx.yy"
     : undefined;
 export const LengthCreator = Length => value => {
   if (value.length > Length) return `Max length is ${Length} symbols`;

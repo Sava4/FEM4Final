@@ -11,12 +11,11 @@ import {
   PersonalInformationRouter
 } from "../components/PersonalDetails/MobilePersonalInformation/MobilePersonalInformation";
 import { ChangePasswordRouter } from "../components/PersonalDetails/MobileChangePassword/MobileChangePassword";
-import { Wishlist } from "../components/Wishlist/Wishlist";
 import { ShoppingBag } from "../components/ShoppingBag";
 import { Error } from "../components/404error";
-// import ProductsContainer from "../components/SliderProducts/ProductsContainer";
 import { Checkout } from "../components/Checkout";
 import { WishlistView } from "../components/Wishlist/WishlistView";
+import { WishlistRouter } from "../components/PersonalDetails/MobileWishlist/MobileWishlist";
 
 export const Routes = () => {
   const user = useSelector(state => state.user);
@@ -29,7 +28,6 @@ export const Routes = () => {
       <Route path="/categories/:homepagecategory" component={ProductFilters} />
       <Route path="/products" component={ProductFilters} />
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
-      {/*<Route path="/pagin/:path?" component={ProductsContainer}/>*/}
       <Route exact path="/account" component={AccountRoute} />
       <Route
         exact
@@ -41,6 +39,7 @@ export const Routes = () => {
         path="/account/change-password"
         component={ChangePasswordRouter}
       />
+      <Route exact path="/account/wish-list" component={WishlistRouter} />
       <Route exact path="/favorites" component={WishlistView} />
       <Route exact path="/account/shopping-bag" component={ShoppingBag} />
       <Route exact path="/account/checkout" component={Checkout} />
@@ -59,6 +58,7 @@ export const Routes = () => {
       <Route path="/product-details/:id" component={ProductDetailsLayout} />
       <Route path="/login" component={ProductFilters} />
       <Route path="/404error" component={Error} />
+      <Route exact path="/pages/:url" component={StaticPageView} />
       <Redirect to="/" />
     </Switch>
   );

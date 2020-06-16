@@ -8,7 +8,8 @@ import {
   FormRegister,
   CheckboxText,
   Line,
-  FormRegisterSubtitle
+  FormRegisterSubtitle,
+  InputHolder
 } from "./loginForm.styles";
 
 import { Button } from "../../common/Button/Button";
@@ -45,21 +46,17 @@ export const LoginForm = props => {
           <FormSubtitle>
             Please enter your details to log in to your Zarina Account.
           </FormSubtitle>
-          <InputEmail
-            value={email}
-            placeholder={"Email"}
-            onChange={onEmailChange}
-          />
-          <InputPassword
-            value={password}
-            placeholder={"Password"}
-            onChange={onPasswordChange}
-          />
+          <InputHolder>
+            <InputEmail value={email} onChange={onEmailChange} />
+          </InputHolder>
+          <InputHolder>
+            <InputPassword value={password} onChange={onPasswordChange} />
+          </InputHolder>
           <Checkbox onClick={rememberMe}>
             <CheckboxText>Remember me</CheckboxText>
           </Checkbox>
           <Button
-            value={"Log in"}
+            value="Log in"
             onClick={onSubmit}
             disabled={!emailValidation || !passwordValidation}
           />
@@ -72,7 +69,7 @@ export const LoginForm = props => {
             faster, store multiple shipping addresses, view and track orders,
             and perform many other operations.
           </FormRegisterSubtitle>
-          <Button value={"Register"} onClick={onRegister} />
+          <Button value="Register" onClick={onRegister} />
         </FormRegister>
       </FormWrapper>
     </Modal>

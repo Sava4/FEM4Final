@@ -76,7 +76,6 @@ export const HeaderContent = () => {
   function onRegisterSuccess() {
     toggleRegistration(false);
     toggleSuccess(true);
-    console.log("done");
   }
 
   function GoBackToLogin() {

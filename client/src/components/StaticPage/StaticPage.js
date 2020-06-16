@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { Page } from "./staticPage.styles";
 import { Mapbox } from "../Map/Mapbox";
-import { AddressesSelect } from "../Map/addressesPage";
 import { Server, ImagePage } from "./GiftCard/giftCard.styles";
 import { PageHeader } from "../common/PageHeader/PageHeader";
 import { GiftCard } from "./GiftCard/GiftCard";
@@ -34,7 +33,6 @@ export const StaticPage = () => {
         <Fragment>
           <Page>
             <PageHeader>Find your store</PageHeader>
-
             <Mapbox />
           </Page>
         </Fragment>

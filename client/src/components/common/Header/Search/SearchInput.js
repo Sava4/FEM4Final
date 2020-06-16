@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {
   Filter,
@@ -9,16 +9,24 @@ import {
   PreviewWrapper,
   TextHolder,
   Image,
-  ImageDescription
+  ImageDescription,
+  Loaded
 } from "./search.styles";
 import { MobileSearch } from "./MobileSearch/MobileSearch";
+import { useOnClickOutside } from "../HamburgerMenu/onClickOutside";
 
 export const Search = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mediaMatch = window.matchMedia("(max-width: 767px)");
   const [matches, setMatches] = useState(mediaMatch.matches);
+  const node = useRef();
+  useOnClickOutside([node], () => {
+    setSearchResults([]);
+    setLoaded(false);
+  });
 
   useEffect(() => {
     const onMediaChange = mediaMatchEvent => {
@@ -48,11 +56,17 @@ export const Search = () => {
             placeholder="Search"
             value={search}
             onChange={onSearchChange}
+            onKeyDown={onKeyDown}
           />
         </SearchHolder>
       </SearchIconWrapper>
+      {loaded && searchResults.length === 0 && (
+        <PreviewWrapper ref={node}>
+          <Loaded>No items have been found</Loaded>
+        </PreviewWrapper>
+      )}
       {searchResults.length > 0 && (
-        <PreviewWrapper>
+        <PreviewWrapper ref={node}>
           {searchResults.map((product, index) => {
             return (
               <TextHolder
@@ -74,8 +88,14 @@ export const Search = () => {
     setSearch(event.target.value);
   }
 
+  function onKeyDown(event) {
+    if (event.keyCode === 13) {
+      onSearch();
+    }
+  }
+
   function onSearch() {
-    if (search === "") {
+    if (search.length < 3) {
       setSearchResults([]);
       return;
     }
@@ -86,9 +106,10 @@ export const Search = () => {
       })
       .then(products => {
         setSearchResults(products.data);
+        setLoaded(true);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
       });
   }
 

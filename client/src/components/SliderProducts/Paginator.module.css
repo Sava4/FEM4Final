@@ -4,6 +4,26 @@
   position: relative;
   left: 5%;
 }
+.upper {
+  position: relative;
+  display: inline-block;
+  left: 73%;
+}
+.bottom {
+  position: relative;
+  display: inline-block;
+  margin-left: 3%;
+}
+@media screen and (max-width: 1050px) {
+  .bottom {
+    margin: auto;
+    text-align: center;
+    left: -76px;
+    bottom: 33px;
+    display: block;
+    position: relative;
+  }
+}
 .page_Number {
   padding: 5px;
   padding-top: 5px;
@@ -45,6 +65,14 @@
   margin-bottom: 4%;
   cursor: pointer;
 }
+@media screen and (max-width: 1050px) {
+  .load_more {
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
 .arrow {
   border: solid;
   border-width: 0 1px 1px 0;
@@ -62,6 +90,28 @@
   transform: rotate(-45deg);
 }
 
+.top2 {
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  margin-left: 3%;
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+}
+@media screen and (max-width: 1050px) {
+  .top2 {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 19px;
+    left: 108px;
+    top: 16px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+}
 .top {
   border-width: 0 3px 3px 0;
   display: inline-block;
@@ -72,6 +122,7 @@
   cursor: pointer;
   transform: rotate(-135deg);
 }
+
 .hidden {
   display: none;
 }
@@ -83,6 +134,16 @@
   margin-left: 95%;
   margin-top: 400px;
   z-index: 10;
+}
+@media screen and (max-width: 1050px) {
+  .onTop {
+    margin-left: 89%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .onTop {
+    margin-left: 87%;
+  }
 }
 .class {
   justify-content: space-around;

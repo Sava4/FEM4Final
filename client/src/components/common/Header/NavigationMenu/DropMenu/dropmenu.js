@@ -1,17 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setClearFilters } from "../../../../../store/filters";
 import { mediaTablet } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import styled from "styled-components";
 
-const mapStateToProps = store => ({
-  filters: store.filters.menuState
-});
-
-export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
-  console.log(props);
-  const { dropMenuArray, setClearFilters } = props;
+export const DropMenu = React.forwardRef((props, ref) => {
+  const { dropMenuArray, onClick } = props;
+  const dispatch = useDispatch();
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =
     categoryArray.length &&
@@ -20,14 +16,20 @@ export const DropMenu = connect(mapStateToProps, { setClearFilters })(props => {
       const nameForDropMenu =
         parentId === "by zarina"
           ? name.replace("ZARINA", "").replace("By", "")
-          : name;
+          : name.toLowerCase();
       return (
-        <DroMenuItem key={_id} onClick={() => setClearFilters()}>
-          <StyledLink to={`/headerMenu/${name}`}>{nameForDropMenu}</StyledLink>
+        <DroMenuItem key={_id} onClick={() => dispatch(setClearFilters())}>
+          <StyledLink to={`/headerMenu/${name}`}>
+            <p>{nameForDropMenu}</p>
+          </StyledLink>
         </DroMenuItem>
       );
     });
-  return <CategoryDropHolder>{dropMenu}</CategoryDropHolder>;
+  return (
+    <CategoryDropHolder onClick={onClick} ref={ref}>
+      {dropMenu}
+    </CategoryDropHolder>
+  );
 });
 
 const DroMenuItem = styled.div`
@@ -36,19 +38,24 @@ const DroMenuItem = styled.div`
 `;
 const CategoryDropHolder = styled.div`
   height: 210px;
-  ${mediaTablet(`
-  height:260px;
-  `)}
   width: 110px;
   position: absolute;
-  top: 35px;
+  top: 25px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
+  ${mediaTablet(`
+  height:260px;
+  `)}
 `;
 const StyledLink = styled(NavLink)`
-  &: hover {
-    border-bottom: 1px solid #002d50;
+  line-height: 18px;
+  & p:hover {
+    text-decoration: underline;
+  }
+  & p:first-letter {
+    text-transform: capitalize;
   }
 `;

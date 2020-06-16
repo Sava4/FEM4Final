@@ -10,7 +10,7 @@ import { mediaMobile } from "../../../../styledComponents/MediaBreakpointsMixin"
 export const MainMenu = () => {
   const node = useRef();
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
-  useOnClickOutside(node, () => {
+  useOnClickOutside([node], () => {
     if (isMenuOpen) {
       toggleMenuMode();
     }
