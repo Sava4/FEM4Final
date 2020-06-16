@@ -85,6 +85,7 @@ const FiltersModal = styled.div`
   padding-top: 40px;
   overflow: auto;
   background-color: white;
+  margin: 0 !important;
 `;
 const ModalClose = styled.div`
   width: 25px;

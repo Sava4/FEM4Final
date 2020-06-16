@@ -69,19 +69,21 @@ export const ProductFilters = props => {
       const unification = arreyForUnif => Array.from(new Set(arreyForUnif));
       // console.log(result.data)
       setAvailCategories(unification(typesAll));
+      dispatch(setAvaliFilters(result.data));
+
       const filterCheck = categoryName => {
         if (
           unification(typesAll).filter(it => it === categoryName.toLowerCase())
             .length
         ) {
-          console.log("категория из вариантов")
+          // console.log("категория из вариантов")
           setQueryCategory(`&categories=${categoryName}`);
           dispatch(setAvaliFilters(result.data.filter(({categories})=>categories ===categoryName)));
           setBreadcrumbsCategory(categoryName)
 
         } else {
           // console.log("Коллекции")
-          dispatch(setAvaliFilters(result.data));
+          // dispatch(setAvaliFilters(result.data));
           dispatch(dispatchSetCheckFilter({ collection: categoryName }));
           setQueryCategory("");
           setBreadcrumbsCategory("")
@@ -142,7 +144,7 @@ export const ProductFilters = props => {
     <Layout>
       <CategoriesHeader>
         <p>{category}</p>
-        <CategoriesHeaderImg categoryName={background(category)} />
+        <CategoriesHeaderImg categoryName={background(breadcrumbsCategory)} />
       </CategoriesHeader>
       {window.innerWidth < 767 ? null : (
         <IconBreadcrumbs categoryName={breadcrumbsCategory} />
