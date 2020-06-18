@@ -6,7 +6,7 @@ import { mediaTablet } from "../../../../../styledComponents/MediaBreakpointsMix
 import styled from "styled-components";
 
 export const DropMenu = React.forwardRef((props, ref) => {
-  const { dropMenuArray, onClick } = props;
+  const { dropMenuArray, onSelect } = props;
   const dispatch = useDispatch();
   let categoryArray = dropMenuArray.filter(item => item.parentId !== "null");
   const dropMenu =
@@ -17,30 +17,33 @@ export const DropMenu = React.forwardRef((props, ref) => {
         parentId === "by zarina"
           ? name.replace("ZARINA", "").replace("By", "")
           : name.toLowerCase();
+
       return (
-        <DroMenuItem key={_id} onClick={() => dispatch(setClearFilters())}>
+        <DroMenuItem key={_id} onClick={() => onLinkClick(item)}>
           <StyledLink to={`/headerMenu/${name}`}>
             <p>{nameForDropMenu}</p>
           </StyledLink>
         </DroMenuItem>
       );
     });
-  return (
-    <CategoryDropHolder onClick={onClick} ref={ref}>
-      {dropMenu}
-    </CategoryDropHolder>
-  );
+
+  return <CategoryDropHolder ref={ref}>{dropMenu}</CategoryDropHolder>;
+
+  function onLinkClick(item) {
+    dispatch(setClearFilters());
+    onSelect(item);
+  }
 });
 
 const DroMenuItem = styled.div`
-  margin-top: 20px;
+  margin-bottom: 20px;
   margin-right: 10px;
 `;
 const CategoryDropHolder = styled.div`
   height: 210px;
   width: 110px;
   position: absolute;
-  top: 25px;
+  top: 50px;
   z-index: 2;
   display: flex;
   flex-direction: column;

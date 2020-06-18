@@ -15,7 +15,6 @@ export const useOnClickOutside = (refs = [], handler) => {
 };
 
 function contains(refs, target) {
-  console.log(refs);
   return refs
     .map(ref => {
       return ref.current;

@@ -61,7 +61,6 @@ export const HeaderContent = () => {
           <ShoppingBag />
         </HeaderIconWrapper>
       </HeaderWrapper>
-
       <Categories>
         <Navigation />
       </Categories>
