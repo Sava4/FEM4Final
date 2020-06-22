@@ -29,7 +29,6 @@ export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
 
       props.setDeleteFilter(removedEll);
 
-      console.log(removedEll);
     };
 
     const selectedFiltersBlocks = selectedFilters.map((item, index) => {

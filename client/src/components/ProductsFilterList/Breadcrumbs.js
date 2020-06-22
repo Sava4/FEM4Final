@@ -40,9 +40,7 @@ const IconBreadcrumbs = props => {
       <Typography
         color="textPrimary"
         className={classes.link}
-        style={{ textTransform: "capitalize" }}
-      >
-        {/* <GrainIcon className={classes.icon} /> */}
+        style={{ textTransform: "capitalize" }}>       
         {categoryName}
       </Typography>
     </Breadcrumbs>

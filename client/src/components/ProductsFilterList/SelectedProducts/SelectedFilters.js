@@ -1,14 +1,11 @@
 import React from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { v4 } from "uuid";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 import { setDeleteFilter } from "../../../store/filters";
 
-// const mapStateToProps = store => ({
-//   filters: store.filters.selFilters
-// });
 
 export const SelectedFilters = props => {
     const { selectedFilters , filterGroup} = props;
@@ -28,8 +25,7 @@ export const SelectedFilters = props => {
     const selectedFiltersBlocks = (selectedFilters || []).map((item, index) => {
       return (
         <ExectFilter data-index={index} 
-                    data-filterGroup={filterGroup}
-                    // data-testid={filterGroup}
+                    data-filterGroup={filterGroup}                    
                     key={v4()}>
           <p>{item}</p>
           <span onClick={HandleClick}>&#10005;</span>

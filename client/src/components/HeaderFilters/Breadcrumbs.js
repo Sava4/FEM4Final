@@ -23,11 +23,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// function handleClick(event) {
-//   event.preventDefault();
-//   console.info('You clicked a breadcrumb.');
-// }
-
 export default function IconBreadcrumbs() {
   const classes = useStyles();
 
@@ -39,20 +34,9 @@ export default function IconBreadcrumbs() {
       <NavLink to="/categories" className={classes.link}>
         Categories
       </NavLink>
-      {/* <Link color="inherit" href="/" onClick={handleClick} className={classes.link}> */}
-      {/* <HomeIcon className={classes.icon} /> */}
-      {/* </Link> */}
-      {/* <Link
-        color="inherit"
-        href="/"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        {/* <WhatshotIcon className={classes.icon} /> */}
-      {/* Core
-      </Link> */} */}
+   
       <Typography color="textPrimary" className={classes.link}>
-        {/* <GrainIcon className={classes.icon} /> */}
+
         Breadcrumb
       </Typography>
     </Breadcrumbs>

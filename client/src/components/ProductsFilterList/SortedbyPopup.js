@@ -6,9 +6,8 @@ import dropArrow from "./images/DroppArrow.png";
 
 export const SortedbyPopup = props => {
   const { setSortType, setIsOpenSortedPopup, sortType } = props;
-  // const typePlaceholder = sortType ? (`Sorted by ${sortType.toLowerCase()}`) : ('Choose sort type')
-  const selectAction = e => {
-    console.log(e.target.options[e.target.selectedIndex]);
+  
+  const selectAction = e => {    
     setSortType(e.target.value);
     setIsOpenSortedPopup(false);
   };

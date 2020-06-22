@@ -18,7 +18,6 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
 
   const filtredByBlocks = filtrefBy.map(item => {
     let itemClass = item.replace(" ", "");
- console.log(itemClass)
     let selectedFilters = filters[item];
     return selectedFilters.length ? (
       <FilterMarker key={v4()}>

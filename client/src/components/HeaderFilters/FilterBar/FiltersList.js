@@ -19,7 +19,7 @@ export const FiltersList = connect(mapStateToProps, {
   setToggleShown,
   setDeleteFilter
 })(props => {
-  // console.log(props);
+ 
   const filtredBy = [
     "collection",
     "metal",

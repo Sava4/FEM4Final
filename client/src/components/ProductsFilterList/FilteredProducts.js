@@ -20,25 +20,18 @@ export const FilteredListProducts = connect(MapStateToProps, {
   const [queryCategory, setQueryCategory] = useState("");
   // const [clickedCollection, setClickedCollection]= useState([]);
   const { category, setNambertOfFilteredItems } = props;
-  // console.log(category);
-  //Часть по унификации
   useLayoutEffect(() => {
     let typesAll = [];
     const url = `/products`;
     axios.get(url).then(result => {
       result.data.forEach(item => typesAll.push(item.categories));
-      const unification = () => Array.from(new Set(typesAll));
-      // console.log(result.data);
-      const filterCheck = categoryName => {
-        //  console.log(availableCategories.filter(it => it===categoryName))
+      const unification = () => Array.from(new Set(typesAll));    
+      const filterCheck = categoryName => {       
         if (
           unification().filter(it => it === categoryName.toLowerCase()).length
-        ) {
-          // console.log("категория из вариантов");
+        ) {         
           setQueryCategory(`categories=${categoryName}&`);
-        } else {
-          // console.log("Коллекции");
-          // props.dispatchSetCheckFilter({ collection: categoryName });
+        } else {         
           setQueryCategory("");
         }
       };
@@ -54,20 +47,16 @@ export const FilteredListProducts = connect(MapStateToProps, {
   }&maxPrice=${props.priceFilters.hightPrice}&sort=+currentPrice`;
 
   useEffect(() => {
-    const filterUrl = `/products/filter?${queryCategory}${query}${sort}`;
-    console.log(filterUrl);
+    const filterUrl = `/products/filter?${queryCategory}${query}${sort}`;    
     axios.get(filterUrl).then(result => {
-      // console.log(result.data)
+     
       setProducts(result.data);
     });
-    //   .catch(err => {
-    //     /*Do something with error, e.g. show error to user*/
-    //   });
-    // }
+   
   }, [query, sort, queryCategory]);
 
   const filteredProd = products.products;
-  // filteredProd && setNambertOfFilteredItems(filteredProd.length);
+
   const ListProduct =
     filteredProd &&
     filteredProd.map(product => {
