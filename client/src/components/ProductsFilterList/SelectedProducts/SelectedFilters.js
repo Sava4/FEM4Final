@@ -13,9 +13,10 @@ import { setDeleteFilter } from "../../../store/filters";
 export const SelectedFilters = props => {
     const { selectedFilters , filterGroup} = props;
     const dispatch = useDispatch()
-// console.log(selectedFilters, filterGroup)
+
 
     const HandleClick = e => {
+      console.log(e.target)
       const remoteFilter = e.target.parentNode;      
       const nameRemoteFilter = selectedFilters[remoteFilter.getAttribute("data-index")];
       let parentFilterName =remoteFilter.getAttribute("data-filterGroup");
@@ -26,7 +27,10 @@ export const SelectedFilters = props => {
 
     const selectedFiltersBlocks = (selectedFilters || []).map((item, index) => {
       return (
-        <ExectFilter data-index={index} data-filterGroup={filterGroup} key={v4()}>
+        <ExectFilter data-index={index} 
+                    data-filterGroup={filterGroup}
+                    // data-testid={filterGroup}
+                    key={v4()}>
           <p>{item}</p>
           <span onClick={HandleClick}>&#10005;</span>
         </ExectFilter>

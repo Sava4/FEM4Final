@@ -47,7 +47,7 @@ export const ProductFilters = props => {
   const [sortType, setSortType] = useState("");
   const initialPriceValue = { min: 0, max: 200000 };
 
-  console.log(homepagecategory, chosenMenu, category)
+  // console.log(homepagecategory, chosenMenu, category)
   const filtredBy = [
     "price",
     "collection",

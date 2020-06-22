@@ -1,23 +1,16 @@
 import React from "react";
 import {SelectedFilters} from "./SelectedFilters"
 import { act } from "react-dom/test-utils";
-// import {render} from '@testing-library/react';
-import  {render, unmountComponentAtNode}  from 'react-dom';
+import {render} from '@testing-library/react';
+import  ReactDom  from 'react-dom';
 import { tsExternalModuleReference, exportAllDeclaration } from "@babel/types";
 
-// jest.mock('./SelectedFilters', ()=>{
-//   return (props) => (
-//     <div className='test-selected'>
-//         {props.selectedFilters[0]}
-//         {/* {props.filterGroup} */}
-//     </div>
-//   ) 
-// });
 jest.mock('react-redux');
 jest.mock('./SelectedFilters'), ()=>{
   return (props)=>{ <SelectedFilters {...props}/>}
 };
-const testSelectedFilters = [ "First selected filter", "Second selected filter"]
+const testSelectedFilters = [ "First selected filter", "Second selected filter"];
+const filterGroup = "Filter group name"
 
 let container = null;
 beforeEach(()=>{
@@ -26,7 +19,7 @@ beforeEach(()=>{
 });
 
 afterEach(()=>{
-  unmountComponentAtNode(container);
+  ReactDom.unmountComponentAtNode(container);
   container.remove();
   container= null;
 })
@@ -34,7 +27,7 @@ afterEach(()=>{
 describe('Testing selected', ()=>{
   test('SelectedFilters rendered successfuly', ()=>{
     act(()=>{
-    render(<SelectedFilters selectedFilters={[]} filterGroup={""}/>, container)
+      ReactDom.render(<SelectedFilters selectedFilters={[]} filterGroup={""}/>, container)
   });
   }) 
 
@@ -43,8 +36,10 @@ describe('Testing selected', ()=>{
       render(<SelectedFilters selectedFilters={testSelectedFilters} filterGroup={""}/>, container)
     })
     const renderedSelected = document.getElementsByTagName(`p`)
-   console.log(renderedSelected[1].textContent)
+  
     expect(renderedSelected[0].textContent).toBe(testSelectedFilters[0]);
     expect(renderedSelected[1].textContent).toBe(testSelectedFilters[1])
   })
+
+
 });
