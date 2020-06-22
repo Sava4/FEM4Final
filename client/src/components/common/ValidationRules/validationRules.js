@@ -42,7 +42,7 @@ export function passwordValidate(password) {
   }
 }
 
-export function confirmPasswordValidate(confirmPassword, password) {
+export function confirmPasswordValidate(password, confirmPassword) {
   if (!confirmPassword) {
     return "Confirm Password is required";
   } else if (confirmPassword !== password) {

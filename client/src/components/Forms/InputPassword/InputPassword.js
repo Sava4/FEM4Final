@@ -54,6 +54,7 @@ export const InputPassword = props => {
 };
 
 export const Holder = styled.div`
+  width: 100%;
   position: relative;
 `;
 

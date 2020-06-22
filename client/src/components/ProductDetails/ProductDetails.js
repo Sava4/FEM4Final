@@ -195,7 +195,7 @@ const Details1 = props => {
             marginRight: `5px`,
             cursor: `pointer`,
             position: `absolute`,
-            zIndex: `10`
+            zIndex: `1`
           }}
         >
           <Slider

@@ -225,7 +225,10 @@ export const RegisterForm = props => {
 
   function onConfirmPasswordChange(event) {
     setConfirmPassword(event.target.value);
-    const confirmPasswordError = confirmPasswordValidate(event.target.value);
+    const confirmPasswordError = confirmPasswordValidate(
+      password,
+      event.target.value
+    );
     setError({
       ...error,
       confirmPassword: confirmPasswordError
@@ -233,7 +236,10 @@ export const RegisterForm = props => {
   }
 
   function onConfirmPasswordBlur(event) {
-    const confirmPasswordError = confirmPasswordValidate(event.target.value);
+    const confirmPasswordError = confirmPasswordValidate(
+      password,
+      event.target.value
+    );
     setError({
       ...error,
       confirmPassword: confirmPasswordError
@@ -247,7 +253,7 @@ export const RegisterForm = props => {
       lastNameValidate(lastName) ||
       emailValidate(email) ||
       passwordValidate(password) ||
-      confirmPasswordValidate(confirmPassword, password)
+      confirmPasswordValidate(password, confirmPassword)
     );
   }
 
@@ -261,8 +267,8 @@ export const RegisterForm = props => {
       const emailError = emailValidate(email);
       const passwordError = passwordValidate(password);
       const confirmPasswordError = confirmPasswordValidate(
-        confirmPassword,
-        password
+        password,
+        confirmPassword
       );
       setError({
         ...error,
@@ -277,7 +283,7 @@ export const RegisterForm = props => {
       return;
     }
 
-    axios
+    return axios
       .post("/customers", {
         firstName: firstName,
         lastName: lastName,
@@ -287,7 +293,7 @@ export const RegisterForm = props => {
         isAdmin: false,
         enabled: true
       })
-      .then(response => {
+      .then(() => {
         onRegister();
       })
       .catch(error => setError(error.response.data));

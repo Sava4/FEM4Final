@@ -23,7 +23,7 @@ export const Search = () => {
   const mediaMatch = window.matchMedia("(max-width: 767px)");
   const [matches, setMatches] = useState(mediaMatch.matches);
   const node = useRef();
-  useOnClickOutside(node, () => {
+  useOnClickOutside([node], () => {
     setSearchResults([]);
     setLoaded(false);
   });

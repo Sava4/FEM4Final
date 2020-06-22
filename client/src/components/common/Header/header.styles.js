@@ -2,12 +2,7 @@ import styled from "styled-components";
 import headerDesign from "./headerDesign.png";
 import { mediaMobile } from "../../../styledComponents/MediaBreakpointsMixin";
 
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-`;
+export const Container = styled.div``;
 
 export const Line = styled.div`
   background-image: url(${headerDesign});
@@ -36,7 +31,6 @@ export const HeaderIconWrapper = styled.div`
 `;
 
 export const Categories = styled.div`
-  width: 100%;
   border-bottom: 1px solid black;
   padding-bottom: 30px;
 

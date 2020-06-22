@@ -61,7 +61,6 @@ export const HeaderContent = () => {
           <ShoppingBag />
         </HeaderIconWrapper>
       </HeaderWrapper>
-
       <Categories>
         <Navigation />
       </Categories>
@@ -76,7 +75,6 @@ export const HeaderContent = () => {
   function onRegisterSuccess() {
     toggleRegistration(false);
     toggleSuccess(true);
-    console.log("done");
   }
 
   function GoBackToLogin() {

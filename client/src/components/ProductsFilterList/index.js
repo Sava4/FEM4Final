@@ -36,6 +36,7 @@ export const ProductFilters = props => {
     state => state.productsPage.productsQuantity
   );
   const priceFilters = useSelector(state => state.filters.priceRange);
+  // const category = (!!homepagecategory) ? chosenMenu : homepagecategory.replace("homepage", "");
   const category = !!homepagecategory ? homepagecategory : chosenMenu;
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
@@ -46,7 +47,7 @@ export const ProductFilters = props => {
   const [sortType, setSortType] = useState("");
   const initialPriceValue = { min: 0, max: 200000 };
 
-
+  // console.log(homepagecategory, chosenMenu, category)
   const filtredBy = [
     "price",
     "collection",
@@ -56,17 +57,19 @@ export const ProductFilters = props => {
     "gemstone_color"
   ];
 
-  useLayoutEffect(() => {         
+  useLayoutEffect(() => {
     dispatch(setPriceRange(initialPriceValue));
+
+    //for products list
 
     const url = `/products`;
     axios.get(url).then(result => {
       let typesAll = result.data.map(({ categories }) => {
         return categories;
       });
-      
+
       const unification = arreyForUnif => Array.from(new Set(arreyForUnif));
-    
+
       setAvailCategories(unification(typesAll));
       dispatch(setAvaliFilters(result.data));
 
@@ -74,7 +77,7 @@ export const ProductFilters = props => {
         if (
           unification(typesAll).filter(it => it === categoryName.toLowerCase())
             .length
-        ) {         
+        ) {
           setQueryCategory(`&categories=${categoryName}`);
           dispatch(setAvaliFilters(result.data.filter(({categories})=>categories ===categoryName)));
           setBreadcrumbsCategory(categoryName)
@@ -105,7 +108,7 @@ export const ProductFilters = props => {
 
   useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
-  
+
   }, [query, commonSort, queryCategory, sortType]);
 
   const background = name => {
@@ -220,6 +223,7 @@ const CategoriesHeaderImg = styled.div`
   ${mediaMobile(`
   background-image: none;
   `)}
+  background-position: right;
 `;
 const CategotiesCommon = styled.div`
   margin: 29px 130px;
