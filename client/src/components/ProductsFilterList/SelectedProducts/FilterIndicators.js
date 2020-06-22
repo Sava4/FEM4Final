@@ -13,8 +13,7 @@ const mapStateToProps = store => ({
 export const FilterIndicators = connect(mapStateToProps)(props => {
   const filters = props.filters;
 
-
-  const filtrefBy = Object.keys(filters) 
+  const filtrefBy = Object.keys(filters);
 
   const filtredByBlocks = filtrefBy.map(item => {
     let itemClass = item.replace(" ", "");
@@ -23,7 +22,10 @@ export const FilterIndicators = connect(mapStateToProps)(props => {
       <FilterMarker key={v4()}>
         <p>{item.replace("_", " ")}</p>
         <SelectedFiltersStyled className={itemClass}>
-          <SelectedFilters selectedFilters={selectedFilters} filterGroup={itemClass}/>
+          <SelectedFilters
+            selectedFilters={selectedFilters}
+            filterGroup={itemClass}
+          />
         </SelectedFiltersStyled>
       </FilterMarker>
     ) : null;

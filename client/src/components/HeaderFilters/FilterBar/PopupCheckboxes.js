@@ -36,10 +36,9 @@ export const PopupCheckboxes = connect(mapStateToProps, {
     axios
       .get("/products")
       .then(result => {
-      
         setProducts(result.data);
       })
-    
+
       .catch(err => {
         /*Do something with error, e.g. show error to user*/
       });

@@ -1,13 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 } from "uuid";
 import styled from "styled-components";
 import dropArrow from "./images/DroppArrow.png";
 
 export const SortedbyPopup = props => {
-  const { setSortType, setIsOpenSortedPopup, sortType } = props;
-  
-  const selectAction = e => {    
+  const { setSortType, setIsOpenSortedPopup } = props;
+
+  const selectAction = e => {
     setSortType(e.target.value);
     setIsOpenSortedPopup(false);
   };

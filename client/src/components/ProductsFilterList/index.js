@@ -41,9 +41,9 @@ export const ProductFilters = props => {
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
-  const [availCategories, setAvailCategories] = useState ([]);
+  const [availCategories, setAvailCategories] = useState([]);
   const [queryCategory, setQueryCategory] = useState("");
-  const [breadcrumbsCategory, setBreadcrumbsCategory]=useState("")
+  const [breadcrumbsCategory, setBreadcrumbsCategory] = useState("");
   const [sortType, setSortType] = useState("");
   const initialPriceValue = { min: 0, max: 200000 };
 
@@ -79,13 +79,18 @@ export const ProductFilters = props => {
             .length
         ) {
           setQueryCategory(`&categories=${categoryName}`);
-          dispatch(setAvaliFilters(result.data.filter(({categories})=>categories ===categoryName)));
-          setBreadcrumbsCategory(categoryName)
-
+          dispatch(
+            setAvaliFilters(
+              result.data.filter(
+                ({ categories }) => categories === categoryName
+              )
+            )
+          );
+          setBreadcrumbsCategory(categoryName);
         } else {
-           dispatch(dispatchSetCheckFilter({ collection: categoryName }));
+          dispatch(dispatchSetCheckFilter({ collection: categoryName }));
           setQueryCategory("");
-          setBreadcrumbsCategory("")
+          setBreadcrumbsCategory("");
         }
       };
       category && filterCheck(category);
@@ -108,7 +113,6 @@ export const ProductFilters = props => {
 
   useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
-
   }, [query, commonSort, queryCategory, sortType]);
 
   const background = name => {

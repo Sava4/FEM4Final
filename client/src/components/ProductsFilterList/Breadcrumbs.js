@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const IconBreadcrumbs = props => {
   const classes = useStyles();
-  const { categoryName} = props;
+  const { categoryName } = props;
 
   return (
     <Breadcrumbs aria-label="breadcrumb" className={classes.main}>
@@ -35,12 +35,13 @@ const IconBreadcrumbs = props => {
         Home page
       </NavLink>
       <NavLink to="/categories" className={classes.link}>
-        {categoryName ? "Categories" :"Collections"}
+        {categoryName ? "Categories" : "Collections"}
       </NavLink>
       <Typography
         color="textPrimary"
         className={classes.link}
-        style={{ textTransform: "capitalize" }}>       
+        style={{ textTransform: "capitalize" }}
+      >
         {categoryName}
       </Typography>
     </Breadcrumbs>

@@ -34,9 +34,8 @@ export default function IconBreadcrumbs() {
       <NavLink to="/categories" className={classes.link}>
         Categories
       </NavLink>
-   
-      <Typography color="textPrimary" className={classes.link}>
 
+      <Typography color="textPrimary" className={classes.link}>
         Breadcrumb
       </Typography>
     </Breadcrumbs>
