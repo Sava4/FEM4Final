@@ -31,6 +31,7 @@ export const ProductFilters = props => {
   const { chosenMenu } = useParams();
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filters.selFilters);
+  const availFilters = useSelector(state => state.filters.availFilters);
   const selectedProd = useSelector(
     state => state.productsPage.productsQuantity
   );
@@ -40,7 +41,9 @@ export const ProductFilters = props => {
 
   const [openFiltwin, setOpenFiltwind] = useState(false);
   const [isOpenSortedPopup, setIsOpenSortedPopup] = useState(false);
+  const [availCategories, setAvailCategories] = useState([]);
   const [queryCategory, setQueryCategory] = useState("");
+  const [breadcrumbsCategory, setBreadcrumbsCategory] = useState("");
   const [sortType, setSortType] = useState("");
   const initialPriceValue = { min: 0, max: 200000 };
 
@@ -55,18 +58,6 @@ export const ProductFilters = props => {
   ];
 
   useLayoutEffect(() => {
-    axios
-      .get("/products")
-      .then(result => {
-        dispatch(setAvaliFilters(result.data));
-      })
-      // .then(products => {
-      //   setProducts (collectionList(products))
-
-      // })
-      .catch(err => {
-        /*Do something with error, e.g. show error to user*/
-      });
     dispatch(setPriceRange(initialPriceValue));
 
     //for products list
@@ -76,19 +67,30 @@ export const ProductFilters = props => {
       let typesAll = result.data.map(({ categories }) => {
         return categories;
       });
+
       const unification = arreyForUnif => Array.from(new Set(arreyForUnif));
-      // console.log(result.data)
+
+      setAvailCategories(unification(typesAll));
+      dispatch(setAvaliFilters(result.data));
+
       const filterCheck = categoryName => {
         if (
           unification(typesAll).filter(it => it === categoryName.toLowerCase())
             .length
         ) {
-          // console.log("категория из вариантов")
           setQueryCategory(`&categories=${categoryName}`);
+          dispatch(
+            setAvaliFilters(
+              result.data.filter(
+                ({ categories }) => categories === categoryName
+              )
+            )
+          );
+          setBreadcrumbsCategory(categoryName);
         } else {
-          // console.log("Коллекции")
           dispatch(dispatchSetCheckFilter({ collection: categoryName }));
           setQueryCategory("");
+          setBreadcrumbsCategory("");
         }
       };
       category && filterCheck(category);
@@ -111,16 +113,6 @@ export const ProductFilters = props => {
 
   useEffect(() => {
     const filterUrl = `/products/filter?${queryCategory}&${query}${commonSort}`;
-    console.log(filterUrl);
-
-    // axios.get(filterUrl).then(result => {
-    //   console.log(result.data)
-    // setProducts(result.data);
-    // });
-    //   .catch(err => {
-    //     /*Do something with error, e.g. show error to user*/
-    //   });
-    // }
   }, [query, commonSort, queryCategory, sortType]);
 
   const background = name => {
@@ -146,10 +138,10 @@ export const ProductFilters = props => {
     <Layout>
       <CategoriesHeader>
         <p>{category}</p>
-        <CategoriesHeaderImg categoryName={background(category)} />
+        <CategoriesHeaderImg categoryName={background(breadcrumbsCategory)} />
       </CategoriesHeader>
       {window.innerWidth < 767 ? null : (
-        <IconBreadcrumbs categoryName={category} />
+        <IconBreadcrumbs categoryName={breadcrumbsCategory} />
       )}
       <CategotiesCommon>
         {window.innerWidth < 767 ? (
@@ -232,6 +224,9 @@ const CategoriesHeaderImg = styled.div`
   height: inherit;
   width: 668px;
   background-repeat: no-repeat;
+  ${mediaMobile(`
+  background-image: none;
+  `)}
   background-position: right;
 `;
 const CategotiesCommon = styled.div`
@@ -249,7 +244,7 @@ const ButtonSection = styled.div`
   width: fit-content;
 `;
 const MobileCategoriesFilters = styled.div`
-  font-family: Montserrat;
+  font-family: Old Standard TT;
   display: none;
 
   ${mediaMobile(`
@@ -283,7 +278,7 @@ const MobileCategoriesFilters = styled.div`
 `)}
 `;
 const CategoriesFilters = styled.div`
-  font-family: Montserrat;
+  font-family: Old Standard TT;
   width: 25%;
   min-width: 200px;
   max-width: 260px;
@@ -307,7 +302,7 @@ const SelectedProductsHeader = styled.div`
   display: flex;
   justify-content: space-between;
   & > p {
-    font-family: Montserrat;
+    font-family: Old Standard TT;
     font-size: 17px;
     text-transform: uppercase;
     margin-bottom: 23px;
@@ -320,7 +315,7 @@ const SortSection = styled.div`
   display: flex;
   align-items: end;
   & > p {
-    font-family: Montserrat;
+    font-family: Old Standard TT;
     font-size: 17px;
     text-transform: uppercase;
   }

@@ -5,7 +5,7 @@ import {
   mediaTablet
 } from "../../../../../styledComponents/MediaBreakpointsMixin";
 import { DropMenu } from "./dropmenu";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink } from "react-router-dom";
 import { OverflowBody } from "../../../../Modal/modal.styles";
 import { useOnClickOutside } from "../../HamburgerMenu/onClickOutside";
 
@@ -14,11 +14,15 @@ export const HeaderMenuElem = props => {
   const [dropMenuState, setDropMenuState] = useState([]);
   const background = useRef();
   const dropMenu = useRef();
+
+  const isOpen = dropMenuState.some(category => category.isOpen);
+
   useOnClickOutside([background, dropMenu], () => {
     const newDropMenu = dropMenuState.map(item => {
       const { menuName } = item;
       return {
-        menuName
+        menuName,
+        isOpen: false
       };
     });
     setDropMenuState(newDropMenu);
@@ -51,16 +55,20 @@ export const HeaderMenuElem = props => {
     setDropMenuState(newDropMenu);
   };
 
-  // const hideDropmenu = e => {
-  //   const newDropMenu = dropMenuState.map(item => {
-  //     const { menuName } = item;
-  //     return {
-  //       menuName,
-  //       isOpen: false
-  //     };
-  //   });
-  //   setDropMenuState(newDropMenu);
-  // };
+  function onItemSelected() {
+    closeMenu();
+  }
+
+  function closeMenu() {
+    const newDropMenu = dropMenuState.map(item => {
+      return {
+        ...item,
+        isOpen: false
+      };
+    });
+
+    setDropMenuState(newDropMenu);
+  }
 
   const categoryList = dropMenuState.map(item => {
     const dropMenuArray = categoriesAllData.filter(
@@ -69,12 +77,6 @@ export const HeaderMenuElem = props => {
 
     return (
       <div key={item.menuName}>
-        {item.isOpen ? (
-          <Background>
-            <CategoryDropBackground ref={background} />
-            <OverflowBody />
-          </Background>
-        ) : null}
         <Category>
           <CategoryHeader
             onClick={() => openDropMenu(item)}
@@ -89,7 +91,7 @@ export const HeaderMenuElem = props => {
           {item.isOpen ? (
             <DropMenu
               ref={dropMenu}
-              onClick={() => openDropMenu(null)}
+              onSelect={onItemSelected}
               dropMenuArray={dropMenuArray}
             />
           ) : null}
@@ -98,7 +100,17 @@ export const HeaderMenuElem = props => {
     );
   });
 
-  return <Categories>{categoryList}</Categories>;
+  return (
+    <Categories>
+      {isOpen && (
+        <Background>
+          <CategoryDropBackground ref={background} />
+          <OverflowBody />
+        </Background>
+      )}
+      {categoryList}
+    </Categories>
+  );
 };
 
 const Categories = styled.div`
@@ -109,18 +121,15 @@ const Categories = styled.div`
 `;
 
 const Background = styled.div`
-  position: fixed;
+  position: absolute;
   z-index: 2;
   left: 0;
-  top: 179px;
-  width: 100%;
-  height: 100%;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 100vh;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-
-  ${mediaTablet(`
-    top: 165px;
-  `)}
 `;
 
 const CategoryDropBackground = styled.div`
