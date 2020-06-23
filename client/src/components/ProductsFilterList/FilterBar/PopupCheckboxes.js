@@ -48,7 +48,6 @@ export const PopupCheckboxes = props => {
   };
 
   const collectionList = filter(availFilters, filtername);
-  // console.log(collectionList)
   const inputs = collectionList.map(item => {
     return (
       <CheckboxDiv key={v4()}>

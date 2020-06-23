@@ -1,14 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 } from "uuid";
 import styled from "styled-components";
 import dropArrow from "./images/DroppArrow.png";
 
 export const SortedbyPopup = props => {
-  const { setSortType, setIsOpenSortedPopup, sortType } = props;
-  // const typePlaceholder = sortType ? (`Sorted by ${sortType.toLowerCase()}`) : ('Choose sort type')
+  const { setSortType, setIsOpenSortedPopup } = props;
+
   const selectAction = e => {
-    console.log(e.target.options[e.target.selectedIndex]);
     setSortType(e.target.value);
     setIsOpenSortedPopup(false);
   };

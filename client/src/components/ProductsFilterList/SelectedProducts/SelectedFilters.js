@@ -1,50 +1,44 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { setDeleteFilter } from "../../../store/filters";
 
-const mapStateToProps = store => ({
-  filters: store.filters.selFilters
-});
+export const SelectedFilters = props => {
+  const { selectedFilters, filterGroup } = props;
+  const dispatch = useDispatch();
 
-export const SelectedFilters = connect(mapStateToProps, { setDeleteFilter })(
-  props => {
-    const { selectedFilters } = props;
+  const HandleClick = e => {
+    const remoteFilter = e.target.parentNode;
+    const nameRemoteFilter =
+      selectedFilters[remoteFilter.getAttribute("data-index")];
+    let parentFilterName = remoteFilter.getAttribute("data-filterGroup");
+    let removedEll = {};
+    removedEll[parentFilterName] = nameRemoteFilter;
+    dispatch(setDeleteFilter(removedEll));
+  };
 
-    const HandleClick = e => {
-      const remoteFilter = e.target.parentNode;
+  const selectedFiltersBlocks = (selectedFilters || []).map((item, index) => {
+    return (
+      <ExectFilter data-index={index} data-filterGroup={filterGroup} key={v4()}>
+        <p>{item}</p>
+        <span onClick={HandleClick}>&#10005;</span>
+      </ExectFilter>
+    );
+  });
 
-      const nameRemoteFilter =
-        selectedFilters[remoteFilter.getAttribute("data")];
+  return <div>{selectedFiltersBlocks}</div>;
+};
 
-      let parentFilterName =
-        remoteFilter.parentNode.classList[
-          remoteFilter.parentNode.classList.length - 1
-        ];
-
-      let removedEll = {};
-      removedEll[parentFilterName] = nameRemoteFilter;
-
-      props.setDeleteFilter(removedEll);
-    };
-
-    const selectedFiltersBlocks = selectedFilters.map((item, index) => {
-      return (
-        <ExectFilter data={index} key={v4()}>
-          <p>{item}</p>
-          <span onClick={HandleClick}>&#10005;</span>
-        </ExectFilter>
-      );
-    });
-
-    return selectedFiltersBlocks;
-  }
-);
+SelectedFilters.propTypes = {
+  selectedFilters: PropTypes.array.isRequired
+};
 
 const ExectFilter = styled.div`
   display: flex;
+  justify-content: space-between;
   background: #eff5ff;
   padding: 5px;
   margin: 5px;

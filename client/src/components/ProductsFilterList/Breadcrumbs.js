@@ -35,14 +35,13 @@ const IconBreadcrumbs = props => {
         Home page
       </NavLink>
       <NavLink to="/categories" className={classes.link}>
-        Categories
+        {categoryName ? "Categories" : "Collections"}
       </NavLink>
       <Typography
         color="textPrimary"
         className={classes.link}
         style={{ textTransform: "capitalize" }}
       >
-        {/* <GrainIcon className={classes.icon} /> */}
         {categoryName}
       </Typography>
     </Breadcrumbs>

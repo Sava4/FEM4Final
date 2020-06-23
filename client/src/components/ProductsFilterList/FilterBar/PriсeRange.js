@@ -70,14 +70,7 @@ export const PriсeRange = props => {
     dispatch(setPriceRange(rangeToStore));
   };
 
-  // function valuetext(value) {
-  // return `${value}°C`;
-  // }
   const marks = [
-    // {
-    //   value: 0,
-    //   label: '₴',
-    // },
     {
       value: 200000,
       label: "₴ 200'000"

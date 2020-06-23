@@ -13,20 +13,19 @@ const mapStateToProps = store => ({
 export const FilterIndicators = connect(mapStateToProps)(props => {
   const filters = props.filters;
 
-  let filtrefBy = [];
-  for (let key in filters) {
-    filtrefBy.push(key);
-  }
+  const filtrefBy = Object.keys(filters);
 
   const filtredByBlocks = filtrefBy.map(item => {
     let itemClass = item.replace(" ", "");
-
     let selectedFilters = filters[item];
     return selectedFilters.length ? (
       <FilterMarker key={v4()}>
         <p>{item.replace("_", " ")}</p>
         <SelectedFiltersStyled className={itemClass}>
-          <SelectedFilters selectedFilters={selectedFilters} />
+          <SelectedFilters
+            selectedFilters={selectedFilters}
+            filterGroup={itemClass}
+          />
         </SelectedFiltersStyled>
       </FilterMarker>
     ) : null;
